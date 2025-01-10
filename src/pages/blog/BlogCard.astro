@@ -1,0 +1,33 @@
+---
+import { blogCardSchema } from "@/types/blog";
+
+const props = blogCardSchema.parse(Astro.props);
+const { post, height = "auto" } = props;
+const { url, title, description, image, author, date } = post;
+---
+
+<article class="">
+  <a href={url}>
+    <div class="">
+      <div class="image">
+        <figure class={`overflow-hidden ${typeof height === "number" ? `h-[${height}px]` : `h-[${height}]`}`}>
+          <img src={image} alt={title} loading="lazy" class="" />
+        </figure>
+      </div>
+      <div class="">
+        <h3 class="">
+          {title}
+        </h3>
+
+        {description && <p class="">{description}</p>}
+
+        <div class="">
+          <div class="">
+            {author && <p class="font-medium">By {author}</p>}
+          </div>
+          {date && <time datetime={date.toString()}>{date}</time>}
+        </div>
+      </div>
+    </div>
+  </a>
+</article>

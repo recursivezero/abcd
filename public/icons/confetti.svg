@@ -1,0 +1,88 @@
+<svg width="600" height="90" viewBox="0 0 600 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="confetti effect">
+  <rect class="blast-rect" x="42" y="-10"/>
+  <rect class="blast-rect" x="84" y="-10"/>
+  <rect class="blast-rect" x="126" y="-13"  />
+  <rect class="blast-rect" x="168" y="-13"  />
+  <rect class="blast-rect" x="210" y="-10"/>
+  <rect class="blast-rect" x="252" y="-13"  />
+  <rect class="blast-rect" x="294" y="-10"/>
+  <rect class="blast-rect" x="336" y="-13"  />
+  <rect class="blast-rect" x="378" y="-13"  />
+  <rect class="blast-rect" x="420" y="-10"/>
+  <rect class="blast-rect" x="462" y="-10"/>
+  <rect class="blast-rect" x="504" y="-13"  />
+  <rect class="blast-rect" x="546" y="-10"/>
+
+  <style type="text/css">
+    :root {
+    --color-red: #FF5733;
+    --color-blue: #33C4FF;
+    --color-dark-red: #C70039;
+    --color-yellow: #FFC300;
+    --color-light-green: #DAF7A6;
+    }
+
+    svg {
+    .blast-rect {
+    opacity: 0;
+    animation: blast 700ms infinite ease-out;
+    transition: fill 300ms ease-in-out;
+    width: 6px;
+    height:10px;
+    }
+    :nth-child(odd) {
+      fill: var(--color-red);
+      height: 13px;
+    }
+    :nth-child(even) {
+    fill: var(--color-blue);
+    }
+    :nth-child(3n) {
+    fill: var(--color-dark-red);
+    }
+    :nth-child(5n) {
+    fill: var(--color-yellow);
+    }
+    :nth-child(7n) {
+    fill: var(--color-light-green);
+    }
+    }
+
+    rect:nth-child(2n+1) {
+    transform-origin: 45px 5px;
+    transform: rotate(-145deg);
+    animation-delay: 88ms;
+    animation-duration: 631ms;
+    }
+    rect:nth-child(even) {
+    transform-origin: 87px 5px;
+    transform: rotate(164deg);
+    animation-delay: 131ms;
+    animation-duration: 442ms;
+    }
+    rect:nth-child(n+3) {
+    transform-origin: 128px 6px;
+    transform: rotate(4deg);
+    animation-delay: 92ms;
+    animation-duration: 662ms;
+    }
+    rect:nth-child(4) {
+    transform-origin: 170px 6px;
+    transform: rotate(-175deg);
+    animation-delay: 17ms;
+    animation-duration: 593ms;
+    }
+
+    @keyframes blast {
+    from {
+    opacity: 0;
+    }
+    20% {
+    opacity: 1;
+    }
+    to {
+    transform: translateY(90px);
+    }
+    }
+  </style>
+</svg>

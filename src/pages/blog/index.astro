@@ -1,0 +1,31 @@
+---
+import "@/assets/styles/page.css";
+import BaseLayout from "@/layouts/Base";
+import TitleLayout from "@/layouts/TitleLayout";
+import { blogPostSchema, type BlogPost } from "@/types/blog";
+import { getCollection } from "astro:content";
+import BlogCard from "./BlogCard.astro";
+
+const blogs = await getCollection("blogs");
+
+// Transform and validate blog posts
+const blogPosts = blogs.map((entry) => {
+  const post: BlogPost = blogPostSchema.parse({
+    url: `/blog/${entry.id}`,
+    title: entry.data.title,
+    description: entry.data.description,
+    author: entry.data.author,
+    date: entry.data.publishDate?.toLocaleDateString()
+  });
+  return post;
+});
+---
+
+<BaseLayout meta={{ title: "Blogs" }}>
+  <div class="container__blog">
+    <TitleLayout title="Blogs" />
+    <div class="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+      {blogPosts.map((post) => <BlogCard post={post} height="300px" />)}
+    </div>
+  </div>
+</BaseLayout>

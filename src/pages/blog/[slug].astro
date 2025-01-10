@@ -1,0 +1,46 @@
+---
+import "@/assets/styles/page.css";
+import { blogSchema } from "@/content.config";
+import BaseLayout from "@/layouts/Base";
+import TitleLayout from "@/layouts/TitleLayout";
+import { getCollection, getEntry, render } from "astro:content";
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const blogs = await getCollection("blogs");
+  return blogs.map((entry) => ({
+    params: { slug: entry.id },
+    props: { slug: entry.id }
+  }));
+}
+
+// Update Props type since we're passing slug
+type Props = {
+  slug: string;
+};
+
+const { slug } = Astro.props;
+
+// Use getEntry to fetch the blog post
+const entry = await getEntry("blogs", slug);
+if (!entry) {
+  throw new Error(`Blog post not found: ${slug}`);
+}
+
+// Validate the data
+const validatedData = blogSchema.parse(entry.data);
+
+// Render the content
+const { Content } = await render(entry);
+
+if (!Content) {
+  throw new Error(`Content could not be rendered for blog`);
+}
+---
+
+<BaseLayout meta={{ title: validatedData.title, description: validatedData.description }}>
+  <div class="container__blog">
+    <TitleLayout title={validatedData.title} />
+    <Content />
+  </div>
+</BaseLayout>

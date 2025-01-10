@@ -1,0 +1,71 @@
+{
+  "git.autofetch": true,
+  "workbench.startupEditor": "none",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.customDictionaries": {
+    "my-words": {
+      "name": "myDictionary",
+      "path": "~/myDictionary.txt",
+      "description": "Words used for my own context.",
+      "addWords": true
+    },
+    "custom": true, // Enable the `custom` dictionary
+    "internal-terms": false // Disable the `internal-terms` dictionary
+  },
+  "editor.accessibilitySupport": "off",
+  "git.openRepositoryInParentFolders": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.linkedEditing": true,
+  "cSpell.userWords": ["nojekyll", "testid"],
+  "editor.tabSize": 2,
+  "git.enableSmartCommit": true,
+  "files.watcherExclude": {
+    "**/node_modules/*/**": true
+  },
+  "files.autoSave": "afterDelay",
+  "git.branchProtection": ["main", "develop"],
+  "[CODEOWNERS]": {
+    "editor.formatOnSave": false
+  },
+  "cSpell.words": [
+    "DUMMYUSER"
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#e98cf9",
+    "activityBar.background": "#e98cf9",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#fdf9e1",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#e98cf9",
+    "sideBar.border": "#e98cf9",
+    "statusBar.background": "#e05bf7",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#d72af5",
+    "statusBarItem.remoteBackground": "#e05bf7",
+    "statusBarItem.remoteForeground": "#15202b",
+    "tab.activeBorder": "#e98cf9",
+    "titleBar.activeBackground": "#e05bf7",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#e05bf799",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#e05bf7",
+  "css.format.enable": true,
+  "css.lint.unknownAtRules": "ignore"
+}
