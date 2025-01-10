@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest a feature for this project
-title: "❇️ TZC-24000X:"
+title: "❇️ RZA-25000X: "
 labels: enhancement
 assignees: recursivezero
 ---
