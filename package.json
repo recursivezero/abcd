@@ -1,9 +1,9 @@
 {
-  "name": "astro-template",
-  "version": "1.3.0",
+  "name": "abcd",
+  "version": "1.0.0",
   "description": "front end starter in Astro with React codebase",
   "homepage": "https://parixan.xyz",
-  "displayName": "template",
+  "displayName": "abcd",
   "license": "MIT",
   "publisher": "recursivezero",
   "private": true,
@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/recursivezero/template.git"
+    "url": "git+https://github.com/recursivezero/abcd.git"
   },
   "bugs": {
-    "url": "https://github.com/recursivezero/template/issues",
+    "url": "https://github.com/recursivezero/abcd/issues",
     "email": "recursivezero@outlook.com"
   },
   "funding": {
@@ -43,7 +43,8 @@
     "check": "astro check",
     "lint": "prettier -w --cache . && prettier -w --cache **/*.astro",
     "clean": "rm -rf dist rm -rf build",
-    "nuke": "rm -rf node_modules && rm package-lock.json && npm run clean"
+    "nuke": "shx rm -rf node_modules && rm package-lock.json && npm run clean",
+    "postinstall": "sh ./setup-hooks.sh"
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",
@@ -83,6 +84,7 @@
     "postcss-import": "16.1.0",
     "prettier": "3.1.0",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.6.8"
+    "prettier-plugin-tailwindcss": "0.6.8",
+    "shx": "0.3.4"
   }
 }

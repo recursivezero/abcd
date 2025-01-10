@@ -1,8 +1,8 @@
 name: Bug Report
 description: File a bug report to help us improve.
 title: "🐛 RZB-25000X:"
-labels: ["bug", "invalid"]
-assignees: ["xkeshav"]
+labels: ["bug"]
+assignees: ["recursivezero"]
 
 body:
   - type: markdown

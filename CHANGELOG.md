@@ -4,37 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
 
-## [0.0.1] - 2024-01-01
+## [1.0.0] - 2025-10-01
 
-Added
+Created Repo from template
 
-Basic Astro setup
-React and Tailwind
-Lint and workspace file
-
-Changed
-
-## [1.0.0] - 2024-10-07
-
-- Added New Repo
-
-## [1.1.1] - 2024-10-21
-
-- launched with server nd db connection
-
-## [1.2.0] - 2024-10-22
-
-Changed
-
-- build on client side
-
-## [1.3.0] - 2024-12-22
-
-Added
-
-- Product Detail page
-- Zipped page
-- Share button on product detail page
 
 ### [Unreleased]
 

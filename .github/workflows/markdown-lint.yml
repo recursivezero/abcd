@@ -1,10 +1,20 @@
 name: markdown-lint
-run-name: learning github action from workflow
+run-name: Linting markdown files
 on:
   push:
     branches:
       - main
       - develop
+    paths:
+      - "**.md" # Match any .md file in any directory
+      - "**.mdx"
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - "**.md"
+      - "**.mdx"
 jobs:
   markdown-lint:
     runs-on: ubuntu-latest

@@ -1,6 +1,7 @@
 {
   "folders": [
     {
+      "name": "abcd",
       "path": "."
     }
   ],
@@ -114,7 +115,7 @@
     "files.autoSave": "onFocusChange",
     "files.eol": "\r\n",
     "files.exclude": {
-      ".git/**": true
+      "**/.git": false
     },
     "files.readonlyExclude": {
       "dist/**": true
