@@ -69,7 +69,7 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── todo.md
 ├── tsconfig.eslint.json
 ├── tsconfig.json
-└── tz-client.code-workspace
+└── <project>.code-workspace
 ```
 
 and src
