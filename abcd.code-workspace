@@ -72,9 +72,25 @@
       "javascript": "javascriptreact"
     },
     "eslint.options": {
-      "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx", ".astro"]
+      "extensions": [
+        ".js",
+        ".jsx",
+        ".md",
+        ".mdx",
+        ".ts",
+        ".tsx",
+        ".astro"
+      ]
     },
-    "eslint.validate": ["mdx", "markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "astro"],
+    "eslint.validate": [
+      "mdx",
+      "markdown",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "astro"
+    ],
     "explorer.compactFolders": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -105,7 +121,10 @@
     },
     "git.autofetch": true,
     "git.branchPrefix": "feature/",
-    "git.branchProtection": ["develop", "main"],
+    "git.branchProtection": [
+      "develop",
+      "main"
+    ],
     "git.branchRandomName.enable": true,
     "git.confirmSync": false,
     "git.enableCommitSigning": false,
@@ -115,8 +134,10 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "js/ts.implicitProjectConfig.checkJs": true,
     "peacock.affectSideBarBorder": true,
-    "peacock.color": "#774455",
-    "prettier.documentSelectors": ["**/*.astro"],
+    "peacock.color": "#abcd00",
+    "prettier.documentSelectors": [
+      "**/*.astro"
+    ],
     "prettier.printWidth": 120,
     "prettier.quoteProps": "consistent",
     "prettier.singleQuote": false,
@@ -137,25 +158,25 @@
     "window.title": "${rootNameShort}${separator}${activeEditorShort}${separator}${activeFolderMedium}",
     "window.zoomLevel": 0.5,
     "workbench.colorCustomizations": {
-      "activityBar.activeBackground": "#97576c",
-      "activityBar.background": "#97576c",
-      "activityBar.foreground": "#e7e7e7",
-      "activityBar.inactiveForeground": "#e7e7e799",
-      "activityBarBadge.background": "#85ad71",
-      "activityBarBadge.foreground": "#15202b",
-      "commandCenter.border": "#e7e7e799",
-      "sash.hoverBorder": "#97576c",
-      "sideBar.border": "#97576c",
-      "statusBar.background": "#774455",
-      "statusBar.foreground": "#e7e7e7",
-      "statusBarItem.hoverBackground": "#97576c",
-      "statusBarItem.remoteBackground": "#774455",
-      "statusBarItem.remoteForeground": "#e7e7e7",
-      "titleBar.activeBackground": "#774455",
-      "titleBar.activeForeground": "#e7e7e7",
-      "titleBar.inactiveBackground": "#77445599",
-      "titleBar.inactiveForeground": "#e7e7e799",
-      "tab.activeBorder": "#97576c"
+      "activityBar.activeBackground": "#d5ff01",
+      "activityBar.background": "#d5ff01",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#00a0bf",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#15202b99",
+      "sash.hoverBorder": "#d5ff01",
+      "sideBar.border": "#d5ff01",
+      "statusBar.background": "#abcd00",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#809a00",
+      "statusBarItem.remoteBackground": "#abcd00",
+      "statusBarItem.remoteForeground": "#15202b",
+      "titleBar.activeBackground": "#abcd00",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#abcd0099",
+      "titleBar.inactiveForeground": "#15202b99",
+      "tab.activeBorder": "#d5ff01"
     },
     "workbench.colorTheme": "Tokyo Night Storm",
     "workbench.editor.pinnedTabSizing": "compact",
