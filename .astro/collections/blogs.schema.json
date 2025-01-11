@@ -8,6 +8,9 @@
           "type": "string",
           "maxLength": 60
         },
+        "slug": {
+          "type": "string"
+        },
         "publishDate": {
           "anyOf": [
             {

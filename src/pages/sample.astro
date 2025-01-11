@@ -1,0 +1,60 @@
+---
+import "@/assets/styles/page.css";
+import Header from "@/components/Header.astro";
+import BaseLayout from "@/layouts/Base";
+---
+
+<BaseLayout meta={{ title: "Sample Page" }}>
+  <Header title="Welcome to Sample">
+    <Fragment slot="left">
+      <button>Left 1</button>
+      <button>Left 2</button>
+    </Fragment>
+    <Fragment slot="right">
+      <div id="hint" class="hint">❓</div>
+      <button>Right 1</button>
+      <button>Right 2</button>
+      <button>Right 3</button>
+    </Fragment>
+  </Header>
+
+  <main class="container__page">
+    <section>
+      <h2>Getting Started</h2>
+      <p>Welcome to your new page! This is a sample layout following the project's style guidelines.</p>
+
+      <h3>Features Available</h3>
+      <ul>
+        <li>
+          <p>Header component with customizable title</p>
+        </li>
+        <li>
+          <p>Responsive layout with container classes</p>
+        </li>
+        <li>
+          <p>Built-in styling CSS</p>
+        </li>
+      </ul>
+    </section>
+
+    <dialog id="info">
+      <button autofocus>Close</button>
+      <p>This is a sample info dialog.</p>
+      <p>You can add helpful information here for users.</p>
+    </dialog>
+  </main>
+</BaseLayout>
+
+<script>
+  const hint = document.querySelector("#hint");
+  const infoDialog = document.querySelector("dialog");
+  const btn = document.querySelector("dialog > button");
+
+  hint?.addEventListener("click", () => {
+    infoDialog?.showModal();
+  });
+
+  btn?.addEventListener("click", () => {
+    infoDialog?.close();
+  });
+</script>

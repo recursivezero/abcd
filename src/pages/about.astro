@@ -1,0 +1,45 @@
+---
+import "@/assets/styles/about.css";
+import "@/assets/styles/dialog.css";
+import Header from "@/components/Header.astro";
+import BaseLayout from "@/layouts/Base";
+---
+
+<BaseLayout meta={{ title: "Blogs" }}>
+  <Header title="About us">
+    <div id="hint" class="hint">❓</div>
+    
+  </Header>
+  <main class="about-main">
+    <div class="container__about">
+      <h1>Hello There</h1>
+      <section class="moto">
+        <p>This is my initial version to make interactive games for kids</p>
+        <p>
+          Inspiration behind these games are to take kids away from smartphone and close to keyboard which will help in
+          their future building also.
+        </p>
+      </section>
+      <dialog id="info">
+        <button autofocus>Close</button>
+        <p>Hide & Seek.</p>
+        <p>
+          Press any alphabet key from keyboard and that letter will appears and when you press again then it will
+          disappears. see some hover and active effect while hover over each card
+        </p>
+      </dialog>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  const hint = document.querySelector("#hint");
+  const infoDialog = document.querySelector("dialog");
+  const btn = document.querySelector("dialog > button");
+  hint?.addEventListener("click", () => {
+    infoDialog?.showModal();
+  });
+  btn?.addEventListener("click", () => {
+    infoDialog?.close();
+  });
+</script>
