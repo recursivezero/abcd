@@ -1,0 +1,217 @@
+---
+---
+
+<div id="state-popup">
+  <span class="close-popup">&times;</span>
+  <div id="popup-state-name">State Name</div>
+  <img id="popup-state-image" src="" alt="State Image">
+  <div id="popup-state-info">State Information</div>
+  <div id="pop-up-buttons">
+    <button class="copy-button">Copy Info</button>
+    <button id="see-more-button">See More</button>
+  </div>
+</div>
+
+<script>
+  // Initialize DOM elements once
+  const popup = document.getElementById('state-popup') as HTMLElement;
+  const popupStateName = document.getElementById('popup-state-name') as HTMLElement;
+  const popupStateInfo = document.getElementById('popup-state-info') as HTMLElement;
+  const popupStateImage = document.getElementById('popup-state-image') as HTMLElement;
+  const seeMoreButton = document.getElementById('see-more-button') as HTMLElement;
+  const closePopup = document.querySelector('.close-popup') as HTMLElement;
+  const copyButton = document.querySelector('.copy-button') as HTMLElement;
+
+  function showPopup(event: MouseEvent, stateInfo: any) {
+    // Update popup content
+    popupStateName.textContent = stateInfo.name;
+    popupStateInfo.innerHTML = `<p><strong>State Dance:</strong> ${stateInfo.dance}</p>`;
+    popupStateImage.src = `/images/${stateInfo.image}`; 
+    popupStateImage.alt = `${stateInfo.name} state image`;
+
+  
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+
+    popup.style.display = 'flex';
+    const popupWidth = popup.offsetWidth;
+    const popupHeight = popup.offsetHeight;
+
+    // Get click position relative to viewport
+    const clickX = event.clientX;
+    const clickY = event.clientY;
+
+
+    let left = clickX;
+    let top = clickY + 20; 
+
+   
+    if (left + popupWidth > viewportWidth - 20) {
+      left = viewportWidth - popupWidth - 20;
+    }
+    if (left < 20) {
+      left = 20;
+    }
+
+
+    if (top + popupHeight > viewportHeight - 20) {
+      top = clickY - popupHeight - 20;
+    }
+    if (top < 20) {
+      top = 20;
+    }
+
+
+    popup.style.left = `${left}px`;
+    popup.style.top = `${top}px`;
+    popup.style.opacity = '1';
+  }
+
+  // Event Listeners
+  document.addEventListener('showStatePopup', ((e: CustomEvent) => {
+    const { event, stateInfo } = e.detail;
+    showPopup(event, stateInfo);
+  }) as EventListener);
+
+  closePopup?.addEventListener('click', () => {
+    popup.style.display = 'none';
+    popup.style.opacity = '0';
+  });
+
+  copyButton?.addEventListener('click', () => {
+    const stateName = popupStateName.textContent;
+    const stateInfo = popupStateInfo.textContent;
+    if (stateName && stateInfo) {
+      navigator.clipboard.writeText(`${stateName} - ${stateInfo}`).then(() => {
+        alert('State information copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        alert('Failed to copy to clipboard');
+      });
+    }
+  });
+
+  seeMoreButton?.addEventListener('click', () => {
+    const stateName = popupStateName.textContent;
+    if (stateName) {
+      const stateUrl = stateName.replace(/\s+/g, '').toLowerCase();
+      window.location.href = `/statepages/${stateUrl}`;
+    }
+  });
+
+  // Close popup when clicking outside
+  document.addEventListener('click', (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (!popup.contains(target) && target.closest('[data-state]') === null) {
+      popup.style.display = 'none';
+      popup.style.opacity = '0';
+    }
+  });
+</script>
+
+<style>
+  #state-popup {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+#popup-state-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+#popup-state-info {
+  font-size: 1.4rem;
+  margin: 12px 0;
+  color: #444;
+  line-height: 1.4;
+}
+
+#state-popup img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.close-popup:hover {
+  color: #333;
+}
+
+#pop-up-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.copy-button,
+#see-more-button {
+  flex: 1;
+  padding: 10px 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.copy-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+#see-more-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.copy-button:hover,
+#see-more-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  #state-popup {
+    width: 85%;
+    padding: 15px;
+    margin: 0 auto;
+  }
+
+  #popup-state-name {
+    font-size: 1.6rem;
+  }
+
+  #popup-state-info {
+    font-size: 1.2rem;
+  }
+}
+
+</style>

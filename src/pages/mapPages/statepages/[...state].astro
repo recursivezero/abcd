@@ -1,0 +1,73 @@
+---
+
+import StateLayout from '@/layouts/mapLayouts/StateLayout';
+import stateData from '@/assets/map_assets/stateData.json';
+import '@/assets/styles/map_styles/stateStyles.css'
+
+export function getStaticPaths() {
+  return stateData.map((state) => ({
+    params: { state: state.slug },
+    props: { stateInfo: state },
+  }));
+}
+
+const { stateInfo } = Astro.props;
+const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
+---
+
+
+
+<StateLayout title={`${name} - ${dance}`}>
+  <main>
+    <h1>{dance} - {name}</h1>
+    
+    <div class="main-container">
+      <div id="state-svg-container">
+        <h3>State Map</h3>
+        <div id="state-svg" data-svg-path={`/svg/${svg}`}></div>
+      </div>
+
+      <div class="right-content">
+        <img 
+          src={`/images/${image}`} 
+          alt={`${dance} from ${name}`} 
+          loading="eager"
+        />
+        <div class="content-text">
+          <table class="info-table">
+            <tr><th colspan="2">Quick Facts</th></tr>
+            <tr><td>Dance Form</td><td>{dance}</td></tr>
+            <tr><td>Origin</td><td>{name}, India</td></tr>
+            <tr><td>Festival</td><td>{festival}</td></tr>
+            <tr><td>Description</td><td>{description}</td></tr>
+          </table>
+          <a href={wikiLink} target="_blank" rel="noopener noreferrer">
+            Read more about {dance} on Wikipedia
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</StateLayout>
+
+<script>
+  // Load SVG when the page loads
+  document.addEventListener('DOMContentLoaded', async () => {
+    const svgContainer = document.getElementById('state-svg');
+    if (!svgContainer) return;
+
+    const svgPath = svgContainer.dataset.svgPath;
+    if (!svgPath) return;
+
+    try {
+      const response = await fetch(svgPath);
+      if (!response.ok) throw new Error('Failed to load SVG');
+      const svgContent = await response.text();
+      svgContainer.innerHTML = svgContent;
+    } catch (error) {
+      console.error('Error loading SVG:', error);
+      svgContainer.innerHTML = '<p class="error">Failed to load state map</p>';
+    }
+  });
+</script>
+
