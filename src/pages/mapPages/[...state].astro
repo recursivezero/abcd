@@ -3,10 +3,13 @@
 import StateLayout from '@/layouts/mapLayouts/StateLayout';
 import stateData from '@/assets/map_assets/stateData.json';
 import '@/assets/styles/map_styles/stateStyles.css'
+// import '@/assets/styles/globals.css'
+
+export const prerender = true;
 
 export function getStaticPaths() {
   return stateData.map((state) => ({
-    params: { state: state.slug },
+    params: { state: state.id },
     props: { stateInfo: state },
   }));
 }
@@ -24,12 +27,12 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
     <div class="main-container">
       <div id="state-svg-container">
         <h3>State Map</h3>
-        <div id="state-svg" data-svg-path={`/svg/${svg}`}></div>
+        <div id="state-svg" data-svg-path={`/map_assets/svg/${svg}`}></div>
       </div>
 
       <div class="right-content">
         <img 
-          src={`/images/${image}`} 
+          src={`/map_assets/images/${image}`} 
           alt={`${dance} from ${name}`} 
           loading="eager"
         />

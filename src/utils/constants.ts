@@ -32,6 +32,12 @@ export const NavbarLinks: LinkProps[] = [
     title: "letter",
     path: "/letter",
     isActive: true
+  },
+  {
+    name: "IndiaMap",
+    title: "IndiaMap",
+    path: "/indiaMap",
+    isActive: true
   }
 ];
 
