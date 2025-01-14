@@ -1,8 +1,7 @@
 ---
-
-import StateLayout from '@/layouts/mapLayouts/StateLayout';
-import stateData from '@/assets/map_assets/stateData.json';
-import '@/assets/styles/map_styles/stateStyles.css'
+import StateLayout from "@/layouts/mapLayouts/StateLayout";
+import stateData from "@/assets/map_assets/stateData.json";
+import "@/assets/styles/map_styles/stateStyles.css";
 // import '@/assets/styles/globals.css'
 
 export const prerender = true;
@@ -10,7 +9,7 @@ export const prerender = true;
 export function getStaticPaths() {
   return stateData.map((state) => ({
     params: { state: state.id },
-    props: { stateInfo: state },
+    props: { stateInfo: state }
   }));
 }
 
@@ -18,12 +17,10 @@ const { stateInfo } = Astro.props;
 const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 ---
 
-
-
 <StateLayout title={`${name} - ${dance}`}>
   <main>
     <h1>{dance} - {name}</h1>
-    
+
     <div class="main-container">
       <div id="state-svg-container">
         <h3>State Map</h3>
@@ -31,11 +28,7 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
       </div>
 
       <div class="right-content">
-        <img 
-          src={`/map_assets/images/${image}`} 
-          alt={`${dance} from ${name}`} 
-          loading="eager"
-        />
+        <img src={`/map_assets/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
         <div class="content-text">
           <table class="info-table">
             <tr><th colspan="2">Quick Facts</th></tr>
@@ -55,8 +48,8 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 
 <script>
   // Load SVG when the page loads
-  document.addEventListener('DOMContentLoaded', async () => {
-    const svgContainer = document.getElementById('state-svg');
+  document.addEventListener("DOMContentLoaded", async () => {
+    const svgContainer = document.getElementById("state-svg");
     if (!svgContainer) return;
 
     const svgPath = svgContainer.dataset.svgPath;
@@ -64,13 +57,12 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 
     try {
       const response = await fetch(svgPath);
-      if (!response.ok) throw new Error('Failed to load SVG');
+      if (!response.ok) throw new Error("Failed to load SVG");
       const svgContent = await response.text();
       svgContainer.innerHTML = svgContent;
     } catch (error) {
-      console.error('Error loading SVG:', error);
+      console.error("Error loading SVG:", error);
       svgContainer.innerHTML = '<p class="error">Failed to load state map</p>';
     }
   });
 </script>
-

@@ -28,13 +28,15 @@ svg {
   transform: translate(-500px, -200px);
 }
 
-  path {
-    fill: #aee38a;
-    cursor: pointer;
-    transition: fill 0.2s ease, transform 0.1s ease;
-  }
+path {
+  fill: #aee38a;
+  cursor: pointer;
+  transition:
+    fill 0.2s ease,
+    transform 0.1s ease;
+}
 
-  path:hover {
-    fill: #FFA500;
-    transform: scale(1.05);
-  }
+path:hover {
+  fill: #ffa500;
+  transform: scale(1.05);
+}
