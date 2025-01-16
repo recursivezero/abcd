@@ -1,22 +1,18 @@
 ---
 import "@/assets/styles/page.css";
-import Header from "@/components/Header.astro";
 import BaseLayout from "@/layouts/Base";
 ---
 
 <BaseLayout meta={{ title: "Sample Page" }}>
-  <Header title="Welcome to Sample">
-    <Fragment slot="left">
-      <button>Left 1</button>
-      <button>Left 2</button>
-    </Fragment>
-    <Fragment slot="right">
-      <div id="hint" class="hint">❓</div>
-      <button>Right 1</button>
-      <button>Right 2</button>
-      <button>Right 3</button>
-    </Fragment>
-  </Header>
+  <Fragment slot="header-left">
+    <button>Left 1</button>
+    <button>Left 2</button>
+  </Fragment>
+  <Fragment slot="header-right">
+    <button>Right 1</button>
+    <button>Right 2</button>
+    <button>Right 3</button>
+  </Fragment>
 
   <main class="container__page">
     <section>

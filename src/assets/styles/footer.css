@@ -1,6 +1,8 @@
 .container__footer {
-  @apply h-auto w-auto;
+  @apply w-full;
   border-top: 2px solid;
+  padding: 2rem 0;
+  margin-top: 2rem;
 }
 
 .footer__nav {

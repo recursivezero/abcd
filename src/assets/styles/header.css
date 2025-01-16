@@ -1,21 +1,56 @@
-.container__header {
-  @apply flex h-16 items-center justify-between gap-5 p-4;
-  border-bottom: 2px solid;
+@import url(./globals.css);
 
-  & .header__brand {
-    @apply flex flex-row items-center justify-between gap-2;
+.header {
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+  height: var(--header-h);
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    & .logo {
-      width: 3rem;
-      aspect-ratio: 1;
+  .header__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .logo {
+      width: 2rem;
+      height: 2rem;
     }
 
-    & span {
-      @apply text-xl font-bold;
+    span {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary);
     }
   }
 
-  & .header__nav {
-    @apply flex items-center gap-5 text-[1rem] font-bold underline underline-offset-2;
+  .caption {
+    text-align: center;
+    
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
+
+  .action-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.switch {
+  background-color: black;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
 }

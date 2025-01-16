@@ -1,6 +1,5 @@
 ---
 import "@/assets/styles/panel.css";
-import Header from "@/components/Header.astro";
 import BaseLayout from "@/layouts/Base";
 ---
 
@@ -21,16 +20,17 @@ import BaseLayout from "@/layouts/Base";
 </style>
 
 <BaseLayout meta={{ title: "Panel" }}>
-  <Header title="Varnmala">
-    <div>❓</div>
-  </Header>
-  <main class="tv panel-main">
+  <Fragment slot="header-right">
+    <div id="hint" class="hint">❓</div>
+  </Fragment>
+
+  <div class="tv panel-main">
     <section class="scene">
       <letter-panel>
         <div class="panel" id="panel"></div>
       </letter-panel>
     </section>
-  </main>
+  </div>
 </BaseLayout>
 <script>
   enum ArrowKeys {

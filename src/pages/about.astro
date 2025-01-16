@@ -1,15 +1,14 @@
 ---
 import "@/assets/styles/about.css";
 import "@/assets/styles/dialog.css";
-import Header from "@/components/Header.astro";
 import BaseLayout from "@/layouts/Base";
 ---
 
-<BaseLayout meta={{ title: "Blogs" }}>
-  <Header title="About us">
+<BaseLayout meta={{ title: "About us" }}>
+  <Fragment slot="header-right">
     <div id="hint" class="hint">❓</div>
-    
-  </Header>
+  </Fragment>
+  
   <main class="about-main">
     <div class="container__about">
       <h1>Hello There</h1>

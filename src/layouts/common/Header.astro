@@ -1,15 +1,46 @@
 ---
 import { Picture } from "astro:assets";
-
 import "@/assets/styles/header.css";
 import { APP_NAME } from "@/utils/constants";
 import logoImage from "/public/assets/images/logo.png";
+
+const { title, hasBack = true } = Astro.props;
 ---
 
-<div class="container__header">
+<header class="header">
   <div class="header__brand">
     <Picture src={logoImage} formats={["png", "webp"]} alt="template logo" class="logo" />
     <span title={APP_NAME}>{APP_NAME}</span>
   </div>
-  <!--<ThemeToggle />-->
-</div>
+  
+  <div class="caption">
+    <h1>{title}</h1>
+  </div>
+
+  <div class="action-group">
+    <slot name="left">
+      {hasBack && <a href="/" class="back">Back</a>}
+    </slot>
+    <slot name="right" />
+  </div>
+</header>
+
+<style>
+  .back {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.2s ease;
+  }
+
+  .back:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  :global(.action-group button),
+  :global(.action-group a) {
+    white-space: nowrap;
+  }
+</style>
