@@ -26,7 +26,7 @@ export const NavbarLinks: LinkProps[] = [
     title: "Panel",
     path: "/panel",
     isActive: true
-  },
+  }
 ];
 
 export const FooterLinks: LinkProps[] = [

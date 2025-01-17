@@ -39,7 +39,7 @@
     background: color-mix(in srgb, var(--primary) 15%, transparent);
     color: var(--primary);
     font-weight: 600;
-    border-radius: 0.75rem; 
+    border-radius: 0.75rem;
   }
 
   .layout {

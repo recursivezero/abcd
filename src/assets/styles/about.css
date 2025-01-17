@@ -1,4 +1,4 @@
-@import url('./common.css');
+@import url("./common.css");
 
 .about-main {
   display: block;
@@ -7,7 +7,7 @@
 .container__about {
   padding: 1rem;
 
-  >.moto {
+  > .moto {
     color: #3a8657;
     font-size: 3rem;
   }

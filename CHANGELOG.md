@@ -8,7 +8,6 @@ The format is based on Keep a Changelog and this project adheres to Semantic Ver
 
 Created Repo from template
 
-
 ### [Unreleased]
 
 Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.
