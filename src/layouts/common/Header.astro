@@ -24,6 +24,7 @@ const { title, hasBack = true } = Astro.props;
     <slot name="right" />
   </div>
 </header>
+<div class="header-spacer"></div>
 
 <style>
   .back {
@@ -42,5 +43,9 @@ const { title, hasBack = true } = Astro.props;
   :global(.action-group button),
   :global(.action-group a) {
     white-space: nowrap;
+  }
+
+  .header-spacer {
+    height: var(--header-h);
   }
 </style>

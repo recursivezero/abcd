@@ -20,17 +20,13 @@ import BaseLayout from "@/layouts/Base";
 </style>
 
 <BaseLayout meta={{ title: "Panel" }}>
-  <Fragment slot="header-right">
-    <div id="hint" class="hint">❓</div>
-  </Fragment>
-
-  <div class="tv panel-main">
+  <article class="tv panel-main">
     <section class="scene">
       <letter-panel>
         <div class="panel" id="panel"></div>
       </letter-panel>
     </section>
-  </div>
+  </article>
 </BaseLayout>
 <script>
   enum ArrowKeys {

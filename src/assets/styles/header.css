@@ -1,6 +1,11 @@
 @import url(./globals.css);
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   background-color: var(--background);
   border-bottom: 1px solid var(--border);
   height: var(--header-h);

@@ -6,7 +6,7 @@
 }
 
 .footer__nav {
-  @apply flex flex-col items-center justify-center gap-3 text-gray-700 underline underline-offset-2 dark:text-gray-500;
+  @apply flex flex-col md:flex-row items-center justify-center gap-3 text-gray-700 underline underline-offset-2 dark:text-gray-500;
 }
 
 .footer__nav--item {

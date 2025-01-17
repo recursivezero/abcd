@@ -1,0 +1,33 @@
+---
+import "@/assets/styles/dialog.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+<div id="hint" class="hint">❓</div>
+<dialog id="info" class="help-dialog">
+  <div class="dialog-header">
+    <h2>{title}</h2>
+    <button autofocus aria-label="Close dialog">×</button>
+  </div>
+  <div class="dialog-content">
+    <p>{description}</p>
+  </div>
+</dialog>
+
+
+<script>
+  const hint = document.querySelector("#hint");
+  const infoDialog = document.querySelector("dialog");
+  const btn = document.querySelector("dialog > div > button");
+  hint?.addEventListener("click", () => {
+    infoDialog?.showModal();
+  });
+  btn?.addEventListener("click", () => {
+    infoDialog?.close();
+  });
+</script>
