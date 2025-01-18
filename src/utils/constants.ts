@@ -10,27 +10,21 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Dashboard",
-    title: "Dashboard",
-    path: "/dashboard",
+    name: "About",
+    title: "About",
+    path: "/about",
     isActive: true
   },
   {
-    name: "Blog",
-    title: "Blogs",
-    path: "/blog",
+    name: "Varnmala",
+    title: "Varnmala",
+    path: "/varnmala",
     isActive: true
   },
   {
-    name: "Career",
-    title: "Career",
-    path: "/career",
-    isActive: true
-  },
-  {
-    name: "Letter",
-    title: "letter",
-    path: "/letter",
+    name: "Panel",
+    title: "Panel",
+    path: "/panel",
     isActive: true
   },
   {

@@ -1,0 +1,18 @@
+---
+import Alphabet from "@/components/Alphabet.astro";
+import BaseLayout from "@/layouts/Base";
+import { varnmala_english, varnmala_hindi } from "@/utils/common";
+---
+
+<BaseLayout meta={{ title: "Alphabets" }}>
+  <main class="varnmala-main">
+    <Alphabet list={varnmala_english} title="English" />
+    <Alphabet list={varnmala_hindi} title="Hindi" />
+  </main>
+</BaseLayout>
+
+<style>
+  .varnmala-main {
+    display: block;
+  }
+</style>

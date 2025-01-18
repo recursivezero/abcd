@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { pages } = Astro.props;
+
+const currentPath = Astro.url.pathname;
 ---
 
 <nav class="nav">
@@ -15,7 +17,7 @@ const { pages } = Astro.props;
       pages
         .filter((p) => p.isActive)
         .map((p) => (
-          <li class="nav--list__item">
+          <li class={`nav--list__item ${currentPath === p.path ? "active" : ""}`}>
             <Link href={p.path} name={p.name} />
           </li>
         ))
