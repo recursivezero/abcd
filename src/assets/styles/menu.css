@@ -35,6 +35,13 @@
     display: block;
   }
 
+  .nav--list__item.active a {
+    background: color-mix(in srgb, var(--primary) 15%, transparent);
+    color: var(--primary);
+    font-weight: 600;
+    border-radius: 0.75rem;
+  }
+
   .layout {
     position: relative;
     width: max-content;
@@ -47,18 +54,19 @@
     inset: unset;
     display: flex;
     flex-direction: column;
-    width: var(--sidebar-width);
+    width: var(--sidebar-w);
     margin: 0;
     flex-shrink: 0;
     right: 100%;
     top: var(--header-height);
     border: 0;
-    background: transparent;
+    background: var(--background);
     height: 100%;
-    padding: 0;
+    padding: 1rem 0;
     overflow: visible;
     height: calc(100svh - var(--header-height));
     position: sticky;
+    border-right: 1px solid var(--border);
   }
 
   main {
@@ -74,15 +82,25 @@
     font-weight: 600;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
   }
 
   [popover] a {
     display: inline-block;
     width: 100%;
-    padding-block: 0.5rem;
+    padding-block: 0.75rem;
     padding-inline: 1rem;
     text-decoration: none;
-    color: inherit;
+    color: var(--secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  [popover] a:hover {
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    color: var(--primary);
   }
 
   [popover] {
@@ -192,7 +210,6 @@
       border-radius: 12px 12px 0 0;
       outline: 1px solid color-mix(in hsl, canvas, canvasText 25%);
       translate: 0 100%;
-      position: sticky;
     }
 
     [data-placement="bottom"] [popover] {
@@ -323,6 +340,9 @@
     display: flex;
     gap: 0 0.25rem;
     padding-inline: 0.5rem;
+    padding: 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
 
     button {
       width: 44px;
@@ -331,12 +351,14 @@
       padding: 0;
       place-items: center;
       border: 0;
-      color: red;
+      color: var(--secondary);
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+    }
 
-      svg {
-        opacity: calc(0.625 + var(--active, 0));
-        width: 50%;
-      }
+    button:hover {
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
     }
   }
 
