@@ -88,7 +88,13 @@ To start the development server, run:
 npm run dev
 ```
 
-The server will start on `http://localhost:4321`.
+### test and lint
+
+run
+
+```sh
+npm run lint
+```
 
 ### Deployment
 
