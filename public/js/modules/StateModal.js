@@ -18,8 +18,8 @@ export class StateModal {
       if (event.target === this.modal) this.hide();
     };
 
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && this.modal.style.display === 'block') {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && this.modal.style.display === "block") {
         this.hide();
       }
     });
@@ -31,27 +31,27 @@ export class StateModal {
   }
 
   hide() {
-    const modalContent = this.modal.querySelector('.modal-content');
-    modalContent.classList.add('closing');
+    const modalContent = this.modal.querySelector(".modal-content");
+    modalContent.classList.add("closing");
 
     setTimeout(() => {
       this.modal.style.display = "none";
-      modalContent.classList.remove('closing');
+      modalContent.classList.remove("closing");
     }, 300);
   }
 
   updateModalContent() {
     const elements = {
-      "stateName": this.stateName,
-      "stateCapital": this.stateData.capital.name,
-      "stateArea": this.stateData.area,
-      "stateLanguages": this.stateData.languages,
-      "stateDance": this.stateData.danceforms,
-      "stateLiteracy": this.stateData.literacy,
-      "stateDescription": this.stateData.description
+      stateName: this.stateName,
+      stateCapital: this.stateData.capital.name,
+      stateArea: this.stateData.area,
+      stateLanguages: this.stateData.languages,
+      stateDance: this.stateData.danceforms,
+      stateLiteracy: this.stateData.literacy,
+      stateDescription: this.stateData.description
     };
 
-    Object.entries(elements).forEach(([ id, value ]) => {
+    Object.entries(elements).forEach(([id, value]) => {
       document.getElementById(id).textContent = value || "N/A";
     });
   }
