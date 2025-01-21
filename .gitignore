@@ -20,7 +20,6 @@ desktop.ini
 # IDE
 *.sublime-*
 /.idea
-.vscode/*
 *~
 
 # environment variables

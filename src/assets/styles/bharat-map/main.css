@@ -1,0 +1,9 @@
+/* Base styles and CSS variables */
+:root {
+  --primary-color: #4f46e5;
+  --secondary-color: #6366f1;
+  --background-color: #eef2f7;
+  --text-color: #212529;
+  --border-color: #e9ecef;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
