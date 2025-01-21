@@ -110,7 +110,7 @@
     "dance": "Phag Dance",
     "festival": "Teej",
     "description": "Phag Dance is a vibrant folk dance of Haryana performed during the harvest season.",
-    "image": "Harayana.jpg",
+    "image": "Haryana.jpeg",
     "svg": "Harayana.svg",
     "wikiLink": "https://en.wikipedia.org/wiki/Haryana",
     "official_website": "https://haryana.gov.in",
@@ -388,5 +388,18 @@
     "wikiLink": "https://en.wikipedia.org/wiki/West_Bengal",
     "official_website": "https://www.wb.gov.in",
     "isActive": true
-  }
+  },
+  {
+    "id": "ladakh",
+    "state_id": 36,
+    "name": "Ladakh",
+    "dance": "Shondol Dance",
+    "festival": "Losar",
+    "description": "The Shondol Dance, performed during the famous Ladakh festival, is known as the 'royal dance of Ladakh'. It is a cultural tradition showcasing the region's rich heritage.",
+    "image": "ladakh.jpg",
+    "svg": "Ladakh.svg",
+    "wikiLink": "https://en.wikipedia.org/wiki/Ladakh",
+    "official_website": "https://ladakh.nic.in",
+    "isActive": true
+}
 ]

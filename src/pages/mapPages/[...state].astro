@@ -1,8 +1,9 @@
 ---
-import StateLayout from "@/layouts/mapLayouts/StateLayout";
+import BaseLayout from "@/layouts/Base"
 import stateData from "@/assets/map_assets/stateData.json";
 import "@/assets/styles/map_styles/stateStyles.css";
-// import '@/assets/styles/globals.css'
+import '@/assets/styles/globals.css'
+import '@/assets/styles/header.css'
 
 export const prerender = true;
 
@@ -17,10 +18,11 @@ const { stateInfo } = Astro.props;
 const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 ---
 
-<StateLayout title={`${name} - ${dance}`}>
+<BaseLayout meta={{title:`${name} - ${dance}`}}>
   <main>
-    <h1>{dance} - {name}</h1>
-
+    <div class="container_header">
+      <h1>{dance} - {name}</h1>
+    </div>
     <div class="main-container">
       <div id="state-svg-container">
         <h3>State Map</h3>
@@ -44,7 +46,7 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
       </div>
     </div>
   </main>
-</StateLayout>
+</BaseLayout>
 
 <script>
   // Load SVG when the page loads
