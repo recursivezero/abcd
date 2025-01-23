@@ -1,4 +1,11 @@
 {
+  "andaman": {
+    "id": "Andaman",
+    "name": "Andaman and Nicobar Islands",
+    "dance": "Kuchipudi Dance",
+    "image": "andhra.jpg",
+    "svg": "Andaman.svg"
+  },
   "andhra": {
     "id": "Andhra",
     "name": "Andhra Pradesh",
@@ -33,6 +40,13 @@
     "dance": "Raut Nacha",
     "image": "chattisgarh.jpg",
     "svg": "Chhatisgarh.svg"
+  },
+  "Dadar": {
+    "id": "Dadar",
+    "name": "Dadar",
+    "dance": "Shondol Dance",
+    "image": "ladakh.jpg",
+    "svg": "DadarAndNagarHaveli.svg"
   },
   "delhi": {
     "id": "Delhi",
@@ -215,5 +229,26 @@
     "dance": "Shondol Dance",
     "image": "ladakh.jpg",
     "svg": "Ladakh.svg"
-}
+  },
+  "lakshadweep": {
+    "id": "Lakshadweep",
+    "name": "Lakshadweep",
+    "dance": "Bihu Dance",
+    "image": "assam.jpg",
+    "svg": "Lakshadweep.svg"
+  },
+  "pondicherry": {
+    "id": "Pondicherry",
+    "name": "Pondicherry",
+    "dance": "Bihu Dance",
+    "image": "assam.jpg",
+    "svg": "Pondicherry.svg"
+  },
+  "damananddiu": {
+    "id": "Daman And Diu",
+    "name": "Daman And Diu",
+    "dance": "Bihu Dance",
+    "image": "assam.jpg",
+    "svg": "DamanAndDiu.svg"
+  }
 }

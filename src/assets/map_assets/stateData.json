@@ -391,7 +391,7 @@
   },
   {
     "id": "ladakh",
-    "state_id": 36,
+    "state_id": 29,
     "name": "Ladakh",
     "dance": "Shondol Dance",
     "festival": "Losar",
@@ -401,5 +401,70 @@
     "wikiLink": "https://en.wikipedia.org/wiki/Ladakh",
     "official_website": "https://ladakh.nic.in",
     "isActive": true
-}
+  },
+  {
+    "id": "pondicherry",
+    "state_id": 30,
+    "name": "Pondicherry",
+    "dance": "Bharatanatyam",
+    "festival": "Masi Magam",
+    "description": "Bharatanatyam in Puducherry reflects the unique blend of Tamil and French cultural influences. The dance form is regularly performed during cultural festivals and celebrations.",
+    "image": "puducherry.jpg",
+    "svg": "Puducherry.svg",
+    "wikiLink": "https://en.wikipedia.org/wiki/Puducherry",
+    "official_website": "https://www.py.gov.in",
+    "isActive": true
+  },
+  {
+    "id": "andaman-and-nicobar",
+    "state_id": 31,
+    "name": "Andaman and Nicobar Islands",
+    "dance": "Nicobari Dance",
+    "festival": "Island Tourism Festival",
+    "description": "The Nicobari Dance is a traditional dance form of the indigenous people of the Nicobar Islands. It features unique movements that tell stories of island life and tribal traditions.",
+    "image": "andaman.jpg",
+    "svg": "Andaman.svg",
+    "wikiLink": "https://en.wikipedia.org/wiki/Andaman_and_Nicobar_Islands",
+    "official_website": "https://www.andaman.gov.in",
+    "isActive": true
+  },
+  {
+    "id": "chandigarh",
+    "state_id": 32,
+    "name": "Chandigarh",
+    "dance": "Bhangra",
+    "festival": "Rose Festival",
+    "description": "While Chandigarh shares the vibrant Bhangra tradition with Punjab, the city has developed its own unique modern interpretation of this energetic dance form, often showcased during the famous Rose Festival.",
+    "image": "chandigarh.jpg",
+    "svg": "Chandigarh.svg",
+    "wikiLink": "https://en.wikipedia.org/wiki/Chandigarh",
+    "official_website": "http://chandigarh.gov.in",
+    "isActive": true
+  },
+  {
+    "id": "dadra-and-nagar-haveli-and-daman-and-diu",
+    "state_id": 33,
+    "name": "Dadra and Nagar Haveli and Daman and Diu",
+    "dance": "Tarpa Dance",
+    "festival": "Kalo Dungar Festival",
+    "description": "The Tarpa Dance, named after the traditional trumpet-like instrument Tarpa, is performed by the Warli and other tribes. Dancers move in circles to the rhythm of the Tarpa instrument.",
+    "image": "dadra.jpg",
+    "svg": "Dadra.svg",
+    "wikiLink": "https://en.wikipedia.org/wiki/Dadra_and_Nagar_Haveli_and_Daman_and_Diu",
+    "official_website": "https://dnh.gov.in",
+    "isActive": true
+  },
+  {
+    "id": "lakshadweep",
+    "state_id": 34,
+    "name": "Lakshadweep",
+    "dance": "Lava Dance",
+    "festival": "Eid-ul-Fitr",
+    "description": "The Lava Dance is a traditional Muslim folk dance of Lakshadweep. Performed during celebrations, it reflects the islands' rich maritime culture and Islamic traditions.",
+    "image": "lakshadweep.jpg",
+    "svg": "Lakshadweep.svg",
+    "wikiLink": "https://en.wikipedia.org/wiki/Lakshadweep",
+    "official_website": "https://lakshadweep.gov.in",
+    "isActive": true
+  }
 ]

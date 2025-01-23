@@ -1,13 +1,15 @@
 ---
 // src/pages/index.astro
 import BaseLayout from "@/layouts/Base";
-import Map from "@/components/Map.astro";
+// import { Icon } from 'astro-icon/components'
 import Popup from "@/components/Popup.astro";
+import IndiaMap from "@/components/IndiaMap.astro";
 import TitleLayout from "@/layouts/TitleLayout";
 ---
 
 <BaseLayout meta={{ title: "Explore Dances of India" }}>
   <TitleLayout title="Explore Dances of India" />
-  <Map />
+  <IndiaMap />
   <Popup />
+  <!-- <Icon name="Andhra" /> -->
 </BaseLayout>

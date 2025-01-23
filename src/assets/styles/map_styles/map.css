@@ -25,7 +25,6 @@ svg {
   pointer-events: none;
   z-index: 500;
   display: none;
-  transform: translate(-500px, -200px);
 }
 
 path {
