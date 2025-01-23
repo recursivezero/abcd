@@ -1,0 +1,146 @@
+---
+interface Props {
+  letters?: string[];
+}
+
+// Default alphabet letters (A-Z)
+export const varnmala = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+
+// Use letters from props or default to varnmala
+const letters = Astro.props?.letters || varnmala;
+---
+
+<div class="hide-and-seek-game">
+  <dialog id="game-instructions">
+    <button autofocus>Close</button>
+    <p>Welcome to the Hide & Seek Game! Press an alphabet key to reveal the hidden letter.</p>
+  </dialog>
+
+  <main class="varnmala" id="main">
+    {letters.map((letter) => (
+      <div class="word" data-letter={letter}></div>
+    ))}
+  </main>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const main = document.getElementById('main');
+  const dialog = document.getElementById('game-instructions');
+
+  // Function to check if the pressed key is an alphabet
+  const isAlphabet = (key) => /^[a-zA-Z]$/.test(key);
+
+  document.addEventListener('keydown', (e) => {
+    const { key } = e;
+    if (isAlphabet(key)) {
+      const targetLetter = key.toUpperCase();
+      const letterElement = main.querySelector(`.word[data-letter="${targetLetter}"]`);
+      if (letterElement) {
+        letterElement.textContent = targetLetter; // Reveal the letter
+        letterElement.classList.add('show');
+      }
+    }
+  });
+
+  // Close dialog box
+  dialog.querySelector('button').addEventListener('click', () => {
+    dialog.close();
+  });
+
+  // Show instructions on first load
+  dialog.showModal();
+});
+</script>
+
+<style>
+/* Main Container Layout */
+.hide-and-seek-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Alphabet Grid */
+.varnmala {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Set 6 letters per row */
+  gap: 1.5rem; /* Space between letters */
+  width: 90%;
+  max-width: 700px; /* Constrain grid width */
+  margin: 2rem auto;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .varnmala {
+    grid-template-columns: repeat(4, 1fr); /* Reduce to 4 letters per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .varnmala {
+    grid-template-columns: repeat(3, 1fr); /* Reduce to 3 letters per row on very small screens */
+  }
+}
+
+/* Individual Letter Cards */
+.word {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #b0bec5;
+  color: transparent; /* Hidden initially */
+  border-radius: 10px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  height: 4rem;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.word:hover {
+  background: #78909c;
+  transform: translateY(-5px);
+}
+
+.word.show {
+  color: #ffffff; /* Reveal the letter */
+  background: linear-gradient(135deg, #00796b, #004d40);
+  transform: scale(1.1);
+}
+
+/* Dialog Box */
+dialog {
+  border: none;
+  background: #64b5f6;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+dialog button {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+dialog button:hover {
+  background: #b71c1c;
+}
+</style>
