@@ -41,9 +41,7 @@
   "[CODEOWNERS]": {
     "editor.formatOnSave": false
   },
-  "cSpell.words": [
-    "DUMMYUSER"
-  ],
+  "cSpell.words": ["DUMMYUSER"],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#e98cf9",
     "activityBar.background": "#e98cf9",
