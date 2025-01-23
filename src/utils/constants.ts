@@ -26,6 +26,30 @@ export const NavbarLinks: LinkProps[] = [
     title: "Panel",
     path: "/panel",
     isActive: true
+  },
+  {
+    name: "Reader",
+    title: "Reader",
+    path: "/reader",
+    isActive: true
+  },
+  {
+    name: "Record",
+    title: "Record",
+    path: "/record",
+    isActive: true
+  },
+  {
+    name: "Hindi",
+    title: "Hindi",
+    path: "/hindi",
+    isActive: true
+  },
+  {
+    name: "Typing",
+    title: "Typing",
+    path: "/typing",
+    isActive: true
   }
 ];
 
