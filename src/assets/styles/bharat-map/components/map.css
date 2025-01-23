@@ -1,10 +1,10 @@
 /* Map container and SVG styles */
 .map-container {
-  background: white;
+  background: var(--modal-bg);
   margin: 1rem;
   padding: 1rem;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px var(--shadow-color);
   flex: 1;
   display: flex;
   align-items: center;
@@ -14,7 +14,7 @@
 svg {
   width: 100%;
   height: 100%;
-  border: 1px solid #e1e8ef;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 1rem;
   margin: 0 auto;
@@ -23,23 +23,23 @@ svg {
 
 /* State and capital styling */
 .state {
-  fill: #c7d2fe;
-  stroke: #4f46e5;
+  fill: var(--modal-details-bg);
+  stroke: var(--primary-color);
   stroke-width: 0.5;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .state:hover {
   opacity: 0.8;
-  fill: #6366f1;
+  fill: var(--secondary-color);
   cursor: pointer;
   transform: translateY(-2px);
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 4px 6px var(--shadow-color));
 }
 
 .capital-marker {
-  fill: #6366f1;
-  stroke: white;
+  fill: var(--secondary-color);
+  stroke: var(--modal-bg);
   stroke-width: 2;
   transition: all 0.3s ease;
   r: 3;
@@ -48,10 +48,10 @@ svg {
 
 .capital-marker:hover {
   r: 5;
-  fill: #818cf8;
+  fill: var(--primary-color);
 }
 
-.capital-marker:hover + .capital-label {
+.capital-marker:hover+.capital-label {
   opacity: 1;
   transform: translateY(-8px);
 }
@@ -59,7 +59,7 @@ svg {
 .capital-label {
   font-size: 10px;
   font-weight: 500;
-  fill: #495057;
+  fill: var(--text-color);
   opacity: 0;
   transition: all 0.3s ease;
   pointer-events: none;
@@ -68,34 +68,10 @@ svg {
 
 .capital-marker.active {
   r: 5;
-  fill: #818cf8;
+  fill: var(--primary-color);
 }
 
 .capital-label:hover,
 .capital-label.active {
   opacity: 1;
-}
-
-/* Dark mode map styles */
-[data-theme="dark"] .map-container {
-  background: #1e293b;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-}
-
-[data-theme="dark"] .state {
-  fill: #334155;
-  stroke: #818cf8;
-}
-
-[data-theme="dark"] .state:hover {
-  fill: #818cf8;
-  opacity: 0.6;
-}
-
-[data-theme="dark"] .capital-label {
-  fill: #e2e8f0;
-}
-
-[data-theme="dark"] svg {
-  border-color: #334155;
 }
