@@ -1,0 +1,15 @@
+---
+import "@/assets/styles/bharat-map/themes.css";
+import BaseLayout from "./Base.astro";
+
+const {
+  meta: { title }
+} = Astro.props;
+---
+
+<BaseLayout meta={{ title: "Bharat Map" }}>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <slot />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script type="module" src="/js/main.js"></script>
+</BaseLayout>
