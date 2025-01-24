@@ -1,4 +1,4 @@
-#state-popup {
+.state-popup {
   display: none;
   flex-direction: column;
   position: absolute;
@@ -15,21 +15,21 @@
   overflow-y: auto;
 }
 
-#popup-state-name {
+.state-popup__name {
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 12px;
   color: #333;
 }
 
-#popup-state-info {
+.state-popup__info {
   font-size: 1.4rem;
   margin: 12px 0;
   color: #444;
   line-height: 1.4;
 }
 
-#state-popup img {
+.state-popup__image {
   width: 100%;
   height: auto;
   max-height: 200px;
@@ -38,7 +38,7 @@
   margin: 10px 0;
 }
 
-.close-popup {
+.state-popup__close {
   position: absolute;
   top: 10px;
   right: 15px;
@@ -48,18 +48,17 @@
   transition: color 0.2s ease;
 }
 
-.close-popup:hover {
+.state-popup__close:hover {
   color: #333;
 }
 
-#pop-up-buttons {
+.state-popup__buttons {
   display: flex;
   gap: 12px;
   margin-top: 15px;
 }
 
-.copy-button,
-#see-more-button {
+.state-popup__button {
   flex: 1;
   padding: 10px 16px;
   font-size: 1.2rem;
@@ -69,34 +68,33 @@
   transition: all 0.2s ease;
 }
 
-.copy-button {
+.state-popup__button--copy {
   background-color: #4caf50;
   color: white;
 }
 
-#see-more-button {
+.state-popup__button--more {
   background-color: #007bff;
   color: white;
 }
 
-.copy-button:hover,
-#see-more-button:hover {
+.state-popup__button:hover {
   transform: translateY(-2px);
   opacity: 0.9;
 }
 
 @media (max-width: 768px) {
-  #state-popup {
+  .state-popup {
     width: 85%;
     padding: 15px;
     margin: 0 auto;
   }
 
-  #popup-state-name {
+  .state-popup__name {
     font-size: 1.6rem;
   }
 
-  #popup-state-info {
+  .state-popup__info {
     font-size: 1.2rem;
   }
 }
