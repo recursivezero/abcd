@@ -2,8 +2,8 @@
 import BaseLayout from "@/layouts/Base"
 import stateData from "@/assets/map_assets/Data.json";
 import "@/assets/styles/map_styles/stateStyles.css";
-import '@/assets/styles/globals.css'
-import '@/assets/styles/header.css'
+
+
 
 export const prerender = true;
 
@@ -20,9 +20,6 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 
 <BaseLayout meta={{title:`${name} - ${dance}`}}>
   <main>
-    <!-- <div class="container_header">
-      <h1>{dance} - {name}</h1>
-    </div> -->
     <div class="main-container">
       <div id="state-svg-container">
         <h3>{name}</h3>
