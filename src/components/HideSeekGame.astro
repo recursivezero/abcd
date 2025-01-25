@@ -3,144 +3,178 @@ interface Props {
   letters?: string[];
 }
 
-// Default alphabet letters (A-Z)
-export const varnmala = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
-
-// Use letters from props or default to varnmala
-const letters = Astro.props?.letters || varnmala;
+// Specific letter arrangement
+const letterRows = [
+  ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H','I'],
+  ['J', 'K', 'L', 'M', 'N', 'O', 'P','Q'],
+  ['R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+];
 ---
 
 <div class="hide-and-seek-game">
-  <dialog id="game-instructions">
-    <button autofocus>Close</button>
-    <p>Welcome to the Hide & Seek Game! Press an alphabet key to reveal the hidden letter.</p>
+  <dialog id="game-instructions" class="instructions-modal">
+    <div class="modal-content">
+      <h2>Hide & Seek Letter Game</h2>
+      <p>Press any alphabet key to reveal or hide letters!</p>
+      <button id="close-instructions">Got it!</button>
+    </div>
   </dialog>
 
-  <main class="varnmala" id="main">
-    {letters.map((letter) => (
-      <div class="word" data-letter={letter}></div>
+  <main class="letter-grid" id="letter-container">
+    {letterRows.map((row, rowIndex) => (
+      <div class="letter-row">
+        {row.map((letter) => (
+          <div 
+            class="letter-box" 
+            data-letter={letter}
+            data-visible="false"
+          >
+            {letter}
+          </div>
+        ))}
+      </div>
     ))}
   </main>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const main = document.getElementById('main');
+  const letterContainer = document.getElementById('letter-container');
   const dialog = document.getElementById('game-instructions');
+  const closeButton = document.getElementById('close-instructions');
 
-  // Function to check if the pressed key is an alphabet
-  const isAlphabet = (key) => /^[a-zA-Z]$/.test(key);
-
-  document.addEventListener('keydown', (e) => {
-    const { key } = e;
-    if (isAlphabet(key)) {
-      const targetLetter = key.toUpperCase();
-      const letterElement = main.querySelector(`.word[data-letter="${targetLetter}"]`);
-      if (letterElement) {
-        letterElement.textContent = targetLetter; // Reveal the letter
-        letterElement.classList.add('show');
-      }
-    }
-  });
-
-  // Close dialog box
-  dialog.querySelector('button').addEventListener('click', () => {
+  // Close dialog
+  closeButton.addEventListener('click', () => {
     dialog.close();
   });
 
   // Show instructions on first load
   dialog.showModal();
+
+  // Keyboard interaction
+  document.addEventListener('keydown', (e) => {
+    const pressedKey = e.key.toUpperCase();
+    
+    // Find letter box matching pressed key
+    const letterBox = letterContainer.querySelector(
+      `.letter-box[data-letter="${pressedKey}"]`
+    );
+
+    if (letterBox) {
+      // Toggle visibility
+      const isCurrentlyVisible = letterBox.getAttribute('data-visible') === 'true';
+      letterBox.setAttribute('data-visible', String(!isCurrentlyVisible));
+    }
+  });
 });
 </script>
 
 <style>
-/* Main Container Layout */
+:root {
+  --bg-gradient-start: #e3f2fd;
+  --bg-gradient-end: #bbdefb;
+  --letter-bg-hidden: #b0bec5;
+  --letter-bg-visible: #004d40;
+  --text-color-hidden: transparent;
+  --text-color-visible: #ffffff;
+}
+
 .hide-and-seek-game {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 1rem;
-  background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
   font-family: 'Arial', sans-serif;
+  padding: 1rem;
+  overflow: hidden;
 }
 
-/* Alphabet Grid */
-.varnmala {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Set 6 letters per row */
-  gap: 1.5rem; /* Space between letters */
-  width: 90%;
-  max-width: 700px; /* Constrain grid width */
-  margin: 2rem auto;
+.letter-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
   justify-content: center;
+  align-items: center;
 }
 
+.letter-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.letter-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--letter-bg-hidden);
+  color: var(--text-color-hidden);
+  font-size: 3rem;
+  font-weight: bold;
+  aspect-ratio: 1 / 1;
+  width: 100px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.letter-box[data-visible="true"] {
+  background-color: var(--letter-bg-visible);
+  color: var(--text-color-visible);
+  transform: scale(1.1);
+}
+
+.instructions-modal {
+  background-color: #64b5f6;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modal-content button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #b71c1c;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .varnmala {
-    grid-template-columns: repeat(4, 1fr); /* Reduce to 4 letters per row on smaller screens */
+  .letter-box {
+    width: 80px;
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .varnmala {
-    grid-template-columns: repeat(3, 1fr); /* Reduce to 3 letters per row on very small screens */
+  .letter-box {
+    width: 60px;
+    font-size: 2rem;
   }
-}
-
-/* Individual Letter Cards */
-.word {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #b0bec5;
-  color: transparent; /* Hidden initially */
-  border-radius: 10px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  height: 4rem;
-  text-transform: uppercase;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.word:hover {
-  background: #78909c;
-  transform: translateY(-5px);
-}
-
-.word.show {
-  color: #ffffff; /* Reveal the letter */
-  background: linear-gradient(135deg, #00796b, #004d40);
-  transform: scale(1.1);
-}
-
-/* Dialog Box */
-dialog {
-  border: none;
-  background: #64b5f6;
-  color: #ffffff;
-  border-radius: 12px;
-  padding: 2rem;
-  font-size: 1.2rem;
-  text-align: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-dialog button {
-  background: #d32f2f;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-dialog button:hover {
-  background: #b71c1c;
 }
 </style>

@@ -1,0 +1,347 @@
+---
+import CanvasDialog from './canvasDialogue.astro';
+---
+
+<div class="canvas-generator">
+  <header>
+    <nav>
+      <a href="/">Back</a>
+      <h1>Generate Image with Text</h1>
+      <div class="hint" id="tip">?</div>
+    </nav>
+  </header>
+
+  <CanvasDialog />
+
+  <main class="canvas__header">
+    <input type="text" placeholder="Type here" id="name" value="" />
+    <input type="button" id="text" data-variant="text" value="Draw" />
+    <input type="button" id="waqt" data-variant="time" value="Time" />
+    <input type="button" id="reset" data-variant="reset" value="Clear" />
+    
+    <div class="action">
+      <input type="checkbox" id="full" />
+      <label for="full">Print Full Name</label>
+    </div>
+    
+    <div id="canvasDiv" class="canvas__container"></div>
+  </main>
+</div>
+
+<script>
+  class CanvasGenerator {
+  constructor() {
+    this.initializeElements();
+    this.bindEvents();
+  }
+
+  initializeElements() {
+    this.input = document.getElementById('name');
+    this.textButton = document.getElementById('text');
+    this.timeButton = document.getElementById('waqt');
+    this.resetButton = document.getElementById('reset');
+    this.fullNameCheckbox = document.getElementById('full');
+    this.canvasContainer = document.getElementById('canvasDiv');
+  }
+
+  bindEvents() {
+    this.textButton.addEventListener('click', () => this.generateTextImage());
+    this.timeButton.addEventListener('click', () => this.generateTimeImage());
+    this.resetButton.addEventListener('click', () => this.resetCanvas());
+  }
+
+  getRandomColor() {
+    return Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+  }
+
+  createCanvas(text, isLarge = false) {
+    const canvas = document.createElement('canvas');
+    const dimensions = isLarge 
+      ? { width: 1012, height: 506 }
+      : { width: 300, height: 230 };
+
+    canvas.width = dimensions.width;
+    canvas.height = dimensions.height;
+
+    const ctx = canvas.getContext('2d');
+    
+    // Background
+    const bgColor = `#${this.getRandomColor()}`;
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(10, 10, dimensions.width - 20, dimensions.height - 20);
+
+    // Text
+    ctx.font = `bold ${isLarge ? '5rem' : '2rem'} Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'black';
+    ctx.fillText(text, dimensions.width / 2, dimensions.height / 2);
+
+    // Border
+    ctx.strokeStyle = bgColor;
+    ctx.strokeRect(0, 0, dimensions.width, dimensions.height);
+
+    return canvas.toDataURL();
+  }
+
+  generateTextImage() {
+    const inputValue = this.input.value.trim();
+    const isFullName = this.fullNameCheckbox.checked;
+    
+    if (!inputValue) {
+      this.showAlert('Please enter some text');
+      return;
+    }
+
+    const renderedText = this.processText(inputValue, isFullName);
+    const imageUrl = this.createCanvas(renderedText);
+    this.displayImage(imageUrl);
+  }
+
+  generateTimeImage() {
+    const now = new Date();
+    const timeString = [
+      now.getHours().toString().padStart(2, '0'),
+      now.getMinutes().toString().padStart(2, '0'),
+      now.getSeconds().toString().padStart(2, '0')
+    ].join(':');
+
+    const imageUrl = this.createCanvas(timeString);
+    this.displayImage(imageUrl);
+  }
+
+  processText(text, isFull = false) {
+    if (isFull) return text;
+
+    const words = text.split(' ');
+    return words.length > 1 
+      ? words.map(word => word[0]).join('').toUpperCase()
+      : text.slice(0, 2).toUpperCase();
+  }
+
+  displayImage(imageUrl) {
+    const imgElement = document.createElement('img');
+    imgElement.src = imageUrl;
+    imgElement.classList.add('generated-image');
+    
+    const containerDiv = document.createElement('div');
+    containerDiv.classList.add('image-wrapper');
+    containerDiv.appendChild(imgElement);
+
+    this.canvasContainer.appendChild(containerDiv);
+  }
+
+  resetCanvas() {
+    this.canvasContainer.innerHTML = '';
+    this.input.value = '';
+  }
+
+  showAlert(message) {
+    const alertDiv = document.createElement('div');
+    alertDiv.classList.add('alert');
+    alertDiv.textContent = message;
+    document.body.appendChild(alertDiv);
+
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 3000);
+  }
+}
+
+// Initialize the canvas generator when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new CanvasGenerator();
+});
+</script>
+
+<style>
+/* :root {
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --background-gradient: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  --card-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  --border-radius: 12px;
+} */
+/* 
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.canvas-generator {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 255, 0.95));
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  max-width: 800px;
+  width: 95%;
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.canvas-generator:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+nav h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #6a11cb;
+  margin: 0;
+  font-weight: bold;
+}
+
+.hint {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: help;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.hint:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.canvas__header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#name {
+  flex-grow: 1;
+  padding: 0.75rem;
+  border: 2px solid #2575fc;
+  border-radius: 12px;
+  font-size: 1rem;
+  max-width: 400px;
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+}
+
+#name:focus {
+  outline: none;
+  border-color: #6a11cb;
+  box-shadow: 0 0 0 5px rgba(106, 17, 203, 0.2);
+}
+
+input[type="button"] {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+input[type="button"]:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+#full {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #6a11cb;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#full:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#full:checked {
+  background-color: #6a11cb;
+  box-shadow: 0 0 0 5px rgba(106, 17, 203, 0.2);
+}
+
+#full:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+}
+
+.canvas__container {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.canvas__container img {
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.canvas__container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 600px) {
+  .canvas-generator {
+    padding: 1rem;
+  }
+
+  .canvas__header {
+    flex-direction: column;
+  }
+
+  #name {
+    width: 100%;
+  }
+}
+
+</style>

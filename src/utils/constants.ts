@@ -44,7 +44,19 @@ export const NavbarLinks: LinkProps[] = [
     title: "HideNSeek",
     path: "/hidenseek",
     isActive: true
-  }
+  },
+  {
+    name: "Canvas",
+    title: "Canvas",
+    path: "/canvas",
+    isActive: true
+  },
+  {
+    name: "Math",
+    title: "Math",
+    path: "/math",
+    isActive: true
+  },
 ];
 
 export const FooterLinks: LinkProps[] = [

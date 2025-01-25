@@ -1,0 +1,50 @@
+
+
+<dialog>
+  <button autofocus>Close</button>
+  <p>This is to generate image.</p>
+  <ul>
+    <li>Generate Full Name or Initials</li>
+    <li>Click on Time will generate Time image in Hh:MM:SS format</li>
+  </ul>
+  <p>To save image: right click on generated card and save.</p>
+</dialog>
+
+<style>
+  dialog {
+    border: 1px solid #171208;
+    background: #140707;
+    color: white;
+    font-size: large;
+  }
+
+  dialog[open] {
+    border-radius: 4px;
+  }
+
+  dialog button {
+    float: right;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
+  }
+
+  ::backdrop {
+    background-image: linear-gradient(295deg, #df65df, #dd775f, #aac0d5, #ade800);
+    opacity: 0.75;
+  }
+</style>
+
+<script>
+  const dialog = document.querySelector('dialog');
+  const showButton = document.getElementById('tip');
+  const closeButton = dialog.querySelector('button');
+
+  showButton.addEventListener('click', () => {
+    dialog.showModal();
+  });
+
+  closeButton.addEventListener('click', () => {
+    dialog.close();
+  });
+</script>
