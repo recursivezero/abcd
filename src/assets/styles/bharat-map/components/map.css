@@ -9,6 +9,8 @@
   display: flex;
   align-items: center;
   position: relative;
+  width: 100%;
+  height: calc(100vh - 180px);
 }
 
 svg {
@@ -51,7 +53,7 @@ svg {
   fill: var(--primary-color);
 }
 
-.capital-marker:hover + .capital-label {
+.capital-marker:hover+.capital-label {
   opacity: 1;
   transform: translateY(-8px);
 }

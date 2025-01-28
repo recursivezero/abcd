@@ -11,5 +11,20 @@ const {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <slot />
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script type="module" src="/js/main.js"></script>
+
+  <script>
+    import { MAP_CONFIG } from "@/utils/BharatMap/config/mapConfig";
+    import { BharatMap } from "@/utils/BharatMap/modules/BharatMap";
+
+    declare global {
+      interface Window {
+        bharatMap: BharatMap;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      window.bharatMap = new BharatMap(MAP_CONFIG);
+      window.bharatMap.loadData();
+    });
+  </script>
 </BaseLayout>
