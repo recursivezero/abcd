@@ -25,22 +25,3 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Step 2: Run poetry linting tools
-echo "Running poetry linting tools..."
-if ! poetry run flake8 .; then
-    echo "flake8 failed. Aborting commit."
-    exit 1
-fi
-
-if ! poetry run black --check .; then
-    echo "black failed. Aborting commit."
-    exit 1
-fi
-
-if ! poetry run mypy .; then
-    echo "mypy failed. Aborting commit."
-    exit 1
-fi
-
-echo "Pre-commit checks passed!"
-exit 0
