@@ -15,8 +15,15 @@ interface CapitalData {
 }
 
 interface StateData {
-  capital: CapitalData;
-  [key: string]: any; // for other state properties
+  capital: {
+    coordinates: any;
+    name: string;
+  };
+  area: string;
+  languages: string;
+  danceforms: string;
+  literacy: string;
+  description: string;
 }
 
 export class BharatMap {
