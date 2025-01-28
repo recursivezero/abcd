@@ -11,7 +11,7 @@
 </div>
 
 <script>
-  // Initialize DOM elements using classes
+
   const popup = document.querySelector(".state-popup") as HTMLElement;
   const popupStateName = document.querySelector(".state-popup__name") as HTMLElement;
   const popupStateInfo = document.querySelector(".state-popup__info") as HTMLElement;
@@ -39,19 +39,15 @@
     const popupWidth = popup.offsetWidth;
     const popupHeight = popup.offsetHeight;
 
-    // Get scroll position
     const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
     const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Get click position relative to the page
     const clickX = event.pageX;
     const clickY = event.pageY;
 
-    // Calculate initial position (centered on click)
     let left = clickX - (popupWidth / 2);
     let top = clickY - (popupHeight / 2);
 
-    // Adjust horizontal position to keep within viewport
     if (left + popupWidth > viewportWidth + scrollX - 20) {
         left = viewportWidth + scrollX - popupWidth - 20;
     }
@@ -59,7 +55,6 @@
         left = scrollX + 20;
     }
 
-    // Adjust vertical position to keep within viewport
     if (top + popupHeight > viewportHeight + scrollY - 20) {
         top = clickY - popupHeight - 20;
     }
@@ -67,17 +62,16 @@
         top = scrollY + 20;
     }
 
-    // Apply the calculated position
     popup.style.left = `${left}px`;
     popup.style.top = `${top}px`;
     
-    // Make popup visible with transition
+
     requestAnimationFrame(() => {
         popup.style.opacity = "1";
     });
 }
 
-// Event Listeners
+
 document.addEventListener("showStatePopup", ((e: CustomEvent) => {
     const { event, stateInfo } = e.detail;
     showPopup(event, stateInfo);
