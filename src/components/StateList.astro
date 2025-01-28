@@ -5,7 +5,13 @@ const { type = 'state' } = Astro.props;
 const list = type === 'state' 
     ? locations.filter(loc => loc.isState)
     : locations.filter(loc => !loc.isState);
+
+const { title = "Information" } = Astro.props ?? {};
 ---
+<dialog open>
+    <h2>{title}</h2>
+    <slot>Default Modal Content</slot>
+</dialog>
 
 <section id={type}>
     <h2>{type === 'state' ? 'State List' : 'Union Territory List'}</h2>
@@ -20,6 +26,17 @@ const list = type === 'state'
 </section>
 
 <style>
+    dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 section {
     width: 100%;
     padding: 0.5rem;

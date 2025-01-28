@@ -1,0 +1,192 @@
+<div class="letters-container">
+  <div class="letters-grid"></div>
+</div>
+
+<script>
+  // Function to generate and append the grid content dynamically
+  document.addEventListener("DOMContentLoaded", () => {
+    const lettersGrid = document.querySelector(".letters-grid");
+
+    // Hindi and Kannada vowel/consonant pairs
+    const hindiVowels = Array.from({ length: 16 }, (_, i) => ({
+      key: 2309 + i,
+      value: String.fromCodePoint(2309 + i),
+    }));
+
+    const extraHindiVowelKey = [2317, 2321];
+    const hindiVowelList = hindiVowels.filter((v) => !extraHindiVowelKey.includes(v.key));
+
+    const hindiConsonants = Array.from(
+      { length: 37 },
+      (_, i) => String.fromCodePoint(2325 + i)
+    );
+
+    const kannadaVowels = Array.from({ length: 16 }, (_, i) => ({
+      key: 3205 + i,
+      value: String.fromCodePoint(3205 + i),
+    }));
+
+    const extraKannadaVowelKey = [3213, 3217];
+    const kannadaVowelList = kannadaVowels.filter((v) => !extraKannadaVowelKey.includes(v.key));
+
+    const kannadaConsonants = Array.from(
+      { length: 37 },
+      (_, i) => String.fromCodePoint(3221 + i)
+    );
+
+    const letterPairs = [];
+
+    // Combine vowels
+    for (let i = 0; i < hindiVowelList.length; i++) {
+      letterPairs.push({
+        hindi: hindiVowelList[i].value,
+        kannada: kannadaVowelList[i].value,
+        type: "vowel",
+      });
+    }
+
+    // Add separator
+    letterPairs.push({ type: "separator" });
+
+    // Combine consonants
+    for (let i = 0; i < hindiConsonants.length; i++) {
+      letterPairs.push({
+        hindi: hindiConsonants[i],
+        kannada: kannadaConsonants[i],
+        type: "consonant",
+      });
+    }
+
+    // Create grid cells
+    letterPairs.forEach((pair) => {
+      if (pair.type === "separator") {
+        const separator = document.createElement("div");
+        separator.className = "separator";
+        lettersGrid.appendChild(separator);
+        return;
+      }
+
+      const cell = document.createElement("div");
+      cell.className = `grid-cell ${pair.type}`;
+      cell.setAttribute("aria-label", `${pair.type}: ${pair.kannada} (Kannada), ${pair.hindi} (Hindi)`);
+
+      cell.innerHTML = `
+        <div class="kannada">${pair.kannada}</div>
+        <div class="hindi">${pair.hindi}</div>
+      `;
+
+      lettersGrid.appendChild(cell);
+    });
+  });
+</script>
+
+<style>
+  /* Container for the entire grid */
+  .letters-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: linear-gradient(145deg, rgba(25, 25, 25, 0.9), rgba(50, 50, 50, 0.9));
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* The grid layout for the letters */
+  .letters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  /* Individual grid cell */
+  .grid-cell {
+    position: relative;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(16, 185, 129, 0.1));
+    border-radius: 12px;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    aspect-ratio: 1; /* Ensures a perfect square */
+    overflow: hidden;
+  }
+
+  /* Gradient border on hover */
+  .grid-cell:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(20, 184, 166, 0.15));
+    border: 2px solid rgba(99, 102, 241, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Kannada letter styling */
+  .kannada {
+    font-size: 3rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Hindi letter styling */
+  .hindi {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Separator row (used for distinction) */
+  .separator {
+    grid-column: 1 / -1;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 1rem 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .letters-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+
+    .grid-cell {
+      padding: 1rem;
+    }
+
+    .kannada {
+      font-size: 2.5rem;
+    }
+
+    .hindi {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .letters-grid {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .grid-cell {
+      padding: 0.75rem;
+    }
+
+    .kannada {
+      font-size: 2rem;
+    }
+
+    .hindi {
+      font-size: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* ... (previous styles remain the same until the animation section) ... */
+
+/* Enhanced Animation Styles */
+.number.output {
+  transition: all 0.3s ease;
+}
+
+@keyframes correct-answer {
+  0% {
+    background: #f8f9fa;
+    transform: scale(1);
+  }
+  50% {
+    background: #28a745;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.5);
+  }
+  100% {
+    background: #f8f9fa;
+    transform: scale(1);
+  }
+}
+
+@keyframes wrong-answer {
+  0% {
+    background: #f8f9fa;
+    transform: translateX(0);
+  }
+  25% {
+    background: #dc3545;
+    color: white;
+    transform: translateX(-10px);
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
+  }
+  75% {
+    background: #dc3545;
+    color: white;
+    transform: translateX(10px);
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
+  }
+  100% {
+    background: #f8f9fa;
+    transform: translateX(0);
+  }
+}
+
+.animate-correct {
+  animation: correct-answer 1s ease;
+}
+
+.animate-wrong {
+  animation: wrong-answer 0.8s ease;
+}
+
+/* Success Message Animation */
+@keyframes success-message {
+  0% { opacity: 0; transform: translateY(-20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+
+.feedback-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.feedback-message.success {
+  background: #28a745;
+  animation: success-message 2s ease forwards;
+}
+
+.feedback-message.error {
+  background: #dc3545;
+  animation: success-message 2s ease forwards;
+}
+
+/* Update input styles to ensure it's editable */
+.number {
+  width: 5rem;
+  height: 3rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 2px solid #dee2e6;
+  border-radius: 0.5rem;
+  background: #f8f9fa;
+  transition: border-color 0.3s ease;
+}
+
+.number.output {
+  background: white;
+  cursor: text;
+}
+
+.number:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Make submit button more prominent */
+#submitBtn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background: #007bff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#submitBtn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#submitBtn:active {
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+<!-- ... (previous HTML remains the same) ... -->
+
+<script>
+// ... (previous JavaScript remains the same until checkAnswer function) ... -->
+
+function showFeedbackMessage(isCorrect) {
+  // Remove existing feedback message if any
+  const existingMessage = document.querySelector('.feedback-message');
+  if (existingMessage) {
+    existingMessage.remove();
+  }
+
+  // Create new feedback message
+  const message = document.createElement('div');
+  message.className = `feedback-message ${isCorrect ? 'success' : 'error'}`;
+  message.textContent = isCorrect ? 'Correct! ✓' : 'Try Again! ×';
+  document.body.appendChild(message);
+
+  // Remove message after animation
+  setTimeout(() => message.remove(), 2000);
+}
+
+function checkAnswer(event) {
+  event.preventDefault();
+  
+  const first = parseInt(document.getElementById('first').value);
+  const second = parseInt(document.getElementById('second').value);
+  const output = parseInt(document.getElementById('output').value);
+  const outputElement = document.getElementById('output');
+  
+  let expectedResult;
+  switch(currentOperator) {
+    case '+':
+      expectedResult = first + second;
+      break;
+    case '−':
+      expectedResult = first - second;
+      break;
+    case '×':
+      expectedResult = first * second;
+      break;
+  }
+  
+  const resultElement = document.getElementById('result');
+  
+  // Remove existing animation classes
+  outputElement.classList.remove('animate-correct', 'animate-wrong');
+  
+  // Force a reflow (to restart animation)
+  void outputElement.offsetWidth;
+  
+  if (output === expectedResult) {
+    resultElement.className = 'result correct';
+    outputElement.classList.add('animate-correct');
+    showFeedbackMessage(true);
+    updateScore();
+    
+    // Generate new question after animation
+    setTimeout(() => {
+      updateNumbers();
+      outputElement.focus(); // Focus on input for next question
+    }, 1000);
+  } else {
+    resultElement.className = 'result incorrect';
+    outputElement.classList.add('animate-wrong');
+    showFeedbackMessage(false);
+  }
+}
+
+function updateNumbers() {
+  document.getElementById('first').value = generateNumber();
+  document.getElementById('second').value = generateNumber();
+  document.getElementById('output').value = '';
+  document.getElementById('result').className = 'result';
+  document.getElementById('output').classList.remove('animate-correct', 'animate-wrong');
+  
+  // Ensure output is focusable and empty
+  const outputElement = document.getElementById('output');
+  outputElement.removeAttribute('readonly');
+  outputElement.value = '';
+  outputElement.focus();
+}
+
+// Initialize with focus on output
+document.addEventListener('DOMContentLoaded', () => {
+  updateNumbers();
+  document.getElementById('output').focus();
+});
+</script>
+</body>
+</html>

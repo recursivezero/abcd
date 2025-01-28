@@ -57,6 +57,18 @@ export const NavbarLinks: LinkProps[] = [
     path: "/math",
     isActive: true
   },
+  {
+    name: "Kannada",
+    title: "Kannada",
+    path: "/kannada",
+    isActive: true
+  },
+  {
+    name: "Draw",
+    title: "Draw",
+    path: "/draw",
+    isActive: true
+  },
 ];
 
 export const FooterLinks: LinkProps[] = [
