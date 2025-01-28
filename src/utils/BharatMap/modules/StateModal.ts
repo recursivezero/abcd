@@ -15,7 +15,7 @@ export class StateModal {
   private modal: HTMLElement;
 
   constructor(stateData: StateData, stateName: string) {
-    this.stateData = stateData || {} as StateData;
+    this.stateData = stateData || ({} as StateData);
     this.stateName = stateName;
     const modal = document.getElementById("stateModal");
     if (!modal) throw new Error("Modal element not found");
@@ -86,7 +86,7 @@ export class StateModal {
   private showCopyFeedback(): void {
     const copyBtn = this.modal.querySelector("#copyButton") as HTMLElement;
     if (!copyBtn) return;
-    
+
     copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
     setTimeout(() => {
       copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
