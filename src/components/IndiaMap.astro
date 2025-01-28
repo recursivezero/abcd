@@ -1,5 +1,5 @@
 ---
-import statesData from "@/assets/map_assets/Data.json";
+import statesData from "@/assets/map/Data.json";
 ---
 
 <div class="container_map">
@@ -21,7 +21,7 @@ import statesData from "@/assets/map_assets/Data.json";
       for (const stateKey in statesData) {
         const stateInfo = statesData[stateKey];
         try {
-          const response = await fetch(`/map_assets/svg/${stateInfo.svg}`);
+          const response = await fetch(`/map/svg/${stateInfo.svg}`);
           const svgText = await response.text();
 
           const tempDiv = document.createElement("div");

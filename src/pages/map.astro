@@ -2,12 +2,10 @@
 import BaseLayout from "@/layouts/Base";
 import Popup from "@/components/Popup.astro";
 import IndiaMap from "@/components/IndiaMap.astro";
-import TitleLayout from "@/layouts/TitleLayout";
 import "@/assets/styles/map_styles/popup.css";
 ---
 
 <BaseLayout meta={{ title: "Explore Dances of India" }}>
-  <TitleLayout title="Explore Dances of India" />
   <IndiaMap />
   <Popup />
 </BaseLayout>
