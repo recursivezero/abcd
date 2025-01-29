@@ -1,26 +1,18 @@
 ---
 import "@/assets/styles/panel.css";
+import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/common.css";
 ---
 
-<style is:inline>
-  .tv {
-    container-type: inline-size;
-    container-name: main;
-    border: 0.5rem outset pink;
-    outline: 0.5rem solid khaki;
-    box-shadow: 0 0 0 2rem skyblue;
-    border-radius: 12px;
-    font: bold 1rem sans-serif;
-    margin-block: 5rem;
-    margin-inline: 5rem;
-    padding: 1rem;
-    outline-offset: 0.5rem;
-  }
-</style>
-
 <BaseLayout meta={{ title: "Panel" }}>
-  <article class="tv panel-main">
+  <Fragment slot="header-right">
+    <Help
+      title="Panel"
+      description="Press any arrow key from keyboard to cycle through the letters, up/down arrows changes the orientation to vertical and left/right keys changes to horizontal or  press any letter key, that letter will appears."
+    />
+  </Fragment>
+  <article class="tv container__panel">
     <section class="scene">
       <letter-panel>
         <div class="panel" id="panel"></div>
