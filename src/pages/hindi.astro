@@ -1,11 +1,19 @@
 ---
 import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/hindi.css";
+import Help from "@/components/Help.astro";
 ---
 
 <BaseLayout meta={{ title: "Hindi" }}>
-  <main>
-    <div class="letter"></div>
-  </main>
+  <Fragment slot="header-right">
+    <Help
+      title="Hindi Varnmala"
+      description="Just press any letter fron keyboard and it display the letter and it's relative word in clear way and if you type again it will change the color"
+    />
+  </Fragment>
+  <article class="container__hindi">
+    <div class="letter">A</div>
+  </article>
   <script>
     import { colorBox, isAlphabet, random } from "@/utils/utils.js";
 
