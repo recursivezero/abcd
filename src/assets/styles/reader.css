@@ -3,7 +3,8 @@
   --main__txt--2: #ff61d5;
   --button__bg--3: hsl(60deg, 56%, 91%);
 }
-#reader-main {
+
+#container__reader {
   font-size: 20rem;
   display: grid;
   place-content: center;
@@ -18,15 +19,18 @@
   min-height: 60vh;
   line-height: 1;
   padding: 1rem;
+
+  & span:hover,
+  span:active,
+  span.active {
+    background-color: aliceblue;
+    color: #6767d3;
+  }
 }
 
 .center {
   display: grid;
   place-items: center;
-}
-
-.hide {
-  display: none;
 }
 
 .scroll {
@@ -61,14 +65,7 @@
   cursor: pointer;
 }
 
-.speaker > span {
+.speaker>span {
   padding: 0.5rem;
   border: 1px solid grey;
-}
-
-span:hover,
-span:active,
-span.active {
-  background-color: aliceblue;
-  color: #6767d3;
 }
