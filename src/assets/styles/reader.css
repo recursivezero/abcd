@@ -28,6 +28,10 @@
   }
 }
 
+.hide {
+  display: none;
+}
+
 .center {
   display: grid;
   place-items: center;
