@@ -75,8 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
   --bg-gradient-end: #bbdefb;
   --letter-bg-hidden: #b0bec5;
   --letter-bg-visible: #004d40;
+  --letter-bg-hover: #00796b;
   --text-color-hidden: transparent;
   --text-color-visible: #ffffff;
+  --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --hover-transform: scale(1.15);
 }
 
 .hide-and-seek-game {
@@ -86,16 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
   font-family: 'Arial', sans-serif;
-  padding: 1rem;
+  padding: 2rem;
   overflow: hidden;
 }
 
 .letter-grid {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
   justify-content: center;
@@ -117,19 +120,44 @@ document.addEventListener('DOMContentLoaded', () => {
   color: var(--text-color-hidden);
   font-size: 3rem;
   font-weight: bold;
-  aspect-ratio: 1 / 1;
   width: 100px;
+  height: 120px;  /* Increased height */
   border-radius: 15px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-transform: uppercase;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-box:hover {
+  background-color: var(--letter-bg-hover);
+  color: var(--text-color-visible);
+  transform: var(--hover-transform);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .letter-box[data-visible="true"] {
   background-color: var(--letter-bg-visible);
   color: var(--text-color-visible);
-  transform: scale(1.1);
+  transform: var(--hover-transform);
+}
+
+.letter-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.letter-box:hover::after {
+  opacity: 1;
 }
 
 .instructions-modal {
@@ -140,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
   padding: 2rem;
   max-width: 400px;
   text-align: center;
+  box-shadow: var(--box-shadow);
 }
 
 .modal-content {
@@ -153,20 +182,25 @@ document.addEventListener('DOMContentLoaded', () => {
   background-color: #d32f2f;
   color: white;
   border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 5px;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .modal-content button:hover {
   background-color: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .letter-box {
     width: 80px;
+    height: 112px;  /* Maintaining the same aspect ratio */
     font-size: 2.5rem;
   }
 }
@@ -174,7 +208,12 @@ document.addEventListener('DOMContentLoaded', () => {
 @media (max-width: 480px) {
   .letter-box {
     width: 60px;
+    height: 84px;  /* Maintaining the same aspect ratio */
     font-size: 2rem;
+  }
+  
+  .letter-row {
+    gap: 0.75rem;
   }
 }
 </style>

@@ -1,0 +1,286 @@
+---
+  import { IMAGE_DIR, colorBox, fontBox, numberBox } from '../utils/draw';
+  import { getRandomValue, isAlphabet, isNumber } from '../utils/index';
+  import { alphabetMapper } from '../mappers/alphabet';
+---
+<main>
+  <div class="board">
+    <div id="char"></div>
+  </div>
+  <div class="controls">
+    <label class="switch">
+      <input type="checkbox" id="toggleCase" />
+      <span class="slider">Caps</span>
+    </label>
+    <label class="switch">
+      <input type="checkbox" id="toggleFont" />
+      <span class="slider">Font</span>
+    </label>
+    <!-- <label class="switch">
+      <input type="checkbox" id="toggleBg" />
+      <span class="slider">Bold</span>
+    </label> -->
+  </div>
+  <div class="info"></div>
+  <span id="text"></span>
+</main>
+<script>
+  // const IMAGE_DIR = '../images';
+  // const colorBox = ['#FFE4E1', '#F0F8FF', '#F5F5DC', '#E6E6FA', '#F0FFF0'];
+  // const numberBox = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
+  let main: HTMLElement;
+  let boardDiv: HTMLElement;
+  let charDiv: HTMLElement;
+  let toggleCaseSwitch: HTMLInputElement;
+  let info: HTMLElement;
+  let textSpan: HTMLElement;
+
+  const initElements = () => {
+    main = document.querySelector('main')!;
+    boardDiv = document.querySelector('.board')!;
+    charDiv = document.getElementById('char')!;
+    toggleCaseSwitch = document.getElementById('toggleCase') as HTMLInputElement;
+    info = document.querySelector('.info')!;
+    textSpan = document.getElementById('text')!;
+  };
+
+  const getRandomValue = (array: string[]) => {
+    return array[Math.floor(Math.random() * array.length)];
+  };
+
+  const isNumber = (keyCode: number) => {
+    return keyCode >= 48 && keyCode <= 57;
+  };
+
+  const isAlphabet = (keyCode: number) => {
+    return keyCode >= 65 && keyCode <= 90 || keyCode >= 97 && keyCode <= 122;
+  };
+
+  const setupEventListeners = () => {
+    toggleCaseSwitch?.addEventListener('change', (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      charDiv.style.textTransform = target.checked ? 'lowercase' : 'uppercase';
+      const currentChar = charDiv.textContent || '';
+      textSpan.style.setProperty(
+        '--content',
+        `'${target.checked ? currentChar.toLowerCase() : currentChar.toUpperCase()}'`
+      );
+    });
+  };
+
+  const drawNumber = (key: string = '0') => {
+    const randomColor = getRandomValue(colorBox);
+    boardDiv.style.backgroundColor = randomColor;
+    charDiv.textContent = key;
+    info.textContent = numberBox[parseInt(key)];
+  };
+
+  const drawLetter = (key: string = 'A') => {
+    const char = key.toLowerCase();
+    boardDiv.style.backgroundColor = 'transparent';
+    charDiv.textContent = key;
+    textSpan.style.setProperty(
+      '--content',
+      toggleCaseSwitch.checked ? `'${char}'` : `'${key.toUpperCase()}'`
+    );
+    info.textContent = char;
+    main.style.backgroundImage = `url(${IMAGE_DIR}/${char}.jpg)`;
+  };
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    const keyCode = e.keyCode || e.which;
+    
+    if (isNumber(keyCode)) {
+      drawNumber(e.key);
+    } else if (isAlphabet(keyCode)) {
+      drawLetter(e.key);
+    }
+  };
+
+  const init = () => {
+    initElements();
+    setupEventListeners();
+    document.addEventListener('keydown', handleKeyPress);
+  };
+
+  if (document.readyState !== 'loading') {
+    init();
+  } else {
+    document.addEventListener('DOMContentLoaded', init);
+  }
+</script>
+
+<style>
+  main {
+    --mode: soft-light;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: var(--mode);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #fafafa;
+    position: relative;
+  }
+
+  .controls {
+    position: fixed;
+    top: 2rem;
+    display: flex;
+    gap: 1.2rem;
+    z-index: 10;
+  }
+
+  .board {
+    width: min(80vw, 500px);
+    aspect-ratio: 1;
+    border-radius: 2rem;
+    display: grid;
+    place-items: center;
+    background-color: transparent;
+    transition: all 0.4s ease;
+    box-shadow: 
+      0 0 60px rgba(0, 0, 0, 0.08),
+      inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  #char {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: clamp(12rem, 25vw, 24rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    user-select: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    transition: 0.4s;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.08),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    bottom: 4px;
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  input:checked + .slider {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(80px);
+  }
+
+  .info {
+    font-size: 2rem;
+    text-align: center;
+    min-height: 2.5rem;
+    margin-top: 2rem;
+    transition: all 0.4s ease;
+    color: #333;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  #text {
+    position: relative;
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  #text::after {
+    content: var(--content, '');
+    position: absolute;
+    left: 100%;
+    margin-left: 0.8rem;
+    color: #2196F3;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .controls {
+      position: fixed;
+      top: 1rem;
+      justify-content: center;
+    }
+
+    .board {
+      margin-top: 5rem;
+    }
+
+    .switch {
+      width: 100px;
+      height: 36px;
+    }
+
+    .slider {
+      font-size: 0.8rem;
+    }
+
+    .slider:before {
+      height: 28px;
+      width: 28px;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(64px);
+    }
+  }
+</style>
