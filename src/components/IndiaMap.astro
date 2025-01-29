@@ -1,15 +1,15 @@
 ---
-import statesData from "@/assets/map/Data.json";
+import stateJson from "@/assets/json/state.json";
 ---
 
-<div class="container_map">
-  <svg id="india-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1800">
+<div class="container__map">
+  <svg id="india-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1800" height="90vh" width="90vw">
     <!-- States will be loaded dynamically -->
   </svg>
   <div id="state-tooltip" class="tooltip"></div>
 </div>
 
-<script define:vars={{ statesData }}>
+<script define:vars={{ stateJson }} is:inline>
   document.addEventListener("DOMContentLoaded", async () => {
     const indiaSvg = document.getElementById("india-map");
     const tooltip = document.getElementById("state-tooltip");
@@ -18,8 +18,8 @@ import statesData from "@/assets/map/Data.json";
       const statesGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
       statesGroup.setAttribute("id", "india-states");
 
-      for (const stateKey in statesData) {
-        const stateInfo = statesData[stateKey];
+      for (const stateKey in stateJson) {
+        const stateInfo = stateJson[stateKey];
         try {
           const response = await fetch(`/map/svg/${stateInfo.svg}`);
           const svgText = await response.text();

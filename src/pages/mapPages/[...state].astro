@@ -1,9 +1,7 @@
 ---
-import BaseLayout from "@/layouts/Base"
-import stateData from "@/assets/map/Data.json";
+import BaseLayout from "@/layouts/Base";
+import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
-
-
 
 export const prerender = true;
 
@@ -18,8 +16,8 @@ const { stateInfo } = Astro.props;
 const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 ---
 
-<BaseLayout meta={{title:`${name} - ${dance}`}}>
-  <main>
+<BaseLayout meta={{ title: `${name} - ${dance}` }}>
+  <section>
     <div class="main-container">
       <div id="state-svg-container">
         <h3>{name}</h3>
@@ -42,7 +40,7 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
         </div>
       </div>
     </div>
-  </main>
+  </section>
 </BaseLayout>
 
 <script>
