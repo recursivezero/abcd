@@ -3,14 +3,16 @@ name: "Auto Replace X in Issue Title"
 on:
   issues:
     types: [opened]
-
+permissions:
+  issues: write
+  
 jobs:
   update_issue_title:
     runs-on: ubuntu-latest
     steps:
       - name: Replace 'X' with issue number
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ISSUE_TOKEN }}
         run: |
           ISSUE_NUMBER=${{ github.event.issue.number }}
           OLD_TITLE="${{ github.event.issue.title }}"
@@ -19,7 +21,5 @@ jobs:
           NEW_TITLE=$(echo "$OLD_TITLE" | sed "s/X/$ISSUE_NUMBER/g")
 
           # Update issue title using GitHub API
-          curl -X PATCH -H "Authorization: token $GITHUB_TOKEN" \
-               -H "Accept: application/vnd.github.v3+json" \
-               https://api.github.com/repos/${{ github.repository }}/issues/${ISSUE_NUMBER} \
-               -d "{\"title\": \"${NEW_TITLE}\"}"
+          gh issue edit "$ISSUE_NUMBER" --title "$NEW_TITLE" --repo "${{ github.repository }}"
+        shell: bash
