@@ -60,6 +60,8 @@
 
 .range__option {
   color: var(--range__option__txt--4);
+  display:flex;
+  align-items: center;
 }
 
 .panel__cell {
