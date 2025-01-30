@@ -1,0 +1,275 @@
+---
+import type { SurveyData } from '../types/survey';
+import surveyData from '../data/survey.json';
+
+interface Props {
+  data: SurveyData;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="survey-container">
+  <header class="survey-header">
+    <h1>{data.surveyTitle}</h1>
+    <p>{data.description}</p>
+  </header>
+
+  <div class="questions-container">
+    <form id="surveyForm" class="survey-form">
+      {data.questions.map((question) => (
+        <div class="question-card">
+          <h3>{question.questionText}</h3>
+          
+          {question.type === 'openEnded' ? (
+            <textarea
+              name={`q${question.id}`}
+              class="textarea-input"
+              rows="4"
+              placeholder="Type your answer here..."
+            ></textarea>
+          ) : question.type === 'singleChoice' ? (
+            <div class="options-group">
+              {question.options?.map((option) => (
+                <label class="option-label">
+                  <input
+                    type="radio"
+                    name={`q${question.id}`}
+                    value={option}
+                    class="radio-input"
+                  />
+                  <span class="radio-text">{option}</span>
+                </label>
+              ))}
+            </div>
+          ) : (
+            <div class="options-group">
+              {question.options?.map((option) => (
+                <label class="option-label">
+                  <input
+                    type="checkbox"
+                    name={`q${question.id}`}
+                    value={option}
+                    class="checkbox-input"
+                  />
+                  <span class="checkbox-text">{option}</span>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+
+      <div class="survey-controls">
+        <button type="submit" class="submit-btn">Submit Survey</button>
+        <button type="button" class="print-btn" id="printResults">Print Results</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const surveyForm = document.getElementById('surveyForm');
+  const printBtn = document.getElementById('printResults');
+
+  function collectFormData(form) {
+    const formData = new FormData(form);
+    const data = {};
+
+    formData.forEach((value, key) => {
+      if (key in data) {
+        if (Array.isArray(data[key])) {
+          data[key].push(value);
+        } else {
+          data[key] = [data[key], value];
+        }
+      } else {
+        data[key] = value;
+      }
+    });
+
+    return data;
+  }
+
+  async function submitSurvey(event) {
+    event.preventDefault();
+    const formData = collectFormData(surveyForm);
+    
+    console.log('Attempting to submit with data:', formData);
+    
+    try {
+      const response = await fetch('/api/survey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      console.log('Response status:', response.status); // Add this line
+      
+      const result = await response.json();
+      console.log('Response data:', result); // Add this line
+
+      if (!response.ok) {
+        throw new Error(`Failed to submit survey: ${result.message || response.statusText}`);
+      }
+
+      alert('Survey submitted successfully!');
+      // Optional: Reset form after successful submission
+      surveyForm.reset();
+      
+    } catch (error) {
+      console.error('Error submitting survey:', error);
+      alert(`Error submitting survey: ${error.message}`);
+    }
+}
+
+  function generatePrintableResults(data) {
+    let html = `  
+      <h1>${document.querySelector('.survey-header h1')?.textContent}</h1>
+      <div class="results">
+    `;
+
+    for (const [key, value] of Object.entries(data)) {
+      const question = document.querySelector(`[name="${key}"]`)?.closest('.question-card')?.querySelector('h3')?.textContent;
+      html += `
+        <div class="result-item">
+          <h3>${question}</h3>
+          <p>${Array.isArray(value) ? value.join(', ') : value}</p>
+        </div>
+      `;
+    }
+
+    html += '</div>';
+    return html;
+  }
+
+  function printResults() {
+    if (!surveyForm) return;
+
+    const formData = collectFormData(surveyForm);
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Survey Results</title>
+          <style>
+            body { font-family: system-ui; padding: 2rem; }
+            .result-item { margin-bottom: 1.5rem; }
+            h3 { color: #2d3748; }
+            p { color: #4a5568; }
+          </style>
+        </head>
+        <body>
+          ${generatePrintableResults(formData)}
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  }
+
+  surveyForm?.addEventListener('submit', submitSurvey);
+  printBtn?.addEventListener('click', printResults);
+</script>
+
+<style>
+  /* Your CSS Styles for the form layout */
+  .survey-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .survey-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .survey-header h1 {
+    font-size: 2.5rem;
+    color: #1a365d;
+  }
+
+  .survey-header p {
+    font-size: 1.1rem;
+    color: #4a5568;
+  }
+
+  .questions-container {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .question-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .question-card h3 {
+    font-size: 1.1rem;
+    color: #2d3748;
+  }
+
+  .options-group {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: #f8fafc;
+    cursor: pointer;
+  }
+
+  .radio-input,
+  .checkbox-input {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: #3b82f6;
+  }
+
+  .survey-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+
+  .submit-btn {
+    background: #3b82f6;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+  }
+
+  .submit-btn:hover {
+    background: #2563eb;
+  }
+
+  .print-btn {
+    background: white;
+    color: #3b82f6;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid #3b82f6;
+  }
+
+  .print-btn:hover {
+    background: #f8fafc;
+  }
+</style>
