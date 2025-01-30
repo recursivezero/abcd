@@ -4,42 +4,42 @@
   container-type: inline-size;
   container-name: layout;
   font-family: "atkinson";
-}
 
-.list {
-  display: grid;
-  grid-gap: 4px;
-  grid-template-columns: repeat(5, 1fr);
-  margin-block: 1rem;
-}
+  & .list {
+    display: grid;
+    grid-gap: 4px;
+    grid-template-columns: repeat(5, 1fr);
+    margin-block: 1rem;
 
-.letter {
-  display: grid;
-  grid-auto-flow: row;
-  justify-items: center;
-  align-content: center;
-  color: var(--text, grey);
-  border: 2px solid var(--bc);
-  border-radius: 0.5rem;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  padding: 0.5rem;
-  height: fit-content;
+    & .letter {
+      display: grid;
+      grid-auto-flow: row;
+      justify-items: center;
+      align-content: center;
+      color: var(--text, grey);
+      border: 2px solid var(--bc);
+      border-radius: 0.5rem;
+      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      padding: 0.5rem;
+      height: fit-content;
 
-  & p {
-    font-size: clamp(1.5rem, 5vw, 5rem);
-    text-align: center;
-    width: 100%;
-  }
+      & p {
+        font-size: clamp(1.5rem, 5vw, 5rem);
+        text-align: center;
+        width: 100%;
+      }
 
-  & .code {
-    cursor: pointer;
-    font-size: small;
-  }
+      & .code {
+        cursor: pointer;
+        font-size: small;
+      }
 
-  ::selection {
-    color: red;
-    background-color: yellow;
-    text-shadow: 5px 5px #558abb;
+      ::selection {
+        color: red;
+        background-color: yellow;
+        text-shadow: 5px 5px #558abb;
+      }
+    }
   }
 }
 
@@ -49,7 +49,6 @@
   }
 
   .letter {
-    background-color: white;
     color: black;
     font-size: max(1.5em, 1.23em + 2cqi);
   }

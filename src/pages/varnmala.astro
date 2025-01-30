@@ -1,18 +1,25 @@
 ---
 import Alphabet from "@/components/Alphabet.astro";
+import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import { varnmala_english, varnmala_hindi } from "@/utils/common";
 ---
 
 <BaseLayout meta={{ title: "Alphabets" }}>
-  <main class="varnmala-main">
+  <Fragment slot="header-right">
+    <Help
+      title="Varnmala"
+      description="Varnmala is a collection of alphabets in Hindi and English. It is used to teach kids the basics of language."
+    />
+  </Fragment>
+  <article class="container__varnmala">
     <Alphabet list={varnmala_english} title="English" />
     <Alphabet list={varnmala_hindi} title="Hindi" />
-  </main>
-</BaseLayout>
+  </article>
 
-<style>
-  .varnmala-main {
-    display: block;
-  }
-</style>
+  <style>
+    .container__varnmala {
+      display: block;
+    }
+  </style>
+</BaseLayout>
