@@ -13,6 +13,18 @@ import "@/assets/styles/common.css";
     />
   </Fragment>
   <article class="tv container__panel">
+    <section id="option-box" class="panel__options">
+      <label class="vertical" for="vertical">
+        <input type="radio" class="orientation" name="orientation" id="vertical" value="X" />
+        <span class="icon">↕️</span>
+      </label>
+
+      <label class="horizontal" for="horizontal">
+        <input type="radio" class="orientation" name="orientation" id="horizontal" value="Y" />
+        <span class="icon">↔️</span>
+      </label>
+    </section>
+
     <section class="scene">
       <letter-panel>
         <div class="panel" id="panel"></div>
@@ -30,6 +42,7 @@ import "@/assets/styles/common.css";
   // Define the behaviour for our new type of HTML element.
   class LetterPanel extends HTMLElement {
     #panel;
+    #orientationPanel;
     #orientation = "Y";
     #selectedIndex = 0;
     #radius = "0px";
@@ -39,7 +52,7 @@ import "@/assets/styles/common.css";
     constructor() {
       super();
       this.#panel = this.querySelector("#panel") as HTMLElement;
-      //this.checkPanel();
+      this.#orientationPanel = document.querySelectorAll(".orientation");
       this.#emitEvent();
     }
 
@@ -54,6 +67,19 @@ import "@/assets/styles/common.css";
         const { charCode, code, keyCode, key } = e;
         console.log({ charCode, code, keyCode, key });
         this.onKeyChange(keyCode);
+      });
+
+      this.#orientationPanel.forEach((radio) => {
+        radio.addEventListener(
+          "click",
+          (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            this.#orientation = target.value;
+            this.changePanel();
+            target.blur(); //unfocus the radio button
+          },
+          false
+        );
       });
     }
 

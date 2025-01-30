@@ -53,11 +53,9 @@
 
 .panel__options {
   grid-area: option;
-  display: grid;
-  grid-auto-flow: column;
-  align-content: center;
-  grid-template-columns: 30% 1fr 30%;
-  align-self: baseline;
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
 }
 
 .range__option {
@@ -180,37 +178,36 @@ input[type="radio"] {
 label {
   background-color: var(--orientation__bg--8);
   color: var(--panel__cell__txt--6);
-  border-radius: 0.5rem;
-  transition: all 0.5s;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  transition: all 0.3s ease;
   cursor: pointer;
-  font-size: x-large;
-  display: inline-block;
-  transform-origin: center;
-  transform-style: preserve-3d;
-  transform-box: view-box;
-  transition-delay: 2ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.horizontal {
-  transform: rotateZ(0deg);
-  width: 10rem;
-  height: 3rem;
-  justify-self: end;
+.horizontal, .vertical {
+  width: 5rem;
+  height: 5rem;
 }
 
-.vertical {
-  transform: rotateZ(0deg);
-  height: 10rem;
-  width: 3rem;
+.icon {
+  font-size: 2rem;
 }
 
 label:hover {
   background-color: var(--orientation__bg--9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 label:has(input[type="radio"]:checked) {
   color: var(--panel__cell__txt--6);
   background-color: var(--label__bg--10);
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* range slider */
