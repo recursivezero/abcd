@@ -1,4 +1,4 @@
-.container_map {
+.container__map {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,13 +7,13 @@
   max-width: 1200px;
   margin: 40px auto;
   position: relative;
-  
-  svg {
+
+
+  & svg {
     width: 100%;
     height: auto;
     max-width: 100%;
   }
-  
   .tooltip {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.8);
@@ -24,19 +24,18 @@
     pointer-events: none;
     z-index: 500;
     display: none;
-    transform: translate(-400%, -200%);
   }
-  
-  path {
+
+  & path {
     fill: #aee38a;
     cursor: pointer;
     transition:
       fill 0.5s ease,
       transform 0.5s ease;
-    
-    &:hover {
-      fill: #ffa500;
-      transform: scale(1);
-    }
+  }
+
+  & path:hover {
+    fill: #ffa500;
+    transform: scale(1);
   }
 }
