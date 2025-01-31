@@ -186,8 +186,7 @@
     "cSpell.words": [],
     "workbench.editor.limit.excludeDirty": true,
     "files.readonlyInclude": {
-      ".githooks/**": true,
-      ".github/**": true
+      ".githooks/**": true
     }
   }
 }
