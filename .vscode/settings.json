@@ -30,18 +30,25 @@
   "git.openRepositoryInParentFolders": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.linkedEditing": true,
-  "cSpell.userWords": ["nojekyll", "testid"],
+  "cSpell.userWords": [
+    "nojekyll",
+    "testid"
+  ],
   "editor.tabSize": 2,
   "git.enableSmartCommit": true,
   "files.watcherExclude": {
     "**/node_modules/*/**": true
   },
   "files.autoSave": "afterDelay",
-  "git.branchProtection": ["main", "develop"],
+  "git.branchProtection": [
+    "main",
+    "develop"
+  ],
   "[CODEOWNERS]": {
     "editor.formatOnSave": false
   },
   "cSpell.words": [
+    "behaviour",
     "DUMMYUSER"
   ],
   "workbench.colorCustomizations": {
@@ -53,13 +60,11 @@
     "activityBarBadge.foreground": "#15202b",
     "commandCenter.border": "#15202b99",
     "sash.hoverBorder": "#e98cf9",
-    "sideBar.border": "#e98cf9",
     "statusBar.background": "#e05bf7",
     "statusBar.foreground": "#15202b",
     "statusBarItem.hoverBackground": "#d72af5",
     "statusBarItem.remoteBackground": "#e05bf7",
     "statusBarItem.remoteForeground": "#15202b",
-    "tab.activeBorder": "#e98cf9",
     "titleBar.activeBackground": "#e05bf7",
     "titleBar.activeForeground": "#15202b",
     "titleBar.inactiveBackground": "#e05bf799",
