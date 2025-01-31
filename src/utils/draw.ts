@@ -1,4 +1,4 @@
-let BASE_URL = "http://localhost:3003";
+let BASE_URL = "http://localhost:4321/draw";
 let IMAGE_DIR = "/images/background";
 
 if (import.meta.env.PROD) {

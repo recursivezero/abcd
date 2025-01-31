@@ -71,15 +71,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <style>
 :root {
-  --bg-gradient-start: #e3f2fd;
-  --bg-gradient-end: #bbdefb;
+  /* Vibrant color palette */
+  --letter-a-bg: #FF6B6B;     /* Coral Red */
+  --letter-b-bg: #4ECDC4;     /* Turquoise */
+  --letter-c-bg: #45B7D1;     /* Bright Blue */
+  --letter-d-bg: #FDCB6E;     /* Sunny Yellow */
+  --letter-e-bg: #6C5CE7;     /* Purple */
+  --letter-f-bg: #FF8A5B;     /* Warm Orange */
+  --letter-g-bg: #2ECC71;     /* Emerald Green */
+  --letter-h-bg: #9B59B6;     /* Vibrant Violet */
+  --letter-i-bg: #3498DB;     /* Bright Blue */
+  --letter-j-bg: #E74C3C;     /* Bright Red */
+  --letter-k-bg: #1ABC9C;     /* Teal */
+  --letter-l-bg: #F39C12;     /* Amber */
+  --letter-m-bg: #16A085;     /* Dark Teal */
+  --letter-n-bg: #8E44AD;     /* Deep Purple */
+  --letter-o-bg: #2980B9;     /* Ocean Blue */
+  --letter-p-bg: #E67E22;     /* Vibrant Orange */
+  --letter-q-bg: #27AE60;     /* Emerald */
+  --letter-r-bg: #D35400;     /* Burnt Orange */
+  --letter-s-bg: #2C3E50;     /* Dark Blue Gray */
+  --letter-t-bg: #F1C40F;     /* Bright Yellow */
+  --letter-u-bg: #7F8C8D;     /* Cool Gray */
+  --letter-v-bg: #34495E;     /* Deep Blue Gray */
+  --letter-w-bg: #2874A6;     /* Deep Blue */
+  --letter-x-bg: #117A65;     /* Dark Teal */
+  --letter-y-bg: #D68910;     /* Dark Orange */
+  --letter-z-bg: #A93226;     /* Deep Red */
+
+  --bg-gradient-start: #f3e7e9;
+  --bg-gradient-end: #d3d3d3;
   --letter-bg-hidden: #b0bec5;
-  --letter-bg-visible: #004d40;
-  --letter-bg-hover: #00796b;
   --text-color-hidden: transparent;
   --text-color-visible: #ffffff;
   --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  --hover-transform: scale(1.15);
+  --hover-transform: scale(1.1);
 }
 
 .hide-and-seek-game {
@@ -121,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
   font-size: 3rem;
   font-weight: bold;
   width: 100px;
-  height: 120px;  /* Increased height */
+  height: 120px;
   border-radius: 15px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -129,19 +155,48 @@ document.addEventListener('DOMContentLoaded', () => {
   box-shadow: var(--box-shadow);
   position: relative;
   overflow: hidden;
+  perspective: 1000px;
 }
 
+/* Individual letter color variations */
+.letter-box[data-letter="A"] { --letter-hover-bg: var(--letter-a-bg); }
+.letter-box[data-letter="B"] { --letter-hover-bg: var(--letter-b-bg); }
+.letter-box[data-letter="C"] { --letter-hover-bg: var(--letter-c-bg); }
+.letter-box[data-letter="D"] { --letter-hover-bg: var(--letter-d-bg); }
+.letter-box[data-letter="E"] { --letter-hover-bg: var(--letter-e-bg); }
+.letter-box[data-letter="F"] { --letter-hover-bg: var(--letter-f-bg); }
+.letter-box[data-letter="G"] { --letter-hover-bg: var(--letter-g-bg); }
+.letter-box[data-letter="H"] { --letter-hover-bg: var(--letter-h-bg); }
+.letter-box[data-letter="I"] { --letter-hover-bg: var(--letter-i-bg); }
+.letter-box[data-letter="J"] { --letter-hover-bg: var(--letter-j-bg); }
+.letter-box[data-letter="K"] { --letter-hover-bg: var(--letter-k-bg); }
+.letter-box[data-letter="L"] { --letter-hover-bg: var(--letter-l-bg); }
+.letter-box[data-letter="M"] { --letter-hover-bg: var(--letter-m-bg); }
+.letter-box[data-letter="N"] { --letter-hover-bg: var(--letter-n-bg); }
+.letter-box[data-letter="O"] { --letter-hover-bg: var(--letter-o-bg); }
+.letter-box[data-letter="P"] { --letter-hover-bg: var(--letter-p-bg); }
+.letter-box[data-letter="Q"] { --letter-hover-bg: var(--letter-q-bg); }
+.letter-box[data-letter="R"] { --letter-hover-bg: var(--letter-r-bg); }
+.letter-box[data-letter="S"] { --letter-hover-bg: var(--letter-s-bg); }
+.letter-box[data-letter="T"] { --letter-hover-bg: var(--letter-t-bg); }
+.letter-box[data-letter="U"] { --letter-hover-bg: var(--letter-u-bg); }
+.letter-box[data-letter="V"] { --letter-hover-bg: var(--letter-v-bg); }
+.letter-box[data-letter="W"] { --letter-hover-bg: var(--letter-w-bg); }
+.letter-box[data-letter="X"] { --letter-hover-bg: var(--letter-x-bg); }
+.letter-box[data-letter="Y"] { --letter-hover-bg: var(--letter-y-bg); }
+.letter-box[data-letter="Z"] { --letter-hover-bg: var(--letter-z-bg); }
+
 .letter-box:hover {
-  background-color: var(--letter-bg-hover);
+  background-color: var(--letter-hover-bg);
   color: var(--text-color-visible);
-  transform: var(--hover-transform);
+  transform: var(--hover-transform) rotateY(10deg);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .letter-box[data-visible="true"] {
-  background-color: var(--letter-bg-visible);
+  background-color: var(--letter-hover-bg);
   color: var(--text-color-visible);
-  transform: var(--hover-transform);
+  /* transform: var(--hover-transform) rotateY(180deg); */
 }
 
 .letter-box::after {
@@ -151,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -161,14 +216,14 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 .instructions-modal {
-  background-color: #64b5f6;
+  background: linear-gradient(135deg, #64b5f6, #1976d2);
   color: white;
   border: none;
   border-radius: 15px;
   padding: 2rem;
   max-width: 400px;
   text-align: center;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content {
@@ -179,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
 .modal-content button {
-  background-color: #d32f2f;
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
   color: white;
   border: none;
   padding: 0.75rem 2rem;
@@ -188,19 +243,35 @@ document.addEventListener('DOMContentLoaded', () => {
   transition: all 0.3s ease;
   font-size: 1.1rem;
   font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-content button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: all 0.6s;
+}
+
+.modal-content button:hover:before {
+  left: 100%;
 }
 
 .modal-content button:hover {
-  background-color: #b71c1c;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .letter-box {
     width: 80px;
-    height: 112px;  /* Maintaining the same aspect ratio */
+    height: 112px;
     font-size: 2.5rem;
   }
 }
@@ -208,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
 @media (max-width: 480px) {
   .letter-box {
     width: 60px;
-    height: 84px;  /* Maintaining the same aspect ratio */
+    height: 84px;
     font-size: 2rem;
   }
   
@@ -216,4 +287,5 @@ document.addEventListener('DOMContentLoaded', () => {
     gap: 0.75rem;
   }
 }
+
 </style>

@@ -1,12 +1,3 @@
----
-// MathPractice.astro
-interface Props {
-  title?: string;
-}
-
-const { title = "Basic Arithmetic" } = Astro.props;
----
-
 <div class="math-practice">
   <header class="header">
     <dialog id="helpDialog" class="help-dialog">
@@ -20,14 +11,14 @@ const { title = "Basic Arithmetic" } = Astro.props;
       </ul>
       <p>
         Click on the refresh icon to get a new data set in the first 2 boxes. 
-        Enter your answer and click Submit to check it.
+        Enter your answer and it will be automatically checked.
       </p>
     </dialog>
     <div class="action">
       <a href="/" class="back">←</a>
     </div>
     <div class="caption">
-      <h2>{title}</h2>
+      <!-- <h2>{title}</h2> -->
     </div>
     <button class="help-btn" id="tip" onclick="openDialog()">?</button>
   </header>
@@ -50,376 +41,253 @@ const { title = "Basic Arithmetic" } = Astro.props;
   </section>
 
   <form id="mathForm" class="math-form">
-    <input readonly type="number" id="first" name="b" class="number" value="0" />
+    <input readonly type="number" id="first" class="number" value="0" />
     <samp id="operator" class="operator">+</samp>
-    <input readonly type="number" id="second" name="a" class="number" value="0" />
+    <input readonly type="number" id="second" class="number" value="0" />
     <samp class="operator">=</samp>
-    <input
-      type="number"
-      id="output"
-      name="c"
-      class="number output"
-      placeholder="?"
-      autofocus
-    />
-    <button type="submit" id="submitBtn" class="submit-btn">Submit</button>
-    <output class="result" id="result" name="result" for="a b"></output>
+    <div class="answer-container">
+      <input
+        type="number"
+        id="output"
+        class="number output"
+        placeholder="?"
+        autofocus
+      />
+      <div id="resultIndicator" class="result-indicator"></div>
+    </div>
   </form>
 </div>
 
 <script>
-interface MathState {
-  currentOperator: string;
-  score: number;
-  scoreIncrement: number;
-}
-
-const state: MathState = {
+const state = {
   currentOperator: '+',
   score: 0,
   scoreIncrement: 10
 };
 
-export function initMathPractice() {
+function initMathPractice() {
   updateNumbers();
   setupEventListeners();
 }
 
-function generateNumber(max = 99): number {
+function generateNumber(max = 99) {
   return Math.floor(Math.random() * max) + 1;
 }
 
-function updateNumbers(): void {
+function updateNumbers() {
   const first = generateNumber();
   const second = state.currentOperator === '×' ? generateNumber(9) : generateNumber();
   
-  const firstInput = document.getElementById('first') as HTMLInputElement;
-  const secondInput = document.getElementById('second') as HTMLInputElement;
-  const outputInput = document.getElementById('output') as HTMLInputElement;
-  const resultElement = document.getElementById('result') as HTMLOutputElement;
-  const mathForm = document.getElementById('mathForm') as HTMLFormElement;
-  
-  firstInput.value = first.toString();
-  secondInput.value = second.toString();
-  outputInput.value = '';
-  resultElement.className = 'result';
-  mathForm.classList.remove('correct', 'incorrect');
-  outputInput.focus();
+  document.getElementById('first').value = first.toString();
+  document.getElementById('second').value = second.toString();
+  document.getElementById('output').value = '';
+  document.getElementById('resultIndicator').innerHTML = '';
+  document.getElementById('output').focus();
 }
 
-function updateScore(): void {
+function updateScore() {
   state.score += state.scoreIncrement;
   const scoreDisplay = document.getElementById('scoreDisplay');
-  const scoreContainer = scoreDisplay?.parentElement;
-  
-  if (scoreDisplay) {
-    scoreDisplay.textContent = state.score.toString();
-    scoreContainer?.classList.add('animate');
-    
-    setTimeout(() => {
-      scoreContainer?.classList.remove('animate');
-    }, 300);
-  }
+  scoreDisplay.textContent = state.score.toString();
+  scoreDisplay.classList.add('score-pop');
+  setTimeout(() => scoreDisplay.classList.remove('score-pop'), 200);
 }
 
-function checkAnswer(event: Event): void {
-  event.preventDefault();
-  
-  const mathForm = event.target as HTMLFormElement;
-  const first = parseInt((document.getElementById('first') as HTMLInputElement).value);
-  const second = parseInt((document.getElementById('second') as HTMLInputElement).value);
-  const outputElement = document.getElementById('output') as HTMLInputElement;
-  const output = outputElement.value === '' ? NaN : parseInt(outputElement.value);
-  
+function checkAnswer() {
+  const first = parseInt(document.getElementById('first').value);
+  const second = parseInt(document.getElementById('second').value);
+  const output = parseInt(document.getElementById('output').value);
+  const indicator = document.getElementById('resultIndicator');
+
   if (isNaN(output)) {
-    mathForm.classList.add('incorrect');
-    outputElement.value = '';
-    outputElement.focus();
+    indicator.innerHTML = '';
     return;
   }
-  
-  let expectedResult: number;
+
+  let expectedResult;
   switch(state.currentOperator) {
-    case '+':
-      expectedResult = first + second;
-      break;
-    case '−':
-      expectedResult = first - second;
-      break;
-    case '×':
-      expectedResult = first * second;
-      break;
-    default:
-      expectedResult = 0;
+    case '+': expectedResult = first + second; break;
+    case '−': expectedResult = first - second; break;
+    case '×': expectedResult = first * second; break;
+    default: expectedResult = 0;
   }
-  
+
   if (output === expectedResult) {
-    mathForm.classList.add('correct');
+    indicator.innerHTML = '✓';
+    indicator.style.color = '#4CAF50';
     updateScore();
-    setTimeout(() => {
-      mathForm.classList.remove('correct');
-      updateNumbers();
-    }, 500);
+    setTimeout(updateNumbers, 800);
   } else {
-    mathForm.classList.add('incorrect');
-    outputElement.value = '';
-    outputElement.focus();
-    setTimeout(() => {
-      mathForm.classList.remove('incorrect');
-    }, 500);
+    indicator.innerHTML = '✗';
+    indicator.style.color = '#f44336';
   }
 }
 
-function setOperator(op: string): void {
+function setOperator(op) {
   state.currentOperator = op;
-  const operatorElement = document.getElementById('operator');
-  if (operatorElement) {
-    operatorElement.textContent = op;
-  }
+  document.getElementById('operator').textContent = op;
   updateNumbers();
 }
 
-function setupEventListeners(): void {
-  const mathForm = document.getElementById('mathForm');
-  const helpBtn = document.getElementById('tip');
-  const closeDialogBtn = document.querySelector('.dialog-btn');
-  const helpDialog = document.getElementById('helpDialog') as HTMLDialogElement;
-
-  if (mathForm) {
-    mathForm.addEventListener('submit', checkAnswer);
-  }
-
-  document.getElementById('refresh')?.addEventListener('click', updateNumbers);
-  document.getElementById('add')?.addEventListener('click', () => setOperator('+'));
-  document.getElementById('subtract')?.addEventListener('click', () => setOperator('−'));
-  document.getElementById('multiply')?.addEventListener('click', () => setOperator('×'));
-
-  helpBtn?.addEventListener('click', () => helpDialog.showModal());
-  closeDialogBtn?.addEventListener('click', () => helpDialog.close());
+function setupEventListeners() {
+  document.getElementById('output').addEventListener('input', checkAnswer);
+  document.getElementById('refresh').addEventListener('click', updateNumbers);
+  document.getElementById('add').addEventListener('click', () => setOperator('+'));
+  document.getElementById('subtract').addEventListener('click', () => setOperator('−'));
+  document.getElementById('multiply').addEventListener('click', () => setOperator('×'));
 }
+
+function openDialog() {
+  document.getElementById('helpDialog').showModal();
+}
+
+function closeDialog() {
+  document.getElementById('helpDialog').close();
+}
+
+initMathPractice();
 </script>
 
 <style>
- /* Enhanced Theme Variables */
 :root {
-  --color-primary: #4CAF50;
-  --color-primary-light: #81C784;
-  --color-primary-dark: #388E3C;
+  --color-background: #1a1a2e;
+  --color-primary: #16213e;
+  --color-accent: #0f3460;
+  --color-highlight: #e94560;
+  --color-success: #4CAF50;
   --color-error: #f44336;
-  --color-error-light: #EF9A9A;
-  --color-background: #f8fafc;
-  --color-white: #ffffff;
-  --color-success-bg: rgba(76, 175, 80, 0.1);
-  --color-error-bg: rgba(244, 67, 54, 0.1);
-  
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-full: 9999px;
+  --color-text: #f4f4f4;
 }
 
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+} */
+
 .math-practice {
-  width: min(95%, 700px);
-  margin: 2rem auto;
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  position: relative;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
-  padding: 1.5rem 2rem;
-  background: linear-gradient(to right, #4CAF50, #45a049);
-  color: white;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-accent);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-}
-
-.back {
-  color: white;
-  text-decoration: none;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  transition: background 0.2s;
-}
-
-.back:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.caption h2 {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.help-btn {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.2s;
-}
-
-.help-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 .score {
+  font-size: 2rem;
   position: fixed;
-  top: 2rem;
-  right: 2rem;
-  background: var(--color-primary);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-full);
-  font-weight: 600;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--color-highlight);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  margin-top: 80px;
 }
 
-.score.animate {
-  transform: scale(1.1);
+.score-pop {
+  animation: pop 0.2s ease;
 }
 
-/* Operator Container */
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
 .operator-container {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1.5rem;
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .operator-btn {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 80px;
+  height: 80px;
+  font-size: 2.5rem;
+  background-color: var(--color-accent);
+  color: var(--color-text);
   border: none;
-  border-radius: var(--radius-md);
-  font-size: 1.5rem;
-  color: white;
+  border-radius: 50%;
   cursor: pointer;
-  transition: all 0.2s;
-  display: grid;
-  place-items: center;
+  transition: transform 0.2s ease;
 }
 
 .operator-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: scale(1.1);
 }
 
-.refresh { background: #9333ea; }
-.add { background: #3b82f6; }
-.subtract { background: #f59e0b; }
-.multiply { background: #ec4899; }
-
-/* Math Form */
 .math-form {
-  padding: 2.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.math-form.correct {
-  animation: flashSuccess 1s ease;
-}
-
-.math-form.incorrect {
-  animation: flashError 1s ease;
 }
 
 .number {
-  width: 5rem;
-  height: 4rem;
+  width: 150px;
+  height: 100px;
+  font-size: 3rem;
   text-align: center;
-  font-size: 1.75rem;
-  font-weight: 600;
-  border: 2px solid #e2e8f0;
-  border-radius: var(--radius-md);
-  background: white;
-  color: #1e293b;
-  transition: all 0.2s;
-}
-
-.number:focus {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  border: 2px solid var(--color-highlight);
+  border-radius: 15px;
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
 }
 
 .operator {
-  font-size: 2rem;
-  color: #64748b;
-  margin: 0 0.5rem;
-  font-weight: 500;
+  font-size: 3rem;
+  color: var(--color-highlight);
 }
 
-.submit-btn {
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  padding: 0.75rem 2rem;
-  border-radius: var(--radius-md);
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
+.answer-container {
+  position: relative;
 }
 
-.submit-btn:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-2px);
+.result-indicator {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  font-weight: bold;
 }
 
-.result {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: grid;
-  place-items: center;
-  font-size: 1.25rem;
-  border-radius: var(--radius-full);
-}
-
-@keyframes flashSuccess {
-  0% { background-color: transparent; }
-  30% { background-color: var(--color-success-bg); }
-  100% { background-color: transparent; }
-}
-
-@keyframes flashError {
-  0% { background-color: transparent; }
-  30% { background-color: var(--color-error-bg); }
-  100% { background-color: transparent; }
-}
-
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .math-form {
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 1rem;
   }
-  
-  .submit-btn {
+
+  .number {
     width: 100%;
-    margin-top: 1rem;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .operator {
+    font-size: 2rem;
   }
 }
 </style>
-
