@@ -1,4 +1,3 @@
-andhrapradesh
 argmax
 argmin
 astro
