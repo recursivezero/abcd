@@ -1,6 +1,5 @@
 ---
 import type { SurveyData } from '../types/survey';
-import surveyData from '../data/survey.json';
 
 interface Props {
   data: SurveyData;
@@ -9,68 +8,72 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<div class="survey-container">
-  <header class="survey-header">
-    <h1>{data.surveyTitle}</h1>
-    <p>{data.description}</p>
-  </header>
+<div class="survey-wrapper">
+  <div class="survey-container">
+    <header class="survey-header">
+      <h1>{data.surveyTitle}</h1>
+      <p>{data.description}</p>
+    </header>
 
-  <div class="questions-container">
-    <form id="surveyForm" class="survey-form">
-      {data.questions.map((question) => (
-        <div class="question-card">
-          <h3>{question.questionText}</h3>
-          
-          {question.type === 'openEnded' ? (
-            <textarea
-              name={`q${question.id}`}
-              class="textarea-input"
-              rows="4"
-              placeholder="Type your answer here..."
-            ></textarea>
-          ) : question.type === 'singleChoice' ? (
-            <div class="options-group">
-              {question.options?.map((option) => (
-                <label class="option-label">
-                  <input
-                    type="radio"
-                    name={`q${question.id}`}
-                    value={option}
-                    class="radio-input"
-                  />
-                  <span class="radio-text">{option}</span>
-                </label>
-              ))}
-            </div>
-          ) : (
-            <div class="options-group">
-              {question.options?.map((option) => (
-                <label class="option-label">
-                  <input
-                    type="checkbox"
-                    name={`q${question.id}`}
-                    value={option}
-                    class="checkbox-input"
-                  />
-                  <span class="checkbox-text">{option}</span>
-                </label>
-              ))}
-            </div>
-          )}
+    <div class="questions-container">
+      <form id="surveyForm" class="survey-form">
+        {data.questions.map((question) => (
+          <div class="question-card">
+            <h3>{question.questionText}</h3>
+            
+            {question.type === 'openEnded' ? (
+              <textarea
+                name={`q${question.id}`}
+                class="textarea-input"
+                rows="4"
+                placeholder="Type your answer here..."
+              ></textarea>
+            ) : question.type === 'singleChoice' ? (
+              <div class="options-group">
+                {question.options?.map((option) => (
+                  <label class="option-label">
+                    <input
+                      type="radio"
+                      name={`q${question.id}`}
+                      value={option}
+                      class="radio-input"
+                    />
+                    <span class="radio-text">{option}</span>
+                  </label>
+                ))}
+              </div>
+            ) : (
+              <div class="options-group">
+                {question.options?.map((option) => (
+                  <label class="option-label">
+                    <input
+                      type="checkbox"
+                      name={`q${question.id}`}
+                      value={option}
+                      class="checkbox-input"
+                    />
+                    <span class="checkbox-text">{option}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+
+        <div class="survey-controls">
+          <button type="submit" class="submit-btn">Submit Survey</button>
+          <button type="button" class="download-btn" id="downloadResults" aria-label="Download Results">
+            Download Results
+          </button>
         </div>
-      ))}
-
-      <div class="survey-controls">
-        <button type="submit" class="submit-btn">Submit Survey</button>
-        <button type="button" class="print-btn" id="printResults">Print Results</button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
 
 <script>
   const surveyForm = document.getElementById('surveyForm');
-  const printBtn = document.getElementById('printResults');
+  const downloadBtn = document.getElementById('downloadResults');
 
   function collectFormData(form) {
     const formData = new FormData(form);
@@ -95,181 +98,203 @@ const { data } = Astro.props;
     event.preventDefault();
     const formData = collectFormData(surveyForm);
     
-    console.log('Attempting to submit with data:', formData);
-    
     try {
       const response = await fetch('/api/survey', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
-      console.log('Response status:', response.status); // Add this line
       
       const result = await response.json();
-      console.log('Response data:', result); // Add this line
 
       if (!response.ok) {
         throw new Error(`Failed to submit survey: ${result.message || response.statusText}`);
       }
 
       alert('Survey submitted successfully!');
-      // Optional: Reset form after successful submission
       surveyForm.reset();
       
     } catch (error) {
       console.error('Error submitting survey:', error);
       alert(`Error submitting survey: ${error.message}`);
     }
-}
-
-  function generatePrintableResults(data) {
-    let html = `  
-      <h1>${document.querySelector('.survey-header h1')?.textContent}</h1>
-      <div class="results">
-    `;
-
-    for (const [key, value] of Object.entries(data)) {
-      const question = document.querySelector(`[name="${key}"]`)?.closest('.question-card')?.querySelector('h3')?.textContent;
-      html += `
-        <div class="result-item">
-          <h3>${question}</h3>
-          <p>${Array.isArray(value) ? value.join(', ') : value}</p>
-        </div>
-      `;
-    }
-
-    html += '</div>';
-    return html;
   }
 
-  function printResults() {
+  function downloadResults() {
     if (!surveyForm) return;
 
     const formData = collectFormData(surveyForm);
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) return;
+    const jsonData = JSON.stringify(formData, null, 2); 
 
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>Survey Results</title>
-          <style>
-            body { font-family: system-ui; padding: 2rem; }
-            .result-item { margin-bottom: 1.5rem; }
-            h3 { color: #2d3748; }
-            p { color: #4a5568; }
-          </style>
-        </head>
-        <body>
-          ${generatePrintableResults(formData)}
-        </body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.print();
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'survey_results.json';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   surveyForm?.addEventListener('submit', submitSurvey);
-  printBtn?.addEventListener('click', printResults);
+  downloadBtn?.addEventListener('click', downloadResults);
 </script>
 
 <style>
-  /* Your CSS Styles for the form layout */
+  .survey-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 1rem;
+    background-color: #f8fafc;
+  }
+
   .survey-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .survey-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .survey-header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #1a365d;
+    margin-bottom: 0.5rem;
   }
 
   .survey-header p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #4a5568;
   }
 
   .questions-container {
-    max-height: 70vh;
+    max-height: 60vh;
     overflow-y: auto;
     padding: 1rem;
     background: #ffffff;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 
   .question-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
   }
 
   .question-card h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #2d3748;
+    margin-bottom: 0.75rem;
   }
 
   .options-group {
     display: grid;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .option-label {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
     background: #f8fafc;
     cursor: pointer;
   }
 
   .radio-input,
   .checkbox-input {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1rem;
+    height: 1rem;
     accent-color: #3b82f6;
+  }
+
+  .textarea-input {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #e2e8f0;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    resize: vertical;
   }
 
   .survey-controls {
     display: flex;
     gap: 1rem;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     padding: 1rem;
+  }
+
+  .submit-btn,
+  .download-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
   }
 
   .submit-btn {
     background: #3b82f6;
     color: white;
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    border: none;
   }
 
   .submit-btn:hover {
     background: #2563eb;
   }
 
-  .print-btn {
+  .download-btn {
     background: white;
     color: #3b82f6;
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
     border: 1px solid #3b82f6;
   }
 
-  .print-btn:hover {
+  .download-btn:hover {
     background: #f8fafc;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .survey-container {
+      padding: 1rem;
+    }
+
+    .survey-header h1 {
+      font-size: 1.5rem;
+    }
+
+    .survey-header p {
+      font-size: 0.9rem;
+    }
+
+    .question-card h3 {
+      font-size: 0.9rem;
+    }
+
+    .submit-btn,
+    .download-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .survey-controls {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
   }
 </style>

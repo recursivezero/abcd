@@ -23,16 +23,37 @@ export const POST: APIRoute = async ({ request }) => {
       // Continue execution even if directory exists
     }
 
-    // Generate unique filename
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const filename = `survey-response-${timestamp}.json`;
+    // Fixed filename
+    const filename = 'survey-responses.json';
     const filepath = path.join(responsesDir, filename);
     console.log('Writing file to:', filepath); // Debug log
 
-    // Save response to JSON file
+    // Read existing data (if any)
+    let existingData = [];
     try {
-      await fs.writeFile(filepath, JSON.stringify(data, null, 2), 'utf-8');
-      console.log('File written successfully'); // Debug log
+      const fileContent = await fs.readFile(filepath, 'utf-8');
+      existingData = JSON.parse(fileContent);
+    } catch (readError) {
+      // If the file doesn't exist, we'll start with an empty array
+      console.log('No existing file found, starting fresh.'); // Debug log
+    }
+
+    // Generate a unique ID and timestamp for the new entry
+    const id = existingData.length > 0 ? existingData[existingData.length - 1].id + 1 : 1; // Auto-increment ID
+    const timestamp = new Date().toISOString(); // Current timestamp in ISO format
+
+    // Append new data to existing data with ID and timestamp
+    const newEntry = {
+      id,
+      timestamp,
+      ...data, // Spread the original data
+    };
+    existingData.push(newEntry);
+
+    // Save updated data to JSON file
+    try {
+      await fs.writeFile(filepath, JSON.stringify(existingData, null, 2), 'utf-8');
+      console.log('File updated successfully'); // Debug log
     } catch (writeError) {
       console.error('Error writing file:', writeError);
       throw writeError;
@@ -41,7 +62,9 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({
       success: true,
       message: 'Survey response saved successfully',
-      filename: filename
+      filename: filename,
+      id, // Return the ID of the new entry
+      timestamp, // Return the timestamp of the new entry
     }), {
       status: 200,
       headers: {
