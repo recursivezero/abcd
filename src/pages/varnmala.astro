@@ -1,5 +1,6 @@
 ---
 import Alphabet from "@/components/Alphabet.astro";
+import "@/assets/styles/varnmala.css";
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import { varnmala_english, varnmala_hindi } from "@/utils/common";
@@ -12,14 +13,39 @@ import { varnmala_english, varnmala_hindi } from "@/utils/common";
       description="Varnmala is a collection of alphabets in Hindi and English. It is used to teach kids the basics of language."
     />
   </Fragment>
-  <article class="container__varnmala">
-    <Alphabet list={varnmala_english} title="English" />
-    <Alphabet list={varnmala_hindi} title="Hindi" />
-  </article>
 
-  <style>
-    .container__varnmala {
-      display: block;
-    }
-  </style>
+  <article class="container__varnmala">
+    <nav class="tabs">
+      <button class="tab active" data-target="english">English</button>
+      <button class="tab" data-target="hindi">Hindi</button>
+    </nav>
+    <div id="english">
+      <Alphabet list={varnmala_english} title="English" />
+    </div>
+    <div id="hindi">
+      <Alphabet list={varnmala_hindi} title="Hindi" />
+    </div>
+  </article>
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        // Remove active class from all tabs
+        tabs.forEach((t) => t.classList.remove("active"));
+
+        // Add active class to clicked tab
+        tab.classList.add("active");
+
+        // Scroll to target section with offset
+        const targetId = tab.getAttribute("data-target");
+        if (targetId) {
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
+    });
+  </script>
 </BaseLayout>
