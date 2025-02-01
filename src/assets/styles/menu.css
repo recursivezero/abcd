@@ -112,22 +112,17 @@
     }
   }
 
-  .hider,
-  [popovertargetaction] {
-    display: none;
-  }
-
-  button {
+  [popover] button {
     background: #0000;
     position: relative;
     cursor: pointer;
   }
 
-  button:is(:active, :hover, :focus-visible) {
+  [popover] button:is(:active, :hover, :focus-visible) {
     --active: 1;
   }
 
-  button::before {
+  [popover] button::before {
     content: "";
     background: color-mix(in hsl, canvas, canvasText 15%);
     position: absolute;
@@ -138,8 +133,34 @@
     transition: opacity 0.2s;
   }
 
+  .hider,
+  [popovertargetaction] {
+    display: none;
+  }
+
   .hider {
     display: none;
+  }
+
+  .menu-button {
+    background: #0000;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .menu-button:is(:active, :hover, :focus-visible) {
+    --active: 1;
+  }
+
+  .menu-button::before {
+    content: "";
+    background: color-mix(in hsl, canvas, canvasText 15%);
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    z-index: -1;
+    opacity: var(--active, 0);
+    transition: opacity 0.2s;
   }
 
   @media (max-width: 768px) {
@@ -264,7 +285,7 @@
     :root:has(:popover-open) body {
       scale: calc(0.95 + (clamp(0, var(--complete), 1) * 0.05));
       translate: 0 calc((env(safe-area-inset-top) + 14px) * (1 - clamp(0, var(--complete), 1)));
-      border-radius: calc(12px * (1 - clamp(0, var(--complete), 1)));
+      border-radius: calc(12px * (1 - clamp(0, var (--complete), 1)));
       overflow: hidden;
     }
 

@@ -8,20 +8,20 @@ import Navigation from "@/layouts/Navigation";
 import { NavbarLinks } from "@/utils/constants";
 ---
 
-<button popovertarget="nav" popovertargetaction="toggle">
+<button class="menu-button" popovertarget="nav" popovertargetaction="toggle">
   <HamIcon width={24} height={24} />
 </button>
 <div class="layout">
   <aside popover="auto" id="nav">
-    <button popovertarget="nav" popovertargetaction="hide" class="hider" aria-label="Close drawer">
+    <button class="menu-button hider" popovertarget="nav" popovertargetaction="hide" class="hider" aria-label="Close drawer">
       <span class="sr-only">Close drawer</span>
     </button>
     <Navigation pages={NavbarLinks} />
     <div class="actions">
-      <button class="theme-toggle">
+      <button class="menu-button theme-toggle">
         <ToggleIcon width={24} height={24} />
       </button>
-      <button class="placement-toggle">
+      <button class="menu-button placement-toggle">
         <ArrowIcon width={24} height={24} />
       </button>
     </div>

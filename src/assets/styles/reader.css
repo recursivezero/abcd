@@ -1,11 +1,11 @@
 /* following :root block added by css color collector */
 :root {
   --main__txt--2: #ff61d5;
-  --button__bg--3: hsl(60deg, 56%, 91%);
+  --mute-button__bg--3: hsla(255, 100%, 50%, 0.281);
 }
 
 #container__reader {
-  font-size: 20rem;
+  font-size: min(28rem, 35vw);
   display: grid;
   place-content: center;
   color: var(--main__txt--2);
@@ -42,19 +42,24 @@
   scroll-behavior: smooth;
 }
 
-.button {
-  font-size: 1.5rem;
-  border: none;
-  background-color: var(--button__bg--3);
+.mute-button {
+  font-size: 1.5;
+  border: 1px solid #6767d3;
+  /*background-color: var(--mute-button__bg--3);*/
   cursor: pointer;
-  width: 2em;
+  width: min(3em, 15vw);
+  height: min(3em, 15vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
 }
 
-.button-audio::before {
+.mute-button-audio::before {
   content: "\1F508";
 }
 
-.button-audio.mute::before {
+.mute-button-audio.mute::before {
   content: "\1F507";
 }
 
@@ -72,4 +77,20 @@
 .speaker>span {
   padding: 0.5rem;
   border: 1px solid grey;
+}
+
+@media screen and (max-width: 768px) {
+  #container__reader {
+    font-size: min(20rem, 45vw);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #container__reader {
+    font-size: min(16rem, 55vw);
+  }
+  
+  .mute-button {
+    font-size: min(2rem, 6vw);
+  }
 }
