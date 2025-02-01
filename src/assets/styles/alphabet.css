@@ -17,9 +17,9 @@
 
   & .list {
     display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    margin-block: 1.5rem;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-block: 2rem;
 
     & .letter {
       display: grid;
@@ -30,7 +30,7 @@
       border: 2px solid var(--bc);
       border-radius: 0.5rem;
       box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-      padding: 0.5rem;
+      padding: 1rem;
       height: fit-content;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       background: var(--background);
@@ -41,7 +41,7 @@
       }
 
       & p {
-        font-size: clamp(2rem, 4vw, 4rem);
+        font-size: clamp(2.5rem, 5vw, 5rem);
         text-align: center;
         width: 100%;
         margin: 0.5rem 0;
@@ -76,6 +76,6 @@
   }
 
   .letter p {
-    font-size: clamp(1.5rem, 3vw, 2.5rem) !important;
+    font-size: clamp(2rem, 4vw, 3rem) !important;
   }
 }
