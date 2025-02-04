@@ -19,7 +19,10 @@ import BaseLayout from "@/layouts/Base";
       description="Press any letter key (A-Z) to display it with a related emoji. Toggle the speaker buttons to change voices, and use the audio button to mute/unmute sounds."
     />
   </Fragment>
-  <article id="container__reader">a🍎</article>
+  <article id="container__reader">
+    <span class="letter" id="letter">a</span>
+    <span class="emoji" id="emoji" role="img" aria-label="apple"> 🍎 </span>
+  </article>
   <section class="section--audio hide">
     <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
   </section>
