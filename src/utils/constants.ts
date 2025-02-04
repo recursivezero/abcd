@@ -61,6 +61,13 @@ export const NavbarLinks: LinkProps[] = [
     path: "/typing",
     icon: PlaceholderIcon,
     isActive: true
+  },
+  {
+    name: "IndiaMap",
+    title: "IndiaMap",
+    path: "/map",
+    icon: PlaceholderIcon,
+    isActive: true
   }
 ];
 
