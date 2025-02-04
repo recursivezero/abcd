@@ -39,7 +39,7 @@
     margin-inline: 0.5rem;
   }
 
-  & .button--group>button {
+  & .button--group > button {
     font-size: 1rem;
     background-color: var(--button__bg--1);
     text-align: center;
@@ -127,5 +127,4 @@
       margin: 0 auto;
     }
   }
-
 }
