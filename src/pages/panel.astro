@@ -7,29 +7,60 @@ import "@/assets/styles/common.css";
 
 <BaseLayout meta={{ title: "Panel" }}>
   <Fragment slot="header-right">
+    <section id="option-box" class="panel__options">
+      <div class="controls" role="radiogroup" aria-labelledby="orientation-label">
+        <span id="orientation-label" class="sr-only">Panel Orientation</span>
+
+        <label class="vertical" for="vertical">
+          <input
+            type="radio"
+            class="orientation"
+            name="orientation"
+            id="vertical"
+            value="X"
+            aria-label="Vertical Orientation"
+          />
+          <span class="icon" aria-hidden="true">⇕</span>
+          <span class="sr-only">Vertical Orientation</span>
+        </label>
+
+        <label class="horizontal" for="horizontal">
+          <input
+            type="radio"
+            class="orientation"
+            name="orientation"
+            id="horizontal"
+            value="Y"
+            aria-label="Horizontal Orientation"
+          />
+          <span class="icon" aria-hidden="true">⇔</span>
+          <span class="sr-only">Horizontal Orientation</span>
+        </label>
+      </div>
+
+      <div class="range__option">
+        <span>10</span>
+        <input
+          type="range"
+          name="range"
+          id="range"
+          class="range__slider"
+          value="0"
+          min="10"
+          max="26"
+          title="Adjust panel size"
+        />
+        <span>26</span>
+      </div>
+    </section>
+
     <Help
       title="Panel"
-      description="Press any arrow key from keyboard to cycle through the letters, up/down keys or vertical button changes the orientation to vertical and left/right keys or horzontal button to change orientation to horizontal. Press any letter key, that letter will appears. Use the range slider to change the number of cells."
+      description="Use arrow keys to navigate through letters. Up/down for vertical orientation, left/right for horizontal. Type any letter to jump to it. Adjust panel size with the slider."
     />
   </Fragment>
+
   <article class="tv container__panel">
-    <section id="option-box" class="panel__options">
-      <label class="vertical" for="vertical">
-        <input type="radio" class="orientation" name="orientation" id="vertical" value="X" />
-        <span class="icon">↕️</span>
-      </label>
-
-      <label class="horizontal" for="horizontal">
-        <input type="radio" class="orientation" name="orientation" id="horizontal" value="Y" />
-        <span class="icon">↔️</span>
-      </label>
-    </section>
-    <div class="range__option">
-      <span>10</span>
-      <input type="range" name="range" id="range" class="range__slider" value="0" min="10" max="26" />
-      <span>26</span>
-    </div>
-
     <section class="scene">
       <letter-panel>
         <div class="panel" id="panel"></div>
