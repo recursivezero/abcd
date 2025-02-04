@@ -18,7 +18,10 @@ const currentPath = Astro.url.pathname;
         .filter((p) => p.isActive)
         .map((p) => (
           <li class={`nav--list__item ${currentPath === p.path ? "active" : ""}`}>
-            <Link href={p.path} name={p.name} />
+            <a href={p.path}>
+              <span class="icon">{p.icon && <p.icon width={24} height={24} />}</span>
+              <span class="text">{p.name}</span>
+            </a>
           </li>
         ))
     }

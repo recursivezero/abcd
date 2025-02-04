@@ -3,4 +3,5 @@ export type LinkProps = {
   name?: string;
   path: string;
   isActive: boolean;
+  icon?: React.FC;
 };
