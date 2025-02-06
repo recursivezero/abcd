@@ -1,0 +1,438 @@
+---
+export interface Props {
+  stateList: any[];
+  utList: any[];
+  colorPalette: string[];
+  getContrastColor: (hex: string) => string;
+}
+
+const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
+---
+
+<div class="geographical-mosaic">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="main-title">Explore India's Administrative Landscape</h1>
+      <p class="hero-subtitle">
+        Discover the diverse tapestry of states and union territories
+      </p>
+    </div>
+    <!-- Help button in top right -->
+    <button id="helpButton" class="help-button" aria-label="Help">?</button>
+  </div>
+
+  <!-- Controls Bar -->
+  <div class="controls-bar">
+    <div class="search-container">
+      <input type="text" id="searchBar" placeholder="Search locations..." />
+      <span class="search-icon">🔍</span>
+    </div>
+  </div>
+
+  <!-- Mosaic Sections -->
+  <div class="location-container">
+    <section class="location-section states-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="icon">🏛️</span> States of India
+        </h2>
+        <div class="stats-badge">{stateList.length} Total States</div>
+      </div>
+
+      <div class="location-grid">
+        {
+          stateList.map((state, index) => (
+            <div
+              class="location-card"
+              style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
+                      --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
+            >
+              <div class="card-inner">
+                <h3 class="location-name">{state.name}</h3>
+                <div class="location-details">
+                  <span class="label">Capital</span>
+                  <span class="value">{state.capital}</span>
+                </div>
+                <div class="card-overlay" />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="location-section ut-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="icon">🏝️</span> Union Territories
+        </h2>
+        <div class="stats-badge">{utList.length} Total UTs</div>
+      </div>
+
+      <div class="location-grid">
+        {
+          utList.map((ut, index) => (
+            <div
+              class="location-card"
+              style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
+                      --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
+            >
+              <div class="card-inner">
+                <h3 class="location-name">{ut.name}</h3>
+                <div class="location-details">
+                  <span class="label">Capital</span>
+                  <span class="value">{ut.capital}</span>
+                </div>
+                <div class="card-overlay" />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+
+  <!-- Help Modal -->
+  <dialog id="helpModal">
+    <div class="modal-content">
+      <h2>How to Use</h2>
+      <p>Use the search bar above to filter locations by name. Hover over any card to see a subtle lift effect. Explore states and union territories to learn more about India’s administrative landscape.</p>
+      <button id="closeModal" class="modal-close">Close</button>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  // Card hover effects
+  const cards = document.querySelectorAll(".location-card");
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      card.classList.add("hover-effect");
+    });
+    card.addEventListener("mouseleave", () => {
+      card.classList.remove("hover-effect");
+    });
+  });
+
+  // Search bar filtering
+  const searchBar = document.getElementById('searchBar');
+  searchBar.addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.location-card');
+    cards.forEach(card => {
+      const name = card.querySelector('.location-name').textContent.toLowerCase();
+      card.style.display = name.includes(query) ? '' : 'none';
+    });
+  });
+
+  // Help modal functionality
+  const helpButton = document.getElementById('helpButton');
+  const helpModal = document.getElementById('helpModal');
+  const closeModal = document.getElementById('closeModal');
+
+  helpButton.addEventListener('click', () => {
+    helpModal.showModal();
+  });
+
+  closeModal.addEventListener('click', () => {
+    helpModal.close();
+  });
+</script>
+
+<style>
+  :root {
+    --primary-blue: #2c3e50;
+    --soft-white: #f8f9fa;
+    --gold-accent: #ffd700;
+    --soft-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Overall Mosaic Container */
+  .geographical-mosaic {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 5rem 2rem;
+    border-radius: 1.5rem;
+    background: var(--primary-blue);
+    overflow: hidden;
+    box-shadow: var(--soft-shadow);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .main-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Help Button - positioned in the top right of the hero */
+  .help-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: var(--soft-shadow);
+    z-index: 2;
+  }
+  
+  .help-button:hover {
+    background: var(--gold-accent);
+    transform: translateY(-2px);
+  }
+
+  /* Controls Bar */
+  .controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .search-container {
+    position: relative;
+    width: 300px;
+    max-width: 100%;
+  }
+
+  #searchBar {
+    width: 100%;
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--primary-blue);
+    border-radius: 0.5rem;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+
+  #searchBar:focus {
+    border-color: var(--gold-accent);
+  }
+
+  .search-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    pointer-events: none;
+    color: var(--primary-blue);
+  }
+
+  /* Location Sections */
+  .location-container {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--gold-accent);
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .icon {
+    font-size: 1.8rem;
+  }
+
+  .stats-badge {
+    background: var(--primary-blue);
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    box-shadow: var(--soft-shadow);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Location Card */
+  .location-card {
+    position: relative;
+    background: var(--card-bg);
+    color: var(--card-text);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    box-shadow: var(--soft-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .card-inner {
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    min-height: 180px;
+  }
+
+  .location-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    z-index: 1;
+  }
+
+  .location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+  }
+
+  .location-name {
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    color: var(--card-text);
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .location-name::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: currentColor;
+    opacity: 0.3;
+  }
+
+  .location-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    font-weight: 600;
+  }
+
+  .value {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--card-text);
+  }
+
+  @media (max-width: 768px) {
+    .main-title {
+      font-size: 2.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+    .section-title {
+      font-size: 1.8rem;
+    }
+    .location-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .location-card {
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  /* Help Modal */
+  dialog#helpModal {
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--soft-shadow);
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+    color: var(--primary-blue);
+  }
+  
+  .modal-close {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    background: var(--primary-blue);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .modal-close:hover {
+    background: var(--gold-accent);
+    transform: translateY(-2px);
+  }
+</style>

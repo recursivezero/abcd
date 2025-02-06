@@ -1,60 +1,18 @@
 ---
 // src/pages/kannada-hindi.astro
 import ThemeProvider from "@/components/ThemeProvider.astro";
-import BaseHead from "@/layouts/BaseHead";
+import BaseLayout from "@/layouts/Base";
 import Footer from "@/layouts/common/Footer";
 import Header from "@/layouts/common/Header";
 import Menu from "@/layouts/common/Menu";
 import { siteConfig } from "@/site-config";
 import KannadaHindiGrid from "@/components/kannadaHindi.astro";
+//import KannadaHindiGrid from "@/components/kannahind.astro";
 
 const title = "Kannada and Hindi Alphabets";
 const description = "Interactive grid showing Kannada and Hindi alphabets with their corresponding letters";
 ---
 
-<html lang={siteConfig.lang}>
-  <head>
-    <BaseHead 
-      title={title} 
-      description={description} 
-    />
-    <style>
-      body {
-        min-height: 100vh;
-        margin: 0;
-      }
-      .main {
-        padding: 2rem;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 1rem;
-      }
-      .content {
-        min-height: 100vh;
-        container: base /inline-size;
-        color: #d2d2b2;
-      }
-      :root {
-        --num: 4;
-        --p: 20%;
-      }
-    </style>
-
-  </head>
-  <body id="body" class="body__container">
-    <ThemeProvider />
-    <Header title={title}>
-      <div class="back" slot="left">
-        <a href="/" title="go back">Back</a>
-      </div>
-      <span slot="right"></span>
-    </Header>
-    <main id="main" class="main">
-      <div class="sidebar"><Menu /></div>
-      <div class="content">
-        <KannadaHindiGrid />
-      </div>
-    </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout meta={{title}}>
+  <KannadaHindiGrid />
+</BaseLayout>

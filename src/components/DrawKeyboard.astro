@@ -1,344 +1,363 @@
 ---
+import { alphabetMapper } from "../mappers/alphabet";
+import { IMAGE_DIR, colorBox, fontBox, numberBox } from "../utils/draw";
+import { getRandomValue } from "../utils/index";
 ---
-<main>
-  <div class="board">
-    <div id="char"></div>
-  </div>
-  <div class="controls">
-    <label class="switch">
-      <input type="checkbox" id="toggleCase" />
-      <span class="slider">Caps</span>
-    </label>
-    <label class="switch">
-      <input type="checkbox" id="toggleFont" />
-      <span class="slider">Font</span>
-    </label>
-    <!-- <label class="switch">
-      <input type="checkbox" id="toggleBg" />
-      <span class="slider">Bold</span>
-    </label> -->
-  </div>
-  <div class="info"></div>
-  <span id="text"></span>
-</main>
 
-<script>
-  import { IMAGE_DIR, colorBox, fontBox, numberBox } from '../utils/draw';
-  import { getRandomValue, isAlphabet, isNumber } from '../utils/index';
-  import { alphabetMapper } from '../mappers/alphabet';
+<div class="container">
+  <header class="header">
+    <div class="action">
+      <a href="/" class="back-button" aria-label="Go back" title="Go back">← Back</a>
+    </div>
+    <div class="caption">
+      <h1 class="info" aria-live="polite">Press any key</h1>
+    </div>
+    <div class="controls">
+      <label for="toggleCase" class="control-item">
+        <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden" />
+        <span id="text" class="control-button case-toggle" style="--content: 'A'" title="Toggle case" role="switch" aria-checked="false">A</span>
+      </label>
+      <label for="toggleFont" class="control-item">
+        <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden" />
+        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false">T</span>
+      </label>
+      <label for="toggleBg" class="control-item">
+        <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden" />
+        <span class="control-button bg-toggle" title="Toggle background" role="switch" aria-checked="false">🎨</span>
+      </label>
+    </div>
+  </header>
 
-  let main: HTMLElement;
-  let boardDiv: HTMLElement;
-  let charDiv: HTMLElement;
-  let toggleCaseSwitch: HTMLInputElement;
-  let toggleFontSwitch: HTMLInputElement;
-  let toggleBackgroundSwitch: HTMLInputElement;
-  let info: HTMLElement;
-  let textSpan: HTMLElement;
-  let fontCounter = 0;
-
-  const initElements = () => {
-    main = document.querySelector('main')!;
-    boardDiv = document.querySelector('.board')!;
-    charDiv = document.getElementById('char')!;
-    toggleCaseSwitch = document.getElementById('toggleCase') as HTMLInputElement;
-    toggleFontSwitch = document.getElementById('toggleFont') as HTMLInputElement;
-    toggleBackgroundSwitch = document.getElementById('toggleBg') as HTMLInputElement;
-    info = document.querySelector('.info')!;
-    textSpan = document.getElementById('text')!;
-  };
-
-  const setupEventListeners = () => {
-    toggleCaseSwitch?.addEventListener('change', (e: Event) => {
-      const target = e.target as HTMLInputElement;
-      charDiv.style.textTransform = target.checked ? 'lowercase' : 'uppercase';
-      const after = window.getComputedStyle(textSpan, '::after');
-      const { content } = after;
-      textSpan.style.setProperty(
-        '--content',
-        target.checked ? `${content.toLowerCase()}` : `${content.toUpperCase()}`
-      );
-    });
-
-    toggleFontSwitch?.addEventListener('change', () => {
-      fontCounter = (fontCounter + 1) % fontBox.length;
-      charDiv.style.fontFamily = fontBox[fontCounter];
-    });
-
-    toggleBackgroundSwitch?.addEventListener('change', (e: Event) => {
-      const target = e.target as HTMLInputElement;
-      main.style.setProperty('--mode', target.checked ? 'inherit' : 'soft-light');
-    });
-  };
-
-  const drawNumber = (key: string = '0') => {
-    const randomColor = getRandomValue(colorBox);
-    boardDiv.style.backgroundColor = randomColor;
-    charDiv.textContent = key;
-    info.textContent = numberBox[parseInt(key)];
-  };
-
-  const drawLetter = (key: string = 'A') => {
-    const char = key.toLowerCase();
-    boardDiv.style.backgroundColor = 'transparent';
-    charDiv.textContent = key;
-    textSpan.style.setProperty(
-      '--content',
-      toggleCaseSwitch.checked ? `'${char}'` : `'${key.toUpperCase()}'`
-    );
-
-    const found = alphabetMapper.find(alpha => alpha.key === char);
-    if (found) {
-      info.textContent = found.value;
-      main.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
-    }
-  };
-
-  const handleKeyPress = (e: KeyboardEvent) => {
-    const keyCode = e.keyCode || e.which;
-    
-    if (isNumber(keyCode)) {
-      drawNumber(e.key);
-    } else if (isAlphabet(keyCode)) {
-      drawLetter(e.key);
-    }
-  };
-
-  const handleTouch = (e: TouchEvent) => {
-  };
-
-  const init = () => {
-    initElements();
-    setupEventListeners();
-    
-    document.addEventListener('keydown', handleKeyPress);
-    document.addEventListener('touchstart', handleTouch);
-  };
-
-  // Initialize when DOM is ready
-  if (document.readyState !== 'loading') {
-    init();
-  } else {
-    document.addEventListener('DOMContentLoaded', init);
-  }
-</script>
+  <!-- The board is now a section. The background image will be applied to this element -->
+  <main class="main">
+    <section class="board" id="board" aria-live="polite">
+      <div class="char" id="char"></div>
+    </section>
+  </main>
+</div>
 
 <style>
-  /* Font Faces (Uncomment if you have the fonts) */
-/* @font-face {
-  font-family: 'boisuStroke';
-  src: url('/fonts/boisuStroke.woff2') format('woff2');
-}
+  :root {
+    --primary-bg: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 100%);
+    --accent-color: #4338ca;
+    --control-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #ffffff;
+    --shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -3px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
 
-@font-face {
-  font-family: 'atkinson';
-  src: url('/fonts/atkinson.woff2') format('woff2');
-}
+  /* Reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-@font-face {
-  font-family: 'sportrop';
-  src: url('/fonts/sportrop.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Ananda';
-  src: url('/fonts/Ananda.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'MudraMohta';
-  src: url('/fonts/MudraMohta.woff2') format('woff2');
-} */
-
-/* body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-  margin: 0;
-  padding: 0;
-} */
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: soft-light;
-  padding: 2rem;
-  gap: 2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  background-color: #f5f5f5;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-  z-index: 10;
-}
-
-.board {
-  width: min(80vw, 500px);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  background-color: transparent;
-  border: none;
-  border-radius: 2rem;
-  transition: all 0.4s ease;
-  box-shadow: 
-    0 0 60px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 2px rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  animation: float 6s ease-in-out infinite;
-}
-
-#char {
-  font-size: clamp(8rem, 25vw, 20rem);
-  font-weight: bold;
-  text-transform: uppercase;
-  user-select: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(135deg, #333 0%, #666 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 100%;
-}
-
-.info {
-  font-size: 1.5rem;
-  text-align: center;
-  min-height: 2.5rem;
-  transition: all 0.4s ease;
-  color: #333;
-  font-weight: 500;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 120px;
-  height: 40px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.9);
-  transition: 0.4s;
-  border-radius: 20px;
-  display: grid;
-  place-items: center;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 32px;
-  width: 32px;
-  left: 4px;
-  bottom: 4px;
-  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-  transition: 0.4s;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-input:checked + .slider {
-  background-color: rgba(33, 150, 243, 0.1);
-  color: #2196F3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(80px);
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@media (max-width: 768px) {
-  main {
-    gap: 1rem;
+  /* Base container */
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--primary-bg);
+    font-family: 'Inter', system-ui, sans-serif;
+    text-align: center;
     padding: 1rem;
   }
 
-  .controls {
+  /* Header */
+  .header {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    box-shadow: var(--shadow);
     gap: 1rem;
+    position: relative;
   }
 
-  .board {
-    width: min(90vw, 400px);
+  .action {
+    width: 100%;
   }
 
-  #char {
-    font-size: clamp(6rem, 25vw, 16rem);
+  .back-button {
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color:black;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: var(--transition);
+    background: transparent;
   }
 
-  .switch {
-    width: 100px;
-    height: 36px;
+  .back-button:hover {
+    background: rgba(67, 56, 202, 0.1);
+    transform: translateY(calc(-50% - 2px));
   }
 
-  .slider {
-    font-size: 0.8rem;
-  }
-
-  .slider:before {
-    height: 28px;
-    width: 28px;
-  }
-
-  input:checked + .slider:before {
-    transform: translateX(64px);
-  }
-}
-
-@media (max-width: 480px) {
-  .board {
-    width: min(95vw, 300px);
-  }
-
-  #char {
-    font-size: clamp(4rem, 25vw, 12rem);
-  }
-
-  .switch {
-    width: 90px;
-    height: 32px;
+  .caption {
+    width: 100%;
   }
 
   .info {
-    font-size: 1.2rem;
+    margin: 0;
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 500;
+    text-align: center;
   }
-}
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Bigger, more prominent toggle buttons */
+  .control-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .control-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--control-bg);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(67, 56, 202, 0.2);
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    font-size: 1.5rem;
+    color: black;
+  }
+
+  .control-button::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s ease-out;
+    opacity: 0.1;
+  }
+
+  .control-button:hover::before {
+    transform: scaleX(1);
+  }
+
+  .control-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Main content area */
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 120px);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+
+  /* Board area: this section now holds the background image */
+  .board {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 2rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: var(--transition);
+  }
+
+  /* Char: displays the pressed key in the center */
+  .char {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(8rem, 30vw, 20rem);
+    font-weight: 900;
+    color: var(--text-color);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+    animation: charReveal 0.4s ease-out;
+    will-change: transform, opacity;
+  }
+
+  @keyframes charReveal {
+    from { 
+      opacity: 0; 
+      transform: scale(0.8); 
+    }
+    to { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 640px) {
+    .header {
+      padding: 1rem;
+    }
+
+    .back-button {
+      left: 1rem;
+      top: 1rem;
+      transform: none;
+    }
+    
+    .info {
+      font-size: 1.25rem;
+    }
+
+    .char {
+      font-size: clamp(4rem, 25vw, 15rem);
+    }
+
+    .control-button {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.25rem;
+    }
+  }
 </style>
+
+<script define:vars={{
+  colorBox,
+  fontBox,
+  numberBox,
+  alphabetMapper,
+  IMAGE_DIR
+}}>
+  // Initialize state
+  let currentFontIndex = 0;
+  let isUpperCase = true;
+
+  // DOM elements
+  const mainEl = document.querySelector("main");
+  // Get the board element instead of the earlier board container
+  const boardDiv = document.getElementById("board");
+  const charDiv = document.getElementById("char");
+  const toggleCaseSwitch = document.getElementById("toggleCase");
+  const toggleFontSwitch = document.getElementById("toggleFont");
+  const toggleBackgroundSwitch = document.getElementById("toggleBg");
+  const info = document.querySelector(".info");
+  const textSpan = document.getElementById("text");
+
+  // Utility function
+  function getRandomValue(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function updateDisplay(key) {
+    // Audio feedback
+    try {
+      const audio = new Audio('data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA');
+      audio.volume = 0.1;
+      audio.play().catch(() => {});
+    } catch (error) {
+      console.log('Audio feedback unavailable');
+    }
+
+    // Number handling
+    if (!isNaN(Number(key))) {
+      boardDiv.style.backgroundColor = getRandomValue(colorBox);
+      charDiv.textContent = key;
+      info.textContent = numberBox[key] || 'Unknown';
+      // Clear any background image if present
+      boardDiv.style.backgroundImage = '';
+      return;
+    }
+
+    // Alphabet handling
+    const found = alphabetMapper.find(alpha => alpha.key.toUpperCase() === key.toUpperCase());
+    if (found) {
+      info.textContent = found.value;
+      // Set the background image on the board section
+      boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
+    } else {
+      // Clear image if not found
+      boardDiv.style.backgroundImage = '';
+    }
+
+    // Case handling: update the displayed character's case
+    charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
+  }
+
+  // Event listener for key presses
+  function handleKeyPress(e) {
+    const key = e.key;
+    if ((key.length === 1 && /[a-zA-Z0-9]/.test(key))) {
+      updateDisplay(key);
+    }
+  }
+
+  // Toggle case
+  toggleCaseSwitch?.addEventListener("change", (e) => {
+    isUpperCase = !e.target.checked;
+    const currentText = charDiv.textContent;
+    charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
+    textSpan.setAttribute('aria-checked', !e.target.checked);
+  });
+
+  // Toggle font
+  toggleFontSwitch?.addEventListener("change", () => {
+    currentFontIndex = (currentFontIndex + 1) % fontBox.length;
+    charDiv.style.fontFamily = fontBox[currentFontIndex];
+  });
+
+  // Toggle background blend mode (applied to main container)
+  toggleBackgroundSwitch?.addEventListener("change", (e) => {
+    mainEl.style.backgroundBlendMode = e.target.checked ? "soft-light" : "normal";
+    mainEl.style.filter = e.target.checked ? "brightness(0.9)" : "brightness(1)";
+  });
+
+  // Add event listener for keydown
+  document.addEventListener('keydown', handleKeyPress);
+
+  console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
+</script>
