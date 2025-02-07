@@ -38,27 +38,29 @@ import BaseLayout from "@/layouts/Base";
       </button>
     </div>
   </div>
+  <section class="section__board">
+    <div class="letter__part" id="letterContainer">
+      <mark>Press any key from the keyboard</mark>
 
-  <div class="letter-container" id="letterContainer">
-    <div class="big-letter" id="bigLetter">A</div>
-  </div>
-
-  <div class="meaning-section">
-    <h2>Meaning</h2>
-    <p>The letter 'A' stands for...</p>
-    <div class="meaning-content">
-      <p>• First letter of the English alphabet</p>
-      <p>• Represents excellence in grading systems</p>
-      <p>• Phonetically represents various sounds across languages</p>
-      <p>• Historical origins trace back to ancient Phoenician alphabet</p>
-      <!-- Add more meaning content as needed -->
+      <div class="letter__big" id="bigLetter" data-letter=""></div>
     </div>
-  </div>
+    <div class="meaning__part" id="letterContainer">
+      <h2>A</h2>
+      <p>The letter 'A' stands for...</p>
+      <div class="meaning-content">
+        <p>• First letter of the English alphabet</p>
+        <p>• Represents excellence in grading systems</p>
+        <p>• Phonetically represents various sounds across languages</p>
+        <p>• Historical origins trace back to ancient Phoenician alphabet</p>
+        <!-- Add more meaning content as needed -->
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>
   let isSoundEnabled = true;
-  let currentAudio = new Audio("/sounds/sound1.wav");
+  //let currentAudio = new Audio("/sounds/sound1.wav");
 
   // DOM Elements
   const controls = document.getElementById("controls") as HTMLElement;
@@ -67,8 +69,8 @@ import BaseLayout from "@/layouts/Base";
   const bgSelector = document.getElementById("bgSelector") as HTMLInputElement;
   const fontSelector = document.getElementById("fontSelector") as HTMLInputElement;
   const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
-  const soundSelector = document.getElementById("soundSelector") as HTMLInputElement;
-  const toggleSound = document.getElementById("toggleSound") as HTMLButtonElement;
+  //const soundSelector = document.getElementById("soundSelector") as HTMLInputElement;
+  //const toggleSound = document.getElementById("toggleSound") as HTMLButtonElement;
   const toggleBg = document.getElementById("toggleBg") as HTMLButtonElement;
 
   // Event Listeners
@@ -76,26 +78,29 @@ import BaseLayout from "@/layouts/Base";
   bgSelector?.addEventListener("change", updateBackground);
   fontSelector?.addEventListener("change", updateFont);
   colorPicker?.addEventListener("change", updateColor);
-  soundSelector?.addEventListener("change", updateSound);
-  toggleSound?.addEventListener("click", toggleSoundState);
+  //soundSelector?.addEventListener("change", updateSound);
+  //toggleSound?.addEventListener("click", toggleSoundState);
   toggleBg?.addEventListener("click", toggleBackground);
 
   // Handle key press
   function handleKeyPress(e: KeyboardEvent) {
-    if (e.key.toLowerCase() === "a") {
-      bigLetter.style.animation = "letterPop 0.3s ease-out";
-      if (isSoundEnabled) {
-        playSound();
-      }
-      setTimeout(() => {
-        bigLetter.style.animation = "";
-      }, 300);
+    console.log(e.key.toLowerCase());
+    bigLetter.dataset.letter = e.key;
+    bigLetter.textContent = e.key;
+    //if (e.key.toLowerCase() === "a") {
+    bigLetter.style.animation = "letterPop 0.3s ease-out";
+    if (isSoundEnabled) {
+      playSound();
     }
+    setTimeout(() => {
+      bigLetter.style.animation = "";
+    }, 300);
   }
+  //}
 
   // Update functions
   function updateBackground() {
-    letterContainer.className = "letter-container";
+    letterContainer.className = "letter__part";
     if (bgSelector.value !== "none") {
       letterContainer.classList.add(`bg-${bgSelector.value}`);
     }
@@ -109,28 +114,30 @@ import BaseLayout from "@/layouts/Base";
     bigLetter.style.color = colorPicker.value;
   }
 
-  function updateSound() {
-    currentAudio = new Audio(`/sounds/${soundSelector.value}.wav`);
-  }
+  //function updateSound() {
+  //  currentAudio = new Audio(`/sounds/${soundSelector.value}.wav`);
+  //}
 
-  function toggleSoundState() {
-    isSoundEnabled = !isSoundEnabled;
-    (toggleSound as any).querySelector(".icon").textContent = isSoundEnabled ? "🔊" : "🔇";
-  }
+  //function toggleSoundState() {
+  //  isSoundEnabled = !isSoundEnabled;
+  //  (toggleSound as any).querySelector(".icon").textContent = isSoundEnabled ? "🔊" : "🔇";
+  //}
 
   function toggleBackground() {
     letterContainer.classList.toggle("no-background");
   }
 
   function playSound() {
-    currentAudio.currentTime = 0;
-    currentAudio.play();
+    console.log("playSound called");
+    //currentAudio.currentTime = 0;
+    //currentAudio.play();
   }
 
   // Intersection Observer for sticky header
   const observer = new IntersectionObserver(
     ([e]) => {
-      controls.classList.toggle("sticky", e.intersectionRatio < 1);
+      console.log({ e });
+      //controls.classList.toggle("sticky", e.intersectionRatio < 1);
     },
     { threshold: [1] }
   );
