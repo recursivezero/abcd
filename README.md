@@ -1,9 +1,12 @@
-# Template to Start Astro + React
+# ABCD KBD
 
-This is a codebase for to Start Project in Astro + React .
+A Interactive game for kids ; building in Astro
 
-## The template contain
+main codebase for [abcdkbd.com](https://www.abcdkbd.com)
 
+## The tech Stacks
+
+- Astro js
 - Shadcn for component
 - tailwind for styling
 - Zustand for state management
