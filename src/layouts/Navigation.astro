@@ -11,6 +11,13 @@ const { pages } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
+<style>
+  .iconx {
+    width: 32px;
+    height: 32px;
+  }
+</style>
+
 <nav class="nav">
   <ul class="nav--list">
     {
@@ -19,7 +26,7 @@ const currentPath = Astro.url.pathname;
         .map((p) => (
           <li class={`nav--list__item ${currentPath === p.path ? "active" : ""}`}>
             <a href={p.path}>
-              <span class="icon">{p.icon && <p.icon width={24} height={24} />}</span>
+              <span class="iconx">{p.icon && <p.icon />}</span>
               <span class="text">{p.name}</span>
             </a>
           </li>
