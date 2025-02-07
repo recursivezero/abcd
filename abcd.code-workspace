@@ -156,17 +156,6 @@
     "window.title": "${rootNameShort}${separator}${activeEditorShort}${separator}${activeFolderMedium}",
     "window.zoomLevel": 0.5,
     "workbench.colorTheme": "Tokyo Night Storm",
-    "workbench.editor.pinnedTabSizing": "compact",
-    "workbench.editor.pinnedTabsOnSeparateRow": true,
-    "workbench.editorAssociations": {
-      "*.log": "default"
-    },
-    "zenMode.centerLayout": false,
-    "cSpell.words": [],
-    "workbench.editor.limit.excludeDirty": true,
-    "files.readonlyInclude": {
-      ".githooks/**": true
-    },
     "workbench.colorCustomizations": {
       "activityBar.activeBackground": "#d5ff01",
       "activityBar.background": "#d5ff01",
@@ -190,6 +179,17 @@
     },
     "files.exclude": {
       "**/.git": false
+    },
+    "workbench.editor.pinnedTabSizing": "compact",
+    "workbench.editor.pinnedTabsOnSeparateRow": true,
+    "workbench.editorAssociations": {
+      "*.log": "default"
+    },
+    "zenMode.centerLayout": false,
+    "cSpell.words": [],
+    "workbench.editor.limit.excludeDirty": true,
+    "files.readonlyInclude": {
+      ".githooks/**": true
     }
   }
 }
