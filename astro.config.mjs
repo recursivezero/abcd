@@ -8,7 +8,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://parixan.xyz",
   build: {
-    format: "file"
+    format: "directory"
   },
   prefetch: {
     prefetchAll: true
