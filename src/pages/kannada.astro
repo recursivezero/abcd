@@ -8,11 +8,18 @@ import Menu from "@/layouts/common/Menu";
 import { siteConfig } from "@/site-config";
 import KannadaHindiGrid from "@/components/kannadaHindi.astro";
 //import KannadaHindiGrid from "@/components/kannahind.astro";
+import Help from "@/components/Help.astro";
 
 const title = "Kannada and Hindi Alphabets";
 const description = "Interactive grid showing Kannada and Hindi alphabets with their corresponding letters";
 ---
 
 <BaseLayout meta={{title}}>
+  <Fragment slot="header-right">
+    <Help
+      title="Hide & Seek Game"
+      description="Press any alphabet key from keyboard and that letter will appears and when you press again then it will disappears. See some hover and active effects while hovering over each card."
+    />
+  </Fragment>
   <KannadaHindiGrid />
 </BaseLayout>

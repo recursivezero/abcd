@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/Base';
 import CanvasGenerator from '@/components/canvasDialogue.astro';
+import Help from "@/components/Help.astro";
 
 
 const meta = {
@@ -10,5 +11,11 @@ const meta = {
 ---
 
 <BaseLayout {meta}>
+  <Fragment slot="header-right">
+    <Help
+      title="Hide & Seek Game"
+      description="Press any alphabet key from keyboard and that letter will appears and when you press again then it will disappears. See some hover and active effects while hovering over each card."
+    />
+  </Fragment>
   <CanvasGenerator />
 </BaseLayout>

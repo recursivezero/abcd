@@ -2,10 +2,17 @@
 import BaseLayout from '@/layouts/Base';
 //import MathPractice from '@/components/mathForm.astro';
  import MathPractice from '@/components/m.astro';
+ import Help from "@/components/Help.astro";
 
 const pageTitle = "Basic Arithmetic";
 const pageDescription = "Practice basic math operations like addition, subtraction, and multiplication.";
 ---
 <BaseLayout meta={{title:"Basic Arithmetic"}} description={pageDescription}>
+  <Fragment slot="header-right">
+    <Help
+      title="Hide & Seek Game"
+      description="Press any alphabet key from keyboard and that letter will appears and when you press again then it will disappears. See some hover and active effects while hovering over each card."
+    />
+  </Fragment>
   <MathPractice />
 </BaseLayout>

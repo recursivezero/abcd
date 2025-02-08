@@ -18,15 +18,14 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
         Discover the diverse tapestry of states and union territories
       </p>
     </div>
-    <!-- Help button in top right -->
-    <button id="helpButton" class="help-button" aria-label="Help">?</button>
   </div>
 
   <!-- Controls Bar -->
   <div class="controls-bar">
     <div class="search-container">
-      <input type="text" id="searchBar" placeholder="Search locations..." />
       <span class="search-icon">🔍</span>
+      <input type="text" id="searchBar" placeholder="Search locations..." />
+      <button class="clear-button">×</button>
     </div>
   </div>
 
@@ -37,28 +36,28 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
         <h2 class="section-title">
           <span class="icon">🏛️</span> States of India
         </h2>
-        <div class="stats-badge">{stateList.length} Total States</div>
+        <div class="stats-badge" id="statesCount" data-total={stateList.length}>
+          {stateList.length} Total States
+        </div>
       </div>
 
       <div class="location-grid">
-        {
-          stateList.map((state, index) => (
-            <div
-              class="location-card"
-              style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
-                      --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
-            >
-              <div class="card-inner">
-                <h3 class="location-name">{state.name}</h3>
-                <div class="location-details">
-                  <span class="label">Capital</span>
-                  <span class="value">{state.capital}</span>
-                </div>
-                <div class="card-overlay" />
+        {stateList.map((state, index) => (
+          <div
+            class="location-card"
+            style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
+                    --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
+          >
+            <div class="card-inner">
+              <h3 class="location-name">{state.name}</h3>
+              <div class="location-details">
+                <span class="label">Capital</span>
+                <span class="value">{state.capital}</span>
               </div>
+              <div class="card-overlay"></div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </section>
 
@@ -67,79 +66,119 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
         <h2 class="section-title">
           <span class="icon">🏝️</span> Union Territories
         </h2>
-        <div class="stats-badge">{utList.length} Total UTs</div>
+        <div class="stats-badge" id="utsCount" data-total={utList.length}>
+          {utList.length} Total UTs
+        </div>
       </div>
 
       <div class="location-grid">
-        {
-          utList.map((ut, index) => (
-            <div
-              class="location-card"
-              style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
-                      --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
-            >
-              <div class="card-inner">
-                <h3 class="location-name">{ut.name}</h3>
-                <div class="location-details">
-                  <span class="label">Capital</span>
-                  <span class="value">{ut.capital}</span>
-                </div>
-                <div class="card-overlay" />
+        {utList.map((ut, index) => (
+          <div
+            class="location-card"
+            style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
+                    --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
+          >
+            <div class="card-inner">
+              <h3 class="location-name">{ut.name}</h3>
+              <div class="location-details">
+                <span class="label">Capital</span>
+                <span class="value">{ut.capital}</span>
               </div>
+              <div class="card-overlay"></div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </section>
   </div>
-
-  <!-- Help Modal -->
-  <dialog id="helpModal">
-    <div class="modal-content">
-      <h2>How to Use</h2>
-      <p>Use the search bar above to filter locations by name. Hover over any card to see a subtle lift effect. Explore states and union territories to learn more about India’s administrative landscape.</p>
-      <button id="closeModal" class="modal-close">Close</button>
-    </div>
-  </dialog>
 </div>
 
 <script>
-  // Card hover effects
-  const cards = document.querySelectorAll(".location-card");
-  cards.forEach((card) => {
-    card.addEventListener("mouseenter", () => {
-      card.classList.add("hover-effect");
-    });
-    card.addEventListener("mouseleave", () => {
-      card.classList.remove("hover-effect");
-    });
-  });
-
-  // Search bar filtering
   const searchBar = document.getElementById('searchBar');
-  searchBar.addEventListener('input', function() {
-    const query = this.value.toLowerCase();
+  const clearButton = document.querySelector('.clear-button');
+  const statesCountElement = document.getElementById('statesCount');
+  const utsCountElement = document.getElementById('utsCount');
+
+  const updateCounts = (query) => {
+    const statesTotal = statesCountElement.dataset.total;
+    const utsTotal = utsCountElement.dataset.total;
+
+    if (!query) {
+      statesCountElement.textContent = `${statesTotal} Total States`;
+      utsCountElement.textContent = `${utsTotal} Total UTs`;
+      return;
+    }
+
+    const visibleStates = document.querySelectorAll('.states-section .location-card:not([style*="display: none"])').length;
+    const visibleUTs = document.querySelectorAll('.ut-section .location-card:not([style*="display: none"])').length;
+
+    statesCountElement.textContent = `${visibleStates} ${visibleStates === 1 ? 'State' : 'States'} Found`;
+    utsCountElement.textContent = `${visibleUTs} ${visibleUTs === 1 ? 'UT' : 'UTs'} Found`;
+  };
+
+  searchBar.addEventListener('input', function () {
+    const query = this.value.toLowerCase().trim();
     const cards = document.querySelectorAll('.location-card');
-    cards.forEach(card => {
+
+    cards.forEach((card) => {
       const name = card.querySelector('.location-name').textContent.toLowerCase();
-      card.style.display = name.includes(query) ? '' : 'none';
+      card.style.display = name.startsWith(query) ? '' : 'none';
     });
+
+    updateCounts(query);
   });
 
-  // Help modal functionality
-  const helpButton = document.getElementById('helpButton');
-  const helpModal = document.getElementById('helpModal');
-  const closeModal = document.getElementById('closeModal');
-
-  helpButton.addEventListener('click', () => {
-    helpModal.showModal();
+  clearButton.addEventListener('click', () => {
+    searchBar.value = '';
+    searchBar.dispatchEvent(new Event('input'));
+    searchBar.focus();
   });
 
-  closeModal.addEventListener('click', () => {
-    helpModal.close();
+  // Card hover effects
+  document.querySelectorAll('.location-card').forEach((card) => {
+    card.addEventListener('mouseenter', () => card.classList.add('hover-effect'));
+    card.addEventListener('mouseleave', () => card.classList.remove('hover-effect'));
   });
 </script>
 
+<style>
+  /* Modified CSS */
+  .controls-bar {
+    justify-content: flex-start;
+    padding: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .search-container {
+    width: 500px;
+    max-width: 100%;
+    border-width: 3px;
+    padding: 0.8rem;
+  }
+
+  #searchBar {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .search-icon {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .clear-button {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  /* Removed help button and modal styles */
+  /* Adjusted hero section padding */
+  .hero-section {
+    padding: 4rem 2rem;
+  }
+
+  /* Rest of the original styles remain unchanged */
+</style>
 <style>
   :root {
     --primary-blue: #2c3e50;
@@ -191,27 +230,30 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
     line-height: 1.6;
   }
 
-  /* Help Button - positioned in the top right of the hero */
+  /* Help Button */
   .help-button {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
-    box-shadow: var(--soft-shadow);
-    z-index: 2;
-  }
-  
-  .help-button:hover {
     background: var(--gold-accent);
-    transform: translateY(-2px);
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+    box-shadow: var(--soft-shadow);
+  }
+
+  .help-button:hover {
+    background: #ffd700;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
   }
 
   /* Controls Bar */
@@ -223,34 +265,41 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
     margin-bottom: 2rem;
   }
 
+  /* Updated Search Container Styles */
   .search-container {
-    position: relative;
+    display: flex;
+    align-items: center;
     width: 300px;
     max-width: 100%;
+    border: 2px solid var(--primary-blue);
+    border-radius: 0.5rem;
+    background: var(--soft-white);
+    padding: 0.5rem;
   }
 
   #searchBar {
-    width: 100%;
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-size: 1rem;
-    border: 2px solid var(--primary-blue);
-    border-radius: 0.5rem;
+    flex: 1;
+    border: none;
     outline: none;
-    transition: border 0.3s ease;
-  }
-
-  #searchBar:focus {
-    border-color: var(--gold-accent);
+    font-size: 1rem;
+    color: black; /* sets the text color inside the search bar to black */
+    background: transparent;
+    padding: 0.5rem;
   }
 
   .search-icon {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
+    margin-right: 0.5rem;
     font-size: 1.2rem;
-    pointer-events: none;
     color: var(--primary-blue);
+  }
+
+  .clear-button {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-left: 0.5rem;
   }
 
   /* Location Sections */
@@ -306,6 +355,7 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
     transition: var(--transition-smooth);
     box-shadow: var(--soft-shadow);
     border: 1px solid rgba(255, 255, 255, 0.15);
+    animation: fadeIn 0.6s ease forwards;
   }
 
   .card-inner {
@@ -397,9 +447,6 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
       opacity: 1;
       transform: translateY(0);
     }
-  }
-  .location-card {
-    animation: fadeIn 0.6s ease forwards;
   }
 
   /* Help Modal */

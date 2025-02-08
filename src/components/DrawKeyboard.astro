@@ -7,7 +7,7 @@ import { getRandomValue } from "../utils/index";
 <div class="container">
   <header class="header">
     <div class="action">
-      <a href="/" class="back-button" aria-label="Go back" title="Go back">← Back</a>
+      <!--<a href="/" class="back-button" aria-label="Go back" title="Go back">← Back</a>-->
     </div>
     <div class="caption">
       <h1 class="info" aria-live="polite">Press any key</h1>
@@ -28,7 +28,7 @@ import { getRandomValue } from "../utils/index";
     </div>
   </header>
 
-  <!-- The board is now a section. The background image will be applied to this element -->
+  <!-- The board section now holds the background image (or solid color) -->
   <main class="main">
     <section class="board" id="board" aria-live="polite">
       <div class="char" id="char"></div>
@@ -42,6 +42,7 @@ import { getRandomValue } from "../utils/index";
     --accent-color: #4338ca;
     --control-bg: rgba(255, 255, 255, 0.95);
     --text-color: #ffffff;
+    --solid-bg: #a5b4fc;
     --shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -3px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
@@ -90,7 +91,7 @@ import { getRandomValue } from "../utils/index";
     left: 2rem;
     top: 50%;
     transform: translateY(-50%);
-    color:black;
+    color: black;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
@@ -109,7 +110,7 @@ import { getRandomValue } from "../utils/index";
 
   .info {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: black;
     font-weight: 500;
     text-align: center;
@@ -123,7 +124,7 @@ import { getRandomValue } from "../utils/index";
     width: 100%;
   }
 
-  /* Bigger, more prominent toggle buttons */
+  /* Control Items & Buttons: Bigger and more prominent */
   .control-item {
     display: flex;
     align-items: center;
@@ -134,8 +135,8 @@ import { getRandomValue } from "../utils/index";
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     background: var(--control-bg);
     border-radius: 0.75rem;
     cursor: pointer;
@@ -144,7 +145,7 @@ import { getRandomValue } from "../utils/index";
     border: 2px solid rgba(67, 56, 202, 0.2);
     transition: var(--transition);
     box-shadow: var(--shadow);
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: black;
   }
 
@@ -183,7 +184,7 @@ import { getRandomValue } from "../utils/index";
     transition: var(--transition);
   }
 
-  /* Board area: this section now holds the background image */
+  /* Board area: holds the background image or solid color */
   .board {
     position: relative;
     display: flex;
@@ -199,7 +200,7 @@ import { getRandomValue } from "../utils/index";
     transition: var(--transition);
   }
 
-  /* Char: displays the pressed key in the center */
+  /* Char: displays the pressed key in the center with large, gradient text */
   .char {
     position: relative;
     z-index: 2;
@@ -209,8 +210,11 @@ import { getRandomValue } from "../utils/index";
     align-items: center;
     font-size: clamp(8rem, 30vw, 20rem);
     font-weight: 900;
-    color: var(--text-color);
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #ff80bf, #1e3c72);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transition: var(--transition);
     animation: charReveal 0.4s ease-out;
     will-change: transform, opacity;
@@ -261,7 +265,7 @@ import { getRandomValue } from "../utils/index";
     .control-button {
       width: 3rem;
       height: 3rem;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
     }
   }
 </style>
@@ -279,7 +283,6 @@ import { getRandomValue } from "../utils/index";
 
   // DOM elements
   const mainEl = document.querySelector("main");
-  // Get the board element instead of the earlier board container
   const boardDiv = document.getElementById("board");
   const charDiv = document.getElementById("char");
   const toggleCaseSwitch = document.getElementById("toggleCase");
@@ -288,7 +291,7 @@ import { getRandomValue } from "../utils/index";
   const info = document.querySelector(".info");
   const textSpan = document.getElementById("text");
 
-  // Utility function
+  // Utility function (if not already imported)
   function getRandomValue(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
@@ -303,13 +306,12 @@ import { getRandomValue } from "../utils/index";
       console.log('Audio feedback unavailable');
     }
 
-    // Number handling
+    // Number handling: use a random solid background color and update text accordingly
     if (!isNaN(Number(key))) {
       boardDiv.style.backgroundColor = getRandomValue(colorBox);
+      boardDiv.style.backgroundImage = '';
       charDiv.textContent = key;
       info.textContent = numberBox[key] || 'Unknown';
-      // Clear any background image if present
-      boardDiv.style.backgroundImage = '';
       return;
     }
 
@@ -317,10 +319,12 @@ import { getRandomValue } from "../utils/index";
     const found = alphabetMapper.find(alpha => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
       info.textContent = found.value;
-      // Set the background image on the board section
-      boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
+      // Only set the image background if the background toggle is off
+      if (!toggleBackgroundSwitch.checked) {
+        boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
+        boardDiv.style.backgroundColor = '';
+      }
     } else {
-      // Clear image if not found
       boardDiv.style.backgroundImage = '';
     }
 
@@ -331,7 +335,7 @@ import { getRandomValue } from "../utils/index";
   // Event listener for key presses
   function handleKeyPress(e) {
     const key = e.key;
-    if ((key.length === 1 && /[a-zA-Z0-9]/.test(key))) {
+    if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
       updateDisplay(key);
     }
   }
@@ -350,13 +354,21 @@ import { getRandomValue } from "../utils/index";
     charDiv.style.fontFamily = fontBox[currentFontIndex];
   });
 
-  // Toggle background blend mode (applied to main container)
+  // Toggle background: when active, remove any image background and set a solid color
   toggleBackgroundSwitch?.addEventListener("change", (e) => {
-    mainEl.style.backgroundBlendMode = e.target.checked ? "soft-light" : "normal";
-    mainEl.style.filter = e.target.checked ? "brightness(0.9)" : "brightness(1)";
+    if (e.target.checked) {
+      mainEl.style.backgroundBlendMode = "soft-light";
+      mainEl.style.filter = "brightness(0.9)";
+      boardDiv.style.backgroundImage = 'none';
+      boardDiv.style.backgroundColor = getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue('--solid-bg');
+    } else {
+      mainEl.style.backgroundBlendMode = "normal";
+      mainEl.style.filter = "brightness(1)";
+      boardDiv.style.backgroundColor = '';
+    }
   });
 
-  // Add event listener for keydown
+  // Listen for keydown events
   document.addEventListener('keydown', handleKeyPress);
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");

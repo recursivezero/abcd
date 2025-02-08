@@ -2,6 +2,8 @@
 import Layout from "@/layouts/Base";
 import LocationMosaic from "../components/Capitals.astro";
 import { locations } from "../data/location.ts";
+import Help from "@/components/Help.astro";
+
 
 const meta = {
   title: "India's Geographical Mosaic",
@@ -39,6 +41,12 @@ function getContrastColor(hexColor) {
 ---
 
 <Layout meta={meta}>
+  <Fragment slot="header-right">
+    <Help
+      title="Hide & Seek Game"
+      description="Press any alphabet key from keyboard and that letter will appears and when you press again then it will disappears. See some hover and active effects while hovering over each card."
+    />
+  </Fragment>
   <LocationMosaic
     stateList={stateList}
     utList={utList}
