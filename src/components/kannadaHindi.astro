@@ -1,0 +1,90 @@
+---
+import "@/assets/styles/kannada.css";
+
+interface LetterPair {
+  hindi: string;
+  kannada: string;
+  type: 'vowel' | 'consonant' | 'separator';
+}
+
+const generateLetters = (startCode: number, length: number, extraKeys: number[] = []): string[] =>
+  Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i))
+    .filter((_, index) => !extraKeys.includes(startCode + index));
+
+const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
+const hindiConsonants = generateLetters(2325, 37);
+const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
+const kannadaConsonants = generateLetters(3221, 37);
+
+const letterPairs: LetterPair[] = [
+  ...hindiVowels.map((hindi, i) => ({
+    hindi,
+    kannada: kannadaVowels[i],
+    type: 'vowel',
+  })),
+  ...hindiConsonants.map((hindi, i) => ({
+    hindi,
+    kannada: kannadaConsonants[i],
+    type: 'consonant',
+  })),
+];
+
+let toggleOrder = false;
+---
+
+<div class="language-letters-container">
+  <div class="toggle-container">
+    <button id="toggleButton" class="toggle-button">
+      <div class="toggle-slider"></div>
+      <span id="hindiLabel" class="language-label">ಕನ್ನಡ</span>
+      <span id="kannadaLabel" class="language-label active"> हिंदी</span>
+    </button>
+  </div>
+  
+  <div class="language-letters-grid">
+    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS</h2>
+    {letterPairs
+      .filter((pair) => pair.type === 'vowel')
+      .map((pair, index) => (
+        <div key={`vowel-${index}`} class="language-letter-card language-letter-card-vowel">
+          <div class="language-letter-kannada">{pair.kannada}</div>
+          <div class="language-letter-hindi">{pair.hindi}</div>
+        </div>
+      ))}
+  
+    <div class="language-letters-separator" style="grid-column: 1 / -1;"></div>
+  
+    <h2 class="group-heading" style="grid-column: 1 / -1;">CONSONANTS</h2>
+    {letterPairs
+      .filter((pair) => pair.type === 'consonant')
+      .map((pair, index) => (
+        <div key={`consonant-${index}`} class="language-letter-card language-letter-card-consonant">
+          <div class="language-letter-kannada">{pair.kannada}</div>
+          <div class="language-letter-hindi">{pair.hindi}</div>
+        </div>
+      ))}
+  </div>
+</div>
+
+<script client:load>
+  const toggleButton = document.getElementById('toggleButton');
+  const hindiLabel = document.getElementById('hindiLabel');
+  const kannadaLabel = document.getElementById('kannadaLabel');
+  let isKannadaFirst = true;
+
+  toggleButton.addEventListener('click', () => {
+    // Toggle the slider background by toggling the class
+    toggleButton.classList.toggle('toggled');
+
+    // Toggle active label styling
+    hindiLabel.classList.toggle('active');
+    kannadaLabel.classList.toggle('active');
+
+    // Toggle the card layout order without triggering transitions on properties that can't animate.
+    document.querySelectorAll('.language-letter-card').forEach((card) => {
+      card.classList.toggle('reverse');
+    });
+
+    isKannadaFirst = !isKannadaFirst;
+  });
+</script>

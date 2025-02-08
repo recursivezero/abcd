@@ -44,7 +44,43 @@ export const NavbarLinks: LinkProps[] = [
     title: "Feedback Form",
     path: "/feedback",
     isActive: true
-  }
+  },
+  {
+    name: "Capital",
+    title: "Capital",
+    path: "/capitals",
+    isActive: true
+  },
+  {
+    name: "HideNSeek",
+    title: "HideNSeek",
+    path: "/hidenseek",
+    isActive: true
+  },
+  {
+    name: "Canvas",
+    title: "Canvas",
+    path: "/canvas",
+    isActive: true
+  },
+  {
+    name: "Math",
+    title: "Math",
+    path: "/math",
+    isActive: true
+  },
+  {
+    name: "Kannada",
+    title: "Kannada",
+    path: "/kannada",
+    isActive: true
+  },
+  {
+    name: "Draw",
+    title: "Draw",
+    path: "/draw",
+    isActive: true
+  },
 ];
 
 export const FooterLinks: LinkProps[] = [
