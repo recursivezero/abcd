@@ -1,76 +1,4 @@
----
-interface LetterPair {
-  hindi: string;
-  kannada: string;
-  type: 'vowel' | 'consonant' | 'separator';
-}
 
-const generateLetters = (startCode: number, length: number, extraKeys: number[] = []): string[] =>
-  Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i))
-    .filter((_, index) => !extraKeys.includes(startCode + index));
-
-const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
-const hindiConsonants = generateLetters(2325, 37);
-const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
-const kannadaConsonants = generateLetters(3221, 37);
-
-const letterPairs: LetterPair[] = [
-  ...hindiVowels.map((hindi, i) => ({
-    hindi,
-    kannada: kannadaVowels[i],
-    type: 'vowel',
-  })),
-  { type: 'separator' } as LetterPair,
-  ...hindiConsonants.map((hindi, i) => ({
-    hindi,
-    kannada: kannadaConsonants[i],
-    type: 'consonant',
-  })),
-];
-
-let toggleOrder = false;
----
-
-<div class="language-letters-container">
-  <div class="toggle-container">
-    <button id="toggleButton" class="toggle-button">
-      <span id="hindiLabel" class="language-label">हिंदी</span>
-      <span id="kannadaLabel" class="language-label">ಕನ್ನಡ</span>
-    </button>
-  </div>
-  
-  <div class="language-letters-grid">
-    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS</h2>
-    {letterPairs
-      .filter((pair) => pair.type === 'vowel')
-      .map((pair, index) => (
-        <div
-          key={`vowel-${index}`}
-          class="language-letter-card language-letter-card-vowel"
-        >
-          <div class="language-letter-kannada">{pair.kannada}</div>
-          <div class="language-letter-hindi">{pair.hindi}</div>
-        </div>
-      ))}
-
-    <div class="language-letters-separator" style="grid-column: 1 / -1;"></div>
-
-    <h2 class="group-heading" style="grid-column: 1 / -1;">CONSONANTS</h2>
-    {letterPairs
-      .filter((pair) => pair.type === 'consonant')
-      .map((pair, index) => (
-        <div
-          key={`consonant-${index}`}
-          class="language-letter-card language-letter-card-consonant"
-        >
-          <div class="language-letter-kannada">{pair.kannada}</div>
-          <div class="language-letter-hindi">{pair.hindi}</div>
-        </div>
-      ))}
-  </div>
-</div>
-
-<style>
   :root {
     --deep-blue: #0f172a;
     --navy-blue: #1e293b;
@@ -112,26 +40,52 @@ let toggleOrder = false;
     z-index: 2;
   }
 
+  /* Toggle Button with smooth sliding background */
   .toggle-button {
-    display: flex;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 1rem;
     background: var(--navy-blue);
     border: 1px solid var(--royal-blue);
     padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    min-width: 200px;
+    transition: background 0.3s ease;
   }
 
-  .language-label {
+  .toggle-button .toggle-slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    background: var(--royal-blue);
+    border-radius: 0.75rem;
+    transition: left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
+  }
+
+  .toggle-button span {
+    position: relative;
+    z-index: 1;
     font-size: 1.25rem;
-    color: var(--text-secondary);
-    transition: all 0.3s ease;
+    color: #f8fafc;
+    /* Transition only transform and color */
+    transition: transform 0.3s ease, color 0.3s ease;
   }
 
-  .language-label.active {
-    color: var(--teal-accent);
+  .toggle-button span.active {
+    color:  #f8fafc;
     transform: scale(1.1);
+  }
+
+  /* Move slider to right when toggled */
+  .toggle-button.toggled .toggle-slider {
+    left: 50%;
   }
 
   .language-letters-grid {
@@ -168,6 +122,7 @@ let toggleOrder = false;
     letter-spacing: 0.1em;
     border-bottom: 2px solid var(--royal-blue);
     margin-bottom: 1rem;
+    grid-column: 1 / -1;
   }
 
   .language-letters-separator {
@@ -191,7 +146,7 @@ let toggleOrder = false;
     border-radius: 0.75rem;
     background: var(--navy-blue);
     border: 1px solid rgba(125, 211, 252, 0.1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -232,14 +187,11 @@ let toggleOrder = false;
   .language-letter-kannada {
     font-size: 2rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color:  #f8fafc;
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .language-letter-card:hover .language-letter-kannada {
-    transform: scale(1.1);
+    /* Only animate transform and color */
+    transition: transform 0.3s ease, color 0.3s ease;
   }
 
   .language-letter-hindi {
@@ -248,41 +200,21 @@ let toggleOrder = false;
     color: var(--text-secondary);
     margin-bottom: 0.25rem;
     opacity: 0.9;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
   }
 
+  /* Reverse order for toggled cards */
   .language-letter-card.reverse .language-letter-kannada {
     order: 2;
     transform: scale(0.8);
     color: var(--text-secondary);
+    margin-top: 0.3rem;
+    margin-bottom: 0.5px;
   }
 
   .language-letter-card.reverse .language-letter-hindi {
     order: 1;
-    transform: scale(1.1);
-    color: var(--text-primary);
+    transform: scale(1.6);
+    color:  #f8fafc;
+    padding-top: 0.5rem;
   }
-</style>
-
-<script>
-  const toggleButton = document.getElementById('toggleButton');
-  const hindiLabel = document.getElementById('hindiLabel');
-  const kannadaLabel = document.getElementById('kannadaLabel');
-  let isKannadaFirst = true;
-
-  // Set initial state
-  kannadaLabel.classList.add('active');
-
-  toggleButton.addEventListener('click', () => {
-    const cards = document.querySelectorAll('.language-letter-card');
-    isKannadaFirst = !isKannadaFirst;
-
-    cards.forEach((card) => {
-      card.classList.toggle('reverse');
-    });
-
-    // Toggle active labels
-    hindiLabel.classList.toggle('active');
-    kannadaLabel.classList.toggle('active');
-  });
-</script>

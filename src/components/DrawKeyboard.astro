@@ -9,9 +9,8 @@ import { getRandomValue } from "../utils/index";
     <div class="action">
       <!--<a href="/" class="back-button" aria-label="Go back" title="Go back">← Back</a>-->
     </div>
-    <div class="caption">
-      <h1 class="info" aria-live="polite">Press any key</h1>
-    </div>
+    <!-- The caption div is removed; the heading now appears directly in the header -->
+    <h1 class="info" aria-live="polite">Press any key</h1>
     <div class="controls">
       <label for="toggleCase" class="control-item">
         <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden" />
@@ -28,7 +27,6 @@ import { getRandomValue } from "../utils/index";
     </div>
   </header>
 
-  <!-- The board section now holds the background image (or solid color) -->
   <main class="main">
     <section class="board" id="board" aria-live="polite">
       <div class="char" id="char"></div>
@@ -39,92 +37,72 @@ import { getRandomValue } from "../utils/index";
 <style>
   :root {
     --primary-bg: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 100%);
+    --header-bg: #f8fafc;
     --accent-color: #4338ca;
     --control-bg: rgba(255, 255, 255, 0.95);
     --text-color: #ffffff;
     --solid-bg: #a5b4fc;
     --shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -3px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --light-border: #e2e8f0;
   }
 
-  /* Reset */
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
-  /* Base container */
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: var(--primary-bg);
     font-family: 'Inter', system-ui, sans-serif;
     text-align: center;
     padding: 1rem;
+    /*background: var(--primary-bg);*/
   }
 
-  /* Header */
+  /*---------------------- Updated Header Styling -----------------------*/
   .header {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(15px);
-    box-shadow: var(--shadow);
+    padding: 1.5rem 2rem;
     gap: 1rem;
     position: relative;
+    background: var(--header-bg);
+    border: 1px solid var(--light-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 1rem;
   }
 
   .action {
     width: 100%;
   }
 
-  .back-button {
-    position: absolute;
-    left: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: black;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    transition: var(--transition);
-    background: transparent;
-  }
-
-  .back-button:hover {
-    background: rgba(67, 56, 202, 0.1);
-    transform: translateY(calc(-50% - 2px));
-  }
-
-  .caption {
-    width: 100%;
-  }
-
+  /* The caption div is removed so the heading appears directly in the header */
   .info {
-    margin: 0;
+    margin-top: -20px;
     font-size: 1.75rem;
-    color: black;
+    color: black; /* Text is now black */
     font-weight: 500;
     text-align: center;
   }
 
   .controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     display: flex;
-    justify-content: center;
     gap: 1rem;
     align-items: center;
-    width: 100%;
   }
 
-  /* Control Items & Buttons: Bigger and more prominent */
   .control-item {
     display: flex;
     align-items: center;
@@ -173,7 +151,6 @@ import { getRandomValue } from "../utils/index";
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
-  /* Main content area */
   .main {
     display: flex;
     justify-content: center;
@@ -182,9 +159,9 @@ import { getRandomValue } from "../utils/index";
     height: calc(100vh - 120px);
     overflow: hidden;
     transition: var(--transition);
+    margin-top: 1rem;
   }
 
-  /* Board area: holds the background image or solid color */
   .board {
     position: relative;
     display: flex;
@@ -198,9 +175,10 @@ import { getRandomValue } from "../utils/index";
     background-position: center;
     background-repeat: no-repeat;
     transition: var(--transition);
+    border: 2px solid var(--accent-color);
+    border-radius: 1rem;
   }
 
-  /* Char: displays the pressed key in the center with large, gradient text */
   .char {
     position: relative;
     z-index: 2;
@@ -210,10 +188,7 @@ import { getRandomValue } from "../utils/index";
     align-items: center;
     font-size: clamp(8rem, 30vw, 20rem);
     font-weight: 900;
-    background: linear-gradient(135deg, #ff80bf, #1e3c72);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: white;
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transition: var(--transition);
     animation: charReveal 0.4s ease-out;
@@ -247,12 +222,6 @@ import { getRandomValue } from "../utils/index";
     .header {
       padding: 1rem;
     }
-
-    .back-button {
-      left: 1rem;
-      top: 1rem;
-      transform: none;
-    }
     
     .info {
       font-size: 1.25rem;
@@ -266,6 +235,12 @@ import { getRandomValue } from "../utils/index";
       width: 3rem;
       height: 3rem;
       font-size: 1.5rem;
+    }
+
+    .controls {
+      position: static;
+      justify-content: center;
+      width: 100%;
     }
   }
 </style>
@@ -291,13 +266,11 @@ import { getRandomValue } from "../utils/index";
   const info = document.querySelector(".info");
   const textSpan = document.getElementById("text");
 
-  // Utility function (if not already imported)
   function getRandomValue(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
   function updateDisplay(key) {
-    // Audio feedback
     try {
       const audio = new Audio('data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA');
       audio.volume = 0.1;
@@ -306,7 +279,6 @@ import { getRandomValue } from "../utils/index";
       console.log('Audio feedback unavailable');
     }
 
-    // Number handling: use a random solid background color and update text accordingly
     if (!isNaN(Number(key))) {
       boardDiv.style.backgroundColor = getRandomValue(colorBox);
       boardDiv.style.backgroundImage = '';
@@ -315,11 +287,9 @@ import { getRandomValue } from "../utils/index";
       return;
     }
 
-    // Alphabet handling
     const found = alphabetMapper.find(alpha => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
       info.textContent = found.value;
-      // Only set the image background if the background toggle is off
       if (!toggleBackgroundSwitch.checked) {
         boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
         boardDiv.style.backgroundColor = '';
@@ -328,11 +298,9 @@ import { getRandomValue } from "../utils/index";
       boardDiv.style.backgroundImage = '';
     }
 
-    // Case handling: update the displayed character's case
     charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
   }
 
-  // Event listener for key presses
   function handleKeyPress(e) {
     const key = e.key;
     if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
@@ -340,7 +308,6 @@ import { getRandomValue } from "../utils/index";
     }
   }
 
-  // Toggle case
   toggleCaseSwitch?.addEventListener("change", (e) => {
     isUpperCase = !e.target.checked;
     const currentText = charDiv.textContent;
@@ -348,13 +315,11 @@ import { getRandomValue } from "../utils/index";
     textSpan.setAttribute('aria-checked', !e.target.checked);
   });
 
-  // Toggle font
   toggleFontSwitch?.addEventListener("change", () => {
     currentFontIndex = (currentFontIndex + 1) % fontBox.length;
     charDiv.style.fontFamily = fontBox[currentFontIndex];
   });
 
-  // Toggle background: when active, remove any image background and set a solid color
   toggleBackgroundSwitch?.addEventListener("change", (e) => {
     if (e.target.checked) {
       mainEl.style.backgroundBlendMode = "soft-light";
@@ -368,7 +333,6 @@ import { getRandomValue } from "../utils/index";
     }
   });
 
-  // Listen for keydown events
   document.addEventListener('keydown', handleKeyPress);
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");

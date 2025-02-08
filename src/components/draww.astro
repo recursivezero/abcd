@@ -7,7 +7,7 @@ import { getRandomValue } from "../utils/index";
 <div class="container">
   <header class="header">
     <div class="action">
-      <a href="/" class="back-button" aria-label="Go back" title="Go back">← Back</a>
+      <!--<a href="/" class="back-button" aria-label="Go back" title="Go back">← Back</a>-->
     </div>
     <div class="caption">
       <h1 class="info" aria-live="polite">Press any key</h1>
@@ -29,104 +29,98 @@ import { getRandomValue } from "../utils/index";
   </header>
 
   <main class="main">
-    <section class="board">
-      <div class="board__item char" id="char" aria-live="polite"></div>
+    <section class="board" id="board" aria-live="polite">
+      <div class="char" id="char"></div>
     </section>
   </main>
 </div>
 
 <style>
-
   :root {
     --primary-bg: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 100%);
     --accent-color: #4338ca;
     --control-bg: rgba(255, 255, 255, 0.95);
     --text-color: #ffffff;
+    --solid-bg: #a5b4fc;
     --shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -3px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  /* Reset */
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
-  /* Base container */
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: var(--primary-bg);
     font-family: 'Inter', system-ui, sans-serif;
     text-align: center;
+    padding: 1rem;
   }
 
-  /* Header – merged: using the second (more prominent) style */
   .header {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(15px);
-    box-shadow: var(--shadow);
     gap: 1rem;
     position: relative;
   }
 
-  .back-button {
-    position: absolute;
-    left: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-color);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    transition: var(--transition);
+  .action {
+    width: 100%;
   }
 
-  .back-button:hover {
-    background: rgba(67, 56, 202, 0.1);
-    transform: translateY(calc(-50% - 2px));
+  .caption {
+    width: 100%;
   }
 
   .info {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: black;
     font-weight: 500;
     text-align: center;
   }
 
   .controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     display: flex;
-    justify-content: center;
     gap: 1rem;
     align-items: center;
-    width: 100%;
+  }
+
+  .control-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .control-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     background: var(--control-bg);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     border: 2px solid rgba(67, 56, 202, 0.2);
     transition: var(--transition);
     box-shadow: var(--shadow);
+    font-size: 2rem;
+    color: black;
   }
 
   .control-button::before {
@@ -153,7 +147,6 @@ import { getRandomValue } from "../utils/index";
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
-  /* Main – merged: uses the properties from the second definition */
   .main {
     display: flex;
     justify-content: center;
@@ -161,13 +154,9 @@ import { getRandomValue } from "../utils/index";
     width: 100%;
     height: calc(100vh - 120px);
     overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     transition: var(--transition);
   }
 
-  /* Board – merged from both definitions */
   .board {
     position: relative;
     display: flex;
@@ -177,24 +166,14 @@ import { getRandomValue } from "../utils/index";
     height: 100%;
     overflow: hidden;
     padding: 2rem;
-  }
-
-  .board-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.3;
-    filter: blur(10px);
-    transform: scale(1.1);
-    z-index: 1;
+    transition: var(--transition);
+    border: 2px solid var(--accent-color);
+    border-radius: 1rem;
   }
 
-  /* Char – merged: using the first definition’s extra positioning and z-index */
   .char {
     position: relative;
     z-index: 2;
@@ -204,8 +183,8 @@ import { getRandomValue } from "../utils/index";
     align-items: center;
     font-size: clamp(8rem, 30vw, 20rem);
     font-weight: 900;
-    color: var(--text-color);
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transition: var(--transition);
     animation: charReveal 0.4s ease-out;
     will-change: transform, opacity;
@@ -238,13 +217,6 @@ import { getRandomValue } from "../utils/index";
     .header {
       padding: 1rem;
     }
-
-    .back-button {
-      position: absolute;
-      left: 1rem;
-      top: 1rem;
-      transform: none;
-    }
     
     .info {
       font-size: 1.25rem;
@@ -253,24 +225,36 @@ import { getRandomValue } from "../utils/index";
     .char {
       font-size: clamp(4rem, 25vw, 15rem);
     }
+
+    .control-button {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.5rem;
+    }
+
+    .controls {
+      position: static;
+      justify-content: center;
+      width: 100%;
+    }
   }
 </style>
 
-
-<script define:vars={{ 
-  colorBox, 
-  fontBox, 
-  numberBox, 
-  alphabetMapper, 
-  IMAGE_DIR 
+<script define:vars={{
+  colorBox,
+  fontBox,
+  numberBox,
+  alphabetMapper,
+  IMAGE_DIR
 }}>
+  // Rest of the JavaScript code remains exactly the same
   // Initialize state
   let currentFontIndex = 0;
   let isUpperCase = true;
 
   // DOM elements
   const mainEl = document.querySelector("main");
-  const boardDiv = document.querySelector(".board");
+  const boardDiv = document.getElementById("board");
   const charDiv = document.getElementById("char");
   const toggleCaseSwitch = document.getElementById("toggleCase");
   const toggleFontSwitch = document.getElementById("toggleFont");
@@ -278,13 +262,11 @@ import { getRandomValue } from "../utils/index";
   const info = document.querySelector(".info");
   const textSpan = document.getElementById("text");
 
-  // Utility functions
   function getRandomValue(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
   function updateDisplay(key) {
-    // Audio feedback
     try {
       const audio = new Audio('data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA');
       audio.volume = 0.1;
@@ -293,34 +275,35 @@ import { getRandomValue } from "../utils/index";
       console.log('Audio feedback unavailable');
     }
 
-    // Number handling
     if (!isNaN(Number(key))) {
       boardDiv.style.backgroundColor = getRandomValue(colorBox);
+      boardDiv.style.backgroundImage = '';
       charDiv.textContent = key;
       info.textContent = numberBox[key] || 'Unknown';
       return;
     }
 
-    // Alphabet handling
     const found = alphabetMapper.find(alpha => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
       info.textContent = found.value;
-      mainEl.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
+      if (!toggleBackgroundSwitch.checked) {
+        boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
+        boardDiv.style.backgroundColor = '';
+      }
+    } else {
+      boardDiv.style.backgroundImage = '';
     }
 
-    // Case handling
     charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
   }
 
-  // Event listeners
   function handleKeyPress(e) {
     const key = e.key;
-    if ((key.length === 1 && /[a-zA-Z0-9]/.test(key))) {
+    if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
       updateDisplay(key);
     }
   }
 
-  // Toggle case
   toggleCaseSwitch?.addEventListener("change", (e) => {
     isUpperCase = !e.target.checked;
     const currentText = charDiv.textContent;
@@ -328,21 +311,25 @@ import { getRandomValue } from "../utils/index";
     textSpan.setAttribute('aria-checked', !e.target.checked);
   });
 
-  // Toggle font
   toggleFontSwitch?.addEventListener("change", () => {
     currentFontIndex = (currentFontIndex + 1) % fontBox.length;
     charDiv.style.fontFamily = fontBox[currentFontIndex];
   });
 
-  // Toggle background
   toggleBackgroundSwitch?.addEventListener("change", (e) => {
-    mainEl.style.backgroundBlendMode = e.target.checked ? "soft-light" : "normal";
-    mainEl.style.filter = e.target.checked ? "brightness(0.9)" : "brightness(1)";
+    if (e.target.checked) {
+      mainEl.style.backgroundBlendMode = "soft-light";
+      mainEl.style.filter = "brightness(0.9)";
+      boardDiv.style.backgroundImage = 'none';
+      boardDiv.style.backgroundColor = getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue('--solid-bg');
+    } else {
+      mainEl.style.backgroundBlendMode = "normal";
+      mainEl.style.filter = "brightness(1)";
+      boardDiv.style.backgroundColor = '';
+    }
   });
 
-  // Add event listeners
   document.addEventListener('keydown', handleKeyPress);
 
-  // Initial console log
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
 </script>

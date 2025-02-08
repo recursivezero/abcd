@@ -1,37 +1,8 @@
 ---
-// MathPractice.astro
+import "@/assets/styles/math.css";
 ---
-
 <div class="math-practice">
-  <header class="header">
-    <dialog id="helpDialog" class="help-dialog">
-      <div class="dialog-content">
-        <button onclick="closeDialog()" class="dialog-btn">
-          <span class="dialog-btn-text">Close</span>
-        </button>
-        <h3 class="dialog-title">Math Practice Help</h3>
-        <p>This is basic math operation practice.</p>
-        <ul class="dialog-list">
-          <li>Sum of 2 digits</li>
-          <li>Subtraction of 2 digits</li>
-          <li>Multiplication of 2 digits × 1 digit</li>
-        </ul>
-        <p class="dialog-footer">
-          Click on the refresh icon to get a new data set in the first 2 boxes. 
-          Enter your answer and it will be automatically checked.
-        </p>
-      </div>
-    </dialog>
-    <div class="action">
-      <a href="/" class="back">←</a>
-    </div>
-    <div class="caption">
-      <h2>Math Practice</h2>
-    </div>
-    <button class="help-btn" id="tip" onclick="openDialog()">?</button>
-  </header>
-
-  <div class="score">Score: <span id="scoreDisplay">0</span></div>
+  
 
   <section class="operator-container">
     <button class="operator-btn refresh" id="refresh" type="button">
@@ -46,377 +17,152 @@
     <button class="operator-btn multiply" id="multiply" type="button">
       <span>×</span>
     </button>
+    <button class="operator-btn divide" id="divide" type="button">
+      <span>÷</span>
+    </button>
   </section>
 
   <form id="mathForm" class="math-form">
-    <div class="number-group">
-      <input readonly type="number" id="first" class="number" value="0" />
-      <samp id="operator" class="operator">+</samp>
-      <input readonly type="number" id="second" class="number" value="0" />
-      <samp class="operator">=</samp>
-    </div>
-    <div class="answer-wrapper">
-      <div class="answer-container">
-        <input
-          type="number"
-          id="output"
-          class="number output"
-          placeholder="?"
-          autofocus
-        />
-        <div id="resultIndicator" class="result-indicator"></div>
+    <div class="math-problem-container">
+      <div class="number-group">
+        <input readonly type="text" inputmode="numeric" pattern="[0-9]*" id="first" class="number" value="0" />
+        <samp id="operator" class="operator">+</samp>
+        <input readonly type="text" inputmode="numeric" pattern="[0-9]*" id="second" class="number" value="0" />
+        <samp class="operator">=</samp>
+        <div class="answer-wrapper">
+          <input
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            id="output"
+            class="number output"
+            placeholder="?"
+            autofocus
+          />
+          <div id="resultIndicator" class="result-indicator"></div>
+        </div>
       </div>
     </div>
   </form>
+
+  <!-- Score moved below the form -->
+  <div class="score">Score: <span id="scoreDisplay">0</span></div>
 </div>
 
-<style>
-:root {
-  --color-background: #1a1a2e;
-  --color-primary: #16213e;
-  --color-accent: #0f3460;
-  --color-highlight: #e94560;
-  --color-success: #4CAF50;
-  --color-error: #f44336;
-  --color-text: #f4f4f4;
-  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-}
-
-.math-practice {
-  min-height: 100vh;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 2rem;
-  background: var(--gradient-primary);
-  padding-top: 120px;
-}
-
-.header {
-  width: 100%;
-  padding: 1rem 2rem;
-  background-color: var(--color-primary);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.help-dialog {
-  border: none;
-  border-radius: 15px;
-  padding: 2rem;
-  background: var(--color-primary);
-  color: var(--color-text);
-  min-width: 300px;
-  max-width: 500px;
-}
-
-.dialog-content {
-  position: relative;
-}
-
-.dialog-btn {
-  position: absolute;
-  top: -1rem;
-  right: -1rem;
-  background: var(--color-highlight);
-  color: var(--color-text);
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
-}
-
-.dialog-btn:hover {
-  transform: scale(1.1);
-}
-
-.dialog-btn-text {
-  font-size: 0.9rem;
-}
-
-.dialog-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--color-highlight);
-}
-
-.dialog-list {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-}
-
-.dialog-footer {
-  margin-top: 1rem;
-  font-style: italic;
-}
-
-.score {
-  font-size: 2rem;
-  background-color: var(--color-highlight);
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
-  z-index: 20;
-  margin-top: 2rem; /* Added margin to separate from form */
-  position: static; /* Remove fixed positioning */
-}
-
-.score-pop {
-  animation: pop 0.2s ease;
-}
-
-@keyframes pop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-.operator-container {
-  display: flex;
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.operator-btn {
-  width: 80px;
-  height: 80px;
-  font-size: 2.5rem;
-  background-color: var(--color-accent);
-  color: var(--color-text);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.operator-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.math-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  width: 100%;
-  max-width: 800px;
-}
-
-.number-group {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.number {
-  width: 150px;
-  height: 100px;
-  font-size: 3rem;
-  text-align: center;
-  background-color: var(--color-accent);
-  color: var(--color-text);
-  border: 3px solid var(--color-highlight);
-  border-radius: 15px;
-  outline: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.number:focus {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.operator {
-  font-size: 3rem;
-  color: var(--color-highlight);
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.answer-wrapper {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.answer-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.output {
-  width: 100%;
-}
-
-.result-indicator {
-  position: relative;
-  font-size: 3rem;
-  font-weight: bold;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.result-indicator.success {
-  color: var(--color-success);
-  animation: popIn 0.3s ease;
-}
-
-.result-indicator.error {
-  color: var(--color-error);
-  animation: shake 0.3s ease;
-}
-
-@keyframes popIn {
-  0% { transform: scale(0); }
-  70% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-
-@media (max-width: 768px) {
-  .math-practice {
-    padding: 1rem;
-    padding-top: 100px;
-  }
-
-  .number-group {
-    gap: 0.5rem;
-  }
-
-  .number {
-    width: 120px;
-    height: 80px;
-    font-size: 2rem;
-  }
-
-  .operator {
-    font-size: 2rem;
-  }
-
-  .operator-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
-  }
-}
-</style>
 
 <script>
-const state = {
-  currentOperator: '+',
-  score: 0,
-  scoreIncrement: 10
-};
+  const state = {
+    currentOperator: "+",
+    score: 0,
+    scoreIncrement: 10
+  };
 
-function initMathPractice() {
-  updateNumbers();
-  setupEventListeners();
-}
-
-function generateNumber(max = 99) {
-  return Math.floor(Math.random() * max) + 1;
-}
-
-function updateNumbers() {
-  const first = generateNumber();
-  const second = state.currentOperator === '×' ? generateNumber(9) : generateNumber();
-  
-  document.getElementById('first').value = first.toString();
-  document.getElementById('second').value = second.toString();
-  document.getElementById('output').value = '';
-  document.getElementById('resultIndicator').innerHTML = '';
-  document.getElementById('output').focus();
-}
-
-function updateScore() {
-  state.score += state.scoreIncrement;
-  const scoreDisplay = document.getElementById('scoreDisplay');
-  scoreDisplay.textContent = state.score.toString();
-  scoreDisplay.classList.add('score-pop');
-  setTimeout(() => scoreDisplay.classList.remove('score-pop'), 200);
-}
-
-function checkAnswer() {
-  const first = parseInt(document.getElementById('first').value);
-  const second = parseInt(document.getElementById('second').value);
-  const output = parseInt(document.getElementById('output').value);
-  const indicator = document.getElementById('resultIndicator');
-
-  if (isNaN(output)) {
-    indicator.innerHTML = '';
-    indicator.className = 'result-indicator';
-    return;
+  function initMathPractice() {
+    updateNumbers();
+    setupEventListeners();
   }
 
-  let expectedResult;
-  switch(state.currentOperator) {
-    case '+': expectedResult = first + second; break;
-    case '−': expectedResult = first - second; break;
-    case '×': expectedResult = first * second; break;
-    default: expectedResult = 0;
+  function generateNumber(max = 99, min = 1) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  if (output === expectedResult) {
-    indicator.innerHTML = '✓';
-    indicator.className = 'result-indicator success';
-    updateScore();
-    setTimeout(updateNumbers, 800);
-  } else {
-    indicator.innerHTML = '✗';
-    indicator.className = 'result-indicator error';
+  function updateNumbers() {
+    let first, second;
+    
+    if (state.currentOperator === "×") {
+      first = generateNumber();
+      second = generateNumber(9); // 1-digit multiplier
+    } else if (state.currentOperator === "÷") {
+      // Ensure whole number division
+      second = generateNumber(9); // 1-digit divisor
+      const result = generateNumber(10); // 1-digit quotient
+      first = result * second; // Dividend = quotient × divisor
+    } else {
+      first = generateNumber();
+      second = generateNumber();
+    }
+
+    document.getElementById("first").value = first;
+    document.getElementById("second").value = second;
+    document.getElementById("output").value = "";
+    document.getElementById("resultIndicator").innerHTML = "";
+    document.getElementById("output").focus();
   }
-}
 
-function setOperator(op) {
-  state.currentOperator = op;
-  document.getElementById('operator').textContent = op;
-  updateNumbers();
-}
+  function updateScore() {
+    state.score += state.scoreIncrement;
+    const scoreDisplay = document.getElementById("scoreDisplay");
+    scoreDisplay.textContent = state.score.toString();
+    scoreDisplay.classList.add("score-pop");
+    setTimeout(() => scoreDisplay.classList.remove("score-pop"), 200);
+  }
 
-function setupEventListeners() {
-  document.getElementById('output').addEventListener('input', checkAnswer);
-  document.getElementById('refresh').addEventListener('click', updateNumbers);
-  document.getElementById('add').addEventListener('click', () => setOperator('+'));
-  document.getElementById('subtract').addEventListener('click', () => setOperator('−'));
-  document.getElementById('multiply').addEventListener('click', () => setOperator('×'));
-}
+  function checkAnswer() {
+    const first = parseInt(document.getElementById("first").value);
+    const second = parseInt(document.getElementById("second").value);
+    const output = parseInt(document.getElementById("output").value);
+    const indicator = document.getElementById("resultIndicator");
 
-function openDialog() {
-  document.getElementById('helpDialog').showModal();
-}
+    if (isNaN(output)) {
+      indicator.innerHTML = "";
+      indicator.className = "result-indicator";
+      return;
+    }
 
-function closeDialog() {
-  document.getElementById('helpDialog').close();
-}
+    let expectedResult;
+    switch (state.currentOperator) {
+      case "+": expectedResult = first + second; break;
+      case "−": expectedResult = first - second; break;
+      case "×": expectedResult = first * second; break;
+      case "÷": expectedResult = first / second; break;
+      default: expectedResult = 0;
+    }
 
-document.addEventListener('DOMContentLoaded', initMathPractice);
+    // Check if result is integer for division
+    const isValid = state.currentOperator === "÷" 
+      ? Number.isInteger(expectedResult) && output === expectedResult
+      : output === expectedResult;
+
+    if (isValid) {
+      indicator.innerHTML = "✓";
+      indicator.className = "result-indicator success";
+      updateScore();
+      setTimeout(updateNumbers, 800);
+    } else {
+      indicator.innerHTML = "✗";
+      indicator.className = "result-indicator error";
+    }
+  }
+
+  function setOperator(op) {
+    state.currentOperator = op;
+    document.getElementById("operator").textContent = op;
+    updateNumbers();
+  }
+
+  function setupEventListeners() {
+    const outputElement = document.getElementById("output");
+
+    // Prevent non-numeric input in real-time
+    outputElement.addEventListener("input", (e) => {
+      e.target.value = e.target.value.replace(/[^0-9]/g, "");
+      checkAnswer();
+    });
+
+    document.getElementById("refresh").addEventListener("click", updateNumbers);
+    document.getElementById("add").addEventListener("click", () => setOperator("+"));
+    document.getElementById("subtract").addEventListener("click", () => setOperator("−"));
+    document.getElementById("multiply").addEventListener("click", () => setOperator("×"));
+    document.getElementById("divide").addEventListener("click", () => setOperator("÷"));
+  }
+
+  function openDialog() {
+    document.getElementById("helpDialog").showModal();
+  }
+
+  function closeDialog() {
+    document.getElementById("helpDialog").close();
+  }
+
+  document.addEventListener("DOMContentLoaded", initMathPractice);
 </script>
