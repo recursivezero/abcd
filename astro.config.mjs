@@ -1,5 +1,4 @@
 import mdx from "@astrojs/mdx";
-import node from "@astrojs/node";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
@@ -8,8 +7,12 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://parixan.xyz",
-  prefetch: true,
-  output: "server",
+  build: {
+    format: "directory"
+  },
+  prefetch: {
+    prefetchAll: true
+  },
   devToolbar: {
     enabled: false
   },
@@ -27,7 +30,6 @@ export default defineConfig({
       nesting: true
     })
   ],
-  adapter: node({ mode: "standalone" }),
   style: {
     global: true // Ensure global styles are applied
   },

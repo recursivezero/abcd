@@ -1,7 +1,9 @@
 ---
-// import FeedbackForm from '../components/FeedbackForm.astro';
+import BaseLayout from "@/layouts/Base";
+
+import FeedbackForm from "@/components/FeedbackForm.astro";
 ---
 
-<layout>
-  <!-- <FeedbackForm /> -->
-</layout>
+<BaseLayout meta={{ title: "Feedback" }}>
+  <FeedbackForm />
+</BaseLayout>
