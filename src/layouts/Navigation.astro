@@ -1,5 +1,5 @@
 ---
-import Link from "@/components/Link.astro";
+//import Link from "@/components/Link.astro"; // TODO: use Link instead of native a
 import type { LinkProps } from "@/types";
 
 interface Props {
@@ -11,6 +11,13 @@ const { pages } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
+<style>
+  .iconx {
+    width: 32px;
+    height: 32px;
+  }
+</style>
+
 <nav class="nav">
   <ul class="nav--list">
     {
@@ -18,7 +25,10 @@ const currentPath = Astro.url.pathname;
         .filter((p) => p.isActive)
         .map((p) => (
           <li class={`nav--list__item ${currentPath === p.path ? "active" : ""}`}>
-            <Link href={p.path} name={p.name} />
+            <a href={p.path}>
+              <span class="iconx">{p.icon && <p.icon />}</span>
+              <span class="text">{p.name}</span>
+            </a>
           </li>
         ))
     }
