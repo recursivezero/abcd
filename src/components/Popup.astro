@@ -11,7 +11,7 @@
 </div>
 
 <script>
-  // Initialize DOM elements using classes
+
   const popup = document.querySelector(".state-popup") as HTMLElement;
   const popupStateName = document.querySelector(".state-popup__name") as HTMLElement;
   const popupStateInfo = document.querySelector(".state-popup__info") as HTMLElement;
@@ -24,47 +24,58 @@
     // Update popup content
     popupStateName.textContent = stateInfo.name;
     popupStateInfo.innerHTML = `<p><strong>State Dance:</strong> ${stateInfo.dance}</p>`;
-    popupStateImage.src = `/map_assets/images/${stateInfo.image}`;
+    popupStateImage.src = `/map/images/${stateInfo.image}`;
     popupStateImage.alt = `${stateInfo.name} state image`;
 
+    // Make popup visible but temporarily transparent for measurements
+    popup.style.display = "flex";
+    popup.style.opacity = "0";
+
+    // Get viewport dimensions
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    popup.style.display = "flex";
+    // Get popup dimensions
     const popupWidth = popup.offsetWidth;
     const popupHeight = popup.offsetHeight;
 
-    // Get click position relative to viewport
-    const clickX = event.clientX;
-    const clickY = event.clientY;
+    const scrollX = window.scrollX || document.documentElement.scrollLeft;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-    let left = clickX;
-    let top = clickY + 20;
+    const clickX = event.pageX;
+    const clickY = event.pageY;
 
-    if (left + popupWidth > viewportWidth - 20) {
-      left = viewportWidth - popupWidth - 20;
+    let left = clickX - (popupWidth / 2);
+    let top = clickY - (popupHeight / 2);
+
+    if (left + popupWidth > viewportWidth + scrollX - 20) {
+        left = viewportWidth + scrollX - popupWidth - 20;
     }
-    if (left < 20) {
-      left = 20;
+    if (left < scrollX + 20) {
+        left = scrollX + 20;
     }
 
-    if (top + popupHeight > viewportHeight - 20) {
-      top = clickY - popupHeight - 20;
+    if (top + popupHeight > viewportHeight + scrollY - 20) {
+        top = clickY - popupHeight - 20;
     }
-    if (top < 20) {
-      top = 20;
+    if (top < scrollY + 20) {
+        top = scrollY + 20;
     }
 
     popup.style.left = `${left}px`;
     popup.style.top = `${top}px`;
-    popup.style.opacity = "1";
-  }
+    
 
-  // Event Listeners
-  document.addEventListener("showStatePopup", ((e: CustomEvent) => {
+    requestAnimationFrame(() => {
+        popup.style.opacity = "1";
+    });
+}
+
+
+document.addEventListener("showStatePopup", ((e: CustomEvent) => {
     const { event, stateInfo } = e.detail;
     showPopup(event, stateInfo);
-  }) as EventListener);
+}) as EventListener);
 
   closePopup?.addEventListener("click", () => {
     popup.style.display = "none";
@@ -104,106 +115,3 @@
     }
   });
 </script>
-
-<style>
-  .state-popup {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-
-  .state-popup__name {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 12px;
-    color: #333;
-  }
-
-  .state-popup__info {
-    font-size: 1.4rem;
-    margin: 12px 0;
-    color: #444;
-    line-height: 1.4;
-  }
-
-  .state-popup__image {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin: 10px 0;
-  }
-
-  .state-popup__close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: #666;
-    transition: color 0.2s ease;
-  }
-
-  .state-popup__close:hover {
-    color: #333;
-  }
-
-  .state-popup__buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 15px;
-  }
-
-  .state-popup__button {
-    flex: 1;
-    padding: 10px 16px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-  }
-
-  .state-popup__button--copy {
-    background-color: #4caf50;
-    color: white;
-  }
-
-  .state-popup__button--more {
-    background-color: #007bff;
-    color: white;
-  }
-
-  .state-popup__button:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-  }
-
-  @media (max-width: 768px) {
-    .state-popup {
-      width: 85%;
-      padding: 15px;
-      margin: 0 auto;
-    }
-
-    .state-popup__name {
-      font-size: 1.6rem;
-    }
-
-    .state-popup__info {
-      font-size: 1.2rem;
-    }
-  }
-</style>

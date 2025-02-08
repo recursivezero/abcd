@@ -1,8 +1,7 @@
 ---
-import StateLayout from "@/layouts/mapLayouts/StateLayout";
-import stateData from "@/assets/map_assets/stateData.json";
-import "@/assets/styles/map_styles/stateStyles.css";
-// import '@/assets/styles/globals.css'
+import BaseLayout from "@/layouts/Base";
+import stateData from "@/assets/json/state.json";
+import "@/assets/styles/map/state.css";
 
 export const prerender = true;
 
@@ -17,25 +16,26 @@ const { stateInfo } = Astro.props;
 const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 ---
 
-<StateLayout title={`${name} - ${dance}`}>
-  <main>
-    <h1>{dance} - {name}</h1>
-
+<BaseLayout meta={{ title: `${name} - ${dance}` }}>
+  <section>
     <div class="main-container">
       <div id="state-svg-container">
-        <h3>State Map</h3>
-        <div id="state-svg" data-svg-path={`/map_assets/svg/${svg}`}></div>
+        <h3>{name}</h3>
+        <div id="state-svg" data-svg-path={`/map/svg/${svg}`}></div>
       </div>
 
       <div class="right-content">
-        <img src={`/map_assets/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
+        <img src={`/map/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
         <div class="content-text">
           <table class="info-table">
             <tr><th colspan="2">Quick Facts</th></tr>
             <tr><td>Dance Form</td><td>{dance}</td></tr>
             <tr><td>Origin</td><td>{name}, India</td></tr>
             <tr><td>Festival</td><td>{festival}</td></tr>
-            <tr><td>Description</td><td>{description}</td></tr>
+            <tr><td>Description</td><td><p>{description}</p>
+              <a href={wikiLink} target="_blank" rel="noopener noreferrer">
+                Read more about {dance} on Wikipedia
+              </a></td></tr>
           </table>
           <a href={wikiLink} target="_blank" rel="noopener noreferrer">
             Read more about {dance} on Wikipedia
@@ -43,8 +43,8 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
         </div>
       </div>
     </div>
-  </main>
-</StateLayout>
+  </section>
+</BaseLayout>
 
 <script>
   // Load SVG when the page loads
