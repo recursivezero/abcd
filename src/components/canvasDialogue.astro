@@ -1,12 +1,4 @@
-
-
 <div class="canvas-generator">
-  <nav>
-    <div class="nav-left">
-      <!--<button class="hint" id="tip">❓</button>-->
-    </div>
-    <h1>Create Fun Images!</h1>
-  </nav>
 
   <main class="controls">
     <div class="input-area">
@@ -26,65 +18,24 @@
         <label for="full">Use Full Name</label>
       </div>
     </div>
+    <!-- The image grid now has a max-height and vertical scrolling -->
     <div id="canvasDiv" class="image-grid"></div>
   </main>
 
-  <dialog id="helpDialog">
-    <div class="dialog-content">
-      <h2>🌈 Let's Create!</h2>
-      <ul>
-        <li><strong>Draw:</strong> Make a colorful picture with your text!</li>
-        <li><strong>Clock:</strong> Create an image with the current time.</li>
-        <li><strong>Clear:</strong> Start over and make a new picture.</li>
-      </ul>
-      <p><strong>Tip:</strong> Right-click to save your awesome artwork!</p>
-      <button id="closeDialog" class="dialog-close">Got it!</button>
-    </div>
-  </dialog>
+
 </div>
 
 <style>
-  /* Global Styles */
+  /* Global Styles for the Canvas Generator */
   .canvas-generator {
     min-height: 100vh;
     width: 100%;
-    padding: 2rem;
+    padding: 1rem;
     font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-    /*background: #1a1a2e; Dark blue background*/
     box-sizing: border-box;
+    margin-top: -40px;
   }
 
-  /* Navigation / Title Section */
-  nav {
-    width: 100%;
-    background: rgba(37, 54, 82, 0.8);
-    border: 2px solid #334155;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    padding: 2rem;
-    text-align: center;
-    position: relative;
-    box-sizing: border-box;
-    backdrop-filter: blur(8px);
-  }
-
-  .nav-left {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  h1 {
-    color: #e2e8f0;
-    font-size: 2.5rem;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
- 
   /* Controls Section */
   .controls {
     max-width: 1200px;
@@ -158,18 +109,33 @@
     color: #e2e8f0;
   }
 
-  /* Image Grid */
+  /* Image Grid with Scrollbar */
   .image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
-    background: rgba(30, 41, 59, 0.8);
+    background: rgba(37, 53, 79, 0.8);
     border: 2px solid #334155;
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px);
     min-height: 200px;
+    max-height: 500px;  /* Adjust this value as needed */
+    overflow-y: auto;   /* Enable vertical scrolling */
+  }
+
+  /* Custom Scrollbar Styling for Webkit Browsers */
+  .image-grid::-webkit-scrollbar {
+    width: 12px;
+  }
+  .image-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  .image-grid::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
   }
 
   .image-grid img {

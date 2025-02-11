@@ -1,0 +1,49 @@
+---
+import SeekAndHide from '@/components/SeeknHide.astro';
+import HideSeekGame from '@/components/HideSeekGame.astro';
+---
+
+<style>
+  /* Simple styling for the toggle button */
+  #toggle-button {
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+</style>
+
+<!-- Toggle Button -->
+<button id="toggle-button">Show State Capitals</button>
+
+<!-- Hide &amp; Seek Game is visible by default -->
+<div id="component-game">
+  <HideSeekGame />
+</div>
+
+<!-- State Capital List is hidden by default -->
+<div id="component-state" style="display: none;">
+  <SeekAndHide />
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("toggle-button");
+    const gameContainer = document.getElementById("component-game");
+    const stateContainer = document.getElementById("component-state");
+
+    toggleButton.addEventListener("click", () => {
+      if (gameContainer.style.display === "none") {
+        // Show the hide & seek game and hide the state capitals list
+        gameContainer.style.display = "block";
+        stateContainer.style.display = "none";
+        toggleButton.textContent = "Show SeekAndHide";
+      } else {
+        // Hide the hide & seek game and show the state capitals list
+        gameContainer.style.display = "none";
+        stateContainer.style.display = "block";
+        toggleButton.textContent = "Show Hide & Seek Game";
+      }
+    });
+  });
+</script>

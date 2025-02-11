@@ -1,5 +1,15 @@
 ---
 import Layout from "@/layouts/Base";
+import ToggleComponents from '@/components/HideToggle.astro';
+import Help from "@/components/Help.astro";
+const meta = {
+  title: "Toggle Game / State Capitals",
+  description: "Switch between a hide & seek letter game and a state/capital grid."
+};
+---
+
+<!-----
+import Layout from "@/layouts/Base";
 import HideSeekGame from '@/components/HideSeekGame.astro';
 import Help from "@/components/Help.astro";
 
@@ -8,8 +18,8 @@ const meta = {
   title: "Hide and Seek Alphabet Game",
   description: "Interactive alphabet hiding game"
 };
----
-
+----->
+<!--
 <Layout meta={meta}>
   <Fragment slot="header-right">
     <Help
@@ -18,4 +28,16 @@ const meta = {
     />
   </Fragment>
   <HideSeekGame />
+</Layout>-->
+
+
+
+<Layout meta={meta}>
+  <Fragment slot="header-right">
+    <Help
+      title="Hide & Seek Game"
+      description="Press any alphabet key from keyboard and that letter will appears and when you press again then it will disappears. See some hover and active effects while hovering over each card."
+    />
+  </Fragment>
+  <ToggleComponents />
 </Layout>

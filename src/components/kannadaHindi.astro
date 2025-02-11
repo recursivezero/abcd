@@ -42,7 +42,7 @@ let toggleOrder = false;
   </div>
   
   <div class="language-letters-grid">
-    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS</h2>
+    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS (स्वर्ण)</h2>
     {letterPairs
       .filter((pair) => pair.type === 'vowel')
       .map((pair, index) => (
@@ -54,7 +54,7 @@ let toggleOrder = false;
   
     <div class="language-letters-separator" style="grid-column: 1 / -1;"></div>
   
-    <h2 class="group-heading" style="grid-column: 1 / -1;">CONSONANTS</h2>
+    <h2 class="group-heading" style="grid-column: 1 / -1;">CONSONANTS (व्यंजन)</h2>
     {letterPairs
       .filter((pair) => pair.type === 'consonant')
       .map((pair, index) => (
