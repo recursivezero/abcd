@@ -60,6 +60,12 @@ export const NavbarLinks: LinkProps[] = [
     title: "Feedback Form",
     path: "/feedback",
     isActive: true
+  },
+  {
+    name: "Societree",
+    title: "Societree",
+    path: "/societree",
+    isActive: true
   }
 ];
 
