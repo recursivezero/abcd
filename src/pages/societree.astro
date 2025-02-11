@@ -1,0 +1,33 @@
+---
+import "@/assets/styles/societree.css";
+import Card from "@/components/Card.astro";
+import BaseLayout from "@/layouts/Base";
+---
+
+<BaseLayout meta={{ title: "Family Tree Explorer" }}>
+  <article class="container__family">
+    <div class="hero">
+      <h1>Family Tree Explorer</h1>
+      <p>Discover Your Heritage and Family Connections</p>
+      <div class="legend theme-glass">
+        <div class="legend-item">
+          <span class="icon">🧬</span>
+          <span>Gotra</span>
+        </div>
+        <div class="legend-item">
+          <span class="icon">🕉</span>
+          <span>Deity</span>
+        </div>
+        <div class="legend-item">
+          <span class="icon">🌿</span>
+          <span>Caste</span>
+        </div>
+        <div class="legend-item">
+          <span class="icon">🌳</span>
+          <span>Surname</span>
+        </div>
+      </div>
+    </div>
+    <Card />
+  </article>
+</BaseLayout>

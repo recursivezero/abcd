@@ -73,10 +73,13 @@ export const NavbarLinks: LinkProps[] = [
     path: "/feedback",
     isActive: true
   },
-  { name: "crossword",
-    title: "Crossword",
-    path: "/crossword", 
-    isActive: true }
+  { name: "crossword", title: "Crossword", path: "/crossword", isActive: true },
+  {
+    name: "Societree",
+    title: "Societree",
+    path: "/societree",
+    isActive: true
+  }
 ];
 
 export const FooterLinks: LinkProps[] = [
@@ -95,4 +98,12 @@ export const FooterLinks: LinkProps[] = [
     path: "/blog",
     isActive: true
   }
+];
+
+export const colors = [
+  "linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)", // Blue
+  "linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)", // Sky
+  "linear-gradient(135deg, #818cf8 0%, #6366f1 100%)", // Indigo
+  "linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%)", // Teal
+  "linear-gradient(135deg, #34d399 0%, #10b981 100%)" // Emerald
 ];
