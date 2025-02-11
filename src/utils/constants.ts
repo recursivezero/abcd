@@ -73,10 +73,13 @@ export const NavbarLinks: LinkProps[] = [
     path: "/feedback",
     isActive: true
   },
-  { name: "crossword",
-    title: "Crossword",
-    path: "/crossword", 
-    isActive: true }
+  { name: "crossword", title: "Crossword", path: "/crossword", isActive: true },
+  {
+    name: "Societree",
+    title: "Societree",
+    path: "/societree",
+    isActive: true
+  }
 ];
 
 export const FooterLinks: LinkProps[] = [
