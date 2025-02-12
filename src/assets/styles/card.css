@@ -1,7 +1,6 @@
 .container__family {
   background: var(--background);
   min-height: 100vh;
-  padding: 2rem 0;
 
   & .card-container {
     position: relative;
@@ -18,7 +17,6 @@
     border: 1px solid var(--border);
     border-radius: 1rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,6 +48,8 @@
   & .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 32px rgba(67, 83, 52, 0.15);
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    transition: all 0.3s ease;
   }
 
   & .card-header {
@@ -94,7 +94,7 @@
     border-radius: 20px;
     margin: 20px auto;
     max-width: 90%;
-    background: color-mix(in srgb, var(--background) 20%, transparent);
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
     overflow: visible;
     padding-bottom: 20px;
     margin-bottom: 1em;
@@ -228,7 +228,7 @@
 
   & .search-container {
     width: 100%;
-    padding: 2em 1em;
+    padding: 1em 1em;
     margin-bottom: 1em;
     display: flex;
     justify-content: center;
