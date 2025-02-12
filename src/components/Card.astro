@@ -83,9 +83,6 @@ import "@/assets/styles/card.css";
           .map(
             (surname: { hi: string; en: string }) => `
                     <div class="surname-card">
-                        <p><strong title="Gotra">🧬 :</strong> ${highlightText(gotra, query)}</p>
-                        <p><strong title="Deity">🕉 :</strong> ${highlightText(deity, query)}</p>
-                        <p><strong title="Caste">🌿 :</strong> ${highlightText(branchName, query)}</p>
                         <p><strong title="Surname">🌳:</strong> ${highlightText(surname.hi, query)}</p>
                         <button class="copy-button" data-gotra="${gotra}" data-surname="${
                           surname.en
@@ -105,17 +102,17 @@ import "@/assets/styles/card.css";
         return `
           <div class="card-header">
             <div class="info-group">
-              <span class="label">🧬 Gotra</span>
-              <span class="value">${highlightText(branch.Gotra, query)}</span>
+              <span class="icon">🧬</span>
+              <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Gotra, query)}</span>
             </div>
 
             <div class="info-group">
-              <span class="label">🕉 Deity</span>
-              <span class="value">${highlightText(branch.Deity, query)}</span>
+              <span class="icon">🕉</span>
+              <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Deity, query)}</span>
             </div>
             <div class="info-group">
-              <span class="label">🌿 Caste</span>
-              <span class="value">${highlightText(branch.Caste, query)}</span>
+              <span class="icon">🌿</span>
+              <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Caste, query)}</span>
             </div>
           </div>
           <div class="card-body">
@@ -286,11 +283,6 @@ import "@/assets/styles/card.css";
     padding: 1rem;
     background: color-mix(in srgb, var(--primary) 5%, transparent);
     border-radius: 0.75rem;
-  }
-
-  .label {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
   }
 
   .value {
