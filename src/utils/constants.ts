@@ -51,8 +51,8 @@ export const NavbarLinks: LinkProps[] = [
   },
   {
     name: "Societree",
-    title: "Societree",
-    path: "/societree",
+    title: "Clan",
+    path: "/clan",
     isActive: true
   }
 ];
