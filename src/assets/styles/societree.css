@@ -1,31 +1,13 @@
 .container__family {
   & .hero {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background: var(--primary);
     color: var(--background);
     text-align: center;
-    color:white;
-    padding: 4rem 2rem 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  & .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-        color-mix(in srgb, var(--primary) 100%, transparent) 0%,
-        color-mix(in srgb, var(--accent) 100%, transparent) 100%);
-    opacity: 0.8;
-    z-index: 0;
-  }
-
-  & .hero>* {
-    position: relative;
-    z-index: 1;
+    color: white;
+    padding: 2rem 1rem 1rem;
   }
 
   & .theme-glass {
