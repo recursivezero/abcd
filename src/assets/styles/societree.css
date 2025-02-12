@@ -3,6 +3,7 @@
     background: var(--primary);
     color: var(--background);
     text-align: center;
+    color:white;
     padding: 4rem 2rem 2rem;
     position: relative;
     overflow: hidden;
