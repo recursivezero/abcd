@@ -59,8 +59,8 @@ import BaseLayout from "@/layouts/Base";
 
     #emitEvent() {
       document.addEventListener("keyup", (e: KeyboardEvent) => {
-        const { charCode, code, keyCode, key } = e;
-        console.log({ charCode, code, keyCode, key });
+        const { code, keyCode, key } = e;
+        console.log({ code, keyCode, key });
         this.onKeyChange(keyCode);
       });
     }

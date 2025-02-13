@@ -1,10 +1,10 @@
 ---
 import "@/assets/styles/page.css";
+import BlogCard from "@/components/BlogCard.astro";
 import BaseLayout from "@/layouts/Base";
 import TitleLayout from "@/layouts/TitleLayout";
 import { blogPostSchema, type BlogPost } from "@/types/blog";
 import { getCollection } from "astro:content";
-import BlogCard from "./BlogCard.astro";
 
 const blogs = await getCollection("blogs");
 

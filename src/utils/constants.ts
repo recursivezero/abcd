@@ -28,8 +28,8 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "IndiaMap",
-    title: "IndiaMap",
+    name: "India",
+    title: "India Map",
     path: "/map",
     isActive: true
   },
@@ -38,12 +38,24 @@ export const NavbarLinks: LinkProps[] = [
     title: "Clan",
     path: "/clan",
     isActive: true
+  },
+  {
+    name: "Letter",
+    title: "Letter Pad",
+    path: "/letter",
+    isActive: true
+  },
+  {
+    name: "Feedback",
+    title: "Feedback Form",
+    path: "/feedback",
+    isActive: true
   }
 ];
 
 export const FooterLinks: LinkProps[] = [
   {
-    title: "privacy Policy",
+    title: "Privacy Policy",
     path: "/privacy",
     isActive: true
   },
