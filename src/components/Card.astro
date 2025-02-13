@@ -66,7 +66,7 @@ import "@/assets/styles/card.css";
             }
             const highlightedValue = highlightText(value, query);
             return `
-                            <p title="${key}">${icon} : <span>${highlightedValue}</span></p>
+                            <p title="${key}"><span data-name="${key}" class="icon">${icon}</span> : <span>${highlightedValue}</span></p>
                         `;
           })
           .join("");
@@ -83,7 +83,7 @@ import "@/assets/styles/card.css";
           .map(
             (surname: { hi: string; en: string }) => `
                     <div class="surname-card">
-                        <p><strong title="Surname">🌳:</strong> ${highlightText(surname.hi, query)}</p>
+                        <p><strong class="icon" data-name="Surname">🌳:</strong> ${highlightText(surname.hi, query)}</p>
                     </div>
                 `
           )
@@ -104,16 +104,16 @@ import "@/assets/styles/card.css";
           </div>
           <div class="card-info">
             <div class="info-group">
-              <span class="icon">🧬</span>
+              <span data-name="Gotra" class="icon">🧬</span>
               <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Gotra, query)}</span>
             </div>
 
             <div class="info-group">
-              <span class="icon">🕉</span>
+              <span data-name="Deity" class="icon">🕉</span>
               <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Deity, query)}</span>
             </div>
             <div class="info-group">
-              <span class="icon">🌿</span>
+              <span data-name="Caste" class="icon">🌿</span>
               <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Caste, query)}</span>
             </div>
           </div>
