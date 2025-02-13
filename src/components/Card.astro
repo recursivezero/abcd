@@ -96,6 +96,7 @@ import "@/assets/styles/card.css";
               <span data-name="Deity" class="icon">🕉</span>
               <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Deity.hi, query)}</span>
             </div>
+
             <div class="info-group">
               <span data-name="Caste" class="icon">🌿</span>
               <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Caste.hi, query)}</span>
@@ -169,7 +170,6 @@ import "@/assets/styles/card.css";
 
   document.addEventListener("DOMContentLoaded", () => {
     const cardContainer = document.getElementById("card-container") as HTMLElement;
-    
 
     function copyToClipboard(text: string, button: EventTarget | null) {
       navigator.clipboard
