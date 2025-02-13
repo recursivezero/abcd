@@ -1,0 +1,139 @@
+---
+import "@/assets/styles/reader.css";
+import Help from "@/components/Help.astro";
+import BaseLayout from "@/layouts/Base";
+---
+
+<BaseLayout meta={{ title: "Reader" }}>
+  <Fragment slot="header-right">
+    <div class="action">
+      <button type="button" title="click audio" id="mute" class="mute-button mute-button-audio"></button>
+    </div>
+    <div class="speaker" id="speaker">
+      <span data-name="mudra">Mudra</span>
+      <span data-name="rutvi">Rutvi</span>
+    </div>
+
+    <Help
+      title="Reader"
+      description="Press any letter key (A-Z) to display it with a related emoji. Toggle the speaker buttons to change voices, and use the audio button to mute/unmute sounds."
+    />
+  </Fragment>
+  <article id="container__reader">
+    <span class="letter" id="letter">a</span>
+    <span class="emoji" id="emoji" role="img" aria-label="apple"> 🍎 </span>
+  </article>
+  <section class="section--audio hide">
+    <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
+  </section>
+  <script>
+    import { emojiList, isAlphabet, isNumber, random } from "@/utils/utils.js";
+
+    const mainBlock = document.querySelector("#container__reader") as HTMLElement;
+    const muteButton = document.querySelector("#mute") as HTMLButtonElement;
+    const audioPlayer = document.querySelector("#audioPlayer") as HTMLAudioElement;
+    const speaker = document.querySelector("#speaker") as HTMLElement;
+
+    let speakerName: string | null | undefined = null;
+
+    // Set default speaker
+    window.addEventListener("load", () => {
+      const defaultSpeaker = speaker.querySelector("span") as HTMLElement;
+      defaultSpeaker.classList.add("active");
+      speakerName = defaultSpeaker.dataset.name;
+    });
+
+    speaker.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      speakerName = target.dataset.name;
+      if (target.parentNode) {
+        Array.from(target.parentNode.children).forEach((c) => {
+          const element = c as HTMLElement;
+          if (element.dataset.name === speakerName) {
+            element.classList.toggle("active");
+          } else {
+            element.classList.remove("active");
+          }
+        });
+      }
+    });
+
+    let isMuted = false;
+
+    //const folderLocation = './media/';
+
+    muteButton.addEventListener("click", (e: MouseEvent) => {
+      isMuted = !isMuted;
+      audioPlayer.muted = isMuted;
+      const target = e.target as HTMLButtonElement;
+      target.classList.toggle("mute");
+    });
+
+    const getEmoji = (letter: string) => {
+      const { [letter.toUpperCase()]: list = [] } = emojiList as { [key: string]: number[] };
+      if (list.length) {
+        const codePoint = random(list);
+        return String.fromCodePoint(codePoint);
+      }
+    };
+
+    const attachAudio = (key: string, isNumber = false) => {
+      if (!speakerName) return; // Don't play audio if no speaker selected
+
+      let keyName;
+      let location = "/assets/media/";
+      if (isNumber) {
+        keyName = key.replace("Digit", "");
+        location += "numbers";
+      } else {
+        keyName = key.replace("Key", "").toLowerCase();
+        location += "alphabets";
+      }
+      const source = `${location}/${speakerName}/${keyName}.ogg`;
+      audioPlayer.src = source;
+      audioPlayer.load();
+      // alternative approach which seems better without adding anything to HTML
+      // const audio = new Audio();
+      // audio.src = source;
+      // audio.play();
+      // when the sound has been loaded, execute your code
+      audioPlayer.oncanplaythrough = async () => {
+        try {
+          await audioPlayer.play();
+        } catch (e: unknown) {
+          if (e instanceof Error && (e.name === "NotAllowedError" || e.name === "NotSupportedError")) {
+            console.error(e.name);
+          }
+        }
+      };
+    };
+
+    const isNonPrintingKey = (e: KeyboardEvent) => {
+      const { altKey, ctrlKey, metaKey, shiftKey } = e;
+      return metaKey || ctrlKey || shiftKey || altKey;
+    };
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+        const { key, keyCode, which, code } = e;
+        if (!isNonPrintingKey(e)) {
+          if (isAlphabet(which)) {
+            const emoji = getEmoji(key);
+            mainBlock.innerHTML = key + emoji;
+            muteButton && attachAudio(code);
+          } else if (isNumber(keyCode)) {
+            mainBlock.innerHTML = key;
+            muteButton && attachAudio(code, true);
+          } else {
+            const x = String.fromCodePoint(112080);
+            mainBlock.innerHTML = x;
+          }
+        } else {
+          console.log("Printing Key");
+        }
+      },
+      false
+    );
+  </script>
+</BaseLayout>
