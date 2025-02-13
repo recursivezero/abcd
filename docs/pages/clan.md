@@ -9,7 +9,7 @@ This page allows users to explore their heritage and family connections through 
 
 ## Overview
 
-The Clan Explorer page is designed to provide users with an intuitive way to navigate and search through family data. The highlighted icons help users quickly identify each attribute, while the responsive design ensures a seamless experience.    
+The Clan Explorer page is designed to provide users with an intuitive way to navigate and search through family data. The highlighted icons help users quickly identify each attribute, while the responsive design ensures a seamless experience.
 
 ## Features
 
