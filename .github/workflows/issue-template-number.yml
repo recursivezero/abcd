@@ -5,7 +5,7 @@ on:
     types: [opened]
 permissions:
   issues: write
-  
+
 jobs:
   update_issue_title:
     runs-on: ubuntu-latest

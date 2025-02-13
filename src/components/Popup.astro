@@ -11,7 +11,6 @@
 </div>
 
 <script>
-
   const popup = document.querySelector(".state-popup") as HTMLElement;
   const popupStateName = document.querySelector(".state-popup__name") as HTMLElement;
   const popupStateInfo = document.querySelector(".state-popup__info") as HTMLElement;
@@ -45,37 +44,35 @@
     const clickX = event.pageX;
     const clickY = event.pageY;
 
-    let left = clickX - (popupWidth / 2);
-    let top = clickY - (popupHeight / 2);
+    let left = clickX - popupWidth / 2;
+    let top = clickY - popupHeight / 2;
 
     if (left + popupWidth > viewportWidth + scrollX - 20) {
-        left = viewportWidth + scrollX - popupWidth - 20;
+      left = viewportWidth + scrollX - popupWidth - 20;
     }
     if (left < scrollX + 20) {
-        left = scrollX + 20;
+      left = scrollX + 20;
     }
 
     if (top + popupHeight > viewportHeight + scrollY - 20) {
-        top = clickY - popupHeight - 20;
+      top = clickY - popupHeight - 20;
     }
     if (top < scrollY + 20) {
-        top = scrollY + 20;
+      top = scrollY + 20;
     }
 
     popup.style.left = `${left}px`;
     popup.style.top = `${top}px`;
-    
 
     requestAnimationFrame(() => {
-        popup.style.opacity = "1";
+      popup.style.opacity = "1";
     });
-}
+  }
 
-
-document.addEventListener("showStatePopup", ((e: CustomEvent) => {
+  document.addEventListener("showStatePopup", ((e: CustomEvent) => {
     const { event, stateInfo } = e.detail;
     showPopup(event, stateInfo);
-}) as EventListener);
+  }) as EventListener);
 
   closePopup?.addEventListener("click", () => {
     popup.style.display = "none";
