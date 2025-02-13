@@ -1,3 +1,16 @@
+:root {
+  --highlight-bg: #ffb6c1;
+  --highlight-text: #000;
+  --accent: #f0a93b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --highlight-bg: #db7093;
+    --highlight-text: #fff;
+  }
+}
+
 .container__family {
   background: var(--background);
   min-height: 100vh;
@@ -74,6 +87,7 @@
     flex-direction: column;
     text-align: center;
     gap: 15px;
+    padding: 1rem;
   }
 
   & .open .card-info {
@@ -108,9 +122,17 @@
   }
 
   & .back {
-    background: var(--primary);
+    background: #F0A93B url("/icons/arrow.svg") center/60% no-repeat;
+    filter: invert(1);
+    transform: rotate(-135deg);
+    width: 2.2rem;
+    height: 2.2rem;
     padding: 0.25rem 0.75rem;
     border-radius: 8px;
+  }
+
+  & .card.open::before {
+    display: none;
   }
 
   & .card.open {
@@ -124,11 +146,14 @@
     overflow: visible;
     padding-bottom: 20px;
     margin-bottom: 1em;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border: var(--primary) 4px solid;
+    border-top: 2px solid #f0e68c;
   }
 
   & .card.open .card-body {
     display: block;
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    border-radius: 20px;
     animation: fadeIn 0.3s ease-in;
   }
 
@@ -152,6 +177,7 @@
   & .surname-heading {
     text-align: center;
     margin-bottom: 20px;
+    color: var(--accent);
   }
 
   & .surname-container {
@@ -236,7 +262,7 @@
     padding: 1em 1em;
     margin-bottom: 1em;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     background: var(--primary);
     color: var(--background);
     backdrop-filter: blur(10px);
@@ -274,6 +300,14 @@
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  & .highlight {
+    background: var(--highlight-bg);
+    color: var(--highlight-text);
+    padding: 0.25em 0.75em;
+    border-radius: 0.5em;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -343,7 +377,7 @@
       margin: 1em;
     }
 
-    & .surname-card > p {
+    & .surname-card>p {
       text-align: left;
     }
 
