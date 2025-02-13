@@ -53,23 +53,40 @@
   }
 
   & .card-header {
+    display: none;
+    width: 100%;
+  }
+
+  & .open .card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  & .card-info {
     width: 100%;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     flex-direction: column;
     text-align: center;
     gap: 15px;
   }
 
+  & .open .card-info {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
 
-  & .card-header h2 {
+  & .card-info h2 {
     margin: 0 0 5px;
     font-size: 1.2em;
     word-wrap: break-word;
     color: var(--text);
   }
 
-  & .card-header p {
+  & .card-info p {
     display: flex;
     align-items: center;
     gap: 0.8rem;
@@ -85,6 +102,12 @@
     display: none;
     padding-top: 20px;
     color: var(--text);
+  }
+
+  & .back {
+    background: var(--primary);
+    padding: 0.25rem .75rem;
+    border-radius: 8px;
   }
 
   & .card.open {
@@ -165,9 +188,6 @@
   }
 
   & .copy-button {
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
     width: 2.2rem;
     height: 2.2rem;
     background: var(--primary) url('/icons/copy-icon.svg') center/60% no-repeat;
@@ -184,6 +204,7 @@
 
   & .copy-button:hover {
     background: url('/icons/copy-icon.svg') center/60% no-repeat;
+    border-radius: 50%;
   }
 
   & .copied-tooltip {
@@ -205,25 +226,6 @@
 
   & .card p span {
     font-weight: 500;
-  }
-
-  & .card .copy-button-all {
-    display: none;
-  }
-
-  & .open .copy-button-all {
-    display: block;
-    margin-top: 2em;
-    padding: 1em 1em;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    background: var(--primary);
-    color: var(--background);
-  }
-
-  & .open .copy-button-all:hover {
-    background: var(--accent);
   }
 
   & .search-container {
