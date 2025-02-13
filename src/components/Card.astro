@@ -13,7 +13,6 @@ import "@/assets/styles/card.css";
     />
   </div>
 </div>
-<button id="back">Back</button>
 <div class="card-container" id="card-container"></div>
 
 <script>
@@ -85,10 +84,6 @@ import "@/assets/styles/card.css";
             (surname: { hi: string; en: string }) => `
                     <div class="surname-card">
                         <p><strong title="Surname">🌳:</strong> ${highlightText(surname.hi, query)}</p>
-                        <button class="copy-button" data-gotra="${gotra}" data-surname="${
-                          surname.en
-                        }" data-deity="${deity}" data-branch="${branchName}">
-                        </button>
                     </div>
                 `
           )
@@ -102,10 +97,17 @@ import "@/assets/styles/card.css";
 
         return `
           <div class="card-header">
+            <button class="back">Back</button>
+            <button class="copy-button">
+              <span class="icon"></span>
+            </button>
+          </div>
+          <div class="card-info">
             <div class="info-group">
               <span class="icon">🧬</span>
               <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Gotra, query)}</span>
             </div>
+
             <div class="info-group">
               <span class="icon">🕉</span>
               <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Deity, query)}</span>
@@ -115,14 +117,12 @@ import "@/assets/styles/card.css";
               <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Caste, query)}</span>
             </div>
           </div>
+                      
           <div class="card-body">
             <h3>Surnames <span class="count">(${surnamesCount})</span></h3>
             <div class="surname-container">
               ${surnamesHTML}
             </div>
-            <button class="copy-button-all">
-              <span class="icon">📋</span> Copy All Details
-            </button>
           </div>`;
       }
 
@@ -141,7 +141,7 @@ import "@/assets/styles/card.css";
 
           card.addEventListener("click", (event) => {
             const target = event.target as HTMLElement;
-            if (!target.classList.contains("copy-button") && !target.classList.contains("copy-button-all")) {
+            if (!target.classList.contains("copy-button")) {
               card.classList.toggle("open");
             }
           });
@@ -186,7 +186,6 @@ import "@/assets/styles/card.css";
 
   document.addEventListener("DOMContentLoaded", () => {
     const cardContainer = document.getElementById("card-container") as HTMLElement;
-    
 
     function copyToClipboard(text: string, button: EventTarget | null) {
       navigator.clipboard
@@ -210,18 +209,8 @@ import "@/assets/styles/card.css";
 
     cardContainer.addEventListener("click", (event) => {
       const target = event.target as HTMLElement;
-      if (target && target.classList.contains("copy-button")) {
-        const button = event.target as HTMLButtonElement;
-        const gotra = button.dataset.gotra;
-        const surname = button.dataset.surname;
-        const deity = button.dataset.deity;
-        const branch = button.dataset.branch;
 
-        const textToCopy = `Gotra: ${gotra}\nSurname: ${surname}\nDeity: ${deity}\nCaste: ${branch}`;
-        copyToClipboard(textToCopy, button);
-      }
-
-      if (target.classList.contains("copy-button-all")) {
+      if (target.classList.contains("copy-button")) {
         const button = event.target as HTMLButtonElement;
         const card = button.closest(".card") as HTMLElement;
 
@@ -231,83 +220,20 @@ import "@/assets/styles/card.css";
 
         const surnameCards = card.querySelectorAll(".surname-card");
         const surnames = Array.from(surnameCards).map((surnameCard) => {
-          const element = surnameCard.querySelector("p:nth-child(4)") as HTMLElement;
+          const element = surnameCard.querySelector("p:nth-child(1)") as HTMLElement;
           return element.textContent?.replace("🌳:", "").trim() || "";
         });
 
-        const textToCopy = `Gotra: ${gotra}\nDeity: ${deity}\nCaste: ${caste}\nSurnames: ${surnames.join(", ")}`;
+        const jsonData = {
+          Gotra: gotra,
+          Deity: deity,
+          Caste: caste,
+          Surnames: surnames
+        };
+        const textToCopy = JSON.stringify(jsonData, null, 2);
 
         copyToClipboard(textToCopy, button);
       }
     });
   });
 </script>
-
-<style>
-  .surname-card {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-    gap: 8px;
-  }
-
-  .surname-card p {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    flex: 1;
-  }
-
-  .surname-card strong {
-    min-width: 20px;
-    display: inline-block;
-    text-align: center;
-  }
-
-  .highlight {
-    background-color: yellow;
-  }
-
-  .open {
-    grid-column: 1 / -1;
-  }
-
-  .card.open {
-    max-height: none;
-    transition: max-height 0.3s ease;
-  }
-
-  .info-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: color-mix(in srgb, var(--primary) 5%, transparent);
-    border-radius: 0.75rem;
-  }
-
-  .value {
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--text);
-  }
-
-  .count {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    font-weight: normal;
-  }
-
-  .copied-tooltip {
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.875rem;
-    top: -30px;
-    right: 0;
-    white-space: nowrap;
-    z-index: 10;
-  }
-</style>
