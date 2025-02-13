@@ -1,11 +1,5 @@
 ---
-// src/pages/kannada-hindi.astro
-import ThemeProvider from "@/components/ThemeProvider.astro";
 import BaseLayout from "@/layouts/Base";
-import Footer from "@/layouts/common/Footer";
-import Header from "@/layouts/common/Header";
-import Menu from "@/layouts/common/Menu";
-import { siteConfig } from "@/site-config";
 import KannadaHindiGrid from "@/components/kannadaHindi.astro";
 //import KannadaHindiGrid from "@/components/kannahind.astro";
 import Help from "@/components/Help.astro";
@@ -15,7 +9,13 @@ const description = "Interactive grid showing Kannada and Hindi alphabets with t
 ---
 
 <BaseLayout meta={{title}}>
+  
   <Fragment slot="header-right">
+    <button id="toggleButton" class="toggle-button">
+      <div class="toggle-slider"></div>
+      <span id="hindiLabel" class="language-label">ಕನ್ನಡ</span>
+      <span id="kannadaLabel" class="language-label active"> हिंदी</span>
+    </button>
     <Help
       title="Hide & Seek Game"
       description="Press any alphabet key from keyboard and that letter will appears and when you press again then it will disappears. See some hover and active effects while hovering over each card."

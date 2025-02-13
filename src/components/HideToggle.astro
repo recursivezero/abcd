@@ -3,27 +3,65 @@ import SeekAndHide from '@/components/SeeknHide.astro';
 import HideSeekGame from '@/components/HideSeekGame.astro';
 ---
 
+
 <style>
-  /* Simple styling for the toggle button */
+  /* Container to center everything on the page */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /*margin: 0rem auto;*/
+    /*max-width: 800px;*/
+    /*padding: 1rem;*/
+  }
+
+  /* Center the toggle button in its own container */
+  .toggle-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Upgraded toggle button style */
   #toggle-button {
-    margin: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    border: none;
+    border-radius: 0.5rem;
     cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  #toggle-button:hover {
+    transform: scale(1.05);
+  }
+
+  #toggle-button:active {
+    transform: scale(0.95);
   }
 </style>
 
-<!-- Toggle Button -->
-<button id="toggle-button">Show State Capitals</button>
+<div class="container">
+  <!-- Toggle Button Centered -->
+  <div class="toggle-container">
+    <button id="toggle-button">Show State Capitals</button>
+  </div>
 
-<!-- Hide &amp; Seek Game is visible by default -->
-<div id="component-game">
-  <HideSeekGame />
-</div>
+  <!-- Hide & Seek Game is visible by default -->
+  <div id="component-game">
+    <HideSeekGame />
+  </div>
 
-<!-- State Capital List is hidden by default -->
-<div id="component-state" style="display: none;">
-  <SeekAndHide />
+  <!-- State Capital List is hidden by default -->
+  <div id="component-state" style="display: none;">
+    <SeekAndHide />
+  </div>
 </div>
 
 <script is:inline>

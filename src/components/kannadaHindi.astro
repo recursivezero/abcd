@@ -30,19 +30,59 @@ const letterPairs: LetterPair[] = [
 ];
 
 let toggleOrder = false;
+
+const languages = [
+  { code: 'hi', name: 'हिंदी' },
+  { code: 'kn', name: 'ಕನ್ನಡ' },
+  { code: 'en', name: 'English' },
+];
+
+let selectedLanguage1 = 'hi';
+let selectedLanguage2 = 'kn';
+
+const updateUI = () => {
+  const languageLabels = document.querySelectorAll('.language-label');
+  languageLabels[0].textContent = languages.find(lang => lang.code === selectedLanguage1)?.name || '';
+  languageLabels[1].textContent = languages.find(lang => lang.code === selectedLanguage2)?.name || '';
+
+  document.querySelectorAll('.language-letter-card').forEach((card, index) => {
+    const pair = letterPairs[index];
+    const lang1Letter = selectedLanguage1 === 'hi' ? pair.hindi : pair.kannada;
+    const lang2Letter = selectedLanguage2 === 'hi' ? pair.hindi : pair.kannada;
+
+    card.querySelector('.language-letter-kannada').textContent = lang1Letter;
+    card.querySelector('.language-letter-hindi').textContent = lang2Letter;
+  });
+};
+
+const handleLanguageChange = (event, isFirstDropdown) => {
+  if (isFirstDropdown) {
+    selectedLanguage1 = event.target.value;
+  } else {
+    selectedLanguage2 = event.target.value;
+  }
+  updateUI();
+};
 ---
+
 
 <div class="language-letters-container">
   <div class="toggle-container">
-    <button id="toggleButton" class="toggle-button">
-      <div class="toggle-slider"></div>
-      <span id="hindiLabel" class="language-label">ಕನ್ನಡ</span>
-      <span id="kannadaLabel" class="language-label active"> हिंदी</span>
-    </button>
+    <select id="languageDropdown1" on:change={(e) => handleLanguageChange(e, true)}>
+      {languages.map(lang => (
+        <option value={lang.code} selected={lang.code === selectedLanguage1}>{lang.name}</option>
+      ))}
+    </select>
+    <select id="languageDropdown2" on:change={(e) => handleLanguageChange(e, false)}>
+      {languages.map(lang => (
+        <option value={lang.code} selected={lang.code === selectedLanguage2}>{lang.name}</option>
+      ))}
+    </select>
+   
   </div>
   
   <div class="language-letters-grid">
-    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS (स्वर्ण)</h2>
+    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS (स्वर)</h2>
     {letterPairs
       .filter((pair) => pair.type === 'vowel')
       .map((pair, index) => (
@@ -73,18 +113,46 @@ let toggleOrder = false;
   let isKannadaFirst = true;
 
   toggleButton.addEventListener('click', () => {
-    // Toggle the slider background by toggling the class
     toggleButton.classList.toggle('toggled');
-
-    // Toggle active label styling
     hindiLabel.classList.toggle('active');
     kannadaLabel.classList.toggle('active');
 
-    // Toggle the card layout order without triggering transitions on properties that can't animate.
     document.querySelectorAll('.language-letter-card').forEach((card) => {
       card.classList.toggle('reverse');
     });
 
     isKannadaFirst = !isKannadaFirst;
   });
+
+  updateUI();
 </script>
+<style>
+  .toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .toggle-container select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color:  #123085;
+    cursor: pointer;
+  }
+  
+  .toggle-container select:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  @media (max-width: 600px) {
+    .toggle-container {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  </style>

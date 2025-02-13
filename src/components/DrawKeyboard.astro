@@ -11,20 +11,7 @@ import { getRandomValue } from "../utils/index";
     </div>
     <!-- The caption div is removed; the heading now appears directly in the header -->
     <h1 class="info" aria-live="polite">Press any key</h1>
-    <div class="controls">
-      <label for="toggleCase" class="control-item">
-        <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden" />
-        <span id="text" class="control-button case-toggle" style="--content: 'A'" title="Toggle case" role="switch" aria-checked="false">A</span>
-      </label>
-      <label for="toggleFont" class="control-item">
-        <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden" />
-        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false">T</span>
-      </label>
-      <label for="toggleBg" class="control-item">
-        <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden" />
-        <span class="control-button bg-toggle" title="Toggle background" role="switch" aria-checked="false">🎨</span>
-      </label>
-    </div>
+   
   </header>
 
   <main class="main">
@@ -37,7 +24,7 @@ import { getRandomValue } from "../utils/index";
 <style>
   :root {
     --primary-bg: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 100%);
-    --header-bg: #f8fafc;
+    --header-bg: #f9fafb;
     --accent-color: #4338ca;
     --control-bg: rgba(255, 255, 255, 0.95);
     --text-color: #ffffff;
@@ -69,15 +56,16 @@ import { getRandomValue } from "../utils/index";
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 50%;
     padding: 1.5rem 2rem;
     gap: 1rem;
     position: relative;
-    background: var(--header-bg);
+    background: rgb(203, 202, 202);
     border: 1px solid var(--light-border);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: -50px;
   }
 
   .action {
