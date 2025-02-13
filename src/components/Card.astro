@@ -9,7 +9,7 @@ import "@/assets/styles/card.css";
       type="text"
       id="searchInput"
       class="search-bar theme-glass"
-      placeholder="Search by Gotra, Deity, Caste, or Surname..."
+      placeholder="Search by Gotra, Deity, Caste, or Surname... (in Hindi)"
     />
   </div>
 </div>
@@ -43,7 +43,7 @@ import "@/assets/styles/card.css";
       function highlightText(text: string, query: string) {
         if (!query) return text;
         const regex = new RegExp(`(${query.trim()})`, "gi");
-        return text.replace(regex, `<span style='background-color: yellow' class="highlight">$1</span>`);
+        return text.replace(regex, `<span class="highlight">$1</span>`);
       }
 
       function createKeyValuePairs(branch: Branch, query: string) {
@@ -97,7 +97,7 @@ import "@/assets/styles/card.css";
 
         return `
           <div class="card-header">
-            <button class="back">Back</button>
+            <button class="back"></button>
             <button class="copy-button">
               <span class="icon"></span>
             </button>
@@ -118,8 +118,8 @@ import "@/assets/styles/card.css";
             </div>
           </div>
                       
-          <div class="card-body">
-            <h3>Surnames <span class="count">(${surnamesCount})</span></h3>
+          <div class="card-body theme-glass">
+            <h3 class="surname-heading">Surnames <span class="count">(${surnamesCount})</span></h3>
             <div class="surname-container">
               ${surnamesHTML}
             </div>
