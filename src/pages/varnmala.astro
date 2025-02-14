@@ -8,6 +8,10 @@ import { varnmala_english, varnmala_hindi } from "@/utils/common";
 
 <BaseLayout meta={{ title: "Alphabets" }}>
   <Fragment slot="header-right">
+    <nav class="tabs">
+      <button class="tab active" data-target="english">English</button>
+      <button class="tab" data-target="hindi">Hindi</button>
+    </nav>
     <Help
       title="Varnmala"
       description="Varnmala is a collection of alphabets in Hindi and English. It is used to teach kids the basics of language."
@@ -15,10 +19,7 @@ import { varnmala_english, varnmala_hindi } from "@/utils/common";
   </Fragment>
 
   <article class="container__varnmala">
-    <nav class="tabs">
-      <button class="tab active" data-target="english">English</button>
-      <button class="tab" data-target="hindi">Hindi</button>
-    </nav>
+   
     <div id="english">
       <Alphabet list={varnmala_english} title="English" />
     </div>
