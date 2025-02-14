@@ -165,6 +165,17 @@ import "@/assets/styles/common.css";
           cell.style.transform = transformString;
         });
         this.rotatePanel({ by: this.#orientation });
+        this.updateFrontCell(); // update front cell styling
+      }
+
+      updateFrontCell() {
+        const cells = this.#panel.querySelectorAll(".panel__cell") as NodeListOf<HTMLElement>;
+        if (!cells.length) return;
+        cells.forEach((cell) => cell.classList.remove("front"));
+        const count = cells.length;
+        const normalizedIndex = ((this.#selectedIndex % count) + count) % count;
+        const frontIndex = (count - normalizedIndex) % count;
+        cells[frontIndex].classList.add("front");
       }
 
       rotatePanel({ by = "X" }) {
