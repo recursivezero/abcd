@@ -49,9 +49,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Hindi",
-    title: "Hindi",
-    path: "/hindi",
+    name: "English",
+    title: "English",
+    path: "/english",
     icon: PlaceholderIcon,
     isActive: true
   },
@@ -73,12 +73,14 @@ export const NavbarLinks: LinkProps[] = [
     name: "Letter",
     title: "Letter Pad",
     path: "/letter",
+    icon: PlaceholderIcon,
     isActive: true
   },
   {
     name: "Feedback",
     title: "Feedback Form",
     path: "/feedback",
+    icon: PlaceholderIcon,
     isActive: true
   }
 ];
