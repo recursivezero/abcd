@@ -37,13 +37,19 @@
   }
 
   [popover] .nav--list__item {
-    & a {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
-    }
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  [popover] .nav--list__item a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
   }
 
   [popover] .nav--list__item.active {
@@ -94,7 +100,6 @@
 
     & a {
       justify-content: center;
-      padding: 0.5rem;
     }
 
     & .text {
@@ -126,13 +131,6 @@
 
   main {
     border: 2px solid #0000;
-  }
-
-  [popover] .nav--list__item {
-    display: flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    transition: all 0.2s ease;
   }
 
   [popover] ul {
@@ -266,8 +264,9 @@
 
     .actions {
       justify-content: flex-end;
-      position: absolute;
+      position: sticky;
       bottom: 0;
+      z-index: 1;
       right: 0;
       left: 0;
       translate: 0 calc(clamp(0, var(--ty), var(--distance) - 88) * -1px);
@@ -443,6 +442,9 @@
     padding: 1rem;
     border-top: 1px solid var(--border);
     margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
 
     button {
       width: 44px;
@@ -489,5 +491,12 @@
 
   [data-debug="false"] .debug-toggle g:first-of-type {
     display: block;
+  }
+
+  [popover] nav {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    padding-bottom: 1rem;
   }
 }
