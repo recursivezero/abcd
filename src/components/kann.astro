@@ -1,0 +1,137 @@
+---
+// Import necessary components or utilities
+//import Card from '@/components/ui/card.astro';
+
+// Letter generation helpers
+const generateLetters = (startCode, length, extraCodes = []) =>
+  Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i))
+    .filter((_, i) => !extraCodes.includes(startCode + i));
+
+// Hindi letters
+const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
+const hindiConsonants = generateLetters(2325, 37);
+
+// Kannada letters
+const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
+const kannadaConsonants = generateLetters(3221, 37);
+
+// English letters
+const englishVowels = ['A', 'E', 'I', 'O', 'U'];
+const englishConsonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'];
+
+const languages = [
+  { code: 'hi', name: 'हिंदी' },
+  { code: 'kn', name: 'ಕನ್ನಡ' },
+  { code: 'en', name: 'English' }
+];
+
+let selectedLanguage1 = 'hi';
+let selectedLanguage2 = 'kn';
+let isReversed = false;
+
+const getLetter = (lang, type, index) => {
+  if (lang === 'en') {
+    return type === 'vowel' ? englishVowels[index] || '' : englishConsonants[index] || '';
+  }
+  if (lang === 'hi') {
+    return type === 'vowel' ? hindiVowels[index] || '' : hindiConsonants[index] || '';
+  }
+  if (lang === 'kn') {
+    return type === 'vowel' ? kannadaVowels[index] || '' : kannadaConsonants[index] || '';
+  }
+  return '';
+};
+
+const getMaxLength = (type) => {
+  const lengths = {
+    vowel: [
+      selectedLanguage1 === 'en' ? englishVowels.length : (selectedLanguage1 === 'hi' ? hindiVowels.length : kannadaVowels.length),
+      selectedLanguage2 === 'en' ? englishVowels.length : (selectedLanguage2 === 'hi' ? hindiVowels.length : kannadaVowels.length)
+    ],
+    consonant: [
+      selectedLanguage1 === 'en' ? englishConsonants.length : (selectedLanguage1 === 'hi' ? hindiConsonants.length : kannadaConsonants.length),
+      selectedLanguage2 === 'en' ? englishConsonants.length : (selectedLanguage2 === 'hi' ? hindiConsonants.length : kannadaConsonants.length)
+    ]
+  };
+  return Math.max(...lengths[type]);
+};
+---
+
+<div class="w-full max-w-6xl mx-auto p-4">
+  <div class="flex justify-center gap-8 mb-8 flex-wrap">
+    <div class="min-w-[240px]">
+      <label class="block mb-2 text-lg font-semibold text-teal-400">Language 1</label>
+      <select 
+        value={selectedLanguage1}
+        onchange={(e) => selectedLanguage1 = e.target.value}
+        class="w-full p-3 rounded-lg bg-blue-700 text-white border-2 border-sky-300/30"
+      >
+        {languages.map(lang => (
+          <option key={lang.code} value={lang.code}>
+            {lang.name} ({lang.code.toUpperCase()})
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <div class="min-w-[240px]">
+      <label class="block mb-2 text-lg font-semibold text-teal-400">Language 2</label>
+      <select 
+        value={selectedLanguage2}
+        onchange={(e) => selectedLanguage2 = e.target.value}
+        class="w-full p-3 rounded-lg bg-blue-700 text-white border-2 border-sky-300/30"
+      >
+        {languages.map(lang => (
+          <option key={lang.code} value={lang.code}>
+            {lang.name} ({lang.code.toUpperCase()})
+          </option>
+        ))}
+      </select>
+    </div>
+  </div>
+
+  <button 
+    onclick={() => isReversed = !isReversed}
+    class="mb-8 px-6 py-3 bg-blue-600 text-white rounded-lg flex items-center gap-4 mx-auto hover:bg-blue-700 transition-colors"
+  >
+    <span class={`text-lg ${isReversed ? 'opacity-50' : 'font-bold'}`}>
+      {languages.find(l => l.code === selectedLanguage1)?.name}
+    </span>
+    ↔️
+    <span class={`text-lg ${!isReversed ? 'opacity-50' : 'font-bold'}`}>
+      {languages.find(l => l.code === selectedLanguage2)?.name}
+    </span>
+  </button>
+
+  <d class="p-6">
+    <h2 class="text-2xl font-bold mb-6 text-center">VOWELS (स्वर)</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
+      {Array.from({ length: getMaxLength('vowel') }).map((_, index) => (
+        <div 
+          key={`vowel-${index}`}
+          class="bg-slate-800 rounded-lg p-4 flex items-center justify-center gap-2"
+          style={{ flexDirection: isReversed ? 'row-reverse' : 'row' }}
+        >
+          <span class="text-2xl">{getLetter(selectedLanguage1, 'vowel', index)}</span>
+          <span class="text-slate-400">•</span>
+          <span class="text-2xl">{getLetter(selectedLanguage2, 'vowel', index)}</span>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="text-2xl font-bold mb-6 text-center">CONSONANTS (व्यंजन)</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      {Array.from({ length: getMaxLength('consonant') }).map((_, index) => (
+        <div 
+          key={`consonant-${index}`}
+          class="bg-slate-800 rounded-lg p-4 flex items-center justify-center gap-2"
+          style={{ flexDirection: isReversed ? 'row-reverse' : 'row' }}
+        >
+          <span class="text-2xl">{getLetter(selectedLanguage1, 'consonant', index)}</span>
+          <span class="text-slate-400">•</span>
+          <span class="text-2xl">{getLetter(selectedLanguage2, 'consonant', index)}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

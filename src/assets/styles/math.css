@@ -175,7 +175,7 @@
   height: 250px; /* Increased height */
   font-size: 10rem; /* Increased font size */
 }
-
+/*
 @media (max-width: 768px) {
   .number {
     width: 250px;
@@ -209,5 +209,40 @@
     .operator {
       font-size: 4rem;
     }
+  }*/
+  @media (max-width: 768px) {
+    .number {
+      width: 160px;
+      height: 120px;
+      font-size: 3rem;
+    }
+    .operator {
+      font-size: 3rem;
+    }
+    .operator-btn {
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+    }
+    .header {
+      padding: 0.5rem;
+    }
+    .score {
+      font-size: 1.5rem;
+      padding: 0.3rem 0.8rem;
+    }
   }
+  
+  @keyframes popIn {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
 

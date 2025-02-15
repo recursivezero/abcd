@@ -60,12 +60,14 @@ import { getRandomValue } from "../utils/index";
     padding: 1.5rem 2rem;
     gap: 1rem;
     position: relative;
-    background: rgb(203, 202, 202);
+    background: rgb(224, 222, 222);
     border: 1px solid var(--light-border);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     margin-bottom: 0.5rem;
     margin-top: -50px;
+    border-color: #4338ca;
+    border-width: 4px;
   }
 
   .action {
@@ -74,11 +76,12 @@ import { getRandomValue } from "../utils/index";
 
   /* The caption div is removed so the heading appears directly in the header */
   .info {
-    margin-top: -20px;
-    font-size: 1.75rem;
-    color: black; /* Text is now black */
+    margin-top: -25px;
+    color: rgb(29, 25, 25); /* Text is now black */
     font-weight: 500;
     text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
   }
 
   .controls {
@@ -173,7 +176,7 @@ import { getRandomValue } from "../utils/index";
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(8rem, 30vw, 20rem);
+    font-size: clamp(10rem, 30vw, 20rem);
     font-weight: 900;
     color: white;
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
