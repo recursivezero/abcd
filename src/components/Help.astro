@@ -9,7 +9,7 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<div id="help" class="help">❓</div>
+<div id="help" class="help">?</div>
 <dialog id="info" class="help-dialog">
   <div class="dialog-header">
     <h2>{title}</h2>
@@ -34,8 +34,17 @@ const { title, description } = Astro.props;
 
 <style>
   .help {
-    padding: 1rem;
-    outline: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    color: var(--primary);
+    border-radius: 50%;
+    border: 1.5px solid var(--primary);
     cursor: pointer;
   }
 </style>
