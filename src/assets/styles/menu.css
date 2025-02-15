@@ -500,4 +500,16 @@
     flex: 1;
     padding-bottom: 1rem;
   }
+
+  [data-theme="system"] [popover] {
+    color: var(--secondary);
+  }
+
+  [data-theme="system"] [popover] .nav--list__item a {
+    color: var(--secondary);
+  }
+
+  [data-theme="system"] [popover] .nav--list__item:hover a {
+    color: var(--primary);
+  }
 }
