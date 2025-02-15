@@ -1,5 +1,4 @@
 import HomeIcon from "@/assets/icons/home.svg";
-import PlaceholderIcon from "@/assets/icons/placeholder.svg";
 import RecordIcon from "@/assets/icons/record.svg";
 import type { LinkProps } from "@/types";
 
@@ -17,28 +16,24 @@ export const NavbarLinks: LinkProps[] = [
     name: "About",
     title: "About",
     path: "/about",
-    icon: PlaceholderIcon,
     isActive: true
   },
   {
     name: "Varnmala",
     title: "Varnmala",
     path: "/varnmala",
-    icon: PlaceholderIcon,
     isActive: true
   },
   {
     name: "Panel",
     title: "Panel",
     path: "/panel",
-    icon: PlaceholderIcon,
     isActive: true
   },
   {
     name: "Reader",
     title: "Reader",
     path: "/reader",
-    icon: PlaceholderIcon,
     isActive: true
   },
   {
@@ -52,35 +47,30 @@ export const NavbarLinks: LinkProps[] = [
     name: "English",
     title: "English",
     path: "/english",
-    icon: PlaceholderIcon,
     isActive: true
   },
   {
     name: "Typing",
     title: "Typing",
     path: "/typing",
-    icon: PlaceholderIcon,
     isActive: true
   },
   {
     name: "India",
     title: "India Map",
     path: "/map",
-    icon: PlaceholderIcon,
     isActive: true
   },
   {
     name: "Letter",
     title: "Letter Pad",
     path: "/letter",
-    icon: PlaceholderIcon,
     isActive: true
   },
   {
     name: "Feedback",
     title: "Feedback Form",
     path: "/feedback",
-    icon: PlaceholderIcon,
     isActive: true
   }
 ];

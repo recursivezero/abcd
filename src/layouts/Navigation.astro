@@ -1,5 +1,4 @@
 ---
-//import Link from "@/components/Link.astro"; // TODO: use Link instead of native a
 import type { LinkProps } from "@/types";
 
 interface Props {
@@ -9,28 +8,80 @@ interface Props {
 const { pages } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+
+const getGradient = (text: string) => {
+  // Generate different colors based on text to ensure consistent but unique gradients
+  const hash = text.split("").reduce((acc, char) => char.charCodeAt(0) + acc, 0);
+  const hue1 = hash % 360;
+  const hue2 = (hue1 + 60) % 360;
+  return `
+    <linearGradient id="gradient-${text}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color: hsl(${hue1}, 70%, 60%)" />
+      <stop offset="100%" style="stop-color: hsl(${hue2}, 70%, 60%)" />
+    </linearGradient>
+  `;
+};
+
+const DefaultIcon = ({ text }: { text: string }) => {
+  const letter = text.charAt(0).toUpperCase();
+  return `
+    <svg width="100%" height="100%" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" stroke="url(#gradient-${text})" stroke-width="2" fill="none"></circle>
+      <text
+        x="12"
+        y="12"
+        text-anchor="middle"
+        dominant-baseline="central"
+        fill="url(#gradient-${text})"
+        font-size="11"
+        font-weight="600"
+        font-family="system-ui"
+      >${letter}</text>
+    </svg>
+  `;
+};
 ---
+
+<nav class="nav">
+  <svg width="0" height="0" style="position: absolute">
+    <defs>
+      {pages.map((p) => <Fragment set:html={getGradient(p.name ?? p.title)} />)}
+    </defs>
+  </svg>
+  <ul class="nav--list">
+    {
+      pages
+        .filter((p) => p.isActive)
+        .map((p) => {
+          const gradientUrl = `url(#gradient-${p.name ?? p.title})`;
+          return (
+            <li class={`nav--list__item ${currentPath === p.path ? "active" : ""}`}>
+              <a href={p.path}>
+                <span class="iconx">
+                  {p.icon ? (
+                    <span style={`--icon-gradient: ${gradientUrl}`}>
+                      <p.icon />
+                    </span>
+                  ) : (
+                    <Fragment set:html={DefaultIcon({ text: p.name ?? p.title })} />
+                  )}
+                </span>
+                <span class="text">{p.name}</span>
+              </a>
+            </li>
+          );
+        })
+    }
+  </ul>
+</nav>
 
 <style>
   .iconx {
     width: 32px;
     height: 32px;
   }
-</style>
 
-<nav class="nav">
-  <ul class="nav--list">
-    {
-      pages
-        .filter((p) => p.isActive)
-        .map((p) => (
-          <li class={`nav--list__item ${currentPath === p.path ? "active" : ""}`}>
-            <a href={p.path}>
-              <span class="iconx">{p.icon && <p.icon />}</span>
-              <span class="text">{p.name}</span>
-            </a>
-          </li>
-        ))
-    }
-  </ul>
-</nav>
+  .iconx :global(svg path) {
+    fill: var(--icon-gradient);
+  }
+</style>
