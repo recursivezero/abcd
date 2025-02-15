@@ -40,12 +40,6 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Feedback",
-    title: "Feedback Form",
-    path: "/feedback",
-    isActive: true
-  },
-  {
     name: "Capital",
     title: "Capital",
     path: "/capitals",
@@ -92,6 +86,11 @@ export const FooterLinks: LinkProps[] = [
   {
     title: "Terms and Condition",
     path: "/terms",
+    isActive: true
+  },
+  {
+    title: "Feedback Form",
+    path: "/feedback",
     isActive: true
   }
 ];

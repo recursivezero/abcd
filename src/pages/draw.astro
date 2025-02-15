@@ -10,15 +10,15 @@ import Help from "@/components/Help.astro";
   <Fragment slot="header-right">
     <div class="controls">
       <label for="toggleCase" class="control-item">
-        <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden" />
-        <span id="text" class="control-button case-toggle" style="--content: 'A'" title="Toggle case" role="switch" aria-checked="false">A</span>
+        <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
+        <span id="text" class="control-button case-toggle" style="--content: 'A'" title="Toggle case" role="switch" aria-checked="false">Aa</span>
       </label>
       <label for="toggleFont" class="control-item">
-        <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden" />
-        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false">T</span>
+        <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
+        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false">𝓐𝓪</span>
       </label>
       <label for="toggleBg" class="control-item">
-        <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden" />
+        <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
         <span class="control-button bg-toggle" title="Toggle background" role="switch" aria-checked="false">🎨</span>
       </label>
     </div>
@@ -32,7 +32,7 @@ import Help from "@/components/Help.astro";
 <style>
     .controls {
     position: absolute;
-    top: 1rem;
+    top: 0.7rem;
     right: 5rem;
     display: flex;
     gap: 1rem;
@@ -50,8 +50,8 @@ import Help from "@/components/Help.astro";
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     background: var(--control-bg);
     border-radius: 0.25rem;
     cursor: pointer;
@@ -83,53 +83,7 @@ import Help from "@/components/Help.astro";
     transform: scaleX(1);
   }
 
-  /*.control-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }*/
-
-  /*.main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: calc(100vh - 120px);
-    overflow: hidden;
-    transition: var(--transition);
-    margin-top: 1rem;
-  }*/
-/*
-  .board {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    padding: 2rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: var(--transition);
-    border: 2px solid var(--accent-color);
-    border-radius: 1rem;
-  }*/
-
-  /*.char {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: clamp(8rem, 30vw, 20rem);
-    font-weight: 900;
-    color: white;
-    text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    transition: var(--transition);
-    animation: charReveal 0.4s ease-out;
-    will-change: transform, opacity;
-  }*/
-
+  .hidden {
+    display: none;
+  }
 </style>

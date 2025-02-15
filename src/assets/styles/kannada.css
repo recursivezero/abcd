@@ -62,6 +62,7 @@
   left: 0;
   width: 50%;
   background:  #123085;
+  /*background:  #2dd4bf;*/
   border-radius: 0.75rem;
   transition: left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 0;

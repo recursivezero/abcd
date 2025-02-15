@@ -1,43 +1,85 @@
 ---
 import Layout from "@/layouts/Base";
-import ToggleComponents from '@/components/HideToggle.astro';
+import HideSeekGame from '@/components/HideSeekGame.astro';
+import SeekAndHide from '@/components/SeeknHide.astro';
 import Help from "@/components/Help.astro";
+
 const meta = {
-  title: "Toggle Game / State Capitals",
-  description: "Switch between a hide & seek letter game and a state/capital grid."
+  title: "Hide and Seek",
+  description: "Switch between a hide & seek letter game and a grid."
 };
 ---
 
-<!-----
-import Layout from "@/layouts/Base";
-import HideSeekGame from '@/components/HideSeekGame.astro';
-import Help from "@/components/Help.astro";
-
-
-const meta = {
-  title: "Hide and Seek Alphabet Game",
-  description: "Interactive alphabet hiding game"
-};
------>
-<!--
 <Layout meta={meta}>
   <Fragment slot="header-right">
+    <button id="toggle-button" class="toggle-button">
+      KeyBoard game
+    </button>
     <Help
-      title="Hide & Seek Game"
-      description="Press any alphabet key from keyboard and that letter will appears and when you press again then it will disappears. See some hover and active effects while hovering over each card."
-    />
+    title="Hide & Seek Game"
+    description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
+  />
   </Fragment>
-  <HideSeekGame />
-</Layout>-->
 
-
-
-<Layout meta={meta}>
-  <Fragment slot="header-right">
-    <Help
-      title="Hide & Seek Game"
-      description="Press any alphabet key from keyboard and that letter will appears and when you press again then it will disappears. See some hover and active effects while hovering over each card."
-    />
-  </Fragment>
-  <ToggleComponents />
+  <div class="container">
+    <div id="component-game">
+      <SeekAndHide />
+    </div>
+    <div id="component-state" style="display: none;">
+      <HideSeekGame />
+    </div>
+  </div>
 </Layout>
+
+<style>
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .toggle-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background:#123085;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 2rem;
+  }
+
+  .toggle-button:hover {
+    transform: scale(1.05);
+  }
+
+  .toggle-button:active {
+    transform: scale(0.95);
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("toggle-button");
+    const gameContainer = document.getElementById("component-game");
+    const stateContainer = document.getElementById("component-state");
+
+    toggleButton.addEventListener("click", () => {
+      if (gameContainer.style.display === "none") {
+        // Show the HideSeekGame and hide the SeekAndHide component
+        gameContainer.style.display = "block";
+        stateContainer.style.display = "none";
+        toggleButton.textContent = "Keyboard game";
+      } else {
+        // Hide the HideSeekGame and show the SeekAndHide component
+        gameContainer.style.display = "none";
+        stateContainer.style.display = "block";
+        toggleButton.textContent = "Grid game";
+      }
+    });
+  });
+</script>
