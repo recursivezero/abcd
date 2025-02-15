@@ -24,13 +24,14 @@ import { NavbarLinks } from "@/utils/constants";
     </button>
     <Navigation pages={NavbarLinks} />
     <div class="actions">
-      <button class="menu-button minimize-toggle" aria-label="Toggle menu size">
+      <button class="menu-button minimize-toggle" aria-label="Toggle menu size" title="Close sidebar">
         <ArrowIcon
           width={24}
           height={24}
           style={{
             transform: "rotate(-135deg)"
           }}
+          title="Toggle sidebar"
         />
       </button>
       <button class="menu-button theme-toggle">
@@ -106,8 +107,10 @@ import { NavbarLinks } from "@/utils/constants";
 
   const toggleMinimize = () => {
     const nav = document.querySelector("#nav");
+    const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLButtonElement;
     nav?.classList.toggle("minimized");
     minimizeBtn?.classList.toggle("rotated");
+    minimizeBtn.title = nav?.classList.contains("minimized") ? "Open sidebar" : "Close sidebar";
   };
 
   minimizeBtn?.addEventListener("click", toggleMinimize);

@@ -209,6 +209,7 @@
   }
 
   .menu-button:is(:active, :hover, :focus-visible) {
+    background: color-mix(in srgb, var(--primary) 30%, transparent) !important;
     --active: 1;
   }
 
