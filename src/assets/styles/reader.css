@@ -1,6 +1,6 @@
 :root {
-  --main__txt--2: #ff61d5;
-  --mute-button__bg--3: hsla(255, 100%, 50%, 0.281);
+  --main__txt: #ff61d5;
+  --mute-button__bg: hsla(255, 100%, 50%, 0.281);
 }
 
 #container__reader {
@@ -9,7 +9,7 @@
   place-items: center;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   place-content: center;
-  color: var(--main__txt--2);
+  color: var(--main__txt);
   height: 100vh;
   outline: none;
   text-transform: uppercase;
@@ -40,7 +40,7 @@
 .mute-button {
   font-size: 1.5;
   border: 1px solid #6767d3;
-  /*background-color: var(--mute-button__bg--3);*/
+  /*background-color: var(--mute-button__bg);*/
   cursor: pointer;
   width: min(3em, 15vw);
   height: min(3em, 15vw);
@@ -69,9 +69,15 @@
   cursor: pointer;
 }
 
-.speaker > span {
+.speaker>span {
   padding: 0.5rem;
-  border: 1px solid grey;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+
+.speaker span.active {
+  background-color: var(--primary);
+  color: white;
 }
 
 @media screen and (max-width: 768px) {
