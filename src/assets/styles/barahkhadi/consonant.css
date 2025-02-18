@@ -1,0 +1,66 @@
+.container__consonant {
+  height: 100%;
+  padding: 2rem;
+
+  & .consonant-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  & .back-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+
+  & .combinations-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+  }
+
+  & .combination-card {
+    background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
+    border-radius: 0.5rem;
+    padding: 2rem 1rem;
+    display: grid;
+    place-items: center;
+    gap: 0.5rem;
+  }
+
+  & .combination-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  & .combination-result {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  & .combinations-grid {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--background);
+  }
+
+  @container (min-width: 768px) {
+    .combination-result {
+      font-size: 4rem;
+    }
+  }
+
+  @container (max-width: 480px) {
+    .combinations-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

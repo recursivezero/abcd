@@ -1,0 +1,67 @@
+---
+import "@/assets/styles/barahkhadi/consonant.css";
+import BaseLayout from "@/layouts/Base";
+
+export function getStaticPaths() {
+  const consonants = [
+    "क",
+    "ख",
+    "ग",
+    "घ",
+    "ङ",
+    "च",
+    "छ",
+    "ज",
+    "झ",
+    "ञ",
+    "ट",
+    "ठ",
+    "ड",
+    "ढ",
+    "ण",
+    "त",
+    "थ",
+    "द",
+    "ध",
+    "न",
+    "प",
+    "फ",
+    "ब",
+    "भ",
+    "म",
+    "य",
+    "र",
+    "ल",
+    "व",
+    "श",
+    "ष",
+    "स",
+    "ह"
+  ];
+  return consonants.map((consonant) => ({ params: { consonant } }));
+}
+
+const { consonant } = Astro.params;
+
+const vowels = ["", "ा", "ि", "ी", "ु", "ू", "े", "ै", "ो", "ौ", "ं", "ः", "ृ"];
+
+const combinations = vowels.map((vovel) => consonant + vovel);
+---
+
+<BaseLayout meta={{ title: `Barahkhadi - ${consonant}` }}>
+  <div class="container__consonant">
+    <div class="consonant-header">
+      <a href="/barahkhadi" class="back-link">← Back</a>
+      <h1>{consonant}</h1>
+    </div>
+    <div class="combinations-grid">
+      {
+        combinations.map((result) => (
+          <div class="combination-card">
+            <span class="combination-result">{result}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
