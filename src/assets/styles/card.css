@@ -122,7 +122,7 @@
   }
 
   & .back {
-    background: #F0A93B url("/icons/arrow.svg") center/60% no-repeat;
+    background: #f0a93b url("/icons/arrow.svg") center/60% no-repeat;
     filter: invert(1);
     transform: rotate(-135deg);
     width: 2.2rem;
@@ -307,7 +307,9 @@
     color: var(--highlight-text);
     padding: 0.25em 0.75em;
     border-radius: 0.5em;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease;
   }
 }
 
@@ -377,7 +379,7 @@
       margin: 1em;
     }
 
-    & .surname-card>p {
+    & .surname-card > p {
       text-align: left;
     }
 

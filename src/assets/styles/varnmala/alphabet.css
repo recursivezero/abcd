@@ -30,8 +30,7 @@
   color: var(--background);
 }
 
-.container__alphabets {
-
+.container__varnmala {
   #english,
   & #hindi {
     scroll-margin-top: calc(var(--header-height) + 80px);
