@@ -89,5 +89,10 @@ export const FooterLinks: LinkProps[] = [
     title: "Terms and Condition",
     path: "/terms",
     isActive: true
+  },
+  {
+    title: "Blogs",
+    path: "/blog",
+    isActive: true
   }
 ];
