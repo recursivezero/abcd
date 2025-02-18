@@ -1,5 +1,5 @@
 ---
-import Survey from '@/components/surveyForm.astro';
+import SurveyForm from '@/components/surveyForm.astro';
 import surveyData from '../data/survey.json';
 import BaseLayout from "@/layouts/Base";
 ---
@@ -7,6 +7,5 @@ import BaseLayout from "@/layouts/Base";
 
 
 <BaseLayout meta={{ title: "Survey-Form" }}>
-  <Survey data={surveyData} />
-
+  <SurveyForm data={surveyData} />
 </BaseLayout>

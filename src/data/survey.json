@@ -71,7 +71,8 @@
     {
       "id": 9,
       "questionText": "Is there something specific you’d like to see in tools or resources for young children learning to write or speak?",
-      "type": "openEnded"
+      "type": "openEnded",
+      "options": null
     }
   ]
 }
