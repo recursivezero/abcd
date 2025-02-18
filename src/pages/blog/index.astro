@@ -1,8 +1,8 @@
 ---
+import "@/assets/styles/blogs/index.css";
 import "@/assets/styles/page.css";
 import BlogCard from "@/components/BlogCard.astro";
 import BaseLayout from "@/layouts/Base";
-import TitleLayout from "@/layouts/TitleLayout";
 import { blogPostSchema, type BlogPost } from "@/types/blog";
 import { getCollection } from "astro:content";
 
@@ -23,9 +23,19 @@ const blogPosts = blogs.map((entry) => {
 
 <BaseLayout meta={{ title: "Blogs" }}>
   <div class="container__blog">
-    <TitleLayout title="Blogs" />
-    <div class="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-      {blogPosts.map((post) => <BlogCard post={post} height="300px" />)}
+    <header class="mb-12 text-center">
+      <h1
+        class="mb-4 text-4xl font-bold md:text-6xl"
+        style="background: linear-gradient(90deg, var(--text), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+      >
+        Our Blog
+      </h1>
+      <p class="mx-auto max-w-2xl text-lg text-[var(--secondary)] md:text-xl">
+        Discover stories, thinking, and expertise from writers on any topic.
+      </p>
+    </header>
+    <div class="blog-grid">
+      {blogPosts.map((post) => <BlogCard post={post} height="240px" />)}
     </div>
   </div>
 </BaseLayout>
