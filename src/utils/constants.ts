@@ -1,3 +1,5 @@
+import HomeIcon from "@/assets/icons/home.svg";
+import RecordIcon from "@/assets/icons/record.svg";
 import type { LinkProps } from "@/types";
 
 export const APP_NAME = "Template";
@@ -7,6 +9,7 @@ export const NavbarLinks: LinkProps[] = [
     name: "Home",
     title: "Home",
     path: "/",
+    icon: HomeIcon,
     isActive: true
   },
   {
@@ -25,6 +28,31 @@ export const NavbarLinks: LinkProps[] = [
     name: "Panel",
     title: "Panel",
     path: "/panel",
+    isActive: true
+  },
+  {
+    name: "Reader",
+    title: "Reader",
+    path: "/reader",
+    isActive: true
+  },
+  {
+    name: "Record",
+    title: "Record",
+    path: "/record",
+    icon: RecordIcon,
+    isActive: true
+  },
+  {
+    name: "English",
+    title: "English",
+    path: "/english",
+    isActive: true
+  },
+  {
+    name: "Typing",
+    title: "Typing",
+    path: "/typing",
     isActive: true
   },
   {

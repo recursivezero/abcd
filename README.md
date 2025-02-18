@@ -32,7 +32,7 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── components.json
 ├── docs
 │   ├── README.md
-│   └── state-management.md
+│   └── pages.md        # Documentation for all pages and their functionality
 ├── jsconfig.json
 ├── LICENSE
 ├── package.json
