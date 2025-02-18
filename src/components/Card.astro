@@ -29,7 +29,7 @@ import "@/assets/styles/card.css";
     Surnames: Surname[];
   }
 
-  fetch("/assets/societree/main.json")
+  fetch("/assets/json/family.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
