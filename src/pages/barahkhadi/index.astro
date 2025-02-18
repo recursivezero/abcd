@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/barahkhadi/index.css";
+
+const consonants = [
+  ["क", "ख", "ग", "घ", "ङ"],
+  ["च", "छ", "ज", "झ", "ञ"],
+  ["ट", "ठ", "ड", "ढ", "ण"],
+  ["त", "थ", "द", "ध", "न"],
+  ["प", "फ", "ब", "भ", "म"],
+  ["य", "र", "ल", "व"],
+  ["श", "ष", "स", "ह"]
+];
+---
+
+<BaseLayout meta={{ title: "Barahkhadi" }}>
+  <div class="container__barahkhadi">
+    <div class="consonants-rows">
+      {
+        consonants.map((row, rowIndex) => (
+          <div class="consonant-row">
+            <div class="consonants-grid">
+              {row.map((consonant) => (
+                <a href={`/barahkhadi/${consonant}`} class="consonant-card">
+                  <div class="consonant-content">
+                    <span class="consonant">{consonant}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
