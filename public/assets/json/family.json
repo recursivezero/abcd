@@ -1,22 +1,10 @@
 [
   {
     "id": 1,
-    "Caste": {
-      "hi": "झंवर",
-      "en": "Jhanwar"
-    },
-    "Gotra": {
-      "hi": "झूमाझ",
-      "en": "Jhumaj"
-    },
-    "Deity": {
-      "hi": "सुद्रासण / गाहल",
-      "en": "Sudrasan / Gahal"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "झंवर",
+    "Gotra": "झूमाझ",
+    "Deity": "सुद्रासण / गाहल",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कालीया",
@@ -86,22 +74,10 @@
   },
   {
     "id": 2,
-    "Caste": {
-      "hi": "लढ्ढा",
-      "en": "Laddha"
-    },
-    "Gotra": {
-      "hi": "सीलास",
-      "en": "Silas"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "लढ्ढा",
+    "Gotra": "सीलास",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "अठासन्या",
@@ -147,22 +123,10 @@
   },
   {
     "id": 3,
-    "Caste": {
-      "hi": "टावरी",
-      "en": "Tawari"
-    },
-    "Gotra": {
-      "hi": "चावडा",
-      "en": "Chawda"
-    },
-    "Deity": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "टावरी",
+    "Gotra": "चावडा",
+    "Deity": "कश्यप",
+    "Location": "",
     "Surnames": [
       {
         "hi": "आसेश",
@@ -216,22 +180,10 @@
   },
   {
     "id": 4,
-    "Caste": {
-      "hi": "बजाज",
-      "en": "Bajaj"
-    },
-    "Gotra": {
-      "hi": "भंसाली",
-      "en": "Bhansali"
-    },
-    "Deity": {
-      "hi": "गाहल",
-      "en": "Gahal"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "बजाज",
+    "Gotra": "भंसाली",
+    "Deity": "गाहल",
+    "Location": "",
     "Surnames": [
       {
         "hi": "गवदुका ",
@@ -277,22 +229,10 @@
   },
   {
     "id": 5,
-    "Caste": {
-      "hi": "बिड़ला",
-      "en": "Birla"
-    },
-    "Gotra": {
-      "hi": "बालास",
-      "en": "Balas"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "बिड़ला",
+    "Gotra": "बालास",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "गौरिया",
@@ -326,22 +266,10 @@
   },
   {
     "id": 6,
-    "Caste": {
-      "hi": "मालू",
-      "en": "Malu"
-    },
-    "Gotra": {
-      "hi": "खलांस",
-      "en": "Khalans"
-    },
-    "Deity": {
-      "hi": "सचाय",
-      "en": "Sachay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "मालू",
+    "Gotra": "खलांस",
+    "Deity": "सचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "चौधरी",
@@ -371,22 +299,10 @@
   },
   {
     "id": 7,
-    "Caste": {
-      "hi": "माणूधन्या",
-      "en": "Manudhnya"
-    },
-    "Gotra": {
-      "hi": "जेसलाणी",
-      "en": "Jesalani"
-    },
-    "Deity": {
-      "hi": "माणूधणी",
-      "en": "Manudhni"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "माणूधन्या",
+    "Gotra": "जेसलाणी",
+    "Deity": "माणूधणी",
+    "Location": "",
     "Surnames": [
       {
         "hi": "घश्डोल्या",
@@ -416,82 +332,40 @@
   },
   {
     "id": 8,
-    "Caste": {
-      "hi": "धूत",
-      "en": "Dhoot"
-    },
-    "Gotra": {
-      "hi": "फाफडांस",
-      "en": "Fafdans"
-    },
-    "Deity": {
-      "hi": "लीकाशन",
-      "en": "Likashan"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
-    "Surnames": [{}]
+    "Caste": "धूत",
+    "Gotra": "फाफडांस",
+    "Deity": "लीकाशन",
+    "Location": "",
+    "Surnames": [
+      {}
+    ]
   },
   {
     "id": 9,
-    "Caste": {
-      "hi": "भंसाली",
-      "en": "Bhansali"
-    },
-    "Gotra": {
-      "hi": "भंसाली",
-      "en": "Bhansali"
-    },
-    "Deity": {
-      "hi": "चावडा",
-      "en": "Chawda"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
-    "Surnames": [{}]
+    "Caste": "भंसाली",
+    "Gotra": "भंसाली",
+    "Deity": "चावडा",
+    "Location": "",
+    "Surnames": [
+      {}
+    ]
   },
   {
     "id": 10,
-    "Caste": {
-      "hi": "आगसूड",
-      "en": "Agasud"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "जाखण",
-      "en": "Jakhan"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
-    "Surnames": [{}]
+    "Caste": "आगसूड",
+    "Gotra": "कश्यप",
+    "Deity": "जाखण",
+    "Location": "",
+    "Surnames": [
+      {}
+    ]
   },
   {
     "id": 11,
-    "Caste": {
-      "hi": "मालपाणी",
-      "en": "Malpani"
-    },
-    "Gotra": {
-      "hi": "भटयास",
-      "en": "Bhatyas"
-    },
-    "Deity": {
-      "hi": "साँगल",
-      "en": "Sangal"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "मालपाणी",
+    "Gotra": "भटयास",
+    "Deity": "साँगल",
+    "Location": "",
     "Surnames": [
       {
         "hi": "चोला",
@@ -529,22 +403,10 @@
   },
   {
     "id": 12,
-    "Caste": {
-      "hi": "सिकची",
-      "en": "Sikchi"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "पंवार",
-      "en": "Panwar"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "सिकची",
+    "Gotra": "कश्यप",
+    "Deity": "पंवार",
+    "Location": "",
     "Surnames": [
       {
         "hi": "सीलाणी",
@@ -558,22 +420,10 @@
   },
   {
     "id": 13,
-    "Caste": {
-      "hi": "नौलखा",
-      "en": "Naulakha"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "पाठाय",
-      "en": "Pathay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "नौलखा",
+    "Gotra": "कश्यप",
+    "Deity": "पाठाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "नोगजा",
@@ -583,22 +433,10 @@
   },
   {
     "id": 14,
-    "Caste": {
-      "hi": "कलंत्री",
-      "en": "Kalantri"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "चावंडा",
-      "en": "Chawanda"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "कलंत्री",
+    "Gotra": "कश्यप",
+    "Deity": "चावंडा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "माछर",
@@ -608,22 +446,10 @@
   },
   {
     "id": 15,
-    "Caste": {
-      "hi": "मंत्री",
-      "en": "Mantri"
-    },
-    "Gotra": {
-      "hi": "कवलाय",
-      "en": "Kavlay"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "मंत्री",
+    "Gotra": "कवलाय",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "वेली",
@@ -633,22 +459,10 @@
   },
   {
     "id": 16,
-    "Caste": {
-      "hi": "देवपुरा",
-      "en": "Devpura"
-    },
-    "Gotra": {
-      "hi": "पारस",
-      "en": "Paras"
-    },
-    "Deity": {
-      "hi": "पाढाय",
-      "en": "Padhay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "देवपुरा",
+    "Gotra": "पारस",
+    "Deity": "पाढाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कसुबीवाल",
@@ -658,22 +472,10 @@
   },
   {
     "id": 18,
-    "Caste": {
-      "hi": "बांगरड",
-      "en": "Bangard"
-    },
-    "Gotra": {
-      "hi": "चूडास",
-      "en": "Chudas"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "बांगरड",
+    "Gotra": "चूडास",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "तापड़या",
@@ -683,22 +485,10 @@
   },
   {
     "id": 19,
-    "Caste": {
-      "hi": "तापडिया",
-      "en": "Tapadia"
-    },
-    "Gotra": {
-      "hi": "पीपलान",
-      "en": "Pipalan"
-    },
-    "Deity": {
-      "hi": "आशापुरा",
-      "en": "Ashapura"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "तापडिया",
+    "Gotra": "पीपलान",
+    "Deity": "आशापुरा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कधारी",
@@ -716,22 +506,10 @@
   },
   {
     "id": 20,
-    "Caste": {
-      "hi": "चौखडा",
-      "en": "Chaukhda"
-    },
-    "Gotra": {
-      "hi": "चन्द्रास",
-      "en": "Chandras"
-    },
-    "Deity": {
-      "hi": "जीवण",
-      "en": "Jeevan"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "चौखडा",
+    "Gotra": "चन्द्रास",
+    "Deity": "जीवण",
+    "Location": "",
     "Surnames": [
       {
         "hi": "चौधरी",
@@ -749,22 +527,10 @@
   },
   {
     "id": 21,
-    "Caste": {
-      "hi": "काबरा",
-      "en": "Kabra"
-    },
-    "Gotra": {
-      "hi": "अचित्रास",
-      "en": "Achitras"
-    },
-    "Deity": {
-      "hi": "सुसमाद",
-      "en": "Susamad"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "काबरा",
+    "Gotra": "अचित्रास",
+    "Deity": "सुसमाद",
+    "Location": "",
     "Surnames": [
       {
         "hi": "अठारया",
@@ -798,22 +564,10 @@
   },
   {
     "id": 22,
-    "Caste": {
-      "hi": "करवा",
-      "en": "Karwa"
-    },
-    "Gotra": {
-      "hi": "करवास",
-      "en": "Karvas"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "करवा",
+    "Gotra": "करवास",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कलंकी",
@@ -839,22 +593,10 @@
   },
   {
     "id": 23,
-    "Caste": {
-      "hi": "छापरवाल",
-      "en": "Chaparwal"
-    },
-    "Gotra": {
-      "hi": "कौशिक",
-      "en": "Kaushik"
-    },
-    "Deity": {
-      "hi": "बंधर",
-      "en": "Bandhar"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "छापरवाल",
+    "Gotra": "कौशिक",
+    "Deity": "बंधर",
+    "Location": "",
     "Surnames": [
       {
         "hi": "दुजारा",
@@ -868,22 +610,10 @@
   },
   {
     "id": 24,
-    "Caste": {
-      "hi": "कालाणी",
-      "en": "Kalani"
-    },
-    "Gotra": {
-      "hi": "घौलास",
-      "en": "Ghaulas"
-    },
-    "Deity": {
-      "hi": "चावंडा",
-      "en": "Chawanda"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "कालाणी",
+    "Gotra": "घौलास",
+    "Deity": "चावंडा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कलन्त्री",
@@ -909,22 +639,10 @@
   },
   {
     "id": 25,
-    "Caste": {
-      "hi": "अटल",
-      "en": "Atal"
-    },
-    "Gotra": {
-      "hi": "गौतमस्थ",
-      "en": "Gautamasth"
-    },
-    "Deity": {
-      "hi": "सचाय",
-      "en": "Sachay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "अटल",
+    "Gotra": "गौतमस्थ",
+    "Deity": "सचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "गोठणीबाल",
@@ -938,22 +656,10 @@
   },
   {
     "id": 26,
-    "Caste": {
-      "hi": "असावा",
-      "en": "Asawa"
-    },
-    "Gotra": {
-      "hi": "पंचास",
-      "en": "Panchas"
-    },
-    "Deity": {
-      "hi": "आशावरी",
-      "en": "Ashavari"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "असावा",
+    "Gotra": "पंचास",
+    "Deity": "आशावरी",
+    "Location": "",
     "Surnames": [
       {
         "hi": "नाग",
@@ -975,22 +681,10 @@
   },
   {
     "id": 27,
-    "Caste": {
-      "hi": "कासट",
-      "en": "Kasat"
-    },
-    "Gotra": {
-      "hi": "अल्लसास",
-      "en": "Allasas"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "कासट",
+    "Gotra": "अल्लसास",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कटमुरा",
@@ -1008,42 +702,20 @@
   },
   {
     "id": 28,
-    "Caste": {
-      "hi": "बालदी",
-      "en": "Baldi"
-    },
-    "Gotra": {
-      "hi": "लौरस",
-      "en": "Laurus"
-    },
-    "Deity": {
-      "hi": "गारस",
-      "en": "Garas"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
-    "Surnames": [{}]
+    "Caste": "बालदी",
+    "Gotra": "लौरस",
+    "Deity": "गारस",
+    "Location": "",
+    "Surnames": [
+      {}
+    ]
   },
   {
     "id": 29,
-    "Caste": {
-      "hi": "चेचाणी",
-      "en": "Chechani"
-    },
-    "Gotra": {
-      "hi": "सीलास",
-      "en": "Silas"
-    },
-    "Deity": {
-      "hi": "दद्यीमती",
-      "en": "Dadyimati"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "चेचाणी",
+    "Gotra": "सीलास",
+    "Deity": "दद्यीमती",
+    "Location": "",
     "Surnames": [
       {
         "hi": "धुलद",
@@ -1053,42 +725,20 @@
   },
   {
     "id": 30,
-    "Caste": {
-      "hi": "द्वारका",
-      "en": "Dwarka"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "मीरस",
-      "en": "Meeras"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
-    "Surnames": [{}]
+    "Caste": "द्वारका--",
+    "Gotra": "कश्यप",
+    "Deity": "मीरस",
+    "Location": "",
+    "Surnames": [
+      {}
+    ]
   },
   {
     "id": 31,
-    "Caste": {
-      "hi": "नयणवाला",
-      "en": "Nayanwala"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "नयण",
-      "en": "Nayan"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "नयणवाला--",
+    "Gotra": "कश्यप",
+    "Deity": "नयण",
+    "Location": "",
     "Surnames": [
       {
         "hi": "राजानी",
@@ -1098,22 +748,10 @@
   },
   {
     "id": 32,
-    "Caste": {
-      "hi": "पोरवाल",
-      "en": "Porwal"
-    },
-    "Gotra": {
-      "hi": "नानणांस",
-      "en": "Nananans"
-    },
-    "Deity": {
-      "hi": "मात्री",
-      "en": "Matri"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "पोरवाल",
+    "Gotra": "नानणांस",
+    "Deity": "मात्री",
+    "Location": "",
     "Surnames": [
       {
         "hi": "परवार",
@@ -1127,22 +765,10 @@
   },
   {
     "id": 33,
-    "Caste": {
-      "hi": "मिणियार",
-      "en": "Minyar"
-    },
-    "Gotra": {
-      "hi": "कौशिक",
-      "en": "Kaushik"
-    },
-    "Deity": {
-      "hi": "दायम",
-      "en": "Dayam"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "मिणियार",
+    "Gotra": "कौशिक",
+    "Deity": "दायम",
+    "Location": "",
     "Surnames": [
       {
         "hi": "खरनाल्या",
@@ -1172,22 +798,10 @@
   },
   {
     "id": 34,
-    "Caste": {
-      "hi": "लखोटिया",
-      "en": "Lakhotiya"
-    },
-    "Gotra": {
-      "hi": "फाफडांस",
-      "en": "Fafdans"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "लखोटिया",
+    "Gotra": "फाफडांस",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "जुगराना",
@@ -1217,22 +831,10 @@
   },
   {
     "id": 35,
-    "Caste": {
-      "hi": "सोढाणी",
-      "en": "Sodhani"
-    },
-    "Gotra": {
-      "hi": "सीढांस",
-      "en": "Sidhans"
-    },
-    "Deity": {
-      "hi": "झीण",
-      "en": "Jhin"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "सोढाणी",
+    "Gotra": "सीढांस",
+    "Deity": "झीण",
+    "Location": "",
     "Surnames": [
       {
         "hi": "हडकुटिया",
@@ -1254,22 +856,10 @@
   },
   {
     "id": 36,
-    "Caste": {
-      "hi": "कच्चौल्या",
-      "en": "Kachchawlya"
-    },
-    "Gotra": {
-      "hi": "सीलांस",
-      "en": "Silans"
-    },
-    "Deity": {
-      "hi": "पाढाय",
-      "en": "Padhay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "कच्चौल्या",
+    "Gotra": "सीलांस",
+    "Deity": "पाढाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "सौन",
@@ -1295,22 +885,10 @@
   },
   {
     "id": 37,
-    "Caste": {
-      "hi": "बंग",
-      "en": "Bang"
-    },
-    "Gotra": {
-      "hi": "सोडास",
-      "en": "Sodas"
-    },
-    "Deity": {
-      "hi": "खांडल",
-      "en": "Khandal"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "बंग",
+    "Gotra": "सोडास",
+    "Deity": "खांडल",
+    "Location": "",
     "Surnames": [
       {
         "hi": "छीतरका",
@@ -1340,22 +918,10 @@
   },
   {
     "id": 38,
-    "Caste": {
-      "hi": "दरक",
-      "en": "Darakh"
-    },
-    "Gotra": {
-      "hi": "हरिद्रास",
-      "en": "Haridras"
-    },
-    "Deity": {
-      "hi": "मूसा",
-      "en": "Musa"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "दरक",
+    "Gotra": "हरिद्रास",
+    "Deity": "मूसा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कोठारी",
@@ -1377,22 +943,10 @@
   },
   {
     "id": 39,
-    "Caste": {
-      "hi": "तोतला",
-      "en": "Totla"
-    },
-    "Gotra": {
-      "hi": "कपिलांस",
-      "en": "Kapilans"
-    },
-    "Deity": {
-      "hi": "खूंखर",
-      "en": "Khunkhar"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "तोतला",
+    "Gotra": "कपिलांस",
+    "Deity": "खूंखर",
+    "Location": "",
     "Surnames": [
       {
         "hi": "पटवारी",
@@ -1414,22 +968,10 @@
   },
   {
     "id": 40,
-    "Caste": {
-      "hi": "गगराणी",
-      "en": "Gagrani"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "पाढाय",
-      "en": "Padhay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "गगराणी",
+    "Gotra": "कश्यप",
+    "Deity": "पाढाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "बापरेचा",
@@ -1451,22 +993,10 @@
   },
   {
     "id": 41,
-    "Caste": {
-      "hi": "परताणी",
-      "en": "Paratani"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "परताणी",
+    "Gotra": "कश्यप",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "पुंदपालीचा",
@@ -1488,22 +1018,10 @@
   },
   {
     "id": 42,
-    "Caste": {
-      "hi": "मौदाणी",
-      "en": "Maudani"
-    },
-    "Gotra": {
-      "hi": "सांडास",
-      "en": "Sandas"
-    },
-    "Deity": {
-      "hi": "चांवडा",
-      "en": "Chawanda"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "मौदाणी",
+    "Gotra": "सांडास",
+    "Deity": "चांवडा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "बम्ब",
@@ -1525,22 +1043,10 @@
   },
   {
     "id": 43,
-    "Caste": {
-      "hi": "भूतड़ा",
-      "en": "Bhootda"
-    },
-    "Gotra": {
-      "hi": "अल्लसांस",
-      "en": "Allasans"
-    },
-    "Deity": {
-      "hi": "खीवज",
-      "en": "Khivaj"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "भूतड़ा",
+    "Gotra": "अल्लसांस ",
+    "Deity": "खीवज",
+    "Location": "",
     "Surnames": [
       {
         "hi": "चांच्या",
@@ -1562,22 +1068,10 @@
   },
   {
     "id": 44,
-    "Caste": {
-      "hi": "काहल्या",
-      "en": "Kahlya"
-    },
-    "Gotra": {
-      "hi": "कागायंस",
-      "en": "Kagayans"
-    },
-    "Deity": {
-      "hi": "लीकासन",
-      "en": "Likasan"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "काहल्या",
+    "Gotra": "कागायंस",
+    "Deity": "लीकासन",
+    "Location": "",
     "Surnames": [
       {
         "hi": "वहाडका",
@@ -1591,22 +1085,10 @@
   },
   {
     "id": 45,
-    "Caste": {
-      "hi": "गद‌इया",
-      "en": "Gadiya"
-    },
-    "Gotra": {
-      "hi": "गौरास",
-      "en": "Gauras"
-    },
-    "Deity": {
-      "hi": "वघर",
-      "en": "Vaghar"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "गद‌इया",
+    "Gotra": "गौरास",
+    "Deity": "वघर",
+    "Location": "",
     "Surnames": [
       {
         "hi": "चौधरी",
@@ -1620,22 +1102,10 @@
   },
   {
     "id": 46,
-    "Caste": {
-      "hi": "हुरकट",
-      "en": "Hurkat"
-    },
-    "Gotra": {
-      "hi": "कश्यप",
-      "en": "Kashyap"
-    },
-    "Deity": {
-      "hi": "विसवंत",
-      "en": "Visvant"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "हुरकट",
+    "Gotra": "कश्यप",
+    "Deity": "विसवंत",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कयाल",
@@ -1653,29 +1123,17 @@
   },
   {
     "id": 47,
-    "Caste": {
-      "hi": "मंडोवरा",
-      "en": "Mandovra"
-    },
-    "Gotra": {
-      "hi": "बछास",
-      "en": "Bachas"
-    },
-    "Deity": {
-      "hi": "चीतेसरी",
-      "en": "Chitesari"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "मंडोवरा",
+    "Gotra": "बछास",
+    "Deity": "चीतेसरी----",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कैलासरिया",
         "en": "Kailasariya"
       },
       {
-        "hi": "घौलेसरया",
+        "hi": "घौलेसरया---",
         "en": "Ghaulesarya"
       },
       {
@@ -1686,22 +1144,10 @@
   },
   {
     "id": 48,
-    "Caste": {
-      "hi": "भुराडीया",
-      "en": "Bhuradiya"
-    },
-    "Gotra": {
-      "hi": "अचित्र",
-      "en": "Achitra"
-    },
-    "Deity": {
-      "hi": "मूणघणी",
-      "en": "Munghani"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "भुराडीया",
+    "Gotra": "अचित्र",
+    "Deity": "मूणघणी----",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कोठारी",
@@ -1719,22 +1165,10 @@
   },
   {
     "id": 49,
-    "Caste": {
-      "hi": "न्याती",
-      "en": "Nyati"
-    },
-    "Gotra": {
-      "hi": "नानसेण",
-      "en": "Nansan"
-    },
-    "Deity": {
-      "hi": "चादैसेण",
-      "en": "Chadaisen"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "न्याती",
+    "Gotra": "नानसेण",
+    "Deity": "चादैसेण",
+    "Location": "",
     "Surnames": [
       {
         "hi": "डंडी",
@@ -1752,22 +1186,10 @@
   },
   {
     "id": 50,
-    "Caste": {
-      "hi": "जाजू",
-      "en": "Jaju"
-    },
-    "Gotra": {
-      "hi": "बालास",
-      "en": "Balas"
-    },
-    "Deity": {
-      "hi": "फलौदी",
-      "en": "Phalodi"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "जाजू",
+    "Gotra": "बालास",
+    "Deity": "फलौदी",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कयाल",
@@ -1797,22 +1219,10 @@
   },
   {
     "id": 51,
-    "Caste": {
-      "hi": "चान्डक",
-      "en": "Chandak"
-    },
-    "Gotra": {
-      "hi": "चन्द्रास",
-      "en": "Chandras"
-    },
-    "Deity": {
-      "hi": "आशापुरा",
-      "en": "Ashapura"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "चान्डक",
+    "Gotra": "चन्द्रास",
+    "Deity": "आशापुरा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "गौराणी",
@@ -1851,7 +1261,7 @@
         "en": "Bhisani"
       },
       {
-        "hi": "माधाणी",
+        "hi": "माधाणी----",
         "en": "Madhani"
       },
       {
@@ -1886,22 +1296,10 @@
   },
   {
     "id": 52,
-    "Caste": {
-      "hi": "भट्टड़",
-      "en": "Bhattad"
-    },
-    "Gotra": {
-      "hi": "भटयास",
-      "en": "Bhatyas"
-    },
-    "Deity": {
-      "hi": "बीसल",
-      "en": "Bisal"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "भट्टड़",
+    "Gotra": "भटयास",
+    "Deity": "बीसल",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कहरा",
@@ -1975,22 +1373,10 @@
   },
   {
     "id": 53,
-    "Caste": {
-      "hi": "सोमानी",
-      "en": "Somani"
-    },
-    "Gotra": {
-      "hi": "लियाइंस",
-      "en": "Liyains"
-    },
-    "Deity": {
-      "hi": "बंधर",
-      "en": "Bandhar"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "सोमानी",
+    "Gotra": "लियाइंस",
+    "Deity": "बंधर",
+    "Location": "",
     "Surnames": [
       {
         "hi": "आसोपा",
@@ -2068,22 +1454,10 @@
   },
   {
     "id": 54,
-    "Caste": {
-      "hi": "अजमेरा",
-      "en": "Ajmera"
-    },
-    "Gotra": {
-      "hi": "मानांस",
-      "en": "Manans"
-    },
-    "Deity": {
-      "hi": "नौसल",
-      "en": "Nausal"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "अजमेरा",
+    "Gotra": "मानांस",
+    "Deity": "नौसल",
+    "Location": "",
     "Surnames": [
       {
         "hi": "कुकडया",
@@ -2165,22 +1539,10 @@
   },
   {
     "id": 55,
-    "Caste": {
-      "hi": "डागा",
-      "en": "Daga"
-    },
-    "Gotra": {
-      "hi": "राजहंस",
-      "en": "Rajhans"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "डागा",
+    "Gotra": "राजहंस",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "करणानी",
@@ -2262,22 +1624,10 @@
   },
   {
     "id": 56,
-    "Caste": {
-      "hi": "राठी",
-      "en": "Rathi"
-    },
-    "Gotra": {
-      "hi": "कपलास",
-      "en": "Kaplas"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "राठी",
+    "Gotra": "कपलास",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "श्री चंडाणी",
@@ -2899,22 +2249,10 @@
   },
   {
     "id": 57,
-    "Caste": {
-      "hi": "सारडा",
-      "en": "Sarda"
-    },
-    "Gotra": {
-      "hi": "थेवडांस",
-      "en": "Thevdans"
-    },
-    "Deity": {
-      "hi": "संचाय",
-      "en": "Sanchay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "सारडा",
+    "Gotra": "थेवडांस",
+    "Deity": "संचाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "सारडा",
@@ -2980,22 +2318,10 @@
   },
   {
     "id": 58,
-    "Caste": {
-      "hi": "मूंधड़ा",
-      "en": "Mundhra"
-    },
-    "Gotra": {
-      "hi": "गोंबांस",
-      "en": "Gombans"
-    },
-    "Deity": {
-      "hi": "मूँदल",
-      "en": "Mundal"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "मूंधड़ा",
+    "Gotra": "गोंबांस",
+    "Deity": "मूँदल",
+    "Location": "",
     "Surnames": [
       {
         "hi": "मोंधडा",
@@ -3121,22 +2447,10 @@
   },
   {
     "id": 59,
-    "Caste": {
-      "hi": "नावंधर",
-      "en": "Navandhar"
-    },
-    "Gotra": {
-      "hi": "वुग्दालिभ",
-      "en": "Vugdhalibh"
-    },
-    "Deity": {
-      "hi": "धरजल",
-      "en": "Dharjal"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "नावंधर",
+    "Gotra": "वुग्दालिभ",
+    "Deity": "धरजल",
+    "Location": "",
     "Surnames": [
       {
         "hi": "नावधर",
@@ -3194,22 +2508,10 @@
   },
   {
     "id": 60,
-    "Caste": {
-      "hi": "नवाल",
-      "en": "Nawal"
-    },
-    "Gotra": {
-      "hi": "नानणांस",
-      "en": "Nananans"
-    },
-    "Deity": {
-      "hi": "",
-      "en": ""
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "नवाल",
+    "Gotra": "नानणांस",
+    "Deity": "",
+    "Location": "",
     "Surnames": [
       {
         "hi": "नवल",
@@ -3227,22 +2529,10 @@
   },
   {
     "id": 61,
-    "Caste": {
-      "hi": "हेड़ा",
-      "en": "Heda"
-    },
-    "Gotra": {
-      "hi": "धनास",
-      "en": "Dhanas"
-    },
-    "Deity": {
-      "hi": "फालौदी",
-      "en": "Phalodi"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "हेड़ा",
+    "Gotra": "धनास",
+    "Deity": "फालौदी",
+    "Location": "",
     "Surnames": [
       {
         "hi": "हेड़ा",
@@ -3252,22 +2542,10 @@
   },
   {
     "id": 62,
-    "Caste": {
-      "hi": "धूपड",
-      "en": "Dhoopad"
-    },
-    "Gotra": {
-      "hi": "सिरसेस",
-      "en": "Sirses"
-    },
-    "Deity": {
-      "hi": "फलौधी",
-      "en": "Phalodhi"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "धूपड",
+    "Gotra": "सिरसेस",
+    "Deity": "फलौधी",
+    "Location": "",
     "Surnames": [
       {
         "hi": "धूप",
@@ -3277,22 +2555,10 @@
   },
   {
     "id": 63,
-    "Caste": {
-      "hi": "बाहेती",
-      "en": "Baheti"
-    },
-    "Gotra": {
-      "hi": "भिन्न-भिन्न",
-      "en": "Bhinn-Bhinn"
-    },
-    "Deity": {
-      "hi": "भिन्न-भिन्न",
-      "en": "Bhinn-Bhinn"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "बाहेती",
+    "Gotra": "भिन्न-भिन्न",
+    "Deity": "भिन्न-भिन्न",
+    "Location": "",
     "Surnames": [
       {
         "hi": "बाहेती",
@@ -3646,22 +2912,10 @@
   },
   {
     "id": 64,
-    "Caste": {
-      "hi": "पलौड",
-      "en": "Palaud"
-    },
-    "Gotra": {
-      "hi": "साडांस",
-      "en": "Sadans"
-    },
-    "Deity": {
-      "hi": "चावंडा",
-      "en": "Chawanda"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "पलौड",
+    "Gotra": "साडांस",
+    "Deity": "चावंडा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "पलौड",
@@ -3751,22 +3005,10 @@
   },
   {
     "id": 65,
-    "Caste": {
-      "hi": "खटवड (खटोड)",
-      "en": "Khatwad (Khatod)"
-    },
-    "Gotra": {
-      "hi": "निरमलांस",
-      "en": "Nirmalans"
-    },
-    "Deity": {
-      "hi": "पाढाय",
-      "en": "Padhay"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "खटवड (खटोड)",
+    "Gotra": "निरमलांस",
+    "Deity": "पाढाय",
+    "Location": "",
     "Surnames": [
       {
         "hi": "खटवड",
@@ -3844,22 +3086,10 @@
   },
   {
     "id": 66,
-    "Caste": {
-      "hi": "तोषनीवाल",
-      "en": "Toshniwal"
-    },
-    "Gotra": {
-      "hi": "कौसिक",
-      "en": "Kaushik"
-    },
-    "Deity": {
-      "hi": "खूखर",
-      "en": "Khunkhar"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "तोषनीवाल",
+    "Gotra": "कौसिक",
+    "Deity": "खूखर",
+    "Location": "",
     "Surnames": [
       {
         "hi": "तोषनीवाल",
@@ -3925,22 +3155,10 @@
   },
   {
     "id": 67,
-    "Caste": {
-      "hi": "गट्टानी",
-      "en": "Gattani"
-    },
-    "Gotra": {
-      "hi": "ढालांस",
-      "en": "Dhalans"
-    },
-    "Deity": {
-      "hi": "चावंडा",
-      "en": "Chawanda"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "गट्टानी",
+    "Gotra": "ढालांस",
+    "Deity": "चावंडा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "मल्लक",
@@ -3966,22 +3184,10 @@
   },
   {
     "id": 68,
-    "Caste": {
-      "hi": "आगीवाल",
-      "en": "Agiwal"
-    },
-    "Gotra": {
-      "hi": "चन्द्रांस",
-      "en": "Chandrans"
-    },
-    "Deity": {
-      "hi": "भेसांद",
-      "en": "Bhesand"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "आगीवाल",
+    "Gotra": "चन्द्रांस",
+    "Deity": "भेसांद",
+    "Location": "",
     "Surnames": [
       {
         "hi": "",
@@ -3991,22 +3197,10 @@
   },
   {
     "id": 69,
-    "Caste": {
-      "hi": "बलदुआ",
-      "en": "Baldua"
-    },
-    "Gotra": {
-      "hi": "बलांस",
-      "en": "Balans"
-    },
-    "Deity": {
-      "hi": "गांगेवमेश व हींगलाद",
-      "en": "Gangavamesh and Hingalad"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "बलदुआ",
+    "Gotra": "बलांस",
+    "Deity": "गांगेवमेश व हींगलाद",
+    "Location": "",
     "Surnames": [
       {
         "hi": "पडवार",
@@ -4032,22 +3226,10 @@
   },
   {
     "id": 70,
-    "Caste": {
-      "hi": "भनसाली",
-      "en": "Bhansali"
-    },
-    "Gotra": {
-      "hi": "भनसाली",
-      "en": "Bhansali"
-    },
-    "Deity": {
-      "hi": "चावड़ा",
-      "en": "Chawda"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "भनसाली",
+    "Gotra": "भनसाली",
+    "Deity": "चावड़ा",
+    "Location": "",
     "Surnames": [
       {
         "hi": "",
@@ -4057,22 +3239,10 @@
   },
   {
     "id": 71,
-    "Caste": {
-      "hi": "भंडारी",
-      "en": "Bhandari"
-    },
-    "Gotra": {
-      "hi": "कौशिक",
-      "en": "Kaushik"
-    },
-    "Deity": {
-      "hi": "नागनेच्या",
-      "en": "Naganechya"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "भंडारी",
+    "Gotra": "कौशिक",
+    "Deity": "नागनेच्या---",
+    "Location": "",
     "Surnames": [
       {
         "hi": "भकावा",
@@ -4126,22 +3296,10 @@
   },
   {
     "id": 72,
-    "Caste": {
-      "hi": "गिलडा",
-      "en": "Gilda"
-    },
-    "Gotra": {
-      "hi": "गोतमस्य",
-      "en": "Gotamasya"
-    },
-    "Deity": {
-      "hi": "मात्री",
-      "en": "Matri"
-    },
-    "Location": {
-      "hi": "",
-      "en": ""
-    },
+    "Caste": "गिलडा---",
+    "Gotra": "गोतमस्य",
+    "Deity": "मात्री",
+    "Location": "",
     "Surnames": [
       {
         "hi": "मूथा",
@@ -4160,7 +3318,7 @@
         "en": "Mohta"
       },
       {
-        "hi": "गहनड़",
+        "hi": "गहनड़---",
         "en": "Gahanad"
       }
     ]
