@@ -31,16 +31,28 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Reader",
+    title: "Reader",
+    path: "/reader",
+    isActive: true
+  },
+  {
     name: "Record",
     title: "Record",
     path: "/record",
     icon: RecordIcon,
-    isActive: false
+    isActive: true
   },
   {
-    name: "Alphabets",
-    title: "Alphabets",
-    path: "/alphabets",
+    name: "English",
+    title: "English",
+    path: "/english",
+    isActive: true
+  },
+  {
+    name: "Typing",
+    title: "Typing",
+    path: "/typing",
     isActive: true
   },
   {
