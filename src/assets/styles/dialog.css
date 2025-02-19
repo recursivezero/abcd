@@ -125,33 +125,75 @@ dialog {
 }
 
 dialog[open] {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  animation: slideIn 0.3s ease-out forwards;
 }
 
-@starting-style {
-  dialog[open] {
+dialog {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
     opacity: 0;
-    transform: translate(-50%, -48%) scale(0.95);
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/*--------------------------------------------------------------------------
-  Backdrop Effect (Refined Blur)
---------------------------------------------------------------------------*/
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+dialog[closing] {
+  animation: slideOut 0.3s ease-in forwards;
+  pointer-events: none;
+}
+
 dialog::backdrop {
-  background: transparent;
-  backdrop-filter: blur(6px);
-  transition: background-color 0.3s var(--ease);
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease-in-out;
 }
 
 dialog[open]::backdrop {
-  background: var(--backdrop-color);
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
-@starting-style {
-  dialog[open]::backdrop {
-    background: transparent;
+dialog[closing]::backdrop {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0);
   }
 }
 

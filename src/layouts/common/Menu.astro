@@ -8,20 +8,36 @@ import Navigation from "@/layouts/Navigation";
 import { NavbarLinks } from "@/utils/constants";
 ---
 
-<button popovertarget="nav" popovertargetaction="toggle">
+<button class="menu-button" popovertarget="nav" popovertargetaction="toggle">
   <HamIcon width={24} height={24} />
 </button>
 <div class="layout">
   <aside popover="auto" id="nav">
-    <button popovertarget="nav" popovertargetaction="hide" class="hider" aria-label="Close drawer">
+    <button
+      class="menu-button hider"
+      popovertarget="nav"
+      popovertargetaction="hide"
+      class="hider"
+      aria-label="Close drawer"
+    >
       <span class="sr-only">Close drawer</span>
     </button>
     <Navigation pages={NavbarLinks} />
     <div class="actions">
-      <button class="theme-toggle">
+      <button class="menu-button minimize-toggle" aria-label="Toggle menu size" title="Close sidebar">
+        <ArrowIcon
+          width={24}
+          height={24}
+          style={{
+            transform: "rotate(-135deg)"
+          }}
+          title="Toggle sidebar"
+        />
+      </button>
+      <button class="menu-button theme-toggle">
         <ToggleIcon width={24} height={24} />
       </button>
-      <button class="placement-toggle">
+      <button class="menu-button placement-toggle">
         <ArrowIcon width={24} height={24} />
       </button>
     </div>
@@ -34,6 +50,7 @@ import { NavbarLinks } from "@/utils/constants";
   const themer = document.querySelector(".theme-toggle") as HTMLElement;
   const placer = document.querySelector(".placement-toggle") as HTMLElement;
   const hider = document.querySelector(".hider") as HTMLElement;
+  const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLElement;
 
   const config = {
     theme: "system"
@@ -87,4 +104,14 @@ import { NavbarLinks } from "@/utils/constants";
   };
 
   popover.addEventListener("toggle", reset);
+
+  const toggleMinimize = () => {
+    const nav = document.querySelector("#nav");
+    const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLButtonElement;
+    nav?.classList.toggle("minimized");
+    minimizeBtn?.classList.toggle("rotated");
+    minimizeBtn.title = nav?.classList.contains("minimized") ? "Open sidebar" : "Close sidebar";
+  };
+
+  minimizeBtn?.addEventListener("click", toggleMinimize);
 </script>

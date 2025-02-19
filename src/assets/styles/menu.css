@@ -29,16 +29,40 @@
       0.9949 89.15%,
       1 100%
     );
+    --sidebar-collapsed: 4rem;
+    --sidebar-expanded: 16ch;
+    --icon-size: 1.5rem;
   }
 
   body {
     display: block;
   }
 
-  .nav--list__item.active a {
+  [popover] .nav--list__item {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  [popover] .nav--list__item a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  [popover] .nav--list__item.active {
     background: color-mix(in srgb, var(--primary) 15%, transparent);
     color: var(--primary);
     font-weight: 600;
+    border-radius: 0.75rem;
+  }
+
+  [popover] .nav--list__item:hover {
+    color: var(--primary);
     border-radius: 0.75rem;
   }
 
@@ -54,7 +78,7 @@
     inset: unset;
     display: flex;
     flex-direction: column;
-    width: var(--sidebar-w);
+    width: var(--sidebar-expanded);
     margin: 0;
     flex-shrink: 0;
     right: 100%;
@@ -69,23 +93,44 @@
 
     position: sticky;
     border-right: 1px solid var(--border);
-    /*overflow: hidden;*/
-    overflow-y: auto; /* Enables vertical scrolling */
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: var(--secondary) transparent; /* Custom scrollbar colors */
-    /*height: auto;*/
-  }
-  [popover]::-webkit-scrollbar {
-    width: 6px;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+    white-space: nowrap;
   }
 
-  [popover]::-webkit-scrollbar-thumb {
-    background-color: var(--secondary);
-    border-radius: 6px;
+  [popover].minimized {
+    width: var(--sidebar-collapsed);
+    transition: all 0.3s ease;
+
+    & a {
+      justify-content: center;
+    }
+
+    & .text {
+      opacity: 0;
+      width: 0;
+      visibility: hidden;
+    }
+
+    & .icon {
+      margin: 0;
+    }
+
+    & .nav--list__item {
+      padding: 0.25rem;
+
+      & .text {
+        display: none;
+      }
+    }
   }
 
-  [popover]::-webkit-scrollbar-track {
-    background: transparent;
+  .minimize-toggle {
+    transition: transform 0.3s ease;
+  }
+
+  .minimize-toggle.rotated {
+    transform: rotate(180deg);
   }
 
   main {
@@ -117,7 +162,7 @@
     transition: all 0.2s;
   }
 
-  [popover] a:hover {
+  [popover] .nav--list__item:hover {
     background: color-mix(in srgb, var(--primary) 10%, transparent);
     color: var(--primary);
   }
@@ -131,22 +176,17 @@
     }
   }
 
-  .hider,
-  [popovertargetaction] {
-    display: none;
-  }
-
-  button {
+  [popover] button {
     background: #0000;
     position: relative;
     cursor: pointer;
   }
 
-  button:is(:active, :hover, :focus-visible) {
+  [popover] button:is(:active, :hover, :focus-visible) {
     --active: 1;
   }
 
-  button::before {
+  [popover] button::before {
     content: "";
     background: color-mix(in hsl, canvas, canvasText 15%);
     position: absolute;
@@ -157,8 +197,47 @@
     transition: opacity 0.2s;
   }
 
+  .hider,
+  [popovertargetaction] {
+    display: none;
+  }
+
   .hider {
     display: none;
+  }
+
+  .menu-button {
+    background: #0000;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .menu-button:is(:active, :hover, :focus-visible) {
+    background: color-mix(in srgb, var(--primary) 30%, transparent) !important;
+    --active: 1;
+  }
+
+  .menu-button::before {
+    content: "";
+    background: color-mix(in hsl, canvas, canvasText 15%);
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    z-index: -1;
+    opacity: var(--active, 0);
+    transition: opacity 0.2s;
+  }
+
+  [popover] .nav--list__item a svg,
+  .menu-button svg {
+    flex-shrink: 0;
+    min-width: var(--icon-size);
+    min-height: var(--icon-size);
+  }
+
+  [popover] .placement-toggle,
+  .placement-toggle {
+    display: none !important;
   }
 
   @media (max-width: 768px) {
@@ -190,13 +269,15 @@
 
     .actions {
       justify-content: flex-end;
-      position: absolute;
+      position: sticky;
       bottom: 0;
+      z-index: 1;
       right: 0;
       left: 0;
       translate: 0 calc(clamp(0, var(--ty), var(--distance) - 88) * -1px);
       transition-duration: var(--timing);
       transition-timing-function: var(--ease);
+      min-width: var(--sidebar-expanded);
     }
 
     [popover] .bear-link {
@@ -283,7 +364,7 @@
     :root:has(:popover-open) body {
       scale: calc(0.95 + (clamp(0, var(--complete), 1) * 0.05));
       translate: 0 calc((env(safe-area-inset-top) + 14px) * (1 - clamp(0, var(--complete), 1)));
-      border-radius: calc(12px * (1 - clamp(0, var(--complete), 1)));
+      border-radius: calc(12px * (1 - clamp(0, var (--complete), 1)));
       overflow: hidden;
     }
 
@@ -333,14 +414,18 @@
         opacity: 0;
       }
     }
+
+    [popover] .placement-toggle,
+    .placement-toggle {
+      display: grid !important;
+    }
+
+    .placement-toggle {
+      display: grid;
+    }
   }
 
-  [data-placement="top"] [popovertarget="nav"]:not(.hider) {
-    top: 1rem;
-    right: 1rem;
-  }
-
-  [data-placement="bottom"] [popovertarget="nav"]:not(.hider) {
+  [popovertarget="nav"]:not(.hider) {
     top: unset;
     bottom: 1rem;
     left: 1rem;
@@ -362,6 +447,9 @@
     padding: 1rem;
     border-top: 1px solid var(--border);
     margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
 
     button {
       width: 44px;
@@ -379,6 +467,8 @@
       color: var(--primary);
       background: color-mix(in srgb, var(--primary) 10%, transparent);
     }
+
+    min-width: var(--sidebar-expanded);
   }
 
   .theme-toggle {
@@ -406,5 +496,24 @@
 
   [data-debug="false"] .debug-toggle g:first-of-type {
     display: block;
+  }
+
+  [popover] nav {
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    padding-bottom: 1rem;
+  }
+
+  [data-theme="system"] [popover] {
+    color: var(--secondary);
+  }
+
+  [data-theme="system"] [popover] .nav--list__item a {
+    color: var(--secondary);
+  }
+
+  [data-theme="system"] [popover] .nav--list__item:hover a {
+    color: var(--primary);
   }
 }
