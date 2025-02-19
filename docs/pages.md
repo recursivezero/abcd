@@ -74,6 +74,17 @@ This document describes the functionality and purpose of each page in the applic
 - Controls for record/pause/stop
 - Clip management with naming and deletion
 
+#### Clan Explorer
+
+![Clan explorer page](../src/assets/screenshots/clan.png)
+
+- Family tree visualization tool
+- Interactive legend with cultural elements:
+  - Gotra (ancestral lineage)
+  - Deity (family deity)
+  - Caste information
+  - Surname relationships
+
 ## Utility Pages
 
 ### Error Page (/pages/404.astro)
