@@ -2,50 +2,15 @@
 import "@/assets/styles/barahkhadi/consonant.css";
 import BaseLayout from "@/layouts/Base";
 
+import { hindiConsonants as consonants, matras } from "@/utils/common";
+
 export function getStaticPaths() {
-  const consonants = [
-    "क",
-    "ख",
-    "ग",
-    "घ",
-    "ङ",
-    "च",
-    "छ",
-    "ज",
-    "झ",
-    "ञ",
-    "ट",
-    "ठ",
-    "ड",
-    "ढ",
-    "ण",
-    "त",
-    "थ",
-    "द",
-    "ध",
-    "न",
-    "प",
-    "फ",
-    "ब",
-    "भ",
-    "म",
-    "य",
-    "र",
-    "ल",
-    "व",
-    "श",
-    "ष",
-    "स",
-    "ह"
-  ];
   return consonants.map((consonant) => ({ params: { consonant } }));
 }
 
 const { consonant } = Astro.params;
 
-const matras = ["", "ा", "ि", "ी", "ु", "ू", "े", "ै", "ो", "ौ", "ं", "ः", "ृ"];
-
-const combinations = matras.map((matra) => consonant + matra);
+const combinations = [consonant, ...Object.values(matras).map((matra) => consonant + matra)];
 ---
 
 <BaseLayout meta={{ title: `Barahkhadi - ${consonant}` }}>
