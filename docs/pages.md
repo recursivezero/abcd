@@ -21,6 +21,16 @@ This document describes the functionality and purpose of each page in the applic
 
 ### Interactive Learning Pages
 
+#### Barahkhadi Page (/pages/barahkhadi/index.astro)
+
+![Barahkhadi page](../src/assets/screenshots/barahkhadi.png)
+
+- Grid display of Hindi consonants organized in traditional groups
+- Quick view popover showing barahkhadi variations for each consonant
+- Interactive buttons to show/hide variations
+- Clickable consonants leading to detailed pages
+- Responsive layout with consonant groups
+
 #### Varnmala Page (/pages/varnmala.astro)
 
 ![Varnmala page](../src/assets/screenshots/varnmala.png)
