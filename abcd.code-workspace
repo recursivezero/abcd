@@ -60,7 +60,7 @@
     "editor.inlayHints.enabled": "offUnlessPressed",
     "editor.insertSpaces": true,
     "editor.linkedEditing": true,
-    "editor.minimap.enabled": false,
+    "editor.minimap.enabled": true,
     "editor.minimap.renderCharacters": false,
     "editor.minimap.size": "fill",
     "editor.multiCursorModifier": "alt",
@@ -73,25 +73,9 @@
       "javascript": "javascriptreact"
     },
     "eslint.options": {
-      "extensions": [
-        ".js",
-        ".jsx",
-        ".md",
-        ".mdx",
-        ".ts",
-        ".tsx",
-        ".astro"
-      ]
+      "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx", ".astro"]
     },
-    "eslint.validate": [
-      "mdx",
-      "markdown",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "astro"
-    ],
+    "eslint.validate": ["mdx", "markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "astro"],
     "explorer.compactFolders": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -119,10 +103,7 @@
     },
     "git.autofetch": true,
     "git.branchPrefix": "feature/",
-    "git.branchProtection": [
-      "develop",
-      "main"
-    ],
+    "git.branchProtection": ["develop", "main"],
     "git.branchRandomName.enable": true,
     "git.confirmSync": false,
     "git.enableCommitSigning": false,
@@ -133,9 +114,7 @@
     "js/ts.implicitProjectConfig.checkJs": true,
     "peacock.affectSideBarBorder": true,
     "peacock.color": "#abcd00",
-    "prettier.documentSelectors": [
-      "**/*.astro"
-    ],
+    "prettier.documentSelectors": ["**/*.astro"],
     "prettier.printWidth": 120,
     "prettier.quoteProps": "consistent",
     "prettier.singleQuote": false,
@@ -155,6 +134,7 @@
     "window.autoDetectColorScheme": true,
     "window.title": "${rootNameShort}${separator}${activeEditorShort}${separator}${activeFolderMedium}",
     "window.zoomLevel": 0.5,
+    "workbench.colorTheme": "Tokyo Night Storm",
     "workbench.colorCustomizations": {
       "activityBar.activeBackground": "#d5ff01",
       "activityBar.background": "#d5ff01",
@@ -176,7 +156,9 @@
       "titleBar.inactiveForeground": "#15202b99",
       "tab.activeBorder": "#d5ff01"
     },
-    "workbench.colorTheme": "Tokyo Night Storm",
+    "files.exclude": {
+      "**/.git": false
+    },
     "workbench.editor.pinnedTabSizing": "compact",
     "workbench.editor.pinnedTabsOnSeparateRow": true,
     "workbench.editorAssociations": {

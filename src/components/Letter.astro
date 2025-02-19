@@ -1,0 +1,16 @@
+---
+import type { LetterEntity } from "@/types";
+
+type Props = {
+  item: LetterEntity;
+};
+
+const {
+  item: { letter, code }
+} = Astro.props;
+---
+
+<div class="letter">
+  <p class="character">{letter}</p>
+  <p data-id="tgt" class="code" title="Click to copy">{code}</p>
+</div>

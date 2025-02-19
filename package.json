@@ -44,7 +44,7 @@
     "lint": "prettier -w --cache . && prettier -w --cache **/*.astro",
     "clean": "rm -rf dist rm -rf build",
     "nuke": "shx rm -rf node_modules && rm package-lock.json && npm run clean",
-    "postinstall": "bash ./setup-hooks.sh"
+    "setup:hooks": "sh ./setup-hooks.sh"
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",

@@ -21,6 +21,12 @@ echo "Running pre-commit checks for branch: $BRANCH_NAME"
 echo "$BRANCH_NAME" | grep -Eq '^(feature|bugfix|hotfix|task)/[A-Za-z]+-[0-9]+'
 if [ $? -ne 0 ]; then
     echo "Error: Branch name '$BRANCH_NAME' is invalid."
+<<<<<<< HEAD
+    echo "Use a valid branch naming convention, e.g., feature|bugfix|hotfix|task/XYZ-123-description."
+    exit 1
+fi
+=======
     echo "Use a valid branch naming convention, e.g., feature|bugfix|hotfix|task/XYZ-123."
     exit 1
 fi
+>>>>>>> main

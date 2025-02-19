@@ -1,8 +1,40 @@
 ---
 import BaseLayout from "@/layouts/Base";
 import TitleLayout from "@/layouts/TitleLayout";
+// https://www.w3schools.com/charsets/ref_utf_dingbats.asp
 ---
 
+<style>
+  section {
+    ul {
+      list-style-type: none;
+      & li {
+        margin-inline: 1rem;
+        &:nth-child(2) {
+          &::before {
+            content: "\272D";
+          }
+        }
+        &::before {
+          content: "\26BE"; /* baseball U+26BE */
+        }
+        &:nth-child(3)::before {
+          content: "\27F0"; /* Second item: Star */
+          font-size: large;
+          color: rgb(149, 124, 33);
+        }
+      }
+    }
+  }
+</style>
+
 <BaseLayout meta={{ title: "Home" }}>
-  <TitleLayout title="Welcome to the ABCDKBD.com" />
+  <TitleLayout title="Welcome to ABCDKBD .com" />
+  <section>
+    <ul>
+      <li class="one">Entity to display in HTML &#10010</li>
+      <li class="two">List 2</li>
+      <li class="three">Item from url: &#10224</li>
+    </ul>
+  </section>
 </BaseLayout>

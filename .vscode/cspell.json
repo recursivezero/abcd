@@ -7,9 +7,14 @@
     {
       "name": "teamMember",
       "path": "./dictionaries/team-member.txt"
+    },
+    {
+      "name": "geo",
+      "path": "./dictionaries/india.txt"
     }
   ],
-  "dictionaries": ["projectTerms", "teamMember"],
+  "dictionaries": ["projectTerms", "teamMember", "india"],
+  "ignorePaths": ["**/*.svg", "src/assets/json/*.json"],
   "languageSettings": [
     {
       "languageId": "*",
@@ -17,7 +22,7 @@
     },
     {
       "languageId": "json, md",
-      "dictionaries": ["teamMember"]
+      "dictionaries": ["teamMember", "geo"]
     }
   ],
   "enableFiletypes": ["astro", "jsx", "tsx"]

@@ -1,3 +1,5 @@
+import HomeIcon from "@/assets/icons/home.svg";
+import RecordIcon from "@/assets/icons/record.svg";
 import type { LinkProps } from "@/types";
 
 export const APP_NAME = "Template";
@@ -7,37 +9,81 @@ export const NavbarLinks: LinkProps[] = [
     name: "Home",
     title: "Home",
     path: "/",
+    icon: HomeIcon,
     isActive: true
   },
   {
-    name: "Dashboard",
-    title: "Dashboard",
-    path: "/dashboard",
+    name: "About",
+    title: "About",
+    path: "/about",
     isActive: true
   },
   {
-    name: "Blog",
-    title: "Blogs",
-    path: "/blog",
+    name: "Varnmala",
+    title: "Varnmala",
+    path: "/varnmala",
     isActive: true
   },
   {
-    name: "Career",
-    title: "Career",
-    path: "/career",
+    name: "Panel",
+    title: "Panel",
+    path: "/panel",
+    isActive: true
+  },
+  {
+    name: "Reader",
+    title: "Reader",
+    path: "/reader",
+    isActive: true
+  },
+  {
+    name: "Record",
+    title: "Record",
+    path: "/record",
+    icon: RecordIcon,
+    isActive: true
+  },
+  {
+    name: "English",
+    title: "English",
+    path: "/english",
+    isActive: true
+  },
+  {
+    name: "Typing",
+    title: "Typing",
+    path: "/typing",
+    isActive: true
+  },
+  {
+    name: "India",
+    title: "India Map",
+    path: "/map",
+    isActive: true
+  },
+  {
+    name: "Societree",
+    title: "Clan",
+    path: "/clan",
     isActive: true
   },
   {
     name: "Letter",
-    title: "letter",
+    title: "Letter Pad",
     path: "/letter",
+    isActive: true
+  },
+  {
+    name: "Feedback",
+    title: "Feedback Form",
+    path: "/feedback",
     isActive: true
   }
 ];
 
 export const FooterLinks: LinkProps[] = [
   {
-    title: "privacy Policy",
+    title: "Privacy Policy",
     path: "/privacy",
     isActive: true
   },
@@ -46,4 +92,12 @@ export const FooterLinks: LinkProps[] = [
     path: "/terms",
     isActive: true
   }
+];
+
+export const colors = [
+  "linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)", // Blue
+  "linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)", // Sky
+  "linear-gradient(135deg, #818cf8 0%, #6366f1 100%)", // Indigo
+  "linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%)", // Teal
+  "linear-gradient(135deg, #34d399 0%, #10b981 100%)" // Emerald
 ];
