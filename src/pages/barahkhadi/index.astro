@@ -2,17 +2,18 @@
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/barahkhadi/index.css";
 
-const consonants = [
-  ["क", "ख", "ग", "घ", "ङ"],
-  ["च", "छ", "ज", "झ", "ञ"],
-  ["ट", "ठ", "ड", "ढ", "ण"],
-  ["त", "थ", "द", "ध", "न"],
-  ["प", "फ", "ब", "भ", "म"],
-  ["य", "र", "ल", "व"],
-  ["श", "ष", "स", "ह"]
-];
+import { hindiConsonants } from "@/utils/common";
+import { matras } from "@/utils/common";
 
-const matras = ["", "ा", "ि", "ी", "ु", "ू", "े", "ै", "ो", "ौ", "ं", "ः"];
+const consonants = [
+  hindiConsonants.slice(0, 5), // क, ख, ग, घ, ङ
+  hindiConsonants.slice(5, 10), // च, छ, ज, झ, ञ
+  hindiConsonants.slice(10, 15), // ट, ठ, ड, ढ, ण
+  hindiConsonants.slice(15, 20), // त, थ, द, ध, न
+  hindiConsonants.slice(20, 25), // प, फ, ब, भ, म
+  hindiConsonants.slice(25, 29), // य, र, ल, व
+  hindiConsonants.slice(29, 33) // श, ष, स, ह
+];
 ---
 
 <script>
@@ -53,7 +54,7 @@ const matras = ["", "ा", "ि", "ी", "ु", "ू", "े", "ै", "ो", "ौ
                   <button class="quick-view-btn">🔍</button>
                   <div class="barahkhadi-popover">
                     <div class="variations-grid">
-                      {matras.map((matra) => (
+                      {Object.values(matras).map((matra) => (
                         <div class="variation">{consonant + matra}</div>
                       ))}
                     </div>
