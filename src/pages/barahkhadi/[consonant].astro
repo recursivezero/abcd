@@ -43,9 +43,9 @@ export function getStaticPaths() {
 
 const { consonant } = Astro.params;
 
-const vowels = ["", "ा", "ि", "ी", "ु", "ू", "े", "ै", "ो", "ौ", "ं", "ः", "ृ"];
+const matras = ["", "ा", "ि", "ी", "ु", "ू", "े", "ै", "ो", "ौ", "ं", "ः", "ृ"];
 
-const combinations = vowels.map((vovel) => consonant + vovel);
+const combinations = matras.map((matra) => consonant + matra);
 ---
 
 <BaseLayout meta={{ title: `Barahkhadi - ${consonant}` }}>
