@@ -1,0 +1,20 @@
+.container__hindi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: auto;
+  font-size: 1rem;
+  place-items: center;
+  will-change: contents;
+}
+
+.letter {
+  font-size: min(100vw, 100vh);
+  line-height: 1;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: var(--letter__txt--2);
+  transition: color 0.5s ease-in;
+}

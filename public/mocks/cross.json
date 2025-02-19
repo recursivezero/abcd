@@ -1,0 +1,5 @@
+{
+  "easy": ["CAT", "DOG", "SUN", "MOON", "STAR"],
+  "medium": ["APPLE", "BANANA", "GRAPE", "ORANGE"],
+  "hard": ["ELEPHANT", "GIRAFFE", "KANGAROO", "RHINOCEROS"]
+}

@@ -11,15 +11,6 @@ const {
 ---
 
 <div class="letter">
-  <p>{letter}</p>
-  <p data-id="tgt" class="code">{code}</p>
+  <p class="character">{letter}</p>
+  <p data-id="tgt" class="code" title="Click to copy">{code}</p>
 </div>
-
-<script>
-  const tgt = document.querySelectorAll("[data-id]");
-  tgt?.forEach((elm) =>
-    elm.addEventListener("click", (e: any) => {
-      console.log("Hello, on client", e?.target?.textContent);
-    })
-  );
-</script>

@@ -1,14 +1,40 @@
----
-import crosswordData from '../../public/mocks/crossword-data.json';
----
 
-<script>
-  const wordSets = {
-    easy: ["CAT", "DOG", "PIG", "COW", "HEN"],
-    medium: ["BIRD", "FISH", "DUCK", "FROG", "BEAR"],
-    hard: ["MONKEY", "RABBIT", "GIRAFFE", "ZEBRA", "TIGER"]
-  };
+<div class="puzzle-container">
+  <!--<div class="controls-row">-->
+    <div class="controls-group">
+      <select id="difficultySelect" class="control-btn">
+        <option value="easy">Easy (Ages 3-5)</option>
+        <option value="medium">Medium (Ages 5-6)</option>
+        <option value="hard">Hard (Ages 7-8)</option>
+      </select>
+      <button id="newPuzzleBtn" class="control-btn">New Puzzle</button>
+      <button id="solutionBtn" class="control-btn">Solution</button>
+      <button id="clearBtn" class="control-btn">Clear</button>
+      <button class="control-btn" id="themeToggle">🌓 Theme</button>
+    </div>
+  <!--</div>-->
 
+  <div class="stats-container">
+    <div class="stats-button">
+      <span>Clicks: <span id="clickCount">0</span></span>
+    </div>
+    <div class="stats-button">
+      <span>Found: <span id="foundCount">0</span>/<span id="totalWords"></span></span>
+    </div>
+  </div>
+
+  <div class="word-list" id="wordList"></div>
+  <div id="grid" class="grid"></div>
+</div>
+
+<!-- Using a module so we can import the JSON -->
+<script type="module">
+  // Import the word data from your JSON file
+  import crosswordData from '../../public/mocks/cross.json';
+
+  // Use the imported JSON data for word sets.
+  const wordSets = crosswordData;
+  //state.wordColorIndex = 0;
   let state = {
     difficulty: "easy",
     grid: [],
@@ -150,7 +176,9 @@ import crosswordData from '../../public/mocks/crossword-data.json';
         if (isSelected) cellElement.classList.add("selected");
         if (isMatched) cellElement.classList.add("match");
         if (isSolution) {
-          const direction = state.solutions.find((s) => s.cells.some(([r, c]) => r === i && c === j))?.direction;
+          const direction = state.solutions.find((s) =>
+            s.cells.some(([r, c]) => r === i && c === j)
+          )?.direction;
           cellElement.style.backgroundColor = state.directionColors[direction];
         }
 
@@ -166,9 +194,7 @@ import crosswordData from '../../public/mocks/crossword-data.json';
     const wordList = document.getElementById("wordList");
     wordList.innerHTML = wordSets[state.difficulty]
       .map(
-        (word) => `
-      <span class="word ${state.foundWords.includes(word) ? "found" : ""}">${word}</span>
-    `
+        (word) => `<span class="word ${state.foundWords.includes(word) ? "found" : ""}">${word}</span>`
       )
       .join("");
   }
@@ -265,31 +291,3 @@ import crosswordData from '../../public/mocks/crossword-data.json';
     generatePuzzle();
   });
 </script>
-
-<div class="puzzle-container">
-  <div class="controls-row">
-    <div class="controls-group">
-      <select id="difficultySelect" class="control-btn">
-        <option value="easy">Easy (Ages 3-5)</option>
-        <option value="medium">Medium (Ages 5-6)</option>
-        <option value="hard">Hard (Ages 7-8)</option>
-      </select>
-      <button id="newPuzzleBtn" class="control-btn">New Puzzle</button>
-      <button id="solutionBtn" class="control-btn">Solution</button>
-      <button id="clearBtn" class="control-btn">Clear</button>
-      <button class="control-btn" id="themeToggle">🌓 Theme</button>
-    </div>
-  </div>
-
-  <div class="stats-container">
-    <div class="stats-button">
-      <span>Clicks: <span id="clickCount">0</span></span>
-    </div>
-    <div class="stats-button">
-      <span>Found: <span id="foundCount">0</span>/<span id="totalWords"></span></span>
-    </div>
-  </div>
-
-  <div class="word-list" id="wordList"></div>
-  <div id="grid" class="grid"></div>
-</div>

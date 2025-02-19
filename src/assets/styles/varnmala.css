@@ -1,0 +1,39 @@
+.tabs {
+  z-index: 10;
+  width: fit-content;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--background);
+  display: flex;
+  gap: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.tab {
+  padding: 0.5rem 2rem;
+  font-size: 1.2rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  position: relative;
+  background: var(--background-alt);
+  border-radius: 0.5rem;
+
+  &:hover {
+    background: var(--background-hover);
+  }
+}
+
+.tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: var(--primary);
+  color: var(--background);
+}
+
+.container__varnmala {
+
+  #english,
+  & #hindi {
+    scroll-margin-top: calc(var(--header-height) + 80px);
+  }
+}
