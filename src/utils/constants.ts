@@ -62,9 +62,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Societree",
-    title: "Clan",
-    path: "/clan",
+    name: "Feedback",
+    title: "Feedback Form",
+    path: "/feedback",
     isActive: true
   }
 ];
