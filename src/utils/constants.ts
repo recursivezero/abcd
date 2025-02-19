@@ -68,12 +68,6 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Letter",
-    title: "Letter Pad",
-    path: "/letter",
-    isActive: true
-  },
-  {
     name: "Feedback",
     title: "Feedback Form",
     path: "/feedback",
