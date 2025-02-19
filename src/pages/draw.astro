@@ -1,21 +1,29 @@
 ---
-import Layout from '@/layouts/Base';
-import Keyboard from '@/components/DrawKeyboard.astro';
+import Layout from "@/layouts/Base";
+import Keyboard from "@/components/DrawKeyboard.astro";
 //import Keyboard from '@/components/draww.astro';
 import Help from "@/components/Help.astro";
-
 ---
 
-<Layout meta={{title:"Draw Keyboard"}}>
+<Layout meta={{ title: "Draw Keyboard" }}>
   <Fragment slot="header-right">
     <div class="controls">
       <label for="toggleCase" class="control-item">
         <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
-        <span id="text" class="control-button case-toggle" style="--content: 'A'" title="Toggle case" role="switch" aria-checked="false">Aa</span>
+        <span
+          id="text"
+          class="control-button case-toggle"
+          style="--content: 'A'"
+          title="Toggle case"
+          role="switch"
+          aria-checked="false">Aa</span
+        >
       </label>
       <label for="toggleFont" class="control-item">
         <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
-        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false">T</span>
+        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false"
+          >T</span
+        >
       </label>
       <label for="toggleBg" class="control-item">
         <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
@@ -30,7 +38,7 @@ import Help from "@/components/Help.astro";
   <Keyboard />
 </Layout>
 <style>
-    .controls {
+  .controls {
     position: absolute;
     top: 0.7rem;
     right: 5rem;
@@ -43,7 +51,7 @@ import Help from "@/components/Help.astro";
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:0.5rem
+    gap: 0.5rem;
   }
 
   .control-button {
@@ -66,7 +74,7 @@ import Help from "@/components/Help.astro";
   }
 
   .control-button::before {
-    content: '';
+    content: "";
     position: absolute;
     z-index: 1;
     top: 0;

@@ -11,7 +11,6 @@ import { getRandomValue } from "../utils/index";
     </div>
     <!-- The caption div is removed; the heading now appears directly in the header -->
     <h1 class="info" aria-live="polite">Press any key</h1>
-   
   </header>
 
   <main class="main">
@@ -46,7 +45,7 @@ import { getRandomValue } from "../utils/index";
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     text-align: center;
     padding: 1rem;
     /*background: var(--primary-bg);*/
@@ -63,7 +62,7 @@ import { getRandomValue } from "../utils/index";
     background: rgb(224, 222, 222);
     border: 1px solid var(--light-border);
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     margin-bottom: 0.5rem;
     margin-top: -50px;
     border-color: #4338ca;
@@ -118,7 +117,7 @@ import { getRandomValue } from "../utils/index";
   }
 
   .control-button::before {
-    content: '';
+    content: "";
     position: absolute;
     z-index: 1;
     top: 0;
@@ -186,13 +185,13 @@ import { getRandomValue } from "../utils/index";
   }
 
   @keyframes charReveal {
-    from { 
-      opacity: 0; 
-      transform: scale(0.8); 
+    from {
+      opacity: 0;
+      transform: scale(0.8);
     }
-    to { 
-      opacity: 1; 
-      transform: scale(1); 
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
@@ -212,7 +211,7 @@ import { getRandomValue } from "../utils/index";
     .header {
       padding: 1rem;
     }
-    
+
     .info {
       font-size: 1.25rem;
     }
@@ -235,13 +234,15 @@ import { getRandomValue } from "../utils/index";
   }
 </style>
 
-<script define:vars={{
-  colorBox,
-  fontBox,
-  numberBox,
-  alphabetMapper,
-  IMAGE_DIR
-}}>
+<script
+  define:vars={{
+    colorBox,
+    fontBox,
+    numberBox,
+    alphabetMapper,
+    IMAGE_DIR
+  }}
+>
   // Initialize state
   let currentFontIndex = 0;
   let isUpperCase = true;
@@ -262,30 +263,30 @@ import { getRandomValue } from "../utils/index";
 
   function updateDisplay(key) {
     try {
-      const audio = new Audio('data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA');
+      const audio = new Audio("data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA");
       audio.volume = 0.1;
       audio.play().catch(() => {});
     } catch (error) {
-      console.log('Audio feedback unavailable');
+      console.log("Audio feedback unavailable");
     }
 
     if (!isNaN(Number(key))) {
       boardDiv.style.backgroundColor = getRandomValue(colorBox);
-      boardDiv.style.backgroundImage = '';
+      boardDiv.style.backgroundImage = "";
       charDiv.textContent = key;
-      info.textContent = numberBox[key] || 'Unknown';
+      info.textContent = numberBox[key] || "Unknown";
       return;
     }
 
-    const found = alphabetMapper.find(alpha => alpha.key.toUpperCase() === key.toUpperCase());
+    const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
       info.textContent = found.value;
       if (!toggleBackgroundSwitch.checked) {
         boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
-        boardDiv.style.backgroundColor = '';
+        boardDiv.style.backgroundColor = "";
       }
     } else {
-      boardDiv.style.backgroundImage = '';
+      boardDiv.style.backgroundImage = "";
     }
 
     charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
@@ -302,7 +303,7 @@ import { getRandomValue } from "../utils/index";
     isUpperCase = !e.target.checked;
     const currentText = charDiv.textContent;
     charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
-    textSpan.setAttribute('aria-checked', !e.target.checked);
+    textSpan.setAttribute("aria-checked", !e.target.checked);
   });
 
   toggleFontSwitch?.addEventListener("change", () => {
@@ -314,16 +315,17 @@ import { getRandomValue } from "../utils/index";
     if (e.target.checked) {
       mainEl.style.backgroundBlendMode = "soft-light";
       mainEl.style.filter = "brightness(0.9)";
-      boardDiv.style.backgroundImage = 'none';
-      boardDiv.style.backgroundColor = getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue('--solid-bg');
+      boardDiv.style.backgroundImage = "none";
+      boardDiv.style.backgroundColor =
+        getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue("--solid-bg");
     } else {
       mainEl.style.backgroundBlendMode = "normal";
       mainEl.style.filter = "brightness(1)";
-      boardDiv.style.backgroundColor = '';
+      boardDiv.style.backgroundColor = "";
     }
   });
 
-  document.addEventListener('keydown', handleKeyPress);
+  document.addEventListener("keydown", handleKeyPress);
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
 </script>

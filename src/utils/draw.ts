@@ -19,14 +19,7 @@ export const colorBox = [
   "#d4d4d4"
 ];
 
-export const htmlPageNames = [
-  "about",
-  "canvas",
-  "draw",
-  "hide-n-seek",
-  "math",
-  "theme"
-];
+export const htmlPageNames = ["about", "canvas", "draw", "hide-n-seek", "math", "theme"];
 
 export const numberBox: Record<number, string> = {
   0: "zero",
@@ -41,14 +34,6 @@ export const numberBox: Record<number, string> = {
   9: "nine"
 };
 
-export const fontBox = [
-  "boisuStroke",
-  "atkinson",
-  "sportrop",
-  "Ananda",
-  "boisuStroke",
-  "MudraMohta",
-  "Roboto"
-];
+export const fontBox = ["boisuStroke", "atkinson", "sportrop", "Ananda", "boisuStroke", "MudraMohta", "Roboto"];
 
 export { BASE_URL, IMAGE_DIR };

@@ -74,7 +74,7 @@ export const NavbarLinks: LinkProps[] = [
     title: "Draw",
     path: "/draw",
     isActive: true
-  },
+  }
 ];
 
 export const FooterLinks: LinkProps[] = [

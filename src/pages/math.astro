@@ -1,12 +1,13 @@
 ---
-import BaseLayout from '@/layouts/Base';
-import MathPractice from '@/components/mathForm.astro';
+import BaseLayout from "@/layouts/Base";
+import MathPractice from "@/components/mathForm.astro";
 import Help from "@/components/Help.astro";
 
 const pageTitle = "Basic Arithmetic";
 const pageDescription = "Practice basic math operations like addition, subtraction, and multiplication.";
 ---
-<BaseLayout meta={{title:"Basic Arithmetic"}} description={pageDescription}>
+
+<BaseLayout meta={{ title: "Basic Arithmetic" }} description={pageDescription}>
   <Fragment slot="header-right">
     <Help
       title="Hide & Seek Game"

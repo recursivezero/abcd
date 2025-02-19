@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Base";
-import HideSeekGame from '@/components/HideSeekGame.astro';
-import SeekAndHide from '@/components/SeeknHide.astro';
+import HideSeekGame from "@/components/HideSeekGame.astro";
+import SeekAndHide from "@/components/SeeknHide.astro";
 import Help from "@/components/Help.astro";
 
 const meta = {
@@ -12,13 +12,11 @@ const meta = {
 
 <Layout meta={meta}>
   <Fragment slot="header-right">
-    <button id="toggle-button" class="toggle-button">
-      KeyBoard game
-    </button>
+    <button id="toggle-button" class="toggle-button"> KeyBoard game </button>
     <Help
-    title="Hide & Seek Game"
-    description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
-  />
+      title="Hide & Seek Game"
+      description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
+    />
   </Fragment>
 
   <div class="container">
@@ -32,7 +30,6 @@ const meta = {
 </Layout>
 
 <style>
-
   .container {
     display: flex;
     flex-direction: column;
@@ -44,11 +41,13 @@ const meta = {
     font-size: 1rem;
     font-weight: 600;
     color: #fff;
-    background:#123085;
+    background: #123085;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-right: 2rem;
   }

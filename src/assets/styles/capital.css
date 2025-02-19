@@ -7,13 +7,11 @@
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
 .geographical-mosaic {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
 }
-
 
 .hero-section {
   position: relative;
@@ -47,7 +45,6 @@
     line-height: 1.6;
   }
 }
-
 
 .controls-bar {
   display: flex;
@@ -97,7 +94,6 @@
   }
 }
 
-
 .location-container {
   display: grid;
   gap: 4rem;
@@ -133,7 +129,6 @@
     box-shadow: var(--soft-shadow);
   }
 }
-
 
 .location-grid {
   display: grid;
@@ -242,7 +237,7 @@ dialog#helpModal {
   max-width: 500px;
   width: 90%;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 
   .modal-content {
     h2 {
@@ -260,7 +255,9 @@ dialog#helpModal {
     color: white;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
 
     &:hover {
       background: var(--gold-accent);

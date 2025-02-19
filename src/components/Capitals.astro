@@ -16,9 +16,7 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
   <div class="hero-section">
     <div class="hero-content">
       <h1 class="main-title">Explore India's Administrative Landscape</h1>
-      <p class="hero-subtitle">
-        Discover the diverse tapestry of states and union territories
-      </p>
+      <p class="hero-subtitle">Discover the diverse tapestry of states and union territories</p>
     </div>
   </div>
 
@@ -44,22 +42,24 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
       </div>
 
       <div class="location-grid">
-        {stateList.map((state, index) => (
-          <div
-            class="location-card"
-            style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
+        {
+          stateList.map((state, index) => (
+            <div
+              class="location-card"
+              style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
                     --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
-          >
-            <div class="card-inner">
-              <h3 class="location-name">{state.name}</h3>
-              <div class="location-details">
-                <span class="label">Capital</span>
-                <span class="value">{state.capital}</span>
+            >
+              <div class="card-inner">
+                <h3 class="location-name">{state.name}</h3>
+                <div class="location-details">
+                  <span class="label">Capital</span>
+                  <span class="value">{state.capital}</span>
+                </div>
+                <div class="card-overlay" />
               </div>
-              <div class="card-overlay"></div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
 
@@ -74,32 +74,34 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
       </div>
 
       <div class="location-grid">
-        {utList.map((ut, index) => (
-          <div
-            class="location-card"
-            style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
+        {
+          utList.map((ut, index) => (
+            <div
+              class="location-card"
+              style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
                     --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
-          >
-            <div class="card-inner">
-              <h3 class="location-name">{ut.name}</h3>
-              <div class="location-details">
-                <span class="label">Capital</span>
-                <span class="value">{ut.capital}</span>
+            >
+              <div class="card-inner">
+                <h3 class="location-name">{ut.name}</h3>
+                <div class="location-details">
+                  <span class="label">Capital</span>
+                  <span class="value">{ut.capital}</span>
+                </div>
+                <div class="card-overlay" />
               </div>
-              <div class="card-overlay"></div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
   </div>
 </div>
 
 <script>
-  const searchBar = document.getElementById('searchBar');
-  const clearButton = document.querySelector('.clear-button');
-  const statesCountElement = document.getElementById('statesCount');
-  const utsCountElement = document.getElementById('utsCount');
+  const searchBar = document.getElementById("searchBar");
+  const clearButton = document.querySelector(".clear-button");
+  const statesCountElement = document.getElementById("statesCount");
+  const utsCountElement = document.getElementById("utsCount");
 
   const updateCounts = (query) => {
     const statesTotal = statesCountElement.dataset.total;
@@ -111,35 +113,36 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
       return;
     }
 
-    const visibleStates = document.querySelectorAll('.states-section .location-card:not([style*="display: none"])').length;
+    const visibleStates = document.querySelectorAll(
+      '.states-section .location-card:not([style*="display: none"])'
+    ).length;
     const visibleUTs = document.querySelectorAll('.ut-section .location-card:not([style*="display: none"])').length;
 
-    statesCountElement.textContent = `${visibleStates} ${visibleStates === 1 ? 'State' : 'States'} Found`;
-    utsCountElement.textContent = `${visibleUTs} ${visibleUTs === 1 ? 'UT' : 'UTs'} Found`;
+    statesCountElement.textContent = `${visibleStates} ${visibleStates === 1 ? "State" : "States"} Found`;
+    utsCountElement.textContent = `${visibleUTs} ${visibleUTs === 1 ? "UT" : "UTs"} Found`;
   };
 
-  searchBar.addEventListener('input', function () {
+  searchBar.addEventListener("input", function () {
     const query = this.value.toLowerCase().trim();
-    const cards = document.querySelectorAll('.location-card');
+    const cards = document.querySelectorAll(".location-card");
 
     cards.forEach((card) => {
-      const name = card.querySelector('.location-name').textContent.toLowerCase();
-      card.style.display = name.startsWith(query) ? '' : 'none';
+      const name = card.querySelector(".location-name").textContent.toLowerCase();
+      card.style.display = name.startsWith(query) ? "" : "none";
     });
 
     updateCounts(query);
   });
 
-  clearButton.addEventListener('click', () => {
-    searchBar.value = '';
-    searchBar.dispatchEvent(new Event('input'));
+  clearButton.addEventListener("click", () => {
+    searchBar.value = "";
+    searchBar.dispatchEvent(new Event("input"));
     searchBar.focus();
   });
 
   // Card hover effects
-  document.querySelectorAll('.location-card').forEach((card) => {
-    card.addEventListener('mouseenter', () => card.classList.add('hover-effect'));
-    card.addEventListener('mouseleave', () => card.classList.remove('hover-effect'));
+  document.querySelectorAll(".location-card").forEach((card) => {
+    card.addEventListener("mouseenter", () => card.classList.add("hover-effect"));
+    card.addEventListener("mouseleave", () => card.classList.remove("hover-effect"));
   });
 </script>
-

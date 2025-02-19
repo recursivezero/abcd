@@ -46,5 +46,5 @@ export const locations: Location[] = [
   { name: "Puducherry", capital: "Puducherry", isState: false }
 ];
 
-export const state_list = locations.filter(loc => loc.isState);
-export const ut_list = locations.filter(loc => !loc.isState);
+export const state_list = locations.filter((loc) => loc.isState);
+export const ut_list = locations.filter((loc) => !loc.isState);

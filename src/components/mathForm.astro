@@ -1,9 +1,8 @@
 ---
 import "@/assets/styles/math.css";
 ---
-<div class="math-practice">
-  
 
+<div class="math-practice">
   <section class="operator-container">
     <button class="operator-btn refresh" id="refresh" type="button">
       <span>↻</span>
@@ -49,7 +48,6 @@ import "@/assets/styles/math.css";
   <div class="score">Score: <span id="scoreDisplay">0</span></div>
 </div>
 
-
 <script>
   const state = {
     currentOperator: "+",
@@ -68,7 +66,7 @@ import "@/assets/styles/math.css";
 
   function updateNumbers() {
     let first, second;
-    
+
     if (state.currentOperator === "×") {
       first = generateNumber();
       second = generateNumber(9); // 1-digit multiplier
@@ -111,17 +109,27 @@ import "@/assets/styles/math.css";
 
     let expectedResult;
     switch (state.currentOperator) {
-      case "+": expectedResult = first + second; break;
-      case "−": expectedResult = first - second; break;
-      case "×": expectedResult = first * second; break;
-      case "÷": expectedResult = first / second; break;
-      default: expectedResult = 0;
+      case "+":
+        expectedResult = first + second;
+        break;
+      case "−":
+        expectedResult = first - second;
+        break;
+      case "×":
+        expectedResult = first * second;
+        break;
+      case "÷":
+        expectedResult = first / second;
+        break;
+      default:
+        expectedResult = 0;
     }
 
     // Check if result is integer for division
-    const isValid = state.currentOperator === "÷" 
-      ? Number.isInteger(expectedResult) && output === expectedResult
-      : output === expectedResult;
+    const isValid =
+      state.currentOperator === "÷"
+        ? Number.isInteger(expectedResult) && output === expectedResult
+        : output === expectedResult;
 
     if (isValid) {
       indicator.innerHTML = "✓";

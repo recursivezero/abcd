@@ -4,13 +4,14 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
 ---
 
 <div class="container">
- 
   <main id="main">
-    {letters.map(letter => (
-      <div class="word">
-        <span class="letter">{letter}</span>
-      </div>
-    ))}
+    {
+      letters.map((letter) => (
+        <div class="word">
+          <span class="letter">{letter}</span>
+        </div>
+      ))
+    }
   </main>
 </div>
 
@@ -74,12 +75,10 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
   /* Make letter visible (triggered by hover) */
   .word:hover {
     background: linear-gradient(45deg, #1b75b0, #305697);
-  
-  
-   .letter {
-    opacity: 1;
-   
-   }
+
+    .letter {
+      opacity: 1;
+    }
   }
   /* For key press: change background color when showing */
   .word.active {
@@ -96,7 +95,7 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
   const words = document.querySelectorAll(".word");
 
   function showLetter(letter: string) {
-    words.forEach(word => {
+    words.forEach((word) => {
       const letterElement = word.querySelector(".letter");
       if (letterElement && letterElement.textContent === letter.toUpperCase()) {
         word.classList.add("active");

@@ -40,7 +40,7 @@
     display: block;
     font-size: 1rem;
     margin-bottom: 15px;
-    color:  white;
+    color: white;
   }
 
   input,
@@ -50,7 +50,7 @@
     border: 1px solid #ccc;
     border-radius: 18px;
     font-size: 1rem;
-    background-color:  white;
+    background-color: white;
     color: #333;
     outline: none;
   }

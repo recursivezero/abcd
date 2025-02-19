@@ -4,7 +4,6 @@ import LocationMosaic from "../components/Capitals.astro";
 import { locations } from "../data/location.ts";
 import Help from "@/components/Help.astro";
 
-
 const meta = {
   title: "India's Geographical Mosaic",
   description: "An Interactive Journey Through India's States and Territories"
@@ -16,16 +15,7 @@ const utList = locations.filter((loc) => !loc.isState);
 
 // Generate a random color palette
 const generateColorPalette = () => {
-  const baseColors = [
-    "#3498db",
-    "#2ecc71",
-    "#e74c3c",
-    "#f39c12",
-    "#9b59b6",
-    "#1abc9c",
-    "#34495e",
-    "#e67e22"
-  ];
+  const baseColors = ["#3498db", "#2ecc71", "#e74c3c", "#f39c12", "#9b59b6", "#1abc9c", "#34495e", "#e67e22"];
   return baseColors.sort(() => 0.5 - Math.random());
 };
 const colorPalette = generateColorPalette();

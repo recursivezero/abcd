@@ -22,14 +22,14 @@
   border-radius: 20px;
   border: 1px solid var(--border-color);
   background: var(--primary-bg);
-  box-shadow: 
+  box-shadow:
     0 15px 30px -5px var(--shadow-lg),
     0 8px 12px -6px var(--shadow-sm);
   max-width: 500px;
   width: 92%;
   margin: 0;
-  overflow: visible; 
-  
+  overflow: visible;
+
   /* Centering */
   position: fixed;
   top: 50%;
@@ -65,7 +65,7 @@
   position: absolute;
   right: -1rem;
   top: -1rem;
-  background:  #ef4444;
+  background: #ef4444;
   border: none;
   color: white;
   cursor: pointer;
@@ -76,7 +76,9 @@
   justify-content: center;
   border-radius: 50%;
   font-size: 1.4rem;
-  transition: all 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition:
+    all 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
   box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
   z-index: 10; /* Ensure the button stays on top */
 }
@@ -117,7 +119,9 @@
 dialog {
   opacity: 0;
   transform: translate(-50%, -48%) scale(0.95);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
 }
 
 dialog[open] {
@@ -159,11 +163,11 @@ dialog[open]::backdrop {
     width: calc(100% - 2rem);
     margin: 1rem;
   }
-  
+
   .dialog-header {
     padding: 1.25rem;
   }
-  
+
   .dialog-content {
     padding: 1.5rem;
   }
@@ -173,7 +177,7 @@ dialog[open]::backdrop {
   Subtle Hover Effect for the Dialog
 --------------------------------------------------------------------------*/
 .help-dialog:hover {
-  box-shadow: 
+  box-shadow:
     0 18px 36px -8px var(--shadow-lg),
     0 10px 14px -6px var(--shadow-sm);
   transition: box-shadow 0.3s var(--ease);

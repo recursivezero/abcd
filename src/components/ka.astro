@@ -6,16 +6,17 @@ const description = "Interactive grid showing Kannada and Hindi alphabets with t
 
 // Letter generation helpers
 const generateLetters = (startCode: number, length: number, extraCodes: number[] = []): string[] =>
-  Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i))
-    .filter((_, i) => !extraCodes.includes(startCode + i));
+  Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
+    (_, i) => !extraCodes.includes(startCode + i)
+  );
 
 // Letter sets
 const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
 const hindiConsonants = generateLetters(2325, 37);
 const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
 const kannadaConsonants = generateLetters(3221, 37);
-const englishVowels = ['A', 'E', 'I', 'O', 'U'];
-const englishConsonants = Array.from('BCDFGHJKLMNPQRSTVWXYZ');
+const englishVowels = ["A", "E", "I", "O", "U"];
+const englishConsonants = Array.from("BCDFGHJKLMNPQRSTVWXYZ");
 
 const languages = [
   { code: "hi", name: "हिंदी" },
@@ -27,58 +28,62 @@ let selectedLanguage1 = "hi";
 let selectedLanguage2 = "kn";
 ---
 
-  <div class="language-letters-container">
-    <!-- Dropdown Section -->
-    <div class="toggle-container">
-      <div class="dropdown-wrapper">
-        <label class="dropdown-label">Language 1</label>
-        <select id="languageDropdown1">
-          {languages.map((lang) => (
+<div class="language-letters-container">
+  <!-- Dropdown Section -->
+  <div class="toggle-container">
+    <div class="dropdown-wrapper">
+      <label class="dropdown-label">Language 1</label>
+      <select id="languageDropdown1">
+        {
+          languages.map((lang) => (
             <option value={lang.code} selected={lang.code === selectedLanguage1}>
               {lang.name} ({lang.code.toUpperCase()})
             </option>
-          ))}
-        </select>
-      </div>
+          ))
+        }
+      </select>
+    </div>
 
-      <div class="dropdown-wrapper">
-        <label class="dropdown-label">Language 2</label>
-        <select id="languageDropdown2">
-          {languages.map((lang) => (
+    <div class="dropdown-wrapper">
+      <label class="dropdown-label">Language 2</label>
+      <select id="languageDropdown2">
+        {
+          languages.map((lang) => (
             <option value={lang.code} selected={lang.code === selectedLanguage2}>
               {lang.name} ({lang.code.toUpperCase()})
             </option>
-          ))}
-        </select>
-      </div>
-    </div>
-
-    <!-- Letters Grid Section -->
-    <div class="language-letters-grid">
-      <h2 class="group-heading">VOWELS (स्वर)</h2>
-      <div id="vowelsContainer" class="letters-container"></div>
-
-      <div class="language-letters-separator"></div>
-
-      <h2 class="group-heading">CONSONANTS (व्यंजन)</h2>
-      <div id="consonantsContainer" class="letters-container"></div>
+          ))
+        }
+      </select>
     </div>
   </div>
 
+  <!-- Letters Grid Section -->
+  <div class="language-letters-grid">
+    <h2 class="group-heading">VOWELS (स्वर)</h2>
+    <div id="vowelsContainer" class="letters-container"></div>
+
+    <div class="language-letters-separator"></div>
+
+    <h2 class="group-heading">CONSONANTS (व्यंजन)</h2>
+    <div id="consonantsContainer" class="letters-container"></div>
+  </div>
+</div>
 
 <script>
   // Letter generation helpers
   const generateLetters = (startCode, length, extraCodes = []) =>
-    Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i))
-      .filter((_, i) => !extraCodes.includes(startCode + i));
+    Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
+      (_, i) => !extraCodes.includes(startCode + i)
+    );
 
   // Letter sets
   const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
   const hindiConsonants = generateLetters(2325, 37);
   const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
   const kannadaConsonants = generateLetters(3221, 37);
-  const englishVowels = ['A', 'E', 'I', 'O', 'U'];
-  const englishConsonants = Array.from('BCDFGHJKLMNPQRSTVWXYZ');
+  const englishVowels = ["A", "E", "I", "O", "U"];
+  const englishConsonants = Array.from("BCDFGHJKLMNPQRSTVWXYZ");
 
   const languages = [
     { code: "hi", name: "हिंदी" },
@@ -90,16 +95,16 @@ let selectedLanguage2 = "kn";
   let selectedLanguage2 = "kn";
 
   function getLetter(lang, type, index) {
-    if (lang === 'en') {
-      return type === 'vowel' ? englishVowels[index] || '' : englishConsonants[index] || '';
+    if (lang === "en") {
+      return type === "vowel" ? englishVowels[index] || "" : englishConsonants[index] || "";
     }
-    if (lang === 'hi') {
-      return type === 'vowel' ? hindiVowels[index] || '' : hindiConsonants[index] || '';
+    if (lang === "hi") {
+      return type === "vowel" ? hindiVowels[index] || "" : hindiConsonants[index] || "";
     }
-    if (lang === 'kn') {
-      return type === 'vowel' ? kannadaVowels[index] || '' : kannadaConsonants[index] || '';
+    if (lang === "kn") {
+      return type === "vowel" ? kannadaVowels[index] || "" : kannadaConsonants[index] || "";
     }
-    return '';
+    return "";
   }
 
   function updateGrid() {
@@ -107,8 +112,8 @@ let selectedLanguage2 = "kn";
     const hindiLabel = document.getElementById("hindiLabel");
     const kannadaLabel = document.getElementById("kannadaLabel");
     if (hindiLabel && kannadaLabel) {
-      hindiLabel.textContent = languages.find(l => l.code === selectedLanguage1)?.name || "";
-      kannadaLabel.textContent = languages.find(l => l.code === selectedLanguage2)?.name || "";
+      hindiLabel.textContent = languages.find((l) => l.code === selectedLanguage1)?.name || "";
+      kannadaLabel.textContent = languages.find((l) => l.code === selectedLanguage2)?.name || "";
     }
 
     // Update vowels
@@ -116,23 +121,29 @@ let selectedLanguage2 = "kn";
     if (vowelsContainer) {
       vowelsContainer.innerHTML = "";
       const vowelCount = Math.max(
-        selectedLanguage1 === 'en' ? englishVowels.length :
-        selectedLanguage1 === 'hi' ? hindiVowels.length : kannadaVowels.length,
-        selectedLanguage2 === 'en' ? englishVowels.length :
-        selectedLanguage2 === 'hi' ? hindiVowels.length : kannadaVowels.length
+        selectedLanguage1 === "en"
+          ? englishVowels.length
+          : selectedLanguage1 === "hi"
+            ? hindiVowels.length
+            : kannadaVowels.length,
+        selectedLanguage2 === "en"
+          ? englishVowels.length
+          : selectedLanguage2 === "hi"
+            ? hindiVowels.length
+            : kannadaVowels.length
       );
 
       for (let i = 0; i < vowelCount; i++) {
         const card = document.createElement("div");
         card.className = "language-letter-card language-letter-card-vowel";
-        
+
         const firstDiv = document.createElement("div");
         firstDiv.className = "language-letter-first";
-        firstDiv.textContent = getLetter(selectedLanguage1, 'vowel', i);
+        firstDiv.textContent = getLetter(selectedLanguage1, "vowel", i);
 
         const secondDiv = document.createElement("div");
         secondDiv.className = "language-letter-second";
-        secondDiv.textContent = getLetter(selectedLanguage2, 'vowel', i);
+        secondDiv.textContent = getLetter(selectedLanguage2, "vowel", i);
 
         card.append(firstDiv, secondDiv);
         vowelsContainer.appendChild(card);
@@ -144,23 +155,29 @@ let selectedLanguage2 = "kn";
     if (consonantsContainer) {
       consonantsContainer.innerHTML = "";
       const consonantCount = Math.max(
-        selectedLanguage1 === 'en' ? englishConsonants.length :
-        selectedLanguage1 === 'hi' ? hindiConsonants.length : kannadaConsonants.length,
-        selectedLanguage2 === 'en' ? englishConsonants.length :
-        selectedLanguage2 === 'hi' ? hindiConsonants.length : kannadaConsonants.length
+        selectedLanguage1 === "en"
+          ? englishConsonants.length
+          : selectedLanguage1 === "hi"
+            ? hindiConsonants.length
+            : kannadaConsonants.length,
+        selectedLanguage2 === "en"
+          ? englishConsonants.length
+          : selectedLanguage2 === "hi"
+            ? hindiConsonants.length
+            : kannadaConsonants.length
       );
 
       for (let i = 0; i < consonantCount; i++) {
         const card = document.createElement("div");
         card.className = "language-letter-card language-letter-card-consonant";
-        
+
         const firstDiv = document.createElement("div");
         firstDiv.className = "language-letter-first";
-        firstDiv.textContent = getLetter(selectedLanguage1, 'consonant', i);
+        firstDiv.textContent = getLetter(selectedLanguage1, "consonant", i);
 
         const secondDiv = document.createElement("div");
         secondDiv.className = "language-letter-second";
-        secondDiv.textContent = getLetter(selectedLanguage2, 'consonant', i);
+        secondDiv.textContent = getLetter(selectedLanguage2, "consonant", i);
 
         card.append(firstDiv, secondDiv);
         consonantsContainer.appendChild(card);
@@ -191,10 +208,10 @@ let selectedLanguage2 = "kn";
     if (toggleButton) {
       toggleButton.addEventListener("click", () => {
         toggleButton.classList.toggle("toggled");
-        document.querySelectorAll(".language-letter-card").forEach(card => {
+        document.querySelectorAll(".language-letter-card").forEach((card) => {
           card.classList.toggle("reverse");
         });
-        
+
         const hindiLabel = document.getElementById("hindiLabel");
         const kannadaLabel = document.getElementById("kannadaLabel");
         if (hindiLabel && kannadaLabel) {

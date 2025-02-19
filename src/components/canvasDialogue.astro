@@ -1,346 +1,348 @@
+<style>
+  /* Global Styles for the Canvas Generator */
+  .canvas-generator {
+    min-height: 100vh;
+    width: 100%;
+    padding: 1rem;
+    font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+    box-sizing: border-box;
+    margin-top: -40px;
+  }
 
-  <style>
-    /* Global Styles for the Canvas Generator */
-    .canvas-generator {
-      min-height: 100vh;
-      width: 100%;
-      padding: 1rem;
-      font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-      box-sizing: border-box;
-      margin-top: -40px;
-    }
+  /* Controls Section */
+  .controls {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 
-    /* Controls Section */
-    .controls {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
+  .input-area {
+    background: rgba(37, 53, 79, 0.8);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 2px solid #334155;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+  }
 
-    .input-area {
-      background: rgba(37, 53, 79, 0.8);
-      padding: 2rem;
-      border-radius: 20px;
-      border: 2px solid #334155;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(8px);
-    }
+  .text-input {
+    padding: 1rem 1.5rem;
+    border: 2px solid #334155;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    color: #e2e8f0;
+    transition: border-color 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+  }
 
-    .text-input {
-      padding: 1rem 1.5rem;
-      border: 2px solid #334155;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.8);
-      color: #e2e8f0;
-      transition: border-color 0.3s ease;
-      outline: none;
-      box-sizing: border-box;
-    }
+  .text-input:focus {
+    border-color: #2563eb;
+  }
 
-    .text-input:focus {
-      border-color: #2563eb;
-    }
+  .text-input::placeholder {
+    color: #64748b;
+  }
 
-    .text-input::placeholder {
-      color: #64748b;
-    }
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
 
-    .buttons {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
+  .action-button {
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border: none;
+    background: #1e40af;
+    color: white;
+    flex: 1;
+    min-width: 120px;
+  }
 
-    .action-button {
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      border: none;
-      background: #1e40af;
-      color: white;
-      flex: 1;
-      min-width: 120px;
-    }
+  .action-button:hover {
+    background: #2563eb;
+  }
 
-    .action-button:hover {
-      background: #2563eb;
-    }
+  .checkbox-area {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    color: #e2e8f0;
+  }
 
-    .checkbox-area {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
-      font-size: 1.2rem;
-      color: #e2e8f0;
-    }
+  /* Color Options */
+  .color-options {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
 
-    /* Color Options */
-    .color-options {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
+  .color-picker {
+    flex: 1;
+  }
 
-    .color-picker {
-      flex: 1;
-    }
+  .color-select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #334155;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.8);
+    color: #e2e8f0;
+    font-size: 1rem;
+    cursor: pointer;
+  }
 
-    .color-select {
-      width: 100%;
-      padding: 0.8rem;
-      border: 2px solid #334155;
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.8);
-      color: #e2e8f0;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+  .color-select option {
+    background: #1e293b;
+  }
 
-    .color-select option {
-      background: #1e293b;
-    }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #e2e8f0;
+    font-size: 1rem;
+  }
 
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #e2e8f0;
-      font-size: 1rem;
-    }
+  /* Image Grid with Scrollbar */
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    background: rgba(37, 53, 79, 0.8);
+    border: 2px solid #334155;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    min-height: 200px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
 
-    /* Image Grid with Scrollbar */
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
-      background: rgba(37, 53, 79, 0.8);
-      border: 2px solid #334155;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(8px);
-      min-height: 200px;
-      max-height: 500px;
-      overflow-y: auto;
-    }
+  .image-grid::-webkit-scrollbar {
+    width: 12px;
+  }
 
-    .image-grid::-webkit-scrollbar {
-      width: 12px;
-    }
+  .image-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
 
-    .image-grid::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-    }
+  .image-grid::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
 
-    .image-grid::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-    }
+  .image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
 
-    .image-grid img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
+  .image-grid img:hover {
+    transform: scale(1.02);
+  }
+</style>
 
-    .image-grid img:hover {
-      transform: scale(1.02);
-    }
-  </style>
-
-  <div class="canvas-generator">
-    <main class="controls">
-      <div class="input-area">
-        <input 
-          type="text" 
-          placeholder="Type your text here..." 
-          id="name" 
-          class="text-input"
-        />
-        <div class="color-options">
-          <div class="color-picker">
-            <label for="cardColor">Card Color:</label>
-            <select id="cardColor" class="color-select">
-              <option value="random" selected>Random</option>
-              <option value="#FF6B6B">Red</option>
-              <option value="#4ECDC4">Turquoise</option>
-              <option value="#45B7D1">Sky Blue</option>
-              <option value="#FDCB6E">Yellow</option>
-              <option value="#6C5CE7">Purple</option>
-              <option value="#A8E6CF">Mint</option>
-              <option value="#FF8ED4">Pink</option>
-            </select>
-          </div>
-          <div class="color-picker">
-            <label for="fontColor">Font Color:</label>
-            <select id="fontColor" class="color-select">
-              <option value="white" selected>White</option>
-              <option value="black">Black</option>
-              <option value="random">Random</option>
-              <option value="#FF6B6B">Red</option>
-              <option value="#4ECDC4">Turquoise</option>
-              <option value="#45B7D1">Sky Blue</option>
-              <option value="#FDCB6E">Yellow</option>
-              <option value="#6C5CE7">Purple</option>
-              <option value="#A8E6CF">Mint</option>
-              <option value="#FF8ED4">Pink</option>
-            </select>
-          </div>
+<div class="canvas-generator">
+  <main class="controls">
+    <div class="input-area">
+      <input type="text" placeholder="Type your text here..." id="name" class="text-input" />
+      <div class="color-options">
+        <div class="color-picker">
+          <label for="cardColor">Card Color:</label>
+          <select id="cardColor" class="color-select">
+            <option value="random" selected>Random</option>
+            <option value="#FF6B6B">Red</option>
+            <option value="#4ECDC4">Turquoise</option>
+            <option value="#45B7D1">Sky Blue</option>
+            <option value="#FDCB6E">Yellow</option>
+            <option value="#6C5CE7">Purple</option>
+            <option value="#A8E6CF">Mint</option>
+            <option value="#FF8ED4">Pink</option>
+          </select>
         </div>
-        <div class="buttons">
-          <button data-variant="text" class="action-button">Draw</button>
-          <button data-variant="time" class="action-button">Clock</button>
-          <button data-variant="reset" class="action-button">Clear</button>
-        </div>
-        <div class="checkbox-area">
-          <input type="checkbox" id="full" />
-          <label for="full">Use Full Name</label>
+        <div class="color-picker">
+          <label for="fontColor">Font Color:</label>
+          <select id="fontColor" class="color-select">
+            <option value="white" selected>White</option>
+            <option value="black">Black</option>
+            <option value="random">Random</option>
+            <option value="#FF6B6B">Red</option>
+            <option value="#4ECDC4">Turquoise</option>
+            <option value="#45B7D1">Sky Blue</option>
+            <option value="#FDCB6E">Yellow</option>
+            <option value="#6C5CE7">Purple</option>
+            <option value="#A8E6CF">Mint</option>
+            <option value="#FF8ED4">Pink</option>
+          </select>
         </div>
       </div>
-      <div id="canvasDiv" class="image-grid"></div>
-    </main>
-  </div>
+      <div class="buttons">
+        <button data-variant="text" class="action-button">Draw</button>
+        <button data-variant="time" class="action-button">Clock</button>
+        <button data-variant="reset" class="action-button">Clear</button>
+      </div>
+      <div class="checkbox-area">
+        <input type="checkbox" id="full" />
+        <label for="full">Use Full Name</label>
+      </div>
+    </div>
+    <div id="canvasDiv" class="image-grid"></div>
+  </main>
+</div>
 
-  <script>
-    class CanvasGenerator {
-      constructor() {
-        this.initializeElements();
-        this.bindEvents();
-      }
+<script>
+  class CanvasGenerator {
+    constructor() {
+      this.initializeElements();
+      this.bindEvents();
+    }
 
-      initializeElements() {
-        this.input = document.getElementById('name');
-        this.canvasContainer = document.getElementById('canvasDiv');
-        this.fullCheckbox = document.getElementById('full');
-      }
+    initializeElements() {
+      this.input = document.getElementById("name");
+      this.canvasContainer = document.getElementById("canvasDiv");
+      this.fullCheckbox = document.getElementById("full");
+    }
 
-      bindEvents() {
-        document.querySelectorAll('.action-button').forEach(button => {
-          button.addEventListener('click', (e) => this.handleClick(e));
-        });
-      }
+    bindEvents() {
+      document.querySelectorAll(".action-button").forEach((button) => {
+        button.addEventListener("click", (e) => this.handleClick(e));
+      });
+    }
 
-      handleClick(event) {
-        const variant = event.target.dataset.variant;
+    handleClick(event) {
+      const variant = event.target.dataset.variant;
 
-        switch (variant) {
-          case 'text':
-            this.generateTextImage();
-            break;
-          case 'time':
-            this.generateTimeImage();
-            break;
-          case 'reset':
-            this.resetCanvas();
-            break;
-        }
-      }
-
-      createCanvas(text) {
-        const canvas = document.createElement('canvas');
-        canvas.width = 300;
-        canvas.height = 200;
-        const ctx = canvas.getContext('2d');
-
-        // Get selected colors
-        const cardColorSelect = document.getElementById('cardColor');
-        const cardColor = cardColorSelect.value === 'random' 
-          ? this.getChildFriendlyColor() 
-          : cardColorSelect.value;
-
-        const fontColorSelect = document.getElementById('fontColor');
-        let fontColor = fontColorSelect.value;
-        if (fontColor === 'random') {
-          fontColor = this.getRandomFontColor();
-        }
-
-        // Draw background
-        ctx.fillStyle = cardColor;
-        ctx.fillRect(0, 0, 300, 200);
-
-        // Draw text
-        ctx.font = 'bold 24px Comic Sans MS';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillStyle = fontColor;
-        ctx.fillText(text, 150, 100);
-
-        return canvas.toDataURL();
-      }
-
-      getChildFriendlyColor() {
-        const colors = [
-          '#FF6B6B',  // Soft Red
-          '#4ECDC4',  // Turquoise
-          '#45B7D1',  // Sky Blue
-          '#FDCB6E',  // Soft Yellow
-          '#6C5CE7',  // Soft Purple
-          '#A8E6CF',  // Mint Green
-          '#FF8ED4'   // Soft Pink
-        ];
-        return colors[Math.floor(Math.random() * colors.length)];
-      }
-
-      getRandomFontColor() {
-        const colors = [
-          '#FFFFFF', '#000000', '#FF6B6B',
-          '#4ECDC4', '#45B7D1', '#FDCB6E',
-          '#6C5CE7', '#A8E6CF', '#FF8ED4'
-        ];
-        return colors[Math.floor(Math.random() * colors.length)];
-      }
-
-      generateTextImage() {
-        const text = this.input.value.trim();
-        if (!text) return;
-
-        const processedText = this.fullCheckbox.checked ?
-          text :
-          text.split(' ').map(w => w[0]).join('').toUpperCase();
-
-        this.displayImage(this.createCanvas(processedText));
-      }
-
-      generateTimeImage() {
-        const now = new Date();
-        const timeString = [
-          now.getHours().toString().padStart(2, '0'),
-          now.getMinutes().toString().padStart(2, '0'),
-          now.getSeconds().toString().padStart(2, '0')
-        ].join(':');
-
-        this.displayImage(this.createCanvas(timeString));
-      }
-
-      displayImage(dataUrl) {
-        const img = document.createElement('img');
-        img.src = dataUrl;
-        img.alt = 'Generated fun image';
-        this.canvasContainer.prepend(img);
-      }
-
-      resetCanvas() {
-        this.canvasContainer.innerHTML = '';
-        this.input.value = '';
-        this.fullCheckbox.checked = false;
+      switch (variant) {
+        case "text":
+          this.generateTextImage();
+          break;
+        case "time":
+          this.generateTimeImage();
+          break;
+        case "reset":
+          this.resetCanvas();
+          break;
       }
     }
 
-    // Ensure the script runs after the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      new CanvasGenerator();
-    });
-  </script>
+    createCanvas(text) {
+      const canvas = document.createElement("canvas");
+      canvas.width = 300;
+      canvas.height = 200;
+      const ctx = canvas.getContext("2d");
+
+      // Get selected colors
+      const cardColorSelect = document.getElementById("cardColor");
+      const cardColor = cardColorSelect.value === "random" ? this.getChildFriendlyColor() : cardColorSelect.value;
+
+      const fontColorSelect = document.getElementById("fontColor");
+      let fontColor = fontColorSelect.value;
+      if (fontColor === "random") {
+        fontColor = this.getRandomFontColor();
+      }
+
+      // Draw background
+      ctx.fillStyle = cardColor;
+      ctx.fillRect(0, 0, 300, 200);
+
+      // Draw text
+      ctx.font = "bold 24px Comic Sans MS";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = fontColor;
+      ctx.fillText(text, 150, 100);
+
+      return canvas.toDataURL();
+    }
+
+    getChildFriendlyColor() {
+      const colors = [
+        "#FF6B6B", // Soft Red
+        "#4ECDC4", // Turquoise
+        "#45B7D1", // Sky Blue
+        "#FDCB6E", // Soft Yellow
+        "#6C5CE7", // Soft Purple
+        "#A8E6CF", // Mint Green
+        "#FF8ED4" // Soft Pink
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    getRandomFontColor() {
+      const colors = [
+        "#FFFFFF",
+        "#000000",
+        "#FF6B6B",
+        "#4ECDC4",
+        "#45B7D1",
+        "#FDCB6E",
+        "#6C5CE7",
+        "#A8E6CF",
+        "#FF8ED4"
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    generateTextImage() {
+      const text = this.input.value.trim();
+      if (!text) return;
+
+      const processedText = this.fullCheckbox.checked
+        ? text
+        : text
+            .split(" ")
+            .map((w) => w[0])
+            .join("")
+            .toUpperCase();
+
+      this.displayImage(this.createCanvas(processedText));
+    }
+
+    generateTimeImage() {
+      const now = new Date();
+      const timeString = [
+        now.getHours().toString().padStart(2, "0"),
+        now.getMinutes().toString().padStart(2, "0"),
+        now.getSeconds().toString().padStart(2, "0")
+      ].join(":");
+
+      this.displayImage(this.createCanvas(timeString));
+    }
+
+    displayImage(dataUrl) {
+      const img = document.createElement("img");
+      img.src = dataUrl;
+      img.alt = "Generated fun image";
+      this.canvasContainer.prepend(img);
+    }
+
+    resetCanvas() {
+      this.canvasContainer.innerHTML = "";
+      this.input.value = "";
+      this.fullCheckbox.checked = false;
+    }
+  }
+
+  // Ensure the script runs after the DOM is fully loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    new CanvasGenerator();
+  });
+</script>

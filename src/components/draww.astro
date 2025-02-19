@@ -15,11 +15,20 @@ import { getRandomValue } from "../utils/index";
     <div class="controls">
       <label for="toggleCase" class="control-item">
         <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden" />
-        <span id="text" class="control-button case-toggle" style="--content: 'A'" title="Toggle case" role="switch" aria-checked="false">A</span>
+        <span
+          id="text"
+          class="control-button case-toggle"
+          style="--content: 'A'"
+          title="Toggle case"
+          role="switch"
+          aria-checked="false">A</span
+        >
       </label>
       <label for="toggleFont" class="control-item">
         <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden" />
-        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false">T</span>
+        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false"
+          >T</span
+        >
       </label>
       <label for="toggleBg" class="control-item">
         <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden" />
@@ -58,7 +67,7 @@ import { getRandomValue } from "../utils/index";
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     text-align: center;
     padding: 1rem;
   }
@@ -124,7 +133,7 @@ import { getRandomValue } from "../utils/index";
   }
 
   .control-button::before {
-    content: '';
+    content: "";
     position: absolute;
     z-index: 1;
     top: 0;
@@ -191,13 +200,13 @@ import { getRandomValue } from "../utils/index";
   }
 
   @keyframes charReveal {
-    from { 
-      opacity: 0; 
-      transform: scale(0.8); 
+    from {
+      opacity: 0;
+      transform: scale(0.8);
     }
-    to { 
-      opacity: 1; 
-      transform: scale(1); 
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
@@ -217,7 +226,7 @@ import { getRandomValue } from "../utils/index";
     .header {
       padding: 1rem;
     }
-    
+
     .info {
       font-size: 1.25rem;
     }
@@ -240,13 +249,15 @@ import { getRandomValue } from "../utils/index";
   }
 </style>
 
-<script define:vars={{
-  colorBox,
-  fontBox,
-  numberBox,
-  alphabetMapper,
-  IMAGE_DIR
-}}>
+<script
+  define:vars={{
+    colorBox,
+    fontBox,
+    numberBox,
+    alphabetMapper,
+    IMAGE_DIR
+  }}
+>
   // Rest of the JavaScript code remains exactly the same
   // Initialize state
   let currentFontIndex = 0;
@@ -268,30 +279,30 @@ import { getRandomValue } from "../utils/index";
 
   function updateDisplay(key) {
     try {
-      const audio = new Audio('data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA');
+      const audio = new Audio("data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA");
       audio.volume = 0.1;
       audio.play().catch(() => {});
     } catch (error) {
-      console.log('Audio feedback unavailable');
+      console.log("Audio feedback unavailable");
     }
 
     if (!isNaN(Number(key))) {
       boardDiv.style.backgroundColor = getRandomValue(colorBox);
-      boardDiv.style.backgroundImage = '';
+      boardDiv.style.backgroundImage = "";
       charDiv.textContent = key;
-      info.textContent = numberBox[key] || 'Unknown';
+      info.textContent = numberBox[key] || "Unknown";
       return;
     }
 
-    const found = alphabetMapper.find(alpha => alpha.key.toUpperCase() === key.toUpperCase());
+    const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
       info.textContent = found.value;
       if (!toggleBackgroundSwitch.checked) {
         boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
-        boardDiv.style.backgroundColor = '';
+        boardDiv.style.backgroundColor = "";
       }
     } else {
-      boardDiv.style.backgroundImage = '';
+      boardDiv.style.backgroundImage = "";
     }
 
     charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
@@ -308,7 +319,7 @@ import { getRandomValue } from "../utils/index";
     isUpperCase = !e.target.checked;
     const currentText = charDiv.textContent;
     charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
-    textSpan.setAttribute('aria-checked', !e.target.checked);
+    textSpan.setAttribute("aria-checked", !e.target.checked);
   });
 
   toggleFontSwitch?.addEventListener("change", () => {
@@ -320,16 +331,17 @@ import { getRandomValue } from "../utils/index";
     if (e.target.checked) {
       mainEl.style.backgroundBlendMode = "soft-light";
       mainEl.style.filter = "brightness(0.9)";
-      boardDiv.style.backgroundImage = 'none';
-      boardDiv.style.backgroundColor = getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue('--solid-bg');
+      boardDiv.style.backgroundImage = "none";
+      boardDiv.style.backgroundColor =
+        getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue("--solid-bg");
     } else {
       mainEl.style.backgroundBlendMode = "normal";
       mainEl.style.filter = "brightness(1)";
-      boardDiv.style.backgroundColor = '';
+      boardDiv.style.backgroundColor = "";
     }
   });
 
-  document.addEventListener('keydown', handleKeyPress);
+  document.addEventListener("keydown", handleKeyPress);
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
 </script>

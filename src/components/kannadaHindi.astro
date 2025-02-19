@@ -1,36 +1,80 @@
 ---
 import "@/assets/styles/kannada.css";
 import Help from "@/components/Help.astro";
+
 interface LetterPair {
   hindi: string;
   kannada: string;
+  english: string;
   type: "vowel" | "consonant" | "separator";
 }
 
+// Generate unicode characters for Hindi and Kannada
 const generateLetters = (startCode: number, length: number, extraKeys: number[] = []): string[] =>
   Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
     (_, index) => !extraKeys.includes(startCode + index)
   );
+
+// Updated English equivalents with more accurate transliterations
+const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "e", "ai", "o", "au", "aṃ", "aḥ"];
+
+const englishConsonants = [
+  "ka",
+  "kha",
+  "ga",
+  "gha",
+  "ṅa",
+  "ca",
+  "cha",
+  "ja",
+  "jha",
+  "ña",
+  "ṭa",
+  "ṭha",
+  "ḍa",
+  "ḍha",
+  "ṇa",
+  "ta",
+  "tha",
+  "da",
+  "dha",
+  "na",
+  "pa",
+  "pha",
+  "ba",
+  "bha",
+  "ma",
+  "ya",
+  "ra",
+  "la",
+  "va",
+  "śa",
+  "ṣa",
+  "sa",
+  "ha",
+  "ḷa"
+];
 
 const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
 const hindiConsonants = generateLetters(2325, 37);
 const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
 const kannadaConsonants = generateLetters(3221, 37);
 
+// Create letter pairs with all three scripts
 const letterPairs: LetterPair[] = [
   ...hindiVowels.map((hindi, i) => ({
     hindi,
     kannada: kannadaVowels[i],
-    type: "vowel"
+    english: englishVowels[i] || "",
+    type: "vowel" as const
   })),
   ...hindiConsonants.map((hindi, i) => ({
     hindi,
     kannada: kannadaConsonants[i],
-    type: "consonant"
+    english: englishConsonants[i] || "",
+    type: "consonant" as const
   }))
 ];
-
-let toggleOrder = false;
 
 const languages = [
   { code: "hi", name: "हिंदी" },
@@ -41,6 +85,19 @@ const languages = [
 let selectedLanguage1 = "hi";
 let selectedLanguage2 = "kn";
 
+const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
+  switch (langCode) {
+    case "hi":
+      return pair.hindi;
+    case "kn":
+      return pair.kannada;
+    case "en":
+      return pair.english;
+    default:
+      return "";
+  }
+};
+
 const updateUI = () => {
   const languageLabels = document.querySelectorAll(".language-label");
   languageLabels[0].textContent = languages.find((lang) => lang.code === selectedLanguage1)?.name || "";
@@ -48,21 +105,36 @@ const updateUI = () => {
 
   document.querySelectorAll(".language-letter-card").forEach((card, index) => {
     const pair = letterPairs[index];
-    const lang1Letter = selectedLanguage1 === "hi" ? pair.hindi : pair.kannada;
-    const lang2Letter = selectedLanguage2 === "hi" ? pair.hindi : pair.kannada;
+    const lang1Letter = getLetterForLanguage(pair, selectedLanguage1);
+    const lang2Letter = getLetterForLanguage(pair, selectedLanguage2);
 
-    card.querySelector(".language-letter-kannada").textContent = lang1Letter;
-    card.querySelector(".language-letter-hindi").textContent = lang2Letter;
+    const lang1Element = card.querySelector(".language-letter-top");
+    const lang2Element = card.querySelector(".language-letter-bottom");
+
+    if (lang1Element && lang2Element) {
+      lang1Element.textContent = lang1Letter;
+      lang2Element.textContent = lang2Letter;
+
+      // Add special styling for English text
+      lang1Element.classList.toggle("english-text", selectedLanguage1 === "en");
+      lang2Element.classList.toggle("english-text", selectedLanguage2 === "en");
+
+      // Add transliteration class for proper display of diacritical marks
+      lang1Element.classList.toggle("transliteration", selectedLanguage1 === "en");
+      lang2Element.classList.toggle("transliteration", selectedLanguage2 === "en");
+    }
   });
 };
 
-const handleLanguageChange = (event, isFirstDropdown) => {
-  if (isFirstDropdown) {
-    selectedLanguage1 = event.target.value;
-  } else {
-    selectedLanguage2 = event.target.value;
+const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
+  if (event.target instanceof HTMLSelectElement) {
+    if (isFirstDropdown) {
+      selectedLanguage1 = event.target.value;
+    } else {
+      selectedLanguage2 = event.target.value;
+    }
+    updateUI();
   }
-  updateUI();
 };
 ---
 
@@ -126,6 +198,161 @@ const handleLanguageChange = (event, isFirstDropdown) => {
   </div>
 </div>
 <script>
+  // Letter generation helpers
+  const generateLetters = (startCode, length, extraCodes = []) =>
+    Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
+      (_, i) => !extraCodes.includes(startCode + i)
+    );
+
+  // Letter sets
+  const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
+  const hindiConsonants = generateLetters(2325, 37);
+  const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
+  const kannadaConsonants = generateLetters(3221, 37);
+  const englishVowels = ["A", "E", "I", "O", "U"];
+  const englishConsonants = Array.from("BCDFGHJKLMNPQRSTVWXYZ");
+
+  const languages = [
+    { code: "hi", name: "हिंदी" },
+    { code: "kn", name: "ಕನ್ನಡ" },
+    { code: "en", name: "English" }
+  ];
+
+  let selectedLanguage1 = "hi";
+  let selectedLanguage2 = "kn";
+
+  function getLetter(lang, type, index) {
+    if (lang === "en") {
+      return type === "vowel" ? englishVowels[index] || "" : englishConsonants[index] || "";
+    }
+    if (lang === "hi") {
+      return type === "vowel" ? hindiVowels[index] || "" : hindiConsonants[index] || "";
+    }
+    if (lang === "kn") {
+      return type === "vowel" ? kannadaVowels[index] || "" : kannadaConsonants[index] || "";
+    }
+    return "";
+  }
+
+  function updateGrid() {
+    // Update toggle button labels
+    const hindiLabel = document.getElementById("hindiLabel");
+    const kannadaLabel = document.getElementById("kannadaLabel");
+    if (hindiLabel && kannadaLabel) {
+      hindiLabel.textContent = languages.find((l) => l.code === selectedLanguage1)?.name || "";
+      kannadaLabel.textContent = languages.find((l) => l.code === selectedLanguage2)?.name || "";
+    }
+
+    // Update vowels
+    const vowelsContainer = document.getElementById("vowelsContainer");
+    if (vowelsContainer) {
+      vowelsContainer.innerHTML = "";
+      const vowelCount = Math.max(
+        selectedLanguage1 === "en"
+          ? englishVowels.length
+          : selectedLanguage1 === "hi"
+            ? hindiVowels.length
+            : kannadaVowels.length,
+        selectedLanguage2 === "en"
+          ? englishVowels.length
+          : selectedLanguage2 === "hi"
+            ? hindiVowels.length
+            : kannadaVowels.length
+      );
+
+      for (let i = 0; i < vowelCount; i++) {
+        const card = document.createElement("div");
+        card.className = "language-letter-card language-letter-card-vowel";
+
+        const firstDiv = document.createElement("div");
+        firstDiv.className = "language-letter-first";
+        firstDiv.textContent = getLetter(selectedLanguage1, "vowel", i);
+
+        const secondDiv = document.createElement("div");
+        secondDiv.className = "language-letter-second";
+        secondDiv.textContent = getLetter(selectedLanguage2, "vowel", i);
+
+        card.append(firstDiv, secondDiv);
+        vowelsContainer.appendChild(card);
+      }
+    }
+
+    // Update consonants
+    const consonantsContainer = document.getElementById("consonantsContainer");
+    if (consonantsContainer) {
+      consonantsContainer.innerHTML = "";
+      const consonantCount = Math.max(
+        selectedLanguage1 === "en"
+          ? englishConsonants.length
+          : selectedLanguage1 === "hi"
+            ? hindiConsonants.length
+            : kannadaConsonants.length,
+        selectedLanguage2 === "en"
+          ? englishConsonants.length
+          : selectedLanguage2 === "hi"
+            ? hindiConsonants.length
+            : kannadaConsonants.length
+      );
+
+      for (let i = 0; i < consonantCount; i++) {
+        const card = document.createElement("div");
+        card.className = "language-letter-card language-letter-card-consonant";
+
+        const firstDiv = document.createElement("div");
+        firstDiv.className = "language-letter-first";
+        firstDiv.textContent = getLetter(selectedLanguage1, "consonant", i);
+
+        const secondDiv = document.createElement("div");
+        secondDiv.className = "language-letter-second";
+        secondDiv.textContent = getLetter(selectedLanguage2, "consonant", i);
+
+        card.append(firstDiv, secondDiv);
+        consonantsContainer.appendChild(card);
+      }
+    }
+  }
+
+  // Set up event listeners
+  document.addEventListener("DOMContentLoaded", () => {
+    const dropdown1 = document.getElementById("languageDropdown1");
+    const dropdown2 = document.getElementById("languageDropdown2");
+    const toggleButton = document.getElementById("toggleButton");
+
+    if (dropdown1) {
+      dropdown1.addEventListener("change", (e) => {
+        selectedLanguage1 = e.target.value;
+        updateGrid();
+      });
+    }
+
+    if (dropdown2) {
+      dropdown2.addEventListener("change", (e) => {
+        selectedLanguage2 = e.target.value;
+        updateGrid();
+      });
+    }
+
+    if (toggleButton) {
+      toggleButton.addEventListener("click", () => {
+        toggleButton.classList.toggle("toggled");
+        document.querySelectorAll(".language-letter-card").forEach((card) => {
+          card.classList.toggle("reverse");
+        });
+
+        const hindiLabel = document.getElementById("hindiLabel");
+        const kannadaLabel = document.getElementById("kannadaLabel");
+        if (hindiLabel && kannadaLabel) {
+          hindiLabel.classList.toggle("active");
+          kannadaLabel.classList.toggle("active");
+        }
+      });
+    }
+
+    // Initial render
+    updateGrid();
+  });
+</script>
+<!--<script>
  
 
   // --- Letter Generation Helpers ---
@@ -280,25 +507,25 @@ const handleLanguageChange = (event, isFirstDropdown) => {
 
   // --- Setup event listeners once the component is mounted ---
   // (The HTML below must contain elements with these IDs)
-  window.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("languageDropdown1").addEventListener("change", (e) => handleLanguageChange(e, true));
-    document.getElementById("languageDropdown2").addEventListener("change", (e) => handleLanguageChange(e, false));
+  //window.addEventListener("DOMContentLoaded", () => {
+  //  document.getElementById("languageDropdown1").addEventListener("change", (e) => handleLanguageChange(e, true));
+  //  document.getElementById("languageDropdown2").addEventListener("change", (e) => handleLanguageChange(e, false));
 
-    // Toggle button for swapping the order of the languages in the grid.
-    const toggleButton = document.getElementById("toggleButton");
-    toggleButton.addEventListener("click", () => {
-      // Toggle a CSS class that reverses the order in each card (via flex direction, for example)
-      document.querySelectorAll(".language-letter-card").forEach((card) => {
-        card.classList.toggle("reverse");
-      });
-      // Also swap the labels (active/inactive state)
-      document.getElementById("toggleFirstLabel").classList.toggle("active");
-      document.getElementById("toggleSecondLabel").classList.toggle("active");
-    });
+  //  // Toggle button for swapping the order of the languages in the grid.
+  //  const toggleButton = document.getElementById("toggleButton");
+  //  toggleButton.addEventListener("click", () => {
+  //    // Toggle a CSS class that reverses the order in each card (via flex direction, for example)
+  //    document.querySelectorAll(".language-letter-card").forEach((card) => {
+  //      card.classList.toggle("reverse");
+  //    });
+  //    // Also swap the labels (active/inactive state)
+  //    document.getElementById("toggleFirstLabel").classList.toggle("active");
+  //    document.getElementById("toggleSecondLabel").classList.toggle("active");
+  //  });
 
-    updateGrid();
-  });
-</script>
+  //  updateGrid();
+  //});
+</script>-->
 <style>
   /* Dropdown Container */
   .toggle-container {
