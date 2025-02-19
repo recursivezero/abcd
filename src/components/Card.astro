@@ -61,39 +61,7 @@ import "@/assets/styles/card.css";
       const cardContainer = document.getElementById("card-container") as HTMLElement;
       const searchInput = document.getElementById("searchInput") as HTMLInputElement;
 
-      function createKeyValuePairs(branch: Branch, query: string) {
-        return Object.entries(branch)
-          .filter(([key]) => ["Caste", "Gotra", "Deity"].includes(key))
-          .map(([key, value]) => {
-            let icon = "";
-            switch (key) {
-              case "Gotra":
-                icon = "🧬";
-                break;
-              case "Deity":
-                icon = "🕉";
-                break;
-              case "Caste":
-                icon = "🌿";
-                break;
-              default:
-                icon = "🔑";
-            }
-            const highlightedValue = highlightText(value?.hi || "", query);
-            return `
-                            <p title="${key}"><span data-name="${key}" class="icon">${icon}</span> : <span>${highlightedValue}</span></p>
-                        `;
-          })
-          .join("");
-      }
-
-      function createSurnameCards(
-        surnames: Surname[],
-        gotra: string,
-        deity: string,
-        branchName: string,
-        query: string
-      ): string {
+      function createSurnameCards(surnames: Surname[], query: string): string {
         return surnames
           .filter((surname): surname is Surname => surname?.hi !== undefined && surname?.en !== undefined)
           .map(
@@ -107,14 +75,8 @@ import "@/assets/styles/card.css";
       }
 
       function createCardContent(branch: Branch, query: string) {
-        const keyValueHTML = createKeyValuePairs(branch, query);
-        const surnamesHTML = createSurnameCards(
-          branch.Surnames,
-          branch.Gotra.hi,
-          branch.Deity.hi,
-          branch.Caste.hi,
-          query
-        );
+        //const keyValueHTML = createKeyValuePairs(branch, query);
+        const surnamesHTML = createSurnameCards(branch.Surnames, query);
         const surnamesCount = branch.Surnames.length;
 
         return `
