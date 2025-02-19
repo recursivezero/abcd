@@ -1,22 +1,260 @@
 ---
-interface Props {
-  title: string;
-  body: string;
-  href: string;
-}
-
-const { href, title, body } = Astro.props;
 import "@/assets/styles/card.css";
 ---
 
-<li class="link-card">
-  <a href={href}>
-    <h2>
-      {title}
-      <span>&rarr;</span>
-    </h2>
-    <p>
-      {body}
-    </p>
-  </a>
-</li>
+<div class="search-container theme-glass">
+  <div class="search-wrapper">
+    <span class="search-icon">🔍</span>
+    <input
+      type="text"
+      id="searchInput"
+      class="search-bar theme-glass"
+      placeholder="Search by Gotra, Deity, Caste, or Surname..."
+    />
+  </div>
+</div>
+<div class="card-container" id="card-container"></div>
+
+<script>
+  import { colors } from "@/utils/constants.ts";
+
+  interface Surname {
+    hi: string;
+    en: string;
+  }
+
+  interface Branch {
+    id: number;
+    Gotra: {
+      hi: string;
+      en: string;
+    };
+    Deity: {
+      hi: string;
+      en: string;
+    };
+    Caste: {
+      hi: string;
+      en: string;
+    };
+    Location: {
+      hi: string;
+      en: string;
+    };
+    Surnames: Surname[];
+  }
+
+  function highlightText(text: string | undefined | null, query: string): string {
+    if (!text || !query) return text || "";
+    const regex = new RegExp(`(${query.trim()})`, "gi");
+    return text.replace(regex, `<span class="highlight">$1</span>`);
+  }
+
+  fetch("/assets/json/family.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const cardContainer = document.getElementById("card-container") as HTMLElement;
+      const searchInput = document.getElementById("searchInput") as HTMLInputElement;
+
+      function createKeyValuePairs(branch: Branch, query: string) {
+        return Object.entries(branch)
+          .filter(([key]) => ["Caste", "Gotra", "Deity"].includes(key))
+          .map(([key, value]) => {
+            let icon = "";
+            switch (key) {
+              case "Gotra":
+                icon = "🧬";
+                break;
+              case "Deity":
+                icon = "🕉";
+                break;
+              case "Caste":
+                icon = "🌿";
+                break;
+              default:
+                icon = "🔑";
+            }
+            const highlightedValue = highlightText(value?.hi || "", query);
+            return `
+                            <p title="${key}"><span data-name="${key}" class="icon">${icon}</span> : <span>${highlightedValue}</span></p>
+                        `;
+          })
+          .join("");
+      }
+
+      function createSurnameCards(
+        surnames: Surname[],
+        gotra: string,
+        deity: string,
+        branchName: string,
+        query: string
+      ): string {
+        return surnames
+          .filter((surname): surname is Surname => surname?.hi !== undefined && surname?.en !== undefined)
+          .map(
+            (surname: Surname) => `
+                    <div class="surname-card">
+                        <p><strong class="icon" data-name="Surname">🌳:</strong> ${highlightText(surname.hi, query)}</p>
+                    </div>
+                `
+          )
+          .join("");
+      }
+
+      function createCardContent(branch: Branch, query: string) {
+        const keyValueHTML = createKeyValuePairs(branch, query);
+        const surnamesHTML = createSurnameCards(
+          branch.Surnames,
+          branch.Gotra.hi,
+          branch.Deity.hi,
+          branch.Caste.hi,
+          query
+        );
+        const surnamesCount = branch.Surnames.length;
+
+        return `
+          <div class="card-header">
+            <button class="back"></button>
+            <button class="copy-button">
+              <span class="icon"></span>
+            </button>
+          </div>
+          <div class="card-info">
+            <div class="info-group">
+              <span data-name="Gotra" class="icon">🧬</span>
+              <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Gotra.hi, query)}</span>
+            </div>
+
+            <div class="info-group">
+              <span data-name="Deity" class="icon">🕉</span>
+              <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Deity.hi, query)}</span>
+            </div>
+            <div class="info-group">
+              <span data-name="Caste" class="icon">🌿</span>
+              <span class="value" style="font-size: 1.75rem;">${highlightText(branch.Caste.hi, query)}</span>
+            </div>
+          </div>
+                      
+          <div class="card-body theme-glass">
+            <h3 class="surname-heading">Surnames <span class="count">(${surnamesCount})</span></h3>
+            <div class="surname-container">
+              ${surnamesHTML}
+            </div>
+          </div>`;
+      }
+
+      function filterAndDisplayCards(filteredData: Branch[], query: string): void {
+        cardContainer.innerHTML = "";
+
+        filteredData.forEach((branch: Branch, index: number) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          const colorIndex = index % colors.length;
+          card.style.backgroundColor = colors[colorIndex];
+
+          const cardContent = createCardContent(branch, query);
+
+          card.innerHTML = cardContent;
+
+          card.addEventListener("click", (event) => {
+            const target = event.target as HTMLElement;
+            if (!target.classList.contains("copy-button")) {
+              card.classList.toggle("open");
+            }
+          });
+
+          if (query && card.innerHTML.toLowerCase().includes(query.toLowerCase())) {
+            card.classList.add("open");
+          }
+
+          cardContainer.appendChild(card);
+        });
+      }
+
+      filterAndDisplayCards(data, "");
+
+      searchInput.addEventListener("input", (event: Event) => {
+        const query = (event.target as HTMLInputElement).value.toLowerCase();
+
+        const filteredData = data.filter((branch: Branch) => {
+          const gotra = `${branch.Gotra.hi.toLowerCase() || ""} ${branch.Gotra.en.toLowerCase() || ""}`;
+          const deity = `${branch.Deity.hi.toLowerCase() || ""} ${branch.Deity.en.toLowerCase() || ""}`;
+          const caste = `${branch.Caste.hi.toLowerCase() || ""} ${branch.Caste.en.toLowerCase() || ""}`;
+          const surnames = Array.isArray(branch.Surnames) ? branch.Surnames : [];
+          const surnameTexts = surnames.map(
+            (surname: Surname) => `${surname.en?.toLowerCase() || ""} ${surname.hi?.toLowerCase() || ""}`
+          );
+
+          return (
+            gotra.includes(query) ||
+            deity.includes(query) ||
+            caste.includes(query) ||
+            surnameTexts.some((surname: string | any[]) => surname.includes(query))
+          );
+        });
+
+        filterAndDisplayCards(filteredData, query);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching data: ", error);
+    });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const cardContainer = document.getElementById("card-container") as HTMLElement;
+
+    function copyToClipboard(text: string, button: EventTarget | null) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          const tooltip = document.createElement("span");
+          tooltip.className = "copied-tooltip";
+          tooltip.textContent = "Copied!";
+          if (button instanceof HTMLElement) {
+            button.appendChild(tooltip);
+          }
+
+          setTimeout(() => {
+            tooltip.remove();
+          }, 1500);
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+    }
+
+    cardContainer.addEventListener("click", (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      if (target.classList.contains("copy-button")) {
+        const button = event.target as HTMLButtonElement;
+        const card = button.closest(".card") as HTMLElement;
+
+        const gotra = (card.querySelector(".info-group:nth-child(1) .value") as HTMLElement).textContent;
+        const deity = (card.querySelector(".info-group:nth-child(2) .value") as HTMLElement).textContent;
+        const caste = (card.querySelector(".info-group:nth-child(3) .value") as HTMLElement).textContent;
+
+        const surnameCards = card.querySelectorAll(".surname-card");
+        const surnames = Array.from(surnameCards).map((surnameCard) => {
+          const element = surnameCard.querySelector("p:nth-child(1)") as HTMLElement;
+          return element.textContent?.replace("🌳:", "").trim() || "";
+        });
+
+        const jsonData = {
+          Gotra: gotra,
+          Deity: deity,
+          Caste: caste,
+          Surnames: surnames
+        };
+        const textToCopy = JSON.stringify(jsonData, null, 2);
+
+        copyToClipboard(textToCopy, button);
+      }
+    });
+  });
+</script>
