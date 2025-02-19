@@ -5,9 +5,7 @@ export const hindiVowels = Array.from({ length: 16 }, (_, i) => ({
   key: 2309 + i,
   value: String.fromCodePoint(2309 + i)
 }));
-const extraHindiVowelKey = [2317, 2321]; // 'ऍ' , 'ऑ'
-
-// String.fromCodePoint(2384); // 'ॐ'
+const extraHindiVowelKey = [2317, 2321];
 export const hindiVowelList = hindiVowels.filter((v) => !extraHindiVowelKey.includes(v.key));
 
 // Consonants
@@ -50,15 +48,16 @@ export const matras = {
   aie: String.fromCharCode(2376),
   au: String.fromCharCode(2379),
   aau: String.fromCharCode(2380),
-  an: String.fromCharCode(2306),
+  an: String.fromCharCode(2385),
   ah: String.fromCharCode(2307),
-  ru: String.fromCharCode(2371)
+  ru: String.fromCharCode(2371), 
 };
 
 export const barahkhadi = (code: number) => {
   console.log({ code });
   const sanyukat = Object.values(matras);
   const list = [String.fromCharCode(code)];
+  console.log(list.concat(sanyukat));
   return list.concat(sanyukat);
 };
 
