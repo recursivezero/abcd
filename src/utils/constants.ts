@@ -37,6 +37,12 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Barahkhadi",
+    title: "Barahkhadi",
+    path: "/barahkhadi",
+    isActive: true
+  },
+  {
     name: "Record",
     title: "Record",
     path: "/record",
@@ -68,12 +74,6 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Letter",
-    title: "Letter Pad",
-    path: "/letter",
-    isActive: true
-  },
-  {
     name: "Feedback",
     title: "Feedback Form",
     path: "/feedback",
@@ -90,6 +90,11 @@ export const FooterLinks: LinkProps[] = [
   {
     title: "Terms and Condition",
     path: "/terms",
+    isActive: true
+  },
+  {
+    title: "Blogs",
+    path: "/blog",
     isActive: true
   }
 ];
