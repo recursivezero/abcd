@@ -3,25 +3,25 @@
   height: 100%;
   overflow-y: auto;
 
-  & .consonants-rows {
+  & .consonants__rows {
     display: flex;
     flex-direction: column;
   }
 
-  & .consonant-row {
+  & .consonant__row {
     padding: 1rem;
     background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
     border-radius: 0.5rem;
   }
 
-  & .consonants-grid {
+  & .consonants__grid {
     display: grid;
     gap: 1.25rem;
     grid-template-columns: repeat(auto-fit, 250px);
     justify-content: center;
   }
 
-  & .consonant-card {
+  & .consonant__card {
     width: 250px;
     height: 250px;
     position: relative;
@@ -34,7 +34,7 @@
     overflow: hidden;
   }
 
-  & .consonant-card:hover {
+  & .consonant__card:hover {
     transform: none;
     background-color: color-mix(in srgb, var(--primary) 15%, var(--background) 85%);
     transition: all 0.2s ease;
@@ -46,18 +46,18 @@
     color: var(--text);
   }
 
-  & .consonants-container {
+  & .consonants__container {
     scrollbar-width: thin;
     scrollbar-color: var(--primary) var(--background);
   }
 
-  & .consonant-card {
+  & .consonant__card {
     position: relative;
     z-index: 1;
     overflow: hidden;
   }
 
-  & .consonant-card:hover {
+  & .consonant__card:hover {
     z-index: 1000;
   }
 
@@ -91,7 +91,7 @@
     transform: scale(0.95);
   }
 
-  & .barahkhadi-popover {
+  & .barahkhadi__popover {
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -113,12 +113,17 @@
     z-index: 1;
   }
 
-  & .consonant-card[data-active="true"] .barahkhadi-popover {
+  & .consonant__card[data-active="true"] .barahkhadi__popover {
     visibility: visible;
     opacity: 1;
   }
 
-  & .variations-grid {
+  & .letter__card[data-active="true"] .barahkhadi__popover {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  & .variations__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.4rem;
@@ -137,4 +142,35 @@
     border: 1px solid var(--border);
   }
 
+  & .group__row {
+    padding: 1rem;
+    background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
+    border-radius: 0.5rem;
+  }
+
+  & .row__grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, 250px);
+    justify-content: center;
+  }
+
+  & .letter__card {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
+    border-radius: 0.5rem;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+  }
+
+  & .letter__card:hover {
+    transform: none;
+    background-color: color-mix(in srgb, var(--primary) 15%, var(--background) 85%);
+    transition: all 0.2s ease;
+  }
 }
