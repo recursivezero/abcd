@@ -15,15 +15,15 @@ const combinations = [consonant, ...Object.values(matras).map((matra) => consona
 
 <BaseLayout meta={{ title: `Barahkhadi - ${consonant}` }}>
   <div class="container__consonant">
-    <div class="consonant-header">
-      <a href="/barahkhadi" class="back-link">← Back</a>
+    <div class="consonant__header">
+      <a href="/barahkhadi" class="back__link">← Back</a>
       <h1>{consonant}</h1>
     </div>
-    <div class="combinations-grid">
+    <div class="combinations__grid">
       {
         combinations.map((result) => (
-          <div class="combination-card">
-            <span class="combination-result">{result}</span>
+          <div class="combination__card">
+            <span class="combination__result">{result}</span>
           </div>
         ))
       }
