@@ -6,24 +6,24 @@ const { post, height = "auto" } = props;
 const { url, title, description, image, author, date } = post;
 ---
 
-<article class="">
+<article class="blog-card">
   <a href={url}>
-    <div class="">
-      <div class="image">
-        <figure class={`overflow-hidden ${typeof height === "number" ? `h-[${height}px]` : `h-[${height}]`}`}>
-          <img src={image} alt={title} loading="lazy" class="" />
+    <div class="blog-card-content">
+      <div class="blog-card-image">
+        <figure class={`${typeof height === "number" ? `height: ${height}px` : `height: ${height}`}`}>
+          <img src={image} alt={title} loading="lazy" />
         </figure>
       </div>
-      <div class="">
-        <h3 class="">
+      <div class="blog-card-details">
+        <h3 class="blog-card-title">
           {title}
         </h3>
 
-        {description && <p class="">{description}</p>}
+        {description && <p class="blog-card-description">{description}</p>}
 
-        <div class="">
-          <div class="">
-            {author && <p class="font-medium">By {author}</p>}
+        <div class="blog-card-meta">
+          <div>
+            {author && <p>By {author}</p>}
           </div>
           {date && <time datetime={date.toString()}>{date}</time>}
         </div>
