@@ -2,20 +2,20 @@
   height: 100%;
   padding: 2rem;
 
-  & .consonant-header {
+  & .consonant__header {
     display: flex;
     align-items: center;
     gap: 2rem;
     margin-bottom: 2rem;
   }
 
-  & .back-link {
+  & .back__link {
     color: var(--primary);
     text-decoration: none;
     font-size: 1.2rem;
   }
 
-  & .combinations-grid {
+  & .combinations__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
@@ -24,9 +24,11 @@
     overflow-y: auto;
     border: 1px solid var(--border);
     border-radius: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--background);
   }
 
-  & .combination-card {
+  & .combination__card {
     background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
     border-radius: 0.5rem;
     padding: 2rem 1rem;
@@ -35,21 +37,16 @@
     gap: 0.5rem;
   }
 
-  & .combination-content {
+  & .combination__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
   }
 
-  & .combination-result {
+  & .combination__result {
     font-size: 3rem;
     font-weight: bold;
-  }
-
-  & .combinations-grid {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) var(--background);
   }
 
   @container (min-width: 768px) {
