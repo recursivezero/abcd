@@ -1,5 +1,17 @@
-{
-  "easy": ["CAT", "DOG", "SUN", "MOON", "STAR"],
-  "medium": ["APPLE", "BANANA", "GRAPE", "ORANGE"],
-  "hard": ["ELEPHANT", "GIRAFFE", "KANGAROO", "RHINOCEROS"]
-}
+[
+  {
+    "easy": ["CAT", "DOG", "SUN", "MOON", "STAR"],
+    "medium": ["APPLE", "BANANA", "GRAPE", "ORANGE"],
+    "hard": ["ELEPHANT", "GIRAFFE", "KANGAROO", "RHINOCEROS"]
+  },
+  {
+    "easy": ["HAT", "CAR", "BALL", "SHOE", "LAMP"],
+    "medium": ["PINEAPPLE", "WATERMELON", "CHERRY", "APRICOT", "COCONUT"],
+    "hard": ["OCTOPUS", "CHAMELEON", "PORCUPINE", "WALRUS", "PEACOCK"]
+  },
+  {
+    "easy": ["RED", "BLUE", "GREEN", "YELLOW", "PURPLE"],
+    "medium": ["BLACK", "WHITE", "BROWN", "ORANGE", "PINK"],
+    "hard": ["MAGENTA", "CYAN", "TURQUOISE", "VIOLET", "MAROON"]
+  }
+]
