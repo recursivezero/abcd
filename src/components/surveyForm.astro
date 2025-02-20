@@ -1,5 +1,5 @@
 ---
-import type { SurveyData } from '../types/survey';
+import type { SurveyData } from "../types/survey";
 import "@/assets/styles/survey.css";
 interface Props {
   data: SurveyData;
@@ -13,130 +13,121 @@ const { data } = Astro.props;
     <div class="survey-header">
       <h1>{data.surveyTitle}</h1>
       <p>{data.description}</p>
-    <div/>
+      <div></div>
 
-    <div class="questions-container">
-      <form id="surveyForm" class="survey-form">
-        {data.questions.map((question) => (
-          <div class="question-card">
-            <h3>{question.questionText}</h3>
-            
-            {question.type === 'openEnded' ? (
-              <textarea
-                name={`q${question.id}`}
-                class="textarea-input"
-                rows="4"
-                placeholder="Type your answer here..."
-              ></textarea>
-            ) : question.type === 'singleChoice' ? (
-              <div class="options-group">
-                {question.options?.map((option) => (
-                  <label class="option-label">
-                    <input
-                      type="radio"
-                      name={`q${question.id}`}
-                      value={option}
-                      class="radio-input"
-                    />
-                    <span class="radio-text">{option}</span>
-                  </label>
-                ))}
+      <div class="questions-container">
+        <form id="surveyForm" class="survey-form">
+          {
+            data.questions.map((question) => (
+              <div class="question-card">
+                <h3>{question.questionText}</h3>
+
+                {question.type === "openEnded" ? (
+                  <textarea
+                    name={`q${question.id}`}
+                    class="textarea-input"
+                    rows="4"
+                    placeholder="Type your answer here..."
+                  />
+                ) : question.type === "singleChoice" ? (
+                  <div class="options-group">
+                    {question.options?.map((option) => (
+                      <label class="option-label">
+                        <input type="radio" name={`q${question.id}`} value={option} class="radio-input" />
+                        <span class="radio-text">{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                ) : (
+                  <div class="options-group">
+                    {question.options?.map((option) => (
+                      <label class="option-label">
+                        <input type="checkbox" name={`q${question.id}`} value={option} class="checkbox-input" />
+                        <span class="checkbox-text">{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                )}
               </div>
-            ) : (
-              <div class="options-group">
-                {question.options?.map((option) => (
-                  <label class="option-label">
-                    <input
-                      type="checkbox"
-                      name={`q${question.id}`}
-                      value={option}
-                      class="checkbox-input"
-                    />
-                    <span class="checkbox-text">{option}</span>
-                  </label>
-                ))}
-              </div>
-            )}
+            ))
+          }
+
+          <div class="survey-controls">
+            <button type="submit" class="submit-btn">Submit Survey</button>
+            <button type="button" class="download-btn" id="downloadResults" aria-label="Download Results">
+              Download Results
+            </button>
           </div>
-        ))}
-
-        <div class="survey-controls">
-          <button type="submit" class="submit-btn">Submit Survey</button>
-          <button type="button" class="download-btn" id="downloadResults" aria-label="Download Results">
-            Download Results
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-  const surveyForm = document.getElementById('surveyForm');
-  const downloadBtn = document.getElementById('downloadResults');
+  <script>
+    const surveyForm = document.getElementById("surveyForm");
+    const downloadBtn = document.getElementById("downloadResults");
 
-  function collectFormData(form) {
-    const formData = new FormData(form);
-    const data = {};
+    function collectFormData(form) {
+      const formData = new FormData(form);
+      const data = {};
 
-    formData.forEach((value, key) => {
-      if (key in data) {
-        if (Array.isArray(data[key])) {
-          data[key].push(value);
+      formData.forEach((value, key) => {
+        if (key in data) {
+          if (Array.isArray(data[key])) {
+            data[key].push(value);
+          } else {
+            data[key] = [data[key], value];
+          }
         } else {
-          data[key] = [data[key], value];
+          data[key] = value;
         }
-      } else {
-        data[key] = value;
-      }
-    });
-
-    return data;
-  }
-
-  async function submitSurvey(event) {
-    event.preventDefault();
-    const formData = collectFormData(surveyForm);
-    
-    try {
-      const response = await fetch('/api/survey', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
       });
-      
-      const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(`Failed to submit survey: ${result.message || response.statusText}`);
-      }
-
-      alert('Survey submitted successfully!');
-      surveyForm.reset();
-      
-    } catch (error) {
-      console.error('Error submitting survey:', error);
-      alert(`Error submitting survey: ${error.message}`);
+      return data;
     }
-  }
 
-  function downloadResults() {
-    if (!surveyForm) return;
+    async function submitSurvey(event) {
+      event.preventDefault();
+      const formData = collectFormData(surveyForm);
 
-    const formData = collectFormData(surveyForm);
-    const jsonData = JSON.stringify(formData, null, 2); 
+      try {
+        const response = await fetch("/api/survey", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
 
-    const blob = new Blob([jsonData], { type: 'application/json' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'survey_results.json';
+        const result = await response.json();
 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+        if (!response.ok) {
+          throw new Error(`Failed to submit survey: ${result.message || response.statusText}`);
+        }
 
-  surveyForm?.addEventListener('submit', submitSurvey);
-  downloadBtn?.addEventListener('click', downloadResults);
-</script>
+        alert("Survey submitted successfully!");
+        surveyForm.reset();
+      } catch (error) {
+        console.error("Error submitting survey:", error);
+        alert(`Error submitting survey: ${error.message}`);
+      }
+    }
 
+    function downloadResults() {
+      if (!surveyForm) return;
+
+      const formData = collectFormData(surveyForm);
+      const jsonData = JSON.stringify(formData, null, 2);
+
+      const blob = new Blob([jsonData], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "survey_results.json";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    surveyForm?.addEventListener("submit", submitSurvey);
+    downloadBtn?.addEventListener("click", downloadResults);
+  </script>
+</div>

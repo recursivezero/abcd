@@ -1,13 +1,13 @@
 // types/survey.ts
-export type Question ={
+export type Question = {
   id: number;
   questionText: string;
-  type: 'singleChoice' | 'multiChoice' | 'openEnded';
+  type: "singleChoice" | "multiChoice" | "openEnded";
   options: string[] | null;
-}
+};
 
-export type SurveyData ={
+export type SurveyData = {
   surveyTitle: string;
   description: string;
   questions: Question[];
-}
+};

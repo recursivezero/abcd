@@ -125,7 +125,8 @@
 
       <div class="form-group">
         <label for="feedback">Feedback</label>
-        <textarea id="feedback" name="feedback" rows="4" required minlength="10" placeholder="Share your thoughts..."></textarea>
+        <textarea id="feedback" name="feedback" rows="4" required minlength="10" placeholder="Share your thoughts..."
+        ></textarea>
       </div>
 
       <div class="button-container">
@@ -157,9 +158,9 @@
       const response = await fetch("/api/submit-feedback", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
       if (response.ok) {
