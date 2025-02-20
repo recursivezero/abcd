@@ -1,0 +1,20 @@
+---
+import "@/assets/styles/crossword.css";
+import crosswordData from '../../public/mocks/crossword-data.json';
+import WordSearchPuzzle from "@/components/Puzzle.astro";
+import BaseLayout from "@/layouts/Base";
+
+const categories = crosswordData.categories;
+let selectedCategory = null;
+let words: any= [];
+
+
+const selectCategory = (category: string) => {
+  selectedCategory = category;
+  words = (crosswordData as any).words[category] || [];
+};
+
+---
+<BaseLayout meta={{ title: "Crossword" }}>
+    <WordSearchPuzzle/>
+</BaseLayout>
