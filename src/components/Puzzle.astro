@@ -1,18 +1,17 @@
-
 <div class="puzzle-container">
-  <!--<div class="controls-row">-->
-    <div class="controls-group">
-      <select id="difficultySelect" class="control-btn">
-        <option value="easy">Easy (Ages 3-5)</option>
-        <option value="medium">Medium (Ages 5-6)</option>
-        <option value="hard">Hard (Ages 7-8)</option>
-      </select>
-      <button id="newPuzzleBtn" class="control-btn">New Puzzle</button>
-      <button id="solutionBtn" class="control-btn">Solution</button>
-      <button id="clearBtn" class="control-btn">Clear</button>
-      <button class="control-btn" id="themeToggle">🌓 Theme</button>
-    </div>
-  <!--</div>-->
+  <div class="controls-group">
+    <button id="newPuzzleBtn" class="control-btn">New Puzzle</button>
+    <button id="resetBtn" class="control-btn">Shuffle</button>
+    <button id="clearBtn" class="control-btn">Clear</button>
+    <button class="control-btn" id="themeToggle"> Theme</button>
+    <select id="difficultySelect" class="control-btn">
+      <option value="easy">Easy (Ages 3-5)</option>
+      <option value="medium">Medium (Ages 5-6)</option>
+      <option value="hard">Hard (Ages 7-8)</option>
+    </select>
+    <button id="solutionBtn" class="control-btn">Hint</button>
+    
+  </div>
 
   <div class="stats-container">
     <div class="stats-button">
@@ -34,7 +33,19 @@
 
   // Use the imported JSON data for word sets.
   const wordSets = crosswordData;
-  //state.wordColorIndex = 0;
+  let currentWordSetIndex = 0;
+  
+  const colorClasses = [
+    'word-color-1',
+    'word-color-2',
+    'word-color-3',
+    'word-color-4',
+    'word-color-5',
+    'word-color-6',
+    'word-color-7',
+    'word-color-8'
+  ];
+  
   let state = {
     difficulty: "easy",
     grid: [],
@@ -45,12 +56,14 @@
     showSolution: false,
     solutions: [],
     clickCount: 0,
-    matchedCells: [],
+    matchedCells: new Map(), // Changed to Map to store word-cells associations
+    currentWordSet: wordSets[0],
     directionColors: {
       horizontal: "hsla(120, 70%, 70%, 0.5)",
       vertical: "hsla(200, 70%, 70%, 0.5)",
       diagonal: "hsla(300, 70%, 70%, 0.5)"
-    }
+    },
+    wordColors: new Map() // Track colors assigned to words
   };
 
   function generateRandomLetter() {
@@ -98,12 +111,18 @@
     return { placed: false, cells: [], direction: null };
   }
 
-  function generatePuzzle() {
+  function resetPuzzle() {
+    generatePuzzleWithCurrentWordSet();
+  }
+  
+  function generatePuzzleWithCurrentWordSet() {
     const newGrid = Array(state.size)
       .fill()
       .map(() => Array(state.size).fill(""));
-    const words = wordSets[state.difficulty];
+    const words = state.currentWordSet[state.difficulty];
     state.solutions = [];
+    state.wordColors.clear();
+    state.matchedCells.clear();
 
     words.forEach((word) => {
       const result = placeWord(newGrid, word);
@@ -123,8 +142,13 @@
     state.showSolution = false;
     state.selectedCells = [];
     state.clickCount = 0;
-    state.matchedCells = [];
     updateDOM();
+  }
+  
+  function generateNewPuzzle() {
+    currentWordSetIndex = (currentWordSetIndex + 1) % wordSets.length;
+    state.currentWordSet = wordSets[currentWordSetIndex];
+    generatePuzzleWithCurrentWordSet();
   }
 
   function isValidNextCell(current, next) {
@@ -138,14 +162,24 @@
 
     const word = selection.map(([r, c]) => state.grid[r][c]).join("");
     const reverseWord = word.split("").reverse().join("");
+    const currentWords = state.currentWordSet[state.difficulty];
 
-    if (wordSets[state.difficulty].includes(word) && !state.foundWords.includes(word)) {
-      state.foundWords.push(word);
-      state.matchedCells.push(...selection);
-      return true;
-    } else if (wordSets[state.difficulty].includes(reverseWord) && !state.foundWords.includes(reverseWord)) {
-      state.foundWords.push(reverseWord);
-      state.matchedCells.push(...selection);
+    let foundWord = null;
+    if (currentWords.includes(word) && !state.foundWords.includes(word)) {
+      foundWord = word;
+    } else if (currentWords.includes(reverseWord) && !state.foundWords.includes(reverseWord)) {
+      foundWord = reverseWord;
+    }
+
+    if (foundWord) {
+      state.foundWords.push(foundWord);
+      // Assign a color to the word
+      if (!state.wordColors.has(foundWord)) {
+        const colorIndex = state.wordColors.size % colorClasses.length;
+        state.wordColors.set(foundWord, colorClasses[colorIndex]);
+      }
+      // Store the cells associated with this word
+      state.matchedCells.set(foundWord, selection);
       return true;
     }
     return false;
@@ -169,12 +203,27 @@
         cellElement.dataset.coords = `${i}-${j}`;
 
         const isSelected = state.selectedCells.some(([r, c]) => r === i && c === j);
-        const isMatched = state.matchedCells.some(([r, c]) => r === i && c === j);
-        const isSolution =
-          state.showSolution && state.solutions.some((s) => s.cells.some(([r, c]) => r === i && c === j));
+        
+        // Find if this cell belongs to any found word
+        let matchedWord = null;
+        for (const [word, cells] of state.matchedCells.entries()) {
+          if (cells.some(([r, c]) => r === i && c === j)) {
+            matchedWord = word;
+            break;
+          }
+        }
+
+        const isSolution = state.showSolution && 
+          state.solutions.some((s) => s.cells.some(([r, c]) => r === i && c === j));
 
         if (isSelected) cellElement.classList.add("selected");
-        if (isMatched) cellElement.classList.add("match");
+        if (matchedWord) {
+          cellElement.classList.add("match");
+          const colorClass = state.wordColors.get(matchedWord);
+          if (colorClass) {
+            cellElement.classList.add(colorClass);
+          }
+        }
         if (isSolution) {
           const direction = state.solutions.find((s) =>
             s.cells.some(([r, c]) => r === i && c === j)
@@ -188,14 +237,16 @@
 
     document.getElementById("clickCount").textContent = state.clickCount;
     document.getElementById("foundCount").textContent = state.foundWords.length;
-    document.getElementById("totalWords").textContent = wordSets[state.difficulty].length;
-    document.getElementById("solutionBtn").textContent = state.showSolution ? "Hide Solution" : "Show Solution";
+    document.getElementById("totalWords").textContent = state.currentWordSet[state.difficulty].length;
+    document.getElementById("solutionBtn").textContent = state.showSolution ? "Hide Hints" : "Show Hints";
 
     const wordList = document.getElementById("wordList");
-    wordList.innerHTML = wordSets[state.difficulty]
-      .map(
-        (word) => `<span class="word ${state.foundWords.includes(word) ? "found" : ""}">${word}</span>`
-      )
+    wordList.innerHTML = state.currentWordSet[state.difficulty]
+      .map(word => {
+        const isFound = state.foundWords.includes(word);
+        const colorClass = state.wordColors.get(word) || '';
+        return `<span class="word ${isFound ? 'found ' + colorClass : ''}">${word}</span>`;
+      })
       .join("");
   }
 
@@ -268,11 +319,11 @@
     // Controls
     document.getElementById("difficultySelect").addEventListener("change", (e) => {
       state.difficulty = e.target.value;
-      generatePuzzle();
+      generatePuzzleWithCurrentWordSet();
     });
 
-    document.getElementById("newPuzzleBtn").addEventListener("click", generatePuzzle);
-
+    document.getElementById("newPuzzleBtn").addEventListener("click", generateNewPuzzle);
+    document.getElementById("resetBtn").addEventListener("click", resetPuzzle);
     document.getElementById("solutionBtn").addEventListener("click", () => {
       state.showSolution = !state.showSolution;
       updateDOM();
@@ -288,6 +339,7 @@
       document.body.dataset.theme = document.body.dataset.theme === "dark" ? "" : "dark";
     });
 
-    generatePuzzle();
+    // Initialize the first puzzle
+    generatePuzzleWithCurrentWordSet();
   });
 </script>
