@@ -54,13 +54,13 @@
 }
 
 .control-btn {
-  /*padding: 4px 10px;*/
+  padding: 4px 10px;
   border: none;
   background-color: var(--primary-color);
   color: white;
   cursor: pointer;
   border-radius: var(--border-radius);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   transition: var(--transition);
   min-width: 140px;
@@ -71,7 +71,6 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  flex-grow: 1;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
@@ -84,7 +83,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(rgba(255, 255, 255, 0.2), transparent);
   opacity: 0;
   transition: var(--transition);
 }
@@ -105,7 +104,6 @@
 
 /* Button Variants with Improved Colors */
 #newPuzzleBtn {
-  padding: 2px 2px;
   background-color: var(--secondary-color);
   background-image: linear-gradient(135deg, var(--secondary-color), #2c9c94);
 }
@@ -138,7 +136,6 @@
 }
 
 #clearBtn {
-  padding: 2px 2px;
   background-color: var(--accent5-color);
   background-image: linear-gradient(135deg, var(--accent5-color), #ec407a);
 }
@@ -154,10 +151,12 @@
   background-color: var(--accent6-color);
   background-image: linear-gradient(135deg, var(--accent6-color), #6366f1);
 }
+
 #themeToggle::before {
   content: "🌓";
   font-size: 18px;
 }
+
 select.control-btn {
   appearance: none;
   text-align: center;
@@ -166,7 +165,8 @@ select.control-btn {
   background-repeat: no-repeat;
   background-position: right 15px center, center;
   background-size: 14px, cover;
-  padding-left: 40px; /* Make space for the icon */
+  padding-left: 40px;
+  /* Make space for the icon */
 }
 
 #difficultySelect::before {
@@ -241,10 +241,12 @@ select.control-btn {
 /* Updated found word styling */
 .word.found {
   text-decoration: line-through;
-  background-color: #94a3b8; /* Dull slate color */
+  background-color: #94a3b8;
+  /* Dull slate color */
   opacity: 0.7;
   transform: scale(0.97);
-  padding-right: 18px; /* Reset padding since we removed checkmark */
+  padding-right: 18px;
+  /* Reset padding since we removed checkmark */
 }
 
 /* Remove the checkmark */
@@ -258,7 +260,7 @@ select.control-btn {
     padding: 6px 14px;
     font-size: 0.9rem;
   }
-  
+
   .word-list {
     padding: 15px;
     gap: 10px;
@@ -319,8 +321,13 @@ select.control-btn {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(94, 96, 206, 0.4); }
-  100% { box-shadow: 0 0 0 10px rgba(94, 96, 206, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(94, 96, 206, 0.4);
+  }
+
+  100% {
+    box-shadow: 0 0 0 10px rgba(94, 96, 206, 0);
+  }
 }
 
 /* Word Match Styling - Enhanced for Better Visibility */
@@ -332,15 +339,23 @@ select.control-btn {
 }
 
 @keyframes highlightWord {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(0.97); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(0.97);
+  }
 }
 
 /* Enhanced Word Colors in Grid */
 .cell.match.word-color-1 {
-  background-color: var( --accent7-color);
-  border-color: var( --accent7-color);
+  background-color: var(--accent7-color);
+  border-color: var(--accent7-color);
   box-shadow: 0 3px 10px rgba(94, 96, 206, 0.4);
 }
 
@@ -481,13 +496,13 @@ select.control-btn {
   .stats-container {
     gap: 15px;
   }
-  
+
   .stats-button {
     min-width: 130px;
     padding: 12px 16px;
     font-size: 16px;
   }
-  
+
   .grid {
     padding: 20px;
     gap: 8px;
@@ -544,7 +559,7 @@ select.control-btn {
     gap: 6px;
     border-width: 4px;
   }
-  
+
   .word-list {
     padding: 15px;
     gap: 10px;
