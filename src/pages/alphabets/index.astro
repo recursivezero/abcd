@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/alphabets/index.css";
+import "@/assets/styles/alphabet/index.css";
 import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
 
@@ -14,97 +14,22 @@ const getCategoryDescription = (category: string) => alphabetData[category as ke
   <section class="container__alphabets">
     <div class="alphabets__header">
       <h1>Alphabet Categories</h1>
-      <p class="subtitle">Choose a category to discover different alphabet representations</p>
+      <p class="subtitle">Explore different alphabet representations and meanings</p>
     </div>
     <ul class="list__alphabets">
       {
         categories.map((category, index) => (
-          <li class="card" style={`animation-delay: ${index * 50}ms`}>
-            <div class="card__inner">
+          <li class="card" style={`animation-delay: ${index * 100}ms`}>
+            <a href={`/alphabets/${category}`} class="card__link">
               <div class="card__content">
-                <div class="category__icon">{alphabetData[category as keyof AlphabetsData].icon}</div>
                 <h2 class="category__title">{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
                 <p class="category__description">{getCategoryDescription(category)}</p>
+                <span class="card__arrow">→</span>
               </div>
-              <div class="card__actions">
-                <a href={`/alphabets/${category}/playground/`} class="btn btn-playground">
-                  <span class="icon">🎮</span>
-                  Playground
-                </a>
-                <a href={`/alphabets/${category}/board`} class="btn btn-board">
-                  <span class="icon">📋</span>
-                  Board
-                </a>
-              </div>
-            </div>
+            </a>
           </li>
         ))
       }
     </ul>
   </section>
 </BaseLayout>
-
-<style>
-  .card__inner {
-    background: var(--background);
-    border: 2px solid var(--border);
-    border-radius: 1rem;
-    padding: 1.25rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-    transition: all 0.2s ease;
-  }
-
-  .category__icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    border-radius: 0.75rem;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.2s ease;
-    text-decoration: none;
-  }
-
-  .btn-playground {
-    background: var(--primary);
-    color: var(--background);
-  }
-
-  .btn-board {
-    background: var(--background);
-    color: var(--text);
-    border: 2px solid var(--border);
-  }
-
-  .card:hover .card__inner {
-    transform: translateY(-3px);
-    border-color: var(--primary);
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .btn-playground:hover {
-    background: var(--primary-light);
-  }
-
-  .btn-board:hover {
-    background: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
-  }
-
-  .icon {
-    font-size: 1.2em;
-  }
-</style>
