@@ -1,0 +1,35 @@
+---
+import "@/assets/styles/alphabet/index.css";
+import rawAlphabetData from "@/data/alphabets.json";
+import BaseLayout from "@/layouts/Base";
+
+import type { AlphabetsData } from "@/types/alphabet";
+const alphabetData = rawAlphabetData as AlphabetsData;
+
+const categories = Object.keys(alphabetData);
+const getCategoryDescription = (category: string) => alphabetData[category as keyof AlphabetsData].description;
+---
+
+<BaseLayout meta={{ title: "Alphabets Explorer" }}>
+  <section class="container__alphabets">
+    <div class="alphabets__header">
+      <h1>Alphabet Categories</h1>
+      <p class="subtitle">Explore different alphabet representations and meanings</p>
+    </div>
+    <ul class="list__alphabets">
+      {
+        categories.map((category, index) => (
+          <li class="card" style={`animation-delay: ${index * 100}ms`}>
+            <a href={`/alphabets/${category}`} class="card__link">
+              <div class="card__content">
+                <h2 class="category__title">{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+                <p class="category__description">{getCategoryDescription(category)}</p>
+                <span class="card__arrow">→</span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
