@@ -1,7 +1,7 @@
 export const siteConfig = {
-  author: "App Name",
-  title: "App.com",
-  description: "Start up from ground zero.",
+  author: "Recursive Zero",
+  title: "parixan.xyz",
+  description: "A testing pad for recursivezero",
   lang: "en-GB",
   ogLocale: "en_GB",
   date: {

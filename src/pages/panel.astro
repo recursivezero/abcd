@@ -1,143 +1,229 @@
 ---
 import "@/assets/styles/panel.css";
+import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/common.css";
 ---
 
-<style is:inline>
-  .tv {
-    container-type: inline-size;
-    container-name: main;
-    border: 0.5rem outset pink;
-    outline: 0.5rem solid khaki;
-    box-shadow: 0 0 0 2rem skyblue;
-    border-radius: 12px;
-    font: bold 1rem sans-serif;
-    margin-block: 5rem;
-    margin-inline: 5rem;
-    padding: 1rem;
-    outline-offset: 0.5rem;
-  }
-</style>
-
 <BaseLayout meta={{ title: "Panel" }}>
-  <article class="tv panel-main">
+  <Fragment slot="header-right">
+    <section id="option-box" class="panel__options">
+      <div class="controls" role="radiogroup" aria-labelledby="orientation-label">
+        <span id="orientation-label" class="sr-only">Panel Orientation</span>
+
+        <label class="vertical" for="vertical">
+          <input
+            type="radio"
+            class="orientation"
+            name="orientation"
+            id="vertical"
+            value="X"
+            aria-label="Vertical Orientation"
+          />
+          <span class="icon" aria-hidden="true">⇕</span>
+          <span class="sr-only">Vertical Orientation</span>
+        </label>
+
+        <label class="horizontal" for="horizontal">
+          <input
+            type="radio"
+            class="orientation"
+            name="orientation"
+            id="horizontal"
+            value="Y"
+            aria-label="Horizontal Orientation"
+          />
+          <span class="icon" aria-hidden="true">⇔</span>
+          <span class="sr-only">Horizontal Orientation</span>
+        </label>
+      </div>
+
+      <div class="range__option">
+        <span>10</span>
+        <input
+          type="range"
+          name="range"
+          id="range"
+          class="range__slider"
+          value="0"
+          min="10"
+          max="26"
+          title="Adjust panel size"
+        />
+        <span>26</span>
+      </div>
+    </section>
+
+    <Help
+      title="Panel"
+      description="Use arrow keys to navigate through letters. Up/down for vertical orientation, left/right for horizontal. Type any letter to jump to it. Adjust panel size with the slider."
+    />
+  </Fragment>
+
+  <article class="tv container__panel">
     <section class="scene">
       <letter-panel>
         <div class="panel" id="panel"></div>
       </letter-panel>
     </section>
   </article>
+
+  <script>
+    enum ArrowKeys {
+      LEFT = 37,
+      UP = 38,
+      RIGHT = 39,
+      DOWN = 40
+    }
+    // Define the behaviour for our new type of HTML element.
+    class LetterPanel extends HTMLElement {
+      #panel;
+      #cellRange;
+      #orientationPanel;
+      #orientation = "Y";
+      #selectedIndex = 0;
+      #radius = "0px";
+      #theta = 0;
+      #angle = "0deg";
+
+      constructor() {
+        super();
+        this.#panel = this.querySelector("#panel") as HTMLElement;
+        this.#orientationPanel = document.querySelectorAll(".orientation");
+        this.#cellRange = document.querySelector("#range") as HTMLInputElement;
+        this.buildPanel();
+        this.#emitEvent();
+      }
+
+      connectedCallback() {
+        this.changePanel();
+        this.rotatePanel({ by: "X" });
+        (this.#orientationPanel[1] as HTMLInputElement).checked = true;
+      }
+
+      #emitEvent() {
+        document.addEventListener("keyup", (e: KeyboardEvent) => {
+          const { charCode, code, keyCode, key } = e;
+          console.log({ charCode, code, keyCode, key });
+          this.onKeyChange(keyCode);
+        });
+
+        this.#orientationPanel.forEach((radio) => {
+          radio.addEventListener(
+            "click",
+            (e: Event) => {
+              const target = e.target as HTMLInputElement;
+              this.#orientation = target.value;
+              this.changePanel();
+              target.blur(); //unfocus the radio button
+            },
+            false
+          );
+        });
+
+        this.#cellRange.addEventListener("input", (e) => {
+          const target = e.target as HTMLInputElement;
+          const rangeBullet = document.querySelector("#range-bullet");
+          if (rangeBullet) {
+            rangeBullet.textContent = target.value;
+          }
+          this.buildPanel();
+          this.changePanel();
+          this.#cellRange.blur();
+        });
+      }
+
+      doTheMath() {
+        const cellWidth = this.#panel.offsetWidth;
+        const cellCount = this.#cellRange?.value ? Number(this.#cellRange.value) : 26;
+        const halfCell = cellWidth / 2;
+        const divideBy = Math.tan(Math.PI / cellCount);
+        this.#radius = Math.round(halfCell / divideBy) + "px";
+        this.#theta = 360 / cellCount;
+        this.#angle = this.#theta * this.#selectedIndex + "deg";
+      }
+
+      buildPanel(num?: number) {
+        const count = num ?? (this.#cellRange?.value ? Number(this.#cellRange.value) : 26);
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < count; i++) {
+          const div = document.createElement("div");
+          div.classList.add("panel__cell");
+          div.textContent = String.fromCodePoint(65 + i); // A to Z
+          fragment.appendChild(div);
+        }
+        this.#panel.innerHTML = "";
+        this.#panel.appendChild(fragment);
+      }
+
+      changePanel() {
+        const cells = document.querySelectorAll(".panel__cell") as unknown as HTMLElement[];
+        this.doTheMath();
+        cells.forEach((cell, i) => {
+          const cellAngle = this.#theta * i;
+          const transformString = `rotate${this.#orientation}(${cellAngle}deg) translateZ(${this.#radius})`;
+          cell.style.transform = transformString;
+        });
+        this.rotatePanel({ by: this.#orientation });
+        this.updateFrontCell(); // update front cell styling
+      }
+
+      updateFrontCell() {
+        const cells = this.#panel.querySelectorAll(".panel__cell") as NodeListOf<HTMLElement>;
+        if (!cells.length) return;
+        cells.forEach((cell) => cell.classList.remove("front"));
+        const count = cells.length;
+        const normalizedIndex = ((this.#selectedIndex % count) + count) % count;
+        const frontIndex = (count - normalizedIndex) % count;
+        cells[frontIndex].classList.add("front");
+      }
+
+      rotatePanel({ by = "X" }) {
+        this.doTheMath();
+        const transformString = `translateZ(-${this.#radius}) rotate${by}(${this.#angle})`;
+        this.#panel.style.transform = transformString;
+      }
+
+      onKeyChange(code: number) {
+        const VerticalButton = this.#orientationPanel[0] as HTMLInputElement;
+        const horizontalButton = this.#orientationPanel[1] as HTMLInputElement;
+        switch (code) {
+          case ArrowKeys.RIGHT: {
+            this.#selectedIndex++;
+            this.#orientation = "Y";
+            horizontalButton.checked = true;
+            break;
+          }
+          case ArrowKeys.LEFT: {
+            this.#selectedIndex--;
+            this.#orientation = "Y";
+            horizontalButton.checked = true;
+            break;
+          }
+          case ArrowKeys.UP: {
+            this.#selectedIndex++;
+            this.#orientation = "X";
+            VerticalButton.checked = true;
+            break;
+          }
+          case ArrowKeys.DOWN: {
+            this.#selectedIndex--;
+            VerticalButton.checked = true;
+            this.#orientation = "X";
+            break;
+          }
+          default: {
+            //if (isAlphabet(keyCode)) {
+            this.#selectedIndex = 65 - code;
+            //} else {
+            //  this.#selectedIndex--;
+            //}
+          }
+        }
+        this.changePanel();
+      }
+    }
+    // Tell the browser to use our LetterPanel class for <letter-panel> elements.
+    customElements.define("letter-panel", LetterPanel);
+  </script>
 </BaseLayout>
-<script>
-  enum ArrowKeys {
-    LEFT = 37,
-    UP = 38,
-    RIGHT = 39,
-    DOWN = 40
-  }
-  // Define the behaviour for our new type of HTML element.
-  class LetterPanel extends HTMLElement {
-    #panel;
-    #orientation = "Y";
-    #selectedIndex = 0;
-    #radius = "0px";
-    #theta = 0;
-    #angle = "0deg";
-
-    constructor() {
-      super();
-      this.#panel = this.querySelector("#panel") as HTMLElement;
-      //this.checkPanel();
-      this.#emitEvent();
-    }
-
-    connectedCallback() {
-      this.buildPanel();
-      //this.changePanel(); // TODO: uncomment to see complete letter panel on load
-      this.rotatePanel({ by: "X" });
-    }
-
-    #emitEvent() {
-      document.addEventListener("keyup", (e: KeyboardEvent) => {
-        const { charCode, code, keyCode, key } = e;
-        console.log({ charCode, code, keyCode, key });
-        this.onKeyChange(keyCode);
-      });
-    }
-
-    doTheMath() {
-      const cellWidth = this.#panel.offsetWidth;
-      const cellCount = 26; //Number(cellRange.value);
-      const halfCell = cellWidth / 2;
-      const divideBy = Math.tan(Math.PI / cellCount);
-      this.#radius = Math.round(halfCell / divideBy) + "px";
-      this.#theta = 360 / cellCount;
-      this.#angle = this.#theta * this.#selectedIndex + "deg";
-    }
-
-    buildPanel(num = 26) {
-      const fragment = document.createDocumentFragment();
-      for (let i = 0; i < num; i++) {
-        const div = document.createElement("div");
-        div.classList.add("panel__cell");
-        div.textContent = String.fromCodePoint(65 + i); // A to Z
-        fragment.appendChild(div);
-      }
-      this.#panel.innerHTML = "";
-      this.#panel.appendChild(fragment);
-    }
-
-    changePanel() {
-      //this.buildPanel(cellCount);
-      const cells = document.querySelectorAll(".panel__cell") as unknown as HTMLElement[];
-      this.doTheMath();
-      cells.forEach((cell, i) => {
-        const cellAngle = this.#theta * i;
-        const transformString = `rotate${this.#orientation}(${cellAngle}deg) translateZ(${this.#radius})`;
-        cell.style.transform = transformString;
-      });
-      this.rotatePanel({ by: this.#orientation });
-    }
-
-    rotatePanel({ by = "X" }) {
-      this.doTheMath();
-      const transformString = `translateZ(-${this.#radius}) rotate${by}(${this.#angle})`;
-      this.#panel.style.transform = transformString;
-    }
-
-    onKeyChange(code: number) {
-      switch (code) {
-        case ArrowKeys.RIGHT: {
-          this.#selectedIndex++;
-          this.#orientation = "Y";
-          break;
-        }
-        case ArrowKeys.LEFT: {
-          this.#selectedIndex--;
-          this.#orientation = "Y";
-          break;
-        }
-        case ArrowKeys.UP: {
-          this.#selectedIndex++;
-          this.#orientation = "X";
-          break;
-        }
-        case ArrowKeys.DOWN: {
-          this.#selectedIndex--;
-          this.#orientation = "X";
-          break;
-        }
-        default: {
-          //if (isAlphabet(keyCode)) {
-          this.#selectedIndex = 65 - code;
-          //} else {
-          //  this.#selectedIndex--;
-          //}
-        }
-      }
-      this.changePanel();
-    }
-  }
-  // Tell the browser to use our LetterPanel class for <letter-panel> elements.
-  customElements.define("letter-panel", LetterPanel);
-</script>

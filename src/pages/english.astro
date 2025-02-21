@@ -1,0 +1,108 @@
+---
+import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/english.css";
+import Help from "@/components/Help.astro";
+---
+
+<BaseLayout meta={{ title: "English" }}>
+  <Fragment slot="header-right">
+    <Help
+      title="Hindi Varnmala"
+      description="Just press any letter fron keyboard and it display the letter and it's relative word in clear way and if you type again it will change the color"
+    />
+  </Fragment>
+  <div class="controls" id="controls">
+    <div class="control-group">
+      <label>Background:</label>
+      <select id="bgSelector">
+        <option value="none">None</option>
+        <option value="gradient1">Gradient 1</option>
+        <option value="gradient2">Gradient 2</option>
+        <option value="pattern1">Pattern 1</option>
+      </select>
+      <button id="toggleBg">Toggle Background</button>
+    </div>
+
+    <div class="control-group">
+      <label>Font:</label>
+      <select id="fontSelector">
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Times New Roman">Times New Roman</option>
+      </select>
+      <input type="color" id="colorPicker" value="#000000" />
+    </div>
+  </div>
+  <article class="container__hindi" id="letterContainer">
+    <div class="letter">A</div>
+  </article>
+  <script>
+    import { colorBox, isAlphabet, random } from "@/utils/utils.js";
+
+    const letterDiv = document.querySelector(".letter") as HTMLDivElement;
+    const controls = document.getElementById("controls") as HTMLElement;
+    const letterContainer = document.getElementById("letterContainer") as HTMLElement;
+    const bgSelector = document.getElementById("bgSelector") as HTMLInputElement;
+    const fontSelector = document.getElementById("fontSelector") as HTMLInputElement;
+    const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
+    const toggleBg = document.getElementById("toggleBg") as HTMLButtonElement;
+
+    // Event Listeners
+    bgSelector?.addEventListener("change", updateBackground);
+    fontSelector?.addEventListener("change", updateFont);
+    colorPicker?.addEventListener("change", updateColor);
+    toggleBg?.addEventListener("click", toggleBackground);
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+        e.preventDefault();
+        const color = random(colorBox);
+        const { key, keyCode } = e;
+        if (isAlphabet(keyCode)) {
+          const keyCapital = key.toUpperCase();
+          drawLetter(keyCapital, colorPicker.value || color);
+        }
+      },
+      false
+    );
+
+    const drawLetter = (letter: string, color = "pink") => {
+      letterDiv.innerHTML = letter;
+      letterDiv.style.color = color;
+      letterDiv.style.animation = "letterPop 0.3s ease-out";
+      setTimeout(() => {
+        letterDiv.style.animation = "";
+      }, 300);
+    };
+
+    function updateBackground() {
+      letterContainer.className = "container__hindi";
+      if (bgSelector.value !== "none") {
+        letterContainer.classList.add(`bg-${bgSelector.value}`);
+      }
+    }
+
+    function updateFont() {
+      letterDiv.style.fontFamily = fontSelector.value;
+    }
+
+    function updateColor() {
+      letterDiv.style.color = colorPicker.value;
+    }
+
+    function toggleBackground() {
+      letterContainer.classList.toggle("no-background");
+    }
+
+    // Intersection Observer for sticky header
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        controls.classList.toggle("sticky", e.intersectionRatio < 1);
+      },
+      { threshold: [1] }
+    );
+
+    observer.observe(controls);
+  </script>
+</BaseLayout>

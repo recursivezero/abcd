@@ -1,0 +1,58 @@
+.container__family {
+  & .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary);
+    color: var(--background);
+    text-align: center;
+    color: white;
+    padding: 2rem 3rem;
+    gap: 1rem;
+  }
+
+  & .theme-glass {
+    background: color-mix(in srgb, var(--background) 10%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid color-mix(in srgb, var(--background) 10%, transparent);
+  }
+
+  & .hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  & .legend {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 600px;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  & .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  & .icon {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .container__family {
+    & .hero h1 {
+      font-size: 2rem;
+    }
+
+    & .legend {
+      gap: 1rem;
+      padding: 0.8rem;
+    }
+  }
+}

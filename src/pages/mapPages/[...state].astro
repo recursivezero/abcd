@@ -1,6 +1,6 @@
 ---
-import BaseLayout from "@/layouts/Base";
-import stateData from "@/assets/map/Data.json";
+import BaseLayout from "@/layouts/Base";;
+import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
 
 export const prerender = true;
@@ -17,11 +17,10 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 ---
 
 <BaseLayout meta={{ title: `${name} - ${dance}` }}>
-  <main>
+  <section>
     <div class="main-container">
       <div id="state-svg-container">
         <h3>{name}</h3>
-        <div id="state-svg" data-svg-path={`/map/svg/${svg}`}></div>
       </div>
 
       <div class="right-content">
@@ -47,7 +46,7 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
         </div>
       </div>
     </div>
-  </main>
+  </section>
 </BaseLayout>
 
 <script>

@@ -48,53 +48,74 @@
 }
 
 dialog[open] {
-  opacity: 1;
-  transform: scaleY(1);
+  animation: slideIn 0.3s ease-out forwards;
 }
 
-/*   Closed state of the dialog   */
 dialog {
   opacity: 0;
-  transform: scaleY(0);
-  transition:
-    opacity 0.7s ease-out,
-    transform 0.7s ease-out,
-    overlay 0.7s ease-out allow-discrete,
-    display 0.7s ease-out allow-discrete;
-  /* Equivalent to
-  transition: all 0.7s allow-discrete; */
+  transform: translateY(-20px);
+  transition: opacity 0.2s ease-out;
 }
 
-/*   Before-open state  */
-/* Needs to be after the previous dialog[open] rule to take effect,
-    as the specificity is the same */
-@starting-style {
-  dialog[open] {
+@keyframes slideIn {
+  from {
     opacity: 0;
-    transform: scaleY(0);
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+dialog[closing] {
+  animation: slideOut 0.3s ease-in forwards;
+  pointer-events: none;
+}
+
 dialog::backdrop {
-  background-color: var(--dialog__bg--1);
-  transition:
-    display 0.7s allow-discrete,
-    overlay 0.7s allow-discrete,
-    background-color 0.7s;
-  /* Equivalent to
-  transition: all 0.7s allow-discrete; */
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease-in-out;
 }
 
 dialog[open]::backdrop {
-  background-color: var(--dialog__bg--2);
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* This starting-style rule cannot be nested inside the above selector
-because the nesting selector cannot represent pseudo-elements. */
+dialog[closing]::backdrop {
+  animation: fadeOut 0.3s ease-in forwards;
+}
 
-@starting-style {
-  dialog[open]::backdrop {
-    background-color: var(--dialog__bg--1);
+@keyframes fadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0);
   }
 }

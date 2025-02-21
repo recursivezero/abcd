@@ -1,0 +1,103 @@
+.controls {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  accent-color: purple;
+
+  label {
+    font-weight: bold;
+  }
+
+  select,
+  button {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    cursor: pointer;
+    background: #fff;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background: #f0f0f0;
+  }
+}
+
+.section__board {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 4px;
+  margin-block: 1rem;
+
+  & .letter__part {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    grid-auto-rows: max-content;
+
+    & mark {
+      color: grey;
+      font-size: 1rem;
+    }
+
+    .letter__big {
+      font-size: 56svmin;
+      font-weight: bold;
+      transition: all 0.3s;
+      animation: letterPop 0.3s ease-out;
+    }
+  }
+
+  & .meaning__part {
+    padding: 1rem;
+    background-color: rgb(43 26 26);
+    display: grid;
+    grid-template-columns: 5rem 30% max-content;
+    grid-gap: 4px;
+    grid-auto-flow: column;
+
+    & .meaning-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+}
+
+/* Gradient backgrounds */
+.bg-gradient1 {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+}
+
+.bg-gradient2 {
+  background: linear-gradient(45deg, #a8e6cf, #dcedc1);
+}
+
+.no-background {
+  background-image: none;
+  background-color: initial;
+}
+
+.bg-pattern1 {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
