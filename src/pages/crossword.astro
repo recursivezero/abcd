@@ -3,6 +3,7 @@ import "@/assets/styles/crossword.css";
 import crosswordData from '../../public/mocks/crossword-data.json';
 import WordSearchPuzzle from "@/components/Puzzle.astro";
 import BaseLayout from "@/layouts/Base";
+import Help from "@/components/Help.astro";
 
 const categories = crosswordData.categories;
 let selectedCategory = null;
@@ -16,5 +17,12 @@ const selectCategory = (category: string) => {
 
 ---
 <BaseLayout meta={{ title: "Crossword" }}>
+  <Fragment slot="header-right">
+    <Help
+      title="Crossword"
+      description="Draw words by clicking and dragging through letters!.Words can be in any direction.Matching words will be colored.Use hints to see word directions"
+    />
+  </Fragment>
+
     <WordSearchPuzzle/>
 </BaseLayout>

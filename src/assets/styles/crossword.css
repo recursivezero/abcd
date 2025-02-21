@@ -205,6 +205,94 @@ select.control-btn {
   filter: brightness(1.05);
 }
 
+/* Modern style for details/summary sections */
+details {
+  margin: 15px 0;
+  padding: 0;
+  border-radius: 8px;
+  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);*/
+  /*background-color: #ffffff;*/
+  overflow: hidden;
+  /*transition: box-shadow 0.3s ease, transform 0.2s ease;*/
+}
+
+details:hover {
+  /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);*/
+  transform: translateY(-2px);
+}
+
+details[open] {
+  margin-bottom: 20px;
+}
+
+summary {
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 16px 20px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  /*background: linear-gradient(to right, #f8f9fa, #ffffff);*/
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+summary:hover {
+  color: #e67e22;
+  /*background-color: #fafafa;*/
+}
+
+summary::after {
+  /*content: '›';*/
+  font-size: 1.4em;
+  position: absolute;
+  right: 20px;
+  color: #aaa;
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+details[open] summary::after {
+  transform: rotate(-90deg);
+}
+
+.instructions {
+  margin: 0;
+  padding: 20px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.instructions p {
+  margin: 0 0 15px 0;
+}
+
+.instructions ul {
+  margin: 0;
+  padding-left: 25px;
+}
+
+.instructions li {
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.instructions li::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background-color: #e67e22;
+  border-radius: 50%;
+}
 /* Word List - UPDATED FOR COLORFUL FOUND WORDS */
 /* Word List */
 .word-list {

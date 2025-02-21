@@ -1,17 +1,20 @@
 <div class="puzzle-container">
   <div class="controls-group">
+    <!--<details>
+      <summary>Word List</summary>-->
     <button id="newPuzzleBtn" class="control-btn">New Puzzle</button>
     <button id="resetBtn" class="control-btn">Shuffle</button>
     <button id="clearBtn" class="control-btn">Clear</button>
     <button class="control-btn" id="themeToggle"> Theme</button>
+  <!--</details>-->
     <select id="difficultySelect" class="control-btn">
       <option value="easy">Easy (Ages 3-5)</option>
       <option value="medium">Medium (Ages 5-6)</option>
       <option value="hard">Hard (Ages 7-8)</option>
     </select>
     <button id="solutionBtn" class="control-btn">Hint</button>
-    
   </div>
+
 
   <div class="stats-container">
     <div class="stats-button">
@@ -22,9 +25,13 @@
     </div>
   </div>
 
+  <details>
+    <summary>Word List</summary>
   <div class="word-list" id="wordList"></div>
+</details>
   <div id="grid" class="grid"></div>
 </div>
+
 
 <!-- Using a module so we can import the JSON -->
 <script type="module">
