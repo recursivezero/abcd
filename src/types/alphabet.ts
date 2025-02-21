@@ -9,13 +9,10 @@ export interface AlphabetEntry {
   code: number;
   text: string;
   description: string;
-  emoji?: string;
-  image?: string;
 }
 
 export interface AlphabetCategory {
   description: string;
-  icon: string;
   data: AlphabetEntry[];
 }
 
