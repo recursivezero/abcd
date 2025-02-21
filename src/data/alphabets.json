@@ -1,22 +1,19 @@
 {
   "general": {
     "description": "General knowledge about the English alphabet",
-    "icon": "🔤",
     "data": [
       {
         "id": 1,
         "letter": "A",
         "code": 65,
         "text": "Apple",
-        "description": "",
-        "emoji" : "🍎"
+        "description": ""
       },
       {
         "id": 2,
         "letter": "B",
         "code": 66,
         "text": "Bat",
-        "emoji" : "🦇",
         "description": ""
       },
       {
@@ -24,7 +21,6 @@
         "letter": "C",
         "code": 67,
         "text": "Cat",
-        "emoji" : "🐱",
         "description": ""
       },
       {
@@ -32,7 +28,6 @@
         "letter": "D",
         "code": 68,
         "text": "Dog",
-        "emoji" : "🐶",
         "description": ""
       },
       {
@@ -40,7 +35,6 @@
         "letter": "E",
         "code": 69,
         "text": "Elephant",
-        "emoji" : "🐘",
         "description": ""
       },
       {
@@ -48,7 +42,6 @@
         "letter": "F",
         "code": 70,
         "text": "Fish",
-        "emoji" : "🐟",
         "description": ""
       },
       {
@@ -56,7 +49,6 @@
         "letter": "G",
         "code": 71,
         "text": "Goat",
-        "emoji" : "🐐",
         "description": ""
       },
       {
@@ -64,7 +56,6 @@
         "letter": "H",
         "code": 72,
         "text": "Hat",
-        "emoji" : "🎩",
         "description": ""
       },
       {
@@ -72,15 +63,13 @@
         "letter": "I",
         "code": 73,
         "text": "Ice",
-        "emoji" : "🧊",
         "description": ""
       },
       {
         "id": 10,
         "letter": "J",
         "code": 74,
-        "text": "Jug",
-        "emoji" : "🏺",
+        "text": "Jam",
         "description": ""
       },
       {
@@ -88,7 +77,6 @@
         "letter": "K",
         "code": 75,
         "text": "Kite",
-        "emoji" : "🪁",
         "description": ""
       },
       {
@@ -96,7 +84,6 @@
         "letter": "L",
         "code": 76,
         "text": "Lamp",
-        "emoji" : "💡",
         "description": ""
       },
       {
@@ -104,7 +91,6 @@
         "letter": "M",
         "code": 77,
         "text": "Moon",
-        "emoji" : "🌙",
         "description": ""
       },
       {
@@ -112,7 +98,6 @@
         "letter": "N",
         "code": 78,
         "text": "Nest",
-        "emoji" : "🐣",
         "description": ""
       },
       {
@@ -120,7 +105,6 @@
         "letter": "O",
         "code": 79,
         "text": "Orange",
-        "emoji" : "🍊",
         "description": ""
       },
       {
@@ -128,7 +112,6 @@
         "letter": "P",
         "code": 80,
         "text": "Pen",
-        "emoji" : "🖊️",
         "description": ""
       },
       {
@@ -136,7 +119,6 @@
         "letter": "Q",
         "code": 81,
         "text": "Queen",
-        "emoji" : "👑",
         "description": ""
       },
       {
@@ -144,7 +126,6 @@
         "letter": "R",
         "code": 82,
         "text": "Rat",
-        "emoji" : "🐀",
         "description": ""
       },
       {
@@ -152,7 +133,6 @@
         "letter": "S",
         "code": 83,
         "text": "Sun",
-        "emoji" : "☀️",
         "description": ""
       },
       {
@@ -160,7 +140,6 @@
         "letter": "T",
         "code": 84,
         "text": "Tree",
-        "emoji" : "🌳",
         "description": ""
       },
       {
@@ -168,7 +147,6 @@
         "letter": "U",
         "code": 85,
         "text": "Umbrella",
-        "emoji" : "☂️",
         "description": ""
       },
       {
@@ -176,7 +154,6 @@
         "letter": "V",
         "code": 86,
         "text": "Van",
-        "emoji" : "🚐",
         "description": ""
       },
       {
@@ -184,15 +161,13 @@
         "letter": "W",
         "code": 87,
         "text": "Watch",
-        "emoji" : "⌚",
         "description": ""
       },
       {
         "id": 24,
         "letter": "X",
         "code": 88,
-        "text": "xerox",
-        "emoji" : "🖨️",
+        "text": "X-ray",
         "description": ""
       },
       {
@@ -200,7 +175,6 @@
         "letter": "Y",
         "code": 89,
         "text": "Yacht",
-        "emoji" : "⛵",
         "description": ""
       },
       {
@@ -208,14 +182,12 @@
         "letter": "Z",
         "code": 90,
         "text": "Zebra",
-        "emoji" : "🦓",
         "description": ""
       }
     ]
   },
   "nato": {
     "description": "NATO phonetic alphabet",
-    "icon": "🎖️",
     "data": [
       {
         "id": 1,
@@ -403,7 +375,6 @@
   },
   "braille": {
     "description": "Braille alphabet",
-    "icon": "⠿",
     "data": [
       {
         "id": 1,
@@ -591,7 +562,6 @@
   },
   "fruits": {
     "description": "Fruits of the English alphabet",
-    "icon": "🍎",
     "data": [
       {
         "id": 1,
@@ -779,7 +749,6 @@
   },
   "animals": {
     "description": "Animals of the English alphabet",
-    "icon": "🦁",
     "data": [
       {
         "id": 1,
@@ -967,7 +936,6 @@
   },
   "countries": {
     "description": "Countries of the English alphabet",
-    "icon": "🌍",
     "data": [
       {
         "id": 1,
@@ -1150,194 +1118,6 @@
         "code": 90,
         "text": "Zimbabwe",
         "description": "Southern African country"
-      }
-    ]
-  },
-  "Indian": {
-    "description": "Mythological Indian culture Alphabets",
-    "icon": "🕉️",
-    "data": [
-      {
-        "id": 1,
-        "letter": "A",
-        "code": 65,
-        "text": "Aryabhatta",
-        "description": "Ancient Indian mathematician and astronomer who calculated Pi"
-      },
-      {
-        "id": 2,
-        "letter": "B",
-        "code": 66,
-        "text": "Brahma",
-        "description": "Creator deity in Hinduism"
-      },
-      {
-        "id": 3,
-        "letter": "C",
-        "code": 67,
-        "text": "Chanakya",
-        "description": "Ancient Indian teacher, philosopher, and royal advisor"
-      },
-      {
-        "id": 4,
-        "letter": "D",
-        "code": 68,
-        "text": "Durga",
-        "description": "Hindu goddess of war, strength and protection"
-      },
-      {
-        "id": 5,
-        "letter": "E",
-        "code": 69,
-        "text": "Eklavya",
-        "description": "Skilled archer from the Mahabharata"
-      },
-      {
-        "id": 6,
-        "letter": "F",
-        "code": 70,
-        "text": "Fauna",
-        "description": "Sacred animals in Indian mythology like Garuda and Nandi"
-      },
-      {
-        "id": 7,
-        "letter": "G",
-        "code": 71,
-        "text": "Ganesha",
-        "description": "Elephant-headed deity known as remover of obstacles"
-      },
-      {
-        "id": 8,
-        "letter": "H",
-        "code": 72,
-        "text": "Hanuman",
-        "description": "Monkey deity known for strength, devotion and service"
-      },
-      {
-        "id": 9,
-        "letter": "I",
-        "code": 73,
-        "text": "Indra",
-        "description": "King of the gods and deity of lightning and thunder"
-      },
-      {
-        "id": 10,
-        "letter": "J",
-        "code": 74,
-        "text": "Jatayu",
-        "description": "Divine eagle who fought Ravana in the Ramayana"
-      },
-      {
-        "id": 11,
-        "letter": "K",
-        "code": 75,
-        "text": "Krishna",
-        "description": "Divine incarnation of Vishnu and key figure in Bhagavad Gita"
-      },
-      {
-        "id": 12,
-        "letter": "L",
-        "code": 76,
-        "text": "Lakshmi",
-        "description": "Goddess of wealth, fortune and prosperity"
-      },
-      {
-        "id": 13,
-        "letter": "M",
-        "code": 77,
-        "text": "Mahabharata",
-        "description": "Ancient Sanskrit epic about the Kurukshetra War"
-      },
-      {
-        "id": 14,
-        "letter": "N",
-        "code": 78,
-        "text": "Narada",
-        "description": "Divine sage famous for carrying news and gossip"
-      },
-      {
-        "id": 15,
-        "letter": "O",
-        "code": 79,
-        "text": "Om",
-        "description": "Sacred sound and spiritual symbol in Indian religions"
-      },
-      {
-        "id": 16,
-        "letter": "P",
-        "code": 80,
-        "text": "Parvati",
-        "description": "Goddess of fertility, love and devotion"
-      },
-      {
-        "id": 17,
-        "letter": "Q",
-        "code": 81,
-        "text": "Qutub Minar",
-        "description": "Historic minaret built by Qutb-ud-Din Aibak in Delhi"
-      },
-      {
-        "id": 18,
-        "letter": "R",
-        "code": 82,
-        "text": "Rama",
-        "description": "Seventh avatar of Vishnu and protagonist of the Ramayana"
-      },
-      {
-        "id": 19,
-        "letter": "S",
-        "code": 83,
-        "text": "Shiva",
-        "description": "One of the principal deities, known as the destroyer"
-      },
-      {
-        "id": 20,
-        "letter": "T",
-        "code": 84,
-        "text": "Tulsidas",
-        "description": "Author who wrote the epic Ramcharitmanas"
-      },
-      {
-        "id": 21,
-        "letter": "U",
-        "code": 85,
-        "text": "Urvashi",
-        "description": "Beautiful apsara (celestial nymph) created from Vishnu's thigh"
-      },
-      {
-        "id": 22,
-        "letter": "V",
-        "code": 86,
-        "text": "Vishnu",
-        "description": "Preserver deity with ten avatars including Rama and Krishna"
-      },
-      {
-        "id": 23,
-        "letter": "W",
-        "code": 87,
-        "text": "Wayang",
-        "description": "Puppetry art form influenced by Indian epics and mythology"
-      },
-      {
-        "id": 24,
-        "letter": "X",
-        "code": 88,
-        "text": "Xerxes",
-        "description": "Persian king who encountered Indian warriors and philosophers"
-      },
-      {
-        "id": 25,
-        "letter": "Y",
-        "code": 89,
-        "text": "Yama",
-        "description": "God of death and justice who judges souls"
-      },
-      {
-        "id": 26,
-        "letter": "Z",
-        "code": 90,
-        "text": "Zodiac",
-        "description": "Vedic astrology (Jyotish) with its unique zodiac system"
       }
     ]
   }
