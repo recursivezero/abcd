@@ -50,6 +50,12 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Alphabets",
+    title: "Alphabets",
+    path: "/alphabets",
+    isActive: true
+  },
+  {
     name: "Typing",
     title: "Typing",
     path: "/typing",

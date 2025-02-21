@@ -1,0 +1,43 @@
+---
+import "@/assets/styles/alphabet/alphabet.css";
+
+import LetterCard from "@/components/LetterCard.astro";
+
+import rawAlphabetData from "@/data/alphabets.json";
+import BaseLayout from "@/layouts/Base";
+import { type AlphabetsData } from "@/types/alphabet.ts";
+
+const alphabetData = rawAlphabetData as AlphabetsData;
+
+const categories = Object.keys(alphabetData);
+
+export async function getStaticPaths() {
+  const alphabetData = rawAlphabetData as AlphabetsData;
+  const categories = Object.keys(alphabetData);
+
+  return categories.map((category) => ({
+    params: { alphabet: category }
+  }));
+}
+
+const { alphabet } = Astro.params;
+
+const data = alphabetData[alphabet as keyof AlphabetsData].data;
+---
+
+<BaseLayout meta={{ title: `Alphabets - ${alphabet.charAt(0).toUpperCase() + alphabet.slice(1)}` }}>
+  <article class="container__alphabets">
+    <button class="back" onclick="window.history.back()"> ← Back </button>
+
+    <div class="container__alphabet">
+      <div class="list">
+        {
+          alphabetData &&
+            Object.values(data).map((d) => {
+              return <LetterCard item={d} />;
+            })
+        }
+      </div>
+    </div>
+  </article>
+</BaseLayout>
