@@ -1,0 +1,97 @@
+---
+import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/vedic.css";
+import vedicData from "@/assets/json/vedic.json";
+
+const timeUnits = vedicData.time_units;
+---
+
+<BaseLayout meta={{ title: "Vedic Time" }}>
+  <div class="container__vedic">
+    <div class="vedic__layout">
+      <!-- Converter Card -->
+      <div class="converter__card">
+        <form id="converter__form" class="converter__form">
+          <div class="form__group">
+            <label for="input__value">Enter Value</label>
+            <input type="number" id="input__value" placeholder="Enter value" required />
+          </div>
+
+          <div class="form__grid">
+            {
+              ["From", "To"].map((label) => (
+                <div class="form__group">
+                  <label for={`${label.toLowerCase()}__unit`}>{label}</label>
+                  <select id={`${label.toLowerCase()}__unit`}>
+                    {timeUnits.map((unit) => (
+                      <option value={unit.name}>{unit.name}</option>
+                    ))}
+                  </select>
+                </div>
+              ))
+            }
+          </div>
+
+          <button type="submit" class="convert__button">Convert</button>
+          <div id="result" class="result__display"></div>
+        </form>
+      </div>
+
+      <!-- Units Reference -->
+      <div class="units__card">
+        <h2 class="units__title">Vedic Time Units</h2>
+        <div class="units__grid">
+          {
+            timeUnits.map((unit) => (
+              <div class="unit__item">
+                <div class="unit__header">
+                  <h3>{unit.name}</h3>
+                  <span class="approx">≈</span>
+                </div>
+                <div class="unit__details">
+                  <div class="unit__value">
+                    <span class="icon">🕛</span>
+                    {unit.seconds.toLocaleString()} seconds
+                  </div>
+                  <div class="unit__value">
+                    <span class="icon">⏳</span>
+                    {unit.minutes.toLocaleString()} minutes
+                  </div>
+                  <div class="unit__value">
+                    <span class="icon">📅</span>
+                    {unit.years.toLocaleString()} years
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script define:vars={{ timeUnits }}>
+  function convert(value, fromUnit, toUnit) {
+    const from = timeUnits.find((u) => u.name === fromUnit);
+    const to = timeUnits.find((u) => u.name === toUnit);
+    if (!from || !to) return null;
+
+    const seconds = value * from.seconds;
+    return seconds / to.seconds;
+  }
+
+  document.getElementById("converter__form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const value = parseFloat(document.getElementById("input__value").value);
+    const fromUnit = document.getElementById("from__unit").value;
+    const toUnit = document.getElementById("to__unit").value;
+
+    const result = convert(value, fromUnit, toUnit);
+    const resultBox = document.getElementById("result");
+    resultBox.style.display = "block";
+    resultBox.textContent = `${value} ${fromUnit} = ${result.toLocaleString(undefined, {
+      maximumFractionDigits: 4
+    })} ${toUnit}`;
+  });
+</script>
