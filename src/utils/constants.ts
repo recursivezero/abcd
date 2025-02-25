@@ -38,21 +38,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: false
   },
   {
-    name: "English",
-    title: "English",
-    path: "/english",
-    isActive: true
-  },
-  {
     name: "Alphabets",
     title: "Alphabets",
     path: "/alphabets",
-    isActive: true
-  },
-  {
-    name: "Typing",
-    title: "Typing",
-    path: "/typing",
     isActive: true
   },
   {
