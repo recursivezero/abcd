@@ -13,6 +13,7 @@ export interface AlphabetEntry {
 
 export interface AlphabetCategory {
   description: string;
+  icon: string;
   data: AlphabetEntry[];
 }
 
