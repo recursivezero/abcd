@@ -21,31 +21,60 @@ This document describes the functionality and purpose of each page in the applic
 
 ### Interactive Learning Pages
 
-#### Varnmala Page (/pages/varnmala.astro)
+#### Varnmala Section
 
-![Varnmala page](../src/assets/screenshots/varnmala.png)
+##### Varnmala Hub Page (/pages/varnmala/index.astro)
+
+![Varnmala hub page](../src/assets/screenshots/varnmala/index.png)
+
+- Main hub for all alphabet learning activities
+- Navigation to specialized practice pages
+- Overview of available learning modes
+
+##### Alphabet Display (/pages/varnmala/alphabet.astro)
+
+![Alphabet display page](../src/assets/screenshots/varnmala/alphabets.png)
 
 - Displays Hindi and English alphabets
 - Uses Alphabet component to render letter lists
 - Includes help section explaining the concept
 
-#### Typing Page (/pages/typing.astro)
+##### Typing Practice (/pages/varnmala/typing.astro)
 
-![Typing practice page](../src/assets/screenshots/typing.png)
+![Typing practice page](../src/assets/screenshots/varnmala/typing.png)
 
 - Interactive typing practice
 - Shows letters, emojis, and spelling animations
 - Responds to keyboard input (A-Z)
 - Includes visual feedback
 
-#### Reader Page (/pages/reader.astro)
+##### Reader (/pages/varnmala/reader.astro)
 
-![Reader page](../src/assets/screenshots/reader.png)
+![Reader page](../src/assets/screenshots/varnmala/reader.png)
 
 - Text-to-speech functionality
 - Multiple speaker options (Mudra, Rutvi)
 - Audio control for alphabet pronunciation
 - Emoji display with letters
+
+##### English Practice (/pages/varnmala/english.astro)
+
+![English practice page](../src/assets/screenshots/varnmala/english.png)
+
+- English alphabet practice
+- Color-changing letter display
+- Keyboard interaction
+- Visual feedback
+
+#### Barahkhadi Page (/pages/barahkhadi/index.astro)
+
+![Barahkhadi page](../src/assets/screenshots/barahkhadi.png)
+
+- Grid display of Hindi consonants organized in traditional groups
+- Quick view popover showing barahkhadi variations for each consonant
+- Interactive buttons to show/hide variations
+- Clickable consonants leading to detailed pages
+- Responsive layout with consonant groups
 
 #### Panel Page (/pages/panel.astro)
 
@@ -55,15 +84,6 @@ This document describes the functionality and purpose of each page in the applic
 - Arrow key navigation
 - Custom HTML element (letter-panel)
 - Interactive letter display
-
-#### English Page (/pages/hindi.astro)
-
-![English practice page](../src/assets/screenshots/english.png)
-
-- English alphabet practice
-- Color-changing letter display
-- Keyboard interaction
-- Visual feedback
 
 #### Record Page (/pages/record.astro)
 
