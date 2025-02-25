@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/alphabet/index.css";
+import "@/assets/styles/alphabets/index.css";
 import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
 
@@ -27,11 +27,11 @@ const getCategoryDescription = (category: string) => alphabetData[category as ke
                 <p class="category__description">{getCategoryDescription(category)}</p>
               </div>
               <div class="card__actions">
-                <a href={`/alphabets/playground/${category}`} class="btn btn-playground">
+                <a href={`/alphabets/${category}/playground/`} class="btn btn-playground">
                   <span class="icon">🎮</span>
                   Playground
                 </a>
-                <a href={`/alphabets/${category}`} class="btn btn-board">
+                <a href={`/alphabets/${category}/board`} class="btn btn-board">
                   <span class="icon">📋</span>
                   Board
                 </a>
