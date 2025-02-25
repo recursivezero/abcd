@@ -1,9 +1,8 @@
 ---
-import "@/assets/styles/varnmala/alphabet.css";
-import BaseLayout from "@/layouts/Base";
-
 import AlphabetComponent from "@/components/Alphabet.astro";
+import "@/assets/styles/varnmala/alphabet.css";
 import Help from "@/components/Help.astro";
+import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/ui/backButton.astro";
 
 import { varnmala_english, varnmala_hindi } from "@/utils/common";
@@ -22,7 +21,7 @@ import { varnmala_english, varnmala_hindi } from "@/utils/common";
   </Fragment>
   <BackButton />
 
-  <article class="container__varnmala">
+  <article class="container__alphabets">
     <div id="english">
       <AlphabetComponent list={varnmala_english} title="English" />
     </div>
