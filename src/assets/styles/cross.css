@@ -1,0 +1,433 @@
+:root {
+  /* Reference color palette */
+  --primary-color: #6366f1;
+  --secondary-color: #06b6d4;
+  --accent1-color: #f87171;
+  --accent2-color: #60a5fa;
+  --accent3-color: #fbbf24;
+  --accent4-color: #34d399;
+  --accent5-color: #ec4899;
+  --accent6-color: #818cf8;
+  --accent7-color: #f97316;
+  --accent8-color: #38bdf8;
+  --text-color: #1e293b;
+  --text-light: #64748b;
+  --bg-color: #f8fafc;
+  --bg-dark: #0f172a;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --stats-button-bg: #e2e8f0;
+  --stats-button-text: #334155;
+  --stats-button-border: #cbd5e1;
+  --stats-button-hover: #818cf8;
+}
+/* Layout and placement from new CSS */
+.puzzle-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  /*padding: 2px;*/
+  min-height: 100vh;
+}
+
+/* Settings Trigger Button */
+.settings-trigger {
+  position: fixed;
+  top: 82px;
+  right: 32px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.settings-trigger svg {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+.settings-trigger:hover {
+  background: var(--accent6-color);
+  transform: scale(1.05) rotate(45deg);
+}
+
+.settings-trigger.active {
+  transform: scale(1) rotate(180deg);
+  background: var(--accent1-color);
+}
+
+/* Settings Panel - Updated for smooth exit */
+.settings-panel {
+  position: fixed;
+  bottom: 100px;
+  right: -320px;
+  width: 300px;
+  background: #ffffff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 10px;
+  z-index: 999;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-image: linear-gradient(45deg, var(--primary-color), var(--accent2-color), var(--accent4-color)) 1;
+}
+
+/* Make all text dark colored within settings panel */
+.settings-panel * {
+  color: var(--text-color);
+}
+
+/* For buttons specifically, maintain their existing styles */
+.settings-panel .control-btn {
+  color: white;
+}
+
+/* Ensure panel is completely hidden when not active with smooth transition */
+.settings-panel:not(.active) {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(0);
+}
+
+/* Adjust the active state to restore interaction */
+.settings-panel.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-340px);
+}
+
+.settings-panel .controls-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Buttons with reference CSS colors - Removed box shadows */
+.control-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 14px 24px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.control-btn:hover {
+  background: var(--accent6-color);
+  transform: translateY(-3px);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+}
+
+/* Colorful variant buttons - Removed box shadows */
+#newPuzzleBtn {
+  background: var(--secondary-color);
+}
+
+#newPuzzleBtn:hover {
+  background: var(--accent4-color);
+}
+
+#resetBtn {
+  background: var(--accent4-color);
+}
+
+#resetBtn:hover {
+  background: var(--accent6-color);
+}
+
+#solutionBtn {
+  background: var(--accent1-color);
+}
+
+#solutionBtn:hover {
+  background: var(--accent5-color);
+}
+
+/* Updated icon for clear button */
+#clearBtn {
+  background: var(--accent5-color);
+}
+
+#clearBtn:hover {
+  background: var(--accent1-color);
+}
+
+#clearBtn::before {
+  content: "🗑️";
+  margin-right: 8px;
+}
+
+#themeToggle {
+  background: var(--accent6-color);
+}
+
+#themeToggle:hover {
+  background: var(--primary-color);
+}
+
+/* Grid Design from Reference */
+.grid {
+  display: grid;
+  gap: 12px;
+  padding: 28px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow), 0 0 0 15px rgba(99, 102, 241, 0.08);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1;
+  border: 6px solid #f1f5f9;
+}
+
+.cell {
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8fafc;
+  border: 3px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.cell:hover {
+  transform: translateY(-3px);
+  background: #eef2ff;
+  border-color: var(--primary-color);
+}
+
+.cell.selected {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.5); }
+  100% { box-shadow: 0 0 0 12px rgba(99, 102, 241, 0); }
+}
+
+/* Word Coloring System */
+.word-color-1 { background-color: var(--accent7-color) !important; }
+.word-color-2 { background-color: var(--secondary-color) !important; }
+.word-color-3 { background-color: var(--accent1-color) !important; }
+.word-color-4 { background-color: var(--accent2-color) !important; }
+.word-color-5 { background-color: var(--accent5-color) !important; }
+.word-color-6 { background-color: var(--accent6-color) !important; }
+.word-color-7 { background-color: var(--accent3-color) !important; }
+.word-color-8 { background-color: var(--accent8-color) !important; }
+
+.cell.match {
+  color: white !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Summary/Details Design - Removed icon from summary */
+details {
+  width: 100%;
+  border-radius: var(--border-radius);
+  background-color: rgba(99, 102, 241, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  margin: 20px 0;
+  border-left: 4px solid var(--primary-color);
+}
+
+details[open] {
+  background-color: rgba(99, 102, 241, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+summary {
+  padding: 16px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: var(--transition);
+}
+
+/* Removed summary::before content with the gear icon */
+
+details[open] summary {
+  border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+  margin-bottom: 12px;
+}
+
+/* Word List Styling - Updated for non-found state */
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+}
+
+.word {
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-weight: 600;
+  color: white;
+  transition: var(--transition);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--accent6-color); /* Default color for words not found */
+}
+
+.word.found {
+  text-decoration: line-through;
+  opacity: 0.7;
+  transform: scale(0.97);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary-color: #a78bfa;
+  --secondary-color: #2dd4bf;
+  --text-color: #f8fafc;
+  --stats-button-bg: #1e293b;
+  --stats-button-text: #e2e8f0;
+  --stats-button-border: #334155;
+  --stats-button-hover: #a78bfa;
+}
+
+[data-theme="dark"] .grid {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .cell {
+  background: #334155;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .cell:hover {
+  background:var(--accent1-color);
+}
+
+[data-theme="dark"] .cell.selected {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(167, 139, 250, 0.4);
+  animation: darkPulse 1.5s infinite alternate;
+}
+
+@keyframes darkPulse {
+  0% { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.5); }
+  100% { box-shadow: 0 0 0 12px rgba(167, 139, 250, 0); }
+}
+
+/* Ensure cells maintain their highlighted state during drag in dark mode */
+[data-theme="dark"] .cell:active {
+  background: var(--primary-color);
+  color: white;
+}
+
+[data-theme="dark"] .cell.selected {
+  z-index: 10;
+}
+
+[data-theme="dark"] details {
+  background-color: rgba(167, 139, 250, 0.15);
+  border-left-color: var(--primary-color);
+}
+
+[data-theme="dark"] summary {
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .settings-panel {
+  background: #1e293b;
+  border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent4-color)) 1;
+}
+
+/* Stats Container - Updated with new colors and dark mode compatibility */
+/* Stats Container - With colorful buttons */
+.stats-container {
+  display: flex;
+  gap: 24px;
+  margin: 32px 0;
+  justify-content: center;
+}
+
+.stats-button {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent6-color));
+  border: 2px solid transparent;
+  border-radius: var(--border-radius);
+  padding: 14px 28px;
+  font-weight: 600;
+  transition: var(--transition);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow);
+  background: linear-gradient(135deg, var(--accent2-color), var(--accent8-color));
+}
+
+/* Create variation in colors for different stats buttons */
+.stats-button:nth-child(1) {
+  background:  var(--accent4-color)
+}
+
+.stats-button:nth-child(2) {
+  background:  var(--secondary-color);
+}
+
+.stats-button:nth-child(3) {
+  background: linear-gradient(135deg, var(--accent5-color), var(--accent3-color));
+}
+
+.stats-button:nth-child(4) {
+  background: linear-gradient(135deg, var(--accent2-color), var(--accent8-color));
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .grid {
+    padding: 1rem;
+    max-width: 90%;
+  }
+  
+  .cell {
+    font-size: 1.2rem;
+  }
+  
+  .settings-panel {
+    width: 90%;
+    right: 5%;
+  }
+}

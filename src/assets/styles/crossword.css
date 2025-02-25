@@ -1,26 +1,37 @@
 :root {
-  --primary-color: #5e60ce;
-  --secondary-color: #38b2ac;
+  /* Refined color palette with more harmonious tones */
+  --primary-color: #6366f1;
+  --secondary-color: #06b6d4;
   --accent1-color: #f87171;
   --accent2-color: #60a5fa;
-  --accent3-color: #fcd34d;
+  --accent3-color: #fbbf24;
   --accent4-color: #34d399;
-  --accent5-color: #f472b6;
+  --accent5-color: #ec4899;
   --accent6-color: #818cf8;
-  --accent7-color: #fb923c;
-  --accent8-color: #4dd4ff;
-  --reset-color: #8b5cf6;
-  --text-color: #1f2937;
-  --text-light: #4b5563;
-  --bg-color: #f9fafb;
-  --bg-dark: #111827;
-  --font-family: 'Quicksand', 'Arial', sans-serif;
+  --accent7-color: #f97316;
+  --accent8-color: #38bdf8;
+  --reset-color: #a78bfa;
+  --text-color: #1e293b;
+  --text-light: #64748b;
+  --bg-color: #f8fafc;
+  --bg-dark: #0f172a;
+  --font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --border-radius: 16px;
-  --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Layout */
+/*body {
+  font-family: var(--font-family);
+  background-image: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  color: var(--text-color);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: var(--transition);
+}*/
+
+/* Layout with improved spacing and aesthetics */
 .puzzle-container {
   display: flex;
   justify-content: center;
@@ -30,6 +41,8 @@
   min-height: 100vh;
   text-align: center;
   background-color: transparent;
+  /*padding: 24px 16px;*/
+  /*margin-top: 5px;*/
 }
 
 .controls-row {
@@ -37,44 +50,50 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 25px;
-  padding: 0 20px;
+  /*margin-bottom: 28px;*/
+  /*padding: 0 20px;*/
 }
 
+/* Refined control groups */
 .controls-group {
   display: flex;
-  gap: 14px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  flex-direction: column;
   width: 100%;
-  /*padding: 15px 0;*/
-  margin-bottom: 10px;
+  max-width: 800px;
+  /*margin-bottom: 24px;*/
 }
 
-.control-btn {
-  padding: 4px 10px;
+.controls-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  /*margin-top: 24px;*/
+}
+
+/* Beautiful buttons with subtle depth and consistent styling */
+/*.control-btn {
+  padding: 0 9px;
   border: none;
   background-color: var(--primary-color);
   color: white;
   cursor: pointer;
   border-radius: var(--border-radius);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   transition: var(--transition);
-  min-width: 140px;
-  height: 50px;
+  min-width: 150px;
+  height: 54px;
   text-align: center;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow), 0 1px 2px rgba(255, 255, 255, 0.1) inset;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   white-space: nowrap;
   position: relative;
-  overflow: hidden;
-}
+  overflow: hidden;*/
+/*}*/
 
 .control-btn::after {
   content: "";
@@ -90,7 +109,7 @@
 
 .control-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.25);
 }
 
 .control-btn:hover::after {
@@ -99,13 +118,12 @@
 
 .control-btn:active {
   transform: translateY(0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Button Variants with Improved Colors */
+/* Harmonized button variants */
 #newPuzzleBtn {
-  background-color: var(--secondary-color);
-  background-image: linear-gradient(135deg, var(--secondary-color), #2c9c94);
+  background-image: linear-gradient(135deg, var(--secondary-color), #0891b2);
 }
 
 #newPuzzleBtn::before {
@@ -114,9 +132,7 @@
 }
 
 #resetBtn {
-  padding: 2px 2px;
-  background-color: var(--reset-color);
-  background-image: linear-gradient(135deg, var(--reset-color), #7c4dff);
+  background-image: linear-gradient(135deg, var(--reset-color), #8b5cf6);
 }
 
 #resetBtn::before {
@@ -125,9 +141,7 @@
 }
 
 #solutionBtn {
-  padding: 2px 2px;
-  background-color: var(--accent1-color);
-  background-image: linear-gradient(135deg, var(--accent1-color), #ef5350);
+  background-image: linear-gradient(135deg, var(--accent1-color), #ef4444);
 }
 
 #solutionBtn::before {
@@ -136,8 +150,7 @@
 }
 
 #clearBtn {
-  background-color: var(--accent5-color);
-  background-image: linear-gradient(135deg, var(--accent5-color), #ec407a);
+  background-image: linear-gradient(135deg, var(--accent5-color), #db2777);
 }
 
 #clearBtn::before {
@@ -146,10 +159,8 @@
 }
 
 #themeToggle {
-  padding: 10px 8px;
   min-width: 70px;
-  background-color: var(--accent6-color);
-  background-image: linear-gradient(135deg, var(--accent6-color), #6366f1);
+  background-image: linear-gradient(135deg, var(--accent6-color), #4f46e5);
 }
 
 #themeToggle::before {
@@ -157,47 +168,74 @@
   font-size: 18px;
 }
 
+/* Elegant select styling */
 select.control-btn {
   appearance: none;
-  text-align: center;
   padding-right: 40px;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e"), linear-gradient(135deg, #4f46e5, #3730a3);
   background-repeat: no-repeat;
   background-position: right 15px center, center;
-  background-size: 14px, cover;
+  background-size: 15px, cover;
   padding-left: 40px;
-  /* Make space for the icon */
 }
 
 #difficultySelect::before {
   content: "🏆";
-  font-size: 18px;
-  left: 15px;
+  font-size: 17px;
+  position: absolute;
+  /*left: 20px;*/
 }
 
-/* Stats Section */
-.stats-container {
-  display: flex;
-  gap: 25px;
-  justify-content: center;
-  margin: 25px 0 35px;
-  width: 100%;
-  max-width: 550px;
-}
-
+/* Stats Section with elegant design */
 .stats-button {
-  background-color: #2563eb;
   background-image: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: white;
-  padding: 14px 22px;
+  padding: 16px 24px;
   border-radius: var(--border-radius);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   box-shadow: var(--box-shadow);
   min-width: 160px;
   flex: 1;
   transition: var(--transition);
+  height: 54px; /* Match the height of control-btn */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-container {
+  display: flex;
+  gap: 16px; /* Adjust gap as needed */
+  justify-content: center;
+  margin: 28px 0 20px;
+  width: 100%;
+  max-width: 550px;
+  align-items: center;
+}
+
+.control-btn {
+  padding: 0 9px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 600;
+  transition: var(--transition);
+  min-width: 150px;
+  height: 54px; /* Ensure consistent height */
+  text-align: center;
+  box-shadow: var(--box-shadow), 0 1px 2px rgba(255, 255, 255, 0.1) inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
 }
 
 .stats-button:hover {
@@ -205,104 +243,127 @@ select.control-btn {
   filter: brightness(1.05);
 }
 
-/* Modern style for details/summary sections */
-details {
-  margin: 15px 0;
-  padding: 0;
-  border-radius: 8px;
-  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);*/
-  /*background-color: #ffffff;*/
+/* Settings panel with refined styling */
+.controls-group details {
+  margin: 15px 0 25px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  background-color: rgba(99, 102, 241, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
   overflow: hidden;
-  /*transition: box-shadow 0.3s ease, transform 0.2s ease;*/
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--primary-color);
 }
 
-details:hover {
-  /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);*/
-  transform: translateY(-2px);
-}
-
-details[open] {
-  margin-bottom: 20px;
-}
-
-summary {
+.controls-group details summary {
   font-weight: 600;
   font-size: 1.1em;
-  padding: 16px 20px;
+  padding: 10px 20px;
   cursor: pointer;
   outline: none;
   position: relative;
-  /*background: linear-gradient(to right, #f8f9fa, #ffffff);*/
-  border-bottom: 1px solid transparent;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
 }
 
-summary:hover {
-  color: #e67e22;
-  /*background-color: #fafafa;*/
+.controls-group details summary::before {
+  content: "⚙️";
+  margin-right: 12px;
+  font-size: 18px;
 }
 
-summary::after {
-  /*content: '›';*/
+.controls-group details summary::after {
+  content: '⌄';
   font-size: 1.4em;
   position: absolute;
   right: 20px;
-  color: #aaa;
-  transform: rotate(90deg);
+  color: var(--primary-color);
   transition: transform 0.3s ease;
 }
 
-details[open] summary {
-  border-bottom: 1px solid #f0f0f0;
+.controls-group details[open] summary::after {
+  transform: rotate(180deg);
 }
 
-details[open] summary::after {
-  transform: rotate(-90deg);
+.controls-group details[open] {
+  background-color: rgba(99, 102, 241, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-.instructions {
-  margin: 0;
-  padding: 20px;
-  color: #444;
-  line-height: 1.6;
+.controls-group details .instructions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px;
 }
 
-.instructions p {
-  margin: 0 0 15px 0;
+/* Word List panel styling */
+.puzzle-container>details {
+  margin: 20px 0 32px;
+  width: 100%;
+  max-width: 800px;
+  border-radius: var(--border-radius);
+  background-color: rgba(6, 182, 212, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--secondary-color);
 }
 
-.instructions ul {
-  margin: 0;
-  padding-left: 25px;
-}
-
-.instructions li {
-  margin-bottom: 8px;
+.puzzle-container>details summary {
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 10px 20px;
+  cursor: pointer;
+  outline: none;
   position: relative;
+  background-image: linear-gradient(to right, rgba(6, 182, 212, 0.12), transparent);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
-.instructions li::before {
-  content: "";
-  position: absolute;
-  left: -18px;
-  top: 8px;
-  width: 6px;
-  height: 6px;
-  background-color: #e67e22;
-  border-radius: 50%;
+.puzzle-container>details summary::before {
+  content: "📝";
+  margin-right: 12px;
+  font-size: 18px;
 }
-/* Word List - UPDATED FOR COLORFUL FOUND WORDS */
-/* Word List */
+
+.puzzle-container>details summary::after {
+  content: '⌄';
+  font-size: 1.4em;
+  position: absolute;
+  right: 20px;
+  color: var(--secondary-color);
+  transition: transform 0.3s ease;
+}
+
+.puzzle-container>details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.puzzle-container>details[open] {
+  background-color: rgba(6, 182, 212, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Subtle hover effects */
+.controls-group details:hover,
+.puzzle-container>details:hover {
+  transform: translateY(-2px);
+}
+
+/* Word List styling */
 .word-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 14px;
-  margin: 0 auto 35px;
-  padding: 25px 20px;
+  gap: 16px;
+  margin: 0 auto 10px;
+  padding: 15px 15px 5px 15px;
   max-width: 100%;
   width: 100%;
   border-radius: 0;
@@ -312,7 +373,7 @@ details[open] summary::after {
 }
 
 .word {
-  padding: 10px 18px;
+  padding: 10px 20px;
   background-color: var(--accent5-color);
   border-radius: 25px;
   font-size: 1.05rem;
@@ -320,49 +381,30 @@ details[open] summary::after {
   color: white;
   transition: var(--transition);
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
+  letter-spacing: 0.3px;
 }
 
-/* Updated found word styling */
+/* Refined found word styling */
 .word.found {
   text-decoration: line-through;
   background-color: #94a3b8;
-  /* Dull slate color */
   opacity: 0.7;
   transform: scale(0.97);
   padding-right: 18px;
-  /* Reset padding since we removed checkmark */
 }
 
-/* Remove the checkmark */
-.word.found::after {
-  content: none;
-}
-
-/* Media query adjustments */
-@media (max-width: 480px) {
-  .word {
-    padding: 6px 14px;
-    font-size: 0.9rem;
-  }
-
-  .word-list {
-    padding: 15px;
-    gap: 10px;
-  }
-}
-
-/* Grid and Cells */
+/* Grid and Cells with enhanced aesthetics */
 .grid {
   display: grid;
-  gap: 10px;
-  padding: 25px;
+  gap: 12px;
+  padding: 28px;
   background-color: #ffffff;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow), 0 0 0 12px rgba(94, 96, 206, 0.1);
+  box-shadow: var(--box-shadow), 0 0 0 15px rgba(99, 102, 241, 0.08);
   margin: 0 auto;
   width: 100%;
   max-width: 600px;
@@ -386,7 +428,7 @@ details[open] summary::after {
   transition: var(--transition);
   cursor: pointer;
   user-select: none;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   position: relative;
   z-index: 1;
 }
@@ -403,93 +445,79 @@ details[open] summary::after {
   color: white;
   transform: scale(1.08);
   z-index: 20;
-  box-shadow: 0 6px 18px rgba(94, 96, 206, 0.35);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
   border-color: white;
   animation: pulse 1.5s infinite alternate;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(94, 96, 206, 0.4);
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.5);
   }
 
   100% {
-    box-shadow: 0 0 0 10px rgba(94, 96, 206, 0);
+    box-shadow: 0 0 0 12px rgba(99, 102, 241, 0);
   }
 }
 
-/* Word Match Styling - Enhanced for Better Visibility */
+/* Refined word match styling */
 .cell.match {
   transform: scale(0.95);
   transition: var(--transition);
-  /*color: white;*/
-  /*animation: highlightWord 0.6s ease forwards;*/
+  color: white;
+  font-weight: 700;
 }
 
-@keyframes highlightWord {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(0.97);
-  }
-}
-
-/* Enhanced Word Colors in Grid */
+/* Vibrant but harmonious cell colors */
 .cell.match.word-color-1 {
   background-color: var(--accent7-color);
   border-color: var(--accent7-color);
-  box-shadow: 0 3px 10px rgba(94, 96, 206, 0.4);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
 }
 
 .cell.match.word-color-2 {
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);
-  box-shadow: 0 3px 10px rgba(56, 178, 172, 0.4);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
 }
 
 .cell.match.word-color-3 {
   background-color: var(--accent1-color);
   border-color: var(--accent1-color);
-  box-shadow: 0 3px 10px rgba(248, 113, 113, 0.4);
+  box-shadow: 0 4px 12px rgba(248, 113, 113, 0.3);
 }
 
 .cell.match.word-color-4 {
   background-color: var(--accent2-color);
   border-color: var(--accent2-color);
-  box-shadow: 0 3px 10px rgba(96, 165, 250, 0.4);
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
 }
 
 .cell.match.word-color-5 {
   background-color: var(--accent5-color);
   border-color: var(--accent5-color);
-  box-shadow: 0 3px 10px rgba(244, 114, 182, 0.4);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
 }
 
 .cell.match.word-color-6 {
   background-color: var(--accent6-color);
   border-color: var(--accent6-color);
-  box-shadow: 0 3px 10px rgba(129, 140, 248, 0.4);
+  box-shadow: 0 4px 12px rgba(129, 140, 248, 0.3);
 }
 
 .cell.match.word-color-7 {
-  background-color: var(--accent7-color);
-  border-color: var(--accent7-color);
-  box-shadow: 0 3px 10px rgba(251, 146, 60, 0.4);
+  background-color: var(--accent3-color);
+  border-color: var(--accent3-color);
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
 }
 
 .cell.match.word-color-8 {
   background-color: var(--accent8-color);
   border-color: var(--accent8-color);
-  box-shadow: 0 3px 10px rgba(77, 212, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
 }
 
-/* Dark Theme */
+/* Refined Dark Theme */
 [data-theme="dark"] {
   --primary-color: #a78bfa;
   --secondary-color: #2dd4bf;
@@ -497,24 +525,19 @@ details[open] summary::after {
   --accent5-color: #ec4899;
   --accent6-color: #818cf8;
   --reset-color: #c084fc;
-  --text-color: #f9fafb;
-  --text-light: #d1d5db;
-  --bg-color: #111827;
+  --text-color: #f8fafc;
+  --text-light: #cbd5e1;
+  --bg-color: #0f172a;
 }
 
 [data-theme="dark"] body {
-  background-image: linear-gradient(120deg, #111827 0%, #1f2937 100%);
-}
-
-[data-theme="dark"] .puzzle-container {
-  background-color: transparent;
-  background-image: none;
+  background-image: linear-gradient(120deg, #0f172a 0%, #1e293b 100%);
 }
 
 [data-theme="dark"] .grid {
   background-color: #1e293b;
   border-color: #334155;
-  box-shadow: var(--box-shadow), 0 0 0 12px rgba(167, 139, 250, 0.15);
+  box-shadow: var(--box-shadow), 0 0 0 15px rgba(167, 139, 250, 0.15);
 }
 
 [data-theme="dark"] .cell {
@@ -525,9 +548,36 @@ details[open] summary::after {
 
 [data-theme="dark"] .cell:hover {
   background-color: #3f506e;
+  border-color: var(--primary-color);
 }
 
-/* Dark theme word colors - enhance visibility in dark mode */
+/* Dark theme adjustments for details/summary */
+[data-theme="dark"] .controls-group details {
+  background-color: rgba(167, 139, 250, 0.15);
+  border-left-color: var(--primary-color);
+}
+
+[data-theme="dark"] .puzzle-container>details {
+  background-color: rgba(45, 212, 191, 0.15);
+  border-left-color: var(--secondary-color);
+}
+
+[data-theme="dark"] .controls-group details summary,
+[data-theme="dark"] .puzzle-container>details summary {
+  color: var(--text-color);
+  background-image: linear-gradient(to right, rgba(167, 139, 250, 0.2), transparent);
+}
+
+[data-theme="dark"] .puzzle-container>details summary {
+  background-image: linear-gradient(to right, rgba(45, 212, 191, 0.2), transparent);
+}
+
+/* Beautiful word styling in dark mode */
+[data-theme="dark"] .word.found {
+  background-color: #475569;
+}
+
+/* Enhanced dark theme word colors */
 [data-theme="dark"] .word.found-color-1 {
   background-image: linear-gradient(135deg, #a78bfa, #8b5cf6);
 }
@@ -553,27 +603,33 @@ details[open] summary::after {
 }
 
 [data-theme="dark"] .word.found-color-7 {
-  background-image: linear-gradient(135deg, #fb923c, #f97316);
+  background-image: linear-gradient(135deg, #fbbf24, #f59e0b);
 }
 
 [data-theme="dark"] .word.found-color-8 {
-  background-image: linear-gradient(135deg, #4dd4ff, #38bdf8);
+  background-image: linear-gradient(135deg, #38bdf8, #0ea5e9);
 }
 
-/* Responsive Design */
+/* Responsive Design with improved aesthetics */
 @media (max-width: 768px) {
   .controls-group {
-    gap: 12px;
+    gap: 14px;
   }
 
   .control-btn {
-    padding: 12px 18px;
+    padding: 0 16px;
     font-size: 15px;
-    height: 48px;
+    height: 50px;
   }
 
   .control-btn::before {
     left: 10px;
+  }
+
+  .controls-group details summary,
+  .puzzle-container>details summary {
+    padding: 16px 18px;
+    font-size: 1em;
   }
 
   .cell {
@@ -582,17 +638,17 @@ details[open] summary::after {
   }
 
   .stats-container {
-    gap: 15px;
+    gap: 18px;
   }
 
   .stats-button {
     min-width: 130px;
-    padding: 12px 16px;
+    padding: 14px 18px;
     font-size: 16px;
   }
 
   .grid {
-    padding: 20px;
+    padding: 22px;
     gap: 8px;
     max-width: 550px;
   }
@@ -600,34 +656,23 @@ details[open] summary::after {
 
 @media (max-width: 480px) {
   .puzzle-container {
-    padding: 12px;
+    padding: 16px 12px;
   }
 
-  .controls-group {
-    gap: 10px;
-    flex-wrap: wrap;
-    width: 100%;
+  .controls-buttons {
+    gap: 12px;
   }
 
   .control-btn {
-    padding: 10px 14px 10px 35px;
-    min-width: 0;
+    padding: 0 16px;
     font-size: 14px;
-    height: 42px;
-    width: 100%;
+    height: 44px;
   }
 
-  .control-btn::before {
-    left: 8px;
-    font-size: 16px;
-  }
-
-  #newPuzzleBtn::before,
-  #resetBtn::before,
-  #solutionBtn::before,
-  #clearBtn::before,
-  #difficultySelect::before {
-    font-size: 16px;
+  .controls-group details summary,
+  .puzzle-container>details summary {
+    padding: 14px 16px;
+    font-size: 0.95em;
   }
 
   .cell {
@@ -637,19 +682,30 @@ details[open] summary::after {
   }
 
   .word {
-    padding: 6px 14px;
-    font-size: 0.9rem;
+    padding: 8px 16px;
+    font-size: 0.95rem;
   }
 
   .grid {
     width: 95%;
-    padding: 15px;
-    gap: 6px;
+    padding: 18px;
+    gap: 7px;
     border-width: 4px;
   }
 
   .word-list {
-    padding: 15px;
-    gap: 10px;
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .stats-container {
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0 30px;
+  }
+
+  .stats-button {
+    padding: 12px;
+    font-size: 15px;
   }
 }
