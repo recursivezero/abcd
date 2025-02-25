@@ -2,48 +2,20 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100vh - 4rem);
-  overflow-y: scroll;
   gap: 1rem;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 1rem;
 
-  & .head {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    padding: 1rem;
+  & .back {
+    background: var(--background);
+    color: var(--text);
+    border: 1px solid var(--border);
     border-radius: 0.5rem;
-    font-weight: 600;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-    & .back {
-      margin-bottom: 0 !important;
-    }
-  }
-
-  & .flip__all__button {
-    background-color: var(--background);
-    border: none;
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-weight: 200;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    align-self: flex-end;
-  }
-
-  & .flip__all__button:hover {
-    transform: translateY(-2px);
-  }
-
-  & .flip__all__button.active {
-    transform: scale(0.95);
-    background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   & .container__alphabet {
