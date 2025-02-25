@@ -1,0 +1,47 @@
+---
+import "@/assets/styles/varnmala/index.css";
+import BaseLayout from "@/layouts/Base";
+
+const sections = [
+  {
+    title: "Alphabet",
+    description: "Learn the basic alphabet characters",
+    href: "alphabet"
+  },
+  {
+    title: "English",
+    description: "Learn English alphabets",
+    href: "english"
+  },
+  {
+    title: "Typing",
+    description: "Practice typing alphabets",
+    href: "typing"
+  },
+  {
+    title: "Reader",
+    description: "Practice reading alphabets with audio support",
+    href: "reader"
+  }
+];
+---
+
+<BaseLayout meta={{ title: "Varnmala" }}>
+  <div class="container__varnmala">
+    <ul class="list__alphabets">
+      {
+        sections.map((section, index) => (
+          <li class="card" style={`animation-delay: ${index * 100}ms`}>
+            <a href=`/varnmala/${section.href}` class="card__link">
+              <div class="card__content">
+                <h2 class="category__title">{section.title}</h2>
+                <p class="category__description">{section.description}</p>
+                <span class="card__arrow">→</span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

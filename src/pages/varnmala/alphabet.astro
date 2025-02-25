@@ -1,6 +1,6 @@
 ---
-import Alphabet from "@/components/Alphabet.astro";
-import "@/assets/styles/varnmala.css";
+import AlphabetComponent from "@/components/Alphabet.astro";
+import "@/assets/styles/varnmala/alphabet.css";
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import { varnmala_english, varnmala_hindi } from "@/utils/common";
@@ -18,12 +18,12 @@ import { varnmala_english, varnmala_hindi } from "@/utils/common";
     />
   </Fragment>
 
-  <article class="container__varnmala">
+  <article class="container__alphabets">
     <div id="english">
-      <Alphabet list={varnmala_english} title="English" />
+      <AlphabetComponent list={varnmala_english} title="English" />
     </div>
     <div id="hindi">
-      <Alphabet list={varnmala_hindi} title="Hindi" />
+      <AlphabetComponent list={varnmala_hindi} title="Hindi" />
     </div>
   </article>
   <script>
