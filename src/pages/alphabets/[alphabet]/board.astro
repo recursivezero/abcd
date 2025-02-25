@@ -7,9 +7,9 @@ import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
 import { type AlphabetsData } from "@/types/alphabet.ts";
 
-import BackButton from "@/components/ui/backButton.astro";
-
 const alphabetData = rawAlphabetData as AlphabetsData;
+
+const categories = Object.keys(alphabetData);
 
 export async function getStaticPaths() {
   const alphabetData = rawAlphabetData as AlphabetsData;
@@ -27,44 +27,17 @@ const data = alphabetData[alphabet as keyof AlphabetsData].data;
 
 <BaseLayout meta={{ title: `Alphabets - ${alphabet.charAt(0).toUpperCase() + alphabet.slice(1)}` }}>
   <article class="container__alphabets">
-    <div class="head">
-      <BackButton />
-      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
-    </div>
+    <button class="back" onclick="window.history.back()"> ← Back </button>
+
     <div class="container__alphabet">
       <div class="list">
         {
-          data &&
+          alphabetData &&
             Object.values(data).map((d) => {
-              return <LetterCard item={d} category={alphabet} />;
+              return <LetterCard item={d} />;
             })
         }
       </div>
     </div>
   </article>
-
-  <script>
-    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement;
-    const flipCards = document.querySelectorAll(".flip__card");
-    let allFlipped = false;
-
-    flipAllButton.addEventListener("click", () => {
-      allFlipped = !allFlipped;
-
-      flipCards.forEach((card) => {
-        if (allFlipped) {
-          card.classList.add("flipped");
-        } else {
-          card.classList.remove("flipped");
-        }
-      });
-
-      flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
-
-      flipAllButton.classList.add("active");
-      setTimeout(() => {
-        flipAllButton.classList.remove("active");
-      }, 300);
-    });
-  </script>
 </BaseLayout>
