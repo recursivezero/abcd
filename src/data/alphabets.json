@@ -1,6 +1,7 @@
 {
   "general": {
     "description": "General knowledge about the English alphabet",
+    "icon": "🔤",
     "data": [
       {
         "id": 1,
@@ -188,6 +189,7 @@
   },
   "nato": {
     "description": "NATO phonetic alphabet",
+    "icon": "🎖️",
     "data": [
       {
         "id": 1,
@@ -375,6 +377,7 @@
   },
   "braille": {
     "description": "Braille alphabet",
+    "icon": "⠿",
     "data": [
       {
         "id": 1,
@@ -562,6 +565,7 @@
   },
   "fruits": {
     "description": "Fruits of the English alphabet",
+    "icon": "🍎",
     "data": [
       {
         "id": 1,
@@ -749,6 +753,7 @@
   },
   "animals": {
     "description": "Animals of the English alphabet",
+    "icon": "🦁",
     "data": [
       {
         "id": 1,
@@ -936,6 +941,7 @@
   },
   "countries": {
     "description": "Countries of the English alphabet",
+    "icon": "🌍",
     "data": [
       {
         "id": 1,
