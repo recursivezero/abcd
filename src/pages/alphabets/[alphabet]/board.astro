@@ -7,6 +7,8 @@ import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
 import { type AlphabetsData } from "@/types/alphabet.ts";
 
+import BackButton from "@/components/ui/backButton.astro";
+
 const alphabetData = rawAlphabetData as AlphabetsData;
 
 export async function getStaticPaths() {
@@ -25,14 +27,13 @@ const data = alphabetData[alphabet as keyof AlphabetsData].data;
 
 <BaseLayout meta={{ title: `Alphabets - ${alphabet.charAt(0).toUpperCase() + alphabet.slice(1)}` }}>
   <article class="container__alphabets">
-    <button class="back" onclick="window.history.back()"> ← Back </button>
-
+    <BackButton />
     <div class="container__alphabet">
       <div class="list">
         {
           data &&
             Object.values(data).map((d) => {
-              return <LetterCard item={d} category= {alphabet} />;
+              return <LetterCard item={d} category={alphabet} />;
             })
         }
       </div>
