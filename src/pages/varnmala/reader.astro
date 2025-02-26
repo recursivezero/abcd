@@ -2,6 +2,8 @@
 import "@/assets/styles/varnmala/reader.css";
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
+
+import BackButton from "@/components/ui/backButton.astro";
 ---
 
 <BaseLayout meta={{ title: "Reader" }}>
@@ -19,7 +21,8 @@ import BaseLayout from "@/layouts/Base";
       description="Press any letter key (A-Z) to display it with a related emoji. Toggle the speaker buttons to change voices, and use the audio button to mute/unmute sounds."
     />
   </Fragment>
-  <a href="/varnmala" class="back-button">← Back</a>
+
+  <BackButton />
   <article id="container__reader">
     <span class="letter" id="letter">a</span>
     <span class="emoji" id="emoji" role="img" aria-label="apple"> 🍎 </span>
