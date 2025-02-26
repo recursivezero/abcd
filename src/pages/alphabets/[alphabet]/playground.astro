@@ -1,10 +1,12 @@
 ---
 import "@/assets/styles/alphabets/[alphabet]/playground.css";
+
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import rawAlphabetData from "@/data/alphabets.json";
-import { type AlphabetsData } from "@/types/alphabet";
+import BackButton from "@/components/ui/backButton.astro";
 
+import { type AlphabetsData } from "@/types/alphabet";
 const alphabetData = rawAlphabetData as AlphabetsData;
 
 export async function getStaticPaths() {
@@ -26,6 +28,8 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
       description="Press any letter key (A-Z) to see the corresponding information from the selected alphabet category."
     />
   </Fragment>
+
+  <BackButton />
   <article class="tv container__typing">
     <div class="letter">A</div>
     <div class="emoji">{currentCategory.icon}</div>
