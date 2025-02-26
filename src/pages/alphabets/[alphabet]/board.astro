@@ -9,8 +9,6 @@ import { type AlphabetsData } from "@/types/alphabet.ts";
 
 const alphabetData = rawAlphabetData as AlphabetsData;
 
-const categories = Object.keys(alphabetData);
-
 export async function getStaticPaths() {
   const alphabetData = rawAlphabetData as AlphabetsData;
   const categories = Object.keys(alphabetData);
@@ -32,9 +30,9 @@ const data = alphabetData[alphabet as keyof AlphabetsData].data;
     <div class="container__alphabet">
       <div class="list">
         {
-          alphabetData &&
+          data &&
             Object.values(data).map((d) => {
-              return <LetterCard item={d} />;
+              return <LetterCard item={d} category= {alphabet} />;
             })
         }
       </div>
