@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <details>
+  <details open>
     <summary>Word List</summary>
     <div class="word-list" id="wordList"></div>
   </details>
@@ -419,24 +419,26 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Theme toggle functionality
-  const themeToggle = document.getElementById('themeToggle');
-  let isDarkTheme = false;
+  //const themeToggle = document.getElementById('themeToggle');
+  //let isDarkTheme = false;
 
-  themeToggle.addEventListener('click', function() {
-    isDarkTheme = !isDarkTheme;
-    document.body.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light');
+  //themeToggle.addEventListener('click', function() {
+  //  isDarkTheme = !isDarkTheme;
+  //  document.body.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light');
   });
 
   // Add smooth transitions for details elements
-  document.querySelectorAll('details').forEach(detail => {
-    detail.addEventListener('toggle', function(e) {
-      if (detail.open) {
-        const content = detail.querySelector('summary + *');
-        if (content) {
-          content.style.maxHeight = content.scrollHeight + 'px';
-        }
-      }
-    });
-  });
-});
+//  document.querySelectorAll('details').forEach(detail => {
+//  detail.addEventListener('toggle', function () {
+//    const content = detail.querySelector('summary + *');
+//    if (content) {
+//      if (detail.open) {
+//        content.style.maxHeight = content.scrollHeight + 'px';
+//      } else {
+//        content.style.maxHeight = '0';
+//      }
+//    }
+//  });
+//});
+
 </script>

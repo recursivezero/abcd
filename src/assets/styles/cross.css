@@ -103,6 +103,7 @@
 /* Adjust the active state to restore interaction */
 .settings-panel.active {
   opacity: 1;
+  /*display: absolute;*/
   pointer-events: auto;
   transform: translateX(-340px);
 }
