@@ -1,17 +1,21 @@
 ---
 import "@/assets/styles/varnmala/typing.css";
+
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
+import BackButton from "@/components/ui/backButton.astro";
+
 ---
 
 <BaseLayout meta={{ title: "Typing" }}>
   <Fragment slot="header-right">
     <Help
-      title="Typing"
-      description="Press any letter key (A-Z) to see the letter, related emoji, and spelling word animation."
+    title="Typing"
+    description="Press any letter key (A-Z) to see the letter, related emoji, and spelling word animation."
     />
   </Fragment>
-  <a href="/varnmala" class="back-button">← Back</a>
+
+  <BackButton />
   <article class="tv container__typing">
     <div class="letter">A</div>
     <div class="emoji">🎸</div>
