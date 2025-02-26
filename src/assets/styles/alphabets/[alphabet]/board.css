@@ -9,17 +9,6 @@
   justify-content: flex-start;
   padding: 1rem;
 
-  & .back {
-    background: var(--background);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
   & .container__alphabet {
     display: grid;
     gap: 2rem;
