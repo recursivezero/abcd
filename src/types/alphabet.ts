@@ -9,6 +9,7 @@ export interface AlphabetEntry {
   code: number;
   text: string;
   description: string;
+  image?: string;
 }
 
 export interface AlphabetCategory {
