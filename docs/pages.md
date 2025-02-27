@@ -84,6 +84,14 @@ This document describes the functionality and purpose of each page in the applic
 - Controls for record/pause/stop
 - Clip management with naming and deletion
 
+#### Vedic Time Page (/pages/vedic.astro)
+
+![Vedic Time page](../src/assets/screenshots/vedic.png)
+
+- Vedic time unit conversion tool
+- Interactive converter with input form
+- Comprehensive reference of vedic time units
+
 #### Clan Explorer
 
 ![Clan explorer page](../src/assets/screenshots/clan.png)
