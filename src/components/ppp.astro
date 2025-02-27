@@ -324,49 +324,6 @@ function handleConfirmSelection() {
   }
 }
 
-function handleDragStart(e) {
-  const coords = getCellCoordinates(e.target);
-  if (!coords) return;
-
-  state.isDragging = true;
-  state.selectedCells = [coords];
-  state.clickCount++;
-  updateDOM();
-}
-
-function handleDragMove(e) {
-  if (!state.isDragging) return;
-
-  const element = document.elementFromPoint(
-    e.type.includes("touch") ? e.touches[0].clientX : e.clientX,
-    e.type.includes("touch") ? e.touches[0].clientY : e.clientY
-  );
-
-  const coords = getCellCoordinates(element);
-  if (!coords) return;
-
-  const lastCell = state.selectedCells[state.selectedCells.length - 1];
-  if (!lastCell || !isValidNextCell(lastCell, coords)) return;
-
-  if (!state.selectedCells.some(([r, c]) => r === coords[0] && c === coords[1])) {
-    state.selectedCells.push(coords);
-    updateDOM();
-  }
-}
-
-function handleDragEnd() {
-  if (!state.isDragging) return;
-
-  const wasWordFound = checkForWord(state.selectedCells);
-  state.isDragging = false;
-
-  if (!wasWordFound) {
-    state.selectedCells = [];
-  }
-
-  updateDOM();
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const gridElement = document.getElementById("grid");
 
@@ -376,97 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add event listener for the Confirm Selection button
   document.getElementById("confirmSelectionBtn").addEventListener("click", handleConfirmSelection);
 
-  // Mouse events for drag selection
-  gridElement.addEventListener("mousedown", handleDragStart);
-  gridElement.addEventListener("mousemove", handleDragMove);
-  document.addEventListener("mouseup", handleDragEnd);
-
-  // Touch events
-  gridElement.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    handleDragStart(e);
-  });
-
-  gridElement.addEventListener("touchmove", (e) => {
-    e.preventDefault();
-    handleDragMove(e);
-  });
-
-  gridElement.addEventListener("touchend", (e) => {
-    e.preventDefault();
-    handleDragEnd();
-  });
-
-  // Controls
-  document.getElementById("difficultySelect").addEventListener("change", (e) => {
-    state.difficulty = e.target.value;
-    generatePuzzleWithCurrentWordSet();
-  });
-
-  document.getElementById("newPuzzleBtn").addEventListener("click", generateNewPuzzle);
-  document.getElementById("resetBtn").addEventListener("click", resetPuzzle);
-  document.getElementById("solutionBtn").addEventListener("click", () => {
-    state.showSolution = !state.showSolution;
-    updateDOM();
-  });
-
-  document.getElementById("clearBtn").addEventListener("click", () => {
-    state.selectedCells = [];
-    state.isDragging = false;
-    updateDOM();
-  });
-
   // Initialize the first puzzle
   generatePuzzleWithCurrentWordSet();
-});
-
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Get the settings elements
-  const settingsToggle = document.getElementById('settingsToggle');
-  const settingsPanel = document.getElementById('settingsPanel');
-  let isSettingsOpen = false;
-
-  // Toggle settings panel
-  settingsToggle.addEventListener('click', function(e) {
-    e.stopPropagation(); // Prevent event from bubbling
-    isSettingsOpen = !isSettingsOpen;
-    
-    if (isSettingsOpen) {
-      settingsPanel.classList.add('active');
-      settingsToggle.classList.add('active');
-    } else {
-      settingsPanel.classList.remove('active');
-      settingsToggle.classList.remove('active');
-    }
-  });
-
-  // Close settings when clicking outside
-  document.addEventListener('click', function(e) {
-    if (isSettingsOpen && 
-        !settingsPanel.contains(e.target) && 
-        !settingsToggle.contains(e.target)) {
-      settingsPanel.classList.remove('active');
-      settingsToggle.classList.remove('active');
-      isSettingsOpen = false;
-    }
-  });
-
-  // Prevent settings panel clicks from closing the panel
-  settingsPanel.addEventListener('click', function(e) {
-    e.stopPropagation();
-  });
-
-  // Add smooth transitions for details elements
-  document.querySelectorAll('details').forEach(detail => {
-    detail.addEventListener('toggle', function(e) {
-      if (detail.open) {
-        const content = detail.querySelector('summary + *');
-        if (content) {
-          content.style.maxHeight = content.scrollHeight + 'px';
-        }
-      }
-    });
-  });
 });
 </script>
