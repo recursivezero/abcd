@@ -18,9 +18,12 @@ const { data } = Astro.props;
       <div class="questions-container">
         <form id="surveyForm" class="survey-form">
           {
-            data.questions.map((question) => (
+            data.questions.map((question, index) => (
               <div class="question-card">
-                <h3>{question.questionText}</h3>
+                <h3>
+                  <span class="question-number">{index + 1}.</span>
+                  {question.questionText}
+                </h3>
 
                 {question.type === "openEnded" ? (
                   <textarea
@@ -131,3 +134,18 @@ const { data } = Astro.props;
     downloadBtn?.addEventListener("click", downloadResults);
   </script>
 </div>
+
+<style>
+  /* Styling for question numbers */
+  .question-number {
+    display: inline-block;
+    margin-right: 8px;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  /* Optional: If you want to adjust the before element styling */
+  .question-card h3::before {
+    margin-right: 8px; /* Adjusted to accommodate the question number */
+  }
+</style>
