@@ -21,6 +21,36 @@ This document describes the functionality and purpose of each page in the applic
 
 ### Interactive Learning Pages
 
+#### Alphabets Section
+
+##### Alphabets Explorer Page (/pages/alphabets/index.astro)
+
+![Alphabets Explorer page](../src/assets/screenshots/alphabets/index.png)
+
+- Main hub showing all available alphabet categories
+- Cards with category icons, titles and descriptions
+- Navigation to specialized playground and board pages for each category
+- Animated card interactions and hover effects
+
+##### Alphabet Playground (/pages/alphabets/[alphabet]/playground.astro)
+
+![Alphabet playground page](../src/assets/screenshots/alphabets/playground.png)
+
+- Interactive keyboard-driven learning experience
+- Displays letters, emojis, and spelling animations based on key presses
+- Dynamic color changes for visual engagement
+- Category-specific content loaded based on URL parameter
+- Includes help component explaining keyboard interaction
+
+##### Alphabet Board (/pages/alphabets/[alphabet]/board.astro)
+
+![Alphabet board page](../src/assets/screenshots/alphabets/board.png)
+
+- Complete display of all letters in selected alphabet category
+- Grid layout with letter cards showing detailed information
+- Organized reference view for all category items
+- Back navigation to main alphabets explorer
+
 #### Varnmala Section
 
 ##### Varnmala Hub Page (/pages/varnmala/index.astro)
