@@ -2,6 +2,7 @@
 import "@/assets/styles/math.css";
 ---
 
+
 <div class="math-practice">
   <section class="operator-container">
     <button class="operator-btn refresh" id="refresh" type="button">
@@ -44,15 +45,19 @@ import "@/assets/styles/math.css";
     </div>
   </form>
 
-  <!-- Score moved below the form -->
-  <div class="score">Score: <span id="scoreDisplay">0</span></div>
+  <!-- Score and Next button -->
+  <div class="score-next-container">
+    <div class="score">Score: <span id="scoreDisplay">0</span></div>
+    <button class="operator-btn next" id="next" type="button">Next</button>
+  </div>
 </div>
 
 <script>
   const state = {
     currentOperator: "+",
     score: 0,
-    scoreIncrement: 10
+    scoreIncrement: 10,
+    isAnswerCorrect: false // Track if the current answer is correct
   };
 
   function initMathPractice() {
@@ -85,6 +90,7 @@ import "@/assets/styles/math.css";
     document.getElementById("output").value = "";
     document.getElementById("resultIndicator").innerHTML = "";
     document.getElementById("output").focus();
+    state.isAnswerCorrect = false; // Reset the correct answer state
   }
 
   function updateScore() {
@@ -134,11 +140,12 @@ import "@/assets/styles/math.css";
     if (isValid) {
       indicator.innerHTML = "✓";
       indicator.className = "result-indicator success";
+      state.isAnswerCorrect = true; // Mark the answer as correct
       updateScore();
-      setTimeout(updateNumbers, 800);
     } else {
       indicator.innerHTML = "✗";
       indicator.className = "result-indicator error";
+      state.isAnswerCorrect = false;
     }
   }
 
@@ -162,14 +169,11 @@ import "@/assets/styles/math.css";
     document.getElementById("subtract").addEventListener("click", () => setOperator("−"));
     document.getElementById("multiply").addEventListener("click", () => setOperator("×"));
     document.getElementById("divide").addEventListener("click", () => setOperator("÷"));
-  }
-
-  function openDialog() {
-    document.getElementById("helpDialog").showModal();
-  }
-
-  function closeDialog() {
-    document.getElementById("helpDialog").close();
+    document.getElementById("next").addEventListener("click", () => {
+      if (state.isAnswerCorrect) {
+        updateNumbers(); // Move to the next problem only if the answer is correct
+      }
+    });
   }
 
   document.addEventListener("DOMContentLoaded", initMathPractice);

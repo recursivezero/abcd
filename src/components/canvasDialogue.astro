@@ -1,169 +1,19 @@
-<style>
-  /* Global Styles for the Canvas Generator */
-  .canvas-generator {
-    min-height: 100vh;
-    width: 100%;
-    padding: 1rem;
-    font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
-    box-sizing: border-box;
-    margin-top: -40px;
-  }
-
-  /* Controls Section */
-  .controls {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .input-area {
-    background: rgba(37, 53, 79, 0.8);
-    padding: 2rem;
-    border-radius: 20px;
-    border: 2px solid #334155;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
-  }
-
-  .text-input {
-    padding: 1rem 1.5rem;
-    border: 2px solid #334155;
-    border-radius: 12px;
-    font-size: 1.2rem;
-    width: 100%;
-    background: rgba(15, 23, 42, 0.8);
-    color: #e2e8f0;
-    transition: border-color 0.3s ease;
-    outline: none;
-    box-sizing: border-box;
-  }
-
-  .text-input:focus {
-    border-color: #2563eb;
-  }
-
-  .text-input::placeholder {
-    color: #64748b;
-  }
-
-  .buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .action-button {
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    border: none;
-    background: #1e40af;
-    color: white;
-    flex: 1;
-    min-width: 120px;
-  }
-
-  .action-button:hover {
-    background: #2563eb;
-  }
-
-  .checkbox-area {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-    font-size: 1.2rem;
-    color: #e2e8f0;
-  }
-
-  /* Color Options */
-  .color-options {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .color-picker {
-    flex: 1;
-  }
-
-  .color-select {
-    width: 100%;
-    padding: 0.8rem;
-    border: 2px solid #334155;
-    border-radius: 12px;
-    background: rgba(15, 23, 42, 0.8);
-    color: #e2e8f0;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
-  .color-select option {
-    background: #1e293b;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #e2e8f0;
-    font-size: 1rem;
-  }
-
-  /* Image Grid with Scrollbar */
-  .image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-    background: rgba(37, 53, 79, 0.8);
-    border: 2px solid #334155;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
-    min-height: 200px;
-    max-height: 500px;
-    overflow-y: auto;
-  }
-
-  .image-grid::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  .image-grid::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-  }
-
-  .image-grid::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-  }
-
-  .image-grid img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-
-  .image-grid img:hover {
-    transform: scale(1.02);
-  }
-</style>
-
+---
+import "@/assets/styles/canvas.css";
+---
 <div class="canvas-generator">
   <main class="controls">
     <div class="input-area">
-      <input type="text" placeholder="Type your text here..." id="name" class="text-input" />
+      <!-- New Parent Container for alignment -->
+      <div class="label-checkbox-container">
+        <label for="name" class="input-label">Enter text</label>
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="full" />
+          <label for="full">Use Full Name</label>
+        </div>
+      </div>
+      <input type="text" id="name" class="text-input" placeholder="Type your text here..." />
+
       <div class="color-options">
         <div class="color-picker">
           <label for="cardColor">Card Color:</label>
@@ -193,15 +43,22 @@
             <option value="#FF8ED4">Pink</option>
           </select>
         </div>
+        <div class="color-picker">
+          <label for="fontFamily">Font Style:</label>
+          <select id="fontFamily" class="color-select">
+            <option value="Comic Sans MS" selected>Comic Sans MS</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Verdana">Verdana</option>
+          </select>
+        </div>
       </div>
       <div class="buttons">
         <button data-variant="text" class="action-button">Draw</button>
         <button data-variant="time" class="action-button">Clock</button>
         <button data-variant="reset" class="action-button">Clear</button>
-      </div>
-      <div class="checkbox-area">
-        <input type="checkbox" id="full" />
-        <label for="full">Use Full Name</label>
+        <button data-variant="resetSettings" class="action-button">Reset Settings</button>
       </div>
     </div>
     <div id="canvasDiv" class="image-grid"></div>
@@ -219,6 +76,7 @@
       this.input = document.getElementById("name");
       this.canvasContainer = document.getElementById("canvasDiv");
       this.fullCheckbox = document.getElementById("full");
+      this.fontFamilySelect = document.getElementById("fontFamily");
     }
 
     bindEvents() {
@@ -239,6 +97,9 @@
           break;
         case "reset":
           this.resetCanvas();
+          break;
+        case "resetSettings":
+          this.resetSettings();
           break;
       }
     }
@@ -264,7 +125,7 @@
       ctx.fillRect(0, 0, 300, 200);
 
       // Draw text
-      ctx.font = "bold 24px Comic Sans MS";
+      ctx.font = `bold 24px ${this.fontFamilySelect.value}`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillStyle = fontColor;
@@ -338,6 +199,13 @@
       this.canvasContainer.innerHTML = "";
       this.input.value = "";
       this.fullCheckbox.checked = false;
+    }
+
+    resetSettings() {
+      this.fullCheckbox.checked = false;
+      document.getElementById("cardColor").value = "random";
+      document.getElementById("fontColor").value = "white";
+      document.getElementById("fontFamily").value = "Comic Sans MS";
     }
   }
 

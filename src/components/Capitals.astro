@@ -2,13 +2,13 @@
 export interface Props {
   stateList: any[];
   utList: any[];
-  colorPalette: string[];
-  getContrastColor: (hex: string) => string;
+  // Removed colorPalette prop since we're now using CSS variables
+  // Removed getContrastColor prop since we're using white text for all cards
 }
 
 import "@/assets/styles/capital.css";
 
-const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
+const { stateList, utList } = Astro.props;
 ---
 
 <div class="geographical-mosaic">
@@ -43,12 +43,8 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
 
       <div class="location-grid">
         {
-          stateList.map((state, index) => (
-            <div
-              class="location-card"
-              style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
-                    --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
-            >
+          stateList.map((state) => (
+            <div class="location-card">
               <div class="card-inner">
                 <h3 class="location-name">{state.name}</h3>
                 <div class="location-details">
@@ -75,12 +71,8 @@ const { stateList, utList, colorPalette, getContrastColor } = Astro.props;
 
       <div class="location-grid">
         {
-          utList.map((ut, index) => (
-            <div
-              class="location-card"
-              style={`--card-bg: ${colorPalette[index % colorPalette.length]}; 
-                    --card-text: ${getContrastColor(colorPalette[index % colorPalette.length])}`}
-            >
+          utList.map((ut) => (
+            <div class="location-card">
               <div class="card-inner">
                 <h3 class="location-name">{ut.name}</h3>
                 <div class="location-details">
