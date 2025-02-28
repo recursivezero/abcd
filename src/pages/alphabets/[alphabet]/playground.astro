@@ -70,6 +70,7 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
 
         // Animation handling to spelling
         spellDiv.classList.remove("animation");
+        void spellDiv.offsetWidth; 
         spellDiv.classList.add("animation");
 
         if (info.description && info.description.trim() !== "") {
@@ -79,6 +80,7 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
 
           // Animation handling for description
           descriptionDiv.classList.remove("animation");
+          void descriptionDiv.offsetWidth; 
           descriptionDiv.classList.add("animation");
         } else {
           descriptionDiv.classList.remove("animation");
