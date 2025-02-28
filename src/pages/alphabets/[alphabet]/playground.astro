@@ -68,10 +68,17 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
 
         document.documentElement.style.setProperty("--steps", info.text.length * 2);
 
-        // Animation handling to spelling
-        spellDiv.classList.remove("animation");
-        void spellDiv.offsetWidth; 
-        spellDiv.classList.add("animation");
+        // Animation handling for spelling
+        if (category !== "braille") {
+          spellDiv.classList.remove("animation");
+          void spellDiv.offsetWidth;
+          spellDiv.classList.add("animation");
+          spellDiv.style.borderRight = "3px solid";
+        } else {
+          // Skip animation for braille
+          spellDiv.classList.remove("animation");
+          spellDiv.style.borderRight = "none";
+        }
 
         if (info.description && info.description.trim() !== "") {
           descriptionDiv.innerHTML = info.description;
@@ -80,7 +87,7 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
 
           // Animation handling for description
           descriptionDiv.classList.remove("animation");
-          void descriptionDiv.offsetWidth; 
+          void descriptionDiv.offsetWidth;
           descriptionDiv.classList.add("animation");
         } else {
           descriptionDiv.classList.remove("animation");
