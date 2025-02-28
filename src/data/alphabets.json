@@ -7,7 +7,7 @@
         "id": 1,
         "letter": "A",
         "code": 65,
-        "text": "Apple", 
+        "text": "Apple",
         "description": "",
         "image": "apple.jpg"
       },
@@ -1128,7 +1128,7 @@
       }
     ]
   },
-  "indian_mythology": {
+  "Indian": {
     "description": "Mythological Indian culture Alphabets",
     "icon": "🕉️",
     "data": [
