@@ -41,9 +41,11 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
               ></tr
             >
           </table>
-          <a href={wikiLink} target="_blank" rel="noopener noreferrer">
-            Read more about {dance} on Wikipedia
-          </a>
+          {stateInfo.official_website && (
+            <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
+              Visit the official website of {name}
+            </a>
+          )}
         </div>
       </div>
     </div>
