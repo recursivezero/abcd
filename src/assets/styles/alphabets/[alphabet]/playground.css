@@ -2,6 +2,7 @@
   --letter__txt--2: blueviolet;
   --spelling__txt--3: palevioletred;
   --steps: 10;
+  --steps-desc: 30;
 }
 
 .container__typing {
@@ -9,7 +10,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 35% auto auto;
   grid-template-areas:
-    "letter content-display"
+    "letter content__display"
     "spelling spelling"
     "description description";
   grid-auto-flow: row;
@@ -26,12 +27,12 @@
     padding: 0;
     transition: color 0.5s ease-in;
     text-align: center;
-    width: 100%;
     line-height: 1;
+    width: 100%;
   }
 
   & .content__display {
-    grid-area: content-display;
+    grid-area: content__display;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,11 +49,10 @@
   & .image__container {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    display: none;
   }
 
   & .image__container img {
@@ -65,15 +65,19 @@
 
   & .animation {
     animation:
-      typing 1.5s steps(var(--steps, 10)),
+      typing 1.5s steps(var(--steps, 10)) forwards,
       blink 0.5s step-end infinite alternate;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   & .spelling {
     grid-area: spelling;
     grid-column: 1/3;
     grid-row: 2/3;
-    width: clamp(6ch, 50vw, 12ch);
+    width: 0;
+    max-width: fit-content;
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid;
@@ -81,8 +85,11 @@
     font-size: clamp(4em, 10vw, 12em);
     transition: all 0.5s ease-in-out;
     color: var(--spelling__txt--3);
-    max-width: fit-content;
     margin: 0 auto;
+  }
+
+  & .spelling:not(.animation) {
+    width: auto;
   }
 
   & .description {
@@ -95,6 +102,7 @@
     margin-top: 2rem;
     color: var(--spelling__txt--3);
     min-height: 2em;
+    overflow: hidden;
   }
 
   & .description.animation {
