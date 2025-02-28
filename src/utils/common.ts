@@ -19,9 +19,22 @@ const additionalConsonants = [
   String.fromCharCode(2332, 2381, 2334)
 ];
 
-export const hindiConsonants = Array.from({ length: 37 }, (_, i) => String.fromCodePoint(2325 + i)).concat(
-  additionalConsonants
-);
+export const hindiConsonants = [
+  // क-row
+  2325, 2326, 2327, 2328, 2329,
+  // च-row
+  2330, 2331, 2332, 2333, 2334,
+  // ट-row
+  2335, 2336, 2337, 2338, 2339,
+  // त-row
+  2340, 2341, 2342, 2343, 2344,
+  // प-row
+  2346, 2347, 2348, 2349, 2350,
+  // य-row
+  2351, 2352, 2354, 2357,
+  // श-row
+  2358, 2359, 2360, 2361
+].map(code => String.fromCharCode(code)).concat(additionalConsonants);
 
 export const matras = {
   aa: String.fromCharCode(2366),
