@@ -32,14 +32,18 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
   <BackButton />
   <article class="tv container__typing">
     <div class="letter">A</div>
-    <div class="emoji">{currentCategory.icon}</div>
-    <div class="spelling animation" id="spelling"></div>
+    <div class="content__display">
+      <div class="emoji">{currentCategory.icon}</div>
+      <div class="image__container"></div>
+    </div>
+    <div class="spelling" id="spelling"></div>
     <div class="description" id="description"></div>
   </article>
 
   <script define:vars={{ alphabetData: currentCategory.data, category: alphabet }}>
     const letterDiv = document.querySelector(".letter");
     const emojiDiv = document.querySelector(".emoji");
+    const imageContainer = document.querySelector(".image__container");
     const spellDiv = document.querySelector(".spelling");
     const descriptionDiv = document.querySelector(".description");
 
@@ -59,21 +63,61 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
     const drawInfo = (letter, color) => {
       const info = alphabetData.find((item) => item.letter === letter);
       if (info) {
-        // Display text
         spellDiv.innerHTML = info.text;
         spellDiv.style.color = color;
-        document.documentElement.style.setProperty("--steps", info.text.length);
 
-        // Display description
-        descriptionDiv.innerHTML = info.description;
-        descriptionDiv.style.color = color;
+        document.documentElement.style.setProperty("--steps", info.text.length * 2);
 
-        // Animation handling
+        // Animation handling to spelling
         spellDiv.classList.remove("animation");
-        void spellDiv.offsetWidth;
         spellDiv.classList.add("animation");
+
+        if (info.description && info.description.trim() !== "") {
+          descriptionDiv.innerHTML = info.description;
+          descriptionDiv.style.color = color;
+          document.documentElement.style.setProperty("--steps-desc", info.description.length * 2);
+
+          // Animation handling for description
+          descriptionDiv.classList.remove("animation");
+          descriptionDiv.classList.add("animation");
+        } else {
+          descriptionDiv.classList.remove("animation");
+          descriptionDiv.innerHTML = "";
+        }
+
+        if (info.image) {
+          const img = new Image();
+          img.onload = function () {
+            emojiDiv.style.display = "none";
+            imageContainer.style.display = "flex";
+            imageContainer.innerHTML = "";
+            imageContainer.appendChild(img);
+
+            img.style.width = "auto";
+            img.style.height = "auto";
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = "100%";
+          };
+          img.onerror = function () {
+            emojiDiv.style.display = "block";
+            imageContainer.style.display = "none";
+          };
+          img.src = `/assets/images/alphabets/${category}/${info.image}`;
+          img.alt = info.text;
+
+          emojiDiv.style.display = "block";
+          imageContainer.style.display = "none";
+        } else {
+          emojiDiv.style.display = "block";
+          imageContainer.style.display = "none";
+        }
       }
     };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      spellDiv.classList.remove("animation");
+      descriptionDiv.classList.remove("animation");
+    });
 
     const colorBox = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEEAD", "#D4A5A5", "#9B59B6", "#3498DB"];
     const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -88,7 +132,7 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
         if (isAlphabet(keyCode)) {
           const keyCapital = key.toUpperCase();
           drawLetter(keyCapital, color);
-          drawInfo(keyCapital, color); // Pass color as parameter
+          drawInfo(keyCapital, color);
         }
       },
       false
