@@ -137,16 +137,19 @@
   }
 
   & .description.animation {
+    width: 0;
     display: inline-block;
+    max-width: fit-content;
+    margin: 0 auto;
+    border-right: 3px solid;
     animation:
       typing 2s steps(var(--steps-desc, 30)) forwards,
       blink 0.5s step-end infinite alternate;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-    border-right: 3px solid;
-    max-width: fit-content;
-    margin: 0 auto;
+  }
+
+  & .description:not(.animation) {
+    width: auto;
+    border-right: none;
   }
 
   & .description:empty {
