@@ -9,6 +9,7 @@
         "code": 65,
         "text": "Apple",
         "description": "",
+        "emoji" : "🍎",
         "image": "apple.jpg"
       },
       {
@@ -16,6 +17,7 @@
         "letter": "B",
         "code": 66,
         "text": "Bat",
+        "emoji" : "🦇",
         "description": ""
       },
       {
@@ -23,6 +25,7 @@
         "letter": "C",
         "code": 67,
         "text": "Cat",
+        "emoji" : "🐱",
         "description": ""
       },
       {
@@ -30,6 +33,7 @@
         "letter": "D",
         "code": 68,
         "text": "Dog",
+        "emoji" : "🐶",
         "description": ""
       },
       {
@@ -37,6 +41,7 @@
         "letter": "E",
         "code": 69,
         "text": "Elephant",
+        "emoji" : "🐘",
         "description": ""
       },
       {
@@ -44,6 +49,7 @@
         "letter": "F",
         "code": 70,
         "text": "Fish",
+        "emoji" : "🐟",
         "description": ""
       },
       {
@@ -51,6 +57,7 @@
         "letter": "G",
         "code": 71,
         "text": "Goat",
+        "emoji" : "🐐",
         "description": ""
       },
       {
@@ -58,6 +65,7 @@
         "letter": "H",
         "code": 72,
         "text": "Hat",
+        "emoji" : "🎩",
         "description": ""
       },
       {
@@ -65,6 +73,7 @@
         "letter": "I",
         "code": 73,
         "text": "Ice",
+        "emoji" : "🧊",
         "description": ""
       },
       {
@@ -72,6 +81,7 @@
         "letter": "J",
         "code": 74,
         "text": "Jam",
+        "emoji" : "🍓",
         "description": ""
       },
       {
@@ -79,6 +89,7 @@
         "letter": "K",
         "code": 75,
         "text": "Kite",
+        "emoji" : "🪁",
         "description": ""
       },
       {
@@ -86,6 +97,7 @@
         "letter": "L",
         "code": 76,
         "text": "Lamp",
+        "emoji" : "💡",
         "description": ""
       },
       {
@@ -93,6 +105,7 @@
         "letter": "M",
         "code": 77,
         "text": "Moon",
+        "emoji" : "🌙",
         "description": ""
       },
       {
@@ -100,6 +113,7 @@
         "letter": "N",
         "code": 78,
         "text": "Nest",
+        "emoji" : "🐣",
         "description": ""
       },
       {
@@ -107,6 +121,7 @@
         "letter": "O",
         "code": 79,
         "text": "Orange",
+        "emoji" : "🍊",
         "description": ""
       },
       {
@@ -114,6 +129,7 @@
         "letter": "P",
         "code": 80,
         "text": "Pen",
+        "emoji" : "🖊️",
         "description": ""
       },
       {
@@ -121,6 +137,7 @@
         "letter": "Q",
         "code": 81,
         "text": "Queen",
+        "emoji" : "👑",
         "description": ""
       },
       {
@@ -128,6 +145,7 @@
         "letter": "R",
         "code": 82,
         "text": "Rat",
+        "emoji" : "🐀",
         "description": ""
       },
       {
@@ -135,6 +153,7 @@
         "letter": "S",
         "code": 83,
         "text": "Sun",
+        "emoji" : "☀️",
         "description": ""
       },
       {
@@ -142,6 +161,7 @@
         "letter": "T",
         "code": 84,
         "text": "Tree",
+        "emoji" : "🌳",
         "description": ""
       },
       {
@@ -149,6 +169,7 @@
         "letter": "U",
         "code": 85,
         "text": "Umbrella",
+        "emoji" : "☂️",
         "description": ""
       },
       {
@@ -156,6 +177,7 @@
         "letter": "V",
         "code": 86,
         "text": "Van",
+        "emoji" : "🚐",
         "description": ""
       },
       {
@@ -163,6 +185,7 @@
         "letter": "W",
         "code": 87,
         "text": "Watch",
+        "emoji" : "⌚",
         "description": ""
       },
       {
@@ -170,6 +193,7 @@
         "letter": "X",
         "code": 88,
         "text": "X-ray",
+        "emoji" : "🦴",
         "description": ""
       },
       {
@@ -177,6 +201,7 @@
         "letter": "Y",
         "code": 89,
         "text": "Yacht",
+        "emoji" : "⛵",
         "description": ""
       },
       {
@@ -184,6 +209,7 @@
         "letter": "Z",
         "code": 90,
         "text": "Zebra",
+        "emoji" : "🦓",
         "description": ""
       }
     ]
