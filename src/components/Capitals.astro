@@ -90,12 +90,12 @@ const { stateList, utList } = Astro.props;
 </div>
 
 <script>
-  const searchBar = document.getElementById("searchBar");
-  const clearButton = document.querySelector(".clear-button");
-  const statesCountElement = document.getElementById("statesCount");
-  const utsCountElement = document.getElementById("utsCount");
+  const searchBar = document.getElementById("searchBar") as HTMLInputElement;
+  const clearButton = document.querySelector(".clear-button") as HTMLElement;
+  const statesCountElement = document.getElementById("statesCount") as HTMLElement;
+  const utsCountElement = document.getElementById("utsCount") as HTMLElement;
 
-  const updateCounts = (query) => {
+  const updateCounts = (query: string) => {
     const statesTotal = statesCountElement.dataset.total;
     const utsTotal = utsCountElement.dataset.total;
 
@@ -116,10 +116,10 @@ const { stateList, utList } = Astro.props;
 
   searchBar.addEventListener("input", function () {
     const query = this.value.toLowerCase().trim();
-    const cards = document.querySelectorAll(".location-card");
+    const cards = document.querySelectorAll(".location-card") as NodeListOf<HTMLElement>;
 
     cards.forEach((card) => {
-      const name = card.querySelector(".location-name").textContent.toLowerCase();
+      const name = (card.querySelector(".location-name")as any).textContent.toLowerCase();
       card.style.display = name.startsWith(query) ? "" : "none";
     });
 

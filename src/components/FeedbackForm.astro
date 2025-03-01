@@ -31,11 +31,11 @@ import "@/assets/styles/feedback.css";
 </div>
 
 <script>
-  const form = document.getElementById("feedbackForm");
-  const errorDiv = document.getElementById("errorMessage");
-  const submitButton = document.getElementById("submitButton");
+  const form = document.getElementById("feedbackForm")as HTMLFormElement;
+  const errorDiv = document.getElementById("errorMessage") as HTMLDivElement;
+  const submitButton = document.getElementById("submitButton") as HTMLButtonElement;
 
-  function showError(message) {
+  function showError(message: string) {
     errorDiv.textContent = message;
     errorDiv.style.display = "block";
   }

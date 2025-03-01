@@ -27,7 +27,7 @@ const letterRows = [
   <!-- Letter Grid -->
   <main class="letter-grid" id="letter-container">
     {
-      letterRows.map((row, rowIndex) => (
+      letterRows.map((row) => (
         <div class="letter-row">
           {row.map((letter) => (
             <div class="letter-box" data-letter={letter} data-visible="false">
@@ -42,10 +42,10 @@ const letterRows = [
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const letterContainer = document.getElementById("letter-container");
-    const dialog = document.getElementById("game-instructions");
-    const closeButton = document.getElementById("close-instructions");
-    const helpButton = document.getElementById("help-button");
+    const letterContainer = document.getElementById("letter-container") as HTMLDivElement;
+    const dialog = document.getElementById("game-instructions") as HTMLDialogElement;
+    const closeButton = document.getElementById("close-instructions") as HTMLButtonElement;
+    const helpButton = document.getElementById("help-button") as HTMLButtonElement;
 
     // Open instructions modal when help button is clicked
     helpButton.addEventListener("click", () => {

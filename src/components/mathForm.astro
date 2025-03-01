@@ -53,6 +53,14 @@ import "@/assets/styles/math.css";
 </div>
 
 <script>
+  const firstInput = document.getElementById("first") as HTMLInputElement;
+  const secondInput = document.getElementById("second") as HTMLInputElement;
+  const output = document.getElementById("output") as HTMLInputElement;
+  const resultIndicator = document.getElementById("resultIndicator") as HTMLDivElement; 
+  const scoreDisplay = document.getElementById("scoreDisplay") as HTMLSpanElement;
+  const operator = document.getElementById("operator") as HTMLElement;
+  
+
   const state = {
     currentOperator: "+",
     score: 0,
@@ -84,32 +92,30 @@ import "@/assets/styles/math.css";
       first = generateNumber();
       second = generateNumber();
     }
-
-    document.getElementById("first").value = first;
-    document.getElementById("second").value = second;
-    document.getElementById("output").value = "";
-    document.getElementById("resultIndicator").innerHTML = "";
-    document.getElementById("output").focus();
+    firstInput.value = first.toString();
+    secondInput.value = second.toString();
+    output.value = "";
+    resultIndicator.innerHTML = "";
+    output.focus();
     state.isAnswerCorrect = false; // Reset the correct answer state
   }
 
   function updateScore() {
     state.score += state.scoreIncrement;
-    const scoreDisplay = document.getElementById("scoreDisplay");
     scoreDisplay.textContent = state.score.toString();
     scoreDisplay.classList.add("score-pop");
     setTimeout(() => scoreDisplay.classList.remove("score-pop"), 200);
   }
 
   function checkAnswer() {
-    const first = parseInt(document.getElementById("first").value);
-    const second = parseInt(document.getElementById("second").value);
-    const output = parseInt(document.getElementById("output").value);
-    const indicator = document.getElementById("resultIndicator");
+    const first = parseInt(firstInput.value);
+    const second = parseInt(secondInput.value);
+    const outputValue = parseInt(output.value);
+  
 
-    if (isNaN(output)) {
-      indicator.innerHTML = "";
-      indicator.className = "result-indicator";
+    if (isNaN(outputValue)) {
+      resultIndicator.innerHTML = "";
+      resultIndicator.className = "result-indicator";
       return;
     }
 
@@ -134,42 +140,41 @@ import "@/assets/styles/math.css";
     // Check if result is integer for division
     const isValid =
       state.currentOperator === "÷"
-        ? Number.isInteger(expectedResult) && output === expectedResult
-        : output === expectedResult;
+        ? Number.isInteger(expectedResult) && outputValue === expectedResult
+        : outputValue === expectedResult;
 
     if (isValid) {
-      indicator.innerHTML = "✓";
-      indicator.className = "result-indicator success";
+      resultIndicator.innerHTML = "✓";
+      resultIndicator.className = "result-indicator success";
       state.isAnswerCorrect = true; // Mark the answer as correct
       updateScore();
     } else {
-      indicator.innerHTML = "✗";
-      indicator.className = "result-indicator error";
+      resultIndicator.innerHTML = "✗";
+      resultIndicator.className = "result-indicator error";
       state.isAnswerCorrect = false;
     }
   }
 
-  function setOperator(op) {
+  function setOperator(op:string) {
     state.currentOperator = op;
-    document.getElementById("operator").textContent = op;
+    operator.textContent = op;
     updateNumbers();
   }
 
   function setupEventListeners() {
-    const outputElement = document.getElementById("output");
 
     // Prevent non-numeric input in real-time
-    outputElement.addEventListener("input", (e) => {
+    output.addEventListener("input", (e: any) => {
       e.target.value = e.target.value.replace(/[^0-9]/g, "");
       checkAnswer();
     });
 
-    document.getElementById("refresh").addEventListener("click", updateNumbers);
-    document.getElementById("add").addEventListener("click", () => setOperator("+"));
-    document.getElementById("subtract").addEventListener("click", () => setOperator("−"));
-    document.getElementById("multiply").addEventListener("click", () => setOperator("×"));
-    document.getElementById("divide").addEventListener("click", () => setOperator("÷"));
-    document.getElementById("next").addEventListener("click", () => {
+    (document.getElementById("refresh") as HTMLElement).addEventListener("click", updateNumbers);
+    (document.getElementById("add")as HTMLElement).addEventListener("click", () => setOperator("+"));
+    (document.getElementById("subtract")as HTMLElement).addEventListener("click", () => setOperator("−"));
+    (document.getElementById("multiply")as HTMLElement).addEventListener("click", () => setOperator("×"));
+    (document.getElementById("divide")as HTMLElement).addEventListener("click", () => setOperator("÷"));
+    (document.getElementById("next")as HTMLElement).addEventListener("click", () => {
       if (state.isAnswerCorrect) {
         updateNumbers(); // Move to the next problem only if the answer is correct
       }

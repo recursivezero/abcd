@@ -47,8 +47,8 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
   ];
 
   const defaultColor = "#0b1f54";
-  const main = document.getElementById("main");
-  const words = document.querySelectorAll(".word");
+  const main = document.getElementById("main") as HTMLElement;
+  const words = document.querySelectorAll(".word") as NodeListOf<HTMLElement>;
   
   // Track active letter elements
   const activeLetters = new Set();
@@ -80,7 +80,7 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
     });
   });
 
-  function toggleLetterVisibility(wordElement) {
+  function toggleLetterVisibility(wordElement: HTMLElement) {
     const letter = wordElement.getAttribute("data-letter");
     
     if (wordElement.classList.contains("active")) {
@@ -97,7 +97,7 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
     }
   }
 
-  function showLetter(letter) {
+  function showLetter(letter: string) {
     words.forEach((word) => {
       if (word.getAttribute("data-letter") === letter.toUpperCase()) {
         toggleLetterVisibility(word);

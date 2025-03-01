@@ -2,17 +2,8 @@
 import "@/assets/styles/crossword.css";
 import Help from "@/components/Help.astro";
 import WordSearchPuzzle from "@/components/Puzzle.astro";
-import crosswordData from "@/data/crossword-data.json";
 import BaseLayout from "@/layouts/Base";
 
-const categories = crosswordData.categories;
-let selectedCategory = null;
-let words: any = [];
-
-const selectCategory = (category: string) => {
-  selectedCategory = category;
-  words = (crosswordData as any).words[category] || [];
-};
 ---
 
 <BaseLayout meta={{ title: "Crossword" }}>

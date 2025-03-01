@@ -73,10 +73,10 @@ import "@/assets/styles/canvas.css";
     }
 
     initializeElements() {
-      this.input = document.getElementById("name");
-      this.canvasContainer = document.getElementById("canvasDiv");
-      this.fullCheckbox = document.getElementById("full");
-      this.fontFamilySelect = document.getElementById("fontFamily");
+      this.input = document.getElementById("name") as HTMLInputElement;
+      this.canvasContainer = document.getElementById("canvasDiv")as HTMLDivElement;
+      this.fullCheckbox = document.getElementById("full")as HTMLDivElement;
+      this.fontFamilySelect = document.getElementById("fontFamily")as HTMLDivElement;;
     }
 
     bindEvents() {
@@ -85,7 +85,7 @@ import "@/assets/styles/canvas.css";
       });
     }
 
-    handleClick(event) {
+    handleClick(event:any) {
       const variant = event.target.dataset.variant;
 
       switch (variant) {
@@ -104,17 +104,17 @@ import "@/assets/styles/canvas.css";
       }
     }
 
-    createCanvas(text) {
-      const canvas = document.createElement("canvas");
+    createCanvas(text:string) {
+      const canvas = document.createElement("canvas") as HTMLCanvasElement;
       canvas.width = 300;
       canvas.height = 200;
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
       // Get selected colors
-      const cardColorSelect = document.getElementById("cardColor");
+      const cardColorSelect = document.getElementById("cardColor") as HTMLSelectElement;
       const cardColor = cardColorSelect.value === "random" ? this.getChildFriendlyColor() : cardColorSelect.value;
 
-      const fontColorSelect = document.getElementById("fontColor");
+      const fontColorSelect = document.getElementById("fontColor") as HTMLSelectElement;
       let fontColor = fontColorSelect.value;
       if (fontColor === "random") {
         fontColor = this.getRandomFontColor();
@@ -170,7 +170,7 @@ import "@/assets/styles/canvas.css";
         ? text
         : text
             .split(" ")
-            .map((w) => w[0])
+            .map((w:any) => w[0])
             .join("")
             .toUpperCase();
 
@@ -203,9 +203,9 @@ import "@/assets/styles/canvas.css";
 
     resetSettings() {
       this.fullCheckbox.checked = false;
-      document.getElementById("cardColor").value = "random";
-      document.getElementById("fontColor").value = "white";
-      document.getElementById("fontFamily").value = "Comic Sans MS";
+      (document.getElementById("cardColor") as HTMLInputElement).value = "random";
+      (document.getElementById("fontColor") as HTMLInputElement).value = "white";
+      (document.getElementById("fontFamily") as HTMLInputElement).value = "Comic Sans MS";
     }
   }
 

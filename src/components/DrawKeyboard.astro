@@ -1,7 +1,6 @@
 ---
-import { alphabetMapper } from "../mappers/alphabet";
-import { IMAGE_DIR, colorBox, fontBox, numberBox } from "../utils/draw";
-import { getRandomValue } from "../utils/index";
+import { alphabetMapper } from "@/mappers/alphabet";
+import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/draw";
 //import "@/assets/styles/draw.css"; 
 ---
 
@@ -28,8 +27,7 @@ import { getRandomValue } from "../utils/index";
     numberBox,
     alphabetMapper,
     IMAGE_DIR
-  }}
->
+  }} is:inline>
   // Initialize state
   let currentFontIndex = 0;
   let isUpperCase = true;
