@@ -119,3 +119,13 @@ dialog[closing]::backdrop {
     background: rgba(0, 0, 0, 0);
   }
 }
+
+@keyframes fadeOut {
+  from {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0);
+  }
+}

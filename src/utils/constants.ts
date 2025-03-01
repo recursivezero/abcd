@@ -31,34 +31,16 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Reader",
-    title: "Reader",
-    path: "/reader",
-    isActive: true
-  },
-  {
-    name: "Barahkhadi",
-    title: "Barahkhadi",
-    path: "/barahkhadi",
-    isActive: true
-  },
-  {
     name: "Record",
     title: "Record",
     path: "/record",
     icon: RecordIcon,
-    isActive: true
+    isActive: false
   },
   {
-    name: "English",
-    title: "English",
-    path: "/english",
-    isActive: true
-  },
-  {
-    name: "Typing",
-    title: "Typing",
-    path: "/typing",
+    name: "Alphabets",
+    title: "Alphabets",
+    path: "/alphabets",
     isActive: true
   },
   {
@@ -68,9 +50,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Vedic",
-    title: "Vedic",
-    path: "/vedic",
+    name: "Crossword",
+    title: "English Cross words",
+    path: "/crossword",
     isActive: true
   },
   {

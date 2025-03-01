@@ -1,0 +1,154 @@
+:root {
+  --letter__txt--2: blueviolet;
+  --spelling__txt--3: palevioletred;
+  --steps: 10;
+  --steps-desc: 30;
+}
+
+.container__typing {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 35% auto auto;
+  grid-template-areas:
+    "letter content__display"
+    "spelling spelling"
+    "description description";
+  grid-auto-flow: row;
+  height: calc(100vh - 10rem);
+  width: auto;
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
+  place-items: center;
+  will-change: contents;
+
+  & .letter {
+    grid-area: letter;
+    font-size: clamp(10em, 20vw, 25em);
+    color: var(--letter__txt--2);
+    padding: 0;
+    transition: color 0.5s ease-in;
+    text-align: center;
+    line-height: 1;
+    width: 100%;
+  }
+
+  & .content__display {
+    grid-area: content__display;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 1rem;
+  }
+
+  & .content__spelling {
+    font-size: 5.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  & .emoji {
+    font-size: clamp(6em, 15vw, 18em);
+  }
+
+  & .image__container {
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  & .image__container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  & .animation {
+    animation:
+      typing 1.5s steps(var(--steps, 10)) forwards,
+      blink 0.5s step-end infinite alternate;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  & .spelling {
+    grid-area: spelling;
+    grid-column: 1/3;
+    grid-row: 2/3;
+    width: 0;
+    max-width: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: clamp(4em, 10vw, 12em);
+    transition: all 0.5s ease-in-out;
+    color: var(--spelling__txt--3);
+    margin: 0 auto;
+  }
+
+  & .spelling:not(.animation) {
+    width: auto;
+  }
+
+  & .description {
+    grid-area: description;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: clamp(1.5em, 3vw, 2em);
+    padding: 1rem;
+    margin-top: 2rem;
+    color: var(--spelling__txt--3);
+    min-height: 2em;
+    overflow: hidden;
+  }
+
+  & .description.animation {
+    width: 0;
+    display: inline-block;
+    max-width: fit-content;
+    margin: 0 auto;
+    border-right: 3px solid;
+    animation:
+      typing 2s steps(var(--steps-desc, 30)) forwards,
+      blink 0.5s step-end infinite alternate;
+  }
+
+  & .description:not(.animation) {
+    width: auto;
+    border-right: none;
+  }
+
+  & .description:empty {
+    border-right: none;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
