@@ -1,50 +1,127 @@
-/* following :root block added by css color collector at 10/17/2024, 9:01:47 PM */
 :root {
-  --dialog__bg--1: rgb(0 0 0 / 0%);
-  --dialog__bg--2: rgb(0 0 0 / 25%);
+  --primary-bg: #ffffff;
+  --header-bg: #f8fafc;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --close-color: #ef4444;
+  --close-hover: #dc2626;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: #e2e8f0;
+  --shadow-sm: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(0, 0, 0, 0.16);
+  --backdrop-color: rgba(15, 23, 42, 0.7);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/*--------------------------------------------------------------------------
+  Dialog Container
+--------------------------------------------------------------------------*/
 .help-dialog {
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  max-width: 400px;
-  width: 90%;
+  padding: 0;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--primary-bg);
+  box-shadow:
+    0 15px 30px -5px var(--shadow-lg),
+    0 8px 12px -6px var(--shadow-sm);
+  max-width: 500px;
+  width: 92%;
+  margin: auto;
+  overflow: visible;
+
+  /* Centering */
+  position: fixed;
+  /*top: 50%;
+  left: 50%;*/
+  transform: translate(-50%, -50%);
 }
 
+/*--------------------------------------------------------------------------
+  Dialog Header & Title
+--------------------------------------------------------------------------*/
 .dialog-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  background: var(--header-bg);
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 20px;
+  position: relative;
 }
 
 .dialog-header h2 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-.dialog-header button {
-  background: none;
+/*--------------------------------------------------------------------------
+  Close Button (Premium Styling)
+--------------------------------------------------------------------------*/
+.close-button {
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  background: #ef4444;
   border: none;
-  font-size: 1.5rem;
+  color: white;
   cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  transition:
+    all 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
+  z-index: 10; /* Ensure the button stays on top */
 }
 
-.dialog-header button:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+/* Hover State: soft glow effect */
+.close-button:hover {
+  background-color: var(--close-hover);
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.3);
 }
 
+/* Active State */
+.close-button:active {
+  background-color: var(--close-hover);
+  transform: rotate(90deg) scale(0.95);
+  box-shadow: 0 3px 8px rgba(239, 68, 68, 0.25);
+}
+
+/* Focus State */
+.close-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
+}
+
+/*--------------------------------------------------------------------------
+  Dialog Content
+--------------------------------------------------------------------------*/
 .dialog-content {
-  line-height: 1.5;
+  padding: 1.75rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/*--------------------------------------------------------------------------
+  Dialog Animations (Smoother)
+--------------------------------------------------------------------------*/
+dialog {
+  opacity: 0;
+  transform: translate(-50%, -48%) scale(0.95);
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
 }
 
 dialog[open] {
