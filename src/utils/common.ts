@@ -5,7 +5,9 @@ export const hindiVowels = Array.from({ length: 16 }, (_, i) => ({
   key: 2309 + i,
   value: String.fromCodePoint(2309 + i)
 }));
-const extraHindiVowelKey = [2317, 2321];
+const extraHindiVowelKey = [2317, 2321]; // 'ऍ' , 'ऑ'
+
+// String.fromCodePoint(2384); // 'ॐ'
 export const hindiVowelList = hindiVowels.filter((v) => !extraHindiVowelKey.includes(v.key));
 
 // Consonants
@@ -34,7 +36,9 @@ export const hindiConsonants = [
   2351, 2352, 2354, 2357,
   // श-row
   2358, 2359, 2360, 2361
-].map(code => String.fromCharCode(code)).concat(additionalConsonants);
+]
+  .map((code) => String.fromCharCode(code))
+  .concat(additionalConsonants);
 
 export const matras = {
   aa: String.fromCharCode(2366),
@@ -46,21 +50,20 @@ export const matras = {
   aie: String.fromCharCode(2376),
   au: String.fromCharCode(2379),
   aau: String.fromCharCode(2380),
-  an: String.fromCharCode(2385),
+  an: String.fromCharCode(2306),
   ah: String.fromCharCode(2307),
-  ru: String.fromCharCode(2371), 
+  ru: String.fromCharCode(2371)
 };
 
 export const barahkhadi = (code: number) => {
   console.log({ code });
   const sanyukat = Object.values(matras);
   const list = [String.fromCharCode(code)];
-  console.log(list.concat(sanyukat));
   return list.concat(sanyukat);
 };
 
 // exclude 2345 ' 2353 / 2355 / 2356
-export const extraLetters = [2345, 2353, 2356];
+export const extraLetters = [2345, 2353, 2356]; // 'ऩ', 'ऱ', 'ऴ'
 export const varnmala = Array.from(Array(37), (_, i) => ({ code: 2325 + i, letter: String.fromCharCode(2325 + i) }));
 export const varnmala_english = Array.from(Array(26), (_, i) => ({
   code: 65 + i,
