@@ -141,7 +141,7 @@
 }
 
 /* Container styles */
-.container__english {  
+.container__english {
   & .letter {
     font-size: min(100vw, 100vh);
     line-height: 1;
@@ -157,35 +157,37 @@
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
   }
 
-/* Background styles */
-.bg-gradient1 {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-}
-
-.bg-gradient2 {
-  background: linear-gradient(45deg, #a8e6cf, #dcedc1);
-}
-
-.bg-pattern1 {
-  background-image: repeating-linear-gradient(45deg,
-      rgba(0, 0, 0, 0.1) 0px,
-      rgba(0, 0, 0, 0.1) 2px,
-      transparent 2px,
-      transparent 4px);
-}
-
-.no-background {
-  background: none !important;
-}
-
-@keyframes letterPop {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.5;
+  /* Background styles */
+  .bg-gradient1 {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
   }
 
   .bg-gradient2 {
     background: linear-gradient(45deg, #a8e6cf, #dcedc1);
+  }
+
+  .bg-pattern1 {
+    background-image: repeating-linear-gradient(45deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        rgba(0, 0, 0, 0.1) 2px,
+        transparent 2px,
+        transparent 4px);
+  }
+
+  .no-background {
+    background: none !important;
+  }
+
+  @keyframes letterPop {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 
   .bg-pattern1 {
