@@ -552,7 +552,7 @@
 
     // Add smooth transitions for details elements
     document.querySelectorAll("details").forEach((detail) => {
-      detail.addEventListener("toggle", function (e) {
+      detail.addEventListener("toggle", function () {
         if (detail.open) {
           const content = detail.querySelector("summary + *");
           if (content) {

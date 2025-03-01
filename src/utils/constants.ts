@@ -96,6 +96,12 @@ export const NavbarLinks: LinkProps[] = [
     title: "Clan",
     path: "/clan",
     isActive: true
+  },
+  {
+    name: " Survey",
+    title: "Survey",
+    path: "/survey",
+    isActive: true
   }
 ];
 
