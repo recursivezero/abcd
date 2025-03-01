@@ -1,0 +1,96 @@
+:root {
+  --main__txt: #ff61d5;
+  --mute-button__bg: hsla(255, 100%, 50%, 0.281);
+}
+
+#container__reader {
+  font-size: min(40rem, 35vw);
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  place-content: center;
+  color: var(--main__txt);
+  outline: none;
+  text-transform: uppercase;
+  transform: rotate(0deg);
+  transition: all 0.3s ease-in-out;
+  will-change: contents;
+  text-align: center;
+  line-height: 1;
+  padding: 1rem;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+}
+
+.scroll {
+  margin-top: 10px;
+  scroll-behavior: smooth;
+}
+
+.mute-button {
+  font-size: 1.5;
+  border: 1px solid #6767d3;
+  /*background-color: var(--mute-button__bg);*/
+  cursor: pointer;
+  width: min(3em, 15vw);
+  height: min(3em, 15vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.mute-button-audio::before {
+  content: "\1F508";
+}
+
+.mute-button-audio.mute::before {
+  content: "\1F507";
+}
+
+.speaker {
+  padding-inline: 1rem;
+  display: flex;
+  flex-basis: fit-content;
+  flex-grow: 1;
+  margin: auto;
+  justify-content: space-between;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.speaker > span {
+  padding: 0.5rem;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+
+.speaker span.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  #container__reader {
+    font-size: min(30rem, 55vw);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #container__reader {
+    font-size: min(200rem, 70vw);
+  }
+
+  .mute-button {
+    font-size: min(2.5rem, 8vw);
+  }
+}

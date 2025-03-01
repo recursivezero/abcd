@@ -55,7 +55,7 @@ const DefaultIcon = ({ text }: { text: string }) => {
         .map((p) => {
           const gradientUrl = `url(#gradient-${p.name ?? p.title})`;
           return (
-            <li class={`nav--list__item ${currentPath === p.path ? "active" : ""}`}>
+            <li class={`nav--list__item ${currentPath.split("/")[1] === p.path.split("/")[1] ? "active" : ""}`}>
               <a href={p.path}>
                 <span class="iconx">
                   {p.icon ? (

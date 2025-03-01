@@ -31,28 +31,16 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Reader",
-    title: "Reader",
-    path: "/reader",
-    isActive: true
-  },
-  {
     name: "Record",
     title: "Record",
     path: "/record",
     icon: RecordIcon,
-    isActive: true
+    isActive: false
   },
   {
-    name: "English",
-    title: "English",
-    path: "/english",
-    isActive: true
-  },
-  {
-    name: "Typing",
-    title: "Typing",
-    path: "/typing",
+    name: "Alphabets",
+    title: "Alphabets",
+    path: "/alphabets",
     isActive: true
   },
   {
@@ -62,15 +50,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Societree",
-    title: "Clan",
-    path: "/clan",
-    isActive: true
-  },
-  {
-    name: "Letter",
-    title: "Letter Pad",
-    path: "/letter",
+    name: "Crossword",
+    title: "English Cross words",
+    path: "/crossword",
     isActive: true
   },
   {
@@ -108,6 +90,12 @@ export const NavbarLinks: LinkProps[] = [
     title: "Draw",
     path: "/draw",
     isActive: true
+  },
+  {
+    name: "Societree",
+    title: "Clan",
+    path: "/clan",
+    isActive: true
   }
 ];
 
@@ -123,8 +111,8 @@ export const FooterLinks: LinkProps[] = [
     isActive: true
   },
   {
-    title: "Feedback Form",
-    path: "/feedback",
+    title: "Blogs",
+    path: "/blog",
     isActive: true
   }
 ];
