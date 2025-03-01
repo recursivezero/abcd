@@ -40,20 +40,12 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
     <div id="description" class="description"></div>
   </article>
 
-  <script define:vars={{ alphabetData: currentCategory.data, category: alphabet }} is:inline>
+  <script is:inline define:vars={{ alphabetData: currentCategory.data, category: alphabet }}>
     const letterDiv = document.getElementById("letter");
     const emojiDiv = document.getElementById("emoji");
     const imageContainer = document.getElementById("image-container");
     const spellDiv = document.getElementById("spelling");
     const descriptionDiv = document.getElementById("description");
-
-    //const addClass = function (className) {
-    //  this.classList.add(className);
-    //};
-
-    //const removeClass = function (className) {
-    //  this.classList.remove(className);
-    //};
 
     const drawLetter = (letter, color = "pink") => {
       letterDiv.innerHTML = letter;
