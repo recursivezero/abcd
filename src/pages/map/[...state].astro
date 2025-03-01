@@ -31,14 +31,16 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
             <tr>
               <th colspan="2">
                 Quick Facts
-                {stateInfo.official_website && (
-                  <>
-                    <br />
-                    <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
-                      Visit the official website of {name}
-                    </a>
-                  </>
-                )}
+                {
+                  stateInfo.official_website && (
+                    <>
+                      <br />
+                      <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
+                        Visit the official website of {name}
+                      </a>
+                    </>
+                  )
+                }
               </th>
             </tr>
             <tr><td>Dance Form</td><td>{dance}</td></tr>
@@ -54,7 +56,7 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
               </td>
             </tr>
           </table>
-<!--          
+          <!--          
           {stateInfo.official_website && (
             <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
               Visit the official website of {name}

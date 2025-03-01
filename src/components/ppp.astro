@@ -2,8 +2,13 @@
   <!-- Settings Trigger Button -->
   <button class="settings-trigger" id="settingsToggle">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+      ></path>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
     </svg>
   </button>
 
@@ -12,19 +17,19 @@
     <div class="controls-group">
       <button id="newPuzzleBtn" class="control-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round"></path>
         </svg>
         New Puzzle
       </button>
       <button id="resetBtn" class="control-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M4 4v7h7M20 20v-7h-7" stroke-width="2" stroke-linecap="round"/>
+          <path d="M4 4v7h7M20 20v-7h-7" stroke-width="2" stroke-linecap="round"></path>
         </svg>
         Shuffle
       </button>
       <button id="clearBtn" class="control-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M19 7l-7 7-7-7" stroke-width="2" stroke-linecap="round"/>
+          <path d="M19 7l-7 7-7-7" stroke-width="2" stroke-linecap="round"></path>
         </svg>
         Clear
       </button>
@@ -50,14 +55,15 @@
     </div>
     <button id="solutionBtn" class="control-btn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-width="2" stroke-linecap="round"/>
+        <path
+          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+          stroke-width="2"
+          stroke-linecap="round"></path>
       </svg>
       Help
     </button>
     <!-- Add Confirm Selection Button -->
-    <button id="confirmSelectionBtn" class="control-btn">
-      Confirm Selection
-    </button>
+    <button id="confirmSelectionBtn" class="control-btn"> Confirm Selection </button>
   </div>
 
   <div id="grid" class="grid"></div>
@@ -65,275 +71,274 @@
 
 <!-- Using a module so we can import the JSON -->
 <script type="module">
- // Import the word data from your JSON file
-import crosswordData from '../../public/mocks/cross.json';
+  // Import the word data from your JSON file
+  import crosswordData from "../../public/mocks/cross.json";
 
-// Use the imported JSON data for word sets.
-const wordSets = crosswordData;
-let currentWordSetIndex = 0;
+  // Use the imported JSON data for word sets.
+  const wordSets = crosswordData;
+  let currentWordSetIndex = 0;
 
-const colorClasses = [
-  'word-color-1',
-  'word-color-2',
-  'word-color-3',
-  'word-color-4',
-  'word-color-5',
-  'word-color-6',
-  'word-color-7',
-  'word-color-8'
-];
-
-let state = {
-  difficulty: "easy",
-  grid: [],
-  size: 8,
-  selectedCells: [],
-  foundWords: [],
-  isDragging: false,
-  showSolution: false,
-  solutions: [],
-  clickCount: 0,
-  matchedCells: new Map(), // Changed to Map to store word-cells associations
-  currentWordSet: wordSets[0],
-  directionColors: {
-    horizontal: "hsla(120, 70%, 70%, 0.5)",
-    vertical: "hsla(200, 70%, 70%, 0.5)",
-    diagonal: "hsla(300, 70%, 70%, 0.5)"
-  },
-  wordColors: new Map() // Track colors assigned to words
-};
-
-function generateRandomLetter() {
-  return String.fromCharCode(65 + Math.floor(Math.random() * 26));
-}
-
-function getWordDirection(cells) {
-  const [[r1, c1], [r2, c2]] = [cells[0], cells[cells.length - 1]];
-  return r1 === r2 ? "horizontal" : c1 === c2 ? "vertical" : "diagonal";
-}
-
-function canPlaceWord(grid, word, row, col, dRow, dCol) {
-  if (row + dRow * (word.length - 1) >= state.size || row + dRow * (word.length - 1) < 0) return false;
-  if (col + dCol * (word.length - 1) >= state.size || col + dCol * (word.length - 1) < 0) return false;
-
-  for (let i = 0; i < word.length; i++) {
-    const currentCell = grid[row + dRow * i][col + dCol * i];
-    if (currentCell && currentCell !== word[i]) return false;
-  }
-  return true;
-}
-
-function placeWord(grid, word) {
-  const directions = [
-    [0, 1], [1, 0], [1, 1], [1, -1]
+  const colorClasses = [
+    "word-color-1",
+    "word-color-2",
+    "word-color-3",
+    "word-color-4",
+    "word-color-5",
+    "word-color-6",
+    "word-color-7",
+    "word-color-8"
   ];
-  for (let attempt = 0; attempt < 200; attempt++) {
-    const [dRow, dCol] = directions[Math.floor(Math.random() * directions.length)];
-    const row = Math.floor(Math.random() * state.size);
-    const col = Math.floor(Math.random() * state.size);
 
-    if (canPlaceWord(grid, word, row, col, dRow, dCol)) {
-      const wordCells = [];
-      for (let i = 0; i < word.length; i++) {
-        const r = row + dRow * i;
-        const c = col + dCol * i;
-        grid[r][c] = word[i];
-        wordCells.push([r, c]);
-      }
-      return { placed: true, cells: wordCells, direction: getWordDirection(wordCells) };
-    }
-  }
-  return { placed: false, cells: [], direction: null };
-}
+  let state = {
+    difficulty: "easy",
+    grid: [],
+    size: 8,
+    selectedCells: [],
+    foundWords: [],
+    isDragging: false,
+    showSolution: false,
+    solutions: [],
+    clickCount: 0,
+    matchedCells: new Map(), // Changed to Map to store word-cells associations
+    currentWordSet: wordSets[0],
+    directionColors: {
+      horizontal: "hsla(120, 70%, 70%, 0.5)",
+      vertical: "hsla(200, 70%, 70%, 0.5)",
+      diagonal: "hsla(300, 70%, 70%, 0.5)"
+    },
+    wordColors: new Map() // Track colors assigned to words
+  };
 
-function resetPuzzle() {
-  generatePuzzleWithCurrentWordSet();
-}
-
-function generatePuzzleWithCurrentWordSet() {
-  const newGrid = Array(state.size)
-    .fill()
-    .map(() => Array(state.size).fill(""));
-  const words = state.currentWordSet[state.difficulty];
-  state.solutions = [];
-  state.wordColors.clear();
-  state.matchedCells.clear();
-
-  words.forEach((word) => {
-    const result = placeWord(newGrid, word);
-    if (result.placed) {
-      state.solutions.push({ word, cells: result.cells, direction: result.direction });
-    }
-  });
-
-  for (let i = 0; i < state.size; i++) {
-    for (let j = 0; j < state.size; j++) {
-      newGrid[i][j] = newGrid[i][j] || generateRandomLetter();
-    }
+  function generateRandomLetter() {
+    return String.fromCharCode(65 + Math.floor(Math.random() * 26));
   }
 
-  state.grid = newGrid;
-  state.foundWords = [];
-  state.showSolution = false;
-  state.selectedCells = [];
-  state.clickCount = 0;
-  updateDOM();
-}
-
-function generateNewPuzzle() {
-  currentWordSetIndex = (currentWordSetIndex + 1) % wordSets.length;
-  state.currentWordSet = wordSets[currentWordSetIndex];
-  generatePuzzleWithCurrentWordSet();
-}
-
-function isValidNextCell(current, next) {
-  const [r1, c1] = current;
-  const [r2, c2] = next;
-  return Math.abs(r1 - r2) <= 1 && Math.abs(c1 - c2) <= 1;
-}
-
-function checkForWord(selection) {
-  if (selection.length < 3) return false;
-
-  const word = selection.map(([r, c]) => state.grid[r][c]).join("");
-  const reverseWord = word.split("").reverse().join("");
-  const currentWords = state.currentWordSet[state.difficulty];
-
-  let foundWord = null;
-  if (currentWords.includes(word) && !state.foundWords.includes(word)) {
-    foundWord = word;
-  } else if (currentWords.includes(reverseWord) && !state.foundWords.includes(reverseWord)) {
-    foundWord = reverseWord;
+  function getWordDirection(cells) {
+    const [[r1, c1], [r2, c2]] = [cells[0], cells[cells.length - 1]];
+    return r1 === r2 ? "horizontal" : c1 === c2 ? "vertical" : "diagonal";
   }
 
-  if (foundWord) {
-    state.foundWords.push(foundWord);
-    // Assign a color to the word
-    if (!state.wordColors.has(foundWord)) {
-      const colorIndex = state.wordColors.size % colorClasses.length;
-      state.wordColors.set(foundWord, colorClasses[colorIndex]);
+  function canPlaceWord(grid, word, row, col, dRow, dCol) {
+    if (row + dRow * (word.length - 1) >= state.size || row + dRow * (word.length - 1) < 0) return false;
+    if (col + dCol * (word.length - 1) >= state.size || col + dCol * (word.length - 1) < 0) return false;
+
+    for (let i = 0; i < word.length; i++) {
+      const currentCell = grid[row + dRow * i][col + dCol * i];
+      if (currentCell && currentCell !== word[i]) return false;
     }
-    // Store the cells associated with this word
-    state.matchedCells.set(foundWord, [...selection]); // Create a copy of the selection
     return true;
   }
-  return false;
-}
 
-function getCellCoordinates(element) {
-  if (!element?.dataset?.coords) return null;
-  return element.dataset.coords.split("-").map(Number);
-}
+  function placeWord(grid, word) {
+    const directions = [
+      [0, 1],
+      [1, 0],
+      [1, 1],
+      [1, -1]
+    ];
+    for (let attempt = 0; attempt < 200; attempt++) {
+      const [dRow, dCol] = directions[Math.floor(Math.random() * directions.length)];
+      const row = Math.floor(Math.random() * state.size);
+      const col = Math.floor(Math.random() * state.size);
 
-function updateDOM() {
-  const gridElement = document.getElementById("grid");
-  gridElement.innerHTML = "";
-  gridElement.style.gridTemplateColumns = `repeat(${state.size}, 1fr)`;
-
-  state.grid.forEach((row, i) =>
-    row.forEach((cell, j) => {
-      const cellElement = document.createElement("div");
-      cellElement.className = "cell";
-      cellElement.textContent = cell;
-      cellElement.dataset.coords = `${i}-${j}`;
-
-      const isSelected = state.selectedCells.some(([r, c]) => r === i && c === j);
-      
-      // Find if this cell belongs to any found word
-      let matchedWord = null;
-      for (const [word, cells] of state.matchedCells.entries()) {
-        if (cells.some(([r, c]) => r === i && c === j)) {
-          matchedWord = word;
-          break;
+      if (canPlaceWord(grid, word, row, col, dRow, dCol)) {
+        const wordCells = [];
+        for (let i = 0; i < word.length; i++) {
+          const r = row + dRow * i;
+          const c = col + dCol * i;
+          grid[r][c] = word[i];
+          wordCells.push([r, c]);
         }
+        return { placed: true, cells: wordCells, direction: getWordDirection(wordCells) };
       }
-
-      const isSolution = state.showSolution && 
-        state.solutions.some((s) => s.cells.some(([r, c]) => r === i && c === j));
-
-      if (isSelected) cellElement.classList.add("selected");
-      if (matchedWord) {
-        cellElement.classList.add("match");
-        const colorClass = state.wordColors.get(matchedWord);
-        if (colorClass) {
-          cellElement.classList.add(colorClass);
-        }
-      }
-      if (isSolution) {
-        const direction = state.solutions.find((s) =>
-          s.cells.some(([r, c]) => r === i && c === j)
-        )?.direction;
-        cellElement.style.backgroundColor = state.directionColors[direction];
-      }
-
-      gridElement.appendChild(cellElement);
-    })
-  );
-
-  document.getElementById("clickCount").textContent = state.clickCount;
-  document.getElementById("foundCount").textContent = state.foundWords.length;
-  document.getElementById("totalWords").textContent = state.currentWordSet[state.difficulty].length;
-
-  const wordList = document.getElementById("wordList");
-  wordList.innerHTML = state.currentWordSet[state.difficulty]
-    .map(word => {
-      const isFound = state.foundWords.includes(word);
-      const colorClass = state.wordColors.get(word) || '';
-      return `<span class="word ${isFound ? 'found ' + colorClass : ''}">${word}</span>`;
-    })
-    .join("");
-}
-
-function handleCellClick(e) {
-  const coords = getCellCoordinates(e.target);
-  if (!coords) return;
-
-  // Check if the cell is already selected
-  const isAlreadySelected = state.selectedCells.some(
-    ([r, c]) => r === coords[0] && c === coords[1]
-  );
-
-  if (isAlreadySelected) {
-    // If the cell is already selected, do nothing
-    return;
+    }
+    return { placed: false, cells: [], direction: null };
   }
 
-  // Add the new cell to the selection
-  state.selectedCells.push(coords);
-  state.clickCount++;
+  function resetPuzzle() {
+    generatePuzzleWithCurrentWordSet();
+  }
 
-  // Update the DOM to reflect the new selection
-  updateDOM();
-}
+  function generatePuzzleWithCurrentWordSet() {
+    const newGrid = Array(state.size)
+      .fill()
+      .map(() => Array(state.size).fill(""));
+    const words = state.currentWordSet[state.difficulty];
+    state.solutions = [];
+    state.wordColors.clear();
+    state.matchedCells.clear();
 
-function handleConfirmSelection() {
-  if (state.selectedCells.length >= 3) {
-    const foundWord = checkForWord(state.selectedCells);
+    words.forEach((word) => {
+      const result = placeWord(newGrid, word);
+      if (result.placed) {
+        state.solutions.push({ word, cells: result.cells, direction: result.direction });
+      }
+    });
+
+    for (let i = 0; i < state.size; i++) {
+      for (let j = 0; j < state.size; j++) {
+        newGrid[i][j] = newGrid[i][j] || generateRandomLetter();
+      }
+    }
+
+    state.grid = newGrid;
+    state.foundWords = [];
+    state.showSolution = false;
+    state.selectedCells = [];
+    state.clickCount = 0;
+    updateDOM();
+  }
+
+  function generateNewPuzzle() {
+    currentWordSetIndex = (currentWordSetIndex + 1) % wordSets.length;
+    state.currentWordSet = wordSets[currentWordSetIndex];
+    generatePuzzleWithCurrentWordSet();
+  }
+
+  function isValidNextCell(current, next) {
+    const [r1, c1] = current;
+    const [r2, c2] = next;
+    return Math.abs(r1 - r2) <= 1 && Math.abs(c1 - c2) <= 1;
+  }
+
+  function checkForWord(selection) {
+    if (selection.length < 3) return false;
+
+    const word = selection.map(([r, c]) => state.grid[r][c]).join("");
+    const reverseWord = word.split("").reverse().join("");
+    const currentWords = state.currentWordSet[state.difficulty];
+
+    let foundWord = null;
+    if (currentWords.includes(word) && !state.foundWords.includes(word)) {
+      foundWord = word;
+    } else if (currentWords.includes(reverseWord) && !state.foundWords.includes(reverseWord)) {
+      foundWord = reverseWord;
+    }
+
     if (foundWord) {
-      setTimeout(() => {
+      state.foundWords.push(foundWord);
+      // Assign a color to the word
+      if (!state.wordColors.has(foundWord)) {
+        const colorIndex = state.wordColors.size % colorClasses.length;
+        state.wordColors.set(foundWord, colorClasses[colorIndex]);
+      }
+      // Store the cells associated with this word
+      state.matchedCells.set(foundWord, [...selection]); // Create a copy of the selection
+      return true;
+    }
+    return false;
+  }
+
+  function getCellCoordinates(element) {
+    if (!element?.dataset?.coords) return null;
+    return element.dataset.coords.split("-").map(Number);
+  }
+
+  function updateDOM() {
+    const gridElement = document.getElementById("grid");
+    gridElement.innerHTML = "";
+    gridElement.style.gridTemplateColumns = `repeat(${state.size}, 1fr)`;
+
+    state.grid.forEach((row, i) =>
+      row.forEach((cell, j) => {
+        const cellElement = document.createElement("div");
+        cellElement.className = "cell";
+        cellElement.textContent = cell;
+        cellElement.dataset.coords = `${i}-${j}`;
+
+        const isSelected = state.selectedCells.some(([r, c]) => r === i && c === j);
+
+        // Find if this cell belongs to any found word
+        let matchedWord = null;
+        for (const [word, cells] of state.matchedCells.entries()) {
+          if (cells.some(([r, c]) => r === i && c === j)) {
+            matchedWord = word;
+            break;
+          }
+        }
+
+        const isSolution =
+          state.showSolution && state.solutions.some((s) => s.cells.some(([r, c]) => r === i && c === j));
+
+        if (isSelected) cellElement.classList.add("selected");
+        if (matchedWord) {
+          cellElement.classList.add("match");
+          const colorClass = state.wordColors.get(matchedWord);
+          if (colorClass) {
+            cellElement.classList.add(colorClass);
+          }
+        }
+        if (isSolution) {
+          const direction = state.solutions.find((s) => s.cells.some(([r, c]) => r === i && c === j))?.direction;
+          cellElement.style.backgroundColor = state.directionColors[direction];
+        }
+
+        gridElement.appendChild(cellElement);
+      })
+    );
+
+    document.getElementById("clickCount").textContent = state.clickCount;
+    document.getElementById("foundCount").textContent = state.foundWords.length;
+    document.getElementById("totalWords").textContent = state.currentWordSet[state.difficulty].length;
+
+    const wordList = document.getElementById("wordList");
+    wordList.innerHTML = state.currentWordSet[state.difficulty]
+      .map((word) => {
+        const isFound = state.foundWords.includes(word);
+        const colorClass = state.wordColors.get(word) || "";
+        return `<span class="word ${isFound ? "found " + colorClass : ""}">${word}</span>`;
+      })
+      .join("");
+  }
+
+  function handleCellClick(e) {
+    const coords = getCellCoordinates(e.target);
+    if (!coords) return;
+
+    // Check if the cell is already selected
+    const isAlreadySelected = state.selectedCells.some(([r, c]) => r === coords[0] && c === coords[1]);
+
+    if (isAlreadySelected) {
+      // If the cell is already selected, do nothing
+      return;
+    }
+
+    // Add the new cell to the selection
+    state.selectedCells.push(coords);
+    state.clickCount++;
+
+    // Update the DOM to reflect the new selection
+    updateDOM();
+  }
+
+  function handleConfirmSelection() {
+    if (state.selectedCells.length >= 3) {
+      const foundWord = checkForWord(state.selectedCells);
+      if (foundWord) {
+        setTimeout(() => {
+          state.selectedCells = [];
+          updateDOM();
+        }, 1000);
+      } else {
         state.selectedCells = [];
         updateDOM();
-      }, 1000);
+      }
     } else {
       state.selectedCells = [];
       updateDOM();
     }
-  } else {
-    state.selectedCells = [];
-    updateDOM();
   }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  const gridElement = document.getElementById("grid");
+  document.addEventListener("DOMContentLoaded", () => {
+    const gridElement = document.getElementById("grid");
 
-  // Add cell click handler for sequential selection
-  gridElement.addEventListener("click", handleCellClick);
+    // Add cell click handler for sequential selection
+    gridElement.addEventListener("click", handleCellClick);
 
-  // Add event listener for the Confirm Selection button
-  document.getElementById("confirmSelectionBtn").addEventListener("click", handleConfirmSelection);
+    // Add event listener for the Confirm Selection button
+    document.getElementById("confirmSelectionBtn").addEventListener("click", handleConfirmSelection);
 
-  // Initialize the first puzzle
-  generatePuzzleWithCurrentWordSet();
-});
+    // Initialize the first puzzle
+    generatePuzzleWithCurrentWordSet();
+  });
 </script>
