@@ -66,9 +66,8 @@
     opacity: 0.5;
   }
 
-  100% {
-    transform: scale(1);
-    opacity: 1;
+  .bg-gradient2 {
+    background: linear-gradient(45deg, #a8e6cf, #dcedc1);
   }
 }
 
