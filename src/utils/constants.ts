@@ -31,34 +31,16 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Reader",
-    title: "Reader",
-    path: "/reader",
-    isActive: true
-  },
-  {
-    name: "Barahkhadi",
-    title: "Barahkhadi",
-    path: "/barahkhadi",
-    isActive: true
-  },
-  {
     name: "Record",
     title: "Record",
     path: "/record",
     icon: RecordIcon,
-    isActive: true
+    isActive: false
   },
   {
-    name: "English",
-    title: "English",
-    path: "/english",
-    isActive: true
-  },
-  {
-    name: "Typing",
-    title: "Typing",
-    path: "/typing",
+    name: "Alphabets",
+    title: "Alphabets",
+    path: "/alphabets",
     isActive: true
   },
   {
@@ -68,15 +50,57 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Crossword",
+    title: "English Cross words",
+    path: "/crossword",
+    isActive: true
+  },
+  {
+    name: "Capital",
+    title: "Capital",
+    path: "/capitals",
+    isActive: true
+  },
+  {
+    name: "HideNSeek",
+    title: "HideNSeek",
+    path: "/hidenseek",
+    isActive: true
+  },
+  {
+    name: "Canvas",
+    title: "Canvas",
+    path: "/canvas",
+    isActive: true
+  },
+  {
+    name: "Math",
+    title: "Math",
+    path: "/math",
+    isActive: true
+  },
+  {
+    name: "Kannada",
+    title: "Kannada",
+    path: "/kannada",
+    isActive: true
+  },
+  {
+    name: "Draw",
+    title: "Draw",
+    path: "/draw",
+    isActive: true
+  },
+  {
     name: "Societree",
     title: "Clan",
     path: "/clan",
     isActive: true
   },
   {
-    name: "Feedback",
-    title: "Feedback Form",
-    path: "/feedback",
+    name: " Survey",
+    title: "Survey",
+    path: "/survey",
     isActive: true
   }
 ];

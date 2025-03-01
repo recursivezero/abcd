@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/Base";
+import LocationMosaic from "../components/Capitals.astro";
+import { locations } from "../data/location.ts";
+import Help from "@/components/Help.astro";
+
+const meta = {
+  title: "India's Geographical Mosaic",
+  description: "An Interactive Journey Through India's States and Territories"
+};
+
+// Separate the states and union territories
+const stateList = locations.filter((loc) => loc.isState);
+const utList = locations.filter((loc) => !loc.isState);
+
+---
+
+<Layout meta={meta}>
+  <Fragment slot="header-right">
+    <Help
+      title="India's Geographical Mosaic"
+      description="An Interactive Journey Through India's States and Territories. "
+    />
+  </Fragment>
+  <LocationMosaic
+    stateList={stateList}
+    utList={utList}
+  />
+</Layout>

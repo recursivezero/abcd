@@ -37,5 +37,6 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"]
     }
-  }
+  },
+  output: 'server', 
 });

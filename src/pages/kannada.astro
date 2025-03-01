@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/Base";
+import KannadaHindiGrid from "@/components/kannadaHindi.astro";
+import Help from "@/components/Help.astro";
+import "@/assets/styles/kannada.css";
+
+const title = "Kannada and Hindi Alphabets";
+---
+
+<BaseLayout meta={{ title }}>
+  <Fragment slot="header-right">
+    <button id="toggleButton" class="toggle-button">
+      <div class="toggle-slider"></div>
+      <span id="hindiLabel" class="language-label">ಕನ್ನಡ</span>
+      <span id="kannadaLabel" class="language-label active"> हिंदी</span>
+    </button>
+    <Help
+      title="Kannada and Hindi Alphabets"
+      description="Learn Kannada and Hindi alphabets with their pronunciation and examples."
+    />
+  </Fragment>
+  <KannadaHindiGrid />
+</BaseLayout>

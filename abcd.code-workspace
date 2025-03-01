@@ -41,7 +41,7 @@
     },
     "css.lint.unknownAtRules": "ignore",
     "debug.javascript.codelens.npmScripts": "never",
-    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.ignoreTrimWhitespace": true,
     "editor.accessibilitySupport": "off",
     "editor.bracketPairColorization.enabled": true,
     "editor.codeActionsOnSave": {
