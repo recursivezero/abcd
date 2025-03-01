@@ -138,7 +138,7 @@
 
   &#newPuzzleBtn { 
     background: var(--secondary-color);
-    &:hover { background: var(--accent4-color); }
+    &:hover { background: var(--accent7-color); }
   }
   
   &#resetBtn { 
