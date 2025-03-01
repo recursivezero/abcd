@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "@/layouts/Base";
-import "@/assets/styles/barahkhadi/index.css";
+import BackButton from "@/components/ui/backButton.astro";
+
+import "@/assets/styles/varnmala/barahkhadi/index.css";
 import { hindiConsonants, matras } from "@/utils/common";
 import Help from "@/components/Help.astro";
 
@@ -20,14 +22,16 @@ const consonants = [
   <Fragment slot="header-left">
     <Help title="Barahkhadi" description="This page displays the Hindi consonants and their variations." />
   </Fragment>
+
   <div class="container__barahkhadi">
+    <BackButton />
     {
       consonants.map((row) => (
         <div class="group__row">
           <div class="row__grid">
             {row.map((consonant) => (
               <div class="letter__card" data-active="false">
-                <a href={`/barahkhadi/${consonant}`} class="letter__link">
+                <a href={`/varnmala/barahkhadi/${consonant}`} class="letter__link">
                   <span class="consonant">{consonant}</span>
                 </a>
                 <button class="quick-view-btn">🔍</button>
