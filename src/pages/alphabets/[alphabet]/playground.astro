@@ -21,7 +21,7 @@ const { alphabet } = Astro.params;
 const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
 ---
 
-<BaseLayout meta={{ title: `Playground - ${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)}` }}>
+<BaseLayout meta={{ title: `${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} - Playground` }}>
   <Fragment slot="header-right">
     <Help
       title={`${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} Playground`}
