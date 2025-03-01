@@ -25,7 +25,7 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
   <Fragment slot="header-right">
     <Help
       title={`${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} Playground`}
-      description="Press any letter key (A-Z) to see the corresponding information from the selected alphabet category."
+      description="Press any letter key (A-Z) or number key (0-9) to see the corresponding information from the selected alphabet category."
     />
   </Fragment>
 
@@ -60,9 +60,49 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
       letterDiv.style.color = color;
     };
 
-    const drawInfo = (letter, color) => {
-      const info = alphabetData.find((item) => item.letter === letter);
+    const numberMappings = {
+      "Hindi Numbers": {
+        "0": "०",
+        "1": "१",
+        "2": "२",
+        "3": "३",
+        "4": "४",
+        "5": "५",
+        "6": "६",
+        "7": "७",
+        "8": "८",
+        "9": "९",
+        "10": "१०"
+      },
+      "Roman Numerals": {
+        "1": "I",
+        "2": "II",
+        "3": "III",
+        "4": "IV",
+        "5": "V",
+        "6": "VI",
+        "7": "VII",
+        "8": "VIII",
+        "9": "IX",
+        "0": "X"
+      }
+    };
+
+    const findInfoByInput = (input) => {
+      if (numberMappings[category] && input >= "0" && input <= "9") {
+        const mappedChar = numberMappings[category][input];
+        return alphabetData.find((item) => item.letter === mappedChar);
+      }
+
+      return alphabetData.find((item) => item.letter.toUpperCase() === input.toUpperCase() || item.letter === input);
+    };
+
+    const drawInfo = (input, color) => {
+      const info = findInfoByInput(input);
+
       if (info) {
+        drawLetter(info.letter, color);
+
         spellDiv.style.fontSize = "";
         spellDiv.style.marginTop = "";
         spellDiv.style.display = "block";
@@ -138,11 +178,25 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
     window.addEventListener("DOMContentLoaded", () => {
       spellDiv.classList.remove("animation");
       descriptionDiv.classList.remove("animation");
+
+      if (category === "Hindi Numbers" || category === "Roman Numerals") {
+        const firstNumber = category === "Hindi Numbers" ? "१" : "I";
+        const info = alphabetData.find((item) => item.letter === firstNumber);
+        if (info) {
+          drawLetter(info.letter, "#FF6B6B");
+          spellDiv.innerHTML = info.text;
+          descriptionDiv.innerHTML = info.description || "";
+          if (info.emoji) {
+            emojiDiv.innerHTML = info.emoji;
+          }
+        }
+      }
     });
 
     const colorBox = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEEAD", "#D4A5A5", "#9B59B6", "#3498DB"];
     const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
     const isAlphabet = (keyCode) => keyCode >= 65 && keyCode <= 90;
+    const isNumber = (keyCode) => keyCode >= 48 && keyCode <= 57;
 
     document.addEventListener(
       "keydown",
@@ -150,10 +204,12 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
         e.preventDefault();
         const color = random(colorBox);
         const { key, keyCode } = e;
+
         if (isAlphabet(keyCode)) {
           const keyCapital = key.toUpperCase();
-          drawLetter(keyCapital, color);
           drawInfo(keyCapital, color);
+        } else if (isNumber(keyCode)) {
+          drawInfo(key, color);
         }
       },
       false
