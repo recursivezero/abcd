@@ -9,8 +9,7 @@
         "code": 65,
         "text": "Apple",
         "description": "",
-        "emoji" : "🍎",
-        "image": "apple.jpg"
+        "emoji" : "🍎"
       },
       {
         "id": 2,
@@ -80,8 +79,8 @@
         "id": 10,
         "letter": "J",
         "code": 74,
-        "text": "Jam",
-        "emoji" : "🍓",
+        "text": "Jug",
+        "emoji" : "🏺",
         "description": ""
       },
       {
@@ -192,8 +191,8 @@
         "id": 24,
         "letter": "X",
         "code": 88,
-        "text": "X-ray",
-        "emoji" : "🦴",
+        "text": "xerox",
+        "emoji" : "🖨️",
         "description": ""
       },
       {
