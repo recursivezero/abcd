@@ -35,7 +35,7 @@ export const NavbarLinks: LinkProps[] = [
     title: "Record",
     path: "/record",
     icon: RecordIcon,
-    isActive: true
+    isActive: false
   },
   {
     name: "Alphabets",
