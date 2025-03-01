@@ -115,7 +115,7 @@
 }
 
 .group-heading {
-  color: light-dark(#0e6157,var(--teal-accent));
+  color: light-dark(#0e6157, var(--teal-accent));
   font-size: 1.5rem;
   padding: 1rem 0;
   letter-spacing: 0.1em;

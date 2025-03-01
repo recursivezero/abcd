@@ -1,6 +1,7 @@
 ---
 import "@/assets/styles/canvas.css";
 ---
+
 <div class="canvas-generator">
   <main class="controls">
     <div class="input-area">
@@ -74,9 +75,9 @@ import "@/assets/styles/canvas.css";
 
     initializeElements() {
       this.input = document.getElementById("name") as HTMLInputElement;
-      this.canvasContainer = document.getElementById("canvasDiv")as HTMLDivElement;
-      this.fullCheckbox = document.getElementById("full")as HTMLDivElement;
-      this.fontFamilySelect = document.getElementById("fontFamily")as HTMLDivElement;;
+      this.canvasContainer = document.getElementById("canvasDiv") as HTMLDivElement;
+      this.fullCheckbox = document.getElementById("full") as HTMLDivElement;
+      this.fontFamilySelect = document.getElementById("fontFamily") as HTMLDivElement;
     }
 
     bindEvents() {
@@ -85,7 +86,7 @@ import "@/assets/styles/canvas.css";
       });
     }
 
-    handleClick(event:any) {
+    handleClick(event: any) {
       const variant = event.target.dataset.variant;
 
       switch (variant) {
@@ -104,7 +105,7 @@ import "@/assets/styles/canvas.css";
       }
     }
 
-    createCanvas(text:string) {
+    createCanvas(text: string) {
       const canvas = document.createElement("canvas") as HTMLCanvasElement;
       canvas.width = 300;
       canvas.height = 200;
@@ -170,7 +171,7 @@ import "@/assets/styles/canvas.css";
         ? text
         : text
             .split(" ")
-            .map((w:any) => w[0])
+            .map((w: any) => w[0])
             .join("")
             .toUpperCase();
 
