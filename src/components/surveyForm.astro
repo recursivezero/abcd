@@ -9,143 +9,190 @@ const { data } = Astro.props;
 ---
 
 <div class="survey-wrapper">
-  <div class="survey-container">
+  <div id="surveyContainer" class="survey-container">
     <div class="survey-header">
       <h1>{data.surveyTitle}</h1>
       <p>{data.description}</p>
-      <div></div>
+    </div>
 
-      <div class="questions-container">
-        <form id="surveyForm" class="survey-form">
-          {
-            data.questions.map((question, index) => (
-              <div class="question-card">
-                <h3>
-                  <span class="question-number">{index + 1}.</span>
-                  {question.questionText}
-                </h3>
+    <div class="questions-container">
+      <form id="surveyForm" class="survey-form">
+        {
+          data.questions.map((question, index) => (
+            <div class="question-card">
+              <h3>
+                <span class="question-number">{index + 1}.</span>
+                {question.questionText}
+              </h3>
 
-                {question.type === "openEnded" ? (
-                  <textarea
-                    name={`q${question.id}`}
-                    class="textarea-input"
-                    rows="4"
-                    placeholder="Type your answer here..."
-                  />
-                ) : question.type === "singleChoice" ? (
-                  <div class="options-group">
-                    {question.options?.map((option) => (
-                      <label class="option-label">
-                        <input type="radio" name={`q${question.id}`} value={option} class="radio-input" />
-                        <span class="radio-text">{option}</span>
-                      </label>
-                    ))}
-                  </div>
-                ) : (
-                  <div class="options-group">
-                    {question.options?.map((option) => (
-                      <label class="option-label">
-                        <input type="checkbox" name={`q${question.id}`} value={option} class="checkbox-input" />
-                        <span class="checkbox-text">{option}</span>
-                      </label>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))
-          }
+              {question.type === "openEnded" ? (
+                <textarea
+                  name={`q${question.id}`}
+                  class="textarea-input"
+                  rows="4"
+                  placeholder="Type your answer here..."
+                />
+              ) : question.type === "singleChoice" ? (
+                <div class="options-group">
+                  {question.options?.map((option) => (
+                    <label class="option-label">
+                      <input type="radio" name={`q${question.id}`} value={option} class="radio-input" />
+                      <span class="radio-text">{option}</span>
+                    </label>
+                  ))}
+                </div>
+              ) : (
+                <div class="options-group">
+                  {question.options?.map((option) => (
+                    <label class="option-label">
+                      <input type="checkbox" name={`q${question.id}`} value={option} class="checkbox-input" />
+                      <span class="checkbox-text">{option}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))
+        }
 
-          <div class="survey-controls">
-            <button type="submit" class="submit-btn">Submit Survey</button>
-            <button type="button" class="download-btn" id="downloadResults" aria-label="Download Results">
-              Download Results
-            </button>
-          </div>
-        </form>
-      </div>
+        <div class="survey-controls">
+          <button type="submit" class="submit-btn">Submit Survey</button>
+          <button type="button" class="download-btn" id="downloadResults">
+            Download Results
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <script>
-    const surveyForm = document.getElementById("surveyForm");
-    const downloadBtn = document.getElementById("downloadResults");
-
-    function collectFormData(form) {
-      const formData = new FormData(form);
-      const data = {};
-
-      formData.forEach((value, key) => {
-        if (key in data) {
-          if (Array.isArray(data[key])) {
-            data[key].push(value);
-          } else {
-            data[key] = [data[key], value];
-          }
-        } else {
-          data[key] = value;
-        }
-      });
-
-      return data;
-    }
-
-    async function submitSurvey(event) {
-      event.preventDefault();
-      const formData = collectFormData(surveyForm);
-
-      try {
-        const response = await fetch("/api/survey", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData)
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(`Failed to submit survey: ${result.message || response.statusText}`);
-        }
-
-        alert("Survey submitted successfully!");
-        surveyForm.reset();
-      } catch (error) {
-        console.error("Error submitting survey:", error);
-        alert(`Error submitting survey: ${error.message}`);
-      }
-    }
-
-    function downloadResults() {
-      if (!surveyForm) return;
-
-      const formData = collectFormData(surveyForm);
-      const jsonData = JSON.stringify(formData, null, 2);
-
-      const blob = new Blob([jsonData], { type: "application/json" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "survey_results.json";
-
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    surveyForm?.addEventListener("submit", submitSurvey);
-    downloadBtn?.addEventListener("click", downloadResults);
-  </script>
+  <!-- Thank You Page -->
+  <div id="thankYouPage" style="display: none;">
+    <div class="thank-you-container">
+      <h2>Thank You!</h2>
+      <p>Your survey responses have been submitted successfully.</p>
+      <button id="returnToSurvey" class="return-btn">Take Survey Again</button>
+    </div>
+  </div>
 </div>
 
-<style>
-  /* Styling for question numbers */
-  .question-number {
-    display: inline-block;
-    margin-right: 8px;
-    font-weight: 700;
-    color: var(--primary-color);
+<script>
+  // Function to collect form data and convert to JSON
+  function collectFormData(form) {
+    const formData = new FormData(form);
+    const data = {};
+
+    formData.forEach((value, key) => {
+      if (key in data) {
+        if (Array.isArray(data[key])) {
+          data[key].push(value);
+        } else {
+          data[key] = [data[key], value];
+        }
+      } else {
+        data[key] = value;
+      }
+    });
+
+    return data;
   }
 
-  /* Optional: If you want to adjust the before element styling */
-  .question-card h3::before {
-    margin-right: 8px; /* Adjusted to accommodate the question number */
+  // DOM elements
+  const surveyForm = document.getElementById("surveyForm");
+  const downloadBtn = document.getElementById("downloadResults");
+  const thankYouPage = document.getElementById("thankYouPage");
+  const returnBtn = document.getElementById("returnToSurvey");
+  const surveyContainer = document.getElementById("surveyContainer");
+
+  // Submit form handler
+  async function handleSubmit(event) {
+    event.preventDefault();
+    
+    // Show loading state
+    const submitBtn = event.target.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "Submitting...";
+    submitBtn.disabled = true;
+    
+    try {
+      // Collect form data
+      const formData = collectFormData(event.target);
+      console.log("Form data collected:", formData);
+      
+      // Send data to the API
+      const response = await fetch("/api/survey", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Server error: ${response.status} - ${errorText}`);
+      }
+      
+      const result = await response.json();
+      console.log("API response:", result);
+      
+      // Show thank you page
+      if (surveyContainer) surveyContainer.style.display = "none";
+      if (thankYouPage) thankYouPage.style.display = "block";
+      
+      // Reset the form
+      event.target.reset();
+    } catch (error) {
+      console.error("Error submitting survey:", error);
+      alert(`Failed to submit survey: ${error.message}`);
+      
+      // Reset button state
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
   }
+
+  // Download results handler
+  function handleDownload() {
+    if (!surveyForm) return;
+    
+    const formData = collectFormData(surveyForm);
+    const jsonData = JSON.stringify(formData, null, 2);
+    
+    const blob = new Blob([jsonData], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "survey_results.json";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  // Return to survey handler
+  function handleReturn() {
+    if (thankYouPage) thankYouPage.style.display = "none";
+    if (surveyContainer) surveyContainer.style.display = "block";
+  }
+
+  // Add event listeners
+  if (surveyForm) {
+    surveyForm.addEventListener("submit", handleSubmit);
+  }
+  
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", handleDownload);
+  }
+  
+  if (returnBtn) {
+    returnBtn.addEventListener("click", handleReturn);
+  }
+
+  // Debug log to ensure script is running
+  console.log("Survey script initialized");
+</script>
+
+<style>
+
 </style>

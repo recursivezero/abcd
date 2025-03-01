@@ -1,20 +1,23 @@
 // src/pages/api/survey.ts
 import type { APIRoute } from "astro";
 import fs from "node:fs/promises";
-import path from "path";
+import path from "node:path";
+
+// This tells Astro this endpoint needs server-side rendering
+export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
-    console.log("Received data in API:", data); // Debug log
+    console.log("Received data in API:", data);
 
     // Get the current working directory
     const cwd = process.cwd();
-    console.log("Current working directory:", cwd); // Debug log
+    console.log("Current working directory:", cwd);
 
     // Create responses directory if it doesn't exist
     const responsesDir = path.join(cwd, "public", "responses");
-    console.log("Attempting to create/access directory:", responsesDir); // Debug log
+    console.log("Attempting to create/access directory:", responsesDir);
 
     try {
       await fs.mkdir(responsesDir, { recursive: true });
@@ -26,7 +29,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Fixed filename
     const filename = "survey-responses.json";
     const filepath = path.join(responsesDir, filename);
-    console.log("Writing file to:", filepath); // Debug log
+    console.log("Writing file to:", filepath);
 
     // Read existing data (if any)
     let existingData = [];
@@ -35,25 +38,25 @@ export const POST: APIRoute = async ({ request }) => {
       existingData = JSON.parse(fileContent);
     } catch (readError) {
       // If the file doesn't exist, we'll start with an empty array
-      console.log("No existing file found, starting fresh."); // Debug log
+      console.log("No existing file found, starting fresh.");
     }
 
     // Generate a unique ID and timestamp for the new entry
-    const id = existingData.length > 0 ? existingData[existingData.length - 1].id + 1 : 1; // Auto-increment ID
-    const timestamp = new Date().toISOString(); // Current timestamp in ISO format
+    const id = existingData.length > 0 ? existingData[existingData.length - 1].id + 1 : 1;
+    const timestamp = new Date().toISOString();
 
     // Append new data to existing data with ID and timestamp
     const newEntry = {
       id,
       timestamp,
-      ...data // Spread the original data
+      ...data
     };
     existingData.push(newEntry);
 
     // Save updated data to JSON file
     try {
       await fs.writeFile(filepath, JSON.stringify(existingData, null, 2), "utf-8");
-      console.log("File updated successfully"); // Debug log
+      console.log("File updated successfully");
     } catch (writeError) {
       console.error("Error writing file:", writeError);
       throw writeError;
@@ -64,8 +67,8 @@ export const POST: APIRoute = async ({ request }) => {
         success: true,
         message: "Survey response saved successfully",
         filename: filename,
-        id, // Return the ID of the new entry
-        timestamp // Return the timestamp of the new entry
+        id,
+        timestamp
       }),
       {
         status: 200,
@@ -75,7 +78,6 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
   } catch (error) {
-    // Log the full error
     console.error("Full error details:", error);
 
     return new Response(
@@ -83,7 +85,7 @@ export const POST: APIRoute = async ({ request }) => {
         success: false,
         message: "Failed to save survey response",
         error: error instanceof Error ? error.message : "Unknown error",
-        errorDetails: error // Include full error details in development
+        errorDetails: error
       }),
       {
         status: 500,

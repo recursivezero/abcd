@@ -11,29 +11,29 @@
     --primary-dark: #3730a3;
     --secondary-color: #0f172a;
     --accent-color: #f97316;
-    
+  
     /* Text Colors */
     --text-light: #f8fafc;
     --text-dark: #1e293b;
-    
+  
     /* Background Colors */
     --background-light: #ffffff;
     --background-dark: #0f172a;
-    
+  
     /* UI Elements */
     --border-radius: 8px;
-    
+  
     /* Shadows */
     --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 6px 10px -3px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 6px 8px -6px rgba(0, 0, 0, 0.1);
-    
+  
     /* Transitions */
     --transition: all 0.25s ease;
   }
   
   /* Main Container
-     ========================================================================== */
+       ========================================================================== */
   .survey-container {
     max-width: 1100px;
     margin: auto;
@@ -46,12 +46,12 @@
   }
   
   /* Header Styles
-     ========================================================================== */
+       ========================================================================== */
   .survey-header {
     text-align: center;
     margin-bottom: 1.75rem;
     position: relative;
-    
+  
     &::after {
       content: "";
       position: absolute;
@@ -63,7 +63,7 @@
       background: var(--primary-color);
       border-radius: 2px;
     }
-    
+  
     & h1 {
       font-size: 2.2rem;
       font-weight: 700;
@@ -74,7 +74,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
+  
     & p {
       font-size: 1rem;
       line-height: 1.5;
@@ -85,7 +85,7 @@
   }
   
   /* Progress Indicator
-     ========================================================================== */
+       ========================================================================== */
   .progress-indicator {
     width: 100%;
     height: 4px;
@@ -94,7 +94,7 @@
     margin-bottom: 1.5rem;
     position: relative;
     overflow: hidden;
-    
+  
     & .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
@@ -104,7 +104,7 @@
   }
   
   /* Questions Container
-     ========================================================================== */
+       ========================================================================== */
   .questions-container {
     max-height: 70vh;
     overflow-y: auto;
@@ -115,16 +115,16 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     scrollbar-width: thin;
     scrollbar-color: var(--primary-light) rgba(255, 255, 255, 0.05);
-    
+  
     &::-webkit-scrollbar {
       width: 6px;
     }
-    
+  
     &::-webkit-scrollbar-track {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 8px;
     }
-    
+  
     &::-webkit-scrollbar-thumb {
       background-color: var(--primary-light);
       border-radius: 8px;
@@ -132,7 +132,7 @@
   }
   
   /* Question Card
-     ========================================================================== */
+       ========================================================================== */
   .question-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -142,13 +142,13 @@
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
     animation: fadeIn 0.5s ease forwards;
-    
+  
     &:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
       border-color: rgba(129, 140, 248, 0.2);
     }
-    
+  
     & h3 {
       font-size: 1.25rem;
       color: var(--text-light);
@@ -156,7 +156,7 @@
       font-weight: 600;
       display: flex;
       align-items: center;
-      
+  
       &::before {
         content: "";
         display: inline-block;
@@ -166,28 +166,35 @@
         margin-right: 10px;
         border-radius: 3px;
       }
+  
+      .question-number {
+        display: inline-block;
+        margin-right: 8px;
+        font-weight: 700;
+        color: var(--text-light); /* Ensure the question number is white */
+      }
     }
-    
+  
     /* Animation delays for sequential appearance */
     &:nth-child(2) {
       animation-delay: 0.1s;
     }
-    
+  
     &:nth-child(3) {
       animation-delay: 0.2s;
     }
-    
+  
     &:nth-child(4) {
       animation-delay: 0.3s;
     }
-    
+  
     &:nth-child(5) {
       animation-delay: 0.4s;
     }
   }
   
   /* Form Elements
-     ========================================================================== */
+       ========================================================================== */
   /* Options Group */
   .options-group {
     display: grid;
@@ -207,7 +214,7 @@
     transition: var(--transition);
     border: 1px solid transparent;
     font-size: 0.95rem;
-    
+  
     &:hover {
       background: rgba(255, 255, 255, 0.1);
       border-color: var(--primary-light);
@@ -225,11 +232,11 @@
     cursor: pointer;
     position: relative;
     transition: var(--transition);
-    
+  
     &:checked {
       background-color: var(--primary-color);
       border-color: var(--primary-color);
-      
+  
       &::after {
         content: "";
         position: absolute;
@@ -252,7 +259,7 @@
   /* Checkbox Input Specific */
   .checkbox-input {
     border-radius: 4px;
-    
+  
     &:checked::after {
       width: 0.65rem;
       height: 0.4rem;
@@ -277,7 +284,7 @@
     font-size: 0.95rem;
     min-height: 100px;
     transition: var(--transition);
-    
+  
     &:focus {
       outline: none;
       border-color: var(--primary-light);
@@ -286,7 +293,7 @@
   }
   
   /* Survey Controls
-     ========================================================================== */
+       ========================================================================== */
   .survey-controls {
     display: flex;
     gap: 1.25rem;
@@ -314,7 +321,7 @@
     color: white;
     position: relative;
     overflow: hidden;
-    
+  
     &::before {
       content: "";
       position: absolute;
@@ -325,11 +332,11 @@
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       transition: 0.5s;
     }
-    
+  
     &:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
-      
+  
       &::before {
         left: 100%;
       }
@@ -344,7 +351,7 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
-    
+  
     &::before {
       content: "";
       position: absolute;
@@ -356,10 +363,10 @@
       transition: 0.3s ease;
       z-index: -1;
     }
-    
+  
     &:hover {
       color: white;
-      
+  
       &::before {
         width: 100%;
       }
@@ -367,12 +374,13 @@
   }
   
   /* Animations
-     ========================================================================== */
+       ========================================================================== */
   @keyframes fadeIn {
     0% {
       opacity: 0;
       transform: translateY(8px);
     }
+  
     100% {
       opacity: 1;
       transform: translateY(0);
@@ -380,45 +388,231 @@
   }
   
   /* Responsive Design
-     ========================================================================== */
+       ========================================================================== */
   @media (max-width: 768px) {
     .survey-container {
       padding: 1.25rem;
       margin: 0.75rem;
     }
-    
+  
     .survey-header {
       & h1 {
         font-size: 1.6rem;
       }
-      
+  
       & p {
         font-size: 0.9rem;
       }
     }
-    
+  
     .question-card {
       padding: 1rem;
-      
+  
       & h3 {
         font-size: 1.1rem;
       }
     }
-    
+  
     .option-label {
       padding: 0.65rem;
       font-size: 0.9rem;
     }
-    
+  
     .submit-btn,
     .download-btn {
       padding: 0.65rem 1.25rem;
       font-size: 0.95rem;
       width: 100%;
     }
-    
+  
     .survey-controls {
       flex-direction: column;
       gap: 0.75rem;
     }
   }
+ /*-----thankyou page css------*/
+
+  /* Thank You Page Styles */
+.thank-you-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.thank-you-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: slideIn 0.5s ease-out forwards;
+  margin:auto;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.thank-you-icon {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.thank-you-icon svg {
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(0 4px 6px rgba(76, 175, 80, 0.3));
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.thank-you-container h2 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.thank-you-container p {
+  color: #5d6778;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+.return-btn {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(76, 175, 80, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.return-btn:hover {
+  background-color: #43a047;
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
+  transform: translateY(-2px);
+}
+
+.return-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.return-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
+}
+
+.return-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.return-btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .thank-you-container {
+    padding: 2rem;
+  }
+  
+  .thank-you-icon svg {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .thank-you-container h2 {
+    font-size: 2rem;
+  }
+  
+  .thank-you-container p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .thank-you-container {
+    padding: 1.5rem;
+  }
+  
+  .thank-you-icon svg {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .thank-you-container h2 {
+    font-size: 1.8rem;
+  }
+  
+  .thank-you-container p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .return-btn {
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+  }
+}
