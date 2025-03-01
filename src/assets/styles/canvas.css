@@ -1,4 +1,3 @@
-
 /* Global Styles for the Canvas Generator */
 .canvas-generator {
   min-height: 100vh;
@@ -95,7 +94,6 @@
     gap: 0.5rem;
   }
 
-
   .input-label {
     color: #e2e8f0;
     font-size: 1.2rem;
@@ -178,5 +176,4 @@
       }
     }
   }
-
 }
