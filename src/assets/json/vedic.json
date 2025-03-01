@@ -1,0 +1,76 @@
+{
+  "time_units": [
+    {
+      "name": "क्षण",
+      "seconds": 1,
+      "minutes": 0.01667,
+      "years": 0.0000000317
+    },
+    {
+      "name": "पल",
+      "seconds": 24,
+      "minutes": 0.4,
+      "years": 0.00000076
+    },
+    {
+      "name": "घटी",
+      "seconds": 1440,
+      "minutes": 24,
+      "years": 0.000027
+    },
+    {
+      "name": "प्रहर",
+      "seconds": 10800,
+      "minutes": 180,
+      "years": 0.000342
+    },
+    {
+      "name": "दिन",
+      "seconds": 86400,
+      "minutes": 1440,
+      "years": 0.00274
+    },
+    {
+      "name": "पक्ष",
+      "seconds": 1296000,
+      "minutes": 21600,
+      "years": 0.0317
+    },
+    {
+      "name": "मास",
+      "seconds": 2592000,
+      "minutes": 43200,
+      "years": 0.0635
+    },
+    {
+      "name": "ऋतु",
+      "seconds": 5184000,
+      "minutes": 86400,
+      "years": 0.127
+    },
+    {
+      "name": "अयन",
+      "seconds": 15552000,
+      "minutes": 259200,
+      "years": 0.381
+    },
+    {
+      "name": "वर्ष",
+      "seconds": 31104000,
+      "minutes": 518400,
+      "years": 1
+    },
+    {
+      "name": "युग",
+      "seconds": 1209600000,
+      "minutes": 20160000,
+      "years": 38880
+    },
+    {
+      "name": "कल्प",
+      "seconds": 31104000000000,
+      "minutes": 518400000000,
+      "years": 1000000000
+    }
+  ]
+}

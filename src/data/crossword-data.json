@@ -1,9 +1,5 @@
 {
-  "categories": [
-    "cities",
-    "animals",
-    "countries"
-  ],
+  "categories": ["cities", "animals", "countries"],
   "words": {
     "cities": [
       {

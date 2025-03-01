@@ -10,18 +10,18 @@
   --accent6-color: #818cf8;
   --accent7-color: #f97316;
   --accent8-color: #38bdf8;
-  
+
   /* Text & Background */
   --text-color: #1e293b;
   --text-light: #64748b;
   --bg-color: #f8fafc;
   --bg-dark: #0f172a;
-  
+
   /* Effects */
   --border-radius: 16px;
   --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Stats */
   --stats-button-bg: #e2e8f0;
   --stats-button-text: #334155;
@@ -126,7 +126,7 @@
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: 0.01em;
-  
+
   &:hover {
     background: var(--accent6-color);
     transform: translateY(-3px);
@@ -136,30 +136,43 @@
     transform: translateY(0);
   }
 
-  &#newPuzzleBtn { 
+  &#newPuzzleBtn {
     background: var(--secondary-color);
-    &:hover { background: var(--accent7-color); }
+    &:hover {
+      background: var(--accent7-color);
+    }
   }
-  
-  &#resetBtn { 
+
+  &#resetBtn {
     background: var(--accent4-color);
-    &:hover { background: var(--accent6-color); }
+    &:hover {
+      background: var(--accent6-color);
+    }
   }
-  
-  &#solutionBtn { 
+
+  &#solutionBtn {
     background: var(--accent1-color);
-    &:hover { background: var(--accent5-color); }
+    &:hover {
+      background: var(--accent5-color);
+    }
   }
-  
-  &#clearBtn { 
+
+  &#clearBtn {
     background: var(--accent5-color);
-    &:hover { background: var(--accent1-color); }
-    &::before { content: "🗑️"; margin-right: 8px; }
+    &:hover {
+      background: var(--accent1-color);
+    }
+    &::before {
+      content: "🗑️";
+      margin-right: 8px;
+    }
   }
-  
-  &#themeToggle { 
+
+  &#themeToggle {
     background: var(--accent6-color);
-    &:hover { background: var(--primary-color); }
+    &:hover {
+      background: var(--primary-color);
+    }
   }
 }
 
@@ -169,7 +182,9 @@
   gap: 12px;
   padding: 28px;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow), 0 0 0 15px rgba(99, 102, 241, 0.08);
+  box-shadow:
+    var(--box-shadow),
+    0 0 0 15px rgba(99, 102, 241, 0.08);
   margin: 0 auto;
   width: 100%;
   max-width: 600px;
@@ -209,15 +224,31 @@
       border-color: transparent !important;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
-    
-    &.word-color-1 { background-color: var(--accent7-color); }
-    &.word-color-2 { background-color: var(--secondary-color); }
-    &.word-color-3 { background-color: var(--accent1-color); }
-    &.word-color-4 { background-color: var(--accent4-color); }
-    &.word-color-5 { background-color: var(--accent5-color); }
-    &.word-color-6 { background-color: var(--accent6-color); }
-    &.word-color-7 { background-color: var(--accent3-color); }
-    &.word-color-8 { background-color: var(--accent8-color); }
+
+    &.word-color-1 {
+      background-color: var(--accent7-color);
+    }
+    &.word-color-2 {
+      background-color: var(--secondary-color);
+    }
+    &.word-color-3 {
+      background-color: var(--accent1-color);
+    }
+    &.word-color-4 {
+      background-color: var(--accent4-color);
+    }
+    &.word-color-5 {
+      background-color: var(--accent5-color);
+    }
+    &.word-color-6 {
+      background-color: var(--accent6-color);
+    }
+    &.word-color-7 {
+      background-color: var(--accent3-color);
+    }
+    &.word-color-8 {
+      background-color: var(--accent8-color);
+    }
   }
 }
 
@@ -328,10 +359,18 @@ details {
       background: linear-gradient(135deg, var(--accent2-color), var(--accent8-color));
     }
 
-    &:nth-child(1) { background: var(--accent4-color); }
-    &:nth-child(2) { background: var(--secondary-color); }
-    &:nth-child(3) { background: linear-gradient(135deg, var(--accent5-color), var(--accent3-color)); }
-    &:nth-child(4) { background: linear-gradient(135deg, var(--accent2-color), var(--accent8-color)); }
+    &:nth-child(1) {
+      background: var(--accent4-color);
+    }
+    &:nth-child(2) {
+      background: var(--secondary-color);
+    }
+    &:nth-child(3) {
+      background: linear-gradient(135deg, var(--accent5-color), var(--accent3-color));
+    }
+    &:nth-child(4) {
+      background: linear-gradient(135deg, var(--accent2-color), var(--accent8-color));
+    }
   }
 }
 
@@ -389,7 +428,7 @@ details {
     border: 2px solid var(--primary-color);
     /* Pop-up animation for mobile */
     /*transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;*/
-    
+
     .settings-header {
       display: flex;
       justify-content: space-between;
@@ -398,13 +437,13 @@ details {
       padding-bottom: 10px;
       border-bottom: 2px solid var(--accent2-color);
     }
-    
+
     .settings-title {
       font-weight: 700;
       font-size: 1.1rem;
       color: var(--primary-color);
     }
-    
+
     .close-settings {
       background: transparent;
       border: none;
@@ -415,22 +454,22 @@ details {
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      
+
       &:hover {
         background: rgba(99, 102, 241, 0.1);
       }
-      
+
       svg {
         width: 20px;
         height: 20px;
         color: var(--accent1-color);
       }
     }
-    
+
     .controls-group {
       gap: 12px;
     }
-    
+
     &.active {
       opacity: 1;
       visibility: visible;
@@ -443,7 +482,7 @@ details {
     padding: 18px;
     max-width: 100%;
     gap: 8px;
-    
+
     .cell {
       font-size: 1.3rem;
       border-width: 2px;
@@ -456,24 +495,24 @@ details {
     right: 25px;
     width: 50px;
     height: 50px;
-    
+
     svg {
       width: 24px;
       height: 24px;
     }
   }
-  
+
   .control-btn {
     padding: 12px 16px;
     font-size: 0.9rem;
   }
-  
+
   .stats-container {
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
   }
-  
+
   .stats-button {
     min-width: 80px;
     padding: 12px 20px;
@@ -488,54 +527,54 @@ details {
     width: 45px;
     height: 45px;
   }
-  
+
   .settings-panel {
     width: 85%;
     max-width: 260px;
     padding: 14px;
   }
-  
+
   .stats-container {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
   }
-  
+
   .stats-button {
     padding: 10px 16px;
     font-size: 0.85rem;
     min-width: 70px;
   }
-  
+
   .control-btn {
     padding: 10px 14px;
     font-size: 0.85rem;
   }
-  
+
   details summary {
     padding: 12px 16px;
-    
+
     &::after {
       right: 16px;
       width: 16px;
       height: 16px;
     }
   }
-  
+
   .word-list {
     gap: 8px;
     padding: 12px;
-    
+
     .word {
       padding: 6px 12px;
       font-size: 0.9rem;
     }
   }
-  
+
   .grid {
     padding: 12px;
     gap: 6px;
-    
+
     .cell {
       font-size: 1.4rem;
       border-width: 2px;
@@ -548,43 +587,43 @@ details {
   .grid {
     padding: 8px;
     gap: 4px;
-    
+
     .cell {
       font-size: 1.3rem;
       border-width: 1px;
       border-radius: 6px;
     }
   }
-  
+
   .settings-trigger {
     top: 72px;
     right: 10px;
     width: 40px;
     height: 40px;
-    
+
     svg {
       width: 20px;
       height: 20px;
     }
   }
-  
+
   .settings-panel {
     width: 90%;
     max-width: 240px;
     padding: 12px;
   }
-  
+
   .control-btn {
     padding: 8px 12px;
     font-size: 0.8rem;
   }
-  
+
   .stats-button {
     padding: 8px 12px;
     font-size: 0.8rem;
     min-width: 65px;
   }
-  
+
   .word-list .word {
     padding: 5px 10px;
     font-size: 0.8rem;
@@ -610,7 +649,9 @@ details {
       border-color: #475569;
       color: #f1f5f9;
 
-      &:hover { background: var(--accent1-color); }
+      &:hover {
+        background: var(--accent1-color);
+      }
       &.selected {
         background: var(--primary-color);
         box-shadow: 0 8px 20px rgba(167, 139, 250, 0.4);
@@ -622,7 +663,7 @@ details {
   details {
     background-color: rgba(167, 139, 250, 0.15);
     border-left-color: var(--primary-color);
-    
+
     summary::after {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a78bfa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     }
@@ -630,24 +671,24 @@ details {
 
   .settings-panel {
     background: #1e293b;
-    
+
     @media (min-width: 769px) {
       border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent4-color)) 1;
     }
-    
+
     @media (max-width: 768px) {
       border-color: var(--primary-color);
-      
+
       .settings-title {
         color: var(--primary-color);
       }
-      
+
       .close-settings svg {
         color: var(--accent1-color);
       }
     }
   }
-  
+
   .settings-backdrop {
     background: rgba(0, 0, 0, 0.7);
   }
