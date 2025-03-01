@@ -12,10 +12,10 @@ const { item, category } = Astro.props;
 <div class="flip__card">
   <div class="flip__card__inner">
     <div class="card card__front">
-      <div class="letter-header">
-        <div class="code-badge">
-          <span class="code" title="ASCII Code">ASCII: {item.code}</span>
-        </div>
+      <div class="flip__button">
+        <span class="flip__button__text" title="Flip Card">Flip Card</span>
+      </div>
+      <div class="letter__header">
         <p class="character">{item.letter}</p>
       </div>
       <div class="letter__content">
@@ -25,6 +25,9 @@ const { item, category } = Astro.props;
       <div class="card__glow"></div>
     </div>
     <div class="card card__back">
+        <div class="flip__button">
+          <span class="flip__button__text" title="Flip Card">Flip Card</span>
+        </div>
       {
         item.image ? (
           <img src={`/assets/images/alphabets/${category}/${item.image}`} alt={item.letter} class="image" />
@@ -182,21 +185,21 @@ const { item, category } = Astro.props;
         0 0 0 1px rgba(59, 130, 246, 0.1);
     }
 
-    & .letter-header {
+    & .letter__header {
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
       position: relative;
     }
 
-    & .code-badge {
+    & .flip__button {
       position: absolute;
-      top: -0.5rem;
-      right: -0.5rem;
+      top: 5%;
+      right: 5%;
       z-index: 1;
     }
 
-    & .code {
+    & .flip__button__text {
       font-size: 0.875rem;
       color: var(--secondary);
       padding: 0.35rem 0.75rem;
@@ -285,8 +288,12 @@ const { item, category } = Astro.props;
 
   const flipCards = document.querySelectorAll(".flip__card");
   flipCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      card.classList.toggle("flipped");
+    const flipButtons = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+    flipButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        card.classList.toggle("flipped");
+      });
     });
   });
 </script>
