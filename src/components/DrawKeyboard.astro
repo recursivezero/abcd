@@ -2,6 +2,7 @@
 import { alphabetMapper } from "../mappers/alphabet";
 import { IMAGE_DIR, colorBox, fontBox, numberBox } from "../utils/draw";
 import { getRandomValue } from "../utils/index";
+//import "@/assets/styles/draw.css"; 
 ---
 
 <div class="container">
@@ -19,6 +20,103 @@ import { getRandomValue } from "../utils/index";
     </section>
   </main>
 </div>
+
+<script
+  define:vars={{
+    colorBox,
+    fontBox,
+    numberBox,
+    alphabetMapper,
+    IMAGE_DIR
+  }}
+>
+  // Initialize state
+  let currentFontIndex = 0;
+  let isUpperCase = true;
+
+  // DOM elements
+  const mainEl = document.querySelector("main");
+  const boardDiv = document.getElementById("board");
+  const charDiv = document.getElementById("char");
+  const toggleCaseSwitch = document.getElementById("toggleCase");
+  const toggleFontSwitch = document.getElementById("toggleFont");
+  const toggleBackgroundSwitch = document.getElementById("toggleBg");
+  const info = document.querySelector(".info");
+  const textSpan = document.getElementById("text");
+
+  function getRandomValue(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function updateDisplay(key) {
+    try {
+      const audio = new Audio("data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA");
+      audio.volume = 0.1;
+      audio.play().catch(() => {});
+    } catch (error) {
+      console.log("Audio feedback unavailable");
+    }
+
+    if (!isNaN(Number(key))) {
+      boardDiv.style.backgroundColor = getRandomValue(colorBox);
+      boardDiv.style.backgroundImage = "";
+      charDiv.textContent = key;
+      info.textContent = numberBox[key] || "Unknown";
+      return;
+    }
+
+    const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
+    if (found) {
+      info.textContent = found.value;
+      if (!toggleBackgroundSwitch.checked) {
+        boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
+        boardDiv.style.backgroundColor = "";
+      }
+    } else {
+      boardDiv.style.backgroundImage = "";
+    }
+
+    charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
+  }
+
+  function handleKeyPress(e) {
+    const key = e.key;
+    if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
+      updateDisplay(key);
+    }
+  }
+
+  toggleCaseSwitch?.addEventListener("change", (e) => {
+    isUpperCase = !e.target.checked;
+    const currentText = charDiv.textContent;
+    charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
+    textSpan.setAttribute("aria-checked", !e.target.checked);
+  });
+
+  toggleFontSwitch?.addEventListener("change", () => {
+    currentFontIndex = (currentFontIndex + 1) % fontBox.length;
+    charDiv.style.fontFamily = fontBox[currentFontIndex];
+  });
+
+  toggleBackgroundSwitch?.addEventListener("change", (e) => {
+    if (e.target.checked) {
+      mainEl.style.backgroundBlendMode = "soft-light";
+      mainEl.style.filter = "brightness(0.9)";
+      boardDiv.style.backgroundImage = "none";
+      boardDiv.style.backgroundColor =
+        getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue("--solid-bg");
+    } else {
+      mainEl.style.backgroundBlendMode = "normal";
+      mainEl.style.filter = "brightness(1)";
+      boardDiv.style.backgroundColor = "";
+    }
+  });
+
+  document.addEventListener("keydown", handleKeyPress);
+
+  console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
+</script>
+
 
 <style>
   :root {
@@ -176,8 +274,8 @@ import { getRandomValue } from "../utils/index";
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(10rem, 30vw, 20rem);
-    font-weight: 900;
+    font-size: clamp(10rem, 30vw, 25rem);
+    font-weight: 800;
     color: white;
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transition: var(--transition);
@@ -234,99 +332,3 @@ import { getRandomValue } from "../utils/index";
     }
   }
 </style>
-
-<script
-  define:vars={{
-    colorBox,
-    fontBox,
-    numberBox,
-    alphabetMapper,
-    IMAGE_DIR
-  }}
->
-  // Initialize state
-  let currentFontIndex = 0;
-  let isUpperCase = true;
-
-  // DOM elements
-  const mainEl = document.querySelector("main");
-  const boardDiv = document.getElementById("board");
-  const charDiv = document.getElementById("char");
-  const toggleCaseSwitch = document.getElementById("toggleCase");
-  const toggleFontSwitch = document.getElementById("toggleFont");
-  const toggleBackgroundSwitch = document.getElementById("toggleBg");
-  const info = document.querySelector(".info");
-  const textSpan = document.getElementById("text");
-
-  function getRandomValue(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
-
-  function updateDisplay(key) {
-    try {
-      const audio = new Audio("data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA");
-      audio.volume = 0.1;
-      audio.play().catch(() => {});
-    } catch (error) {
-      console.log("Audio feedback unavailable");
-    }
-
-    if (!isNaN(Number(key))) {
-      boardDiv.style.backgroundColor = getRandomValue(colorBox);
-      boardDiv.style.backgroundImage = "";
-      charDiv.textContent = key;
-      info.textContent = numberBox[key] || "Unknown";
-      return;
-    }
-
-    const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
-    if (found) {
-      info.textContent = found.value;
-      if (!toggleBackgroundSwitch.checked) {
-        boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
-        boardDiv.style.backgroundColor = "";
-      }
-    } else {
-      boardDiv.style.backgroundImage = "";
-    }
-
-    charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
-  }
-
-  function handleKeyPress(e) {
-    const key = e.key;
-    if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
-      updateDisplay(key);
-    }
-  }
-
-  toggleCaseSwitch?.addEventListener("change", (e) => {
-    isUpperCase = !e.target.checked;
-    const currentText = charDiv.textContent;
-    charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
-    textSpan.setAttribute("aria-checked", !e.target.checked);
-  });
-
-  toggleFontSwitch?.addEventListener("change", () => {
-    currentFontIndex = (currentFontIndex + 1) % fontBox.length;
-    charDiv.style.fontFamily = fontBox[currentFontIndex];
-  });
-
-  toggleBackgroundSwitch?.addEventListener("change", (e) => {
-    if (e.target.checked) {
-      mainEl.style.backgroundBlendMode = "soft-light";
-      mainEl.style.filter = "brightness(0.9)";
-      boardDiv.style.backgroundImage = "none";
-      boardDiv.style.backgroundColor =
-        getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue("--solid-bg");
-    } else {
-      mainEl.style.backgroundBlendMode = "normal";
-      mainEl.style.filter = "brightness(1)";
-      boardDiv.style.backgroundColor = "";
-    }
-  });
-
-  document.addEventListener("keydown", handleKeyPress);
-
-  console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
-</script>
