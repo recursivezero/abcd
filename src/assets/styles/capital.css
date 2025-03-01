@@ -124,7 +124,7 @@
   gap: 1rem;
   font-size: 2.25rem;
   font-weight: 700;
-  color: white;
+  color: light-dark(black, white);
 }
 
 .location-container .icon {
@@ -138,6 +138,7 @@
   border-radius: 2rem;
   font-weight: 600;
   box-shadow: var(--soft-shadow);
+  color: light-dark(black, white);
 }
 
 .location-grid {
@@ -199,12 +200,19 @@
   opacity: 0.3;
 }
 
-.location-card .location-details {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+.location-card {
+  & .location-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+    & .label{
+      font-style: italic;
+      color:light-dark(rgb(14, 62, 125), yellow);
+    }
+  }
 }
 
 /* Random card color variations - moved outside of the .location-card class */
@@ -312,3 +320,4 @@ dialog#helpModal .modal-close:hover {
   background: var(--gold-accent);
   transform: translateY(-2px);
 }
+
