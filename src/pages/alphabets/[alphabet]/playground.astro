@@ -1,0 +1,162 @@
+---
+import "@/assets/styles/alphabets/[alphabet]/playground.css";
+
+import Help from "@/components/Help.astro";
+import BaseLayout from "@/layouts/Base";
+import rawAlphabetData from "@/data/alphabets.json";
+import BackButton from "@/components/ui/backButton.astro";
+
+import { type AlphabetsData } from "@/types/alphabet";
+const alphabetData = rawAlphabetData as AlphabetsData;
+
+export async function getStaticPaths() {
+  const alphabetData = rawAlphabetData as AlphabetsData;
+  const categories = Object.keys(alphabetData);
+  return categories.map((category) => ({
+    params: { alphabet: category }
+  }));
+}
+
+const { alphabet } = Astro.params;
+const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
+---
+
+<BaseLayout meta={{ title: `${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} - Playground` }}>
+  <Fragment slot="header-right">
+    <Help
+      title={`${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} Playground`}
+      description="Press any letter key (A-Z) to see the corresponding information from the selected alphabet category."
+    />
+  </Fragment>
+
+  <BackButton />
+  <article class="tv container__typing">
+    <div id="letter" class="letter">A</div>
+    <div class="content__display">
+      <div id="emoji" class="emoji">{currentCategory.icon}</div>
+      <div id="image-container" class="image__container"></div>
+    </div>
+    <div id="spelling" class="spelling"></div>
+    <div id="description" class="description"></div>
+  </article>
+
+  <script define:vars={{ alphabetData: currentCategory.data, category: alphabet }}>
+    const letterDiv = document.getElementById("letter");
+    const emojiDiv = document.getElementById("emoji");
+    const imageContainer = document.getElementById("image-container");
+    const spellDiv = document.getElementById("spelling");
+    const descriptionDiv = document.getElementById("description");
+
+    const addClass = function (className) {
+      this.classList.add(className);
+    };
+
+    const removeClass = function (className) {
+      this.classList.remove(className);
+    };
+
+    const drawLetter = (letter, color = "pink") => {
+      letterDiv.innerHTML = letter;
+      letterDiv.style.color = color;
+    };
+
+    const drawInfo = (letter, color) => {
+      const info = alphabetData.find((item) => item.letter === letter);
+      if (info) {
+        spellDiv.style.fontSize = "";
+        spellDiv.style.marginTop = "";
+        spellDiv.style.display = "block";
+
+        spellDiv.innerHTML = info.text;
+        spellDiv.style.color = color;
+
+        document.documentElement.style.setProperty("--steps", info.text.length * 2);
+
+        // Animation handling for spelling
+        if (category !== "braille") {
+          spellDiv.classList.remove("animation");
+          void spellDiv.offsetWidth;
+          spellDiv.classList.add("animation");
+          spellDiv.style.borderRight = "3px solid";
+        } else {
+          // Skip animation for braille
+          spellDiv.classList.remove("animation");
+          spellDiv.style.borderRight = "none";
+        }
+
+        if (info.description && info.description.trim() !== "") {
+          descriptionDiv.innerHTML = info.description;
+          descriptionDiv.style.color = color;
+          descriptionDiv.style.display = "block";
+          document.documentElement.style.setProperty("--steps-desc", info.description.length * 2);
+
+          // Animation handling for description
+          descriptionDiv.classList.remove("animation");
+          void descriptionDiv.offsetWidth;
+          descriptionDiv.classList.add("animation");
+        } else {
+          descriptionDiv.classList.remove("animation");
+          descriptionDiv.innerHTML = "";
+          descriptionDiv.style.display = "none";
+        }
+
+        if (info.image) {
+          const img = new Image();
+          img.onload = function () {
+            emojiDiv.style.display = "none";
+            imageContainer.style.display = "flex";
+            imageContainer.innerHTML = "";
+            imageContainer.appendChild(img);
+
+            img.style.width = "auto";
+            img.style.height = "auto";
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = "100%";
+          };
+
+          img.src = `/assets/images/alphabets/${category}/${info.image}`;
+          img.alt = info.text;
+        } else if (info.emoji) {
+          emojiDiv.innerHTML = info.emoji;
+          emojiDiv.style.display = "block";
+          imageContainer.style.display = "none";
+        } else {
+          // Move spelling to the content display area
+          emojiDiv.style.display = "none";
+          imageContainer.style.display = "flex";
+          imageContainer.innerHTML = `<div class="content__spelling">${info.text}</div>`;
+
+          const contentSpelling = imageContainer.querySelector(".content__spelling");
+          contentSpelling.style.color = color;
+
+          // Hide original spelling div
+          spellDiv.style.display = "none";
+        }
+      }
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      spellDiv.classList.remove("animation");
+      descriptionDiv.classList.remove("animation");
+    });
+
+    const colorBox = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEEAD", "#D4A5A5", "#9B59B6", "#3498DB"];
+    const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const isAlphabet = (keyCode) => keyCode >= 65 && keyCode <= 90;
+
+    document.addEventListener(
+      "keydown",
+      (e) => {
+        e.preventDefault();
+        const color = random(colorBox);
+        const { key, keyCode } = e;
+        if (isAlphabet(keyCode)) {
+          const keyCapital = key.toUpperCase();
+          drawLetter(keyCapital, color);
+          drawInfo(keyCapital, color);
+        }
+      },
+      false
+    );
+  </script>
+</BaseLayout>
