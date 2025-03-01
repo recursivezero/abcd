@@ -77,9 +77,9 @@ const { data } = Astro.props;
 
 <script>
   // Function to collect form data and convert to JSON
-  function collectFormData(form) {
+  function collectFormData(form:any) {
     const formData = new FormData(form);
-    const data = {};
+    const data = {} as Record<string, any>;
 
     formData.forEach((value, key) => {
       if (key in data) {
@@ -104,7 +104,7 @@ const { data } = Astro.props;
   const surveyContainer = document.getElementById("surveyContainer");
 
   // Submit form handler
-  async function handleSubmit(event) {
+  async function handleSubmit(event:any) {
     event.preventDefault();
     
     // Show loading state
@@ -143,8 +143,6 @@ const { data } = Astro.props;
       event.target.reset();
     } catch (error) {
       console.error("Error submitting survey:", error);
-      alert(`Failed to submit survey: ${error.message}`);
-      
       // Reset button state
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
