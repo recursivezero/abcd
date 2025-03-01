@@ -1,9 +1,7 @@
 ---
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/barahkhadi/index.css";
-
-import { hindiConsonants } from "@/utils/common";
-import { matras } from "@/utils/common";
+import { hindiConsonants, matras } from "@/utils/common";
 import Help from "@/components/Help.astro";
 
 const consonants = [
@@ -13,7 +11,8 @@ const consonants = [
   hindiConsonants.slice(15, 20), // त, थ, द, ध, न
   hindiConsonants.slice(20, 25), // प, फ, ब, भ, म
   hindiConsonants.slice(25, 29), // य, र, ल, व
-  hindiConsonants.slice(29, 33) // श, ष, स, ह
+  hindiConsonants.slice(29, 33), // श, ष, स, ह
+  hindiConsonants.slice(33, 36) // क्ष , त्र , ज्ञ
 ];
 ---
 
@@ -47,6 +46,7 @@ const consonants = [
     }
   </div>
 </BaseLayout>
+<!--<Debug data={hindiConsonants} />-->
 
 <script>
   document.querySelectorAll(".quick-view-btn").forEach((button) => {
