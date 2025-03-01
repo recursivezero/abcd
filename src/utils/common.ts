@@ -70,6 +70,8 @@ export const varnmala_english = Array.from(Array(26), (_, i) => ({
   letter: String.fromCharCode(65 + i)
 }));
 
-export const varnmala_hindi = varnmala.filter((v) => !extraLetters.includes(v.code));
+export const varnmala_hindi = varnmala
+  .filter((v) => !extraLetters.includes(v.code))
+  .concat(additionalConsonants.map((v, i) => ({ code: 2325 + i, letter: v })));
 
 export const isAlphabet = (key: number) => (65 <= key && key <= 90) || (key >= 97 && key <= 122);
