@@ -10,7 +10,7 @@
   }
 
   & .blog-post-header::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2rem;
     left: 50%;
@@ -127,9 +127,6 @@
     margin: 3rem 0;
     border: none;
     height: 1px;
-    background: linear-gradient(90deg,
-        transparent,
-        var(--border),
-        transparent);
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
   }
 }

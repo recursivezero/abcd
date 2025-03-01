@@ -1,0 +1,216 @@
+:root {
+  --deep-blue: #0f172a;
+  --navy-blue: #1e293b;
+  --royal-blue: #1d4ed8;
+  --sky-blue: #7dd3fc;
+  --teal-accent: #2dd4bf;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+}
+
+.language-letters-container {
+  max-width: 1400px;
+  margin: 1px auto;
+  /*padding: 1rem 1rem;*/
+  /*background: var(--deep-blue);*/
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  /*box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);*/
+}
+
+.language-letters-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /*background: radial-gradient(
+    circle at 50% 50%,
+    rgba(29, 78, 216, 0.1) 0%,
+    rgba(15, 23, 42, 1) 80%
+  );*/
+  pointer-events: none;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.toggle-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--navy-blue);
+  border: 1px solid #123085;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  overflow: hidden;
+  min-width: 200px;
+  transition: background 0.3s ease;
+}
+
+.toggle-button .toggle-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  background: #123085;
+  /*background:  #2dd4bf;*/
+  border-radius: 0.75rem;
+  transition: left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.toggle-button span {
+  position: relative;
+  z-index: 1;
+  font-size: 1.25rem;
+  color: white;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.toggle-button span.active {
+  color: white;
+  transform: scale(1.1);
+}
+
+.toggle-button.toggled .toggle-slider {
+  left: 50%;
+}
+
+.language-letters-grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  position: relative;
+  z-index: 1;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .language-letters-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .language-letters-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .language-letters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.group-heading {
+  color: light-dark(#0e6157,var(--teal-accent));
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid var(--royal-blue);
+  margin-bottom: 1rem;
+  grid-column: 1 / -1;
+}
+
+.language-letters-separator {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(125, 211, 252, 0.3), transparent);
+  margin: 1.5rem 0;
+}
+
+.language-letter-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  height: 120px;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  border-radius: 0.75rem;
+  background: var(--navy-blue);
+  border: 1px solid rgba(125, 211, 252, 0.1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.language-letter-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.1) 0%, rgba(29, 78, 216, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.language-letter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-color: rgba(125, 211, 252, 0.3);
+}
+
+.language-letter-card:hover::before {
+  opacity: 1;
+}
+
+.language-letter-card-vowel {
+  border-top: 2px solid var(--royal-blue);
+}
+
+.language-letter-card-consonant {
+  border-top: 2px solid var(--teal-accent);
+}
+
+.language-letter-kannada,
+.language-letter-hindi {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    order 0.01s ease;
+}
+
+.language-letter-kannada {
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.language-letter-hindi {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  opacity: 0.9;
+}
+
+.language-letter-card.reverse .language-letter-kannada {
+  order: 2;
+  transform: scale(0.8);
+  color: var(--text-secondary);
+}
+
+.language-letter-card.reverse .language-letter-hindi {
+  order: 1;
+  transform: scale(1.6);
+  color: white;
+}

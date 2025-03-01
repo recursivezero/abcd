@@ -103,7 +103,8 @@
   box-shadow: var(--shadow-md);
 }
 
-.info-table th, .info-table td {
+.info-table th,
+.info-table td {
   padding: calc(var(--spacing-unit) * 1.2);
   border: 1px solid var(--border-color);
   color: rgba(46, 41, 55, 0.911);
@@ -176,7 +177,8 @@
     font-size: 2rem;
   }
 
-  #state-svg-container, .right-content {
+  #state-svg-container,
+  .right-content {
     flex: 1;
   }
 

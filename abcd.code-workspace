@@ -41,7 +41,7 @@
     },
     "css.lint.unknownAtRules": "ignore",
     "debug.javascript.codelens.npmScripts": "never",
-    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.ignoreTrimWhitespace": true,
     "editor.accessibilitySupport": "off",
     "editor.bracketPairColorization.enabled": true,
     "editor.codeActionsOnSave": {
@@ -73,25 +73,9 @@
       "javascript": "javascriptreact"
     },
     "eslint.options": {
-      "extensions": [
-        ".js",
-        ".jsx",
-        ".md",
-        ".mdx",
-        ".ts",
-        ".tsx",
-        ".astro"
-      ]
+      "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx", ".astro"]
     },
-    "eslint.validate": [
-      "mdx",
-      "markdown",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "astro"
-    ],
+    "eslint.validate": ["mdx", "markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "astro"],
     "explorer.compactFolders": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -119,10 +103,7 @@
     },
     "git.autofetch": true,
     "git.branchPrefix": "feature/",
-    "git.branchProtection": [
-      "develop",
-      "main"
-    ],
+    "git.branchProtection": ["develop", "main"],
     "git.branchRandomName.enable": true,
     "git.confirmSync": false,
     "git.enableCommitSigning": false,
@@ -133,9 +114,7 @@
     "js/ts.implicitProjectConfig.checkJs": true,
     "peacock.affectSideBarBorder": true,
     "peacock.color": "#abcd00",
-    "prettier.documentSelectors": [
-      "**/*.astro"
-    ],
+    "prettier.documentSelectors": ["**/*.astro"],
     "prettier.printWidth": 120,
     "prettier.quoteProps": "consistent",
     "prettier.singleQuote": false,
