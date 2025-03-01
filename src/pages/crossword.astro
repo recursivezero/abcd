@@ -1,21 +1,20 @@
 ---
 import "@/assets/styles/crossword.css";
-import crosswordData from '../../public/mocks/crossword-data.json';
-import WordSearchPuzzle from "@/components/Puzzle.astro";
-import BaseLayout from "@/layouts/Base";
 import Help from "@/components/Help.astro";
+import WordSearchPuzzle from "@/components/Puzzle.astro";
+import crosswordData from "@/data/crossword-data.json";
+import BaseLayout from "@/layouts/Base";
 
 const categories = crosswordData.categories;
 let selectedCategory = null;
-let words: any= [];
-
+let words: any = [];
 
 const selectCategory = (category: string) => {
   selectedCategory = category;
   words = (crosswordData as any).words[category] || [];
 };
-
 ---
+
 <BaseLayout meta={{ title: "Crossword" }}>
   <Fragment slot="header-right">
     <Help
@@ -24,5 +23,5 @@ const selectCategory = (category: string) => {
     />
   </Fragment>
 
-    <WordSearchPuzzle/>
+  <WordSearchPuzzle />
 </BaseLayout>
