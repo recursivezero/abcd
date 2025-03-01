@@ -25,9 +25,9 @@ const { item, category } = Astro.props;
       <div class="card__glow"></div>
     </div>
     <div class="card card__back">
-        <div class="flip__button">
-          <span class="flip__button__text" title="Flip Card">Flip Card</span>
-        </div>
+      <div class="flip__button">
+        <span class="flip__button__text" title="Flip Card">Flip Card</span>
+      </div>
       {
         item.image ? (
           <img src={`/assets/images/alphabets/${category}/${item.image}`} alt={item.letter} class="image" />

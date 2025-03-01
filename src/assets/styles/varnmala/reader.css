@@ -68,7 +68,7 @@
   cursor: pointer;
 }
 
-.speaker>span {
+.speaker > span {
   padding: 0.5rem;
   border: 1px solid var(--primary);
   border-radius: 5px;
