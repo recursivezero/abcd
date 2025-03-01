@@ -9,6 +9,7 @@ export interface AlphabetEntry {
   code: number;
   text: string;
   description: string;
+  emoji?: string;
   image?: string;
 }
 
