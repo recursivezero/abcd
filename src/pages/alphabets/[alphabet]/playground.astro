@@ -31,21 +31,21 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
 
   <BackButton />
   <article class="tv container__typing">
-    <div class="letter">A</div>
+    <div id="letter" class="letter">A</div>
     <div class="content__display">
-      <div class="emoji">{currentCategory.icon}</div>
-      <div class="image__container"></div>
+      <div id="emoji" class="emoji">{currentCategory.icon}</div>
+      <div id="image-container" class="image__container"></div>
     </div>
-    <div class="spelling" id="spelling"></div>
-    <div class="description" id="description"></div>
+    <div id="spelling" class="spelling"></div>
+    <div id="description" class="description"></div>
   </article>
 
   <script define:vars={{ alphabetData: currentCategory.data, category: alphabet }}>
-    const letterDiv = document.querySelector(".letter");
-    const emojiDiv = document.querySelector(".emoji");
-    const imageContainer = document.querySelector(".image__container");
-    const spellDiv = document.querySelector(".spelling");
-    const descriptionDiv = document.querySelector(".description");
+    const letterDiv = document.getElementById("letter");
+    const emojiDiv = document.getElementById("emoji");
+    const imageContainer = document.getElementById("image-container");
+    const spellDiv = document.getElementById("spelling");
+    const descriptionDiv = document.getElementById("description");
 
     const addClass = function (className) {
       this.classList.add(className);
@@ -63,6 +63,10 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
     const drawInfo = (letter, color) => {
       const info = alphabetData.find((item) => item.letter === letter);
       if (info) {
+        spellDiv.style.fontSize = "";
+        spellDiv.style.marginTop = "";
+        spellDiv.style.display = "block";
+
         spellDiv.innerHTML = info.text;
         spellDiv.style.color = color;
 
@@ -83,6 +87,7 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
         if (info.description && info.description.trim() !== "") {
           descriptionDiv.innerHTML = info.description;
           descriptionDiv.style.color = color;
+          descriptionDiv.style.display = "block";
           document.documentElement.style.setProperty("--steps-desc", info.description.length * 2);
 
           // Animation handling for description
@@ -92,6 +97,7 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
         } else {
           descriptionDiv.classList.remove("animation");
           descriptionDiv.innerHTML = "";
+          descriptionDiv.style.display = "none";
         }
 
         if (info.image) {
@@ -107,18 +113,24 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
             img.style.maxWidth = "100%";
             img.style.maxHeight = "100%";
           };
-          img.onerror = function () {
-            emojiDiv.style.display = "block";
-            imageContainer.style.display = "none";
-          };
+
           img.src = `/assets/images/alphabets/${category}/${info.image}`;
           img.alt = info.text;
-
+        } else if (info.emoji) {
+          emojiDiv.innerHTML = info.emoji;
           emojiDiv.style.display = "block";
           imageContainer.style.display = "none";
         } else {
-          emojiDiv.style.display = "block";
-          imageContainer.style.display = "none";
+          // Move spelling to the content display area
+          emojiDiv.style.display = "none";
+          imageContainer.style.display = "flex";
+          imageContainer.innerHTML = `<div class="content__spelling">${info.text}</div>`;
+
+          const contentSpelling = imageContainer.querySelector(".content__spelling");
+          contentSpelling.style.color = color;
+
+          // Hide original spelling div
+          spellDiv.style.display = "none";
         }
       }
     };
