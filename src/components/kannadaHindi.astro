@@ -142,7 +142,7 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
   <div class="toggle-container">
     <div class="dropdown-wrapper">
       <label class="dropdown-label">Language 1</label>
-      <select id="languageDropdown1" on:change={(e:any) => handleLanguageChange(e, true)}>
+      <select id="languageDropdown1" on:change={(e: any) => handleLanguageChange(e, true)}>
         {
           languages.map((lang) => (
             <option value={lang.code} selected={lang.code === selectedLanguage1}>
@@ -155,7 +155,7 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
 
     <div class="dropdown-wrapper">
       <label class="dropdown-label">Language 2</label>
-      <select id="languageDropdown2" on:change={(e:any) => handleLanguageChange(e, false)}>
+      <select id="languageDropdown2" on:change={(e: any) => handleLanguageChange(e, false)}>
         {
           languages.map((lang) => (
             <option value={lang.code} selected={lang.code === selectedLanguage2}>
@@ -176,7 +176,7 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
         .map((pair, index) => (
           <div key={`vowel-${index}`} class="language-letter-card language-letter-card-vowel">
             <div class="language-letter-kannada">{pair.kannada}</div>
-            <div class="language-letter-hindi">{pair.hindi}</div> 
+            <div class="language-letter-hindi">{pair.hindi}</div>
             {/*<div class="language-letter-english">{pair.english}</div> */}
           </div>
         ))
@@ -199,9 +199,9 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
 </div>
 <script>
   // Letter generation helpers
-  const generateLetters = (startCode:number, length:number, extraCodes = []) =>
+  const generateLetters = (startCode: number, length: number, extraCodes = []) =>
     Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
-      (_, i) => !extraCodes.includes((startCode + i)as never)
+      (_, i) => !extraCodes.includes((startCode + i) as never)
     );
 
   // Letter sets
@@ -221,7 +221,7 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
   let selectedLanguage1 = "hi";
   let selectedLanguage2 = "kn";
 
-  function getLetter(lang:string, type:string, index:number) {
+  function getLetter(lang: string, type: string, index: number) {
     if (lang === "en") {
       return type === "vowel" ? englishVowels[index] || "" : englishConsonants[index] || "";
     }
@@ -316,17 +316,17 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
   document.addEventListener("DOMContentLoaded", () => {
     const dropdown1 = document.getElementById("languageDropdown1") as HTMLElement;
     const dropdown2 = document.getElementById("languageDropdown2") as HTMLElement;
-    const toggleButton = document.getElementById("toggleButton")as HTMLButtonElement;
+    const toggleButton = document.getElementById("toggleButton") as HTMLButtonElement;
 
     if (dropdown1) {
-      dropdown1.addEventListener("change", (e:any) => {
+      dropdown1.addEventListener("change", (e: any) => {
         selectedLanguage1 = e.target.value;
         updateGrid();
       });
     }
 
     if (dropdown2) {
-      dropdown2.addEventListener("change", (e:any) => {
+      dropdown2.addEventListener("change", (e: any) => {
         selectedLanguage2 = e.target.value;
         updateGrid();
       });

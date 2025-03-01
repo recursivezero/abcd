@@ -12,7 +12,6 @@ const meta = {
 // Separate the states and union territories
 const stateList = locations.filter((loc) => loc.isState);
 const utList = locations.filter((loc) => !loc.isState);
-
 ---
 
 <Layout meta={meta}>
@@ -22,8 +21,5 @@ const utList = locations.filter((loc) => !loc.isState);
       description="An Interactive Journey Through India's States and Territories. "
     />
   </Fragment>
-  <LocationMosaic
-    stateList={stateList}
-    utList={utList}
-  />
+  <LocationMosaic stateList={stateList} utList={utList} />
 </Layout>
