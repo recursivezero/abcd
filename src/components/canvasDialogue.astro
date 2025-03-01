@@ -1,0 +1,216 @@
+---
+import "@/assets/styles/canvas.css";
+---
+<div class="canvas-generator">
+  <main class="controls">
+    <div class="input-area">
+      <!-- New Parent Container for alignment -->
+      <div class="label-checkbox-container">
+        <label for="name" class="input-label">Enter text</label>
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="full" />
+          <label for="full">Use Full Name</label>
+        </div>
+      </div>
+      <input type="text" id="name" class="text-input" placeholder="Type your text here..." />
+
+      <div class="color-options">
+        <div class="color-picker">
+          <label for="cardColor">Card Color:</label>
+          <select id="cardColor" class="color-select">
+            <option value="random" selected>Random</option>
+            <option value="#FF6B6B">Red</option>
+            <option value="#4ECDC4">Turquoise</option>
+            <option value="#45B7D1">Sky Blue</option>
+            <option value="#FDCB6E">Yellow</option>
+            <option value="#6C5CE7">Purple</option>
+            <option value="#A8E6CF">Mint</option>
+            <option value="#FF8ED4">Pink</option>
+          </select>
+        </div>
+        <div class="color-picker">
+          <label for="fontColor">Font Color:</label>
+          <select id="fontColor" class="color-select">
+            <option value="white" selected>White</option>
+            <option value="black">Black</option>
+            <option value="random">Random</option>
+            <option value="#FF6B6B">Red</option>
+            <option value="#4ECDC4">Turquoise</option>
+            <option value="#45B7D1">Sky Blue</option>
+            <option value="#FDCB6E">Yellow</option>
+            <option value="#6C5CE7">Purple</option>
+            <option value="#A8E6CF">Mint</option>
+            <option value="#FF8ED4">Pink</option>
+          </select>
+        </div>
+        <div class="color-picker">
+          <label for="fontFamily">Font Style:</label>
+          <select id="fontFamily" class="color-select">
+            <option value="Comic Sans MS" selected>Comic Sans MS</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Verdana">Verdana</option>
+          </select>
+        </div>
+      </div>
+      <div class="buttons">
+        <button data-variant="text" class="action-button">Draw</button>
+        <button data-variant="time" class="action-button">Clock</button>
+        <button data-variant="reset" class="action-button">Clear</button>
+        <button data-variant="resetSettings" class="action-button">Reset Settings</button>
+      </div>
+    </div>
+    <div id="canvasDiv" class="image-grid"></div>
+  </main>
+</div>
+
+<script>
+  class CanvasGenerator {
+    constructor() {
+      this.initializeElements();
+      this.bindEvents();
+    }
+
+    initializeElements() {
+      this.input = document.getElementById("name") as HTMLInputElement;
+      this.canvasContainer = document.getElementById("canvasDiv")as HTMLDivElement;
+      this.fullCheckbox = document.getElementById("full")as HTMLDivElement;
+      this.fontFamilySelect = document.getElementById("fontFamily")as HTMLDivElement;;
+    }
+
+    bindEvents() {
+      document.querySelectorAll(".action-button").forEach((button) => {
+        button.addEventListener("click", (e) => this.handleClick(e));
+      });
+    }
+
+    handleClick(event:any) {
+      const variant = event.target.dataset.variant;
+
+      switch (variant) {
+        case "text":
+          this.generateTextImage();
+          break;
+        case "time":
+          this.generateTimeImage();
+          break;
+        case "reset":
+          this.resetCanvas();
+          break;
+        case "resetSettings":
+          this.resetSettings();
+          break;
+      }
+    }
+
+    createCanvas(text:string) {
+      const canvas = document.createElement("canvas") as HTMLCanvasElement;
+      canvas.width = 300;
+      canvas.height = 200;
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      // Get selected colors
+      const cardColorSelect = document.getElementById("cardColor") as HTMLSelectElement;
+      const cardColor = cardColorSelect.value === "random" ? this.getChildFriendlyColor() : cardColorSelect.value;
+
+      const fontColorSelect = document.getElementById("fontColor") as HTMLSelectElement;
+      let fontColor = fontColorSelect.value;
+      if (fontColor === "random") {
+        fontColor = this.getRandomFontColor();
+      }
+
+      // Draw background
+      ctx.fillStyle = cardColor;
+      ctx.fillRect(0, 0, 300, 200);
+
+      // Draw text
+      ctx.font = `bold 24px ${this.fontFamilySelect.value}`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = fontColor;
+      ctx.fillText(text, 150, 100);
+
+      return canvas.toDataURL();
+    }
+
+    getChildFriendlyColor() {
+      const colors = [
+        "#FF6B6B", // Soft Red
+        "#4ECDC4", // Turquoise
+        "#45B7D1", // Sky Blue
+        "#FDCB6E", // Soft Yellow
+        "#6C5CE7", // Soft Purple
+        "#A8E6CF", // Mint Green
+        "#FF8ED4" // Soft Pink
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    getRandomFontColor() {
+      const colors = [
+        "#FFFFFF",
+        "#000000",
+        "#FF6B6B",
+        "#4ECDC4",
+        "#45B7D1",
+        "#FDCB6E",
+        "#6C5CE7",
+        "#A8E6CF",
+        "#FF8ED4"
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    generateTextImage() {
+      const text = this.input.value.trim();
+      if (!text) return;
+
+      const processedText = this.fullCheckbox.checked
+        ? text
+        : text
+            .split(" ")
+            .map((w:any) => w[0])
+            .join("")
+            .toUpperCase();
+
+      this.displayImage(this.createCanvas(processedText));
+    }
+
+    generateTimeImage() {
+      const now = new Date();
+      const timeString = [
+        now.getHours().toString().padStart(2, "0"),
+        now.getMinutes().toString().padStart(2, "0"),
+        now.getSeconds().toString().padStart(2, "0")
+      ].join(":");
+
+      this.displayImage(this.createCanvas(timeString));
+    }
+
+    displayImage(dataUrl) {
+      const img = document.createElement("img");
+      img.src = dataUrl;
+      img.alt = "Generated fun image";
+      this.canvasContainer.prepend(img);
+    }
+
+    resetCanvas() {
+      this.canvasContainer.innerHTML = "";
+      this.input.value = "";
+      this.fullCheckbox.checked = false;
+    }
+
+    resetSettings() {
+      this.fullCheckbox.checked = false;
+      (document.getElementById("cardColor") as HTMLInputElement).value = "random";
+      (document.getElementById("fontColor") as HTMLInputElement).value = "white";
+      (document.getElementById("fontFamily") as HTMLInputElement).value = "Comic Sans MS";
+    }
+  }
+
+  // Ensure the script runs after the DOM is fully loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    new CanvasGenerator();
+  });
+</script>

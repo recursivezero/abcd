@@ -12,7 +12,7 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
+  margin: auto;
   padding: 0;
 }
 
@@ -29,21 +29,22 @@
 }
 
 .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  padding: 1.5rem 2rem;
-  gap: 1rem;
-  position: relative;
-  background: rgb(224, 222, 222);
-  border: 1px solid var(--light-border);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 0.5rem;
-  margin-top: -50px;
-  border-color: #4338ca;
-  border-width: 4px;
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 50%;
+padding: 1.5rem 2rem;
+gap: 1rem;
+position: sticky; /* Make the header sticky */
+top: 0; /* Stick to the top of the viewport */
+z-index: 100; /* Ensure it stays above other content */
+background: rgb(224, 222, 222);
+border: 1px solid var(--light-border);
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+margin-bottom: 0.5rem;
+border-color: #4338ca;
+border-width: 4px;
 }
 
 .action {

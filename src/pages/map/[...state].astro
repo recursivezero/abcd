@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/Base";;
+import stateData from "@/assets/json/state.json";
+import "@/assets/styles/map/state.css";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return stateData.map((state) => ({
+    params: { state: state.id },
+    props: { stateInfo: state }
+  }));
+}
+
+const { stateInfo } = Astro.props;
+const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
+---
+
+<BaseLayout meta={{ title: `${name} - ${dance}` }}>
+  <section>
+    <div class="main-container">
+      <div id="state-svg-container">
+        <h3>{name}</h3>
+      </div>
+
+      <div class="right-content">
+        <img src={`/map/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
+        <div class="content-text">
+          <table class="info-table">
+            <tr>
+              <th colspan="2">
+                Quick Facts
+                {stateInfo.official_website && (
+                  <>
+                    <br />
+                    <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
+                      Visit the official website of {name}
+                    </a>
+                  </>
+                )}
+              </th>
+            </tr>
+            <tr><td>Dance Form</td><td>{dance}</td></tr>
+            <tr><td>Origin</td><td>{name}, India</td></tr>
+            <tr><td>Festival</td><td>{festival}</td></tr>
+            <tr>
+              <td>Description</td>
+              <td>
+                <p>{description}</p>
+                <a href={wikiLink} target="_blank" rel="noopener noreferrer">
+                  Read more about {dance} on Wikipedia
+                </a>
+              </td>
+            </tr>
+          </table>
+<!--          
+          {stateInfo.official_website && (
+            <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
+              Visit the official website of {name}
+            </a>
+          )}-->
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Load SVG when the page loads
+  document.addEventListener("DOMContentLoaded", async () => {
+    const svgContainer = document.getElementById("state-svg");
+    if (!svgContainer) return;
+
+    const svgPath = svgContainer.dataset.svgPath;
+    if (!svgPath) return;
+
+    try {
+      const response = await fetch(svgPath);
+      if (!response.ok) throw new Error("Failed to load SVG");
+      const svgContent = await response.text();
+      svgContainer.innerHTML = svgContent;
+    } catch (error) {
+      console.error("Error loading SVG:", error);
+      svgContainer.innerHTML = '<p class="error">Failed to load state map</p>';
+    }
+  });
+</script>

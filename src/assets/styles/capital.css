@@ -1,0 +1,323 @@
+:root {
+  --primary-blue: #2c3e50;
+  --soft-white: #f8f9fa;
+  --gold-accent: #ffd700;
+  --soft-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Card color options */
+  --card-color-1: #3498db;
+  --card-color-2: #2ecc71;
+  --card-color-3: #e74c3c;
+  --card-color-4: #9b59b6;
+  --card-color-5: #f39c12;
+  --card-color-6: #1abc9c;
+  --card-color-7: #d35400;
+  --card-color-8: #8e44ad;
+}
+
+.geographical-mosaic {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.hero-section {
+  position: relative;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 5rem 2rem;
+  border-radius: 1.5rem;
+  background: var(--primary-blue);
+  overflow: hidden;
+  box-shadow: var(--soft-shadow);
+}
+
+.hero-section .hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section .main-title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section .hero-subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 1rem;
+  margin-bottom: 2.5rem;
+  gap: 1rem;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  max-width: 100%;
+  border: 3px solid var(--primary-blue);
+  border-radius: 0.5rem;
+  background: var(--soft-white);
+  padding: 0.8rem;
+}
+
+.search-container #searchBar {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  color: black;
+  background: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1.75rem;
+}
+
+.search-container .search-icon {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  color: var(--primary-blue);
+}
+
+.search-container .clear-button {
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  margin-left: 0.5rem;
+}
+
+.location-container {
+  display: grid;
+  gap: 4rem;
+}
+
+.location-container .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--gold-accent);
+}
+
+.location-container .section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: light-dark(black, white);
+}
+
+.location-container .icon {
+  font-size: 1.8rem;
+}
+
+.location-container .stats-badge {
+  background: var(--primary-blue);
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  box-shadow: var(--soft-shadow);
+  color: light-dark(black, white);
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Base location card styles */
+.location-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  box-shadow: var(--soft-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.location-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);*/
+  z-index: 1;
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--hover-shadow);
+}
+
+.location-card .card-inner {
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+  min-height: 180px;
+}
+
+.location-card .location-name {
+  font-size: 1.7rem;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.location-card .location-name::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.location-card {
+  & .location-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+    & .label{
+      font-style: italic;
+      color:light-dark(rgb(14, 62, 125), yellow);
+    }
+  }
+}
+
+/* Random card color variations - moved outside of the .location-card class */
+.location-card:nth-child(8n+1) {
+  background: var(--card-color-1);
+  color: white;
+}
+
+.location-card:nth-child(8n+2) {
+  background: var(--card-color-2);
+  color: white;
+}
+
+.location-card:nth-child(8n+3) {
+  background: var(--card-color-3);
+  color: white;
+}
+
+.location-card:nth-child(8n+4) {
+  background: var(--card-color-4);
+  color: white;
+}
+
+.location-card:nth-child(8n+5) {
+  background: var(--card-color-5);
+  color: white;
+}
+
+.location-card:nth-child(8n+6) {
+  background: var(--card-color-6);
+  color: white;
+}
+
+.location-card:nth-child(8n+7) {
+  background: var(--card-color-7);
+  color: white;
+}
+
+.location-card:nth-child(8n+8) {
+  background: var(--card-color-8);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .location-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+dialog#helpModal {
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--soft-shadow);
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+dialog#helpModal .modal-content h2 {
+  margin-top: 0;
+  color: var(--primary-blue);
+}
+
+dialog#helpModal .modal-close {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--primary-blue);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+dialog#helpModal .modal-close:hover {
+  background: var(--gold-accent);
+  transform: translateY(-2px);
+}
+

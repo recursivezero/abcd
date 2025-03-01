@@ -2,8 +2,8 @@
   display: block;
   padding: 1rem;
 
-  > .moto {
+  & .moto {
     color: #3a8657;
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }

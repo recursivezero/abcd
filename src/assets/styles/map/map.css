@@ -9,10 +9,9 @@
   position: relative;
 
   & svg {
-    width: 100%;
-    height: auto;
     max-width: 100%;
   }
+
   .tooltip {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.8);
@@ -23,6 +22,7 @@
     pointer-events: none;
     z-index: 500;
     display: none;
+    transform: translate(-300%, -200%);
   }
 
   & path {
