@@ -1,0 +1,97 @@
+---
+import Layout from "@/layouts/Base";
+import Keyboard from "@/components/DrawKeyboard.astro";
+import Help from "@/components/Help.astro";
+---
+
+<Layout meta={{ title: "Draw Keyboard" }}>
+  <Fragment slot="header-right">
+    <div class="controls">
+      <label for="toggleCase" class="control-item">
+        <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
+        <span
+          id="text"
+          class="control-button case-toggle"
+          style="--content: 'A'"
+          title="Toggle case"
+          role="switch"
+          aria-checked="false">Aa</span
+        >
+      </label>
+      <label for="toggleFont" class="control-item">
+        <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
+        <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false"
+          >T</span
+        >
+      </label>
+      <label for="toggleBg" class="control-item">
+        <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
+        <span class="control-button bg-toggle" title="Toggle background" role="switch" aria-checked="false">🎨</span>
+      </label>
+    </div>
+    <Help
+      title="Draw Keyboard"
+      description="Draw letters on the keyboard by clicking and dragging through the keys. Use the controls to toggle case, font, and background."
+    />
+  </Fragment>
+  <Keyboard />
+</Layout>
+<style>
+  .controls {
+    position: absolute;
+    top: 0.7rem;
+    right: 5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .control-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .control-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--control-bg);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(67, 56, 202, 0.2);
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    font-size: 1.5rem;
+    color: black;
+    font-family: Merriweather;
+  }
+
+  .control-button::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s ease-out;
+    opacity: 0.1;
+  }
+
+  .control-button:hover::before {
+    transform: scaleX(1);
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>

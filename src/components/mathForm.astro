@@ -1,0 +1,185 @@
+---
+import "@/assets/styles/math.css";
+---
+
+
+<div class="math-practice">
+  <section class="operator-container">
+    <button class="operator-btn refresh" id="refresh" type="button">
+      <span>↻</span>
+    </button>
+    <button class="operator-btn add" id="add" type="button">
+      <span>+</span>
+    </button>
+    <button class="operator-btn subtract" id="subtract" type="button">
+      <span>−</span>
+    </button>
+    <button class="operator-btn multiply" id="multiply" type="button">
+      <span>×</span>
+    </button>
+    <button class="operator-btn divide" id="divide" type="button">
+      <span>÷</span>
+    </button>
+  </section>
+
+  <form id="mathForm" class="math-form">
+    <div class="math-problem-container">
+      <div class="number-group">
+        <input readonly type="text" inputmode="numeric" pattern="[0-9]*" id="first" class="number" value="0" />
+        <samp id="operator" class="operator">+</samp>
+        <input readonly type="text" inputmode="numeric" pattern="[0-9]*" id="second" class="number" value="0" />
+        <samp class="operator">=</samp>
+        <div class="answer-wrapper">
+          <input
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            id="output"
+            class="number output"
+            placeholder="?"
+            autofocus
+          />
+          <div id="resultIndicator" class="result-indicator"></div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Score and Next button -->
+  <div class="score-next-container">
+    <div class="score">Score: <span id="scoreDisplay">0</span></div>
+    <button class="operator-btn next" id="next" type="button">Next</button>
+  </div>
+</div>
+
+<script>
+  const firstInput = document.getElementById("first") as HTMLInputElement;
+  const secondInput = document.getElementById("second") as HTMLInputElement;
+  const output = document.getElementById("output") as HTMLInputElement;
+  const resultIndicator = document.getElementById("resultIndicator") as HTMLDivElement; 
+  const scoreDisplay = document.getElementById("scoreDisplay") as HTMLSpanElement;
+  const operator = document.getElementById("operator") as HTMLElement;
+  
+
+  const state = {
+    currentOperator: "+",
+    score: 0,
+    scoreIncrement: 10,
+    isAnswerCorrect: false // Track if the current answer is correct
+  };
+
+  function initMathPractice() {
+    updateNumbers();
+    setupEventListeners();
+  }
+
+  function generateNumber(max = 99, min = 1) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function updateNumbers() {
+    let first, second;
+
+    if (state.currentOperator === "×") {
+      first = generateNumber();
+      second = generateNumber(9); // 1-digit multiplier
+    } else if (state.currentOperator === "÷") {
+      // Ensure whole number division
+      second = generateNumber(9); // 1-digit divisor
+      const result = generateNumber(10); // 1-digit quotient
+      first = result * second; // Dividend = quotient × divisor
+    } else {
+      first = generateNumber();
+      second = generateNumber();
+    }
+    firstInput.value = first.toString();
+    secondInput.value = second.toString();
+    output.value = "";
+    resultIndicator.innerHTML = "";
+    output.focus();
+    state.isAnswerCorrect = false; // Reset the correct answer state
+  }
+
+  function updateScore() {
+    state.score += state.scoreIncrement;
+    scoreDisplay.textContent = state.score.toString();
+    scoreDisplay.classList.add("score-pop");
+    setTimeout(() => scoreDisplay.classList.remove("score-pop"), 200);
+  }
+
+  function checkAnswer() {
+    const first = parseInt(firstInput.value);
+    const second = parseInt(secondInput.value);
+    const outputValue = parseInt(output.value);
+  
+
+    if (isNaN(outputValue)) {
+      resultIndicator.innerHTML = "";
+      resultIndicator.className = "result-indicator";
+      return;
+    }
+
+    let expectedResult;
+    switch (state.currentOperator) {
+      case "+":
+        expectedResult = first + second;
+        break;
+      case "−":
+        expectedResult = first - second;
+        break;
+      case "×":
+        expectedResult = first * second;
+        break;
+      case "÷":
+        expectedResult = first / second;
+        break;
+      default:
+        expectedResult = 0;
+    }
+
+    // Check if result is integer for division
+    const isValid =
+      state.currentOperator === "÷"
+        ? Number.isInteger(expectedResult) && outputValue === expectedResult
+        : outputValue === expectedResult;
+
+    if (isValid) {
+      resultIndicator.innerHTML = "✓";
+      resultIndicator.className = "result-indicator success";
+      state.isAnswerCorrect = true; // Mark the answer as correct
+      updateScore();
+    } else {
+      resultIndicator.innerHTML = "✗";
+      resultIndicator.className = "result-indicator error";
+      state.isAnswerCorrect = false;
+    }
+  }
+
+  function setOperator(op:string) {
+    state.currentOperator = op;
+    operator.textContent = op;
+    updateNumbers();
+  }
+
+  function setupEventListeners() {
+
+    // Prevent non-numeric input in real-time
+    output.addEventListener("input", (e: any) => {
+      e.target.value = e.target.value.replace(/[^0-9]/g, "");
+      checkAnswer();
+    });
+
+    (document.getElementById("refresh") as HTMLElement).addEventListener("click", updateNumbers);
+    (document.getElementById("add")as HTMLElement).addEventListener("click", () => setOperator("+"));
+    (document.getElementById("subtract")as HTMLElement).addEventListener("click", () => setOperator("−"));
+    (document.getElementById("multiply")as HTMLElement).addEventListener("click", () => setOperator("×"));
+    (document.getElementById("divide")as HTMLElement).addEventListener("click", () => setOperator("÷"));
+    (document.getElementById("next")as HTMLElement).addEventListener("click", () => {
+      if (state.isAnswerCorrect) {
+        updateNumbers(); // Move to the next problem only if the answer is correct
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initMathPractice);
+</script>
