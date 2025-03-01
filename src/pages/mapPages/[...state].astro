@@ -28,24 +28,38 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
         <img src={`/map/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
         <div class="content-text">
           <table class="info-table">
-            <tr><th colspan="2">Quick Facts</th></tr>
+            <tr>
+              <th colspan="2">
+                Quick Facts
+                {stateInfo.official_website && (
+                  <>
+                    <br />
+                    <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
+                      Visit the official website of {name}
+                    </a>
+                  </>
+                )}
+              </th>
+            </tr>
             <tr><td>Dance Form</td><td>{dance}</td></tr>
             <tr><td>Origin</td><td>{name}, India</td></tr>
             <tr><td>Festival</td><td>{festival}</td></tr>
-            <tr
-              ><td>Description</td><td
-                ><p>{description}</p>
+            <tr>
+              <td>Description</td>
+              <td>
+                <p>{description}</p>
                 <a href={wikiLink} target="_blank" rel="noopener noreferrer">
                   Read more about {dance} on Wikipedia
-                </a></td
-              ></tr
-            >
+                </a>
+              </td>
+            </tr>
           </table>
+<!--          
           {stateInfo.official_website && (
             <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
               Visit the official website of {name}
             </a>
-          )}
+          )}-->
         </div>
       </div>
     </div>
