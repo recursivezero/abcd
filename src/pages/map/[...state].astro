@@ -44,14 +44,15 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
             <tr><td>Dance Form</td><td>{dance}</td></tr>
             <tr><td>Origin</td><td>{name}, India</td></tr>
             <tr><td>Festival</td><td>{festival}</td></tr>
-            <tr
-              ><td>Description</td><td
-                ><p>{description}</p>
+            <tr>
+              <td>Description</td>
+              <td>
+                <p>{description}</p>
                 <a href={wikiLink} target="_blank" rel="noopener noreferrer">
                   Read more about {dance} on Wikipedia
-                </a></td
-              ></tr
-            >
+                </a>
+              </td>
+            </tr>
           </table>
 <!--          
           {stateInfo.official_website && (
