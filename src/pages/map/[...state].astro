@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "@/layouts/Base";;
+import BaseLayout from "@/layouts/Base";
 import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
 
@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 
 const { stateInfo } = Astro.props;
-const { name, dance, festival, image, wikiLink, description } = stateInfo;
+const { name, dance, festival, image,svg, wikiLink, description } = stateInfo;
 ---
 
 <BaseLayout meta={{ title: `${name} - ${dance}` }}>
@@ -21,6 +21,7 @@ const { name, dance, festival, image, wikiLink, description } = stateInfo;
     <div class="main-container">
       <div id="state-svg-container">
         <h3>{name}</h3>
+        <div id="state-svg" data-svg-path={`/map/svg/${svg}`}></div>
       </div>
 
       <div class="right-content">
@@ -55,12 +56,6 @@ const { name, dance, festival, image, wikiLink, description } = stateInfo;
               </td>
             </tr>
           </table>
-          <!--          
-          {stateInfo.official_website && (
-            <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
-              Visit the official website of {name}
-            </a>
-          )}-->
         </div>
       </div>
     </div>
