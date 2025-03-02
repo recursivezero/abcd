@@ -24,9 +24,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             <div class="multiplication__popover">
               <div class="variations__grid">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((multiplier) => (
-                  <div class="variation">
-                    {number} × {multiplier} = {number * multiplier}
-                  </div>
+                  <div class="variation">{number * multiplier}</div>
                 ))}
               </div>
             </div>
