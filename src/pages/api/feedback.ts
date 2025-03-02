@@ -7,9 +7,11 @@ import path from "node:path";
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
+  console.log({ request });
   try {
     // Get the raw body and parse it manually
     const data = await request.json();
+    console.log({ data });
     const name = data.name?.trim();
     const feedback = data.feedback?.trim();
 

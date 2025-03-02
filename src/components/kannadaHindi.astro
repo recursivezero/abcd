@@ -97,44 +97,44 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   }
 };
 
-const updateUI = () => {
-  const languageLabels = document.querySelectorAll(".language-label");
-  languageLabels[0].textContent = languages.find((lang) => lang.code === selectedLanguage1)?.name || "";
-  languageLabels[1].textContent = languages.find((lang) => lang.code === selectedLanguage2)?.name || "";
+//const updateUI = () => {
+//  const languageLabels = document.querySelectorAll(".language-label");
+//  languageLabels[0].textContent = languages.find((lang) => lang.code === selectedLanguage1)?.name || "";
+//  languageLabels[1].textContent = languages.find((lang) => lang.code === selectedLanguage2)?.name || "";
 
-  document.querySelectorAll(".language-letter-card").forEach((card, index) => {
-    const pair = letterPairs[index];
-    const lang1Letter = getLetterForLanguage(pair, selectedLanguage1);
-    const lang2Letter = getLetterForLanguage(pair, selectedLanguage2);
+//  document.querySelectorAll(".language-letter-card").forEach((card, index) => {
+//    const pair = letterPairs[index];
+//    const lang1Letter = getLetterForLanguage(pair, selectedLanguage1);
+//    const lang2Letter = getLetterForLanguage(pair, selectedLanguage2);
 
-    const lang1Element = card.querySelector(".language-letter-top");
-    const lang2Element = card.querySelector(".language-letter-bottom");
+//    const lang1Element = card.querySelector(".language-letter-top");
+//    const lang2Element = card.querySelector(".language-letter-bottom");
 
-    if (lang1Element && lang2Element) {
-      lang1Element.textContent = lang1Letter;
-      lang2Element.textContent = lang2Letter;
+//    if (lang1Element && lang2Element) {
+//      lang1Element.textContent = lang1Letter;
+//      lang2Element.textContent = lang2Letter;
 
-      // Add special styling for English text
-      lang1Element.classList.toggle("english-text", selectedLanguage1 === "en");
-      lang2Element.classList.toggle("english-text", selectedLanguage2 === "en");
+//      // Add special styling for English text
+//      lang1Element.classList.toggle("english-text", selectedLanguage1 === "en");
+//      lang2Element.classList.toggle("english-text", selectedLanguage2 === "en");
 
-      // Add transliteration class for proper display of diacritical marks
-      lang1Element.classList.toggle("transliteration", selectedLanguage1 === "en");
-      lang2Element.classList.toggle("transliteration", selectedLanguage2 === "en");
-    }
-  });
-};
+//      // Add transliteration class for proper display of diacritical marks
+//      lang1Element.classList.toggle("transliteration", selectedLanguage1 === "en");
+//      lang2Element.classList.toggle("transliteration", selectedLanguage2 === "en");
+//    }
+//  });
+//};
 
-const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
-  if (event.target instanceof HTMLSelectElement) {
-    if (isFirstDropdown) {
-      selectedLanguage1 = event.target.value;
-    } else {
-      selectedLanguage2 = event.target.value;
-    }
-    updateUI();
-  }
-};
+//const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
+//  if (event.target instanceof HTMLSelectElement) {
+//    if (isFirstDropdown) {
+//      selectedLanguage1 = event.target.value;
+//    } else {
+//      selectedLanguage2 = event.target.value;
+//    }
+//    updateUI();
+//  }
+//};
 ---
 
 <div class="language-letters-container">
@@ -142,7 +142,7 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
   <div class="toggle-container">
     <div class="dropdown-wrapper">
       <label class="dropdown-label">Language 1</label>
-      <select id="languageDropdown1" on:change={(e: any) => handleLanguageChange(e, true)}>
+      <select id="languageDropdown1">
         {
           languages.map((lang) => (
             <option value={lang.code} selected={lang.code === selectedLanguage1}>
@@ -155,7 +155,7 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
 
     <div class="dropdown-wrapper">
       <label class="dropdown-label">Language 2</label>
-      <select id="languageDropdown2" on:change={(e: any) => handleLanguageChange(e, false)}>
+      <select id="languageDropdown2">
         {
           languages.map((lang) => (
             <option value={lang.code} selected={lang.code === selectedLanguage2}>
@@ -174,7 +174,7 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
       letterPairs
         .filter((pair) => pair.type === "vowel")
         .map((pair, index) => (
-          <div key={`vowel-${index}`} class="language-letter-card language-letter-card-vowel">
+          <div data-key={`vowel-${index}`} class="language-letter-card language-letter-card-vowel">
             <div class="language-letter-kannada">{pair.kannada}</div>
             <div class="language-letter-hindi">{pair.hindi}</div>
             {/*<div class="language-letter-english">{pair.english}</div> */}
@@ -189,7 +189,7 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
       letterPairs
         .filter((pair) => pair.type === "consonant")
         .map((pair, index) => (
-          <div key={`consonant-${index}`} class="language-letter-card language-letter-card-consonant">
+          <div data-key={`consonant-${index}`} class="language-letter-card language-letter-card-consonant">
             <div class="language-letter-kannada">{pair.kannada}</div>
             <div class="language-letter-hindi">{pair.hindi}</div>
           </div>
@@ -199,9 +199,9 @@ const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
 </div>
 <script>
   // Letter generation helpers
-  const generateLetters = (startCode: number, length: number, extraCodes = []) =>
+  const generateLetters = (startCode: number, length: number, extraCodes = [] as number[]) =>
     Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
-      (_, i) => !extraCodes.includes((startCode + i) as never)
+      (_, i) => !extraCodes.includes(startCode + i)
     );
 
   // Letter sets
