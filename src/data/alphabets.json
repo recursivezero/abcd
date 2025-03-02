@@ -1245,8 +1245,8 @@
         "id": 13,
         "letter": "M",
         "code": 77,
-        "text": "Mahabharata",
-        "description": "Ancient Sanskrit epic about the Kurukshetra War"
+        "text": "Murugan",
+        "description": "Tamil God also known as Kartikeya"
       },
       {
         "id": 14,
@@ -1338,6 +1338,186 @@
         "code": 90,
         "text": "Zodiac",
         "description": "Vedic astrology (Jyotish) with its unique zodiac system"
+      }
+    ]
+  },
+  "Hindi Numbers": {
+    "description": "Hindi numbers from 1 to 10",
+    "icon": "🔢",
+    "data": [
+      {
+        "id": 0,
+        "letter": "०",
+        "code": 48,
+        "emoji": " ",
+        "text": "शून्य",
+        "description": "Zero"
+      },
+      {
+        "id": 1,
+        "letter": "१",
+        "code": 49,
+        "emoji": "⠁",
+        "text": "एक",
+        "description": "One"
+      },
+      {
+        "id": 2,
+        "letter": "२",
+        "code": 50,
+        "emoji": "⠃",
+        "text": "दो",
+        "description": "Two"
+      },
+      {
+        "id": 3,
+        "letter": "३",
+        "code": 51,
+        "emoji": "⠇",
+        "text": "तीन",
+        "description": "Three"
+      },
+      {
+        "id": 4,
+        "letter": "४",
+        "code": 52,
+        "emoji": "⠏",
+        "text": "चार",
+        "description": "Four"
+      },
+      {
+        "id": 5,
+        "letter": "५",
+        "code": 53,
+        "emoji": "⠟",
+        "text": "पांच",
+        "description": "Five"
+      },
+      {
+        "id": 6,
+        "letter": "६",
+        "code": 54,
+        "emoji": "⠿",
+        "text": "छह",
+        "description": "Six"
+      },
+      {
+        "id": 7,
+        "letter": "७",
+        "code": 55,
+        "emoji": "⡿ ",
+        "text": "सात",
+        "description": "Seven"
+      },
+      {
+        "id": 8,
+        "letter": "८",
+        "code": 56,
+        "emoji": "⣿",
+        "text": "आठ",
+        "description": "Eight"
+      },
+      {
+        "id": 9,
+        "letter": "९",
+        "code": 57,
+        "emoji": "⣿⠁",
+        "text": "नौ",
+        "description": "Nine"
+      },
+      {
+        "id": 10,
+        "letter": "१०",
+        "code": 58,
+        "emoji": "⣿⠃",
+        "text": "दस",
+        "description": "Ten"
+      }
+    ]
+  },
+  "Roman Numerals": {
+    "description": "Roman numerals from 1 to 10",
+    "icon": "Ⅰ",
+    "data": [
+      {
+        "id": 1,
+        "letter": "I",
+        "code": 49,
+        "emoji": "⠁",
+        "text": "1",
+        "description": "One"
+      },
+      {
+        "id": 2,
+        "letter": "II",
+        "code": 50,
+        "emoji": "⠃",
+        "text": "2",
+        "description": "Two"
+      },
+      {
+        "id": 3,
+        "letter": "III",
+        "code": 51,
+        "emoji": "⠇",
+        "text": "3",
+        "description": "Three"
+      },
+      {
+        "id": 4,
+        "letter": "IV",
+        "code": 52,
+        "emoji": "⠏",
+        "text": "4",
+        "description": "Four"
+      },
+      {
+        "id": 5,
+        "letter": "V",
+        "code": 53,
+        "emoji": "⠟",
+        "text": "5",
+        "description": "Five"
+      },
+      {
+        "id": 6,
+        "letter": "VI",
+        "code": 54,
+        "emoji": "⠿",
+        "text": "6",
+        "description": "Six"
+      },
+      {
+        "id": 7,
+        "letter": "VII",
+        "code": 55,
+        "emoji": "⡿ ",
+        "text": "7",
+        "description": "Seven"
+      },
+      {
+        "id": 8,
+        "letter": "VIII",
+        "code": 56,
+        "emoji": "⣿",
+        "text": "8",
+        "description": "Eight"
+      },
+      {
+        "id": 9,
+        "letter": "IX",
+        "code": 57,
+        "emoji": "⣿⠁",
+        "text": "9",
+        "description": "Nine"
+      },
+      {
+        "id": 10,
+        "letter": "X",
+        "code": 58,
+        "emoji": "⣿⠃",
+        "text": "10",
+        "description": "Ten"
       }
     ]
   }

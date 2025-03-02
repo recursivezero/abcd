@@ -28,6 +28,18 @@
     {
       "name": "Keshav Mohta",
       "email": "xkeshav@gmail.com"
+    },
+    {
+      "name": "Aditya Kumar Singh",
+      "email": "adityakumarsingh710@gmail.com"
+    },
+    {
+      "name": "Vansh Raj",
+      "email": "ciphrox@gmail.com"
+    },
+    {
+      "name": "Vamil Porwal",
+      "email": "vamililporwal@gmail.com"
     }
   ],
   "keywords": [
@@ -49,12 +61,12 @@
   "dependencies": {
     "@astrojs/check": "0.9.4",
     "@astrojs/mdx": "4.0.3",
-    "@astrojs/node": "9.0.0",
+    "@astrojs/node": "9.1.2",
     "@astrojs/react": "4.1.2",
     "@astrojs/tailwind": "5.1.4",
     "@fontsource/roboto": "5.1.0",
     "@radix-ui/react-slot": "1.1.1",
-    "astro": "5.1.1",
+    "astro": "5.4.1",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.0",
     "dotenv": "^16.4.5",

@@ -207,51 +207,51 @@
     align-items: center;
     padding: 1rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-  
-    & .label{
+
+    & .label {
       font-style: italic;
-      color:light-dark(rgb(14, 62, 125), yellow);
+      color: light-dark(rgb(14, 62, 125), yellow);
     }
   }
 }
 
 /* Random card color variations - moved outside of the .location-card class */
-.location-card:nth-child(8n+1) {
+.location-card:nth-child(8n + 1) {
   background: var(--card-color-1);
   color: white;
 }
 
-.location-card:nth-child(8n+2) {
+.location-card:nth-child(8n + 2) {
   background: var(--card-color-2);
   color: white;
 }
 
-.location-card:nth-child(8n+3) {
+.location-card:nth-child(8n + 3) {
   background: var(--card-color-3);
   color: white;
 }
 
-.location-card:nth-child(8n+4) {
+.location-card:nth-child(8n + 4) {
   background: var(--card-color-4);
   color: white;
 }
 
-.location-card:nth-child(8n+5) {
+.location-card:nth-child(8n + 5) {
   background: var(--card-color-5);
   color: white;
 }
 
-.location-card:nth-child(8n+6) {
+.location-card:nth-child(8n + 6) {
   background: var(--card-color-6);
   color: white;
 }
 
-.location-card:nth-child(8n+7) {
+.location-card:nth-child(8n + 7) {
   background: var(--card-color-7);
   color: white;
 }
 
-.location-card:nth-child(8n+8) {
+.location-card:nth-child(8n + 8) {
   background: var(--card-color-8);
   color: white;
 }
@@ -320,4 +320,3 @@ dialog#helpModal .modal-close:hover {
   background: var(--gold-accent);
   transform: translateY(-2px);
 }
-

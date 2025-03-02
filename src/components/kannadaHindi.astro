@@ -98,33 +98,33 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   }
 };
 
-const updateUI = () => {
-  const languageLabels = document.querySelectorAll(".language-label");
-  languageLabels[0].textContent = languages.find((lang) => lang.code === selectedLanguage1)?.name || "";
-  languageLabels[1].textContent = languages.find((lang) => lang.code === selectedLanguage2)?.name || "";
+//const updateUI = () => {
+//  const languageLabels = document.querySelectorAll(".language-label");
+//  languageLabels[0].textContent = languages.find((lang) => lang.code === selectedLanguage1)?.name || "";
+//  languageLabels[1].textContent = languages.find((lang) => lang.code === selectedLanguage2)?.name || "";
 
-  document.querySelectorAll(".language-letter-card").forEach((card, index) => {
-    const pair = letterPairs[index];
-    const lang1Letter = getLetterForLanguage(pair, selectedLanguage1);
-    const lang2Letter = getLetterForLanguage(pair, selectedLanguage2);
+//  document.querySelectorAll(".language-letter-card").forEach((card, index) => {
+//    const pair = letterPairs[index];
+//    const lang1Letter = getLetterForLanguage(pair, selectedLanguage1);
+//    const lang2Letter = getLetterForLanguage(pair, selectedLanguage2);
 
-    const lang1Element = card.querySelector(".language-letter-top");
-    const lang2Element = card.querySelector(".language-letter-bottom");
+//    const lang1Element = card.querySelector(".language-letter-top");
+//    const lang2Element = card.querySelector(".language-letter-bottom");
 
-    if (lang1Element && lang2Element) {
-      lang1Element.textContent = lang1Letter;
-      lang2Element.textContent = lang2Letter;
+//    if (lang1Element && lang2Element) {
+//      lang1Element.textContent = lang1Letter;
+//      lang2Element.textContent = lang2Letter;
 
-      // Add special styling for English text
-      lang1Element.classList.toggle("english-text", selectedLanguage1 === "en");
-      lang2Element.classList.toggle("english-text", selectedLanguage2 === "en");
+//      // Add special styling for English text
+//      lang1Element.classList.toggle("english-text", selectedLanguage1 === "en");
+//      lang2Element.classList.toggle("english-text", selectedLanguage2 === "en");
 
-      // Add transliteration class for proper display of diacritical marks
-      lang1Element.classList.toggle("transliteration", selectedLanguage1 === "en");
-      lang2Element.classList.toggle("transliteration", selectedLanguage2 === "en");
-    }
-  });
-};
+//      // Add transliteration class for proper display of diacritical marks
+//      lang1Element.classList.toggle("transliteration", selectedLanguage1 === "en");
+//      lang2Element.classList.toggle("transliteration", selectedLanguage2 === "en");
+//    }
+//  });
+//};
 
 const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
   if (event.target instanceof HTMLSelectElement) {
@@ -226,9 +226,9 @@ const toggleLanguages = () => {
 </div>
 <script>
   // Letter generation helpers
-  const generateLetters = (startCode:number, length:number, extraCodes = []) =>
+  const generateLetters = (startCode: number, length: number, extraCodes = [] as number[]) =>
     Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
-      (_, i) => !extraCodes.includes((startCode + i)as never)
+      (_, i) => !extraCodes.includes(startCode + i)
     );
 
   // Letter sets
@@ -256,7 +256,7 @@ const toggleLanguages = () => {
   let selectedLanguage2 = "kn";
   let isReversed = false;
 
-  function getLetter(lang:string, type:string, index:number) {
+  function getLetter(lang: string, type: string, index: number) {
     if (lang === "en") {
       return type === "vowel" ? englishVowels[index] || "" : englishConsonants[index] || "";
     }
@@ -350,16 +350,17 @@ const toggleLanguages = () => {
     const dropdown1 = document.getElementById("languageDropdown1") as HTMLElement;
     const dropdown2 = document.getElementById("languageDropdown2") as HTMLElement;
     const toggleButton = document.getElementById("toggleButton") as HTMLButtonElement;
+    const toggleButton = document.getElementById("toggleButton") as HTMLButtonElement;
 
     if (dropdown1) {
-      dropdown1.addEventListener("change", (e:any) => {
+      dropdown1.addEventListener("change", (e: any) => {
         selectedLanguage1 = e.target.value;
         updateGrid();
       });
     }
 
     if (dropdown2) {
-      dropdown2.addEventListener("change", (e:any) => {
+      dropdown2.addEventListener("change", (e: any) => {
         selectedLanguage2 = e.target.value;
         updateGrid();
       });

@@ -119,7 +119,7 @@ const { stateList, utList } = Astro.props;
     const cards = document.querySelectorAll(".location-card") as NodeListOf<HTMLElement>;
 
     cards.forEach((card) => {
-      const name = (card.querySelector(".location-name")as any).textContent.toLowerCase();
+      const name = (card.querySelector(".location-name") as any).textContent.toLowerCase();
       card.style.display = name.startsWith(query) ? "" : "none";
     });
 
