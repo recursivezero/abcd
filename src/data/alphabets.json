@@ -9,14 +9,14 @@
         "code": 65,
         "text": "Apple",
         "description": "",
-        "emoji" : "🍎"
+        "emoji": "🍎"
       },
       {
         "id": 2,
         "letter": "B",
         "code": 66,
         "text": "Bat",
-        "emoji" : "🦇",
+        "emoji": "🦇",
         "description": ""
       },
       {
@@ -24,7 +24,7 @@
         "letter": "C",
         "code": 67,
         "text": "Cat",
-        "emoji" : "🐱",
+        "emoji": "🐱",
         "description": ""
       },
       {
@@ -32,7 +32,7 @@
         "letter": "D",
         "code": 68,
         "text": "Dog",
-        "emoji" : "🐶",
+        "emoji": "🐶",
         "description": ""
       },
       {
@@ -40,7 +40,7 @@
         "letter": "E",
         "code": 69,
         "text": "Elephant",
-        "emoji" : "🐘",
+        "emoji": "🐘",
         "description": ""
       },
       {
@@ -48,7 +48,7 @@
         "letter": "F",
         "code": 70,
         "text": "Fish",
-        "emoji" : "🐟",
+        "emoji": "🐟",
         "description": ""
       },
       {
@@ -56,7 +56,7 @@
         "letter": "G",
         "code": 71,
         "text": "Goat",
-        "emoji" : "🐐",
+        "emoji": "🐐",
         "description": ""
       },
       {
@@ -64,7 +64,7 @@
         "letter": "H",
         "code": 72,
         "text": "Hat",
-        "emoji" : "🎩",
+        "emoji": "🎩",
         "description": ""
       },
       {
@@ -72,7 +72,7 @@
         "letter": "I",
         "code": 73,
         "text": "Ice",
-        "emoji" : "🧊",
+        "emoji": "🧊",
         "description": ""
       },
       {
@@ -80,7 +80,7 @@
         "letter": "J",
         "code": 74,
         "text": "Jug",
-        "emoji" : "🏺",
+        "emoji": "🏺",
         "description": ""
       },
       {
@@ -88,7 +88,7 @@
         "letter": "K",
         "code": 75,
         "text": "Kite",
-        "emoji" : "🪁",
+        "emoji": "🪁",
         "description": ""
       },
       {
@@ -96,7 +96,7 @@
         "letter": "L",
         "code": 76,
         "text": "Lamp",
-        "emoji" : "💡",
+        "emoji": "💡",
         "description": ""
       },
       {
@@ -104,7 +104,7 @@
         "letter": "M",
         "code": 77,
         "text": "Moon",
-        "emoji" : "🌙",
+        "emoji": "🌙",
         "description": ""
       },
       {
@@ -112,7 +112,7 @@
         "letter": "N",
         "code": 78,
         "text": "Nest",
-        "emoji" : "🐣",
+        "emoji": "🐣",
         "description": ""
       },
       {
@@ -120,7 +120,7 @@
         "letter": "O",
         "code": 79,
         "text": "Orange",
-        "emoji" : "🍊",
+        "emoji": "🍊",
         "description": ""
       },
       {
@@ -128,7 +128,7 @@
         "letter": "P",
         "code": 80,
         "text": "Pen",
-        "emoji" : "🖊️",
+        "emoji": "🖊️",
         "description": ""
       },
       {
@@ -136,7 +136,7 @@
         "letter": "Q",
         "code": 81,
         "text": "Queen",
-        "emoji" : "👑",
+        "emoji": "👑",
         "description": ""
       },
       {
@@ -144,7 +144,7 @@
         "letter": "R",
         "code": 82,
         "text": "Rat",
-        "emoji" : "🐀",
+        "emoji": "🐀",
         "description": ""
       },
       {
@@ -152,7 +152,7 @@
         "letter": "S",
         "code": 83,
         "text": "Sun",
-        "emoji" : "☀️",
+        "emoji": "☀️",
         "description": ""
       },
       {
@@ -160,7 +160,7 @@
         "letter": "T",
         "code": 84,
         "text": "Tree",
-        "emoji" : "🌳",
+        "emoji": "🌳",
         "description": ""
       },
       {
@@ -168,7 +168,7 @@
         "letter": "U",
         "code": 85,
         "text": "Umbrella",
-        "emoji" : "☂️",
+        "emoji": "☂️",
         "description": ""
       },
       {
@@ -176,7 +176,7 @@
         "letter": "V",
         "code": 86,
         "text": "Van",
-        "emoji" : "🚐",
+        "emoji": "🚐",
         "description": ""
       },
       {
@@ -184,7 +184,7 @@
         "letter": "W",
         "code": 87,
         "text": "Watch",
-        "emoji" : "⌚",
+        "emoji": "⌚",
         "description": ""
       },
       {
@@ -192,7 +192,7 @@
         "letter": "X",
         "code": 88,
         "text": "xerox",
-        "emoji" : "🖨️",
+        "emoji": "🖨️",
         "description": ""
       },
       {
@@ -200,7 +200,7 @@
         "letter": "Y",
         "code": 89,
         "text": "Yacht",
-        "emoji" : "⛵",
+        "emoji": "⛵",
         "description": ""
       },
       {
@@ -208,7 +208,7 @@
         "letter": "Z",
         "code": 90,
         "text": "Zebra",
-        "emoji" : "🦓",
+        "emoji": "🦓",
         "description": ""
       }
     ]
