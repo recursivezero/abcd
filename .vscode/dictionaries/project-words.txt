@@ -42,5 +42,6 @@ threadzip
 Threazip
 vaul
 venv
+Verdana
 waitlist
 werkzeug

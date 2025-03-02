@@ -15,7 +15,11 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "lib": ["es2022", "dom", "dom.iterable"],
+    "lib": [
+      "es2022",
+      "dom",
+      "dom.iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true,
@@ -24,21 +28,52 @@
     "strict": true,
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
+    "strictPropertyInitialization": false,
     "target": "ESNext",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/assets/*": ["src/assets/*"],
-      "@/components/*": ["src/components/*"],
-      "@/layouts/*": ["src/layouts/*.astro"],
-      "@/utils/*": ["src/utils/*"],
-      "@/libs": ["src/libs/index.ts"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/types": ["src/types/index.ts"],
-      "@/mocks/*": ["src/mocks/*"],
-      "@/site-config": ["src/site.config.ts"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@/assets/*": [
+        "src/assets/*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/layouts/*": [
+        "src/layouts/*.astro"
+      ],
+      "@/utils/*": [
+        "src/utils/*"
+      ],
+      "@/libs": [
+        "src/libs/index.ts"
+      ],
+      "@/hooks/*": [
+        "src/hooks/*"
+      ],
+      "@/types": [
+        "src/types/index.ts"
+      ],
+      "@/mocks/*": [
+        "src/mocks/*"
+      ],
+      "@/site-config": [
+        "src/site.config.ts"
+      ]
     },
     "verbatimModuleSyntax": true
   },
-  "include": ["src", "*.ts", "*.tsx"],
-  "exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist", ".eslintrc.mjs"]
+  "include": [
+    "src",
+    "*.ts",
+    "*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    ".vscode",
+    "dist",
+    ".eslintrc.mjs"
+  ]
 }
