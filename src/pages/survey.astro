@@ -2,11 +2,10 @@
 import SurveyForm from "@/components/surveyForm.astro";
 import BaseLayout from "@/layouts/Base";
 import type { SurveyData } from "@/types";
-import { Debug } from "astro:components";
 import surveyData from "../data/survey.json";
 ---
 
-<Debug data={surveyData} />
+<!--<Debug data={surveyData} />-->
 <BaseLayout meta={{ title: "Survey Form" }}>
   <SurveyForm data={surveyData as SurveyData} />
 </BaseLayout>
