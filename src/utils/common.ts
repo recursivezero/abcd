@@ -56,7 +56,6 @@ export const matras = {
 };
 
 export const barahkhadi = (code: number) => {
-  console.log({ code });
   const sanyukat = Object.values(matras);
   const list = [String.fromCharCode(code)];
   return list.concat(sanyukat);
