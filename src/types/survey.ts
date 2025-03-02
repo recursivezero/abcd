@@ -3,7 +3,7 @@ export type Question = {
   id: number;
   questionText: string;
   type: "singleChoice" | "multiChoice" | "openEnded";
-  options: string[] | null;
+  options: string[];
 };
 
 export type SurveyData = {
