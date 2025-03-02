@@ -46,13 +46,13 @@ export const matras = {
   ee: String.fromCharCode(2368),
   u: String.fromCharCode(2369),
   uu: String.fromCharCode(2370),
+  ru: String.fromCharCode(2371),
   ae: String.fromCharCode(2375),
   aie: String.fromCharCode(2376),
   au: String.fromCharCode(2379),
   aau: String.fromCharCode(2380),
   an: String.fromCharCode(2306),
-  ah: String.fromCharCode(2307),
-  ru: String.fromCharCode(2371)
+  ah: String.fromCharCode(2307)
 };
 
 export const barahkhadi = (code: number) => {
