@@ -9,6 +9,8 @@ import BackButton from "@/components/ui/backButton.astro";
 import { type AlphabetsData } from "@/types/alphabet";
 const alphabetData = rawAlphabetData as AlphabetsData;
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const alphabetData = rawAlphabetData as AlphabetsData;
   const categories = Object.keys(alphabetData);
