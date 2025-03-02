@@ -1,6 +1,7 @@
 ---
-import type { SurveyData } from "../types/survey";
+import type { SurveyData } from "@/types";
 import "@/assets/styles/survey.css";
+
 interface Props {
   data: SurveyData;
 }
@@ -57,9 +58,7 @@ const { data } = Astro.props;
 
         <div class="survey-controls">
           <button type="submit" class="submit-btn">Submit Survey</button>
-          <button type="button" class="download-btn" id="downloadResults">
-            Download Results
-          </button>
+          <button type="button" class="download-btn" id="downloadResults"> Download Results </button>
         </div>
       </form>
     </div>
@@ -77,7 +76,7 @@ const { data } = Astro.props;
 
 <script>
   // Function to collect form data and convert to JSON
-  function collectFormData(form:any) {
+  function collectFormData(form: any) {
     const formData = new FormData(form);
     const data = {} as Record<string, any>;
 
@@ -104,20 +103,20 @@ const { data } = Astro.props;
   const surveyContainer = document.getElementById("surveyContainer");
 
   // Submit form handler
-  async function handleSubmit(event:any) {
+  async function handleSubmit(event: any) {
     event.preventDefault();
-    
+
     // Show loading state
-    const submitBtn = event.target.querySelector('.submit-btn');
+    const submitBtn = event.target.querySelector(".submit-btn");
     const originalText = submitBtn.textContent;
     submitBtn.textContent = "Submitting...";
     submitBtn.disabled = true;
-    
+
     try {
       // Collect form data
       const formData = collectFormData(event.target);
       console.log("Form data collected:", formData);
-      
+
       // Send data to the API
       const response = await fetch("/api/survey", {
         method: "POST",
@@ -126,19 +125,19 @@ const { data } = Astro.props;
         },
         body: JSON.stringify(formData)
       });
-      
+
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Server error: ${response.status} - ${errorText}`);
       }
-      
+
       const result = await response.json();
       console.log("API response:", result);
-      
+
       // Show thank you page
       if (surveyContainer) surveyContainer.style.display = "none";
       if (thankYouPage) thankYouPage.style.display = "block";
-      
+
       // Reset the form
       event.target.reset();
     } catch (error) {
@@ -152,13 +151,13 @@ const { data } = Astro.props;
   // Download results handler
   function handleDownload() {
     if (!surveyForm) return;
-    
+
     const formData = collectFormData(surveyForm);
     const jsonData = JSON.stringify(formData, null, 2);
-    
+
     const blob = new Blob([jsonData], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    
+
     const link = document.createElement("a");
     link.href = url;
     link.download = "survey_results.json";
@@ -178,11 +177,11 @@ const { data } = Astro.props;
   if (surveyForm) {
     surveyForm.addEventListener("submit", handleSubmit);
   }
-  
+
   if (downloadBtn) {
     downloadBtn.addEventListener("click", handleDownload);
   }
-  
+
   if (returnBtn) {
     returnBtn.addEventListener("click", handleReturn);
   }
@@ -191,6 +190,4 @@ const { data } = Astro.props;
   console.log("Survey script initialized");
 </script>
 
-<style>
-
-</style>
+<style></style>

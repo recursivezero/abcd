@@ -2,6 +2,8 @@
   padding: 2rem 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
+  height: calc(100vh - 10rem);
+  overflow: scroll;
 
   & .alphabets__header {
     text-align: center;

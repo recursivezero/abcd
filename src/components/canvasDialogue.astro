@@ -1,6 +1,7 @@
 ---
 import "@/assets/styles/canvas.css";
 ---
+
 <div class="canvas-generator">
   <main class="controls">
     <div class="input-area">
@@ -67,6 +68,11 @@ import "@/assets/styles/canvas.css";
 
 <script>
   class CanvasGenerator {
+    input: HTMLInputElement;
+    canvasContainer: HTMLDivElement;
+    fullCheckbox: HTMLInputElement;
+    fontFamilySelect: HTMLSelectElement;
+
     constructor() {
       this.initializeElements();
       this.bindEvents();
@@ -74,9 +80,9 @@ import "@/assets/styles/canvas.css";
 
     initializeElements() {
       this.input = document.getElementById("name") as HTMLInputElement;
-      this.canvasContainer = document.getElementById("canvasDiv")as HTMLDivElement;
-      this.fullCheckbox = document.getElementById("full")as HTMLDivElement;
-      this.fontFamilySelect = document.getElementById("fontFamily")as HTMLDivElement;;
+      this.canvasContainer = document.getElementById("canvasDiv") as HTMLDivElement;
+      this.fullCheckbox = document.getElementById("full") as HTMLInputElement;
+      this.fontFamilySelect = document.getElementById("fontFamily") as HTMLSelectElement;
     }
 
     bindEvents() {
@@ -85,8 +91,9 @@ import "@/assets/styles/canvas.css";
       });
     }
 
-    handleClick(event:any) {
-      const variant = event.target.dataset.variant;
+    handleClick(event: Event) {
+      const target = event.target as HTMLElement;
+      const variant = target.dataset.variant;
 
       switch (variant) {
         case "text":
@@ -104,7 +111,7 @@ import "@/assets/styles/canvas.css";
       }
     }
 
-    createCanvas(text:string) {
+    createCanvas(text: string) {
       const canvas = document.createElement("canvas") as HTMLCanvasElement;
       canvas.width = 300;
       canvas.height = 200;
@@ -170,7 +177,7 @@ import "@/assets/styles/canvas.css";
         ? text
         : text
             .split(" ")
-            .map((w:any) => w[0])
+            .map((w: string) => w[0])
             .join("")
             .toUpperCase();
 
@@ -188,7 +195,7 @@ import "@/assets/styles/canvas.css";
       this.displayImage(this.createCanvas(timeString));
     }
 
-    displayImage(dataUrl) {
+    displayImage(dataUrl: string) {
       const img = document.createElement("img");
       img.src = dataUrl;
       img.alt = "Generated fun image";
@@ -203,9 +210,9 @@ import "@/assets/styles/canvas.css";
 
     resetSettings() {
       this.fullCheckbox.checked = false;
-      (document.getElementById("cardColor") as HTMLInputElement).value = "random";
-      (document.getElementById("fontColor") as HTMLInputElement).value = "white";
-      (document.getElementById("fontFamily") as HTMLInputElement).value = "Comic Sans MS";
+      (document.getElementById("cardColor") as HTMLSelectElement).value = "random";
+      (document.getElementById("fontColor") as HTMLSelectElement).value = "white";
+      (document.getElementById("fontFamily") as HTMLSelectElement).value = "Comic Sans MS";
     }
   }
 

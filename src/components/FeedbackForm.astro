@@ -31,7 +31,7 @@ import "@/assets/styles/feedback.css";
 </div>
 
 <script>
-  const form = document.getElementById("feedbackForm")as HTMLFormElement;
+  const form = document.getElementById("feedbackForm") as HTMLFormElement;
   const errorDiv = document.getElementById("errorMessage") as HTMLDivElement;
   const submitButton = document.getElementById("submitButton") as HTMLButtonElement;
 
@@ -44,14 +44,20 @@ import "@/assets/styles/feedback.css";
     e.preventDefault();
     errorDiv.style.display = "none";
 
-    const formData = Object.fromEntries(new FormData(form));
+    const formData = new FormData(form);
+    const userName = formData.get("name") as string;
+    const feedback = formData.get("feedback") as string;
+
+    console.log({ formData, userName, feedback });
+
+    console.log(formData.entries());
 
     // Client-side validation
-    if (formData.name.trim().length < 2) {
+    if (userName.trim().length < 2) {
       showError("Name must be at least 2 characters long.");
       return;
     }
-    if (formData.feedback.trim().length < 10) {
+    if (feedback.trim().length < 10) {
       showError("Feedback must be at least 10 characters long.");
       return;
     }
@@ -60,12 +66,12 @@ import "@/assets/styles/feedback.css";
     submitButton.textContent = "Submitting...";
 
     try {
-      const response = await fetch("/api/submit-feedback", {
+      const response = await fetch("/api/feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(Object.fromEntries(formData))
       });
 
       if (response.ok) {

@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/seeknhide.css"
+import "@/assets/styles/seeknhide.css";
 const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
 ---
 
@@ -43,12 +43,12 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
     "#00BFA5", // Mint
     "#D81B60", // Cranberry
     "#1E88E5", // Ocean Blue
-    "#43A047"  // Forest Green
+    "#43A047" // Forest Green
   ];
 
   const defaultColor = "#0b1f54";
   const words = document.querySelectorAll(".word") as NodeListOf<HTMLElement>;
-  
+
   // Track active letter elements
   const activeLetters = new Set();
 
@@ -66,13 +66,13 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
         word.style.background = getRandomColor();
       }
     });
-    
+
     word.addEventListener("mouseleave", () => {
       if (!word.classList.contains("active")) {
         word.style.background = defaultColor;
       }
     });
-    
+
     // Add click functionality to toggle letter visibility
     word.addEventListener("click", () => {
       toggleLetterVisibility(word);
@@ -81,7 +81,7 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
 
   function toggleLetterVisibility(wordElement: HTMLElement) {
     const letter = wordElement.getAttribute("data-letter");
-    
+
     if (wordElement.classList.contains("active")) {
       // Hide the letter
       wordElement.classList.remove("active");

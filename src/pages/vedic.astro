@@ -71,7 +71,7 @@ const timeUnits = vedicData.time_units;
   </div>
 </BaseLayout>
 
-<script define:vars={{ timeUnits }}>
+<script is:inline define:vars={{ timeUnits }}>
   function convert(value, fromUnit, toUnit) {
     const from = timeUnits.find((u) => u.name === fromUnit);
     const to = timeUnits.find((u) => u.name === toUnit);
