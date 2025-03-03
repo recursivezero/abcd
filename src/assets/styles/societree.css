@@ -1,4 +1,7 @@
 .container__family {
+  height: calc(100vh - 5rem);
+  overflow-y: auto;
+  
   & .hero {
     display: flex;
     justify-content: space-between;
