@@ -4,6 +4,7 @@ import "@/assets/styles/page.css";
 import { blogSchema } from "@/content.config";
 import BaseLayout from "@/layouts/Base";
 import { getCollection, getEntry, render } from "astro:content";
+
 export const prerender = true;
 
 export async function getStaticPaths() {

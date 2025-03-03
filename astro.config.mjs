@@ -37,6 +37,6 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"]
     }
-  },
-  adapter: node({ mode: "standalone" })
+  }
+  //adapter: node({ mode: "standalone" })
 });
