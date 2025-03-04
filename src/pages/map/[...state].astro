@@ -2,28 +2,30 @@
 import BaseLayout from "@/layouts/Base";
 import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
-
 export const prerender = true;
-
 export function getStaticPaths() {
   return stateData.map((state) => ({
     params: { state: state.id },
     props: { stateInfo: state }
   }));
 }
-
 const { stateInfo } = Astro.props;
-const { name, dance, festival, image,svg, wikiLink, description } = stateInfo;
+const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 ---
-
 <BaseLayout meta={{ title: `${name} - ${dance}` }}>
   <section>
+    <div class="back-button-container">
+      <button 
+        onclick="window.history.back()" 
+        class="back-button">
+        ← Back to Previous Page
+      </button>
+    </div>
     <div class="main-container">
       <div id="state-svg-container">
         <h3>{name}</h3>
         <div id="state-svg" data-svg-path={`/map/svg/${svg}`}></div>
       </div>
-
       <div class="right-content">
         <img src={`/map/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
         <div class="content-text">
@@ -61,16 +63,29 @@ const { name, dance, festival, image,svg, wikiLink, description } = stateInfo;
     </div>
   </section>
 </BaseLayout>
-
+<style>
+  .back-button-container {
+    margin-bottom: 20px;
+  }
+  .back-button {
+    background-color:  #123085;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .back-button:hover {
+    background-color: #e0e0e0;
+  }
+</style>
 <script>
   // Load SVG when the page loads
   document.addEventListener("DOMContentLoaded", async () => {
     const svgContainer = document.getElementById("state-svg");
     if (!svgContainer) return;
-
     const svgPath = svgContainer.dataset.svgPath;
     if (!svgPath) return;
-
     try {
       const response = await fetch(svgPath);
       if (!response.ok) throw new Error("Failed to load SVG");

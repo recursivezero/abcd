@@ -9,80 +9,283 @@ const meta = {
   description: "Switch between a hide & seek letter game and a grid."
 };
 ---
-
 <Layout meta={meta}>
   <Fragment slot="header-right">
-    <button id="toggle-button" class="toggle-button"> KeyBoard game </button>
     <Help
       title="Hide & Seek Game"
       description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
     />
   </Fragment>
+  
+  <div class="game-page-container">
+    <div id="game-selection" class="game-selection-container">
+      <div class="game-cards">
+        <div 
+          class="game-card seeknhide-card"
+          data-route="seeknhide"
+        >
+          <div class="game-card-content">
+            <div class="game-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+                <path d="M14 7h-4v4h4V7Z" stroke-dasharray="1 2" />
+              </svg>
+            </div>
+            <h2 class="game-card-title">Grid Game</h2>
+            <p class="game-card-description">Explore an interactive grid-based hide and seek challenge</p>
+          </div>
+        </div>
 
-  <div class="box">
-    <div id="component-game">
-      <SeekAndHide />
+        <div 
+          class="game-card hidenseek-card"
+          data-route="hidenseek"
+        >
+          <div class="game-card-content">
+            <div class="game-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <line x1="6" y1="8" x2="10" y2="8" />
+                <line x1="14" y1="8" x2="18" y2="8" />
+                <line x1="6" y1="12" x2="10" y2="12" />
+                <line x1="14" y1="12" x2="18" y2="12" />
+                <path d="M10 16h4" stroke-dasharray="1 2" />
+              </svg>
+            </div>
+            <h2 class="game-card-title">Keyboard Game</h2>
+            <p class="game-card-description">Play a fun letter hiding game using your keyboard</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="component-state" style="display: none;">
-      <HideSeekGame />
+
+    <div id="game-container" class="game-container">
+      <div id="seeknhide-game" class="game-wrapper" style="display: none;">
+        <div class="game-header">
+          <button id="back-to-selection" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            Back to Games
+          </button>
+        </div>
+        <SeekAndHide />
+      </div>
+      <div id="hidenseek-game" class="game-wrapper" style="display: none;">
+        <div class="game-header">
+          <button id="back-to-selection" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            Back to Games
+          </button>
+        </div>
+        <HideSeekGame />
+      </div>
     </div>
   </div>
 </Layout>
 
 <style>
-  .box {
+  .game-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*justify-content: center;*/
-    margin:auto;
-    margin-top:0;
-
-    
+    justify-content: flex-start;
+    min-height: 100vh;
+    width: 100%;
+    padding: 2rem 2rem 4rem;
+    box-sizing: border-box;
   }
-  .toggle-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    background: #123085;
+
+  .game-selection-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+
+  .game-cards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .game-card {
+    flex: 1;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .game-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform 0.4s ease;
+  }
+
+  .game-card-icon {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+    color: #123085;
+    opacity: 0.9;
+    transition: all 0.4s ease;
+  }
+
+  .game-card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #123085;
+    margin-bottom: 1rem;
+    transition: color 0.4s ease;
+  }
+
+  .game-card-description {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    transition: color 0.4s ease;
+  }
+
+  .game-card:hover {
+    transform: translateY(-15px) rotateX(10deg);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  }
+
+  .game-card:hover::before {
+    opacity: 1;
+  }
+
+  .game-card:hover .game-card-icon {
+    transform: scale(1.1);
+    color: #1e40af;
+  }
+
+  .seeknhide-card {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  }
+
+  .hidenseek-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  }
+
+  .game-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+
+  .game-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .game-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #123085;
+    color: white;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition:
-      background 0.3s ease,
-      transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-right: 2rem;
+    transition: background-color 0.3s ease;
   }
 
-  .toggle-button:hover {
-    transform: scale(1.05);
+  .back-button:hover {
+    background-color: #1e40af;
   }
 
-  .toggle-button:active {
-    transform: scale(0.95);
+  .back-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .game-cards {
+      flex-direction: column;
+    }
   }
 </style>
 
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggleButton = document.getElementById("toggle-button");
-    const gameContainer = document.getElementById("component-game");
-    const stateContainer = document.getElementById("component-state");
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const gameCards = document.querySelectorAll('.game-card');
+    const gameSelection = document.getElementById('game-selection');
+    const seeknhideGame = document.getElementById('seeknhide-game');
+    const hidenseekGame = document.getElementById('hidenseek-game');
+    const backButtons = document.querySelectorAll('#back-to-selection');
 
-    toggleButton.addEventListener("click", () => {
-      if (gameContainer.style.display === "none") {
-        // Show the HideSeekGame and hide the SeekAndHide component
-        gameContainer.style.display = "block";
-        stateContainer.style.display = "none";
-        toggleButton.textContent = "Keyboard game";
-      } else {
-        // Hide the HideSeekGame and show the SeekAndHide component
-        gameContainer.style.display = "none";
-        stateContainer.style.display = "block";
-        toggleButton.textContent = "Grid game";
-      }
+    gameCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const route = card.getAttribute('data-route');
+        
+        // Hide game selection
+        gameSelection.style.display = 'none';
+
+        // Show the selected game
+        if (route === 'seeknhide') {
+          seeknhideGame.style.display = 'flex';
+          hidenseekGame.style.display = 'none';
+        } else if (route === 'hidenseek') {
+          hidenseekGame.style.display = 'flex';
+          seeknhideGame.style.display = 'none';
+        }
+      });
+    });
+
+    // Back button functionality
+    backButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Hide games
+        seeknhideGame.style.display = 'none';
+        hidenseekGame.style.display = 'none';
+
+        // Show game selection
+        gameSelection.style.display = 'flex';
+      });
     });
   });
 </script>
