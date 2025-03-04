@@ -102,18 +102,6 @@ export const NavbarLinks: LinkProps[] = [
     title: "Draw",
     path: "/draw",
     isActive: true
-  },
-  {
-    name: "Feedback",
-    title: "Feedback Form",
-    path: "/feedback",
-    isActive: true
-  },
-  {
-    name: "Survey",
-    title: "Survey",
-    path: "/survey",
-    isActive: true
   }
 ];
 

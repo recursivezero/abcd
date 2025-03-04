@@ -6,7 +6,12 @@
     display: flex;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 2rem;
+
+    & .consonant {
+      margin: 0 auto;
+      font-size: 2rem;
+      color: aquamarine;
+    }
   }
 
   & .back__link {
@@ -31,7 +36,7 @@
   & .combination__card {
     background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
     border-radius: 0.5rem;
-    padding: 2rem 1rem;
+    padding: 1.25rem;
     display: grid;
     place-items: center;
     gap: 0.5rem;
@@ -45,8 +50,8 @@
   }
 
   & .combination__result {
-    font-size: 3rem;
-    font-weight: bold;
+    font-size: 7rem;
+    font-weight: normal;
   }
 
   @container (min-width: 768px) {
