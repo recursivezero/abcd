@@ -8,6 +8,7 @@ audiorecorder
 bincount
 clsx
 cmdk
+controlslist
 datetime
 dhaga
 ensurepip
@@ -24,6 +25,7 @@ kmeans
 linalg
 lucide
 matras
+nodownload
 Organja
 orgenja
 Peina
