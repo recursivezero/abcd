@@ -98,33 +98,6 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   }
 };
 
-//const updateUI = () => {
-//  const languageLabels = document.querySelectorAll(".language-label");
-//  languageLabels[0].textContent = languages.find((lang) => lang.code === selectedLanguage1)?.name || "";
-//  languageLabels[1].textContent = languages.find((lang) => lang.code === selectedLanguage2)?.name || "";
-
-//  document.querySelectorAll(".language-letter-card").forEach((card, index) => {
-//    const pair = letterPairs[index];
-//    const lang1Letter = getLetterForLanguage(pair, selectedLanguage1);
-//    const lang2Letter = getLetterForLanguage(pair, selectedLanguage2);
-
-//    const lang1Element = card.querySelector(".language-letter-top");
-//    const lang2Element = card.querySelector(".language-letter-bottom");
-
-//    if (lang1Element && lang2Element) {
-//      lang1Element.textContent = lang1Letter;
-//      lang2Element.textContent = lang2Letter;
-
-//      // Add special styling for English text
-//      lang1Element.classList.toggle("english-text", selectedLanguage1 === "en");
-//      lang2Element.classList.toggle("english-text", selectedLanguage2 === "en");
-
-//      // Add transliteration class for proper display of diacritical marks
-//      lang1Element.classList.toggle("transliteration", selectedLanguage1 === "en");
-//      lang2Element.classList.toggle("transliteration", selectedLanguage2 === "en");
-//    }
-//  });
-//};
 
 const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
   if (event.target instanceof HTMLSelectElement) {
@@ -241,9 +214,9 @@ const toggleLanguages = () => {
   const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "e", "ai", "o", "au", "aṃ", "aḥ"];
   const englishConsonants = [
     "ka", "kha", "ga", "gha", "ṅa", "ca", "cha", "ja", "jha", "ña",
-    "ṭa", "ṭha", "ḍa", "ḍha", "ṇa", "ta", "tha", "da", "dha", "na",
-    "pa", "pha", "ba", "bha", "ma", "ya", "ra", "la", "va", "śa",
-    "ṣa", "sa", "ha", "ḷa"
+    "ṭa", "ṭha", "ḍa", "ḍha", "ṇa", "ta", "tha", "da", "dha", "na","nna",
+    "pa", "pha", "ba", "bha", "ma", "ya", "ra","rra", "la", "va", "śa",
+    "va", "sha", "sha", "sa", "ha", "kṣa", "ha",
   ];
 
   const languages = [
@@ -349,7 +322,6 @@ const toggleLanguages = () => {
   document.addEventListener("DOMContentLoaded", () => {
     const dropdown1 = document.getElementById("languageDropdown1") as HTMLElement;
     const dropdown2 = document.getElementById("languageDropdown2") as HTMLElement;
-    const toggleButton = document.getElementById("toggleButton") as HTMLButtonElement;
     const toggleButton = document.getElementById("toggleButton") as HTMLButtonElement;
 
     if (dropdown1) {
