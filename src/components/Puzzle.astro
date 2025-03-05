@@ -1,3 +1,6 @@
+---
+import crosswordData from "../assets/json/cross.json";
+---
 <div class="puzzle-container">
   <!-- Settings Trigger Button -->
   <button class="settings-trigger" id="settingsToggle">
@@ -59,17 +62,14 @@
       </svg>
       Hint
     </button>
-    <!-- Add Confirm Selection Button -->
-    <!--<button id="confirmSelectionBtn" class="control-btn"> Confirm Selection </button>-->
+
   </div>
 
   <div id="grid" class="grid"></div>
 </div>
 
 <script type="module" is:inline>
-  import crosswordData from "./src/assets/json/cross.json";
-
-  // Use the imported JSON data for word sets.
+  
   const wordSets = crosswordData;
   let currentWordSetIndex = 0;
 
@@ -382,23 +382,6 @@
     updateDOM();
   }
 
-  //function handleConfirmSelection() {
-  //  if (state.selectedCells.length >= 3) {
-  //    const foundWord = checkForWord(state.selectedCells);
-  //    if (foundWord) {
-  //      setTimeout(() => {
-  //        state.selectedCells = [];
-  //        updateDOM();
-  //      }, 1000);
-  //    } else {
-  //      state.selectedCells = [];
-  //      updateDOM();
-  //    }
-  //  } else {
-  //    state.selectedCells = [];
-  //    updateDOM();
-  //  }
-  //}
 
   function handleDragStart(e) {
     const coords = getCellCoordinates(e.target);

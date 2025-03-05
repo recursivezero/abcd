@@ -7,82 +7,73 @@ import Help from "@/components/Help.astro";
 <Layout meta={{ title: "Draw Keyboard" }}>
   <Fragment slot="header-right">
     <div class="settings-container">
-      <div class="settings-toggle">
-        <input 
-          type="checkbox" 
-          id="settingsToggle" 
-          class="settings-checkbox visually-hidden"
-        />
-        <label 
-          for="settingsToggle" 
-          class="settings-label control-button" 
-          title="Toggle Settings"
-        >
-          ⚙️
-        </label>
+      <button class="settings-trigger" id="settingsToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.127c-.331.183-.581.496-.644.87l-.213 1.281c-.09.542-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.522 6.522 0 0 1 0-.255c.007-.379-.138-.75-.43-.99l-1.005-.828a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.074-.04.147-.084.22-.127.332-.184.582-.496.644-.87l.213-1.281z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+        </svg>
+      </button>
 
-        <div class="settings-panel">
+      <div class="settings-panel" id="settingsPanel">
+        <div class="controls-group">
           <div class="controls">
             <label for="toggleCase" class="control-item">
-              <input 
-                type="checkbox" 
-                name="change_case" 
-                id="toggleCase" 
-                class="visually-hidden hidden" 
-              />
+              <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
               <span
                 id="text"
-                class="control-button case-toggle"
-                style="--content: 'A'"
+                class="control-btn"
+                style="--bg-color: #6366f1; --hover-bg-color: #818cf8;"
                 title="Toggle case"
                 role="switch"
                 aria-checked="false"
               >
-                Aa
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21h-9.5A2.25 2.25 0 014 18.75V8.25A2.25 2.25 0 016.25 6H8" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 9l-1.5 3M7 9l-1.5 3M14 9l-1.5 3" />
+                </svg>
+                Toggle Case
               </span>
-              <span class="control-label">Toggle Case</span>
+              <span class="control-label"></span>
             </label>
 
             <label for="toggleFont" class="control-item">
-              <input 
-                type="checkbox" 
-                name="change_font" 
-                id="toggleFont" 
-                class="visually-hidden hidden" 
-              />
-              <span 
-                id="font" 
-                class="control-button font-toggle" 
-                title="Change font" 
-                role="switch" 
+              <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
+              <span
+                id="font"
+                class="control-btn"
+                style="--bg-color: #10b981; --hover-bg-color: #34d399;"
+                title="Change font"
+                role="switch"
                 aria-checked="false"
               >
-                T
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.745 3A23.933 23.933 0 003 12c0 3.183.62 6.22 1.745 9M19.5 3c.967 2.78 1.5 5.817 1.5 9s-.533 6.22-1.5 9M8.25 8.885l1.444-.89a.75.75 0 011.105.402l2.402 7.206a.75.75 0 001.104.401l1.445-.889m-8.25.75l.213.09a1.687 1.687 0 002.062-.617l4.45-6.676a1.688 1.688 0 012.062-.618l.213.09" />
+                </svg>
+                Change Font
               </span>
-              <span class="control-label">Change Font</span>
+              <span class="control-label"></span>
             </label>
 
             <label for="toggleBg" class="control-item">
-              <input 
-                type="checkbox" 
-                name="change_bg" 
-                id="toggleBg" 
-                class="visually-hidden hidden" 
-              />
-              <span 
-                class="control-button bg-toggle" 
-                title="Toggle background" 
-                role="switch" 
+              <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
+              <span
+                class="control-btn"
+                style="--bg-color: #f59e0b; --hover-bg-color: #fbbf24;"
+                title="Toggle background"
+                role="switch"
                 aria-checked="false"
               >
-                🎨
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                </svg>
+                Toggle Background
               </span>
-              <span class="control-label">Toggle Background</span>
+              <span class="control-label"></span>
             </label>
           </div>
         </div>
       </div>
-      
+
       <Help
         title="Draw Keyboard"
         description="Draw letters on the keyboard by clicking and dragging through the keys. Use the controls to toggle case, font, and background."
@@ -100,137 +91,155 @@ import Help from "@/components/Help.astro";
     gap: 1rem;
   }
 
-  .settings-toggle {
-    position: relative;
-  }
-
-  .settings-checkbox {
-    display: none;
-  }
-
-  .settings-label {
+  .settings-trigger {
+    position: fixed;
+    top: 82px;
+    right: 32px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-color, #6366f1);
+    border: none;
     cursor: pointer;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--control-bg);
-    border-radius: 0.25rem;
-    border: 2px solid rgba(67, 56, 202, 0.2);
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-    font-size: 1.5rem;
+    justify-content: center;
+  }
+
+  .settings-trigger svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+
+  .settings-trigger:hover {
+    background: var(--accent6-color, #818cf8);
+    transform: scale(1.05) rotate(45deg);
+  }
+
+  .settings-trigger:hover svg {
+    transform: rotate(180deg);
+  }
+
+  .settings-trigger.active {
+    transform: scale(1) rotate(180deg);
+    background: var(--accent1-color, #f87171);
   }
 
   .settings-panel {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 10;
-    min-width: 12rem;
+    position: fixed;
+    top: 180px;
+    right: -320px;
+    width: 220px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 999;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent4-color)) 1;
   }
 
-  .settings-checkbox:checked ~ .settings-panel {
-    display: block;
+  .settings-panel:not(.active) {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(0);
   }
 
-  .controls {
+  .settings-panel.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-340px);
+  }
+
+  .controls-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 16px;
   }
 
   .control-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
+    gap: 10px;
+    padding: 2px;
   }
 
   .control-label {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     color: #333;
   }
 
-  .control-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--control-bg);
-    border-radius: 0.25rem;
+  .control-btn {
+    background: var(--bg-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 16px;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid rgba(67, 56, 202, 0.2);
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-    font-size: 1.5rem;
-    color: black;
-    font-family: Merriweather;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    width: 100%;
   }
 
-  .control-button::before {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--accent-color);
-    transform: scaleX(0);
-    transform-origin: 0 50%;
-    transition: transform 0.3s ease-out;
-    opacity: 0.1;
+  .control-btn:hover {
+    background: var(--hover-bg-color);
+    transform: translateY(-2px);
   }
 
-  .control-button:hover::before {
-    transform: scaleX(1);
+  .control-btn:active {
+    transform: translateY(0);
   }
 
-  .hidden {
-    display: none;
-  }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+  .icon {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5;
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const settingsToggle = document.getElementById('settingsToggle');
-    const settingsPanel = settingsToggle.nextElementSibling;
+  document.addEventListener("DOMContentLoaded", () => {
+    const settingsToggle = document.getElementById("settingsToggle") as HTMLButtonElement;
+    const settingsPanel = document.getElementById("settingsPanel") as HTMLDivElement;
+    let isSettingsOpen = false;
 
-    // Close settings panel when clicking outside
-    document.addEventListener('click', (event) => {
-      if (!settingsToggle.contains(event.target) && 
-          !settingsPanel.contains(event.target)) {
-        settingsToggle.checked = false;
+    // Toggle settings panel
+    settingsToggle.addEventListener("click", function (e) {
+      e.stopPropagation(); // Prevent event from bubbling
+      isSettingsOpen = !isSettingsOpen;
+
+      if (isSettingsOpen) {
+        settingsPanel.classList.add("active");
+        settingsToggle.classList.add("active");
+      } else {
+        settingsPanel.classList.remove("active");
+        settingsToggle.classList.remove("active");
       }
     });
 
-    // Prevent panel from closing when clicking inside
-    settingsPanel.addEventListener('click', (event) => {
-      event.stopPropagation();
+    // Close settings when clicking outside
+    document.addEventListener("click", function (e:any) {
+      if (isSettingsOpen && !settingsPanel.contains(e.target) && !settingsToggle.contains(e.target)) {
+        settingsPanel.classList.remove("active");
+        settingsToggle.classList.remove("active");
+        isSettingsOpen = false;
+      }
+    });
+
+    // Prevent settings panel clicks from closing the panel
+    settingsPanel.addEventListener("click", function (e) {
+      e.stopPropagation();
     });
   });
 </script>

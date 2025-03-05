@@ -9,6 +9,7 @@ const meta = {
   description: "Switch between a hide & seek letter game and a grid."
 };
 ---
+
 <Layout meta={meta}>
   <Fragment slot="header-right">
     <Help
@@ -16,22 +17,27 @@ const meta = {
       description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
     />
   </Fragment>
-  
+
   <div class="game-page-container">
     <div id="game-selection" class="game-selection-container">
       <div class="game-cards">
-        <div 
-          class="game-card seeknhide-card"
-          data-route="seeknhide"
-        >
+        <div class="game-card seeknhide-card" data-route="seeknhide">
           <div class="game-card-content">
             <div class="game-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="7" rx="1" />
-                <rect x="14" y="3" width="7" height="7" rx="1" />
-                <rect x="3" y="14" width="7" height="7" rx="1" />
-                <rect x="14" y="14" width="7" height="7" rx="1" />
-                <path d="M14 7h-4v4h4V7Z" stroke-dasharray="1 2" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                <path d="M14 7h-4v4h4V7Z" stroke-dasharray="1 2"></path>
               </svg>
             </div>
             <h2 class="game-card-title">Grid Game</h2>
@@ -39,19 +45,24 @@ const meta = {
           </div>
         </div>
 
-        <div 
-          class="game-card hidenseek-card"
-          data-route="hidenseek"
-        >
+        <div class="game-card hidenseek-card" data-route="hidenseek">
           <div class="game-card-content">
             <div class="game-card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <line x1="6" y1="8" x2="10" y2="8" />
-                <line x1="14" y1="8" x2="18" y2="8" />
-                <line x1="6" y1="12" x2="10" y2="12" />
-                <line x1="14" y1="12" x2="18" y2="12" />
-                <path d="M10 16h4" stroke-dasharray="1 2" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <line x1="6" y1="8" x2="10" y2="8"></line>
+                <line x1="14" y1="8" x2="18" y2="8"></line>
+                <line x1="6" y1="12" x2="10" y2="12"></line>
+                <line x1="14" y1="12" x2="18" y2="12"></line>
+                <path d="M10 16h4" stroke-dasharray="1 2"></path>
               </svg>
             </div>
             <h2 class="game-card-title">Keyboard Game</h2>
@@ -65,8 +76,18 @@ const meta = {
       <div id="seeknhide-game" class="game-wrapper" style="display: none;">
         <div class="game-header">
           <button id="back-to-selection" class="back-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 18l-6-6 6-6"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6"></path>
             </svg>
             Back to Games
           </button>
@@ -76,8 +97,18 @@ const meta = {
       <div id="hidenseek-game" class="game-wrapper" style="display: none;">
         <div class="game-header">
           <button id="back-to-selection" class="back-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 18l-6-6 6-6"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6"></path>
             </svg>
             Back to Games
           </button>
@@ -121,7 +152,7 @@ const meta = {
     border-radius: 1.5rem;
     overflow: hidden;
     transition: all 0.4s ease;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     background-color: white;
     cursor: pointer;
     position: relative;
@@ -130,13 +161,13 @@ const meta = {
   }
 
   .game-card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
     opacity: 0;
     transition: opacity 0.4s ease;
   }
@@ -177,7 +208,7 @@ const meta = {
 
   .game-card:hover {
     transform: translateY(-15px) rotateX(10deg);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
   }
 
   .game-card:hover::before {
@@ -251,40 +282,40 @@ const meta = {
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const gameCards = document.querySelectorAll('.game-card');
-    const gameSelection = document.getElementById('game-selection');
-    const seeknhideGame = document.getElementById('seeknhide-game');
-    const hidenseekGame = document.getElementById('hidenseek-game');
-    const backButtons = document.querySelectorAll('#back-to-selection');
+  document.addEventListener("DOMContentLoaded", () => {
+    const gameCards = document.querySelectorAll(".game-card") as NodeListOf<HTMLElement>;
+    const gameSelection = document.getElementById("game-selection") as HTMLElement;
+    const seeknhideGame = document.getElementById("seeknhide-game") as HTMLElement;
+    const hidenseekGame = document.getElementById("hidenseek-game") as HTMLElement;
+    const backButtons = document.querySelectorAll("#back-to-selection") as NodeListOf<HTMLElement>;
 
-    gameCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const route = card.getAttribute('data-route');
-        
+    gameCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const route = card.getAttribute("data-route");
+
         // Hide game selection
-        gameSelection.style.display = 'none';
+        gameSelection.style.display = "none";
 
         // Show the selected game
-        if (route === 'seeknhide') {
-          seeknhideGame.style.display = 'flex';
-          hidenseekGame.style.display = 'none';
-        } else if (route === 'hidenseek') {
-          hidenseekGame.style.display = 'flex';
-          seeknhideGame.style.display = 'none';
+        if (route === "seeknhide") {
+          seeknhideGame.style.display = "flex";
+          hidenseekGame.style.display = "none";
+        } else if (route === "hidenseek") {
+          hidenseekGame.style.display = "flex";
+          seeknhideGame.style.display = "none";
         }
       });
     });
 
     // Back button functionality
-    backButtons.forEach(button => {
-      button.addEventListener('click', () => {
+    backButtons.forEach((button) => {
+      button.addEventListener("click", () => {
         // Hide games
-        seeknhideGame.style.display = 'none';
-        hidenseekGame.style.display = 'none';
+        seeknhideGame.style.display = "none";
+        hidenseekGame.style.display = "none";
 
         // Show game selection
-        gameSelection.style.display = 'flex';
+        gameSelection.style.display = "flex";
       });
     });
   });
