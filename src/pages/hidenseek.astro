@@ -3,6 +3,7 @@ import Layout from "@/layouts/Base";
 import HideSeekGame from "@/components/HideSeekGame.astro";
 import SeekAndHide from "@/components/SeeknHide.astro";
 import Help from "@/components/Help.astro";
+import "@/assets/styles/hidecards.css";
 
 const meta = {
   title: "Hide and Seek",
@@ -85,8 +86,7 @@ const meta = {
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+              stroke-linejoin="round">
               <path d="M15 18l-6-6 6-6"></path>
             </svg>
             Back to Games
@@ -119,167 +119,6 @@ const meta = {
   </div>
 </Layout>
 
-<style>
-  .game-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    width: 100%;
-    padding: 2rem 2rem 4rem;
-    box-sizing: border-box;
-  }
-
-  .game-selection-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 2rem;
-  }
-
-  .game-cards {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    width: 100%;
-    max-width: 1000px;
-  }
-
-  .game-card {
-    flex: 1;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    cursor: pointer;
-    position: relative;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-  }
-
-  .game-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .game-card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2.5rem 2rem;
-    text-align: center;
-    transition: transform 0.4s ease;
-  }
-
-  .game-card-icon {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 1.5rem;
-    color: #123085;
-    opacity: 0.9;
-    transition: all 0.4s ease;
-  }
-
-  .game-card-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #123085;
-    margin-bottom: 1rem;
-    transition: color 0.4s ease;
-  }
-
-  .game-card-description {
-    color: #666;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    transition: color 0.4s ease;
-  }
-
-  .game-card:hover {
-    transform: translateY(-15px) rotateX(10deg);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-  }
-
-  .game-card:hover::before {
-    opacity: 1;
-  }
-
-  .game-card:hover .game-card-icon {
-    transform: scale(1.1);
-    color: #1e40af;
-  }
-
-  .seeknhide-card {
-    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-  }
-
-  .hidenseek-card {
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  }
-
-  .game-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 2rem;
-  }
-
-  .game-wrapper {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .game-header {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 1rem;
-  }
-
-  .back-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #123085;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .back-button:hover {
-    background-color: #1e40af;
-  }
-
-  .back-button svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  @media (max-width: 768px) {
-    .game-cards {
-      flex-direction: column;
-    }
-  }
-</style>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
