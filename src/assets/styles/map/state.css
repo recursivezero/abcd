@@ -38,17 +38,18 @@
   box-shadow: var(--shadow-md);
 }
 
-/* SVG Container (Left Side) */
 #state-svg-container {
   flex: 0.8;
-  padding: calc(var(--spacing-unit) * 1);
+  /*padding: calc(var(--spacing-unit) * 1);*/
   background-color: var(--secondary-bg);
   border-radius: 8px;
   box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
 }
 
 #state-svg-container h3 {
-  margin-bottom: calc(var(--spacing-unit) * 1.5);
+  /*margin-bottom: calc(var(--spacing-unit) * 1);*/
   color: var(--primary-text);
   font-size: 1.5rem;
   text-align: center;
@@ -56,10 +57,18 @@
 
 #state-svg {
   width: 100%;
-  height: auto;
-  min-height: 300px;
+  height: 50%; /* Change from min-height to height */
+  flex-grow: 1; /* Allow it to grow and fill available space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+#state-svg svg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Ensure the SVG fits within the container */
+}
 /* Right Content */
 .right-content {
   flex: 1.2;

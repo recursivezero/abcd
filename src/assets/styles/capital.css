@@ -17,18 +17,21 @@
   --card-color-8: #8e44ad;
 }
 
+/* Base styles with mobile-first approach */
 .geographical-mosaic {
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .hero-section {
   position: relative;
   text-align: center;
-  margin-bottom: 2rem;
-  padding: 5rem 2rem;
-  border-radius: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 3rem 1rem;
+  border-radius: 1rem;
   background: var(--primary-blue);
   overflow: hidden;
   box-shadow: var(--soft-shadow);
@@ -40,8 +43,8 @@
 }
 
 .hero-section .main-title {
-  font-size: 3.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
   color: white;
   font-weight: 800;
   letter-spacing: -0.5px;
@@ -49,108 +52,110 @@
 }
 
 .hero-section .hero-subtitle {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.85);
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.5;
+  padding: 0 0.5rem;
 }
 
 .controls-bar {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0 1rem;
-  margin-bottom: 2.5rem;
+  justify-content: center;
+  padding: 0 0.5rem;
+  margin-bottom: 1.5rem;
   gap: 1rem;
+  width: 100%;
 }
 
 .search-container {
   display: flex;
   align-items: center;
-  width: 500px;
-  max-width: 100%;
-  border: 3px solid var(--primary-blue);
+  width: 100%;
+  border: 2px solid var(--primary-blue);
   border-radius: 0.5rem;
   background: var(--soft-white);
-  padding: 0.8rem;
+  padding: 0.5rem;
 }
 
 .search-container #searchBar {
   flex: 1;
   border: none;
   outline: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: black;
   background: transparent;
-  padding: 0.5rem 1rem;
-  font-size: 1.75rem;
+  padding: 0.4rem 0.5rem;
 }
 
 .search-container .search-icon {
-  font-size: 1.5rem;
-  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  margin-left: 0.25rem;
   color: var(--primary-blue);
 }
 
 .search-container .clear-button {
-  font-size: 1.5rem;
-  padding: 0 1rem;
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
   background: none;
   border: none;
   color: #999;
   cursor: pointer;
   transition: var(--transition-smooth);
-  margin-left: 0.5rem;
+  margin-left: 0.25rem;
 }
 
 .location-container {
   display: grid;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .location-container .section-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 3px solid var(--gold-accent);
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--gold-accent);
 }
 
 .location-container .section-title {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 2.25rem;
+  gap: 0.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: light-dark(black, white);
 }
 
 .location-container .icon {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
 }
 
 .location-container .stats-badge {
   background: var(--primary-blue);
   color: white;
-  padding: 0.6rem 1.4rem;
+  padding: 0.4rem 1rem;
   border-radius: 2rem;
   font-weight: 600;
   box-shadow: var(--soft-shadow);
   color: light-dark(black, white);
+  align-self: flex-start;
 }
 
 .location-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
 }
 
 /* Base location card styles */
 .location-card {
   position: relative;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   overflow: hidden;
   transition: var(--transition-smooth);
   box-shadow: var(--soft-shadow);
@@ -165,28 +170,27 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /*background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);*/
   z-index: 1;
 }
 
 .location-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: var(--hover-shadow);
 }
 
 .location-card .card-inner {
-  padding: 2rem;
+  padding: 1.5rem;
   position: relative;
   z-index: 2;
-  min-height: 180px;
+  min-height: 150px;
 }
 
 .location-card .location-name {
-  font-size: 1.7rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
   font-weight: 800;
   position: relative;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
 }
 
 .location-card .location-name::after {
@@ -194,103 +198,84 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 40px;
-  height: 3px;
+  width: 30px;
+  height: 2px;
   background: currentColor;
   opacity: 0.3;
 }
 
-.location-card {
-  & .location-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-    & .label {
-      font-style: italic;
-      color: light-dark(rgb(14, 62, 125), yellow);
-    }
-  }
+.location-card .location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Random card color variations - moved outside of the .location-card class */
-.location-card:nth-child(8n + 1) {
-  background: var(--card-color-1);
+.location-card .location-details .label {
+  font-style: italic;
+  color: light-dark(rgb(14, 62, 125), yellow);
+}
+
+/* Random card color variations */
+.location-card.color-card-color-1 {
+  background-color: var(--card-color-1);
   color: white;
 }
 
-.location-card:nth-child(8n + 2) {
-  background: var(--card-color-2);
+.location-card.color-card-color-2 {
+  background-color: var(--card-color-2);
   color: white;
 }
 
-.location-card:nth-child(8n + 3) {
-  background: var(--card-color-3);
+.location-card.color-card-color-3 {
+  background-color: var(--card-color-3);
   color: white;
 }
 
-.location-card:nth-child(8n + 4) {
-  background: var(--card-color-4);
+.location-card.color-card-color-4 {
+  background-color: var(--card-color-4);
   color: white;
 }
 
-.location-card:nth-child(8n + 5) {
-  background: var(--card-color-5);
+.location-card.color-card-color-5 {
+  background-color: var(--card-color-5);
   color: white;
 }
 
-.location-card:nth-child(8n + 6) {
-  background: var(--card-color-6);
+.location-card.color-card-color-6 {
+  background-color: var(--card-color-6);
   color: white;
 }
 
-.location-card:nth-child(8n + 7) {
-  background: var(--card-color-7);
+.location-card.color-card-color-7 {
+  background-color: var(--card-color-7);
   color: white;
 }
 
+.location-card.color-card-color-8 {
+  background-color: var(--card-color-8);
+  color: white;
+}
+
+/* Remove the previous nth-child color selectors */
+.location-card:nth-child(8n + 1),
+.location-card:nth-child(8n + 2),
+.location-card:nth-child(8n + 3),
+.location-card:nth-child(8n + 4),
+.location-card:nth-child(8n + 5),
+.location-card:nth-child(8n + 6),
+.location-card:nth-child(8n + 7),
 .location-card:nth-child(8n + 8) {
-  background: var(--card-color-8);
-  color: white;
-}
-
-@media (max-width: 768px) {
-  .main-title {
-    font-size: 2.5rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .location-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  background-color: transparent;
+  color: inherit;
 }
 
 dialog#helpModal {
   border: none;
   border-radius: 10px;
   box-shadow: var(--soft-shadow);
-  padding: 2rem;
+  padding: 1.5rem;
   max-width: 500px;
   width: 90%;
   text-align: center;
@@ -299,17 +284,18 @@ dialog#helpModal {
 
 dialog#helpModal .modal-content h2 {
   margin-top: 0;
+  font-size: 1.5rem;
   color: var(--primary-blue);
 }
 
 dialog#helpModal .modal-close {
-  margin-top: 1.5rem;
-  padding: 0.8rem 1.5rem;
+  margin-top: 1.25rem;
+  padding: 0.6rem 1.25rem;
   border: none;
   border-radius: 50px;
   background: var(--primary-blue);
   color: white;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition:
     background 0.3s ease,
@@ -319,4 +305,169 @@ dialog#helpModal .modal-close {
 dialog#helpModal .modal-close:hover {
   background: var(--gold-accent);
   transform: translateY(-2px);
+}
+
+/* Improved animation for smoother appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media queries for responsive design */
+@media (min-width: 480px) {
+  .geographical-mosaic {
+    padding: 1.25rem;
+  }
+  
+  .hero-section {
+    padding: 3.5rem 1.5rem;
+  }
+  
+  .hero-section .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .search-container #searchBar {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .geographical-mosaic {
+    padding: 1.5rem;
+  }
+  
+  .location-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero-section .main-title {
+    font-size: 2.8rem;
+  }
+  
+  .hero-section .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .search-container #searchBar {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .geographical-mosaic {
+    padding: 1.75rem;
+  }
+  
+  .hero-section {
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-section .main-title {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .hero-section .hero-subtitle {
+    font-size: 1.3rem;
+    max-width: 80%;
+  }
+  
+  .controls-bar {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 1rem;
+  }
+  
+  .search-container {
+    width: 400px;
+    padding: 0.6rem;
+  }
+  
+  .search-container #searchBar {
+    font-size: 1.4rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .location-container .section-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .location-container .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .location-card .location-details {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .geographical-mosaic {
+    padding: 2rem;
+  }
+  
+  .hero-section {
+    padding: 5rem 2rem;
+  }
+  
+  .hero-section .main-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-section .hero-subtitle {
+    font-size: 1.5rem;
+    max-width: 800px;
+  }
+  
+  .search-container {
+    width: 500px;
+    padding: 0.8rem;
+  }
+  
+  .search-container #searchBar {
+    font-size: 1.75rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .location-container .section-title {
+    font-size: 2.25rem;
+  }
+  
+  .location-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .location-card .card-inner {
+    padding: 2rem;
+    min-height: 180px;
+  }
+  
+  .location-card .location-name {
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .location-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 }
