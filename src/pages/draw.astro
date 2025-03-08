@@ -8,28 +8,13 @@ import Help from "@/components/Help.astro";
   <Fragment slot="header-right">
     <div class="settings-container">
       <div class="settings-toggle">
-        <input 
-          type="checkbox" 
-          id="settingsToggle" 
-          class="settings-checkbox visually-hidden"
-        />
-        <label 
-          for="settingsToggle" 
-          class="settings-label control-button" 
-          title="Toggle Settings"
-        >
-          ⚙️
-        </label>
+        <input type="checkbox" id="settingsToggle" class="settings-checkbox visually-hidden" />
+        <label for="settingsToggle" class="settings-label control-button" title="Toggle Settings"> ⚙️ </label>
 
         <div class="settings-panel">
           <div class="controls">
             <label for="toggleCase" class="control-item">
-              <input 
-                type="checkbox" 
-                name="change_case" 
-                id="toggleCase" 
-                class="visually-hidden hidden" 
-              />
+              <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
               <span
                 id="text"
                 class="control-button case-toggle"
@@ -44,37 +29,16 @@ import Help from "@/components/Help.astro";
             </label>
 
             <label for="toggleFont" class="control-item">
-              <input 
-                type="checkbox" 
-                name="change_font" 
-                id="toggleFont" 
-                class="visually-hidden hidden" 
-              />
-              <span 
-                id="font" 
-                class="control-button font-toggle" 
-                title="Change font" 
-                role="switch" 
-                aria-checked="false"
-              >
+              <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
+              <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false">
                 T
               </span>
               <span class="control-label">Change Font</span>
             </label>
 
             <label for="toggleBg" class="control-item">
-              <input 
-                type="checkbox" 
-                name="change_bg" 
-                id="toggleBg" 
-                class="visually-hidden hidden" 
-              />
-              <span 
-                class="control-button bg-toggle" 
-                title="Toggle background" 
-                role="switch" 
-                aria-checked="false"
-              >
+              <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
+              <span class="control-button bg-toggle" title="Toggle background" role="switch" aria-checked="false">
                 🎨
               </span>
               <span class="control-label">Toggle Background</span>
@@ -82,7 +46,7 @@ import Help from "@/components/Help.astro";
           </div>
         </div>
       </div>
-      
+
       <Help
         title="Draw Keyboard"
         description="Draw letters on the keyboard by clicking and dragging through the keys. Use the controls to toggle case, font, and background."
@@ -133,7 +97,7 @@ import Help from "@/components/Help.astro";
     border-radius: 0.25rem;
     padding: 0.5rem;
     margin-top: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 10;
     min-width: 12rem;
   }
@@ -216,20 +180,19 @@ import Help from "@/components/Help.astro";
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const settingsToggle = document.getElementById('settingsToggle');
-    const settingsPanel = settingsToggle.nextElementSibling;
+  document.addEventListener("DOMContentLoaded", () => {
+    const settingsToggle = document.getElementById("settingsToggle") as HTMLInputElement;
+    const settingsPanel = settingsToggle.nextElementSibling!;
 
     // Close settings panel when clicking outside
-    document.addEventListener('click', (event) => {
-      if (!settingsToggle.contains(event.target) && 
-          !settingsPanel.contains(event.target)) {
+    document.addEventListener("click", (event: any) => {
+      if (!settingsToggle.contains(event.target) && !settingsPanel.contains(event.target)) {
         settingsToggle.checked = false;
       }
     });
 
     // Prevent panel from closing when clicking inside
-    settingsPanel.addEventListener('click', (event) => {
+    settingsPanel.addEventListener("click", (event) => {
       event.stopPropagation();
     });
   });
