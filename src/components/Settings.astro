@@ -1,0 +1,23 @@
+---
+import SettingIcon from "@/assets/icons/settings.svg";
+import "@/assets/styles/setting.css";
+---
+
+<div class="container__setting">
+  <button id="trigger" class="setting__trigger" popovertarget="panel" popovertargetaction="show">
+    <SettingIcon />
+  </button>
+  <div class="setting__panel" id="panel" popover="hint">
+    <div class="control__group">
+      <button id="close" class="close" popovertarget="panel" popovertargetaction="hide">X</button>
+      <button id="new" class="add">New Puzzle</button>
+      <button id="shuffle" class="shuffle"> Shuffle </button>
+      <button id="clear" class="clear"> Clear </button>
+      <select id="level" class="level">
+        <option value="easy">Easy (Ages 3-5)</option>
+        <option value="medium">Medium (Ages 5-6)</option>
+        <option value="hard">Hard (Ages 7-8)</option>
+      </select>
+    </div>
+  </div>
+</div>
