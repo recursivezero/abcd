@@ -27,9 +27,9 @@
         outline: 1px solid slateblue;
       }
 
-      &:hover {
+      /*&:hover {
         transform: scale(1.05) rotate(45deg);
-      }
+      }*/
     }
 
     .setting__panel {
@@ -41,7 +41,6 @@
       width: 20rem;
       height: 20rem;
       background-color: hwb(20 68% 16%);
-      border: 1px solid red;
       border-radius: 4px;
       padding: 0.74rem;
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -73,13 +72,13 @@
         justify-content: center;
         gap: 10px;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 1.5rem;
         letter-spacing: 0.01em;
         touch-action: pinch-zoom;
 
         &:hover:not(.close) {
           background-color: color(xyz 0.02 0.01 0.02);
-          /*transform: translateY(-3px);*/
+          transform: translateY(-3px);
         }
 
         &.close {
@@ -140,7 +139,7 @@
       }
     }
 
-    &:has([popover]:popover-open) {
+    &:has(:popover-open) {
       .setting__trigger {
         background-color: rgb(106, 202, 119);
         transform: scale(1.05) rotate(45deg);

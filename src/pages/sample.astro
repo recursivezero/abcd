@@ -1,7 +1,9 @@
 ---
-import "@/assets/styles/page.css";
+import "@/assets/styles/sample.css";
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
+
+// https://www.w3schools.com/charsets/ref_utf_dingbats.asp
 ---
 
 <BaseLayout meta={{ title: "Sample Page" }}>
@@ -18,8 +20,14 @@ import BaseLayout from "@/layouts/Base";
       description="This is a sample page to demonstrate the layout and features available in the project."
     />
   </Fragment>
-
-  <main class="container__page">
+  <section>
+    <ul>
+      <li class="one">Entity to display in HTML &#10010</li>
+      <li class="two">List 2</li>
+      <li class="three">Item from url: &#10224</li>
+    </ul>
+  </section>
+  <main class="container__sample">
     <section>
       <h2>Getting Started</h2>
       <p>Welcome to your new page! This is a sample layout following the project's style guidelines.</p>
@@ -47,9 +55,9 @@ import BaseLayout from "@/layouts/Base";
 </BaseLayout>
 
 <script>
-  const hint = document.querySelector("#hint");
-  const infoDialog = document.querySelector("dialog");
-  const btn = document.querySelector("dialog > button");
+  const hint = document.querySelector("#hint") as HTMLElement;
+  const infoDialog = document.querySelector("dialog") as HTMLDialogElement;
+  const btn = document.querySelector("dialog > button") as HTMLButtonElement;
 
   hint?.addEventListener("click", () => {
     infoDialog?.showModal();

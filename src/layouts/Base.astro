@@ -6,6 +6,8 @@ import Header from "@/layouts/common/Header";
 import Menu from "@/layouts/common/Menu";
 import { siteConfig } from "@/site-config";
 
+//import "@/assets/styles/globals.css";
+
 const {
   meta: { title, description = siteConfig.description, ogImage, articleDate }
 } = Astro.props;
@@ -14,21 +16,6 @@ const {
 <html lang={siteConfig.lang}>
   <head>
     <BaseHead title={title} description={description} ogImage={ogImage} date={articleDate} />
-    <style>
-      body {
-        min-height: 100vh;
-        margin: 0;
-      }
-      .main {
-        padding: 2rem;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 1rem;
-      }
-      .content {
-        min-height: 100vh;
-      }
-    </style>
   </head>
   <body id="body" class="body__container">
     <ThemeProvider />

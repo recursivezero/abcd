@@ -1,0 +1,15 @@
+---
+import "@/assets/styles/contact.css";
+import BaseLayout from "@/layouts/Base";
+import TitleLayout from "@/layouts/TitleLayout";
+---
+
+<BaseLayout meta={{ title: "Contact" }}>
+  <div class="container__contact">
+    <TitleLayout
+      title="Contact Us"
+      description={`<a class="underline" href="mailto:recursivezero@outlook.com">Email us</a> or Please fill the form below with your information`}
+    />
+    <div class="container__form"></div>
+  </div>
+</BaseLayout>
