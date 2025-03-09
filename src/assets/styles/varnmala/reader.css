@@ -3,6 +3,20 @@
   --mute-button__bg: hsla(255, 100%, 50%, 0.281);
 }
 
+.header__reader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  color: white;
+}
+
+.controls-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .container__reader {
   font-size: min(40rem, 35vw);
   display: grid;

@@ -1,6 +1,5 @@
 .container__vedic {
   min-height: 100vh;
-  padding: 3rem 1.5rem;
 
   & .vedic__layout {
     max-width: 1200px;
@@ -141,7 +140,13 @@
     opacity: 0.6;
   }
 
+  @media (min-width: 769px) {
+    padding: 3rem 1.5rem;
+  }
+
   @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+
     & .vedic__layout {
       grid-template-columns: 1fr;
     }

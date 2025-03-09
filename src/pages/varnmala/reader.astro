@@ -7,21 +7,25 @@ import BackButton from "@/components/ui/backButton.astro";
 
 <BaseLayout meta={{ title: "Audio Reader" }}>
   <Fragment slot="header-right">
-    <div class="action">
-      <button type="button" title="click audio" id="mute" class="mute-button mute-button-audio"></button>
-    </div>
-    <div class="speaker" id="speaker">
-      <span data-name="mudra">Mudra</span>
-      <span data-name="rutvi">Rutvi</span>
-    </div>
-
     <Help
       title="Reader"
       description="Press any letter key (A-Z) to display it with a related emoji. Toggle the speaker buttons to change voices, and use the audio button to mute/unmute sounds."
     />
   </Fragment>
 
-  <BackButton />
+  <div class="header__reader">
+    <BackButton />
+    <div class="controls-group">
+      <div class="action">
+        <button type="button" title="click audio" id="mute" class="mute-button mute-button-audio"></button>
+      </div>
+      <div class="speaker" id="speaker">
+        <span data-name="mudra">Mudra</span>
+        <span data-name="rutvi">Rutvi</span>
+      </div>
+    </div>
+  </div>
+
   <article id="container__reader" class="container__reader">a🍎</article>
   <section class="section--audio hide">
     <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
