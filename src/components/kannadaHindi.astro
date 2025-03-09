@@ -83,7 +83,7 @@ const languages = [
 
 let selectedLanguage1 = "hi";
 let selectedLanguage2 = "kn";
-let isReversed = false;
+
 
 const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   switch (langCode) {
@@ -98,39 +98,9 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   }
 };
 
-const handleLanguageChange = (event: Event, isFirstDropdown: boolean) => {
-  if (event.target instanceof HTMLSelectElement) {
-    if (isFirstDropdown) {
-      selectedLanguage1 = event.target.value;
-    } else {
-      selectedLanguage2 = event.target.value;
-    }
-    //updateUI();
-  }
-};
 
-const toggleLanguages = () => {
-  isReversed = !isReversed;
-  // Toggle classes on all cards
-  document.querySelectorAll(".language-letter-card").forEach((card) => {
-    card.classList.toggle("reverse");
-  });
 
-  // Update toggle button state
-  const toggleButton = document.getElementById("toggleButton");
-  if (toggleButton) {
-    toggleButton.classList.toggle("toggled");
-    toggleButton.setAttribute("aria-pressed", isReversed.toString());
-  }
 
-  // Update language labels if necessary
-  const lang1Label = document.getElementById("lang1Label");
-  const lang2Label = document.getElementById("lang2Label");
-  if (lang1Label && lang2Label) {
-    lang1Label.classList.toggle("active", !isReversed);
-    lang2Label.classList.toggle("active", isReversed);
-  }
-};
 ---
 
 <div class="language-letters-container">
@@ -328,6 +298,64 @@ const toggleLanguages = () => {
     });
   }
 
+  function updateToggleLanguages() {
+  const toggleButton = document.getElementById("toggleButton");
+  const hindiLabel = document.getElementById("hindiLabel");
+  const kannadaLabel = document.getElementById("kannadaLabel");
+  
+  if (!toggleButton || !hindiLabel || !kannadaLabel) return;
+
+  // Update labels based on current dropdown selections
+  const dropdown1 = document.getElementById("languageDropdown1") as HTMLSelectElement;
+  const dropdown2 = document.getElementById("languageDropdown2") as HTMLSelectElement;
+
+  if (!dropdown1 || !dropdown2) return;
+
+  const lang1 = dropdown1.value;
+  const lang2 = dropdown2.value;
+
+  // Update toggle button labels
+  const getLangName = (code: string) => {
+    switch (code) {
+      case "hi": return "हिंदी";
+      case "kn": return "ಕನ್ನಡ";
+      case "en": return "English";
+      default: return "";
+    }
+  };
+
+  // Set labels for toggle button
+  hindiLabel.textContent = getLangName(lang2);
+  kannadaLabel.textContent = getLangName(lang1);
+
+  // Add/remove active class
+  hindiLabel.classList.toggle("active", !isReversed);
+  kannadaLabel.classList.toggle("active", isReversed);
+}
+
+// Modify existing event listeners to include updateToggleLanguages
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown1 = document.getElementById("languageDropdown1") as HTMLSelectElement;
+  const dropdown2 = document.getElementById("languageDropdown2") as HTMLSelectElement;
+  const toggleButton = document.getElementById("toggleButton");
+
+  if (dropdown1) {
+    dropdown1.addEventListener("change", (e: Event) => {
+      selectedLanguage1 = (e.target as HTMLSelectElement).value;
+      updateGrid();
+      updateToggleLanguages();
+    });
+  }
+
+  if (dropdown2) {
+    dropdown2.addEventListener("change", (e: Event) => {
+      selectedLanguage2 = (e.target as HTMLSelectElement).value;
+      updateGrid();
+      updateToggleLanguages();
+    });
+  }
+
+  // Modify existing toggleLanguages function to update toggle button
   function toggleLanguages() {
     isReversed = !isReversed;
 
@@ -338,9 +366,16 @@ const toggleLanguages = () => {
 
     // Update toggle button state
     const toggleButton = document.getElementById("toggleButton");
-    if (toggleButton) {
+    const hindiLabel = document.getElementById("hindiLabel");
+    const kannadaLabel = document.getElementById("kannadaLabel");
+    
+    if (toggleButton && hindiLabel && kannadaLabel) {
       toggleButton.classList.toggle("toggled");
       toggleButton.setAttribute("aria-pressed", isReversed.toString());
+      
+      // Swap active class
+      hindiLabel.classList.toggle("active");
+      kannadaLabel.classList.toggle("active");
     }
 
     // Update language labels if necessary
@@ -352,33 +387,12 @@ const toggleLanguages = () => {
     }
   }
 
-  // Set up event listeners
-  document.addEventListener("DOMContentLoaded", () => {
-    const dropdown1 = document.getElementById("languageDropdown1") as HTMLElement;
-    const dropdown2 = document.getElementById("languageDropdown2") as HTMLElement;
-    const toggleButton = document.getElementById("toggleButton") as HTMLButtonElement;
+  if (toggleButton) {
+    toggleButton.addEventListener("click", toggleLanguages);
+  }
 
-    if (dropdown1) {
-      dropdown1.addEventListener("change", (e: any) => {
-        selectedLanguage1 = e.target.value;
-        updateGrid();
-      });
-    }
-
-    if (dropdown2) {
-      dropdown2.addEventListener("change", (e: any) => {
-        selectedLanguage2 = e.target.value;
-        updateGrid();
-      });
-    }
-
-    if (toggleButton) {
-      toggleButton.addEventListener("click", () => {
-        toggleLanguages();
-      });
-    }
-
-    // Initial render
-    updateGrid();
-  });
+  // Initial render
+  updateGrid();
+  updateToggleLanguages();
+});
 </script>
