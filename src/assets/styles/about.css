@@ -1,5 +1,7 @@
 .container__about {
-  display: block;
+  display: grid;
+  justify-content: center;
+  height: 90vh;
   padding: 1rem;
 
   & .moto {

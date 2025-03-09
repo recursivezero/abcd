@@ -1,0 +1,40 @@
+.contact__info {
+  margin-inline-start: 1rem;
+}
+
+.container__contact {
+  box-sizing: border-box;
+}
+
+.contact__message {
+  @apply text-sm md:p-[1rem];
+  margin-top: 4px;
+}
+
+.custom__input {
+  @apply md:tracking-widest;
+}
+
+.container__form {
+  @apply flex flex-grow items-center justify-start max-sm:justify-center md:mr-36;
+}
+
+.contact__form {
+  @apply w-full p-4;
+}
+
+.section__grid {
+  @apply grid items-center gap-1;
+}
+
+.center__text {
+  @apply top-[1rem] mt-5 text-center;
+}
+
+.contact__button--group {
+  @apply mt-8 flex justify-end;
+}
+
+.contact__button {
+  @apply w-36 max-sm:w-full;
+}

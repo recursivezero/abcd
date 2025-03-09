@@ -1,4 +1,5 @@
 @import "./custom-fonts.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -62,6 +63,7 @@
     font-family: "Roboto", "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif,
       system-ui;
     font-size: 16px;
+    margin: 0;
     background-color: var(--background);
     color: var(--text);
   }
@@ -107,8 +109,8 @@
 
   main {
     display: grid;
-    gap: 4px;
-    grid-template-columns: 20rem 1fr;
+    gap: 0.30rem;
+    grid-template-columns: minmax(0, auto) 1fr;
     grid-auto-flow: column;
     grid-template-areas: "sidebar content";
     padding: 2rem;
@@ -159,12 +161,13 @@
     border-width: 0;
   }
 
-  .layout {
-    border-right: 3px solid darkslategray;
-  }
 
   .link__active,
   .text__active {
     @apply text-customLight-active dark:text-customDark-active;
+  }
+
+  .content {
+    min-height: 100vh;
   }
 }

@@ -125,7 +125,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
       <label id="lang2Label" class="dropdown-label language-label">
         {languages.find((lang) => lang.code === selectedLanguage2)?.name || ""}
       </label>
-      <select id="languageDropdown2" >
+      <select id="languageDropdown2">
         {
           languages.map((lang) => (
             <option value={lang.code} selected={lang.code === selectedLanguage2}>
@@ -178,14 +178,49 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   const hindiConsonants = generateLetters(2325, 37);
   const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
   const kannadaConsonants = generateLetters(3221, 37);
-  
+
   // Use correct English transliterations instead of just basic letters
   const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "e", "ai", "o", "au", "aṃ", "aḥ"];
   const englishConsonants = [
-    "ka", "kha", "ga", "gha", "ṅa", "ca", "cha", "ja", "jha", "ña",
-    "ṭa", "ṭha", "ḍa", "ḍha", "ṇa", "ta", "tha", "da", "dha", "na","nna",
-    "pa", "pha", "ba", "bha", "ma", "ya", "ra","rra", "la", "va", "śa",
-    "va", "sha", "sha", "sa", "ha", "kṣa", "ha",
+    "ka",
+    "kha",
+    "ga",
+    "gha",
+    "ṅa",
+    "ca",
+    "cha",
+    "ja",
+    "jha",
+    "ña",
+    "ṭa",
+    "ṭha",
+    "ḍa",
+    "ḍha",
+    "ṇa",
+    "ta",
+    "tha",
+    "da",
+    "dha",
+    "na",
+    "nna",
+    "pa",
+    "pha",
+    "ba",
+    "bha",
+    "ma",
+    "ya",
+    "ra",
+    "rra",
+    "la",
+    "va",
+    "śa",
+    "va",
+    "sha",
+    "sha",
+    "sa",
+    "ha",
+    "kṣa",
+    "ha"
   ];
 
   const languages = [
@@ -221,41 +256,41 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
     }
 
     // Update all letter cards
-    const vowelCards = document.querySelectorAll('.language-letter-card-vowel');
-    const consonantCards = document.querySelectorAll('.language-letter-card-consonant');
-    
+    const vowelCards = document.querySelectorAll(".language-letter-card-vowel");
+    const consonantCards = document.querySelectorAll(".language-letter-card-consonant");
+
     // Update vowels
     vowelCards.forEach((card, index) => {
-      const topElement = card.querySelector('.language-letter-top');
-      const bottomElement = card.querySelector('.language-letter-bottom');
-      
+      const topElement = card.querySelector(".language-letter-top");
+      const bottomElement = card.querySelector(".language-letter-bottom");
+
       if (topElement && bottomElement) {
         topElement.textContent = getLetter(selectedLanguage1, "vowel", index);
         bottomElement.textContent = getLetter(selectedLanguage2, "vowel", index);
-        
+
         // Add special styling for English text
         topElement.classList.toggle("english-text", selectedLanguage1 === "en");
         bottomElement.classList.toggle("english-text", selectedLanguage2 === "en");
-        
+
         // Add transliteration class for proper display of diacritical marks
         topElement.classList.toggle("transliteration", selectedLanguage1 === "en");
         bottomElement.classList.toggle("transliteration", selectedLanguage2 === "en");
       }
     });
-    
+
     // Update consonants
     consonantCards.forEach((card, index) => {
-      const topElement = card.querySelector('.language-letter-top');
-      const bottomElement = card.querySelector('.language-letter-bottom');
-      
+      const topElement = card.querySelector(".language-letter-top");
+      const bottomElement = card.querySelector(".language-letter-bottom");
+
       if (topElement && bottomElement) {
         topElement.textContent = getLetter(selectedLanguage1, "consonant", index);
         bottomElement.textContent = getLetter(selectedLanguage2, "consonant", index);
-        
+
         // Add special styling for English text
         topElement.classList.toggle("english-text", selectedLanguage1 === "en");
         bottomElement.classList.toggle("english-text", selectedLanguage2 === "en");
-        
+
         // Add transliteration class for proper display of diacritical marks
         topElement.classList.toggle("transliteration", selectedLanguage1 === "en");
         bottomElement.classList.toggle("transliteration", selectedLanguage2 === "en");
@@ -323,12 +358,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Modify existing toggleLanguages function to update toggle button
   function toggleLanguages() {
     isReversed = !isReversed;
-    
+
     // Toggle classes on all cards
     document.querySelectorAll(".language-letter-card").forEach((card) => {
       card.classList.toggle("reverse");
     });
-    
+
     // Update toggle button state
     const toggleButton = document.getElementById("toggleButton");
     const hindiLabel = document.getElementById("hindiLabel");
@@ -342,10 +377,14 @@ document.addEventListener("DOMContentLoaded", () => {
       hindiLabel.classList.toggle("active");
       kannadaLabel.classList.toggle("active");
     }
-    
-    // Update the grid and toggle labels
-    updateGrid();
-    updateToggleLanguages();
+
+    // Update language labels if necessary
+    const lang1Label = document.getElementById("lang1Label");
+    const lang2Label = document.getElementById("lang2Label");
+    if (lang1Label && lang2Label) {
+      lang1Label.classList.toggle("active", !isReversed);
+      lang2Label.classList.toggle("active", isReversed);
+    }
   }
 
   if (toggleButton) {
@@ -357,4 +396,3 @@ document.addEventListener("DOMContentLoaded", () => {
   updateToggleLanguages();
 });
 </script>
-
