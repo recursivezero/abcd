@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Base";
 import HideSeekGame from "@/components/HideSeekGame.astro";
-import SeekAndHide from "@/components/SeeknHide.astro";
+import SeekAndHide from "@/components/HnS_Grid.astro";
 import Help from "@/components/Help.astro";
 import "@/assets/styles/hidecards.css";
 
@@ -22,7 +22,7 @@ const meta = {
   <div class="game-page-container">
     <div id="game-selection" class="game-selection-container">
       <div class="game-cards">
-        <div class="game-card seeknhide-card" data-route="seeknhide">
+        <div class="game-card HnS_Grid-card" data-route="HnS_Grid">
           <div class="game-card-content">
             <div class="game-card-icon">
               <svg
@@ -74,7 +74,7 @@ const meta = {
     </div>
 
     <div id="game-container" class="game-container">
-      <div id="seeknhide-game" class="game-wrapper" style="display: none;">
+      <div id="HnS_Grid-game" class="game-wrapper" style="display: none;">
         <div class="game-header">
           <button id="back-to-selection" class="back-button">
             <svg
@@ -124,7 +124,7 @@ const meta = {
   document.addEventListener("DOMContentLoaded", () => {
     const gameCards = document.querySelectorAll(".game-card") as NodeListOf<HTMLElement>;
     const gameSelection = document.getElementById("game-selection") as HTMLElement;
-    const seeknhideGame = document.getElementById("seeknhide-game") as HTMLElement;
+    const HnS_GridGame = document.getElementById("HnS_Grid-game") as HTMLElement;
     const hidenseekGame = document.getElementById("hidenseek-game") as HTMLElement;
     const backButtons = document.querySelectorAll("#back-to-selection") as NodeListOf<HTMLElement>;
 
@@ -136,12 +136,12 @@ const meta = {
         gameSelection.style.display = "none";
 
         // Show the selected game
-        if (route === "seeknhide") {
-          seeknhideGame.style.display = "flex";
+        if (route === "HnS_Grid") {
+          HnS_GridGame.style.display = "flex";
           hidenseekGame.style.display = "none";
         } else if (route === "hidenseek") {
           hidenseekGame.style.display = "flex";
-          seeknhideGame.style.display = "none";
+          HnS_GridGame.style.display = "none";
         }
       });
     });
@@ -150,7 +150,7 @@ const meta = {
     backButtons.forEach((button) => {
       button.addEventListener("click", () => {
         // Hide games
-        seeknhideGame.style.display = "none";
+        HnS_GridGame.style.display = "none";
         hidenseekGame.style.display = "none";
 
         // Show game selection
