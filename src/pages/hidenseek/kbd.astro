@@ -1,0 +1,32 @@
+---
+import BackIcon from "@/assets/icons/back.svg";
+//import "@/assets/styles/games.css";
+import Help from "@/components/Help.astro";
+import HideSeekKbd from "@/components/HideSeekKbd.astro";
+import Layout from "@/layouts/Base";
+
+const meta = {
+  title: "Keyboard Game",
+  description: "Play a fun letter hiding game using your keyboard"
+};
+---
+
+<Layout meta={meta}>
+  <div class="game-page-container">
+    <div class="game-wrapper">
+      <div class="game-header">
+        <a href="/hidenseek" class="back">
+          <BackIcon />
+          Back
+        </a>
+      </div>
+      <div class="game-menu">
+        <Help
+          title="Hide & Seek Game"
+          description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
+        />
+      </div>
+    </div>
+    <HideSeekKbd />
+  </div>
+</Layout>

@@ -170,4 +170,9 @@
   .content {
     min-height: 100vh;
   }
+
+  .layout {
+    height: fit-content;
+    max-height: 100dvh;
+  }
 }

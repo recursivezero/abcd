@@ -1,19 +1,39 @@
 ---
 import "@/assets/styles/dialog.css";
+import NameForm from "@/components/NameForm.astro";
 
 interface Props {
   title: string;
   description: string;
+  hasForm?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, hasForm = false } = Astro.props;
 ---
 
-<div id="help" class="help">?</div>
-<dialog id="info" class="help-dialog">
+<style>
+  .close {
+    outline: 2px solid grey;
+    font-size: 1rem;
+    width: 32px;
+    height: 33px;
+    color: black;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  output {
+    background-color: yellow;
+    margin-inline: 4px;
+    font-style: italic;
+  }
+</style>
+<div id="showDialog" class="help">?</div>
+<dialog id="helpDialog" class="help-dialog">
   <div class="dialog-header">
     <h2>{title}</h2>
-    <button autofocus aria-label="Close dialog">❌</button>
+    <button autofocus aria-label="Close dialog" data-icon="" id="closeBtn" class="close">x</button>
   </div>
   <div class="dialog-content">
     <p>{description}</p>
@@ -21,14 +41,16 @@ const { title, description } = Astro.props;
 </dialog>
 
 <script>
-  const help = document.querySelector("#help");
-  const infoDialog = document.querySelector("dialog");
-  const btn = document.querySelector("dialog > div > button");
-  help?.addEventListener("click", () => {
-    infoDialog?.showModal();
+  const showDialog = document.getElementById("showDialog") as HTMLElement;
+  const helpDialog = document.getElementById("helpDialog") as HTMLDialogElement;
+  const closeButton = document.getElementById("closeBtn") as HTMLButtonElement;
+
+  showDialog?.addEventListener("click", () => {
+    helpDialog?.showModal();
   });
-  btn?.addEventListener("click", () => {
-    infoDialog?.close();
+
+  closeButton?.addEventListener("click", () => {
+    helpDialog?.close();
   });
 </script>
 

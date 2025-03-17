@@ -1,32 +1,29 @@
 ---
 import "@/assets/styles/societree.css";
-import Card from "@/components/Card.astro";
+import DataCard from "@/components/Card.astro";
 import BaseLayout from "@/layouts/Base";
+import clanJson from "public/assets/json/family.json";
 ---
 
 <BaseLayout meta={{ title: "Clan Explorer" }}>
-  <article class="container__family">
+  <article class="container__clan">
     <div class="hero">
-      <p>Discover Your Heritage and Family Connections</p>
-      <div class="legend theme-glass">
-        <div class="legend-item">
-          <span class="icon">🧬</span>
-          <span>Gotra</span>
-        </div>
-        <div class="legend-item">
-          <span class="icon">🕉</span>
-          <span>Deity</span>
-        </div>
-        <div class="legend-item">
-          <span class="icon">🌿</span>
-          <span>Caste</span>
-        </div>
-        <div class="legend-item">
-          <span class="icon">🌳</span>
-          <span>Surname</span>
-        </div>
+      <h1>Discover Your Heritage and Family Connections</h1>
+      <div class="legend__list">
+        <dl>
+          <dt class="legend" data-icon="🧶"></dt>
+          <dd>Clan ( Gotra )</dd>
+        </dl>
+        <dl>
+          <dt class="legend" data-icon="🪔"></dt>
+          <dd>Deity ( Kul devi)</dd>
+        </dl>
+        <dl>
+          <dt class="legend" data-icon="䷤"></dt>
+          <dd>Cast ( Jaati )</dd>
+        </dl>
       </div>
     </div>
-    <Card />
+    <DataCard clan={clanJson} />
   </article>
 </BaseLayout>

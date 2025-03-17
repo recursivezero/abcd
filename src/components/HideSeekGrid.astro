@@ -1,0 +1,128 @@
+---
+const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+
+function getLetterIndex(letter: string): number {
+  return letter.charCodeAt(0) - 65;
+}
+---
+
+<article class="grid__container">
+  <section class="grid__section">
+    {
+      letters.map((letter) => (
+        <div class="grid__item" data-letter={letter} style={`--letter-index:${getLetterIndex(letter)}`}>
+          {letter}
+        </div>
+      ))
+    }
+  </section>
+</article>
+
+<style>
+  :root {
+    --border-radius-sm: 0.5rem;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+    --text-light: #ffffff;
+    --default-bg: #0b1f54;
+  }
+
+  .grid__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+    background: #092745;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .grid__section {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .grid__item {
+    --hue: calc(360 / 26 * var(--letter-index, 0));
+    --letter-color: hsl(var(--hue) 85% 60%);
+
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    background: var(--default-bg);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 8.5rem;
+    font-weight: bold;
+    color: transparent;
+    border: 2px solid transparent;
+    transition: var(--transition);
+  }
+
+  .grid__item:hover {
+    background-color: var(--letter-color);
+    color: var(--text-light);
+    transform: translateY(-2px) rotateY(10deg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .grid__item.active {
+    background-color: var(--letter-color);
+    color: var(--text-light);
+  }
+
+  .grid__item:not(.active) {
+    background-color: var(--default-bg);
+  }
+
+  @media (max-width: 768px) {
+    .grid__container {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .grid__section {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+
+    .grid__item {
+      font-size: 5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid__item {
+      font-size: 3rem;
+    }
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll(".grid__item");
+  const activeLetters = new Set();
+
+  items.forEach((item) => {
+    if (!(item instanceof HTMLElement)) return;
+    item.addEventListener("click", () => toggleLetterVisibility(item));
+  });
+
+  function toggleLetterVisibility(element: HTMLElement) {
+    const letter = element.getAttribute("data-letter");
+    const isActive = element.classList.contains("active");
+    element.classList.toggle("active");
+    isActive ? activeLetters.delete(letter) : activeLetters.add(letter);
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (/^[a-zA-Z]$/.test(e.key)) {
+      const letterBox = document.querySelector(`.grid__item[data-letter="${e.key.toUpperCase()}"]`);
+      if (letterBox instanceof HTMLElement) {
+        toggleLetterVisibility(letterBox);
+      }
+    }
+  });
+</script>

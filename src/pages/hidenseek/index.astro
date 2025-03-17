@@ -1,0 +1,49 @@
+---
+import GridGameIcon from "@/assets/icons/game.svg";
+import KeyboardGameIcon from "@/assets/icons/keyboard.svg";
+import "@/assets/styles/games.css";
+import GameCard from "@/components/GameCard.astro";
+import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Hide and Seek",
+  description: "Switch between a hide & seek letter game and a grid."
+};
+
+// Define game states
+const games = {
+  grid: {
+    title: "Grid Game",
+    description: "Explore an interactive grid-based hide and seek challenge",
+    icon: GridGameIcon,
+    href: "/hidenseek/grid"
+  },
+  kbd: {
+    title: "Keyboard Game",
+    description: "Play a fun letter hiding game using your keyboard",
+    icon: KeyboardGameIcon,
+    href: "/hidenseek/kbd"
+  }
+};
+---
+
+<BaseLayout meta={meta}>
+  <div class="game-page-container">
+    <div class="game-selection-container">
+      <div class="game-cards">
+        {
+          Object.entries(games).map(([route, game]) => (
+            <GameCard
+              cardType={route as "grid" | "kbd"}
+              title={game.title}
+              description={game.description}
+              href={game.href}
+            >
+              <game.icon slot={route === "grid" ? "grid-icon" : "keyboard-icon"} />
+            </GameCard>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>

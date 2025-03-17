@@ -1,69 +1,25 @@
 ---
 import "@/assets/styles/sample.css";
+import "@/assets/styles/scroll.css";
 import Help from "@/components/Help.astro";
+import NameForm from "@/components/NameForm.astro";
 import BaseLayout from "@/layouts/Base";
-
-// https://www.w3schools.com/charsets/ref_utf_dingbats.asp
 ---
 
 <BaseLayout meta={{ title: "Sample Page" }}>
-  <Fragment slot="header-left">
-    <button>Left 1</button>
-    <button>Left 2</button>
-  </Fragment>
   <Fragment slot="header-right">
-    <button>Right 1</button>
-    <button>Right 2</button>
-    <button>Right 3</button>
-    <Help
-      title="Sample Page"
-      description="This is a sample page to demonstrate the layout and features available in the project."
-    />
+    <Help title="Sample Dialog" description="This is sample dialog which need your details if you want to give?" />
+    <NameForm />
+  </Fragment>
+  <Fragment slot="output">
+    <p>
+      Previous Name: <output></output>
+    </p>
   </Fragment>
   <section>
-    <ul>
-      <li class="one">Entity to display in HTML &#10010</li>
-      <li class="two">List 2</li>
-      <li class="three">Item from url: &#10224</li>
-    </ul>
+    <div id="container" class="container__scroll">
+      <div id="square"></div>
+      <div id="stretcher"></div>
+    </div>
   </section>
-  <main class="container__sample">
-    <section>
-      <h2>Getting Started</h2>
-      <p>Welcome to your new page! This is a sample layout following the project's style guidelines.</p>
-
-      <h3>Features Available</h3>
-      <ul>
-        <li>
-          <p>Header component with customizable title</p>
-        </li>
-        <li>
-          <p>Responsive layout with container classes</p>
-        </li>
-        <li>
-          <p>Built-in styling CSS</p>
-        </li>
-      </ul>
-    </section>
-
-    <dialog id="info">
-      <button autofocus>Close</button>
-      <p>This is a sample info dialog.</p>
-      <p>You can add helpful information here for users.</p>
-    </dialog>
-  </main>
 </BaseLayout>
-
-<script>
-  const hint = document.querySelector("#hint") as HTMLElement;
-  const infoDialog = document.querySelector("dialog") as HTMLDialogElement;
-  const btn = document.querySelector("dialog > button") as HTMLButtonElement;
-
-  hint?.addEventListener("click", () => {
-    infoDialog?.showModal();
-  });
-
-  btn?.addEventListener("click", () => {
-    infoDialog?.close();
-  });
-</script>

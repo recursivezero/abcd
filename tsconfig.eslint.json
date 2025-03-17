@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": ["@types/node"],
+    "types": [
+      "@types/node"
+    ],
     "noEmit": true,
     "allowJs": true
   },
@@ -11,6 +13,6 @@
     "src",
     // add all files in which you see
     // the "parserOptions.project" error
-    ".eslintrc.js"
+    ".eslintrc.cjs"
   ]
 }
