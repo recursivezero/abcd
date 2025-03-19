@@ -1,29 +1,186 @@
 ---
 import "@/assets/styles/societree.css";
-import DataCard from "@/components/Card.astro";
+import Card from "@/components/Card.astro";
 import BaseLayout from "@/layouts/Base";
 import clanJson from "public/assets/json/family.json";
+
+interface Surname {
+  hi: string;
+  en: string;
+}
+
+interface Branch {
+  id: number;
+  gotra: {
+    hi: string;
+    en: string;
+  };
+  deity: {
+    hi: string;
+    en: string;
+  };
+  caste: {
+    hi: string;
+    en: string;
+  };
+  location: {
+    hi: string;
+    en: string;
+  };
+  surnames: Surname[];
+}
+
+// Type guard to validate Branch structure
+function isBranch(data: any): data is Branch {
+  return (
+    data &&
+    typeof data.id === "number" &&
+    data.gotra &&
+    typeof data.gotra.hi === "string" &&
+    typeof data.gotra.en === "string" &&
+    data.deity &&
+    typeof data.deity.hi === "string" &&
+    typeof data.deity.en === "string" &&
+    data.caste &&
+    typeof data.caste.hi === "string" &&
+    typeof data.caste.en === "string" &&
+    data.location &&
+    typeof data.location.hi === "string" &&
+    typeof data.location.en === "string" &&
+    Array.isArray(data.surnames) &&
+    data.surnames.every((surname: any) => surname && typeof surname.hi === "string" && typeof surname.en === "string")
+  );
+}
+
+// Filter and validate clan data
+const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
 ---
 
 <BaseLayout meta={{ title: "Clan Explorer" }}>
   <article class="container__clan">
-    <div class="hero">
-      <h1>Discover Your Heritage and Family Connections</h1>
-      <div class="legend__list">
-        <dl>
-          <dt class="legend" data-icon="🧶"></dt>
-          <dd>Clan ( Gotra )</dd>
+    <div class="clan__header">
+      <h1 class="clan__title">Discover Your Heritage and Family Connections</h1>
+      <div class="clan__search">
+        <div class="clan__search-wrapper">
+          <span class="clan__search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            class="clan__search-input"
+            placeholder="Search by Gotra, Deity, or Caste..."
+          />
+        </div>
+      </div>
+      <div class="clan__legend">
+        <dl title="Gotra">
+          <dt class="legend" data-icon="🧬"></dt>
+          <dd>Clan</dd>
         </dl>
-        <dl>
+        <dl title="Kul devi">
           <dt class="legend" data-icon="🪔"></dt>
-          <dd>Deity ( Kul devi)</dd>
+          <dd>Deity</dd>
         </dl>
-        <dl>
-          <dt class="legend" data-icon="䷤"></dt>
-          <dd>Cast ( Jaati )</dd>
+        <dl title="Jaati">
+          <dt class="legend" data-icon="🌳"></dt>
+          <dd>Caste</dd>
         </dl>
       </div>
     </div>
-    <DataCard clan={clanJson} />
+
+    <div class="clan__content">
+      <section class="clan__section">
+        <Card initialData={validClanData} />
+      </section>
+    </div>
   </article>
 </BaseLayout>
+
+<script>
+  function highlightText(text: string, query: string): string {
+    if (!text || !query) return text;
+    const regex = new RegExp(`(${query.trim()})`, "gi");
+    return text.replace(regex, `<span class="highlight">$1</span>`);
+  }
+
+  // Wait for the DOM to be fully loaded
+  window.addEventListener("load", () => {
+    const searchInput = document.getElementById("searchInput") as HTMLInputElement;
+
+    if (!searchInput) {
+      console.error("Search input not found");
+      return;
+    }
+
+    // Set up search functionality
+    searchInput.addEventListener("input", (event: Event) => {
+      const query = (event.target as HTMLInputElement).value.toLowerCase().trim();
+      const cards = document.querySelectorAll(".card") as NodeListOf<HTMLElement>;
+
+      if (!cards.length) {
+        console.error("No cards found");
+        return;
+      }
+
+      cards.forEach((card) => {
+        // Get all searchable text from the card
+        const gotraEl = card.querySelector(".info-group:nth-child(1) .value") as HTMLElement;
+        const deityEl = card.querySelector(".info-group:nth-child(2) .value") as HTMLElement;
+        const casteEl = card.querySelector(".info-group:nth-child(3) .value") as HTMLElement;
+
+        // Get both Hindi and English versions
+        const gotraHi = gotraEl?.getAttribute("data-hi")?.toLowerCase() || "";
+        const gotraEn = gotraEl?.getAttribute("data-en")?.toLowerCase() || "";
+        const deityHi = deityEl?.getAttribute("data-hi")?.toLowerCase() || "";
+        const deityEn = deityEl?.getAttribute("data-en")?.toLowerCase() || "";
+        const casteHi = casteEl?.getAttribute("data-hi")?.toLowerCase() || "";
+        const casteEn = casteEl?.getAttribute("data-en")?.toLowerCase() || "";
+
+        // Get all surnames (both Hindi and English)
+        const surnameElements = card.querySelectorAll(".surname-card p") as NodeListOf<HTMLElement>;
+        const surnames = Array.from(surnameElements)
+          .map((el) => {
+            const hi = el.getAttribute("data-hi")?.toLowerCase() || "";
+            const en = el.getAttribute("data-en")?.toLowerCase() || "";
+            return `${hi} ${en}`;
+          })
+          .join(" ");
+
+        // Check if any field contains the search query
+        const hasMatch =
+          gotraHi.includes(query) ||
+          gotraEn.includes(query) ||
+          deityHi.includes(query) ||
+          deityEn.includes(query) ||
+          casteHi.includes(query) ||
+          casteEn.includes(query) ||
+          surnames.includes(query);
+
+        // Show/hide card based on match
+        card.style.display = hasMatch ? "block" : "none";
+
+        // If there's a match, highlight the matching text
+        if (hasMatch) {
+          // Highlight in main fields
+          if (gotraEl) {
+            const gotraText = gotraEl.textContent || "";
+            gotraEl.innerHTML = highlightText(gotraText, query);
+          }
+          if (deityEl) {
+            const deityText = deityEl.textContent || "";
+            deityEl.innerHTML = highlightText(deityText, query);
+          }
+          if (casteEl) {
+            const casteText = casteEl.textContent || "";
+            casteEl.innerHTML = highlightText(casteText, query);
+          }
+
+          // Highlight in surnames
+          surnameElements.forEach((el) => {
+            const surnameText = el.textContent || "";
+            el.innerHTML = highlightText(surnameText, query);
+          });
+        }
+      });
+    });
+  });
+</script>
