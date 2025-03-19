@@ -1,0 +1,155 @@
+---
+import { getLetterIndex } from "@/utils/letterUtils";
+
+const letterRows = [
+  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+  ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+  ["Z", "X", "C", "V", "B", "N", "M"]
+];
+---
+
+<article class="keyboard-container">
+  {
+    letterRows.map((row) => (
+      <section class="keyboard-row">
+        {row.map((letter) => (
+          <div class="keyboard-item" data-letter={letter} style={`--letter-index: ${getLetterIndex(letter)}`}>
+            {letter}
+          </div>
+        ))}
+      </section>
+    ))
+  }
+</article>
+
+<style>
+  :root {
+    --primary-bg: #1a1a1a;
+    --default-bg: #0b1f54;
+    --accent-color: #4a90e2;
+    --text-color: #ffffff;
+    --modal-bg: rgba(0, 0, 0, 0.8);
+  }
+
+  .letter-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .letter-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .letter-box {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--default-bg);
+    color: var(--text-color);
+    border-radius: 0.25rem;
+    font-weight: bold;
+    opacity: 0.3;
+    transition: all 0.2s ease;
+  }
+
+  .letter-box[data-visible="true"] {
+    opacity: 1;
+    background: var(--accent-color);
+  }
+
+  .keyboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--primary-bg);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .keyboard-item {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--default-bg);
+    color: var(--text-color);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    user-select: none;
+  }
+
+  .keyboard-item:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+  }
+
+  .keyboard-item.active {
+    background: var(--accent-color);
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 640px) {
+    .letter-box,
+    .keyboard-item {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.875rem;
+    }
+  }
+</style>
+
+<script>
+  const dialog = document.getElementById("game-instructions") as HTMLDialogElement;
+  const helpButton = document.getElementById("help-button");
+  const closeButton = document.getElementById("close-instructions");
+
+  helpButton?.addEventListener("click", () => {
+    dialog?.showModal();
+  });
+
+  closeButton?.addEventListener("click", () => {
+    dialog?.close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (/^[a-zA-Z]$/.test(e.key)) {
+      const letterBox = document.querySelector(`.letter-box[data-letter="${e.key.toUpperCase()}"]`);
+      if (letterBox instanceof HTMLElement) {
+        const isVisible = letterBox.getAttribute("data-visible") === "true";
+        letterBox.setAttribute("data-visible", (!isVisible).toString());
+      }
+    }
+  });
+
+  const keyboardItems = document.querySelectorAll(".keyboard-item");
+
+  keyboardItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const letter = item.getAttribute("data-letter");
+      if (letter) {
+        const letterBox = document.querySelector(`.letter-box[data-letter="${letter}"]`);
+        if (letterBox instanceof HTMLElement) {
+          const isVisible = letterBox.getAttribute("data-visible") === "true";
+          letterBox.setAttribute("data-visible", (!isVisible).toString());
+        }
+      }
+    });
+  });
+</script>

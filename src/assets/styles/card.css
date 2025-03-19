@@ -11,19 +11,15 @@
   }
 }
 
-.container__family {
+.container__card {
   background: var(--background);
   min-height: 100vh;
-
-  & .card-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  margin: 0 auto;
 
   & .card {
     background: var(--background);
@@ -379,7 +375,7 @@
       margin: 1em;
     }
 
-    & .surname-card > p {
+    & .surname-card>p {
       text-align: left;
     }
 

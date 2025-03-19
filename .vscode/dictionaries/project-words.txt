@@ -17,9 +17,11 @@ frontmatter
 getbuffer
 GSTIN
 heroicons
+hidenseek
 hookform
 imread
 imwrite
+Jaati
 jsonify
 kmeans
 linalg

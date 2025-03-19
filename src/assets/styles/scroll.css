@@ -1,0 +1,46 @@
+section {
+  margin: 1rem;
+}
+
+.container__scroll {
+  height: 40vh;
+  overflow-y: scroll;
+  border: 2px solid seashell;
+  scroll-timeline: --squareTimeline y;
+  /* Firefox supports the older "vertical" syntax */
+  scroll-timeline: --squareTimeline vertical;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: aliceblue;
+  overflow: scroll;
+  /* just for display */
+}
+
+#square {
+  background-color: deeppink;
+  width: 100px;
+  height: 100px;
+  animation-name: rotateAnimation;
+  animation-duration: 1ms;
+  /* Firefox requires this to apply the animation */
+  animation-timeline: --squareTimeline;
+  position: absolute;
+  bottom: 0;
+  margin-inline-start: 1rem;
+}
+
+#stretcher {
+  height: 1000px;
+  background-color: #dedede;
+}
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

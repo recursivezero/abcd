@@ -1,0 +1,32 @@
+---
+import BackIcon from "@/assets/icons/back.svg";
+import Help from "@/components/Help.astro";
+import HideSeekGrid from "@/components/HideSeekGrid.astro";
+import Layout from "@/layouts/Base";
+import "@/assets/styles/games.css";
+
+const meta = {
+  title: "Grid Game",
+  description: "Explore an interactive grid-based hide and seek challenge"
+};
+---
+
+<Layout meta={meta}>
+  <div class="game-page-container">
+    <div class="game-wrapper">
+      <div class="game-header">
+        <a href="/hidenseek" class="back">
+          <BackIcon />
+          Back
+        </a>
+      </div>
+      <div class="game-menu">
+        <Help
+          title="Hide & Seek Game"
+          description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
+        />
+      </div>
+    </div>
+    <HideSeekGrid />
+  </div>
+</Layout>

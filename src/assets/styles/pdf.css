@@ -1,0 +1,119 @@
+@media print {
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+
+  body {
+    background: white;
+    color: #000;
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    background: white !important;
+    border: 1px solid #333;
+    box-shadow: none;
+    margin-bottom: 1.5cm;
+    color: #000;
+  }
+
+  .card-header {
+    background: #f0f0f0;
+    border-bottom: 2px solid #333;
+    padding: 1rem;
+  }
+
+  .card-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .info-group .value {
+    color: #000;
+    font-weight: 600;
+  }
+
+  .card-body {
+    background: white;
+    border: none;
+    padding: 1rem;
+    margin: 0;
+  }
+
+  .surname-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .surname-card {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    margin: 0;
+    position: relative;
+  }
+
+
+  .surname-card p {
+    margin: 0;
+    color: #000;
+    font-size: 0.9rem;
+  }
+
+  .surname-count,
+  .copy-button,
+  .card-actions-top {
+    display: none;
+  }
+
+  .card.expanded .card-body {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .surname-card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .card-container {
+    display: block;
+    column-count: 1;
+  }
+
+
+  /* Grid layout for better organization */
+  .card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  /* Improved typography */
+  .value {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .surname-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}

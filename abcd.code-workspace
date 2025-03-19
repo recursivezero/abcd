@@ -132,7 +132,7 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "js/ts.implicitProjectConfig.checkJs": true,
     "peacock.affectSideBarBorder": true,
-    "peacock.color": "#abcd00",
+    "peacock.color": "#6A3B98",
     "prettier.documentSelectors": [
       "**/*.astro"
     ],
@@ -157,25 +157,25 @@
     "window.zoomLevel": 0.5,
     "workbench.colorTheme": "Tokyo Night Storm",
     "workbench.colorCustomizations": {
-      "activityBar.activeBackground": "#d5ff01",
-      "activityBar.background": "#d5ff01",
-      "activityBar.foreground": "#15202b",
-      "activityBar.inactiveForeground": "#15202b99",
-      "activityBarBadge.background": "#00a0bf",
+      "activityBar.activeBackground": "#844cba",
+      "activityBar.background": "#844cba",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#45301b",
       "activityBarBadge.foreground": "#e7e7e7",
-      "commandCenter.border": "#15202b99",
-      "sash.hoverBorder": "#d5ff01",
-      "sideBar.border": "#d5ff01",
-      "statusBar.background": "#abcd00",
-      "statusBar.foreground": "#15202b",
-      "statusBarItem.hoverBackground": "#809a00",
-      "statusBarItem.remoteBackground": "#abcd00",
-      "statusBarItem.remoteForeground": "#15202b",
-      "titleBar.activeBackground": "#abcd00",
-      "titleBar.activeForeground": "#15202b",
-      "titleBar.inactiveBackground": "#abcd0099",
-      "titleBar.inactiveForeground": "#15202b99",
-      "tab.activeBorder": "#d5ff01"
+      "commandCenter.border": "#e7e7e799",
+      "sash.hoverBorder": "#844cba",
+      "sideBar.border": "#844cba",
+      "statusBar.background": "#6a3b98",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#844cba",
+      "statusBarItem.remoteBackground": "#6a3b98",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "titleBar.activeBackground": "#6a3b98",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#6a3b9899",
+      "titleBar.inactiveForeground": "#e7e7e799",
+      "tab.activeBorder": "#844cba"
     },
     "files.exclude": {
       "**/.git": false,
@@ -192,8 +192,6 @@
     "files.readonlyInclude": {
       ".githooks/**": true
     },
-    "[xml]": {
-      "editor.defaultFormatter": "redhat.vscode-xml"
-    }
+    "typescript.preferences.preferGoToSourceDefinition": true
   }
 }

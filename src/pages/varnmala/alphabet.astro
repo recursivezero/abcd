@@ -23,12 +23,12 @@ import { varnmala_english, varnmala_hindi } from "@/utils/common";
   <BackButton />
 
   <article class="container__alphabets">
-    <div id="english">
-      <AlphabetComponent list={varnmala_english} title="English" />
-    </div>
-    <div id="hindi">
+    <section id="english">
+      <AlphabetComponent list={varnmala_english} title="English Alphabets" />
+    </section>
+    <section id="hindi">
       <AlphabetComponent list={varnmala_hindi} title="Hindi" />
-    </div>
+    </section>
   </article>
   <script>
     const tabs = document.querySelectorAll(".tab");

@@ -1,9 +1,15 @@
+:root {
+  /*color-scheme: light dark;*/
+  --text: light-dark(blue, yellow);
+  --base: color(rgb(68, 137, 166));
+}
+
 .container__alphabet {
   padding: 1rem;
   display: grid;
   grid-gap: 4px;
   container-type: inline-size;
-  container-name: layout;
+  container-name: alphabet;
   font-family: "atkinson";
 
   & h1 {
@@ -18,7 +24,7 @@
   & .list {
     display: grid;
     grid-gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     margin-block: 2rem;
 
     & .letter {
@@ -42,6 +48,10 @@
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
       }
 
+      .character {
+        font-size: clamp(3.5rem, 9vw, 7rem);
+      }
+
       & p {
         font-size: clamp(2.5rem, 5vw, 5rem);
         text-align: center;
@@ -58,7 +68,11 @@
         background: var(--background-alt);
       }
 
-      ::selection {
+      & def {
+        color: color-mix(in srgb, var(--text) 50%, white);
+      }
+
+      p::selection {
         color: red;
         background-color: yellow;
         text-shadow: 5px 5px #558abb;
@@ -67,7 +81,7 @@
   }
 }
 
-@container layout (width <=768px) {
+/*@container layout (width <=768px) {
   .list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -80,4 +94,4 @@
   .letter p {
     font-size: clamp(2rem, 4vw, 3rem) !important;
   }
-}
+}*/

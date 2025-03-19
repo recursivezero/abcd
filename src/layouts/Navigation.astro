@@ -57,7 +57,7 @@ const DefaultIcon = ({ text }: { text: string }) => {
           return (
             <li class={`nav--list__item ${currentPath.split("/")[1] === p.path.split("/")[1] ? "active" : ""}`}>
               <a href={p.path}>
-                <span class="iconx">
+                <span class="icon">
                   {p.icon ? (
                     <span style={`--icon-gradient: ${gradientUrl}`}>
                       <p.icon />
@@ -76,12 +76,8 @@ const DefaultIcon = ({ text }: { text: string }) => {
 </nav>
 
 <style>
-  .iconx {
+  .icon {
     width: 32px;
     height: 32px;
-  }
-
-  .iconx :global(svg path) {
-    fill: var(--icon-gradient);
   }
 </style>

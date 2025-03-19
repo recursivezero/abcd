@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  cardType: "grid" | "kbd";
+  href: string;
+}
+
+const { title, description, cardType, href } = Astro.props;
+---
+
+<a href={href} class={`game-card ${cardType}-card`}>
+  <div class="game-card-content">
+    <div class="game-card-icon">
+      {cardType === "grid" ? <slot name="grid-icon" /> : <slot name="keyboard-icon" />}
+    </div>
+    <h2 class="game-card-title">{title}</h2>
+    <p class="game-card-description">{description}</p>
+  </div>
+</a>
