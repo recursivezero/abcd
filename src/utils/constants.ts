@@ -1,6 +1,6 @@
 import HomeIcon from "@/assets/icons/home.svg";
 import RecordIcon from "@/assets/icons/record.svg";
-import type { LinkProps } from "@/types";
+import type { LinkProps } from "@/types/index.ts";
 
 export const APP_NAME = "Template";
 

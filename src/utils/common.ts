@@ -18,7 +18,8 @@ export const hindiVowelList = hindiVowels.filter((v) => !extraHindiVowelKey.incl
 const additionalConsonants = [
   String.fromCharCode(2325, 2381, 2359),
   String.fromCharCode(2340, 2381, 2352),
-  String.fromCharCode(2332, 2381, 2334)
+  String.fromCharCode(2332, 2381, 2334),
+  String.fromCharCode(2365)
 ];
 
 export const hindiConsonants = [
@@ -61,8 +62,10 @@ export const barahkhadi = (code: number) => {
   return list.concat(sanyukat);
 };
 
+// 2365 avgrah ऽ
+
 // exclude 2345 ' 2353 / 2355 / 2356
-export const extraLetters = [2345, 2353, 2356]; // 'ऩ', 'ऱ', 'ऴ'
+export const extraLetters = [2345, 2353, 2355, 2356]; // 'ऩ', 'ऱ', 'ऴ'
 export const varnmala = Array.from(Array(37), (_, i) => ({ code: 2325 + i, letter: String.fromCharCode(2325 + i) }));
 export const varnmala_english = Array.from(Array(26), (_, i) => ({
   code: 65 + i,

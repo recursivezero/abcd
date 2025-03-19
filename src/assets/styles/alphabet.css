@@ -24,7 +24,7 @@
   & .list {
     display: grid;
     grid-gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(5, minmax(20rem, 1fr));
     margin-block: 2rem;
 
     & .letter {
@@ -81,17 +81,19 @@
   }
 }
 
-/*@container layout (width <=768px) {
-  .list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@container alphabet (width <=768px) {
+  .container__alphabet {
+    & .list {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
 
-  .letter {
-    color: black;
-    font-size: max(1.5em, 1.23em + 2cqi);
-  }
+    & .letter {
+      color: black;
+      font-size: max(1.5em, 1.23em + 2cqi);
+    }
 
-  .letter p {
-    font-size: clamp(2rem, 4vw, 3rem) !important;
+    & def {
+      font-size: 1.5rem;
+    }
   }
-}*/
+}

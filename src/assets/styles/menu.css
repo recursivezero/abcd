@@ -490,9 +490,6 @@
     color: white;
   }
 
-  [data-debug="false"] .debug-toggle g:first-of-type {
-    display: block;
-  }
 
   [popover] nav {
     overflow-y: auto;
