@@ -19,9 +19,8 @@
     display: flex;
     border: 2px solid rgb(241, 230, 230);
     border-radius: 0.5rem;
-    position: fixed;
-    top: 9rem;
-    right: 4rem;
+    position: relative;
+    width: max-content;
 
     .legend {
       font-size: large;
@@ -189,6 +188,7 @@
   align-items: center;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
 }
 
 .card-info {
@@ -237,11 +237,10 @@
 
 .card-body {
   background: var(--glass-bg);
-  padding: 1.5rem;
   margin: 0 1.5rem 1.5rem;
   border-radius: var(--border-radius-sm);
-  max-height: 0;
-  overflow: hidden;
+  height: 100%;
+  overflow-y: scroll;
   transition: max-height 0.3s ease-out;
 }
 
@@ -270,7 +269,7 @@
 .surname-card p {
   margin: 0;
   color: var(--text-light);
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 
   &::before {
     content: attr(data-icon);
@@ -350,7 +349,6 @@
   }
 
   .card-body {
-    padding: 1rem;
     margin: 0 1rem 1rem;
   }
 
