@@ -29,31 +29,22 @@
   "git.openRepositoryInParentFolders": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.linkedEditing": true,
-  "cSpell.userWords": [
-    "nojekyll",
-    "testid"
-  ],
+  "cSpell.userWords": ["nojekyll", "testid"],
   "editor.tabSize": 2,
   "git.enableSmartCommit": true,
   "files.watcherExclude": {
     "**/node_modules/*/**": true
   },
   "files.autoSave": "afterDelay",
-  "git.branchProtection": [
-    "main",
-    "develop"
-  ],
+  "git.branchProtection": ["main", "develop"],
   "[CODEOWNERS]": {
     "editor.formatOnSave": false
   },
-  "cSpell.words": [
-    "behaviour",
-    "DUMMYUSER"
-  ],
+  "cSpell.words": ["behaviour", "DUMMYUSER"],
   "peacock.color": "#e05bf7",
   "css.validate": true,
   "css.lint.unknownAtRules": "ignore",
   "css.lint.unknownProperties": "ignore",
   "css.hover.documentation": true,
-  "css.hover.references": true,
+  "css.hover.references": true
 }

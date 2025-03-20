@@ -1,5 +1,5 @@
 ---
-import { locations } from "../data/location";
+import { locations } from "../libs/location";
 
 const { type = "state" } = Astro.props;
 const list = type === "state" ? locations.filter((loc) => loc.isState) : locations.filter((loc) => !loc.isState);

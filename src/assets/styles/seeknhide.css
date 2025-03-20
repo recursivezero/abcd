@@ -25,7 +25,9 @@
   font-weight: bold;
   background: #0b1f54;
   border-radius: 12px;
-  transition: all 0.3s ease-in-out, transform 0.2s ease;
+  transition:
+    all 0.3s ease-in-out,
+    transform 0.2s ease;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;

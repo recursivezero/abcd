@@ -1,7 +1,6 @@
 @tailwind base;
 
 @layer base {
-
   .container__setting {
     container: setting/inline-size;
 
@@ -109,12 +108,12 @@
         border-radius: 1rem;
         opacity: 0;
         visibility: hidden;
-        transition: translate 0.7s ease-out,
+        transition:
+          translate 0.7s ease-out,
           display 0.7s ease-out allow-discrete,
           overlay 0.7s ease-out allow-discrete,
           height 0.5s ease-in-out;
         translate: 0 -2rem;
-
 
         &:popover-open {
           opacity: 1;
@@ -145,6 +144,5 @@
         transform: scale(1.05) rotate(45deg);
       }
     }
-
   }
 }

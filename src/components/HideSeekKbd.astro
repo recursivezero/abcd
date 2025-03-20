@@ -1,5 +1,5 @@
 ---
-import { getLetterIndex } from "@/utils/letterUtils";
+import { getLetterIndex } from "@/utils/index";
 
 const letterRows = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -8,7 +8,7 @@ const letterRows = [
 ];
 ---
 
-<article class="keyboard-container">
+<article class="container__keyboard">
   {
     letterRows.map((row) => (
       <section class="keyboard-row">
@@ -31,40 +31,7 @@ const letterRows = [
     --modal-bg: rgba(0, 0, 0, 0.8);
   }
 
-  .letter-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .letter-row {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .letter-box {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--default-bg);
-    color: var(--text-color);
-    border-radius: 0.25rem;
-    font-weight: bold;
-    opacity: 0.3;
-    transition: all 0.2s ease;
-  }
-
-  .letter-box[data-visible="true"] {
-    opacity: 1;
-    background: var(--accent-color);
-  }
-
-  .keyboard-container {
+  .container__keyboard {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -81,12 +48,12 @@ const letterRows = [
   }
 
   .keyboard-item {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 5rem;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--default-bg);
+    background-color: var(--default-bg);
     color: var(--text-color);
     border-radius: 0.25rem;
     cursor: pointer;

@@ -131,7 +131,7 @@ import "@/assets/styles/dialog.css";
     </form>
   </div>
 </dialog>
-<script type="module">
+<script type="module" is:inline>
   const formDialogIcon = document.getElementById("showFormDialog");
   const formDialog = document.getElementById("formDialog");
   const outputBox = document.querySelector("output");
@@ -153,7 +153,7 @@ import "@/assets/styles/dialog.css";
     formDialog.close(input.value);
   });
 
-  formDialog.addEventListener("close", (e) => {
+  formDialog.addEventListener("close", () => {
     const rv = formDialog.returnValue;
     console.log({ rv });
     outputBox.value = rv === "default" ? "No return value." : rv;

@@ -9,7 +9,7 @@
     padding-block: 1rem;
   }
 
-  >p {
+  > p {
     margin-block: 1.5rem;
   }
 
@@ -25,7 +25,7 @@
     list-style: auto;
     padding: 1rem;
 
-    li>p {
+    li > p {
       margin: 0.25rem;
     }
   }
@@ -62,4 +62,3 @@
     }
   }
 }
-

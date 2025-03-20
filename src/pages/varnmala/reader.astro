@@ -27,7 +27,9 @@ import BackButton from "@/components/ui/backButton.astro";
     <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
   </section>
   <script>
-    import { emojiList, isAlphabet, isNumber, random } from "@/utils/utils.js";
+    import { getRandomValue, isAlphabet, isNumber } from "@/utils/index";
+
+    import { emojiList } from "@/mappers/alphabet";
 
     const mainBlock = document.querySelector("#container__reader") as HTMLElement;
     const muteButton = document.querySelector("#mute") as HTMLButtonElement;
@@ -73,7 +75,7 @@ import BackButton from "@/components/ui/backButton.astro";
       const upperCase = letter.toUpperCase();
       const list = (emojiList as List)[upperCase];
       if (list.length) {
-        const codePoint = random(list);
+        const codePoint = getRandomValue(list);
         return String.fromCodePoint(codePoint);
       }
     };

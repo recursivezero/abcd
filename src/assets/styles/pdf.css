@@ -67,7 +67,6 @@
     position: relative;
   }
 
-
   .surname-card p {
     margin: 0;
     color: #000;
@@ -95,7 +94,6 @@
     display: block;
     column-count: 1;
   }
-
 
   /* Grid layout for better organization */
   .card {

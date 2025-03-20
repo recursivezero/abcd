@@ -12,14 +12,11 @@ export function getStaticPaths() {
 const { stateInfo } = Astro.props;
 const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
 ---
+
 <BaseLayout meta={{ title: `${name} - ${dance}` }}>
   <section>
     <div class="back-button-container">
-      <button 
-        onclick="window.history.back()" 
-        class="back-button">
-        ← Back to Previous Page
-      </button>
+      <button onclick="window.history.back()" class="back-button"> ← Back to Previous Page </button>
     </div>
     <div class="main-container">
       <div id="state-svg-container">
@@ -68,7 +65,7 @@ const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
     margin-bottom: 20px;
   }
   .back-button {
-    background-color:  #123085;
+    background-color: #123085;
     border: 1px solid #ddd;
     padding: 10px 15px;
     border-radius: 5px;

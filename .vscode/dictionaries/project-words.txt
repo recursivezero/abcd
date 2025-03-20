@@ -5,6 +5,7 @@ astrojs
 astype
 audiorec
 audiorecorder
+avgrah
 bincount
 clsx
 cmdk
@@ -40,6 +41,7 @@ shadcn
 signup
 sitemapindex
 skimage
+sportrop
 streamlit
 tailwindcss
 threadzip

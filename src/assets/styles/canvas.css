@@ -183,46 +183,46 @@
   .canvas-generator {
     padding: 0.5rem;
   }
-  
+
   .canvas-generator .input-area {
     padding: 1.5rem;
   }
-  
+
   .canvas-generator .label-checkbox-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .canvas-generator .checkbox-wrapper {
     margin-top: 0.5rem;
   }
-  
+
   .canvas-generator .color-options {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .canvas-generator .buttons {
     gap: 0.75rem;
   }
-  
+
   .canvas-generator .action-button {
     min-width: 100px;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
   }
-  
+
   .canvas-generator .text-input {
     padding: 0.75rem 1rem;
     font-size: 1rem;
   }
-  
+
   .canvas-generator .input-label,
   .canvas-generator .checkbox-wrapper {
     font-size: 1rem;
   }
-  
+
   .canvas-generator .image-grid {
     grid-template-columns: 1fr;
     padding: 1rem;
@@ -235,16 +235,16 @@
   .canvas-generator .input-area {
     padding: 1rem;
   }
-  
+
   .canvas-generator .buttons {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .canvas-generator .action-button {
     width: 100%;
   }
-  
+
   .canvas-generator .image-grid {
     padding: 0.75rem;
     max-height: 350px;

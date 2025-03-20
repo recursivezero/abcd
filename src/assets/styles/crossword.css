@@ -90,7 +90,6 @@
       animation: pulse 1.5s infinite alternate;
     }
 
-
     &[class*="word-color-"] {
       color: rgb(243, 235, 235);
       border-color: inherit;
@@ -258,10 +257,7 @@ details {
   }
 }
 
-
-
 /* Responsive Styles */
-
 
 .grid__puzzle {
   padding: 18px;

@@ -325,19 +325,19 @@ dialog#helpModal .modal-close:hover {
   .geographical-mosaic {
     padding: 1.25rem;
   }
-  
+
   .hero-section {
     padding: 3.5rem 1.5rem;
   }
-  
+
   .hero-section .main-title {
     font-size: 2.5rem;
   }
-  
+
   .hero-section .hero-subtitle {
     font-size: 1.1rem;
   }
-  
+
   .search-container #searchBar {
     font-size: 1.2rem;
   }
@@ -347,19 +347,19 @@ dialog#helpModal .modal-close:hover {
   .geographical-mosaic {
     padding: 1.5rem;
   }
-  
+
   .location-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .hero-section .main-title {
     font-size: 2.8rem;
   }
-  
+
   .hero-section .hero-subtitle {
     font-size: 1.2rem;
   }
-  
+
   .search-container #searchBar {
     font-size: 1.3rem;
   }
@@ -369,49 +369,49 @@ dialog#helpModal .modal-close:hover {
   .geographical-mosaic {
     padding: 1.75rem;
   }
-  
+
   .hero-section {
     padding: 4rem 2rem;
     margin-bottom: 2rem;
   }
-  
+
   .hero-section .main-title {
     font-size: 3rem;
     margin-bottom: 1.25rem;
   }
-  
+
   .hero-section .hero-subtitle {
     font-size: 1.3rem;
     max-width: 80%;
   }
-  
+
   .controls-bar {
     flex-direction: row;
     justify-content: flex-start;
     padding: 0 1rem;
   }
-  
+
   .search-container {
     width: 400px;
     padding: 0.6rem;
   }
-  
+
   .search-container #searchBar {
     font-size: 1.4rem;
     padding: 0.4rem 0.8rem;
   }
-  
+
   .location-container .section-header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
   }
-  
+
   .location-container .section-title {
     font-size: 1.8rem;
   }
-  
+
   .location-card .location-details {
     flex-direction: row;
     justify-content: space-between;
@@ -423,43 +423,43 @@ dialog#helpModal .modal-close:hover {
   .geographical-mosaic {
     padding: 2rem;
   }
-  
+
   .hero-section {
     padding: 5rem 2rem;
   }
-  
+
   .hero-section .main-title {
     font-size: 3.5rem;
   }
-  
+
   .hero-section .hero-subtitle {
     font-size: 1.5rem;
     max-width: 800px;
   }
-  
+
   .search-container {
     width: 500px;
     padding: 0.8rem;
   }
-  
+
   .search-container #searchBar {
     font-size: 1.75rem;
     padding: 0.5rem 1rem;
   }
-  
+
   .location-container .section-title {
     font-size: 2.25rem;
   }
-  
+
   .location-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .location-card .card-inner {
     padding: 2rem;
     min-height: 180px;
   }
-  
+
   .location-card .location-name {
     font-size: 1.7rem;
     margin-bottom: 1.5rem;

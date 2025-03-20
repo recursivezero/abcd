@@ -11,14 +11,14 @@ const { stateList, utList } = Astro.props;
 // Create a function to generate a color class based on index
 function getColorClass(index: number) {
   const colorClasses = [
-    'card-color-1', 
-    'card-color-2', 
-    'card-color-3', 
-    'card-color-4', 
-    'card-color-5', 
-    'card-color-6', 
-    'card-color-7', 
-    'card-color-8'
+    "card-color-1",
+    "card-color-2",
+    "card-color-3",
+    "card-color-4",
+    "card-color-5",
+    "card-color-6",
+    "card-color-7",
+    "card-color-8"
   ];
   return colorClasses[index % colorClasses.length];
 }
