@@ -8,6 +8,128 @@ const timeUnits = vedicData.time_units;
 
 <BaseLayout meta={{ title: "Vedic Time" }}>
   <div class="container__vedic">
+    <script type="text/javascript" async>
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false,
+      timeZone: "America/Los_Angeles",
+    };
+
+    const fullEnglish = {
+      weekday: 'long',
+      dayPeriod: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: 'numeric',
+      calendar: 'iso8601',
+      timeZone: 'Asia/Kolkata',
+      timeZoneName: 'short',
+      formatMatcher: 'basic',
+      hourCycle: 'h12',
+    };
+
+    const fullHindi = {
+      weekday: 'long',
+      dayPeriod: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: 'numeric',
+      calendar: 'indian',
+      timeZone: 'Asia/Kolkata',
+      numberingSystem: 'deva',
+      /* timeZoneName: 'shortGeneric', */
+      formatMatcher: 'basic',
+      hourCycle: 'h12',
+    };
+
+    const styleOption = {
+      dateStyle: 'full',
+      timeStyle: 'long',
+      calendar:  'iso8601', // 'indian',
+      /* numberingSystem: 'deva', */
+      timeZone: 'Asia/Kolkata',
+      hour12: false,
+      useGrouping: true,
+      minimumIntegerDigits: 1
+    };
+
+    const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
+    const samay = new Intl.DateTimeFormat("hi", fullHindi);
+    console.log(samay);
+    const dateInHindi = new Intl.DateTimeFormat('hi',styleOption);
+    
+
+  </script>
+  <div class="TS">
+  <h1 class="tithi">Tithi & Samay</h1>
+  <time data-id="today" style="--h:0;--m:0;--s:0">
+    <p data-id="hindu"></p>
+    <p data-id="hindi"></p>
+    <p data-id="english"></p>
+  </time>
+  </div>
+
+<script>
+    const tithiNames = [
+      "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
+      "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी",
+      "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"
+    ];
+
+    const getLunarDate = (gregorianDay) => {
+      // Calculate the lunar day (1-30) based on the gregorian day
+      const lunarDay = (gregorianDay - 1) % 15 + 1; // Ensure it wraps correctly (1-15)
+
+      // Calculate the paksha
+      const paksha = gregorianDay <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+
+      // Determine tithi
+      const tithi = lunarDay - 1;
+      console.log({tithi});
+
+      return {
+        paksha,
+        tithi: tithiNames[tithi]
+      };
+    };
+    const hindu = document.querySelector('[data-id="hindu"]');
+    const hindi = document.querySelector('[data-id="hindi"]');
+    const english = document.querySelector('[data-id="english"]');
+    const timeElem = document.querySelector('time');
+
+    const renderClock = () => {
+      const today = new Date();
+      const eng =  dateInEnglish.format(today);
+      const hi = samay.format(today);
+      console.log(samay.formatToParts());
+      const hindi_date = dateInHindi.format(today);
+      /* const { paksha, tithi } = getLunarDate(); */
+      /* console.log({paksha, tithi}) */
+      hindi.innerHTML = hindi_date;
+      hindu.innerHTML =  hi;
+      english.innerHTML = eng;
+      const h = today.getHours();
+      const m = today.getMinutes();
+      const s = today.getSeconds();
+      timeElem.style.setProperty("--h", h*15);
+      timeElem.style.setProperty("--m", m);
+      timeElem.style.setProperty("--s", s*10);
+      timeElem.style.backgroundColor  = `hsl(${h} ${m} ${s})`;
+    };
+    renderClock();
+    setInterval(renderClock, 1000);
+  </script>
     <div class="vedic__layout">
       <!-- Converter Card -->
       <div class="converter__card">

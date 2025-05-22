@@ -90,7 +90,15 @@
     font-weight: 600;
     margin-bottom: 1.5rem;
   }
-
+  & .tithi{
+    color: var(--text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  & #english {
+    margin-bottom: 1.5rem;
+  }
   & .units__grid {
     display: grid;
     gap: 1rem;
@@ -105,7 +113,13 @@
     border: 1px solid var(--border);
     background-color: var(--background);
   }
-
+& p {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    background-color: var(--background);
+    text-align: center;
+  }
   & .unit__header {
     display: flex;
     justify-content: space-between;
