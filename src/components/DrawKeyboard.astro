@@ -3,6 +3,10 @@ import { alphabetMapper } from "@/mappers/alphabet";
 import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 ---
 
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lobster&family=Merriweather&family=Open+Sans&family=Orbitron&family=Press+Start+2P&family=Ubuntu&display=swap">
+</head>
+
 <div class="container">
   <header class="header">
     <div class="action">
@@ -92,10 +96,22 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     textSpan.setAttribute("aria-checked", !e.target.checked);
   });
 
-  toggleFontSwitch?.addEventListener("change", () => {
-    currentFontIndex = (currentFontIndex + 1) % fontBox.length;
-    charDiv.style.fontFamily = fontBox[currentFontIndex];
+toggleFontSwitch?.addEventListener("change", () => {
+  currentFontIndex = (currentFontIndex + 1) % fontBox.length;
+  const currentFont = fontBox[currentFontIndex];
+
+
+  document.fonts.load(`1em "${currentFont}"`).then(() => {
+    charDiv.style.fontFamily = `"${currentFont}"`;
+  }).catch(() => {
+
+    console.warn(`Font "${currentFont}" failed to load.`);
+    charDiv.style.fontFamily = `"${currentFont}"`; // Fallback application
+
   });
+
+});
+
 
   toggleBackgroundSwitch?.addEventListener("change", (e) => {
     if (e.target.checked) {

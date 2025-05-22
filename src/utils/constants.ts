@@ -38,7 +38,31 @@ const numberBox: Record<number, string> = {
   9: "nine"
 };
 
-const fontBox = ["boisuStroke", "BungeeSpice", "atkinson", "sportrop", "MudraMohta", "Roboto"];
+const fontBox = [
+  "boisuStroke",
+  "BungeeSpice",
+  "atkinson",
+  "sportrop",
+  "MudraMohta",
+  "Roboto",
+  "Fira Sans",
+  "Open Sans",
+  "Lobster",
+  "Orbitron",
+  "Merriweather",
+  "Ubuntu",
+  "Press Start 2P",
+  "Playfair Display",
+  "Cinzel",
+  "Raleway",
+  "Rubik",
+  "Pacifico",
+  "Josefin Sans",
+  "Baloo 2",
+  "Zilla Slab",
+  "Cabin",
+  "Quicksand"
+];
 
 export const NavbarLinks: LinkProps[] = [
   {
@@ -170,3 +194,5 @@ export const colors = [
 export { BASE_URL, IMAGE_DIR };
 
 export { colorBox, fontBox, numberBox };
+
+

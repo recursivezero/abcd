@@ -128,16 +128,19 @@ function getColorClass(index: number) {
   };
 
   searchBar.addEventListener("input", function () {
-    const query = this.value.toLowerCase().trim();
-    const cards = document.querySelectorAll(".location-card") as NodeListOf<HTMLElement>;
+    
+  const query = this.value.toLowerCase().trim();
+  const cards = document.querySelectorAll(".location-card") as NodeListOf<HTMLElement>;
+  cards.forEach((card) => {
 
-    cards.forEach((card) => {
-      const name = (card.querySelector(".location-name") as any).textContent.toLowerCase();
-      card.style.display = name.startsWith(query) ? "" : "none";
-    });
-
-    updateCounts(query);
+    const name = (card.querySelector(".location-name") as HTMLElement)?.textContent.toLowerCase() || "";
+    const capital = (card.querySelector(".location-details .value") as HTMLElement)?.textContent.toLowerCase() || "";
+    card.style.display = name.includes(query) || capital.includes(query) ? "" : "none";
   });
+
+  updateCounts(query);
+});
+
 
   clearButton.addEventListener("click", () => {
     searchBar.value = "";
