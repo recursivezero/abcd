@@ -18,19 +18,26 @@ import Help from "@/components/Help.astro";
         <label for="toggleFont" class="control-item" data-tooltip="Change font">
           <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
           <span id="font" class="control-button font-toggle" role="switch" aria-checked="false">
-            T
+            <span class="font-icon">T</span>
+            <span class="font-icon-alt">𝓣</span>
           </span>
         </label>
 
         <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
           <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
           <span class="control-button bg-toggle" role="switch" aria-checked="false">
-            🎨
+            <span class="bg-icon">🎨</span>
+            <span class="bg-icon-alt">🌙</span>
           </span>
         </label>
+
+        <div class="control-item" data-tooltip="Reset all">
+          <button class="control-button reset-button" id="resetButton">↻</button>
+        </div>
+
       </div>
 
-      <Help
+      <Help 
         title="Draw Keyboard"
         description="Draw letters on the keyboard by clicking and dragging through the keys. Use the controls to toggle case, font, and background."
       />
@@ -40,6 +47,13 @@ import Help from "@/components/Help.astro";
 </Layout>
 
 <style>
+
+  :root {
+    --keyboard-bg: white;
+    --keyboard-alt-bg: #f0f0f0;
+    --font-normal: 'Arial', sans-serif;
+    --font-fancy: 'Brush Script MT', cursive;
+  }
 
   .controls-container {
     display: flex;
@@ -66,31 +80,102 @@ import Help from "@/components/Help.astro";
     height: 3.2rem;
     border-radius: 50%;
     cursor: pointer;
-    border: 1px solid  #3B82f6;
-    transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    border: 1px solid #3B82f6;
+    transition: all 0.2s var(--ease);
     box-shadow: 0 1px 3px var(--shadow-sm);
     font-size: 1.25rem;
-    color:#3B82f6;
+    color: #3B82f6;
     font-weight: 600;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
   }
 
   .control-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px var(--shadow-lg);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 12px var(--shadow-lg);
+    border-color: #2563eb;
   }
 
- 
-  .control-item::after {
+  .control-button.active {
+    background-color: #3B82f6;
+    color: white;
+  }
+
+  .control-button.active:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+    background-color: #2563eb;
+  }
+
+  .reset-button {
+    margin-left: 0.5rem;
+  }
+
+  .reset-button:hover {
+    transform: translateY(-2px) scale(1.1) rotate(180deg);
+    transition: all 0.3s ease;
+  }
+
+  .font-icon, .font-icon-alt {
+    position: absolute;
+    transition: opacity 0.2s ease;
+    font-size: 1.25rem;
+  }
+
+  .font-icon {
+    opacity: 1;
+    font-family: Arial, sans-serif;
+  }
+
+  .font-icon-alt {
+    opacity: 0;
+    font-family: 'Brush Script MT', cursive;
+  }
+
+  .font-toggle.active .font-icon {
+    opacity: 0;
+  }
+
+  .font-toggle.active .font-icon-alt {
+    opacity: 1;
+  }
+
+  .bg-icon, .bg-icon-alt {
+    position: absolute;
+    transition: opacity 0.2s ease;
+    font-size: 1.25rem;
+  }
+
+  .bg-icon {
+    opacity: 1;
+  }
+
+  .bg-icon-alt {
+    opacity: 0;
+  }
+
+  .bg-toggle.active .bg-icon {
+    opacity: 0;
+  }
+
+  .bg-toggle.active .bg-icon-alt {
+    opacity: 1;
+  }
+
+  .control-item::after,
+  .reset-button::after {
     content: attr(data-tooltip);
     position: absolute;
     bottom: -2.5rem;
     left: 50%;
     transform: translateX(-50%);
     background: transparent;
-    color: light-dark (black, white);;
+    color: light-dark(black, white);
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     font-size: 0.75rem;
+    font-weight: 500;
     opacity: 0;
     transition: all 0.2s var(--ease);
     white-space: nowrap;
@@ -98,7 +183,8 @@ import Help from "@/components/Help.astro";
     z-index: 10;
   }
 
-  .control-item:hover::after {
+  .control-item:hover::after,
+  .reset-button:hover::after {
     opacity: 1;
     bottom: -2rem;
   }
@@ -130,13 +216,144 @@ import Help from "@/components/Help.astro";
       font-size: 1rem;
     }
     
-    .control-item::after {
+    .control-item::after,
+    .reset-button::after {
       font-size: 0.65rem;
       bottom: -2.25rem;
     }
     
-    .control-item:hover::after {
+    .control-item:hover::after,
+    .reset-button:hover::after {
       bottom: -1.75rem;
     }
   }
+
 </style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all buttons and elements
+    const caseToggle = document.querySelector('.case-toggle');
+    const fontToggle = document.querySelector('.font-toggle');
+    const bgToggle = document.querySelector('.bg-toggle');
+    const resetButton = document.getElementById('resetButton');
+    
+    // Get elements from the second file that need to be reset
+    const mainEl = document.querySelector("main");
+    const boardDiv = document.getElementById("board");
+    const charDiv = document.getElementById("char");
+    const toggleCaseSwitch = document.getElementById("toggleCase");
+    const toggleFontSwitch = document.getElementById("toggleFont");
+    const toggleBackgroundSwitch = document.getElementById("toggleBg");
+    const info = document.querySelector(".info");
+    
+    // Store original values for complete reset
+    const originalState = {
+        isUpperCase: true,
+        currentFontIndex: 0,
+        mainElBackgroundBlendMode: 'normal',
+        mainElFilter: 'brightness(1)',
+        boardDivBackgroundColor: '',
+        boardDivBackgroundImage: '',
+        charDivFontFamily: '', // Will be set to default
+        infoText: 'Press any key',
+        charText: ''
+    };
+
+    // Simple toggle for case button
+    caseToggle.addEventListener('click', () => {
+        const isActive = caseToggle.classList.contains('active');
+        if (isActive) {
+            caseToggle.classList.remove('active');
+            caseToggle.setAttribute('aria-checked', 'false');
+            caseToggle.textContent = 'Aa';
+            caseToggle.style.fontSize = '1.25rem';
+        } else {
+            caseToggle.classList.add('active');
+            caseToggle.setAttribute('aria-checked', 'true');
+            caseToggle.textContent = 'aa';
+            caseToggle.style.fontSize = '1rem';
+        }
+    });
+
+    // Simple toggle for font button
+    fontToggle.addEventListener('click', () => {
+        fontToggle.classList.add('active');
+        fontToggle.setAttribute('aria-checked', 'true');
+    });
+
+    // Simple toggle for background button
+    bgToggle.addEventListener('click', () => {
+        bgToggle.classList.add('active');
+        bgToggle.setAttribute('aria-checked', 'true');
+    });
+
+   
+    resetButton.addEventListener('click', () => {
+        // Reset case toggle button
+        caseToggle.classList.remove('active');
+        caseToggle.setAttribute('aria-checked', 'false');
+        caseToggle.textContent = 'Aa';
+        caseToggle.style.fontSize = '1.25rem';
+        
+        // Reset font toggle button
+        fontToggle.classList.remove('active');
+        fontToggle.setAttribute('aria-checked', 'false');
+        
+        // Reset background toggle button
+        bgToggle.classList.remove('active');
+        bgToggle.setAttribute('aria-checked', 'false');
+        
+        // Reset the actual checkboxes (if they exist)
+        if (toggleCaseSwitch) {
+            toggleCaseSwitch.checked = false;
+        }
+        if (toggleFontSwitch) {
+            toggleFontSwitch.checked = false;
+        }
+        if (toggleBackgroundSwitch) {
+            toggleBackgroundSwitch.checked = false;
+        }
+        
+        // Reset the main application state
+        if (mainEl) {
+            mainEl.style.backgroundBlendMode = originalState.mainElBackgroundBlendMode;
+            mainEl.style.filter = originalState.mainElFilter;
+        }
+        
+        // Reset board styles
+        if (boardDiv) {
+            boardDiv.style.backgroundColor = originalState.boardDivBackgroundColor;
+            boardDiv.style.backgroundImage = originalState.boardDivBackgroundImage;
+        }
+        
+        // Reset character display
+        if (charDiv) {
+            charDiv.style.fontFamily = originalState.charDivFontFamily;
+            charDiv.textContent = originalState.charText;
+        }
+        
+        // Reset info text
+        if (info) {
+            info.textContent = originalState.infoText;
+        }
+        
+        // Reset global variables (if accessible)
+        if (typeof window.currentFontIndex !== 'undefined') {
+            window.currentFontIndex = 0;
+        }
+        if (typeof window.isUpperCase !== 'undefined') {
+            window.isUpperCase = true;
+        }
+        
+        // Dispatch custom reset event for other scripts to listen to
+        document.dispatchEvent(new CustomEvent('keyboardReset', {
+            detail: { originalState: originalState }
+        }));
+        
+        console.log('Keyboard reset to original state');
+    });
+});
+
+</script>
