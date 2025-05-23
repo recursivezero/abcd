@@ -105,11 +105,11 @@ import "@/assets/styles/math.css";
 
     output.value = "";
     resultIndicator.innerHTML = "";
-    // output.disabled = false; // Ensure output is enabled
-    output.focus();
-    state.isAnswerCorrect = false; // Reset answer state
 
-    // Disable the "Next" button when a new problem is presented
+    output.focus();
+    state.isAnswerCorrect = false; 
+
+   
     if (nextButton) {
       nextButton.disabled = true;
     }
@@ -131,7 +131,7 @@ import "@/assets/styles/math.css";
       resultIndicator.innerHTML = "";
       resultIndicator.className = "result-indicator";
       if (nextButton) {
-        nextButton.disabled = true; // Disable if output is cleared or not a number
+        nextButton.disabled = true; 
       }
       state.isAnswerCorrect = false;
       return;
@@ -166,43 +166,37 @@ import "@/assets/styles/math.css";
       state.isAnswerCorrect = true; 
       updateScore();
 
-      // Enable the "Next" button if the answer is correct
       if (nextButton) {
         nextButton.disabled = false;
       }
-      // output.disabled = true; // Optionally disable output after correct answer
-      // if (nextButton) nextButton.focus(); // Optionally focus next button
     } else {
       resultIndicator.innerHTML = "✗";
       resultIndicator.className = "result-indicator error";
       state.isAnswerCorrect = false;
 
-      // Ensure the "Next" button is disabled if the answer is wrong
       if (nextButton) {
         nextButton.disabled = true;
       }
-      // output.disabled = false; // Ensure output is enabled for retry
     }
   }
 
   function setOperator(op: string) {
     state.currentOperator = op;
     if (operatorDisplay) operatorDisplay.textContent = op;
-    updateNumbers(); // This will also call nextButton.disabled = true
+    updateNumbers(); 
   }
 
   function setupEventListeners() {
     output.addEventListener("input", (e: any) => {
       e.target.value = e.target.value.replace(/[^0-9]/g, "");
-      // Check answer on every input to update button state dynamically
-      // but only if there's a value, otherwise it might show "X" for an empty field.
+      
       if (e.target.value.length > 0) {
         checkAnswer();
       } else {
-        resultIndicator.innerHTML = ""; // Clear indicator if input is empty
+        resultIndicator.innerHTML = ""; 
         resultIndicator.className = "result-indicator";
         if (nextButton) {
-          nextButton.disabled = true; // Disable if input is empty
+          nextButton.disabled = true; 
         }
         state.isAnswerCorrect = false;
       }
@@ -216,9 +210,7 @@ import "@/assets/styles/math.css";
     
     if (nextButton) {
       nextButton.addEventListener("click", () => {
-        // The button should only be clickable if not disabled.
-        // The disabled attribute handles preventing the action.
-        // This logic ensures we only proceed if it was somehow clicked while enabled.
+
         if (!nextButton.disabled) { 
           updateNumbers(); 
         }

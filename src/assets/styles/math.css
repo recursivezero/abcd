@@ -1,5 +1,4 @@
 :root {
-  /* Enhanced color palette with gradients */
   --color-background: #f9f7ff;
   --color-primary: #6a5acd;
   --color-primary-light: #8b7ddd;
@@ -11,7 +10,6 @@
   --color-error: #e74c3c;
   --color-text: #2c3e50;
 
-  /* Operation Colors */
   --color-add: #2ecc71;
   --color-subtract: #e74c3c;
   --color-multiply: #3498db;
@@ -37,7 +35,6 @@
   padding: 1rem;
   text-align: center;
   color: var(--color-text);
-  /*padding-top: 90px; Space for fixed header*/
 }
 
 /*.header {
@@ -131,24 +128,20 @@
   font-size: 2.5rem; 
   background: linear-gradient(135deg, var(--color-success)); 
   color: white;
-  width: auto; /* Allow width to be determined by content and padding */
-  height: auto; /* Allow height to be determined by content and padding */
-  padding: 0.5rem 1.5rem; /* Add padding similar to the score button for consistent sizing */
-  border-radius: var(--border-radius-xl); /* Use the same large border-radius as the score button */
-  /* Ensure it behaves like other operator buttons in terms of flex centering if it contains only an icon,
-     but for text, the padding and line-height will generally handle it.
-     If it ever contains an icon + text, more specific flex properties might be needed.
-  */
+  width: auto; 
+  height: auto;
+  padding: 0.5rem 1.5rem; 
+  border-radius: var(--border-radius-xl); 
 }
 
 .operator-btn.next:hover:not(:disabled) {
-  transform: scale(1.05) translateY(-2px); /* Hover effect only when not disabled */
+  transform: scale(1.05) translateY(-2px); 
   box-shadow: var(--box-shadow-lg);
 }
 
 .operator-btn.next:disabled {
-  background: linear-gradient(135deg, #adb5bd, #ced4da); /* Gray gradient for disabled state */
-  color: #6c757d; /* Darker gray text for disabled state */
+  background: linear-gradient(135deg, #adb5bd, #ced4da);
+  color: #6c757d; 
   cursor: not-allowed;
   box-shadow: var(--box-shadow-sm); /* Less prominent shadow */
   transform: none; /* No hover transform when disabled */
