@@ -114,6 +114,14 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
         }
       </select>
     </div>
+<!-- Add this swap button -->
+  <button id="toggleButton" class="toggle-button" aria-label="Swap languages" title="Swap languges">
+<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+fill="currentColor" viewBox="0 0 24 24" >
+<!--Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free-->
+<path d="M17 14 9 14 9 16 17 16 17 19 22 15 17 11 17 14z"></path><path d="M15 10 15 8 7 8 7 5 2 9 7 13 7 10 15 10z"></path>
+</svg>
+  </button>
 
     <div class="dropdown-wrapper">
       <label id="lang2Label" class="dropdown-label language-label">
@@ -239,7 +247,43 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
     }
     return "";
   }
+  // Main function to swap languages
+  function swapLanguages() {
+    // Swap the language variables
+    [selectedLanguage1, selectedLanguage2] = [selectedLanguage2, selectedLanguage1];
+    
+    // Update the dropdown values
+    document.getElementById('languageDropdown1').value = selectedLanguage1;
+    document.getElementById('languageDropdown2').value = selectedLanguage2;
+    
+    // Update the labels
+    updateLanguageLabels();
+    
+    // Refresh the grid
+    updateGrid();
+    
+    // Add visual feedback
+    const toggleButton = document.getElementById('toggleButton');
+    toggleButton.classList.add('swapping');
+    setTimeout(() => {
+      toggleButton.classList.remove('swapping');
+    }, 300);
+  }
 
+  // Helper function to update language labels
+  function updateLanguageLabels() {
+    const lang1Label = document.getElementById('lang1Label');
+    const lang2Label = document.getElementById('lang2Label');
+    
+    if (lang1Label && lang2Label) {
+      lang1Label.textContent = languages.find(l => l.code === selectedLanguage1)?.name || "";
+      lang2Label.textContent = languages.find(l => l.code === selectedLanguage2)?.name || "";
+      
+      // Toggle active class
+      lang1Label.classList.toggle('active', true);
+      lang2Label.classList.toggle('active', false);
+    }
+  }
   function updateGrid() {
     // Update language labels
     const lang1Label = document.getElementById("lang1Label");
@@ -291,7 +335,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
       }
     });
   }
-
+/*
   function toggleLanguages() {
     isReversed = !isReversed;
 
@@ -314,15 +358,66 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
       lang1Label.classList.toggle("active", !isReversed);
       lang2Label.classList.toggle("active", isReversed);
     }
+  }*/
+/*
+function toggleLanguages() {
+  // Swap the selected languages
+  const temp = selectedLanguage1;
+  selectedLanguage1 = selectedLanguage2;
+  selectedLanguage2 = temp;
+
+  // Update the dropdown values
+  const dropdown1 = document.getElementById("languageDropdown1");
+  const dropdown2 = document.getElementById("languageDropdown2");
+  if (dropdown1 && dropdown2) {
+    dropdown1.value = selectedLanguage1;
+    dropdown2.value = selectedLanguage2;
   }
+
+  // Update the grid with new language selections
+  updateGrid();
+
+  // Toggle animation class
+  const toggleButton = document.getElementById("toggleButton");
+  if (toggleButton) {
+    toggleButton.classList.toggle("toggled");
+    setTimeout(() => {
+      toggleButton.classList.toggle("toggled");
+    }, 300);
+  }
+}*/
 
   // Set up event listeners
   document.addEventListener("DOMContentLoaded", () => {
     const dropdown1 = document.getElementById("languageDropdown1");
     const dropdown2 = document.getElementById("languageDropdown2");
-    const toggleButton = document.getElementById("toggleButton");
+    const toggleButton = document.getElementById('toggleButton');
 
-    if (dropdown1) {
+    // Event listeners
+    dropdown1.addEventListener('change', (e) => {
+      selectedLanguage1 = e.target.value;
+      updateLanguageLabels();
+      updateGrid();
+    });
+
+    dropdown2.addEventListener('change', (e) => {
+      selectedLanguage2 = e.target.value;
+      updateLanguageLabels();
+      updateGrid();
+    });
+
+    // Add click handler for swap button
+    toggleButton.addEventListener('click', swapLanguages);
+
+    // Initial render
+    updateLanguageLabels();
+    updateGrid();
+/*    const toggleButton = document.getElementById("toggleButton");*/
+/*    const toggleButton = document.getElementById("toggleButton");
+    if (toggleButton) {
+      toggleButton.addEventListener("click", toggleLanguages);
+      }*/
+/*    if (dropdown1) {
       dropdown1.addEventListener("change", (e) => {
         selectedLanguage1 = e.target.value;
         updateGrid();
@@ -335,14 +430,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
         updateGrid();
       });
     }
-
-    if (toggleButton) {
-      toggleButton.addEventListener("click", () => {
-        toggleLanguages();
-      });
-    }
-
     // Initial render
-    updateGrid();
+    updateGrid();*/
   });
 </script>
