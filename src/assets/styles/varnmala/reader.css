@@ -54,7 +54,7 @@
   content: "\1F507";
 }
 
-.speaker {
+/* .speaker {
   padding-inline: 1rem;
   display: flex;
   flex-basis: fit-content;
@@ -74,7 +74,79 @@
 .speaker span.active {
   background-color: var(--primary);
   color: white;
+} */
+
+.voices-dropdown {
+  position: relative; /* Crucial for positioning the options */
+  display: inline-block; /* Or 'block' if it should take full width available in its container */
+  margin: auto; /* Or adjust as per your layout needs */
 }
+
+.voices-btn {
+  background-color: var(--background-secondary, #e0e0e0); /* Use your theme variables */
+  color: var(--text-primary, #333);
+  padding: 0.6em 1em;
+  font-size: 0.9rem; /* Adjust as needed */
+  border: 1px solid var(--border, #ccc);
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 120px; /* Adjust as needed */
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes arrow to the right */
+}
+
+.voices-btn:hover {
+  background-color: var(--background-tertiary, #d0d0d0);
+}
+
+.voices-options {
+  display: none; /* Hidden by default */
+  position: absolute; /* Positioned relative to .voices-dropdown */
+  top: 100%; /* Position below the button */
+  left: 0;
+  background-color: var(--background-paper, #fff);
+  min-width: 100%; /* Match button width */
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000; /* Ensure it's above other content */
+  border: 1px solid var(--border, #ccc);
+  border-top: none; /* Optional: if you want a seamless look with the button */
+  border-radius: 0 0 5px 5px;
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Reset margin */
+  max-height: 200px; /* Optional: if you have many options */
+  overflow-y: auto; /* Optional: if you have many options */
+}
+
+.voices-options.show {
+  display: block; /* Show when active */
+}
+
+.voice-option {
+  color: var(--text-primary, black);
+  padding: 0.75em 1em;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-light, #eee);
+}
+
+.voice-option:last-child {
+  border-bottom: none;
+}
+
+.voice-option:hover {
+  background-color: var(--primary-light, #f0f0f0);
+}
+
+.voice-option.active {
+  background-color: var(--primary, #007bff);
+  color: var(--background-paper, white); /* Ensure good contrast */
+  font-weight: bold;
+}
+
 
 @media screen and (max-width: 768px) {
   .container__reader {

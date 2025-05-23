@@ -10,14 +10,21 @@ import BackButton from "@/components/ui/backButton.astro";
     <div class="action">
       <button type="button" title="click audio" id="mute" class="mute-button mute-button-audio"></button>
     </div>
-    <div class="speaker" id="speaker">
-      <span data-name="mudra">Mudra</span>
-      <span data-name="rutvi">Rutvi</span>
+    
+    <!-- New Voices Dropdown Structure -->
+    <div class="voices-dropdown">
+      <button type="button" id="voices-btn" class="voices-btn">
+        <span id="selected-voice-text">Voices</span> ▼
+      </button>
+      <div id="voices-options" class="voices-options">
+        <div data-name="mudra" class="voice-option">Mudra</div>
+        <div data-name="rutvi" class="voice-option">Rutvi</div>
+      </div>
     </div>
 
     <Help
       title="Reader"
-      description="Press any letter key (A-Z) to display it with a related emoji. Toggle the speaker buttons to change voices, and use the audio button to mute/unmute sounds."
+      description="Press any letter key (A-Z) to display it with a related emoji. Use the Voices dropdown to change voices, and use the audio button to mute/unmute sounds."
     />
   </Fragment>
 
@@ -27,65 +34,97 @@ import BackButton from "@/components/ui/backButton.astro";
     <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
   </section>
   <script>
+    // JavaScript will be updated in the next step
     import { getRandomValue, isAlphabet, isNumber } from "@/utils/index";
-
     import { emojiList } from "@/mappers/alphabet";
 
     const mainBlock = document.querySelector("#container__reader") as HTMLElement;
     const muteButton = document.querySelector("#mute") as HTMLButtonElement;
     const audioPlayer = document.querySelector("#audioPlayer") as HTMLAudioElement;
-    const speaker = document.querySelector("#speaker") as HTMLElement;
 
-    let speakerName: string | null | undefined = null;
+    // Dropdown elements
+    const voicesButton = document.querySelector("#voices-btn") as HTMLButtonElement;
+    const selectedVoiceText = document.querySelector("#selected-voice-text") as HTMLSpanElement;
+    const voicesOptionsContainer = document.querySelector("#voices-options") as HTMLElement;
+    const voiceOptionElements = Array.from(voicesOptionsContainer.querySelectorAll(".voice-option")) as HTMLElement[];
 
-    // Set default speaker
-    window.addEventListener("load", () => {
-      const defaultSpeaker = speaker.querySelector("span") as HTMLElement;
-      defaultSpeaker.classList.add("active");
-      speakerName = defaultSpeaker.dataset.name;
+    let speakerName: string | null = null; // Default to null
+    let isMuted = false;
+
+    function setSpeaker(name: string | null | undefined, displayText: string) {
+      speakerName = name ?? null;
+      
+      voiceOptionElements.forEach(opt => {
+        opt.classList.toggle("active", opt.dataset.name === name);
+      });
+      if (voicesOptionsContainer) {
+        voicesOptionsContainer.classList.remove("show");
+      }
+    }
+
+    // Initialize with a default speaker
+    if (voiceOptionElements.length > 0) {
+      const defaultSpeakerElement = voiceOptionElements[0]; 
+      setSpeaker(defaultSpeakerElement.dataset.name, defaultSpeakerElement.textContent || "Mudra");
+    } else {
+      setSpeaker(null, "Voices"); // Fallback if no options
+    }
+
+    // Toggle dropdown visibility
+    if (voicesButton) {
+      voicesButton.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent click from immediately closing
+        voicesOptionsContainer?.classList.toggle("show");
+      });
+    }
+
+    // Handle voice option selection
+    voiceOptionElements.forEach(option => {
+      option.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const target = e.currentTarget as HTMLElement;
+        setSpeaker(target.dataset.name, target.textContent || "Voice");
+      });
     });
 
-    speaker.addEventListener("click", (e) => {
-      const target = e.target as HTMLElement;
-      speakerName = target.dataset.name;
-      if (target.parentNode) {
-        Array.from(target.parentNode.children).forEach((c) => {
-          const element = c as HTMLElement;
-          if (element.dataset.name === speakerName) {
-            element.classList.toggle("active");
-          } else {
-            element.classList.remove("active");
-          }
-        });
+    // Close dropdown if clicked outside
+    document.addEventListener("click", (e) => {
+      if (voicesButton && !voicesButton.contains(e.target as Node) &&
+          voicesOptionsContainer && !voicesOptionsContainer.contains(e.target as Node)) {
+        voicesOptionsContainer.classList.remove("show");
       }
     });
 
-    let isMuted = false;
-
-    //const folderLocation = './media/';
-
-    muteButton.addEventListener("click", (e: MouseEvent) => {
-      isMuted = !isMuted;
-      audioPlayer.muted = isMuted;
-      const target = e.target as HTMLButtonElement;
-      target.classList.toggle("mute");
-    });
-    const getEmoji = (letter: string) => {
+    // --- Your existing script logic below ---
+    if (muteButton) {
+      muteButton.addEventListener("click", (e: MouseEvent) => {
+        isMuted = !isMuted;
+        audioPlayer.muted = isMuted;
+        const target = e.target as HTMLButtonElement;
+        target.classList.toggle("mute");
+      });
+    }
+    
+    const getEmoji = (letter: string): string => {
       type List = { [key: string]: number[] };
       const upperCase = letter.toUpperCase();
       const list = (emojiList as List)[upperCase];
-      if (list.length) {
+      if (list && list.length) { // Check if list exists and has items
         const codePoint = getRandomValue(list);
         return String.fromCodePoint(codePoint);
       }
+      return ""; // Return empty string if no emoji
     };
 
-    const attachAudio = (key: string, isNumber = false) => {
-      if (!speakerName) return; // Don't play audio if no speaker selected
+    const attachAudio = (key: string, isNumberSound = false) => {
+      if (!speakerName) {
+        console.warn("No speaker selected. Cannot play audio.");
+        return;
+      }
 
       let keyName;
-      let location = "/assets/media/";
-      if (isNumber) {
+      let location = "/assets/media/"; // Make sure this path is correct
+      if (isNumberSound) {
         keyName = key.replace("Digit", "");
         location += "numbers";
       } else {
@@ -93,50 +132,51 @@ import BackButton from "@/components/ui/backButton.astro";
         location += "alphabets";
       }
       const source = `${location}/${speakerName}/${keyName}.ogg`;
-      audioPlayer.src = source;
-      audioPlayer.load();
-      // alternative approach which seems better without adding anything to HTML
-      // const audio = new Audio();
-      // audio.src = source;
-      // audio.play();
-      // when the sound has been loaded, execute your code
-      audioPlayer.oncanplaythrough = async () => {
-        try {
-          await audioPlayer.play();
-        } catch (e: unknown) {
-          if (e instanceof Error && (e.name === "NotAllowedError" || e.name === "NotSupportedError")) {
-            console.error(e.name);
+      
+      if (audioPlayer) {
+        audioPlayer.src = source;
+        audioPlayer.load();
+        audioPlayer.oncanplaythrough = async () => {
+          if (!isMuted) {
+            try {
+              await audioPlayer.play();
+            } catch (playError: unknown) {
+              if (playError instanceof Error && (playError.name === "NotAllowedError" || playError.name === "NotSupportedError")) {
+                console.error(`Audio play error for ${source}: ${playError.name}. User interaction might be required.`);
+              } else {
+                console.error(`Audio play error for ${source}:`, playError);
+              }
+            }
           }
-        }
-      };
+        };
+        audioPlayer.onerror = (e) => {
+          console.error(`Error loading audio source: ${source}`, audioPlayer.error);
+        };
+      }
     };
 
-    const isNonPrintingKey = (e: KeyboardEvent) => {
+    const isNonPrintingKey = (e: KeyboardEvent): boolean => {
       const { altKey, ctrlKey, metaKey, shiftKey } = e;
       return metaKey || ctrlKey || shiftKey || altKey;
     };
 
-    document.addEventListener(
-      "keydown",
-      (e) => {
-        const { key, keyCode, which, code } = e;
-        if (!isNonPrintingKey(e)) {
-          if (isAlphabet(which)) {
-            const emoji = getEmoji(key);
-            mainBlock.innerHTML = key + emoji;
-            muteButton && attachAudio(code);
-          } else if (isNumber(keyCode)) {
-            mainBlock.innerHTML = key;
-            muteButton && attachAudio(code, true);
-          } else {
-            const x = String.fromCodePoint(112080);
-            mainBlock.innerHTML = x;
-          }
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+      const { key, keyCode, which, code } = e;
+      if (!mainBlock) return;
+
+      if (!isNonPrintingKey(e)) {
+        if (isAlphabet(which)) {
+          const emoji = getEmoji(key);
+          mainBlock.innerHTML = key + emoji;
+          if (muteButton) attachAudio(code); // Check muteButton exists
+        } else if (isNumber(keyCode)) {
+          mainBlock.innerHTML = key;
+          if (muteButton) attachAudio(code, true); // Check muteButton exists
         } else {
-          console.log("Printing Key");
+          const x = String.fromCodePoint(112080); // Consider if this is needed
+          mainBlock.innerHTML = x;
         }
-      },
-      false
-    );
+      }
+    });
   </script>
 </BaseLayout>
