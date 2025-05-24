@@ -1,5 +1,6 @@
 ---
 import "@/assets/styles/math.css";
+
 ---
 
 <div class="math-practice">
@@ -49,6 +50,16 @@ import "@/assets/styles/math.css";
     <div class="score">Score: <span id="scoreDisplay">0</span></div>
     <button class="operator-btn next" id="next" type="button">Next</button>
   </div>
+
+  {/* ADD THIS: Fullscreen Celebration Container */}
+  <div id="fullscreen-celebration" class="fullscreen-celebration">
+    {/* Emojis will be dynamically added here by JavaScript when a celebration occurs */}
+    {/* Example of what JS might add:
+        <span class="emoji-particle" style="left: 20%; top: 90%; animation-delay: 0.1s;">🎉</span>
+        <span class="emoji-particle" style="left: 50%; top: 85%; animation-delay: 0.3s;">⭐</span>
+        <span class="emoji-particle" style="left: 80%; top: 95%; animation-delay: 0.2s;">🎈</span>
+    */}
+  </div>
 </div>
 
 <script>
@@ -60,6 +71,7 @@ import "@/assets/styles/math.css";
   const mathForm = document.getElementById("mathForm") as HTMLFormElement;
   const scoreDisplay = document.getElementById("scoreDisplay") as HTMLElement; 
   const nextButton = document.querySelector(".operator-btn.next") as HTMLButtonElement;
+  const fullscreenCelebration = document.getElementById("fullscreen-celebration") as HTMLElement;
 
   const state = {
     currentOperator: "+",
@@ -169,6 +181,8 @@ import "@/assets/styles/math.css";
       if (nextButton) {
         nextButton.disabled = false;
       }
+
+      triggerCelebration(); // Trigger celebration on correct answer
     } else {
       resultIndicator.innerHTML = "✗";
       resultIndicator.className = "result-indicator error";
@@ -218,5 +232,77 @@ import "@/assets/styles/math.css";
     }
   }
 
+  function triggerCelebration() {
+    
+    fullscreenCelebration.innerHTML = "";
+
+    // Define the number of emoji particles and their possible emojis
+    const emojiCount = 30;
+    const emojis = ["🎉", "⭐","🎉", "🎈", "🥳", "✨", "🎊","❤️","😍","🥳"];
+
+    for (let i = 0; i < emojiCount; i++) {
+      // Create a span element for each emoji particle
+      const emojiParticle = document.createElement("span");
+      emojiParticle.className = "emoji-particle";
+      emojiParticle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+      // Set random position and animation delay
+      emojiParticle.style.left = Math.random() * 100 + "%";
+      emojiParticle.style.top = Math.random() * 100 + "%";
+      emojiParticle.style.animationDelay = Math.random() + "s";
+
+      // Append the emoji particle to the celebration container
+      fullscreenCelebration.appendChild(emojiParticle);
+    }
+
+    // Add celebration animation class
+    fullscreenCelebration.classList.add("celebration-active");
+
+    // Remove celebration after animation duration
+    setTimeout(() => {
+      fullscreenCelebration.classList.remove("celebration-active");
+    }, 4000); // Match this duration with your CSS animation duration
+  }
+
   document.addEventListener("DOMContentLoaded", initMathPractice);
 </script>
+
+<style>
+  /* Add your existing styles here... */
+
+  /* Fullscreen celebration styles */
+  .fullscreen-celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .fullscreen-celebration.celebration-active {
+    opacity: 1;
+  }
+
+  .emoji-particle {
+    position: absolute;
+    font-size: 2rem;
+    animation: fly 2s forwards;
+  }
+
+  @keyframes fly {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      transform: translateY(-100vh) scale(0);
+    }
+  }
+</style>

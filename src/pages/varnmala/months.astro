@@ -1,0 +1,179 @@
+---
+import BaseLayout from "@/layouts/Base";
+import BackButton from "@/components/ui/backButton.astro";
+import "@/assets/styles/varnmala/months.css";
+
+const pageTitle = "Months of the Year";
+const currentYear = 2025; 
+const today = new Date(currentYear, 4, 24); 
+
+const englishMonthsData = [
+  { type: "english", name: "January", hindi: "जनवरी", monthIndex: 0 },
+  { type: "english", name: "February", hindi: "फ़रवरी", monthIndex: 1 },
+  { type: "english", name: "March", hindi: "मार्च", monthIndex: 2 },
+  { type: "english", name: "April", hindi: "अप्रैल", monthIndex: 3 },
+  { type: "english", name: "May", hindi: "मई", monthIndex: 4 },
+  { type: "english", name: "June", hindi: "जून", monthIndex: 5 },
+  { type: "english", name: "July", hindi: "जुलाई", monthIndex: 6 },
+  { type: "english", name: "August", hindi: "अगस्त", monthIndex: 7 },
+  { type: "english", name: "September", hindi: "सितम्बर", monthIndex: 8 },
+  { type: "english", name: "October", hindi: "अक्टूबर", monthIndex: 9 },
+  { type: "english", name: "November", hindi: " नवम्बर", monthIndex: 10 },
+  { type: "english", name: "December", hindi: "दिसम्बर", monthIndex: 11 },
+];
+
+const indianMonthsData = [
+  
+  { type: "indian", name: "Chaitra (चैत्र)", dates: "March 21 - April 20", sunSign: "Aries (मेष)", monthIndex: 2, displayName: "Chaitra" },
+  { type: "indian", name: "Vaishakha (वैशाख)", dates: "April 21 - May 21", sunSign: "Taurus (वृषभ)", monthIndex: 3, displayName: "Vaishakha" },
+  { type: "indian", name: "Jyeshtha (ज्येष्ठ)", dates: "May 22 - June 21", sunSign: "Gemini (मिथुन)", monthIndex: 4, displayName: "Jyeshtha" },
+  { type: "indian", name: "Ashadha (आषाढ़)", dates: "June 22 - July 22", sunSign: "Cancer (कर्क)", monthIndex: 5, displayName: "Ashadha" },
+  { type: "indian", name: "Shravana (श्रावण)", dates: "July 23 - August 22", sunSign: "Leo (सिंह)", monthIndex: 6, displayName: "Shravana" },
+  { type: "indian", name: "Bhadrapada (भाद्रपद)", dates: "August 23 - September 22", sunSign: "Virgo (कन्या)", monthIndex: 7, displayName: "Bhadrapada" },
+  { type: "indian", name: "Ashvina (आश्विन)", dates: "September 23 - October 22", sunSign: "Libra (तुला)", monthIndex: 8, displayName: "Ashvina" },
+  { type: "indian", name: "Kartika (कार्तिक)", dates: "October 23 - November 21", sunSign: "Scorpio (वृश्चिक)", monthIndex: 9, displayName: "Kartika" },
+  { type: "indian", name: "Margashirsha (मार्गशीर्ष)", dates: "November 22 - December 21", sunSign: "Sagittarius (धनु)", monthIndex: 10, displayName: "Margashirsha" },
+  { type: "indian", name: "Pausha (पौष)", dates: "December 22 - January 20", sunSign: "Capricorn (मकर)", monthIndex: 11, displayName: "Pausha" },
+  { type: "indian", name: "Magha (माघ)", dates: "January 21 - February 19", sunSign: "Aquarius (कुंभ)", monthIndex: 0, displayName: "Magha" }, // Shows Jan
+  { type: "indian", name: "Phalguna (फाल्गुन)", dates: "February 20 - March 20", sunSign: "Pisces (मीन)", monthIndex: 1, displayName: "Phalguna" }, // Shows Feb
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <div class="container__months-page">
+    <div class="page-header">
+      <BackButton href="/varnmala" />
+      <h1>{pageTitle}</h1>
+    </div>
+
+    <div class="months-toggle-buttons">
+      <button id="show-english-months" class="toggle-button active" aria-pressed="true">English Months</button>
+      <button id="show-hindi-months" class="toggle-button" aria-pressed="false">Indian Months & Signs</button>
+    </div>
+
+    <div id="months-grid-container" class="months-grid">
+      {
+
+      }
+    </div>
+  </div>
+
+
+  <div id="fullpage-calendar-modal" class="fullpage-calendar-modal" style="display: none;">
+    <div class="calendar-modal-content">
+      <button id="close-calendar-modal" class="close-calendar-button">&times;</button>
+      <h2 id="calendar-modal-title"></h2>
+      <div id="calendar-modal-grid" class="calendar-grid-modal">
+        {
+
+        }
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ englishMonthsData, indianMonthsData, currentYear, todayDate: today.toISOString() }}>
+    const englishBtn = document.getElementById('show-english-months');
+    const hindiBtn = document.getElementById('show-hindi-months');
+    const gridContainer = document.getElementById('months-grid-container');
+    
+    const modal = document.getElementById('fullpage-calendar-modal');
+    const modalTitle = document.getElementById('calendar-modal-title');
+    const modalGrid = document.getElementById('calendar-modal-grid');
+    const closeModalBtn = document.getElementById('close-calendar-modal');
+    const parsedToday = new Date(todayDate);
+
+    function generateCalendarHTML(monthIndex, year, displayMonthName) {
+      let html = '';
+      const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; 
+      daysOfWeek.forEach(day => {
+        html += `<div class="calendar-day calendar-header">${day}</div>`;
+      });
+
+      const firstDayOfMonth = new Date(year, monthIndex, 1);
+      const startingDay = firstDayOfMonth.getDay(); // 0 for Sunday
+      const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+      for (let i = 0; i < startingDay; i++) {
+        html += '<div class="calendar-day empty"></div>';
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        let dayClass = 'calendar-day';
+        if (year === parsedToday.getFullYear() && monthIndex === parsedToday.getMonth() && day === parsedToday.getDate()) {
+          dayClass += ' current-day';
+        }
+        html += `<div class="${dayClass}">${day}</div>`;
+      }
+      return html;
+    }
+
+    function showFullPageCalendar(monthIndex, displayMonthName) {
+      if (modalTitle) modalTitle.textContent = `${displayMonthName} ${currentYear}`;
+      if (modalGrid) modalGrid.innerHTML = generateCalendarHTML(monthIndex, currentYear, displayMonthName);
+      if (modal) modal.style.display = 'flex';
+    }
+
+    if (closeModalBtn && modal) {
+      closeModalBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    }
+    
+    function renderMonths(data) {
+      gridContainer.innerHTML = ''; 
+      data.forEach(month => {
+        const card = document.createElement('div');
+        card.classList.add('month-card');
+        card.dataset.monthIndex = month.monthIndex.toString();
+        card.dataset.displayName = month.type === 'english' ? month.name : month.displayName;
+
+        if (month.type === 'english') {
+          card.classList.add('english-month-card');
+          card.innerHTML = `
+            <span class="month-english">${month.name}</span>
+            <span class="month-hindi">${month.hindi}</span>
+          `;
+        } else if (month.type === 'indian') {
+          card.classList.add('indian-month-card');
+          card.innerHTML = `
+            <h3 class="indian-month-name">${month.name}</h3>
+            <p class="indian-month-dates"><span class="label">Dates:</span> ${month.dates}</p>
+            <p class="indian-month-sunsign"><span class="label">Sun Sign:</span> ${month.sunSign}</p>
+          `;
+        }
+        
+        card.addEventListener('click', () => {
+          const mIndex = parseInt(card.dataset.monthIndex);
+          const dName = card.dataset.displayName;
+          showFullPageCalendar(mIndex, dName);
+        });
+        gridContainer.appendChild(card);
+      });
+    }
+
+    englishBtn.addEventListener('click', () => {
+      renderMonths(englishMonthsData);
+      englishBtn.classList.add('active');
+      englishBtn.setAttribute('aria-pressed', 'true');
+      hindiBtn.classList.remove('active');
+      hindiBtn.setAttribute('aria-pressed', 'false');
+    });
+
+    hindiBtn.addEventListener('click', () => {
+      renderMonths(indianMonthsData);
+      hindiBtn.classList.add('active');
+      hindiBtn.setAttribute('aria-pressed', 'true');
+      englishBtn.classList.remove('active');
+      englishBtn.setAttribute('aria-pressed', 'false');
+    });
+
+    
+    renderMonths(englishMonthsData);
+  </script>
+</BaseLayout>
