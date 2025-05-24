@@ -254,16 +254,19 @@
   }
 
   & .language-letter-top {
-    font-size: 5rem;
+    font-size: 71px;
     font-weight: 600;
-    color: light-dark(var(--navy-blue),white);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background:linear-gradient(to right,#32ebd5, #12c2e9, #c471ed, #f64f59,#f37981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   }
 
   & .language-letter-bottom {
-    font-size: 3rem;
+    font-size: 50px;
     font-weight: 500;
-    color: var(--text-secondary);
+background-image: radial-gradient( circle farthest-corner at 10% 20%,  var(--sky-blue) 1%, var(--teal-accent) 90% );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
     opacity: 0.9;
   }
 
