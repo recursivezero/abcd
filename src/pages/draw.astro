@@ -113,7 +113,8 @@ import Help from "@/components/Help.astro";
   }
 
   .reset-button:hover {
-    transform: translateY(-2px) scale(1.1) rotate(180deg);
+  /*To rotate the reset button on hover*/
+  /*transform: translateY(-2px) scale(1.1) rotate(180deg);*/
     transition: all 0.3s ease;
   }
 
@@ -227,6 +228,11 @@ import Help from "@/components/Help.astro";
       bottom: -1.75rem;
     }
   }
+
+  *:focus {
+  outline: none;
+  box-shadow: none;
+}
 
 </style>
 
