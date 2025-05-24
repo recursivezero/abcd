@@ -261,7 +261,13 @@ fill="currentColor" viewBox="0 0 24 24" >
     
     // Refresh the grid
     updateGrid();
-    
+     // Toggle persistent state
+  const button = document.getElementById('toggleButton');
+  button.classList.toggle('toggled');
+  
+  // Keep the animation
+  button.classList.add('swapping');
+  setTimeout(() => button.classList.remove('swapping'), 300);
     // Add visual feedback
     const toggleButton = document.getElementById('toggleButton');
     toggleButton.classList.add('swapping');

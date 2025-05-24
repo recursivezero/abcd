@@ -142,9 +142,13 @@
   }
 
   &.toggled {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
+  background: var(--teal-accent);
+  color: var(--navy-blue);
   }
-
+  &.toggled svg {
+  fill: var(--navy-blue);
+}
   & i {
     display: flex;
     align-items: center;
