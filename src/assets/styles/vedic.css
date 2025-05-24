@@ -90,15 +90,7 @@
     font-weight: 600;
     margin-bottom: 1.5rem;
   }
-  & .tithi{
-    color: var(--text);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-  }
-  & #english {
-    margin-bottom: 1.5rem;
-  }
+
   & .units__grid {
     display: grid;
     gap: 1rem;
@@ -113,14 +105,7 @@
     border: 1px solid var(--border);
     background-color: var(--background);
   }
-& p {
-    padding: 1.25rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border);
-    background-color: var(--background);
-    text-align: center;
-  }
-  & .unit__header {
+.unit__header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -159,5 +144,101 @@
     & .vedic__layout {
       grid-template-columns: 1fr;
     }
+  }
+}
+/* Tithi header styles */
+.tithi-header {
+  display: flex;
+  position: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;}
+
+.tithi-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 51%;
+}
+
+.tithi-title {
+  color: var(--text);
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.date-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.calendar-icon {
+  width: 28px;
+  height: 28px;
+  fill: var(--text);
+}
+
+/* Date display styles */
+.date-display {
+  width: 50%;
+}
+
+.single-date, .date-format {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.multi-date {
+  display: none;
+  width: 100%;
+}
+
+/* Time units section */
+.units__card {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.units__title {
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.units__grid {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .container__vedic {
+    padding: 1.5rem;
+  }
+  
+  .tithi-title {
+    font-size: 1.8rem;
   }
 }

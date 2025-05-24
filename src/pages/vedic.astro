@@ -71,15 +71,27 @@ const timeUnits = vedicData.time_units;
     
 
   </script>
-  <div class="TS">
-  <h1 class="tithi">Tithi & Samay</h1>
-  <time data-id="today" style="--h:0;--m:0;--s:0">
-    <p data-id="hindu"></p>
-    <p data-id="hindi"></p>
-    <p data-id="english"></p>
-  </time>
-  </div>
 
+      <!-- Updated Tithi header with SVG icon as fallback -->
+      <div class="tithi-header">
+        <div class="tithi-title-wrapper">
+          <h1 class="tithi-title">Tithi</h1>
+          <button id="dateToggle" class="date-toggle" aria-label="Toggle date formats">
+            <svg class="calendar-icon" viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zM5 7V5h14v2H5z"/>
+              <path fill="currentColor" d="M7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
+            </svg>
+          </button>
+        </div>
+        <div id="dateDisplay" class="date-display">
+          <p id="singleDate" class="single-date">Loading date...</p>
+          <div id="multiDate" class="multi-date" style="display: none;">
+            <p class="date-format"></p>
+            <p class="date-format"></p>
+            <p class="date-format"></p>
+          </div>
+        </div>
+      </div>
 <script>
     const tithiNames = [
       "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
@@ -217,3 +229,65 @@ const timeUnits = vedicData.time_units;
     })} ${toUnit}`;
   });
 </script>
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const dateToggle = document.getElementById('dateToggle');
+  const singleDate = document.getElementById('singleDate');
+  const multiDate = document.getElementById('multiDate');
+  const dateFormats = document.querySelectorAll('.date-format');
+
+  // Your existing date functions - replace with your actual date functions
+  function getEnglishDate() {
+    return new Date().toLocaleString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  }
+
+  function getHindiDate() {
+    return new Date().toLocaleString('hi-IN', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  }
+
+  function getVedicDate() {
+    // Replace with your actual Vedic date calculation
+    return "Vedic Date: " + new Date().toLocaleString();
+  }
+
+  function updateDates() {
+    const dates = [getEnglishDate(), getHindiDate(), getVedicDate()];
+    singleDate.textContent = dates[0];
+    
+    dateFormats.forEach((format, index) => {
+      format.textContent = dates[index];
+    });
+  }
+
+  dateToggle.addEventListener('click', () => {
+    if (multiDate.style.display === 'none') {
+      multiDate.style.display = 'block';
+      singleDate.style.display = 'none';
+    } else {
+      multiDate.style.display = 'none';
+      singleDate.style.display = 'block';
+    }
+  });
+
+  // Initial update and set interval
+  updateDates();
+  setInterval(updateDates, 1000);
+});
+</script>
+
