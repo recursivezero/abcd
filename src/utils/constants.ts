@@ -162,7 +162,15 @@ export const NavbarLinks: LinkProps[] = [
     title: "Draw",
     path: "/draw",
     isActive: true
+  },
+
+  {
+    name: "Quote Designer",
+    title: "Quote Designer", 
+    path: "/advanced",    
+    isActive: true 
   }
+
 ];
 
 export const FooterLinks: LinkProps[] = [
