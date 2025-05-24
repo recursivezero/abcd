@@ -32,7 +32,7 @@
 }
 
 .toggle-container {
-  display:flex;
+  display: flex;
   justify-content: center;
   gap: 2rem;
   /*margin-bottom: 1rem;*/
@@ -108,8 +108,9 @@
     }
   }
 }
+
 .toggle-button {
-  background:light-dark (var(--navy-blue),var(--text-primary));
+  background: light-dark (var(--navy-blue), var(--text-primary));
   border: 1px solid rgba(125, 211, 252, 0.3);
   border-radius: 12px;
   width: 48px;
@@ -126,15 +127,16 @@
   position: relative;
   margin-top: 40px;
   box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
   &:hover {
-    background:light-dark (var(--navy-blue),var(--text-primary));
+    background: light-dark (var(--navy-blue), var(--text-primary));
     transform: scale(1.1);
     border-color: #7dd3fc;
     box-shadow:
-        0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
   &:active {
@@ -142,19 +144,22 @@
   }
 
   &.toggled {
-  transform: rotate(180deg);
-  background: var(--teal-accent);
-  color: var(--navy-blue);
+    transform: rotate(180deg);
+    background: linear-gradient(to right, var(--sky-blue), var(--teal-accent));
+    color: var(--navy-blue);
   }
+
   &.toggled svg {
-  fill: var(--navy-blue);
-}
+    fill: var(--navy-blue);
+  }
+
   & i {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 }
+
 /* Add to your existing toggle-button styles */
 .toggle-button.swapping {
   transform: rotate(180deg);
@@ -210,7 +215,7 @@
   width: 100%;
   padding: 1rem 0.5rem;
   border-radius: 0.75rem;
-  background: light-dark(white,var(--navy-blue));
+  background: light-dark(white, var(--navy-blue));
   border: 1px solid rgba(125, 211, 252, 0.1);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -260,17 +265,17 @@
   & .language-letter-top {
     font-size: 71px;
     font-weight: 600;
-  background:linear-gradient(to right,#32ebd5, #12c2e9, #c471ed, #f64f59,#f37981);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    background: linear-gradient(to right, #32ebd5, #12c2e9, #c471ed, #f64f59, #f37981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   & .language-letter-bottom {
     font-size: 50px;
     font-weight: 500;
-background-image: radial-gradient( circle farthest-corner at 10% 20%,  var(--sky-blue) 1%, var(--teal-accent) 90% );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    background-image: radial-gradient(circle farthest-corner at 10% 20%, var(--sky-blue) 1%, var(--teal-accent) 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     opacity: 0.9;
   }
 
