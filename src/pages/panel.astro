@@ -38,8 +38,39 @@ import "@/assets/styles/common.css";
         </label>
       </div>
 
+            <div class="controls" role="radiogroup" aria-labelledby="content-type-label">
+        <span id="content-type-label" class="sr-only">Panel Content Type</span>
+
+        <label class="alphabet" for="alphabet">
+          <input
+            type="radio"
+            class="content-type"
+            name="content-type"
+            id="alphabet"
+            value="alphabet"
+            aria-label="Alphabet Panel"
+            checked
+          />
+          <span class="icon" aria-hidden="true">A-Z</span>
+          <span class="sr-only">Alphabet Panel</span>
+        </label>
+
+        <label class="numbers" for="numbers">
+          <input
+            type="radio"
+            class="content-type"
+            name="content-type"
+            id="numbers"
+            value="numbers"
+            aria-label="Numbers Panel"
+          />
+          <span class="icon" aria-hidden="true">0-9</span>
+          <span class="sr-only">Numbers Panel</span>
+        </label>
+      </div>
+
       <div class="range__option">
-        <span>10</span>
+        <span id="min-range-value">10</span>
         <input
           type="range"
           name="range"
@@ -50,13 +81,13 @@ import "@/assets/styles/common.css";
           max="26"
           title="Adjust panel size"
         />
-        <span>26</span>
+        <span id="max-range-value">26</span>
       </div>
     </section>
 
     <Help
       title="Panel"
-      description="Use arrow keys to navigate through letters. Up/down for vertical orientation, left/right for horizontal. Type any letter to jump to it. Adjust panel size with the slider."
+      description="Use arrow keys to navigate through letters/numbers. Up/down for vertical orientation, left/right for horizontal. Type any letter or number to jump to it. Adjust panel size with the slider."
     />
   </Fragment>
 
@@ -75,12 +106,22 @@ import "@/assets/styles/common.css";
       RIGHT = 39,
       DOWN = 40
     }
+
+        enum ContentType {
+      ALPHABET = "alphabet",
+      NUMBERS = "numbers"
+    }
+
     // Define the behaviour for our new type of HTML element.
     class LetterPanel extends HTMLElement {
-      #panel;
-      #cellRange;
-      #orientationPanel;
-      #orientation = "Y";
+      #panel: HTMLElement;
+      #cellRange: HTMLInputElement;
+      #minRangeValueSpan: HTMLElement;
+      #maxRangeValueSpan: HTMLElement;
+      #orientationPanel: NodeListOf<HTMLInputElement>;
+      #contentTypePanel: NodeListOf<HTMLInputElement>;
+      #orientation: "X" | "Y" = "Y";
+      #contentType: ContentType = ContentType.ALPHABET;
       #selectedIndex = 0;
       #radius = "0px";
       #theta = 0;
@@ -90,15 +131,20 @@ import "@/assets/styles/common.css";
         super();
         this.#panel = this.querySelector("#panel") as HTMLElement;
         this.#orientationPanel = document.querySelectorAll(".orientation");
+        this.#contentTypePanel = document.querySelectorAll(".content-type");
         this.#cellRange = document.querySelector("#range") as HTMLInputElement;
+        this.#minRangeValueSpan = document.querySelector("#min-range-value") as HTMLElement;
+        this.#maxRangeValueSpan = document.querySelector("#max-range-value") as HTMLElement;
+        this.updateRangeAttributes();
         this.buildPanel();
         this.#emitEvent();
       }
 
       connectedCallback() {
         this.changePanel();
-        this.rotatePanel({ by: "X" });
+        this.rotatePanel({ by: "Y" });
         (this.#orientationPanel[1] as HTMLInputElement).checked = true;
+        (this.#contentTypePanel[0] as HTMLInputElement).checked = true;
       }
 
       #emitEvent() {
@@ -113,9 +159,25 @@ import "@/assets/styles/common.css";
             "click",
             (e: Event) => {
               const target = e.target as HTMLInputElement;
-              this.#orientation = target.value;
+              this.#orientation = target.value as "X" | "Y";
               this.changePanel();
               target.blur(); //unfocus the radio button
+            },
+            false
+          );
+        });
+
+        this.#contentTypePanel.forEach((radio) => {
+          radio.addEventListener(
+            "click",
+            (e: Event) => {
+              const target = e.target as HTMLInputElement;
+              this.#contentType = target.value as ContentType;
+              this.#selectedIndex = 0; // Reset index when content type changes
+              this.updateRangeAttributes(); // Update range limits
+              this.buildPanel(); // Rebuild panel with new content
+              this.changePanel();
+              target.blur();
             },
             false
           );
@@ -129,13 +191,35 @@ import "@/assets/styles/common.css";
           }
           this.buildPanel();
           this.changePanel();
-          this.#cellRange.blur();
         });
+        this.#cellRange.addEventListener("change", (e) => { // Add change event for final blur
+            this.#cellRange.blur();
+        });
+      }
+
+      updateRangeAttributes() {
+        if (this.#contentType === ContentType.ALPHABET) {
+          this.#cellRange.min = "10";
+          this.#cellRange.max = "26";
+          this.#minRangeValueSpan.textContent = "10";
+          this.#maxRangeValueSpan.textContent = "26";
+          // Ensure current value is within bounds
+          if (Number(this.#cellRange.value) < 10) this.#cellRange.value = "10";
+          if (Number(this.#cellRange.value) > 26) this.#cellRange.value = "26";
+        } else { // ContentType.NUMBERS
+          this.#cellRange.min = "3";
+          this.#cellRange.max = "10";
+          this.#minRangeValueSpan.textContent = "3";
+          this.#maxRangeValueSpan.textContent = "10";
+          // Ensure current value is within bounds
+          if (Number(this.#cellRange.value) < 3) this.#cellRange.value = "3";
+          if (Number(this.#cellRange.value) > 10) this.#cellRange.value = "10";
+        }
       }
 
       doTheMath() {
         const cellWidth = this.#panel.offsetWidth;
-        const cellCount = this.#cellRange?.value ? Number(this.#cellRange.value) : 26;
+        const cellCount = Number(this.#cellRange.value);
         const halfCell = cellWidth / 2;
         const divideBy = Math.tan(Math.PI / cellCount);
         this.#radius = Math.round(halfCell / divideBy) + "px";
@@ -143,13 +227,19 @@ import "@/assets/styles/common.css";
         this.#angle = this.#theta * this.#selectedIndex + "deg";
       }
 
-      buildPanel(num?: number) {
-        const count = num ?? (this.#cellRange?.value ? Number(this.#cellRange.value) : 26);
+      buildPanel() {
+        const count = Number(this.#cellRange.value);
         const fragment = document.createDocumentFragment();
         for (let i = 0; i < count; i++) {
           const div = document.createElement("div");
           div.classList.add("panel__cell");
-          div.textContent = String.fromCodePoint(65 + i); // A to Z
+
+          if (this.#contentType === ContentType.ALPHABET) {
+            div.textContent = String.fromCodePoint(65 + i); // A to Z
+          } else { // ContentType.NUMBERS
+            div.textContent = String(i % 10); // 0-9, wraps around after 9
+          }
+
           fragment.appendChild(div);
         }
         this.#panel.innerHTML = "";
@@ -171,14 +261,20 @@ import "@/assets/styles/common.css";
       updateFrontCell() {
         const cells = this.#panel.querySelectorAll(".panel__cell") as NodeListOf<HTMLElement>;
         if (!cells.length) return;
-        cells.forEach((cell) => cell.classList.remove("front"));
         const count = cells.length;
         const normalizedIndex = ((this.#selectedIndex % count) + count) % count;
-        const frontIndex = (count - normalizedIndex) % count;
-        cells[frontIndex].classList.add("front");
-      }
 
-      rotatePanel({ by = "X" }) {
+        cells.forEach((cell, index) => {
+          cell.classList.remove("front");
+          // Calculate which cell should be "front" based on rotation
+          const adjustedIndex = (index + normalizedIndex) % count;
+          if (adjustedIndex === 0) { // The cell that is currently at the 0-degree position (front)
+            cell.classList.add("front");
+      }
+    });
+  }  
+
+      rotatePanel({ by = "Y" }: { by?: "X" | "Y" }) {
         this.doTheMath();
         const transformString = `translateZ(-${this.#radius}) rotate${by}(${this.#angle})`;
         this.#panel.style.transform = transformString;
@@ -187,15 +283,25 @@ import "@/assets/styles/common.css";
       onKeyChange(code: number) {
         const VerticalButton = this.#orientationPanel[0] as HTMLInputElement;
         const horizontalButton = this.#orientationPanel[1] as HTMLInputElement;
+        const currentPanelSize = Number(this.#cellRange.value);
+
         switch (code) {
           case ArrowKeys.RIGHT: {
-            this.#selectedIndex++;
+            if (this.#orientation === "Y"){
+              this.#selectedIndex--;
+            } else {
+              this.#selectedIndex++;
+            }
             this.#orientation = "Y";
             horizontalButton.checked = true;
             break;
           }
           case ArrowKeys.LEFT: {
-            this.#selectedIndex--;
+            if (this.#orientation === "Y") {
+              this.#selectedIndex++;
+            } else {
+              this.#selectedIndex--;
+            }
             this.#orientation = "Y";
             horizontalButton.checked = true;
             break;
@@ -213,13 +319,27 @@ import "@/assets/styles/common.css";
             break;
           }
           default: {
-            //if (isAlphabet(keyCode)) {
-            this.#selectedIndex = 65 - code;
-            //} else {
-            //  this.#selectedIndex--;
-            //}
+            // Handle character input (alphabets and numbers)
+            if (this.#contentType === ContentType.ALPHABET) {
+              if (code >= 65 && code <= 90) { // A-Z (uppercase)
+                this.#selectedIndex = (65 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to A
+              } else if (code >= 97 && code <= 122) { // a-z (lowercase)
+                this.#selectedIndex = (97 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to a
+              } else {
+                 // If not an alphabet, just move forward
+                this.#selectedIndex++;
+              }
+            } else { // ContentType.NUMBERS
+              if (code >= 48 && code <= 57) { // 0-9
+                this.#selectedIndex = (48 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to 0
+              } else {
+                 // If not a number, just move forward
+                this.#selectedIndex++;
+              }
+            }
           }
         }
+        this.#selectedIndex = (this.#selectedIndex % currentPanelSize + currentPanelSize) % currentPanelSize;
         this.changePanel();
       }
     }
