@@ -12,15 +12,30 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     <div class="action">
       <!--<a href="/" class="back-button" aria-label="Go back" title="Go back">← Back</a>-->
     </div>
-    <!-- The caption div is removed; the heading now appears directly in the header -->
     <h1 class="info" aria-live="polite">Press any key</h1>
   </header>
 
   <main class="main">
     <section class="board" id="board" aria-live="polite">
       <div class="char" id="char"></div>
+      <div class="instruction" id="instruction">Press any key</div>
     </section>
   </main>
+</div>
+
+<!-- Popup Modal -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <div class="popup-icon">⚠️</div>
+    <h3>Invalid Key Pressed!</h3>
+    <p>You pressed: <span id="pressedKey" class="pressed-key"></span></p>
+    <p>Please press a valid key:</p>
+    <div class="valid-keys">
+      <span class="key-group">Letters: A-Z, a-z</span>
+      <span class="key-group">Numbers: 0-9</span>
+    </div>
+    <button class="popup-close" id="popupClose">Got it!</button>
+  </div>
 </div>
 
 <script
@@ -36,19 +51,36 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   // Initialize state
   let currentFontIndex = 0;
   let isUpperCase = true;
+  let hasKeyBeenPressed = false;
 
   // DOM elements
   const mainEl = document.querySelector("main");
   const boardDiv = document.getElementById("board");
   const charDiv = document.getElementById("char");
+  const instructionDiv = document.getElementById("instruction");
   const toggleCaseSwitch = document.getElementById("toggleCase");
   const toggleFontSwitch = document.getElementById("toggleFont");
   const toggleBackgroundSwitch = document.getElementById("toggleBg");
   const info = document.querySelector(".info");
-  const textSpan = document.getElementById("text");
+  const popupOverlay = document.getElementById("popupOverlay");
+  const pressedKeySpan = document.getElementById("pressedKey");
+  const popupClose = document.getElementById("popupClose");
 
   function getRandomValue(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function showPopup(key) {
+    pressedKeySpan.textContent = key === ' ' ? 'Spacebar' : key;
+    popupOverlay.style.display = 'flex';
+    
+    setTimeout(() => {
+      hidePopup();
+    }, 3000);
+  }
+
+  function hidePopup() {
+    popupOverlay.style.display = 'none';
   }
 
   function updateDisplay(key) {
@@ -60,20 +92,21 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
       console.log("Audio feedback unavailable");
     }
 
-    if (!isNaN(Number(key))) {
-  boardDiv.style.backgroundColor = getRandomValue(colorBox);
-  boardDiv.style.backgroundImage = "";
-  charDiv.textContent = key;
-  info.textContent = numberBox[key] || "Unknown";
-  charDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`; // Apply font to number
-  return;
-}
+    hasKeyBeenPressed = true;
 
+    if (!isNaN(Number(key))) {
+      boardDiv.style.backgroundColor = getRandomValue(colorBox);
+      boardDiv.style.backgroundImage = "";
+      charDiv.textContent = key;
+      instructionDiv.textContent = numberBox[key] || "Unknown";
+      charDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+      return;
+    }
 
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
-      info.textContent = found.value;
-      if (!toggleBackgroundSwitch.checked) {
+      instructionDiv.textContent = found.value;
+      if (!toggleBackgroundSwitch?.checked) {
         boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
         boardDiv.style.backgroundColor = "";
       }
@@ -86,34 +119,33 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   function handleKeyPress(e) {
     const key = e.key;
+    
     if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
       updateDisplay(key);
+    } else if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+      showPopup(key);
     }
   }
 
   toggleCaseSwitch?.addEventListener("change", (e) => {
     isUpperCase = !e.target.checked;
     const currentText = charDiv.textContent;
-    charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
-    textSpan.setAttribute("aria-checked", !e.target.checked);
+    if (currentText) {
+      charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
+    }
   });
 
-toggleFontSwitch?.addEventListener("change", () => {
-  currentFontIndex = (currentFontIndex + 1) % fontBox.length;
-  const currentFont = fontBox[currentFontIndex];
+  toggleFontSwitch?.addEventListener("change", () => {
+    currentFontIndex = (currentFontIndex + 1) % fontBox.length;
+    const currentFont = fontBox[currentFontIndex];
 
-
-  document.fonts.load(`1em "${currentFont}"`).then(() => {
-    charDiv.style.fontFamily = `"${currentFont}"`;
-  }).catch(() => {
-
-    console.warn(`Font "${currentFont}" failed to load.`);
-    charDiv.style.fontFamily = `"${currentFont}"`; // Fallback application
-
+    document.fonts.load(`1em "${currentFont}"`).then(() => {
+      charDiv.style.fontFamily = `"${currentFont}"`;
+    }).catch(() => {
+      console.warn(`Font "${currentFont}" failed to load.`);
+      charDiv.style.fontFamily = `"${currentFont}"`;
+    });
   });
-
-});
-
 
   toggleBackgroundSwitch?.addEventListener("change", (e) => {
     if (e.target.checked) {
@@ -129,16 +161,29 @@ toggleFontSwitch?.addEventListener("change", () => {
     }
   });
 
+  popupClose.addEventListener("click", hidePopup);
+  
+  popupOverlay.addEventListener("click", (e) => {
+    if (e.target === popupOverlay) {
+      hidePopup();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      hidePopup();
+    }
+  });
+
   document.addEventListener("keydown", handleKeyPress);
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
 
-document.addEventListener('keyboardReset', (e) => {
-    // Reset all variables to original state
+  document.addEventListener('keyboardReset', (e) => {
     currentFontIndex = 0;
     isUpperCase = true;
+    hasKeyBeenPressed = false;
     
-    // Reset all visual elements
     if (mainEl) {
         mainEl.style.backgroundBlendMode = 'normal';
         mainEl.style.filter = 'brightness(1)';
@@ -154,16 +199,16 @@ document.addEventListener('keyboardReset', (e) => {
         charDiv.textContent = '';
     }
     
-    if (info) {
-        info.textContent = 'Press any key';
+    if (instructionDiv) {
+        instructionDiv.textContent = 'Press any key';
     }
     
-    // Reset checkbox states
     if (toggleCaseSwitch) toggleCaseSwitch.checked = false;
     if (toggleFontSwitch) toggleFontSwitch.checked = false;
     if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
-});
-
+    
+    hidePopup();
+  });
 </script>
 
 <style>
@@ -194,7 +239,6 @@ document.addEventListener('keyboardReset', (e) => {
     font-family: "Inter", system-ui, sans-serif;
     text-align: center;
     padding: 1rem;
-    /*background: var(--primary-bg);*/
   }
 
   .header {
@@ -204,9 +248,9 @@ document.addEventListener('keyboardReset', (e) => {
     width: 50%;
     padding: 1.5rem 2rem;
     gap: 1rem;
-    position: sticky; /* Make the header sticky */
-    top: 0; /* Stick to the top of the viewport */
-    z-index: 100; /* Ensure it stays above other content */
+    position: sticky; 
+    top: 0;
+    z-index: 100; 
     background: rgb(224, 222, 222);
     border: 1px solid var(--light-border);
     border-radius: 12px;
@@ -229,63 +273,6 @@ document.addEventListener('keyboardReset', (e) => {
     font-size: 2rem;
   }
 
-  .controls {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .control-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .control-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 4.5rem;
-    height: 4.5rem;
-    background: var(--control-bg);
-    border-radius: 0.75rem;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid rgba(67, 56, 202, 0.2);
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-    font-size: 2rem;
-    color: black;
-  }
-
-  .control-button::before {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--accent-color);
-    transform: scaleX(0);
-    transform-origin: 0 50%;
-    transition: transform 0.3s ease-out;
-    opacity: 0.1;
-  }
-
-  .control-button:hover::before {
-    transform: scaleX(1);
-  }
-
-  .control-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-
   .main {
     display: flex;
     justify-content: center;
@@ -300,6 +287,7 @@ document.addEventListener('keyboardReset', (e) => {
   .board {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -330,6 +318,15 @@ document.addEventListener('keyboardReset', (e) => {
     will-change: transform, opacity;
   }
 
+  .instruction {
+    position: absolute;
+    bottom: 2rem;
+    color: white;
+    font-size: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+  }
+
   @keyframes charReveal {
     from {
       opacity: 0;
@@ -341,21 +338,106 @@ document.addEventListener('keyboardReset', (e) => {
     }
   }
 
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+  /* Popup Styles */
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .popup {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: popupSlideIn 0.3s ease-out;
+  }
+
+  @keyframes popupSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .popup-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .popup h3 {
+    color: #dc2626;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .popup p {
+    color: #374151;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .pressed-key {
+    font-weight: bold;
+    color: #dc2626;
+    background: #fee2e2;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+  }
+
+  .valid-keys {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .key-group {
+    background: #f3f4f6;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #374151;
+  }
+
+  .popup-close {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+  }
+
+  .popup-close:hover {
+    background: #3730a3;
+    transform: translateY(-2px);
   }
 
   @media (max-width: 640px) {
     .header {
       padding: 1rem;
+      width: 90%;
     }
 
     .info {
@@ -366,16 +448,8 @@ document.addEventListener('keyboardReset', (e) => {
       font-size: clamp(4rem, 25vw, 15rem);
     }
 
-    .control-button {
-      width: 3rem;
-      height: 3rem;
+    .instruction {
       font-size: 1.5rem;
-    }
-
-    .controls {
-      position: static;
-      justify-content: center;
-      width: 100%;
     }
   }
 </style>
