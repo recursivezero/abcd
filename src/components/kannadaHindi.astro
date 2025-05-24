@@ -102,7 +102,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   <div class="toggle-container">
     <div class="dropdown-wrapper">
       <label id="lang1Label" class="dropdown-label language-label active">
-        {languages.find((lang) => lang.code === selectedLanguage1)?.name || ""}
+PRIMARY LANGUAGE
       </label>
       <select id="languageDropdown1">
         {
@@ -125,7 +125,7 @@ fill="currentColor" viewBox="0 0 24 24" >
 
     <div class="dropdown-wrapper">
       <label id="lang2Label" class="dropdown-label language-label">
-        {languages.find((lang) => lang.code === selectedLanguage2)?.name || ""}
+SECONDARY LANGUAGE
       </label>
       <select id="languageDropdown2">
         {
@@ -255,9 +255,7 @@ fill="currentColor" viewBox="0 0 24 24" >
     // Update the dropdown values
     document.getElementById('languageDropdown1').value = selectedLanguage1;
     document.getElementById('languageDropdown2').value = selectedLanguage2;
-    
-    // Update the labels
-    updateLanguageLabels();
+
     
     // Refresh the grid
     updateGrid();
@@ -277,28 +275,9 @@ fill="currentColor" viewBox="0 0 24 24" >
   }
 
   // Helper function to update language labels
-  function updateLanguageLabels() {
-    const lang1Label = document.getElementById('lang1Label');
-    const lang2Label = document.getElementById('lang2Label');
-    
-    if (lang1Label && lang2Label) {
-      lang1Label.textContent = languages.find(l => l.code === selectedLanguage1)?.name || "";
-      lang2Label.textContent = languages.find(l => l.code === selectedLanguage2)?.name || "";
-      
-      // Toggle active class
-      lang1Label.classList.toggle('active', true);
-      lang2Label.classList.toggle('active', false);
-    }
-  }
-  function updateGrid() {
-    // Update language labels
-    const lang1Label = document.getElementById("lang1Label");
-    const lang2Label = document.getElementById("lang2Label");
-    if (lang1Label && lang2Label) {
-      lang1Label.textContent = languages.find((l) => l.code === selectedLanguage1)?.name || "";
-      lang2Label.textContent = languages.find((l) => l.code === selectedLanguage2)?.name || "";
-    }
 
+  function updateGrid() {
+    
     // Update all letter cards
     const vowelCards = document.querySelectorAll(".language-letter-card-vowel");
     const consonantCards = document.querySelectorAll(".language-letter-card-consonant");
@@ -402,21 +381,20 @@ function toggleLanguages() {
     // Event listeners
     dropdown1.addEventListener('change', (e) => {
       selectedLanguage1 = e.target.value;
-      updateLanguageLabels();
+
       updateGrid();
     });
 
     dropdown2.addEventListener('change', (e) => {
       selectedLanguage2 = e.target.value;
-      updateLanguageLabels();
+
       updateGrid();
     });
 
     // Add click handler for swap button
     toggleButton.addEventListener('click', swapLanguages);
 
-    // Initial render
-    updateLanguageLabels();
+  
     updateGrid();
 /*    const toggleButton = document.getElementById("toggleButton");*/
 /*    const toggleButton = document.getElementById("toggleButton");
