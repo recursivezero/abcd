@@ -17,8 +17,10 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   <main class="main">
     <section class="board" id="board" aria-live="polite">
-      <div class="char" id="char"></div>
-      <div class="instruction" id="instruction">Press any key</div>
+      <div class="content-wrapper">
+        <div class="char" id="char"></div>
+        <div class="instruction" id="instruction">Press any key</div>
+      </div>
     </section>
   </main>
 </div>
@@ -99,13 +101,14 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
       boardDiv.style.backgroundImage = "";
       charDiv.textContent = key;
       instructionDiv.textContent = numberBox[key] || "Unknown";
-      charDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
       return;
     }
 
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
-      instructionDiv.textContent = found.value;
+      instructionDiv.textContent = isUpperCase ? found.value.toUpperCase() : found.value.toLowerCase();
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
       if (!toggleBackgroundSwitch?.checked) {
         boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
         boardDiv.style.backgroundColor = "";
@@ -132,6 +135,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     const currentText = charDiv.textContent;
     if (currentText) {
       charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
+      const currentInstruction = instructionDiv.textContent;
+      instructionDiv.textContent = isUpperCase ? currentInstruction.toUpperCase() : currentInstruction.toLowerCase();
     }
   });
 
@@ -140,10 +145,10 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     const currentFont = fontBox[currentFontIndex];
 
     document.fonts.load(`1em "${currentFont}"`).then(() => {
-      charDiv.style.fontFamily = `"${currentFont}"`;
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
     }).catch(() => {
       console.warn(`Font "${currentFont}" failed to load.`);
-      charDiv.style.fontFamily = `"${currentFont}"`;
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
     });
   });
 
@@ -200,6 +205,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     }
     
     if (instructionDiv) {
+        instructionDiv.style.fontFamily = '';
         instructionDiv.textContent = 'Press any key';
     }
     
@@ -226,19 +232,20 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   * {
     box-sizing: border-box;
-    margin: auto;
+    margin: 0;
     padding: 0;
   }
 
   .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     font-family: "Inter", system-ui, sans-serif;
     text-align: center;
     padding: 1rem;
+    padding-top: 0;
   }
 
   .header {
@@ -248,9 +255,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     width: 50%;
     padding: 1.5rem 2rem;
     gap: 1rem;
-    position: sticky; 
+    position: sticky;
     top: 0;
-    z-index: 100; 
+    z-index: 100;
     background: rgb(224, 222, 222);
     border: 1px solid var(--light-border);
     border-radius: 12px;
@@ -266,7 +273,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   .info {
     margin-top: -25px;
-    color: rgb(29, 25, 25); 
+    color: rgb(29, 25, 25);
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;
@@ -278,22 +285,24 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 120px);
+    height: auto;
+    min-height: calc(10vh - 180px);
     overflow: hidden;
     transition: var(--transition);
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    padding: 1rem 0;
   }
 
   .board {
     position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 73vh;
     overflow: hidden;
-    padding: 2rem;
+    padding: 1rem;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -302,29 +311,38 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     border-radius: 1rem;
   }
 
-  .char {
-    position: relative;
-    z-index: 2;
-    text-align: center;
+  .content-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    font-size: clamp(10rem, 30vw, 25rem);
-    font-weight: 800;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 4rem;
+  }
+
+  .char {
+    text-align: center;
+    font-size: clamp(8rem, 30vw, 20rem);
+    font-weight: 600;
     color: white;
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transition: var(--transition);
     animation: charReveal 0.4s ease-out;
     will-change: transform, opacity;
+    line-height: 1;
+    margin: 0;
   }
 
   .instruction {
-    position: absolute;
-    bottom: 2rem;
     color: white;
-    font-size: 2rem;
+    font-size: 1.75rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    z-index: 3;
+    transition: var(--transition);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
   }
 
   @keyframes charReveal {
@@ -345,7 +363,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height:100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
     justify-content: center;
@@ -381,7 +399,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   .popup h3 {
-    color: #dc2626;
+    color:#2563eb;
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
@@ -393,10 +411,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   .pressed-key {
-    font-weight: bold;
-    color: #dc2626;
-    background: #fee2e2;
-    padding: 0.25rem 0.5rem;
+    color:#2563eb;
+    background:transparent;
+    padding: 0.1rem 0.1rem;
     border-radius: 0.25rem;
     font-family: monospace;
   }
@@ -409,7 +426,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   .key-group {
-    background: #f3f4f6;
+    background:rgb(201, 203, 205);
     padding: 0.5rem;
     border-radius: 0.5rem;
     font-family: monospace;
@@ -418,7 +435,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   .popup-close {
-    background: var(--accent-color);
+    background: #2563eb;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -430,11 +447,15 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   .popup-close:hover {
-    background: #3730a3;
+    background: rgba(15, 23, 42, 0.7);
     transform: translateY(-2px);
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
+    .container {
+      padding-top: 0.25rem;
+    }
+    
     .header {
       padding: 1rem;
       width: 90%;
@@ -444,12 +465,16 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
       font-size: 1.25rem;
     }
 
+    .main {
+      min-height: calc(100vh - 120px);
+    }
+
     .char {
-      font-size: clamp(4rem, 25vw, 15rem);
+      font-size: clamp(5rem, 25vw, 15rem);
     }
 
     .instruction {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
   }
 </style>
