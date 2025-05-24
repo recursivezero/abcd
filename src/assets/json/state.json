@@ -117,7 +117,11 @@
     "svg": "Gujrat.svg",
     "wikiLink": "https://en.wikipedia.org/wiki/Gujarat",
     "official_website": "https://gujaratindia.gov.in",
-    "isActive": true
+    "isActive": true,
+    "famous_quote": "Jai Jai Garvi Gujarat",
+    "famous_person": "Sardar Vallabhbhai Patel",
+    "famous_food": "Dhokla",
+    "famous_place": "Statue of Unity"
   },
   {
     "id": "kerala",
@@ -303,7 +307,11 @@
     "svg": "Rajasthan.svg",
     "wikiLink": "https://en.wikipedia.org/wiki/Rajasthan",
     "official_website": "https://rajasthan.gov.in/",
-    "isActive": true
+    "isActive": true,
+    "famous_quote": "Padharo Mhare Desh",
+    "famous_person": "Maharana Pratap",
+    "famous_food": "Dal Baati Churma",
+    "famous_place": "Jaipur - The Pink City"
   },
   {
     "id": "sikkim",
