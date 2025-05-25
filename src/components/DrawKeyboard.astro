@@ -2,9 +2,9 @@
 import { alphabetMapper } from "@/mappers/alphabet";
 import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 ---
-<!-- Link to external fonts as some of the fonts are not available on the systems -->
+
 <head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lobster&family=Merriweather&family=Open+Sans&family=Orbitron&family=Press+Start+2P&family=Ubuntu&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lobster&family=Merriweather&family=Open+Sans&family=Orbitron&family=Press+Start+2P&family=Ubuntu&display=swap">
 </head>
 
 <div class="container">
@@ -29,13 +29,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup">
     <div class="popup-icon">⚠️</div>
-    <h3>Invalid Key Pressed!</h3>
-    <p>You pressed: <span id="pressedKey" class="pressed-key"></span></p>
-    <p>Please press a valid key:</p>
-    <div class="valid-keys">
-      <span class="key-group">Letters: A-Z, a-z</span>
-      <span class="key-group">Numbers: 0-9</span>
-    </div>
+    <p class="popup-line">You pressed: <span id="pressedKey" class="pressed-key"></span></p>
+    <p class="popup-line">Press A-Z, a-z or 0-9 keys</p>
     <button class="popup-close" id="popupClose">Got it!</button>
   </div>
 </div>
@@ -68,25 +63,40 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   const pressedKeySpan = document.getElementById("pressedKey");
   const popupClose = document.getElementById("popupClose");
 
+  // Show continue message
+  function showContinueMessage() {
+    let continueMsg = document.getElementById('continueMessage');
+    if (!continueMsg) {
+      continueMsg = document.createElement('div');
+      continueMsg.id = 'continueMessage';
+      continueMsg.className = 'continue-message';
+      continueMsg.textContent = 'Press any other key to continue';
+      document.querySelector('.container').appendChild(continueMsg);
+    }
+    continueMsg.style.display = 'block';
+  }
+
   // Initialize display to blank state
   function initializeDisplay() {
     charDiv.textContent = "";
     instructionDiv.textContent = "";
     boardDiv.style.backgroundImage = "";
     boardDiv.style.backgroundColor = "";
+    info.textContent = "Press any key"; // Reset header text
+    const continueMsg = document.getElementById('continueMessage');
+    if (continueMsg) {
+      continueMsg.style.display = 'none';
+    }
   }
 
   function getRandomValue(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
+
   // Show popup for invalid key presses
   function showPopup(key) {
-    pressedKeySpan.textContent = key === ' ' ? 'Spacebar' : key;
+    pressedKeySpan.textContent = key; // Show the wrong key pressed
     popupOverlay.style.display = 'flex';
-    
-    setTimeout(() => {
-      hidePopup();
-    }, 3000);
   }
 
   // Hide popup
@@ -95,33 +105,35 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   function updateDisplay(key) {
-
-    // Check if a key has already been pressed
     hasKeyBeenPressed = true;
     instructionDiv.textContent = ""; // Clear previous instruction
 
     if (!isNaN(Number(key))) {
       boardDiv.style.backgroundColor = getRandomValue(colorBox);
       boardDiv.style.backgroundImage = "";
-      charDiv.textContent = key;
-      instructionDiv.textContent = numberBox[key] || "Unknown";
+      charDiv.textContent = key; // Display the number in the box
+      info.textContent = numberBox[key] || "Unknown"; // Update header with number word
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+      showContinueMessage();
       return;
     }
 
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
-      instructionDiv.textContent = isUpperCase ? found.value.toUpperCase() : found.value.toLowerCase();
+      // Display the corresponding word in the header
+      info.textContent = found.value; // Update header with alphabet word
+      charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase(); // Display the letter in the box
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
       if (!toggleBackgroundSwitch?.checked) {
         boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
         boardDiv.style.backgroundColor = "";
       }
     } else {
-      boardDiv.style.backgroundImage = "";
+      // Show popup for invalid key
+      showPopup(key);
     }
 
-    charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
+    showContinueMessage();
   }
 
   // Handle key press events
@@ -160,8 +172,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     const currentText = charDiv.textContent;
     if (currentText) {
       charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
-      const currentInstruction = instructionDiv.textContent;
-      instructionDiv.textContent = isUpperCase ? currentInstruction.toUpperCase() : currentInstruction.toLowerCase();
     }
   });
 
@@ -229,7 +239,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   * {
     box-sizing: border-box;
-    margin: 0;
+    margin: auto;
     padding: 0;
   }
 
@@ -237,13 +247,12 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   .container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
     font-family: "Inter", system-ui, sans-serif;
     text-align: center;
     padding: 1rem;
-    padding-top: 0;
   }
 
   /* Header Styles */
@@ -286,12 +295,10 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: auto;
-    min-height: calc(10vh - 180px);
+    height: calc(100vh - 120px);
     overflow: hidden;
     transition: var(--transition);
-    margin-top: 0.5rem;
-    padding: 1rem 0;
+    margin-top: 1rem;
   }
 
   /* Board Styles */
@@ -301,10 +308,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: auto;
-    min-height: 73vh;
+    height: 100%;
     overflow: hidden;
-    padding: 1rem;
+    padding: 2rem;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -327,8 +333,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   /* Character and Instruction Styles */
   .char {
     text-align: center;
-    font-size: clamp(8rem, 30vw, 20rem);
-    font-weight: 600;
+    font-size: clamp(10rem, 30vw, 25rem);
+    font-weight: 800;
     color: white;
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transition: var(--transition);
@@ -362,14 +368,13 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   /* Popup Styles */
-
   .popup-overlay {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
     justify-content: center;
@@ -405,7 +410,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   .popup h3 {
-    color:#2563eb;
+    color: #2563eb;
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
@@ -417,8 +422,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   .pressed-key {
-    color:#2563eb;
-    background:transparent;
+    color: #2563eb;
+    background: transparent;
     padding: 0.1rem 0.1rem;
     border-radius: 0.25rem;
     font-family: monospace;
@@ -432,7 +437,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   }
 
   .key-group {
-    background:rgb(201, 203, 205);
+    background: rgb(201, 203, 205);
     padding: 0.5rem;
     border-radius: 0.5rem;
     font-family: monospace;
@@ -457,15 +462,39 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     transform: translateY(-2px);
   }
 
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .container {
-      padding-top: 0.25rem;
+  /* Continue Message Styles */
+  .continue-message {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(67, 56, 202, 0.9);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease-out;
+    z-index: 50;
+    display: none;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
     }
-    
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 640px) {
     .header {
       padding: 1rem;
-      width: 90%;
     }
 
     .info {
@@ -473,11 +502,11 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     }
 
     .main {
-      min-height: calc(100vh - 120px);
+      height: calc(100vh - 120px);
     }
 
     .char {
-      font-size: clamp(5rem, 25vw, 15rem);
+      font-size: clamp(4rem, 25vw, 15rem);
     }
 
     .instruction {
