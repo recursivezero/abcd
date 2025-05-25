@@ -4,7 +4,7 @@ import Keyboard from "@/components/DrawKeyboard.astro";
 import Help from "@/components/Help.astro";
 ---
 
-<Layout meta={{ title: "Draw Keyboard" }}>
+<Layout meta={{ title: "Draw by keys" }}>
   <Fragment slot="header-right">
     <div class="controls-container">
       <div class="controls">
@@ -19,7 +19,7 @@ import Help from "@/components/Help.astro";
           <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
           <span id="font" class="control-button font-toggle" role="switch" aria-checked="false">
             <span class="font-icon">T</span>
-            <span class="font-icon-alt">𝓣</span>
+            <span class="font-icon-alt">T</span>
           </span>
         </label>
 
@@ -27,7 +27,7 @@ import Help from "@/components/Help.astro";
           <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
           <span class="control-button bg-toggle" role="switch" aria-checked="false">
             <span class="bg-icon">🎨</span>
-            <span class="bg-icon-alt">🌙</span>
+            <span class="bg-icon-alt">🎨</span>
           </span>
         </label>
 
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             caseToggle.classList.add('active');
             caseToggle.setAttribute('aria-checked', 'true');
-            caseToggle.textContent = 'aa';
+            caseToggle.textContent = 'Aa';
             caseToggle.style.fontSize = '1rem';
         }
     });
