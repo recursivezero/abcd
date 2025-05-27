@@ -236,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const multiDate = document.getElementById('multiDate');
   const dateFormats = document.querySelectorAll('.date-format');
 
-  // Your existing date functions - replace with your actual date functions
   function getEnglishDate() {
     return new Date().toLocaleString('en-US', {
       weekday: 'long',
@@ -275,15 +274,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  dateToggle.addEventListener('click', () => {
-    if (multiDate.style.display === 'none') {
-      multiDate.style.display = 'block';
-      singleDate.style.display = 'none';
-    } else {
-      multiDate.style.display = 'none';
-      singleDate.style.display = 'block';
-    }
-  });
+
+  if (dateToggle) {
+    dateToggle.addEventListener('click', () => {
+      if (multiDate.style.display === 'none') {
+        // Show multiple dates
+        multiDate.style.display = 'block';
+        singleDate.style.display = 'none';
+        dateToggle.classList.add('active'); // Add active class
+      } else {
+        // Show single date
+        multiDate.style.display = 'none';
+        singleDate.style.display = 'block';
+        dateToggle.classList.remove('active'); // Remove active class
+      }
+    });
+  }
+
 
   // Initial update and set interval
   updateDates();
