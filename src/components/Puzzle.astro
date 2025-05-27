@@ -448,7 +448,7 @@ import Settings from "@/components/Settings.astro";
       gridElement.addEventListener("touchmove", (e) => {
         e.preventDefault();
         handleDragMove(e);
-      });
+      },{passive: false});// insures responsive touch handling
 
       gridElement.addEventListener("touchend", (e) => {
         e.preventDefault();

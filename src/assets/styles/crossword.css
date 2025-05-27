@@ -317,17 +317,17 @@ details:not([open]) summary::after {
 /* Mobile phones */
 @media (max-width: 480px) {
   .grid__puzzle {
-    gap: 4px;
-    padding: 10px;
+    gap: 3px;
+    padding: 5px;
     grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
   }
 
   .grid__puzzle .cell {
     font-size: 6vw;
-    border-width: 1px;
+    border-width: 2px;
     border-radius: none;
-    min-width: 20px;
-    min-height: 20px;
+    min-width: 25px;
+    min-height: 25px;
   }
 
   .stats-button {
