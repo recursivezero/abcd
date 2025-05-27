@@ -97,11 +97,15 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   function showPopup(key) {
     pressedKeySpan.textContent = key; // Show the wrong key pressed
     popupOverlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
 
   // Hide popup
   function hidePopup() {
     popupOverlay.style.display = 'none';
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
 
   function updateDisplay(key) {
@@ -384,13 +388,14 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   .popup {
     background: white;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     text-align: center;
-    max-width: 400px;
-    width: 90%;
+    max-width: 350px;
+    width: 50%;
     animation: popupSlideIn 0.3s ease-out;
+    border: 5px solid #ff0000;
   }
 
   @keyframes popupSlideIn {
