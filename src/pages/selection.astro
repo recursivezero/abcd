@@ -1,0 +1,178 @@
+---
+import BaseLayout from "@/layouts/Base.astro";
+
+const meta = {
+  title: "Creative Tools Selection",
+  description: "Choose between the Canvas Image Generator and the Quote Designer.",
+};
+
+// import CanvasIcon from "@/assets/icons/canvas-icon.svg";
+// import QuoteIcon from "@/assets/icons/quote-icon.svg";
+
+const CanvasIconSVG = `
+  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20h9"></path>
+    <path d="M16.5 7.5L14 10 11.5 7.5 9 10 6.5 7.5 4 10V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7.5z"></path>
+    <path d="M4 14.5a2.4 2.4 0 0 1 0 5V10z"></path>
+  </svg>
+`;
+
+const QuoteIconSVG = `
+  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L9.54 2.46c-.54.54-.54 1.42 0 1.96l3 3c.39.39 1.02.39 1.41 0a.96.96 0 0 0 0-1.41l-3-3A5 5 0 0 0 5.46 7.54l3 3a.96.96 0 0 0 1.41 0c.39-.39.39-1.02 0-1.41z"></path>
+    <path d="M18.5 8.5L20 7"></path>
+    <path d="M14 14h.01"></path>
+    <path d="M17 17h.01"></path>
+    <path d="M19 19h.01"></path>
+  </svg>
+`;
+---
+
+<BaseLayout {meta}>
+  <div class="selection-container">
+    <h1 class="selection-title">Choose Your Creative Tool</h1>
+    <div class="selection-buttons-grid">
+      <a href="/canvas" class="selection-card">
+        <div class="card-icon" set:html={CanvasIconSVG}></div>
+        <h2 class="card-title">Canvas Generator</h2>
+        <p class="card-description">Create unique images with custom text and time.</p>
+      </a>
+      <a href="/advanced" class="selection-card">
+        <div class="card-icon" set:html={QuoteIconSVG}></div>
+        <h2 class="card-title">Quote Designer</h2>
+        <p class="card-description">Design beautiful and shareable quotes with ease.</p>
+      </a>
+    </div>
+  </div>
+
+  <style>
+
+    .selection-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - var(--header-h, 4rem) - var(--footer-h, 4rem));
+      padding: 2rem;
+      color: var(--text, #e0e0e0);
+      font-family: "Roboto", sans-serif;
+    }
+
+    .selection-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--primary, #4a90e2);
+      margin-bottom: 3rem;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .selection-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      width: 100%;
+      max-width: 900px;
+      justify-content: center;
+    }
+
+    .selection-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      background-color: var(--card-bg, #2b2b40);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 2px solid var(--card-border, #444460);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    .selection-card:hover {
+      background-color: var(--card-hover-bg, #3c3c5a);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+      border-color: var(--primary, #4a90e2);
+    }
+
+    .card-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-icon svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text, #e0e0e0);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-description {
+      font-size: 1.1rem;
+      color: var(--secondary, #a0a0a0);
+      line-height: 1.5;
+      max-width: 250px;
+    }
+
+    @media (max-width: 768px) {
+      .selection-title {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .selection-buttons-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 400px;
+      }
+
+      .selection-card {
+        padding: 2rem;
+      }
+
+      .card-title {
+        font-size: 1.8rem;
+      }
+
+      .card-description {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .selection-container {
+        padding: 1rem;
+      }
+
+      .selection-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+      }
+
+      .selection-card {
+        padding: 1.5rem;
+        border-radius: 15px;
+      }
+
+      .card-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</BaseLayout>
