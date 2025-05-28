@@ -4,6 +4,7 @@ import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
 import BackButton from "@/components/ui/backButton.astro";
 import type { StateData } from "@/types/state";
+import AndhraPradeshMap from "../../../src/components/map/AndhraPradeshMap.astro";
 
 export const prerender = true;
 export function getStaticPaths() {
@@ -29,7 +30,13 @@ const famous_place = stateInfo.famous_place || "Coming soon";
     <div class="main-container">
       <div id="state-svg-container">
         <h3 class="state-title">{name}</h3>
-        <div id="state-svg" data-svg-path={`/map/svg/${svg}`}></div>
+        {
+          stateInfo.id === "andhrapradesh" ? (
+            <AndhraPradeshMap />
+          ) : (
+            <div id="state-svg" data-svg-path={`/map/svg/${svg}`} />
+          )
+        }
       </div>
       <div class="right-content">
         <div class="state-image-container">
@@ -63,14 +70,14 @@ const famous_place = stateInfo.famous_place || "Coming soon";
             </div>
           </div>
           <div class="quick-facts">
-            <h4>Quick Facts</h4>
+            <h4>Quick facts about {name.toLowerCase()}</h4>
             <div class="facts-content">
               <p class="description">{description}</p>
               <div class="links">
                 {
                   stateInfo.official_website && (
                     <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer" class="link-button">
-                      Official Website
+                      Official website
                     </a>
                   )
                 }
@@ -138,7 +145,6 @@ const famous_place = stateInfo.famous_place || "Coming soon";
     height: auto;
     display: block;
   }
-
 
   .info-grid {
     display: grid;
