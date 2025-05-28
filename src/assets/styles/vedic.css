@@ -70,7 +70,7 @@
     background : linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
     background-size : 600%;
     animation : anime 16s linear infinite;
-    color: var(--background);
+    color: var(--text);
     font-size: 1.125rem;
     font-weight: 500;
     border: none;
@@ -87,7 +87,51 @@
     font-size: 1.25rem;
     font-weight: 500;
   }
+.form__grid {
+  display: grid;
+  gap: 2rem;
+  position: relative;
+}
 
+.swap-button {
+  position: absolute;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 0.75rem;
+  background-color: var(--background);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.swap-button:hover {
+  background-color: color-mix(in srgb, var(--background) 90%, var(--text) 10%);
+
+}
+
+.swap-button.active {
+	background: linear-gradient(-45deg,#FFA63D, #FF3D77, #338AFF, #3CF0C5);
+	background-size: 400% 400%;
+	animation: gradient 10s infinite;
+  border-radius: 0.75rem;
+}
+
+.swap-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--text);
+}
+
+.swap-button.active .swap-icon {
+  fill: var(--background);
+}
   & .units__title {
     color: var(--text);
     font-size: 1.5rem;
