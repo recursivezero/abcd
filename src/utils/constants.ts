@@ -140,8 +140,8 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Selection",
-    title: "Selection",
+    name: "Canvas",
+    title: "Canvas",
     path: "/selection",
     isActive: true
   },

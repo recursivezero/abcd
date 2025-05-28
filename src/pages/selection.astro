@@ -6,40 +6,27 @@ const meta = {
   description: "Choose between the Canvas Image Generator and the Quote Designer.",
 };
 
-// import CanvasIcon from "@/assets/icons/canvas-icon.svg";
-// import QuoteIcon from "@/assets/icons/quote-icon.svg";
+import CanvasIcon from "@/assets/icons/canvas-icon.svg";
+import QuoteIcon from "@/assets/icons/quote-icon.svg";
 
-const CanvasIconSVG = `
-  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 20h9"></path>
-    <path d="M16.5 7.5L14 10 11.5 7.5 9 10 6.5 7.5 4 10V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7.5z"></path>
-    <path d="M4 14.5a2.4 2.4 0 0 1 0 5V10z"></path>
-  </svg>
-`;
-
-const QuoteIconSVG = `
-  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L9.54 2.46c-.54.54-.54 1.42 0 1.96l3 3c.39.39 1.02.39 1.41 0a.96.96 0 0 0 0-1.41l-3-3A5 5 0 0 0 5.46 7.54l3 3a.96.96 0 0 0 1.41 0c.39-.39.39-1.02 0-1.41z"></path>
-    <path d="M18.5 8.5L20 7"></path>
-    <path d="M14 14h.01"></path>
-    <path d="M17 17h.01"></path>
-    <path d="M19 19h.01"></path>
-  </svg>
-`;
 ---
 
 <BaseLayout {meta}>
   <div class="selection-container">
-    <h1 class="selection-title">Choose Your Creative Tool</h1>
+    <h1 class="selection-title">Choose your creative tool</h1>
     <div class="selection-buttons-grid">
       <a href="/canvas" class="selection-card">
-        <div class="card-icon" set:html={CanvasIconSVG}></div>
-        <h2 class="card-title">Canvas Generator</h2>
+        <div class="card-icon">
+          <CanvasIcon />
+        </div>
+        <h2 class="card-title">Canvas/Time Designer</h2>
         <p class="card-description">Create unique images with custom text and time.</p>
       </a>
       <a href="/advanced" class="selection-card">
-        <div class="card-icon" set:html={QuoteIconSVG}></div>
-        <h2 class="card-title">Quote Designer</h2>
+        <div class="card-icon">
+          <QuoteIcon />
+        </div>
+        <h2 class="card-title">Canvas/Text Designer</h2>
         <p class="card-description">Design beautiful and shareable quotes with ease.</p>
       </a>
     </div>
@@ -47,16 +34,18 @@ const QuoteIconSVG = `
 
   <style>
 
-    .selection-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: calc(100vh - var(--header-h, 4rem) - var(--footer-h, 4rem));
-      padding: 2rem;
-      color: var(--text, #e0e0e0);
-      font-family: "Roboto", sans-serif;
-    }
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - var(--header-h, 4rem) - var(--footer-h, 4rem));
+  padding-top: 0rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: var(--text, #e0e0e0);
+  font-family: "Roboto", sans-serif;
+}
 
     .selection-title {
       font-size: 2.8rem;
