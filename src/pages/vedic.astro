@@ -164,6 +164,11 @@ const timeUnits = vedicData.time_units;
                 </div>
               ))
             }
+              <button type="button" id="swapButton" class="swap-button" aria-label="Swap units">
+    <svg class="swap-icon" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M9 3L5 7H8V14H10V7H13M16 17V10H14V17H11L15 21L19 17H16Z" />
+    </svg>
+  </button>
           </div>
 
           <button type="submit" class="convert__button">Convert</button>
@@ -215,18 +220,50 @@ const timeUnits = vedicData.time_units;
     return seconds / to.seconds;
   }
 
-  document.getElementById("converter__form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const value = parseFloat(document.getElementById("input__value").value);
-    const fromUnit = document.getElementById("from__unit").value;
-    const toUnit = document.getElementById("to__unit").value;
-
+  function updateResult(value, fromUnit, toUnit) {
     const result = convert(value, fromUnit, toUnit);
     const resultBox = document.getElementById("result");
     resultBox.style.display = "block";
     resultBox.textContent = `${value} ${fromUnit} = ${result.toLocaleString(undefined, {
       maximumFractionDigits: 4
     })} ${toUnit}`;
+  }
+
+  document.getElementById("converter__form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const value = parseFloat(document.getElementById("input__value").value);
+    const fromUnit = document.getElementById("from__unit").value;
+    const toUnit = document.getElementById("to__unit").value;
+    updateResult(value, fromUnit, toUnit);
+  });
+
+  // Swap button functionality
+  document.getElementById("swapButton").addEventListener("click", () => {
+    const swapButton = document.getElementById("swapButton");
+    const fromUnit = document.getElementById("from__unit");
+    const toUnit = document.getElementById("to__unit");
+    const inputValue = document.getElementById("input__value");
+    // Add a flash effect
+  fromUnit.style.boxShadow = "0 0 0 2px var(--primary)";
+  toUnit.style.boxShadow = "0 0 0 2px var(--primary)";
+  
+  setTimeout(() => {
+    fromUnit.style.boxShadow = "none";
+    toUnit.style.boxShadow = "none";
+  }, 300);
+    // Toggle active state
+    swapButton.classList.toggle("active");
+    
+    // Swap the values
+    const temp = fromUnit.value;
+    fromUnit.value = toUnit.value;
+    toUnit.value = temp;
+    
+    // If there's a value, calculate the new result
+    if (inputValue.value) {
+      const value = parseFloat(inputValue.value);
+      updateResult(value, fromUnit.value, toUnit.value);
+    }
   });
 </script>
 <script is:inline>
@@ -236,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const multiDate = document.getElementById('multiDate');
   const dateFormats = document.querySelectorAll('.date-format');
 
-  // Your existing date functions - replace with your actual date functions
   function getEnglishDate() {
     return new Date().toLocaleString('en-US', {
       weekday: 'long',
@@ -275,15 +311,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  dateToggle.addEventListener('click', () => {
-    if (multiDate.style.display === 'none') {
-      multiDate.style.display = 'block';
-      singleDate.style.display = 'none';
-    } else {
-      multiDate.style.display = 'none';
-      singleDate.style.display = 'block';
-    }
-  });
+
+  if (dateToggle) {
+    dateToggle.addEventListener('click', () => {
+      if (multiDate.style.display === 'none') {
+        // Show multiple dates
+        multiDate.style.display = 'block';
+        singleDate.style.display = 'none';
+        dateToggle.classList.add('active'); // Add active class
+      } else {
+        // Show single date
+        multiDate.style.display = 'none';
+        singleDate.style.display = 'block';
+        dateToggle.classList.remove('active'); // Remove active class
+      }
+    });
+  }
+
 
   // Initial update and set interval
   updateDates();

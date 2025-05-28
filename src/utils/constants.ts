@@ -140,9 +140,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Canvas",
-    title: "Canvas",
-    path: "/canvas",
+    name: "Selection",
+    title: "Selection",
+    path: "/selection",
     isActive: true
   },
   {
@@ -162,15 +162,7 @@ export const NavbarLinks: LinkProps[] = [
     title: "Draw",
     path: "/draw",
     isActive: true
-  },
-
-  {
-    name: "Quote Designer",
-    title: "Quote Designer", 
-    path: "/advanced",    
-    isActive: true 
   }
-
 ];
 
 export const FooterLinks: LinkProps[] = [
