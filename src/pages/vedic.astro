@@ -243,7 +243,14 @@ const timeUnits = vedicData.time_units;
     const fromUnit = document.getElementById("from__unit");
     const toUnit = document.getElementById("to__unit");
     const inputValue = document.getElementById("input__value");
-    
+    // Add a flash effect
+  fromUnit.style.boxShadow = "0 0 0 2px var(--primary)";
+  toUnit.style.boxShadow = "0 0 0 2px var(--primary)";
+  
+  setTimeout(() => {
+    fromUnit.style.boxShadow = "none";
+    toUnit.style.boxShadow = "none";
+  }, 300);
     // Toggle active state
     swapButton.classList.toggle("active");
     
