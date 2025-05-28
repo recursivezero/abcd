@@ -15,6 +15,11 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     <h1 class="info" aria-live="polite">Press any key</h1>
   </header>
 
+  <!-- Continue Message beside header -->
+  <div class="continue-message" id="continueMessage" style="display: none;">
+    Press any other key to continue
+  </div>
+
   <main class="main">
     <section class="board" id="board" aria-live="polite">
       <div class="content-wrapper">
@@ -65,15 +70,10 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   // Show continue message
   function showContinueMessage() {
-    let continueMsg = document.getElementById('continueMessage');
-    if (!continueMsg) {
-      continueMsg = document.createElement('div');
-      continueMsg.id = 'continueMessage';
-      continueMsg.className = 'continue-message';
-      continueMsg.textContent = 'Press any other key to continue';
-      document.querySelector('.container').appendChild(continueMsg);
+    const continueMsg = document.getElementById('continueMessage');
+    if (continueMsg) {
+      continueMsg.style.display = 'block';
     }
-    continueMsg.style.display = 'block';
   }
 
   // Initialize display to blank state
@@ -293,6 +293,34 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     font-size: 2rem;
   }
 
+  /* Continue Message Styles - Modified to be beside header */
+  .continue-message {
+    width: 50%;
+    text-align: center;
+    background: rgba(67, 56, 202, 0.9);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.3s ease-out;
+    z-index: 50;
+    margin-bottom: 1rem;
+    border: 2px solid #4338ca;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   /* Main Content Styles */
   .main {
     display: flex;
@@ -467,35 +495,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     transform: translateY(-2px);
   }
 
-  /* Continue Message Styles */
-  .continue-message {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(67, 56, 202, 0.9);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
-    font-size: 1rem;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    animation: slideUp 0.3s ease-out;
-    z-index: 50;
-    display: none;
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateX(-50%) translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-  }
-
   /* Responsive Styles */
   @media (max-width: 640px) {
     .header {
@@ -504,6 +503,12 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
     .info {
       font-size: 1.25rem;
+    }
+
+    .continue-message {
+      width: 90%;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
     }
 
     .main {
