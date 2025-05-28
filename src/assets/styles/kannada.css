@@ -157,11 +157,6 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
     fill: var(--navy-blue);
   }
 
-  & i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 /* Add to your existing toggle-button styles */
@@ -269,8 +264,10 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
   & .language-letter-top {
     font-size: 71px;
     font-weight: 600;
-    background: linear-gradient(to right, #32ebd5, #12c2e9, #c471ed, #f64f59, #f37981);
-    -webkit-background-clip: text;
+    background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+    background-size : 600%;
+    animation : anime 16s linear infinite;
+    -webkit-background-clip:text;
     -webkit-text-fill-color: transparent;
   }
 
@@ -300,7 +297,17 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
     }
   }
 }
-
+@keyframes anime{
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 .language-letter-kannada,
 .language-letter-hindi {
   width: 100%;
