@@ -27,6 +27,12 @@
   --stats-button-text: #334155;
   --stats-button-border: #cbd5e1;
   --stats-button-hover: #818cf8;
+
+  /* Custom Word and Button Colors */
+  --word-font-color: #0f172a;
+  --word-found-color: #9ca3af;
+  --stats-button-clicked: #4ade80;
+  --stats-button-found: #facc15;
 }
 
 /* Main Layout */
@@ -46,9 +52,7 @@
   gap: 12px;
   padding: 28px;
   border-radius: var(--border-radius);
-  box-shadow:
-    var(--box-shadow),
-    0 0 0 15px rgba(99, 102, 241, 0.08);
+  box-shadow: var(--box-shadow), 0 0 0 15px rgba(99, 102, 241, 0.08);
   margin: 0 auto;
   width: 100%;
   max-width: 600px;
@@ -139,12 +143,10 @@
 details {
   width: 100%;
   border-radius: var(--border-radius);
-  background-color: rgba(99, 102, 241, 0.08);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  margin: 20px 0;
-  border-left: 4px solid var(--primary-color);
   background-color: rgba(99, 102, 241, 0.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin: 20px 0;
+  border-left: 4px solid var(--primary-color);
 }
 
 details summary {
@@ -157,6 +159,7 @@ details summary {
   position: relative;
   border-bottom: 2px solid rgba(99, 102, 241, 0.1);
   margin-bottom: 12px;
+  font-size: 4vw;
 }
 
 details summary::after {
@@ -174,11 +177,6 @@ details summary::after {
 
 details summary::-webkit-details-marker {
   display: none;
-}
-
-details:not([open]) {
-  background-color: rgba(99, 102, 241, 0.08);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 details:not([open]) summary {
@@ -202,10 +200,10 @@ details:not([open]) summary::after {
   padding: 8px 16px;
   border-radius: 25px;
   font-weight: 600;
-  color: white;
+  color: var(--word-font-color);
+  background-color: var(--accent6-color);
   transition: var(--transition);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  background-color: var(--accent6-color);
 }
 
 .word-list .word.found {
@@ -245,10 +243,11 @@ details:not([open]) summary::after {
 
 .stats-button:nth-child(1) {
   background: var(--accent4-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--accent6-color));
 }
 
 .stats-button:nth-child(2) {
-  background: var(--secondary-color);
+  background: linear-gradient(135deg, var(--accent1-color), var(--accent7-color));
 }
 
 .stats-button:nth-child(3) {
@@ -259,9 +258,18 @@ details:not([open]) summary::after {
   background: linear-gradient(135deg, var(--accent2-color), var(--accent8-color));
 }
 
-/* Responsive Styles */
+/* New States */
+.stats-button.clicked {
+  background-color: var(--stats-button-clicked);
+  color: white;
+}
 
-/* Tablet */
+.stats-button.found {
+  background-color: var(--stats-button-found);
+  color: #1f2937;
+}
+
+/* Responsive Styles */
 @media (max-width: 1024px) {
   .grid__puzzle {
     gap: 6px;
@@ -284,16 +292,16 @@ details:not([open]) summary::after {
 
   .word-list {
     gap: 10px;
-    padding: 14px;
+    padding: 10px 14px;
+    margin-top: 5px;
   }
 
   .word-list .word {
     font-size: 0.9rem;
-    padding: 7px 14px;
+    padding: 5px 14px;
   }
 }
 
-/* Small tablets & large phones */
 @media (max-width: 768px) {
   .grid__puzzle {
     gap: 4px;
@@ -314,17 +322,16 @@ details:not([open]) summary::after {
   }
 }
 
-/* Mobile phones */
 @media (max-width: 480px) {
   .grid__puzzle {
     gap: 3px;
-    padding: 5px;
+    padding: 3px;
     grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
   }
 
   .grid__puzzle .cell {
     font-size: 6vw;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: none;
     min-width: 25px;
     min-height: 25px;
@@ -333,7 +340,9 @@ details:not([open]) summary::after {
   .stats-button {
     font-size: 0.75rem;
     padding: 8px 14px;
-    min-width: 60px;
+    min-width: 80px;
+    font-size: 4vw;
+    color: black;
+    background: var(--accent2-color);
   }
-
 }
