@@ -1,6 +1,8 @@
 ---
-import Base from '@/layouts/Base.astro'; 
-import '@/assets/styles/quote-designer.css'; 
+import Base from '@/layouts/Base'; 
+import '@/assets/styles/quote-designer.css';
+import BackButton from "@/components/ui/backButton.astro";
+import Help from "@/components/Help.astro";
 
 const pageTitle = "Quote Designer"; 
 const pageDescription = "Design beautiful quotes with our advanced tool."; 
@@ -13,8 +15,12 @@ const pageMeta = {
 --- 
 
 <Base meta={pageMeta}>
-  <div class="design-container"> 
-      <aside class="controls-panel"> 
+  <div class="header-controls">
+    <BackButton></BackButton> 
+  </div>
+  <div class="design-container">
+      <aside class="controls-panel">
+          
           <h2 class="gradient-text">Design Tools</h2> 
 
           <details class="control-section" open> 
@@ -110,7 +116,7 @@ const pageMeta = {
               <button id="downloadBtn" class="metallic-button"> 
                   <span class="btn-gradient">Download Design</span> 
                    <span class="loading-spinner" style="display: none;"></span> 
-              </button> 
+              </button>
           </div> 
       </aside> 
 
@@ -122,9 +128,10 @@ const pageMeta = {
                        <div class="author-name"></div> 
                   </div> 
                </div> 
-          </div> 
-      </div> 
-  </div> 
+          </div>
+      </div>
+  </div>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 

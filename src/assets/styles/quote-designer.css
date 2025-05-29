@@ -217,12 +217,21 @@ textarea.metallic-textarea {
 }
 
 /* === Layouts === */
+
+.header-controls {
+  display: flex;
+  justify-content: flex-start; /* Aligns items to the start (left) by default */
+  padding: 1.5rem;
+  padding-top: 0rem; /* Match the padding of your design-container for consistency */
+}
+
 .design-container {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 1.5rem;
   padding: 1.5rem;
-  min-height: calc(100vh - var(--header-h) - var(--footer-h, 0));
+  padding-top: 0rem;
+  /* min-height: calc(100vh - var(--header-h) - var(--footer-h, 0)); */
 }
 
 .controls-panel {
