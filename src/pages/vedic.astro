@@ -175,29 +175,32 @@ const timeUnits = vedicData.time_units;
     <div id="result" class="result__display"></div>
 
     <!-- Units Reference -->
-    <div class="units__card">
-      <h2 class="units__title">Vedic Time Units</h2>
-      <div class="units__grid">
-        {timeUnits.map((unit) => (
-          <div class="unit__item">
-            <div class="unit__header">
-              <h3>{unit.name}</h3>
-              <span class="approx">≈</span>
+    <div class="units__timeline-container">
+      <h2 class="units__title">Vedic Time Journey</h2>
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div> {/* This will be the animating central line */}
+        {timeUnits.map((unit, index) => (
+          <div class="timeline-node">
+            <div class="timeline-card">
+              <div class="unit__header">
+                <h3>{unit.name}</h3>
+              </div>
+              <div class="unit__details">
+                <div class="unit__value">
+                  <span class="icon">🕛</span>
+                  {unit.seconds.toLocaleString()} seconds
+                </div>
+                <div class="unit__value">
+                  <span class="icon">⏳</span>
+                  {unit.minutes.toLocaleString()} minutes
+                </div>
+                <div class="unit__value">
+                  <span class="icon">📅</span>
+                  {unit.years.toLocaleString()} years
+                </div>
+              </div>
             </div>
-            <div class="unit__details">
-              <div class="unit__value">
-                <span class="icon">🕛</span>
-                {unit.seconds.toLocaleString()} seconds
-              </div>
-              <div class="unit__value">
-                <span class="icon">⏳</span>
-                {unit.minutes.toLocaleString()} minutes
-              </div>
-              <div class="unit__value">
-                <span class="icon">📅</span>
-                {unit.years.toLocaleString()} years
-              </div>
-            </div>
+            <div class="timeline-dot"></div>
           </div>
         ))}
       </div>
@@ -324,7 +327,20 @@ document.addEventListener('DOMContentLoaded', () => {
   updateDates();
   setInterval(updateDates, 1000);
 });
+// Add scroll effect to title
+document.addEventListener('DOMContentLoaded', () => {
+  const timelineContainer = document.querySelector('.units__timeline-container');
+  const title = document.querySelector('.units__title');
+  
+  if (timelineContainer && title) {
+    timelineContainer.addEventListener('scroll', () => {
+      if (timelineContainer.scrollTop > 10) {
+        title.classList.add('scrolled');
+      } else {
+        title.classList.remove('scrolled');
+      }
+    });
+  }
+});
 </script>
-
-
 </BaseLayout>
