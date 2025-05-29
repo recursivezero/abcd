@@ -1,0 +1,142 @@
+<style>
+  .map-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    aspect-ratio: 3/2;
+  }
+
+  .anp-map {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .anp-map svg {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .anp-map path:hover {
+  fill: orange; /* Hover color */
+  stroke: #333; /* Optional: border color */
+  stroke-width: 1px; /* Optional: border width */
+}
+  path {
+    transition: fill 0.3s ease;
+    fill: #e0f2f1;
+  }
+
+  text {
+    font-size: clamp(12px, 1.5vw, 14px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+
+  .district-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+  }
+
+  .district-tooltip.visible {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .map-container {
+      padding: 10px;
+    }
+  }
+</style>
+
+<div class="map-container">
+  <div class="anp-map">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      baseProfile="full"
+      viewBox="0 0 800 533"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <!-- SVG content will be loaded here -->
+    </svg>
+  </div>
+  <div class="district-tooltip" id="tooltip"></div>
+</div>
+
+<script>
+  async function loadSVG() {
+    try {
+      const response = await fetch("../../../public/map/svg/statesvg/arunachalpradesh.svg");
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const svgText = await response.text();
+      const svgContainer = document.querySelector(".anp-map svg");
+
+      if (svgContainer) {
+        svgContainer.innerHTML = svgText;
+        processPaths();
+      }
+    } catch (error) {
+      console.error("Error loading SVG:", error);
+    }
+  }
+
+  function processPaths() {
+    const paths = document.querySelectorAll(".anp-map path");
+    const tooltip = document.getElementById("tooltip");
+    const texts = document.querySelectorAll("svg text");
+    const labels = Array.from(texts).map((el) => el.textContent.trim());
+    paths.forEach((path, index) => {
+      path.style.cursor = "pointer"; 
+      const districtName = labels[index - 4];
+      path.addEventListener("mouseenter", (e) => {
+        path.style.fill = "orange";
+        if (!tooltip || !districtName) return;
+
+        tooltip.textContent = districtName;
+        tooltip.classList.add("visible");
+
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        // Position tooltip relative to mouse
+        tooltip.style.left = `${mouseX - 250}px`; 
+        tooltip.style.top = `${mouseY - 120}px`;
+      });
+
+      path.addEventListener("mouseleave", () => {
+        path.style.fill = "";
+        // Hide tooltip
+        if (tooltip) {
+          tooltip.classList.remove("visible");
+        }
+      });
+
+      /*path.addEventListener("click", (e) => {
+        // add click event like; add links..etc
+      });
+      */
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", loadSVG);
+</script>
