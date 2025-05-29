@@ -5,6 +5,7 @@ import "@/assets/styles/map/state.css";
 import BackButton from "@/components/ui/backButton.astro";
 import type { StateData } from "@/types/state";
 import AndhraPradeshMap from "../../../src/components/map/AndhraPradeshMap.astro";
+import ArunachalPradeshMap from "@/components/map/ArunachalPradeshMap.astro";
 
 export const prerender = true;
 export function getStaticPaths() {
@@ -33,6 +34,8 @@ const famous_place = stateInfo.famous_place || "Coming soon";
         {
           stateInfo.id === "andhrapradesh" ? (
             <AndhraPradeshMap />
+          ) : stateInfo.id === "arunachalpradesh" ? (
+            <ArunachalPradeshMap />
           ) : (
             <div id="state-svg" data-svg-path={`/map/svg/${svg}`} />
           )
@@ -70,7 +73,7 @@ const famous_place = stateInfo.famous_place || "Coming soon";
             </div>
           </div>
           <div class="quick-facts">
-            <h4>Quick facts about {name.toLowerCase()}</h4>
+            <h4>Quick facts about {name}</h4>
             <div class="facts-content">
               <p class="description">{description}</p>
               <div class="links">
