@@ -1,0 +1,392 @@
+.container__months-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--text);
+  margin: 0;
+}
+
+.months-toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 0;
+  border-bottom: 2px solid var(--border);
+}
+
+.toggle-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-bottom: none;
+  background-color: var(--background-alt, transparent);
+  color: var(--text-secondary, var(--text));
+  border-radius: 0.5rem 0.5rem 0 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  margin-bottom: -2px;
+  position: relative;
+}
+
+.toggle-button:hover:not([disabled]) {
+  color: var(--primary);
+  background-color: var(--background-hover, color-mix(in srgb, var(--background) 85%, var(--primary) 15%));
+}
+
+.toggle-button.active {
+  background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
+  color: var(--primary);
+  border-color: var(--border);
+  border-bottom-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
+  font-weight: 600;
+}
+
+.toggle-button[disabled] {
+  color: color-mix(in srgb, var(--text) 50%, transparent);
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.months-content-pane {
+  display: none;
+  padding: 2rem 1.5rem;
+  background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
+  border-radius: 0 0 0.5rem 0.5rem;
+  border: 2px solid var(--border);
+  border-top: none;
+  min-height: 400px;
+}
+
+.months-content-pane.active {
+  display: block;
+  animation: fadeInPane 0.4s ease-out;
+}
+
+@keyframes fadeInPane {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.8rem;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.month-card {
+  height: 180px;
+  position: relative;
+  cursor: default;
+}
+
+.month-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  border-radius: 0.5rem;
+}
+
+.month-card:hover .month-card-inner {
+  transform: rotateY(180deg);
+}
+
+.month-card-front,
+.month-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 1.25rem 1rem;
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--text) 10%, transparent);
+  border: 1px solid var(--border);
+  background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.month-card-back {
+  background-color: color-mix(in srgb, var(--primary) 20%, var(--background) 80%);
+  transform: rotateY(180deg);
+}
+
+.month-card-back-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.month-card-back-content h4 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.view-calendar-btn-on-card {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 2px solid var(--text);
+  background-color: transparent;
+  color: var(--text);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.view-calendar-btn-on-card:hover {
+  background-color: var(--text);
+  color: color-mix(in srgb, var(--primary) 20%, var(--background) 80%);
+}
+
+.month-card.english-month .month-card-front {
+  align-items: center;
+  text-align: center;
+}
+
+.month-card.english-month .month-english {
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.month-card.english-month .month-hindi {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--primary);
+}
+
+.month-card.indian-month .month-card-front {
+  align-items: flex-start;
+  text-align: left;
+  border-left: 4px solid var(--primary);
+  padding-left: 1.5rem;
+  justify-content: center;
+}
+
+.month-card.indian-month .indian-month-name {
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+  color: var(--primary);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+}
+
+.month-card.indian-month .month-card-front p {
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: var(--text-secondary, color-mix(in srgb, var(--text) 70%, transparent));
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.month-card.indian-month .month-card-front p .label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.month-card.indian-month .month-card-front p:last-child {
+  margin-bottom: 0;
+}
+
+.calendar-view-content {
+  background-color: color-mix(in srgb, var(--background) 90%, var(--text) 10%);
+  color: var(--text);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px color-mix(in srgb, var(--text) 10%, transparent);
+  max-width: 700px;
+  margin: 1rem auto;
+  position: relative;
+}
+
+.close-calendar-view-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-secondary, color-mix(in srgb, var(--text) 70%, transparent));
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.close-calendar-view-btn:hover {
+  color: var(--text);
+}
+
+.calendar-view-title-style {
+  text-align: center;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--primary);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  padding-right: 30px;
+}
+
+.calendar-grid-modal {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.calendar-grid-modal .calendar-day {
+  padding: 0.8rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: color-mix(in srgb, var(--secondary) 10%, var(--background) 90%);
+  color: var(--text);
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--text) 5%, transparent);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.calendar-grid-modal .calendar-day:hover:not(.empty):not(.calendar-header) {
+  transform: scale(1.08) rotate(2deg);
+  background-color: color-mix(in srgb, var(--secondary) 25%, var(--background) 75%);
+  box-shadow: 0 4px 8px color-mix(in srgb, var(--text) 10%, transparent);
+  border-color: var(--primary);
+}
+
+.calendar-grid-modal .calendar-header {
+  font-weight: bold;
+  background-color: var(--primary);
+  color: var(--background);
+  border-radius: 0.25rem;
+  border: 1px solid var(--primary);
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--text) 10%, transparent);
+  font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.calendar-grid-modal .calendar-day.empty {
+  background-color: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
+.calendar-grid-modal .calendar-day.current-day {
+  background-color: var(--primary);
+  color: var(--background);
+  font-weight: bold;
+  border: 2px dashed var(--background);
+  transform: scale(1.1);
+  box-shadow: 0 5px 10px color-mix(in srgb, var(--text) 15%, transparent);
+  position: relative;
+}
+
+.calendar-grid-modal .calendar-day.holiday-day {
+  background-color: var(--accent-secondary, #ffebcc);
+  color: var(--accent-secondary-text, #b35900);
+  font-weight: bold;
+  border: 1px solid var(--accent-secondary-text, #b35900);
+}
+
+.calendar-grid-modal .calendar-day.holiday-day.current-day {
+  background-color: color-mix(in srgb, var(--primary) 70%, var(--accent-secondary, #ffebcc) 30%);
+  border-style: solid;
+}
+
+.calendar-grid-modal .calendar-day.current-day::before {
+  content: '★';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 1.2rem;
+  color: var(--secondary);
+  animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+@media (max-width: 768px) {
+  .container__months-page {
+    padding: 1rem;
+  }
+  .months-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .toggle-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  .months-content-pane {
+    padding: 1.5rem 1rem;
+  }
+  .calendar-view-content {
+    padding: 1rem;
+  }
+  .month-card {
+    height: 170px;
+  }
+}
+
+@media (max-width: 480px) {
+  .months-grid {
+    grid-template-columns: 1fr;
+  }
+  .months-toggle-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    border-bottom: none;
+  }
+  .toggle-button {
+    margin-bottom: 0;
+    border-radius: 0.5rem;
+    border: 2px solid var(--border);
+    margin-top: 0.5rem;
+  }
+  .toggle-button.active {
+    border-color: var(--primary);
+    background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
+  }
+  .months-content-pane {
+     border-radius: 0.5rem;
+     border-top: 2px solid var(--border);
+     margin-top: 1rem;
+  }
+  .month-card {
+    height: auto;
+    min-height: 150px;
+  }
+}

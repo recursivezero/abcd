@@ -50,7 +50,9 @@
     display: block;
     margin-bottom: 0.8rem;
     font-size: 1.1rem;
-    color: #2dd4bf;
+    background-image: linear-gradient( 135deg, #69FF97 10%, #00E4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
@@ -58,7 +60,9 @@
     transition: color 0.3s ease;
 
     &.active {
-      color: #60a5fa;
+background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     }
   }
 
@@ -109,59 +113,68 @@
   }
 }
 
-.toggle-button-wrapper {
+.toggle-button {
+  background: light-dark (var(--navy-blue), var(--text-primary));
+  border: 1px solid rgba(125, 211, 252, 0.3);
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: light-dark (black, white);
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  align-self: center;
+  position: relative;
+  margin-top: 40px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    background: light-dark (var(--navy-blue), var(--text-primary));
+    transform: scale(1.1);
+    border-color: #7dd3fc;
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.toggled {
+    transform: rotate(180deg);
+    background: linear-gradient(to right, var(--sky-blue), var(--teal-accent));
+    color: var(--navy-blue);
+  }
+
+  &.toggled svg {
+    fill: var(--navy-blue);
+  }
+
 }
 
-.toggle-button {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  background: var(--navy-blue);
-  border: 1px solid #123085;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  overflow: hidden;
-  min-width: 200px;
-  transition: background 0.3s ease;
+.toggle-button.swapping {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
 
-  & .toggle-slider {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 50%;
-    background: #123085;
-    /*background:  #2dd4bf;*/
-    border-radius: 0.75rem;
-    transition: left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    z-index: 0;
-  }
+.toggle-button i {
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
 
-  & span {
-    position: relative;
-    z-index: 1;
-    font-size: 1.25rem;
-    color: white;
-    transition:
-      transform 0.3s ease,
-      color 0.3s ease;
+.toggle-button:hover i {
+  transform: scale(1.1);
+}
 
-    &.active {
-      color: white;
-      transform: scale(1.1);
-    }
-  }
-
-  &.toggled .toggle-slider {
-    left: 50%;
-  }
+.toggle-button:active i {
+  transform: scale(0.9);
 }
 
 .language-letters-grid {
@@ -200,7 +213,7 @@
   width: 100%;
   padding: 1rem 0.5rem;
   border-radius: 0.75rem;
-  background: var(--navy-blue);
+  background: light-dark(white, var(--navy-blue));
   border: 1px solid rgba(125, 211, 252, 0.1);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -248,16 +261,21 @@
   }
 
   & .language-letter-top {
-    font-size: 2.25rem;
+    font-size: 71px;
     font-weight: 600;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+    background-size : 600%;
+    animation : anime 16s linear infinite;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color: transparent;
   }
 
   & .language-letter-bottom {
-    font-size: 1.75rem;
+    font-size: 50px;
     font-weight: 500;
-    color: var(--text-secondary);
+    background-image: radial-gradient(circle farthest-corner at 10% 20%, var(--sky-blue) 1%, var(--teal-accent) 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     opacity: 0.9;
   }
 
@@ -278,7 +296,17 @@
     }
   }
 }
-
+@keyframes anime{
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 .language-letter-kannada,
 .language-letter-hindi {
   width: 100%;

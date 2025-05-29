@@ -1,0 +1,249 @@
+---
+import BaseLayout from "@/layouts/Base";
+import BackButton from "@/components/ui/backButton.astro";
+import "@/assets/styles/varnmala/months.css";
+
+const pageTitle = "Months of the Year";
+const currentYear = 2025; 
+const today = new Date(currentYear, 4, 27); 
+
+const englishMonthsData = [
+  { type: "english", name: "January", hindi: "जनवरी", monthIndex: 0 },
+  { type: "english", name: "February", hindi: "फ़रवरी", monthIndex: 1 },
+  { type: "english", name: "March", hindi: "मार्च", monthIndex: 2 },
+  { type: "english", name: "April", hindi: "अप्रैल", monthIndex: 3 },
+  { type: "english", name: "May", hindi: "मई", monthIndex: 4 },
+  { type: "english", name: "June", hindi: "जून", monthIndex: 5 },
+  { type: "english", name: "July", hindi: "जुलाई", monthIndex: 6 },
+  { type: "english", name: "August", hindi: "अगस्त", monthIndex: 7 },
+  { type: "english", name: "September", hindi: "सितम्बर", monthIndex: 8 },
+  { type: "english", name: "October", hindi: "अक्टूबर", monthIndex: 9 },
+  { type: "english", name: "November", hindi: " नवम्बर", monthIndex: 10 },
+  { type: "english", name: "December", hindi: "दिसम्बर", monthIndex: 11 },
+];
+
+const indianMonthsData = [
+  { type: "indian", name: "Chaitra (चैत्र)", dates: "March 21 - April 20", sunSign: "Aries (मेष)", monthIndex: 2, displayName: "Chaitra" },
+  { type: "indian", name: "Vaishakha (वैशाख)", dates: "April 21 - May 21", sunSign: "Taurus (वृषभ)", monthIndex: 3, displayName: "Vaishakha" },
+  { type: "indian", name: "Jyeshtha (ज्येष्ठ)", dates: "May 22 - June 21", sunSign: "Gemini (मिथुन)", monthIndex: 4, displayName: "Jyeshtha" },
+  { type: "indian", name: "Ashadha (आषाढ़)", dates: "June 22 - July 22", sunSign: "Cancer (कर्क)", monthIndex: 5, displayName: "Ashadha" },
+  { type: "indian", name: "Shravana (श्रावण)", dates: "July 23 - August 22", sunSign: "Leo (सिंह)", monthIndex: 6, displayName: "Shravana" },
+  { type: "indian", name: "Bhadrapada (भाद्रपद)", dates: "August 23 - September 22", sunSign: "Virgo (कन्या)", monthIndex: 7, displayName: "Bhadrapada" },
+  { type: "indian", name: "Ashvina (आश्विन)", dates: "September 23 - October 22", sunSign: "Libra (तुला)", monthIndex: 8, displayName: "Ashvina" },
+  { type: "indian", name: "Kartika (कार्तिक)", dates: "October 23 - November 21", sunSign: "Scorpio (वृश्चिक)", monthIndex: 9, displayName: "Kartika" },
+  { type: "indian", name: "Margashirsha (मार्गशीर्ष)", dates: "November 22 - December 21", sunSign: "Sagittarius (धनु)", monthIndex: 10, displayName: "Margashirsha" },
+  { type: "indian", name: "Pausha (पौष)", dates: "December 22 - January 20", sunSign: "Capricorn (मकर)", monthIndex: 11, displayName: "Pausha" },
+  { type: "indian", name: "Magha (माघ)", dates: "January 21 - February 19", sunSign: "Aquarius (कुंभ)", monthIndex: 0, displayName: "Magha" },
+  { type: "indian", name: "Phalguna (फाल्गुन)", dates: "February 20 - March 20", sunSign: "Pisces (मीन)", monthIndex: 1, displayName: "Phalguna" },
+];
+
+const nationalHolidaysData = [
+  { day: 1, month: 0, year: 2025, name: "New Year's Day" },
+  { day: 26, month: 0, year: 2025, name: "Republic Day" },
+  { day: 14, month: 2, year: 2025, name: "Holi (Second Day)" },
+  { day: 18, month: 3, year: 2025, name: "Good Friday" },
+  { day: 1, month: 4, year: 2025, name: "May Day / Labour Day" },
+  { day: 15, month: 7, year: 2025, name: "Independence Day" },
+  { day: 2, month: 9, year: 2025, name: "Gandhi Jayanti" },
+  { day: 21, month: 9, year: 2025, name: "Dussehra (Vijayadashami)" },
+  { day: 10, month: 10, year: 2025, name: "Diwali (Deepavali)" },
+  { day: 25, month: 11, year: 2025, name: "Christmas Day" },
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <div class="container__months-page">
+    <div class="page-header">
+      <BackButton href="/varnmala" />
+    </div>
+
+    <div class="months-toggle-buttons" role="tablist">
+      <button id="englishMonthsBtn" class="toggle-button active" role="tab" aria-selected="true" aria-controls="english-months-pane">English Months</button>
+      <button id="hindiMonthsBtn" class="toggle-button" role="tab" aria-selected="false" aria-controls="indian-months-pane">Indian Months & Signs</button>
+    </div>
+
+    <div id="english-months-pane" class="months-content-pane active" role="tabpanel" aria-labelledby="englishMonthsBtn">
+      <div id="english-months-grid" class="months-grid">
+      </div>
+    </div>
+
+    <div id="indian-months-pane" class="months-content-pane" role="tabpanel" aria-labelledby="hindiMonthsBtn">
+      <div id="indian-months-grid" class="months-grid">
+      </div>
+    </div>
+
+    <div id="calendar-view-pane" class="months-content-pane" role="tabpanel" aria-labelledby="calendarViewBtnTrigger">
+      <div class="calendar-view-content">
+        <button id="closeCalendarViewBtn" class="close-calendar-view-btn" aria-label="Close calendar view">&times;</button>
+        <h2 id="calendar-view-title" class="calendar-view-title-style">Select a month to view its calendar</h2>
+        <div id="calendar-view-grid" class="calendar-grid-modal">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ englishMonthsData, indianMonthsData, currentYear, todayDate: today.toISOString(), nationalHolidaysData }}>
+    const englishBtn = document.getElementById('englishMonthsBtn');
+    const hindiBtn = document.getElementById('hindiMonthsBtn');
+    const closeCalendarBtn = document.getElementById('closeCalendarViewBtn');
+
+    const englishMonthsPane = document.getElementById('english-months-pane');
+    const indianMonthsPane = document.getElementById('indian-months-pane');
+    const calendarViewPane = document.getElementById('calendar-view-pane');
+
+    const englishGridContainer = document.getElementById('english-months-grid');
+    const indianGridContainer = document.getElementById('indian-months-grid');
+    
+    const calendarViewTitle = document.getElementById('calendar-view-title');
+    const calendarViewGrid = document.getElementById('calendar-view-grid');
+    const parsedToday = new Date(todayDate);
+    let lastActiveMonthTab = 'english'; 
+
+    function isHoliday(day, month, year, holidays) {
+      return holidays.find(h => h.day === day && h.month === month && h.year === year);
+    }
+
+    function generateCalendarDaysHTML(monthIndex, year, holidays) {
+      let html = '';
+      const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; 
+      daysOfWeek.forEach(day => {
+        html += `<div class="calendar-day calendar-header">${day}</div>`;
+      });
+
+      const firstDayOfMonth = new Date(year, monthIndex, 1);
+      const startingDay = firstDayOfMonth.getDay();
+      const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+      for (let i = 0; i < startingDay; i++) {
+        html += '<div class="calendar-day empty"></div>';
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        let dayClass = 'calendar-day';
+        const holidayInfo = isHoliday(day, monthIndex, year, holidays);
+
+        if (year === parsedToday.getFullYear() && monthIndex === parsedToday.getMonth() && day === parsedToday.getDate()) {
+          dayClass += ' current-day';
+        }
+        if (holidayInfo) {
+          dayClass += ' holiday-day';
+        }
+        
+        html += `<div class="${dayClass}" title="${holidayInfo ? holidayInfo.name : ''}">${day}</div>`;
+      }
+      return html;
+    }
+
+    function openCalendarView(monthIndex, displayMonthName) {
+      if (calendarViewTitle) calendarViewTitle.textContent = `${displayMonthName}, ${currentYear}`;
+      if (calendarViewGrid) calendarViewGrid.innerHTML = generateCalendarDaysHTML(monthIndex, currentYear, nationalHolidaysData);
+      
+      if (englishMonthsPane.classList.contains('active')) {
+        lastActiveMonthTab = 'english';
+      } else if (indianMonthsPane.classList.contains('active')) {
+        lastActiveMonthTab = 'hindi';
+      }
+
+      englishMonthsPane.classList.remove('active');
+      indianMonthsPane.classList.remove('active');
+      calendarViewPane.classList.add('active');
+
+      englishBtn.classList.remove('active');
+      englishBtn.setAttribute('aria-selected', 'false');
+      hindiBtn.classList.remove('active');
+      hindiBtn.setAttribute('aria-selected', 'false');
+    }
+    
+    function renderMonths(data, targetGridContainer) {
+      if (!targetGridContainer) return;
+      targetGridContainer.innerHTML = ''; 
+      data.forEach(month => {
+        const card = document.createElement('div');
+        card.classList.add('month-card');
+        if (month.type === 'english') {
+          card.classList.add('english-month');
+        } else if (month.type === 'indian') {
+          card.classList.add('indian-month');
+        }
+
+        const cardInner = document.createElement('div');
+        cardInner.classList.add('month-card-inner');
+
+        const cardFront = document.createElement('div');
+        cardFront.classList.add('month-card-front');
+
+        const cardBack = document.createElement('div');
+        cardBack.classList.add('month-card-back');
+        
+        const backContent = document.createElement('div');
+        backContent.classList.add('month-card-back-content');
+        backContent.innerHTML = `<h4>${month.displayName || month.name}</h4>`;
+
+        const viewCalendarBtnOnCard = document.createElement('button');
+        viewCalendarBtnOnCard.classList.add('view-calendar-btn-on-card');
+        viewCalendarBtnOnCard.textContent = 'View Calendar';
+        viewCalendarBtnOnCard.addEventListener('click', (e) => {
+          e.stopPropagation(); 
+          const mIndex = parseInt(month.monthIndex);
+          const dName = month.displayName || month.name;
+          openCalendarView(mIndex, dName);
+        });
+
+        backContent.appendChild(viewCalendarBtnOnCard);
+        cardBack.appendChild(backContent);
+
+        if (month.type === 'english') {
+          cardFront.innerHTML = `
+            <span class="month-english">${month.name}</span>
+            <span class="month-hindi">${month.hindi}</span>
+          `;
+        } else if (month.type === 'indian') {
+          cardFront.innerHTML = `
+            <h3 class="indian-month-name">${month.name}</h3>
+            <p class="indian-month-dates"><span class="label">Dates:</span> ${month.dates}</p>
+            <p class="indian-month-sunsign"><span class="label">Sun Sign:</span> ${month.sunSign}</p>
+          `;
+        }
+        
+        cardInner.appendChild(cardFront);
+        cardInner.appendChild(cardBack);
+        card.appendChild(cardInner);
+        targetGridContainer.appendChild(card);
+      });
+    }
+
+    const monthTabs = [
+        { btn: englishBtn, pane: englishMonthsPane, name: 'english', grid: englishGridContainer, data: englishMonthsData },
+        { btn: hindiBtn, pane: indianMonthsPane, name: 'hindi', grid: indianGridContainer, data: indianMonthsData }
+    ];
+
+    function showMonthTab(tabName) {
+      calendarViewPane.classList.remove('active'); 
+      monthTabs.forEach(tab => {
+        if (tab.name === tabName) {
+          tab.pane.classList.add('active');
+          tab.btn.classList.add('active');
+          tab.btn.setAttribute('aria-selected', 'true');
+          if (tab.grid && tab.data) {
+            renderMonths(tab.data, tab.grid);
+          }
+          lastActiveMonthTab = tabName; 
+        } else {
+          tab.pane.classList.remove('active');
+          tab.btn.classList.remove('active');
+          tab.btn.setAttribute('aria-selected', 'false');
+        }
+      });
+    }
+
+    englishBtn.addEventListener('click', () => showMonthTab('english'));
+    hindiBtn.addEventListener('click', () => showMonthTab('hindi'));
+    
+    closeCalendarBtn.addEventListener('click', () => {
+      calendarViewPane.classList.remove('active');
+      showMonthTab(lastActiveMonthTab);
+    });
+    
+    showMonthTab('english');
+  </script>
+</BaseLayout>

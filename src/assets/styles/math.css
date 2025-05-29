@@ -1,5 +1,4 @@
 :root {
-  /* Enhanced color palette with gradients */
   --color-background: #f9f7ff;
   --color-primary: #6a5acd;
   --color-primary-light: #8b7ddd;
@@ -11,14 +10,13 @@
   --color-error: #e74c3c;
   --color-text: #2c3e50;
 
-  /* Operation Colors */
   --color-add: #2ecc71;
   --color-subtract: #e74c3c;
   --color-multiply: #3498db;
   --color-divide: #f39c12;
   --color-refresh: #9b59b6;
 
-  /* Container shadows and effects */
+  
   --box-shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.08);
   --box-shadow-md: 0 6px 15px rgba(0, 0, 0, 0.1);
   --box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
@@ -37,7 +35,6 @@
   padding: 1rem;
   text-align: center;
   color: var(--color-text);
-  /*padding-top: 90px; Space for fixed header*/
 }
 
 /*.header {
@@ -70,11 +67,15 @@
   border-radius: var(--border-radius-xl);
   box-shadow: var(--box-shadow-md);
   transition: all 0.3s ease;
+  display: inline-flex; 
+  align-items: center;
 }
 
-.score:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--box-shadow-lg);
+.score::before { /* ADDED: Star icon */
+  content: "⭐"; 
+  margin-right: 0.75rem;
+  font-size: 1.8rem; 
+  line-height: 1;
 }
 
 .operator-container {
@@ -95,6 +96,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: var(--box-shadow-md);
+}
+
+.operator-btn span {
+  font-size: 5.8rem; 
+  line-height: 1; 
 }
 
 .operator-btn:hover {
@@ -123,17 +129,26 @@
 }
 
 .operator-btn.next {
-  font-size: 2.5rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-  padding: 0.5rem 1.5rem;
-  border-radius: var(--border-radius-xl);
+  font-size: 2.5rem; 
+  background: linear-gradient(135deg, var(--color-success)); 
+  color: white;
+  width: auto; 
   height: auto;
-  width: auto;
+  padding: 0.5rem 1.5rem; 
+  border-radius: var(--border-radius-xl); 
 }
 
-.operator-btn.next:hover {
-  transform: scale(1.05) translateY(-3px);
-  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
+.operator-btn.next:hover:not(:disabled) {
+  transform: scale(1.05) translateY(-2px); 
+  box-shadow: var(--box-shadow-lg);
+}
+
+.operator-btn.next:disabled {
+  background: linear-gradient(135deg, #adb5bd, #ced4da);
+  color: #6c757d; 
+  cursor: not-allowed;
+  box-shadow: var(--box-shadow-sm); 
+  transform: none; 
 }
 
 .math-form {
@@ -183,6 +198,16 @@
   font-size: 5rem;
   color: var(--color-secondary);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  /* display: inline-flex; 
+  align-items: center;  
+  justify-content: center; */
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0; 
+  margin: 0; */
 }
 
 .answer-wrapper {
@@ -259,6 +284,46 @@
   }
 }
 
+/* Fullscreen Celebration Styles */
+.fullscreen-celebration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  z-index: 2000; 
+  pointer-events: none; 
+  display: none; 
+}
+
+.fullscreen-celebration.active { 
+  display: block;
+}
+
+.emoji-particle {
+  position: absolute;
+  font-size: 2rem; 
+  animation: floatUpAndFade 3s ease-out forwards;
+  will-change: transform, opacity; 
+}
+
+@keyframes floatUpAndFade {
+  0% {
+    transform: translateY(0) scale(0.5) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.2) rotate(360deg); 
+    opacity: 0;
+  }
+}
+
+
+
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
   .number {
@@ -332,18 +397,32 @@
 
 @media (max-width: 480px) {
   .number {
-    width: 120px;
-    height: 110px;
-    font-size: 3.5rem;
+    width: 100px;
+    height: 90px; 
+    font-size: 3rem;
   }
 
   .operator {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
+    display: inline-flex; 
+    align-items: center;   
+    justify-content: center; 
+    line-height: 1;        
+    padding: 0;            
+    margin: 0;
   }
 
   .answer-wrapper {
     flex-direction: column;
     align-items: center;
+    gap: 0.25rem; 
+    width: 100%;
+  }
+
+  .output {
+    width: 100px; 
+    height: 90px; 
+    font-size: 2.8rem; 
   }
 
   .result-indicator {
@@ -354,17 +433,25 @@
   }
 
   .operator-container {
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .operator-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 1.75rem;
+    width: 55px;
+    height: 55px;
+    font-size: 1.5rem;
   }
+
+  .operator-btn span {
+    font-size: 2.2rem; 
+  }
+
 
   .header {
     padding: 0.5rem 1rem;
+  }
+    .number-group {
+    gap: 0.5rem; 
   }
 
   .score,

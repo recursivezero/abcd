@@ -1,6 +1,6 @@
 :root {
   /*color-scheme: light dark;*/
-  --text: light-dark(blue, yellow);
+  --text: light-dark(white, yellow);
   --base: color(rgb(68, 137, 166));
 }
 
@@ -24,7 +24,8 @@
   & .list {
     display: grid;
     grid-gap: 1.5rem;
-    grid-template-columns: repeat(5, minmax(20rem, 1fr));
+    grid-template-columns: repeat(5,  1fr);
+    /* grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); */
     margin-block: 2rem;
 
     & .letter {
@@ -96,4 +97,17 @@
       font-size: 1.5rem;
     }
   }
+}
+
+.five-column-grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.tv {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
 }

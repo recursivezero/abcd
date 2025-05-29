@@ -24,6 +24,7 @@ const additionalConsonants = [
 ];
 
 export const hindiConsonants = [
+  
   // क-row
   2325, 2326, 2327, 2328, 2329,
   // च-row
@@ -39,7 +40,7 @@ export const hindiConsonants = [
   // श-row
   2358, 2359, 2360, 2361,
 
-  2365
+
 ]
   .map((code) => String.fromCharCode(code))
   .concat(additionalConsonants);
@@ -78,6 +79,7 @@ export const varnmala_english = Array.from(Array(26), (_, i) => ({
 export const varnmala_hindi = varnmala
   .filter((v) => !extraLetters.includes(v.code))
   .concat(additionalConsonants.map((v, i) => ({ code: 2325 + i, letter: v })));
+  
 
 export const getLetterIndex = (letter: string): number => letter.charCodeAt(0) - 65;
 

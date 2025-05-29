@@ -4,50 +4,40 @@ import Keyboard from "@/components/DrawKeyboard.astro";
 import Help from "@/components/Help.astro";
 ---
 
-<Layout meta={{ title: "Draw Keyboard" }}>
+<Layout meta={{ title: "Draw by Keyboard" }}>
   <Fragment slot="header-right">
-    <div class="settings-container">
-      <div class="settings-toggle">
-        <input type="checkbox" id="settingsToggle" class="settings-checkbox visually-hidden" />
-        <label for="settingsToggle" class="settings-label control-button" title="Toggle Settings"> ⚙️ </label>
+    <div class="controls-container">
+      <div class="controls">
+        <label for="toggleCase" class="control-item" data-tooltip="Toggle case">
+          <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
+          <span id="text" class="control-button case-toggle" role="switch" aria-checked="false">
+            Aa
+          </span>
+        </label>
 
-        <div class="settings-panel">
-          <div class="controls">
-            <label for="toggleCase" class="control-item">
-              <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
-              <span
-                id="text"
-                class="control-button case-toggle"
-                style="--content: 'A'"
-                title="Toggle case"
-                role="switch"
-                aria-checked="false"
-              >
-                Aa
-              </span>
-              <span class="control-label">Toggle Case</span>
-            </label>
+        <label for="toggleFont" class="control-item" data-tooltip="Change font">
+          <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
+          <span id="font" class="control-button font-toggle" role="switch" aria-checked="false">
+            <span class="font-icon">T</span>
+            <span class="font-icon-alt">T</span>
+          </span>
+        </label>
 
-            <label for="toggleFont" class="control-item">
-              <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
-              <span id="font" class="control-button font-toggle" title="Change font" role="switch" aria-checked="false">
-                T
-              </span>
-              <span class="control-label">Change Font</span>
-            </label>
+        <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
+          <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
+          <span class="control-button bg-toggle" role="switch" aria-checked="false">
+            <span class="bg-icon">🎨</span>
+            <span class="bg-icon-alt">🎨</span>
+          </span>
+        </label>
 
-            <label for="toggleBg" class="control-item">
-              <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
-              <span class="control-button bg-toggle" title="Toggle background" role="switch" aria-checked="false">
-                🎨
-              </span>
-              <span class="control-label">Toggle Background</span>
-            </label>
-          </div>
+        <div class="control-item" data-tooltip="Reset all">
+          <button class="control-button reset-button" id="resetButton">↻</button>
         </div>
+
       </div>
 
-      <Help
+      <Help 
         title="Draw Keyboard"
         description="Draw letters on the keyboard by clicking and dragging through the keys. Use the controls to toggle case, font, and background."
       />
@@ -57,109 +47,147 @@ import Help from "@/components/Help.astro";
 </Layout>
 
 <style>
-  .settings-container {
-    position: relative;
+
+  :root {
+    --keyboard-bg: white;
+    --keyboard-alt-bg: #f0f0f0;
+    --font-normal: 'Arial', sans-serif;
+    --font-fancy: 'Brush Script MT', cursive;
+  }
+
+  .controls-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
-  }
-
-  .settings-toggle {
-    position: relative;
-  }
-
-  .settings-checkbox {
-    display: none;
-  }
-
-  .settings-label {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--control-bg);
-    border-radius: 0.25rem;
-    border: 2px solid rgba(67, 56, 202, 0.2);
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-    font-size: 1.5rem;
-  }
-
-  .settings-panel {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    min-width: 12rem;
-  }
-
-  .settings-checkbox:checked ~ .settings-panel {
-    display: block;
+    gap: 0.75rem;
   }
 
   .controls {
     display: flex;
-    flex-direction: column;
     gap: 0.5rem;
   }
 
   .control-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-  }
-
-  .control-label {
-    font-size: 0.875rem;
-    color: #333;
+    position: relative;
   }
 
   .control-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--control-bg);
-    border-radius: 0.25rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
     cursor: pointer;
+    border: 1px solid #3B82f6;
+    transition: all 0.2s var(--ease);
+    box-shadow: 0 1px 3px var(--shadow-sm);
+    font-size: 1.25rem;
+    color: #3B82f6;
+    font-weight: 600;
+    background-color: transparent;
     position: relative;
     overflow: hidden;
-    border: 2px solid rgba(67, 56, 202, 0.2);
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-    font-size: 1.5rem;
-    color: black;
-    font-family: Merriweather;
   }
 
-  .control-button::before {
-    content: "";
+  .control-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 12px var(--shadow-lg);
+    border-color: #2563eb;
+  }
+
+  .control-button.active {
+    background-color: #3B82f6;
+    color: white;
+  }
+
+  .control-button.active:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+    background-color: #2563eb;
+  }
+
+  .reset-button {
+    margin-left: 0.5rem;
+  }
+
+  .reset-button:hover {
+  /*To rotate the reset button on hover*/
+  /*transform: translateY(-2px) scale(1.1) rotate(180deg);*/
+    transition: all 0.3s ease;
+  }
+
+  .font-icon, .font-icon-alt {
     position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--accent-color);
-    transform: scaleX(0);
-    transform-origin: 0 50%;
-    transition: transform 0.3s ease-out;
-    opacity: 0.1;
+    transition: opacity 0.2s ease;
+    font-size: 1.25rem;
   }
 
-  .control-button:hover::before {
-    transform: scaleX(1);
+  .font-icon {
+    opacity: 1;
+    font-family: Arial, sans-serif;
+  }
+
+  .font-icon-alt {
+    opacity: 0;
+    font-family: 'Brush Script MT', cursive;
+  }
+
+  .font-toggle.active .font-icon {
+    opacity: 0;
+  }
+
+  .font-toggle.active .font-icon-alt {
+    opacity: 1;
+  }
+
+  .bg-icon, .bg-icon-alt {
+    position: absolute;
+    transition: opacity 0.2s ease;
+    font-size: 1.25rem;
+  }
+
+  .bg-icon {
+    opacity: 1;
+  }
+
+  .bg-icon-alt {
+    opacity: 0;
+  }
+
+  .bg-toggle.active .bg-icon {
+    opacity: 0;
+  }
+
+  .bg-toggle.active .bg-icon-alt {
+    opacity: 1;
+  }
+
+  .control-item::after,
+  .reset-button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    color: light-dark(black, white);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.2s var(--ease);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .control-item:hover::after,
+  .reset-button:hover::after {
+    opacity: 1;
+    bottom: -2rem;
   }
 
   .hidden {
@@ -177,23 +205,161 @@ import Help from "@/components/Help.astro";
     white-space: nowrap;
     border: 0;
   }
+
+  @media (max-width: 640px) {
+    .controls-container {
+      gap: 0.5rem;
+    }
+    
+    .control-button {
+      width: 3.2rem;
+      height: 3.2rem;
+      font-size: 1rem;
+    }
+    
+    .control-item::after,
+    .reset-button::after {
+      font-size: 0.65rem;
+      bottom: -2.25rem;
+    }
+    
+    .control-item:hover::after,
+    .reset-button:hover::after {
+      bottom: -1.75rem;
+    }
+  }
+
+  *:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const settingsToggle = document.getElementById("settingsToggle") as HTMLInputElement;
-    const settingsPanel = settingsToggle.nextElementSibling!;
 
-    // Close settings panel when clicking outside
-    document.addEventListener("click", (event: any) => {
-      if (!settingsToggle.contains(event.target) && !settingsPanel.contains(event.target)) {
-        settingsToggle.checked = false;
-      }
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all buttons and elements
+    const caseToggle = document.querySelector('.case-toggle');
+    const fontToggle = document.querySelector('.font-toggle');
+    const bgToggle = document.querySelector('.bg-toggle');
+    const resetButton = document.getElementById('resetButton');
+    
+    // Get elements from the second file that need to be reset
+    const mainEl = document.querySelector("main");
+    const boardDiv = document.getElementById("board");
+    const charDiv = document.getElementById("char");
+    const toggleCaseSwitch = document.getElementById("toggleCase");
+    const toggleFontSwitch = document.getElementById("toggleFont");
+    const toggleBackgroundSwitch = document.getElementById("toggleBg");
+    const info = document.querySelector(".info");
+    
+    // Store original values for complete reset
+    const originalState = {
+        isUpperCase: true,
+        currentFontIndex: 0,
+        mainElBackgroundBlendMode: 'normal',
+        mainElFilter: 'brightness(1)',
+        boardDivBackgroundColor: '',
+        boardDivBackgroundImage: '',
+        charDivFontFamily: '', // Will be set to default
+        infoText: 'Press any key',
+        charText: ''
+    };
+
+    // Simple toggle for case button
+    caseToggle.addEventListener('click', () => {
+        const isActive = caseToggle.classList.contains('active');
+        if (isActive) {
+            caseToggle.classList.remove('active');
+            caseToggle.setAttribute('aria-checked', 'false');
+            caseToggle.textContent = 'Aa';
+            caseToggle.style.fontSize = '1.25rem';
+        } else {
+            caseToggle.classList.add('active');
+            caseToggle.setAttribute('aria-checked', 'true');
+            caseToggle.textContent = 'Aa';
+            caseToggle.style.fontSize = '1rem';
+        }
     });
 
-    // Prevent panel from closing when clicking inside
-    settingsPanel.addEventListener("click", (event) => {
-      event.stopPropagation();
+    // Simple toggle for font button
+    fontToggle.addEventListener('click', () => {
+        fontToggle.classList.add('active');
+        fontToggle.setAttribute('aria-checked', 'true');
     });
-  });
+
+    // Simple toggle for background button
+    bgToggle.addEventListener('click', () => {
+        bgToggle.classList.add('active');
+        bgToggle.setAttribute('aria-checked', 'true');
+    });
+
+   
+    resetButton.addEventListener('click', () => {
+        // Reset case toggle button
+        caseToggle.classList.remove('active');
+        caseToggle.setAttribute('aria-checked', 'false');
+        caseToggle.textContent = 'Aa';
+        caseToggle.style.fontSize = '1.25rem';
+        
+        // Reset font toggle button
+        fontToggle.classList.remove('active');
+        fontToggle.setAttribute('aria-checked', 'false');
+        
+        // Reset background toggle button
+        bgToggle.classList.remove('active');
+        bgToggle.setAttribute('aria-checked', 'false');
+        
+        // Reset the actual checkboxes (if they exist)
+        if (toggleCaseSwitch) {
+            toggleCaseSwitch.checked = false;
+        }
+        if (toggleFontSwitch) {
+            toggleFontSwitch.checked = false;
+        }
+        if (toggleBackgroundSwitch) {
+            toggleBackgroundSwitch.checked = false;
+        }
+        
+        // Reset the main application state
+        if (mainEl) {
+            mainEl.style.backgroundBlendMode = originalState.mainElBackgroundBlendMode;
+            mainEl.style.filter = originalState.mainElFilter;
+        }
+        
+        // Reset board styles
+        if (boardDiv) {
+            boardDiv.style.backgroundColor = originalState.boardDivBackgroundColor;
+            boardDiv.style.backgroundImage = originalState.boardDivBackgroundImage;
+        }
+        
+        // Reset character display
+        if (charDiv) {
+            charDiv.style.fontFamily = originalState.charDivFontFamily;
+            charDiv.textContent = originalState.charText;
+        }
+        
+        // Reset info text
+        if (info) {
+            info.textContent = originalState.infoText;
+        }
+        
+        // Reset global variables (if accessible)
+        if (typeof window.currentFontIndex !== 'undefined') {
+            window.currentFontIndex = 0;
+        }
+        if (typeof window.isUpperCase !== 'undefined') {
+            window.isUpperCase = true;
+        }
+        
+        // Dispatch custom reset event for other scripts to listen to
+        document.dispatchEvent(new CustomEvent('keyboardReset', {
+            detail: { originalState: originalState }
+        }));
+        
+        console.log('Keyboard reset to original state');
+    });
+});
+
 </script>
