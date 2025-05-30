@@ -26,7 +26,6 @@ const letterRows = [
   :root {
     --primary-bg: #1a1a1a;
     --default-bg: #0b1f54;
-    --accent-color: #4a90e2;
     --text-color: #ffffff;
     --modal-bg: rgba(0, 0, 0, 0.8);
   }
@@ -63,14 +62,19 @@ const letterRows = [
   }
 
   .keyboard-item:hover {
-    background: var(--accent-color);
+    background: color-mix(in srgb, var(--default-bg) 90%, white);
     transform: translateY(-2px);
   }
 
   .keyboard-item.active {
-    background: var(--accent-color);
     transform: scale(1.1);
   }
+
+  .keyboard-item.active:hover {
+    /* When active and hovered, slightly lighten its assigned color */
+    background: color-mix(in srgb, var(--active-bg-color, var(--default-bg)) 90%, white);
+  }
+
 
   @media (max-width: 640px) {
     .letter-box,
@@ -95,13 +99,57 @@ const letterRows = [
     dialog?.close();
   });
 
+  // New Color Generation and Management
+const letterColors: Record<string, string> = {}; 
+  let hue = 0;
+
+  // Function to generate a new distinct HSL color
+  function getUniqueColor() {
+    const saturation = 70;
+    const lightness = 50;
+    const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    hue = (hue + 45) % 360;
+    return color;
+  }
+
+  const allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (const char of allLetters) {
+    letterColors[char] = getUniqueColor();
+  }
+
+  // Unified Toggle Function
+  function toggleLetterState(letter: string) {
+    const upperCaseLetter = letter.toUpperCase();
+
+    // Handle the letter box (hide/show)
+    const letterBox = document.querySelector(`.letter-box[data-letter="${upperCaseLetter}"]`);
+    if (letterBox instanceof HTMLElement) {
+      const isVisible = letterBox.getAttribute("data-visible") === "true";
+      letterBox.setAttribute("data-visible", (!isVisible).toString());
+    }
+
+    // Handle the keyboard item (selection and color)
+    const keyboardItem = document.querySelector(`.keyboard-item[data-letter="${upperCaseLetter}"]`);
+    if (keyboardItem instanceof HTMLElement) {
+      if (keyboardItem.classList.contains("active")) {
+        keyboardItem.classList.remove("active");
+        keyboardItem.style.removeProperty("background-color");
+        keyboardItem.style.removeProperty("--active-bg-color");
+      } else {
+        keyboardItem.classList.add("active");
+        const assignedColor = letterColors[upperCaseLetter] || getUniqueColor();
+        keyboardItem.style.backgroundColor = assignedColor;
+        keyboardItem.style.setProperty("--active-bg-color", assignedColor);
+      }
+    }
+  }
+
+  // Event Listeners
+
   document.addEventListener("keydown", (e) => {
     if (/^[a-zA-Z]$/.test(e.key)) {
-      const letterBox = document.querySelector(`.letter-box[data-letter="${e.key.toUpperCase()}"]`);
-      if (letterBox instanceof HTMLElement) {
-        const isVisible = letterBox.getAttribute("data-visible") === "true";
-        letterBox.setAttribute("data-visible", (!isVisible).toString());
-      }
+      e.preventDefault();
+      toggleLetterState(e.key);
     }
   });
 
@@ -111,11 +159,7 @@ const letterRows = [
     item.addEventListener("click", () => {
       const letter = item.getAttribute("data-letter");
       if (letter) {
-        const letterBox = document.querySelector(`.letter-box[data-letter="${letter}"]`);
-        if (letterBox instanceof HTMLElement) {
-          const isVisible = letterBox.getAttribute("data-visible") === "true";
-          letterBox.setAttribute("data-visible", (!isVisible).toString());
-        }
+        toggleLetterState(letter);
       }
     });
   });
