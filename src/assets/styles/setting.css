@@ -125,10 +125,10 @@
           min-height: 30rem;
           justify-content: center;
 
-          :where(button, select) {
-            background-color: rgb(211, 89, 222);
+            :where(button, select) {
+            background: linear-gradient(90deg, rgb(17, 255, 247) 0%, rgb(39, 96, 241) 100%);
             transform: scaleZ(1) rotate(5deg);
-          }
+            }
         }
 
         @starting-style {
