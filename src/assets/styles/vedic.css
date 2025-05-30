@@ -194,7 +194,7 @@ select:focus {
   /* Removed overflow-x: auto; - now handles vertical scrolling or expands */
   position: relative;
   /* Needed for timeline-line positioning */
-  height: 70vh; /* Fixed height */
+  height: 80vh; /* Fixed height */
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
@@ -258,11 +258,11 @@ select:focus {
   /* Extend to the bottom */
   width: 8px;
   /* Thickness of the vertical timeline line */
-  background: linear-gradient(180deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background: linear-gradient(180deg,#3CF0C5,#338AFF,#FF3D77, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
   /* Vertical gradient */
   background-size: 100% 200%;
   /* Adjust size for vertical animation */
-  animation: timelineGradientVertical 15s linear infinite;
+  animation: timelineGradientVertical 10s linear infinite;
   /* Vertical animation */
   transform: translateX(-50%);
   /* Center the line exactly */
