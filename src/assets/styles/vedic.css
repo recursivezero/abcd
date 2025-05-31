@@ -129,7 +129,7 @@
 /* Converter Horizontal Layout */
 .converter__horizontal {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 1rem;
   width: 100%;
   padding: 1.5rem;
@@ -150,6 +150,7 @@
   color: var(--text);
   font-size: 1.125rem;
   font-weight: 500;
+  padding: 0.5rem;
 }
 
 input,
@@ -177,11 +178,13 @@ select:focus {
   background-color: var(--background);
   border: 2px solid var(--border);
   display: flex;
+  margin-bottom: 4px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  transform: rotate(90deg);
 }
 
 .swap-button:hover {
@@ -189,7 +192,7 @@ select:focus {
 }
 
 .swap-button.active {
-  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background: linear-gradient(45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
   background-size: 400% 400%;
   animation: gradient 10s infinite;
 }
@@ -317,7 +320,7 @@ select:focus {
   background: var(--primary);
   border: 4px solid var(--background);
   position: absolute;
-  top: 50%;
+  top: 9%;
   transform: translateY(-50%);
   z-index: 2;
 }
@@ -435,7 +438,7 @@ select:focus {
   }
 
   .converter__horizontal {
-    flex-direction: row;
+    flex-direction: column;
     align-items: stretch;
     gap: 1rem;
     padding: 1rem;
