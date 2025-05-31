@@ -38,6 +38,7 @@ function getColorClass(index: number) {
         aria-label="Search states and union territories"
         placeholder="Search states or capitals..."
         autocomplete="off"
+        spellcheck="false"
       />
       <button class="clear-button" aria-label="Clear search">×</button>
     </div>
@@ -153,20 +154,31 @@ function getColorClass(index: number) {
     }
 
     // Search functionality
-    if (searchBar) {
-      searchBar.addEventListener("input", function() {
-        const query = this.value.toLowerCase().trim();
-        updateVisibility(query);
-      });
+    function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+  }
 
-      searchBar.addEventListener("keydown", function(e) {
-        if (e.key === "Escape") {
-          this.value = "";
-          updateVisibility("");
-          this.blur();
-        }
-      });
-    }
+  if (searchBar) {
+    const handleSearch = debounce(function () {
+      const query = searchBar.value.toLowerCase().trim();
+      updateVisibility(query);
+    }, 500); 
+
+    searchBar.addEventListener("input", handleSearch);
+
+    searchBar.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        this.value = "";
+        updateVisibility("");
+        this.blur();
+      }
+    });
+  }
+
 
     // Clear button functionality
     if (clearButton) {
