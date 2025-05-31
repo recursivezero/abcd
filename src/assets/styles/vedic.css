@@ -11,6 +11,50 @@
   gap: 2rem;
 }
 
+/* Tab Styles */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-button {
+  background-color: var(--background);
+  border: 2px solid var(--border);
+  color: var(--text);
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.tab-button:hover {
+  background-color: color-mix(in srgb, var(--background) 90%, var(--text) 10%);
+}
+
+.tab-button.active {
+  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background-size: 400% 400%;
+  animation: gradient 10s infinite;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+
 /* Tithi Header Styles */
 .tithi-header {
   display: flex;
@@ -175,36 +219,18 @@ select:focus {
 }
 
 /* Units Reference Card */
-/*.units__card {
-  width: 100%;
-  border-radius: 1rem;
-  padding: 2rem;
-  margin-top: 2.5rem;
-  border: 2px solid var(--border);
-  background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
-}*/
 .units__timeline-container {
   width: 100%;
   border-radius: 1rem;
   padding: 2rem;
-  /* Adjusted padding for vertical flow */
   margin-top: 2.5rem;
   border: 2px solid var(--border);
   background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
-  /* Removed overflow-x: auto; - now handles vertical scrolling or expands */
   position: relative;
-  /* Needed for timeline-line positioning */
-  height: 80vh; /* Fixed height */
-  overflow-y: auto; /* Enable vertical scrolling */
+  height: 90vh;
+  overflow-y: auto;
 }
 
-/*
-.units__title {
-  color: var(--text);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-}*/
 .units__title {
   color: var(--text);
   font-size: 1.8rem;
@@ -212,134 +238,55 @@ select:focus {
   margin-bottom: 2.5rem;
   text-align: center;
   position: relative;
-  /* Not sticky anymore if container scrolls, but good for z-index */
   z-index: 2;
   padding: 0 2rem;
-  /* Add padding to title to prevent it from hugging the edge */
 }
 
-/*.units__grid {
-  display: grid;
-  gap: 1rem;
-  max-height: 600px;
-  overflow-y: auto;
-  padding-right: 0.5rem;
-}
-*/
 .timeline-wrapper {
   display: flex;
   flex-direction: column;
-  /* Changed to vertical column */
   align-items: center;
-  /* Horizontally center items in the column */
   padding: 0;
-  /* Let individual nodes handle spacing with transforms/margins */
   position: relative;
   gap: 80px;
-  padding-bottom: 2rem; /* Add some padding at bottom */
-  /* Remove min-height: 800px */
+  padding-bottom: 2rem;
 }
 
-/*
-.unit__item {
-  padding: 1.25rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--border);
-  background-color: var(--background);
-}
-*/
 .timeline-line {
   position: absolute;
   left: 50%;
-  /* Center the line horizontally */
   top: 0;
-  /* Start from the top */
   bottom: 0;
-  /* Extend to the bottom */
   width: 8px;
-  /* Thickness of the vertical timeline line */
-  background: linear-gradient(180deg,#3CF0C5,#338AFF,#FF3D77, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
-  /* Vertical gradient */
+  background: linear-gradient(180deg, #3CF0C5, #338AFF, #FF3D77, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
   background-size: 100% 200%;
-  /* Adjust size for vertical animation */
   animation: timelineGradientVertical 10s linear infinite;
-  /* Vertical animation */
   transform: translateX(-50%);
-  /* Center the line exactly */
   border-radius: 3px;
   z-index: 0;
-  /* Ensure line is behind cards */
 }
 
 .timeline-node {
   position: relative;
   flex-shrink: 0;
-  /* Prevent nodes from shrinking */
   width: 400px;
-  /* Fixed width for each timeline node for better content display */
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  /* Bouncier transition */
   z-index: 1;
   margin: 0;
-  /* Remove horizontal margin, gap on wrapper handles vertical spacing */
 }
 
-/* Serpentine effect: Alternating left/right positions for zig-zag in vertical flow */
-/* Nodes on the left side of the vertical line */
 .timeline-node--top {
   transform: translateX(-150px) rotate(-3deg);
-  /* Move left and tilt */
   align-self: flex-start;
-  /* Align to the start (left) of the flex container */
 }
 
-/* Nodes on the right side of the vertical line */
 .timeline-node--bottom {
   transform: translateX(150px) rotate(3deg);
-  /* Move right and tilt */
   align-self: flex-end;
-  /* Align to the end (right) of the flex container */
 }
-
-/*
-.unit__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.unit__header h3 {
-  color: var(--primary);
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-
-.approx {
-  color: var(--text);
-  opacity: 0.6;
-  font-size: 0.875rem;
-}
-
-.unit__details {
-  margin-top: 0.75rem;
-  display: grid;
-  gap: 0.375rem;
-  color: var(--text);
-}
-
-.unit__value {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.icon {
-  opacity: 0.6;
-}
-*/
 
 .timeline-card {
   background-color: var(--background);
@@ -348,21 +295,17 @@ select:focus {
   padding: 1.5rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   min-height: 160px;
-  /* Ensure cards have minimum height */
   width: 100%;
-  /* Take full width of the node */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
   position: relative;
-  /* Removed margin-bottom/top from cards, dots will handle their own position relative to card */
 }
 
 .timeline-card:hover {
   transform: scale(1.05) translateY(-5px);
-  /* Pop out on hover (vertical effect still nice) */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   background-color: color-mix(in srgb, var(--background) 85%, var(--primary) 7%);
 }
@@ -372,30 +315,20 @@ select:focus {
   height: 20px;
   border-radius: 50%;
   background: var(--primary);
-  /* Dot color */
   border: 4px solid var(--background);
-  /* Border to make it stand out against the line */
   position: absolute;
   top: 50%;
-  /* Center vertically on the card */
   transform: translateY(-50%);
-  /* Adjust to truly center */
   z-index: 2;
-  /* Ensure dot is on top */
 }
 
-/* Adjust dot positions based on which side the card is on */
 .timeline-node--top .timeline-dot {
-  /* Card is on the left side */
   right: -30px;
-  /* Position dot to the right of the card, connecting to the central line */
   left: auto;
 }
 
 .timeline-node--bottom .timeline-dot {
-  /* Card is on the right side */
   left: -30px;
-  /* Position dot to the left of the card, connecting to the central line */
   right: auto;
 }
 
@@ -423,7 +356,6 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Center content within value */
   gap: 0.6rem;
   font-weight: 500;
 }
@@ -449,7 +381,6 @@ select:focus {
   }
 }
 
-/* New animation for vertical line */
 @keyframes timelineGradientVertical {
   0% {
     background-position: 50% 0%;
@@ -457,7 +388,6 @@ select:focus {
 
   100% {
     background-position: 50% 200%;
-    /* Changed to 200% on Y-axis for vertical movement */
   }
 }
 
@@ -521,10 +451,9 @@ select:focus {
   }
 
   .units__timeline-container {
-    height: 60vh; /* Slightly smaller height on mobile */
+    height: 60vh;
     padding: 1rem;
-    /* Adjust padding for smaller screens */
-    max-height: 800px; /* Prevent it from becoming too tall */
+    max-height: 800px;
   }
 
   .units__title {
@@ -535,18 +464,12 @@ select:focus {
 
   .timeline-wrapper {
     flex-direction: column;
-    /* Stack vertically on small screens */
     align-items: center;
-    /* Center the stack */
     padding: 0;
-    /* Remove padding from wrapper, let nodes handle */
     gap: 60px;
-    /* Smaller vertical gap on mobile */
     min-height: auto;
-    /* Allow height to collapse on mobile */
   }
 
-  /* Vertical timeline line on mobile (already mostly correct, but ensure consistency) */
   .timeline-line {
     width: 6px;
     height: 100%;
@@ -559,31 +482,23 @@ select:focus {
 
   .timeline-node {
     width: 90%;
-    /* Make cards take more width on mobile */
     max-width: 280px;
-    /* Cap max width */
     transform: none !important;
-    /* Remove all serpentine transforms on mobile */
     align-self: auto;
-    /* Reset align-self */
   }
 
-  /* Reset dot positions for mobile, centered vertically and on either side */
   .timeline-dot {
     top: 50%;
     transform: translateY(-50%);
   }
 
-  /* For mobile, dots on alternate sides of the card for a classic vertical timeline look */
   .timeline-node:nth-child(odd) .timeline-dot {
     left: -10px;
-    /* Dot to the left of the card */
     right: auto;
   }
 
   .timeline-node:nth-child(even) .timeline-dot {
     right: -10px;
-    /* Dot to the right of the card */
     left: auto;
   }
 
@@ -604,31 +519,8 @@ select:focus {
   .unit__value .icon {
     font-size: 1.1em;
   }
-  /* New animation for vertical line */
-@keyframes timelineGradientVertical {
-  0% {
-    background-position: 50% 0%;
-  }
-
-  100% {
-    background-position: 50% 200%;
-    /* Changed to 200% on Y-axis for vertical movement */
-  }
 }
 
-@keyframes anime {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}}
 /* Custom scrollbar */
 .units__timeline-container::-webkit-scrollbar {
   width: 8px;
