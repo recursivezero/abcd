@@ -505,7 +505,7 @@ select:focus {
   }
 
   .converter__horizontal {
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
     gap: 1rem;
     padding: 1rem;
@@ -604,7 +604,31 @@ select:focus {
   .unit__value .icon {
     font-size: 1.1em;
   }
+  /* New animation for vertical line */
+@keyframes timelineGradientVertical {
+  0% {
+    background-position: 50% 0%;
+  }
+
+  100% {
+    background-position: 50% 200%;
+    /* Changed to 200% on Y-axis for vertical movement */
+  }
 }
+
+@keyframes anime {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}}
 /* Custom scrollbar */
 .units__timeline-container::-webkit-scrollbar {
   width: 8px;
