@@ -41,9 +41,6 @@
 #state-svg-container {
   flex: 0.8;
   /*padding: calc(var(--spacing-unit) * 1);*/
-  background-color: var(--secondary-bg);
-  border-radius: 8px;
-  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
 }
