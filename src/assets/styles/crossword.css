@@ -10,6 +10,7 @@
   --accent6-color: #818cf8;
   --accent7-color: #f97316;
   --accent8-color: #38bdf8;
+  --color-scheme: light dark;
 
   /* Text & Background */
   --text-color: #1e293b;
@@ -173,7 +174,7 @@ details summary::after {
   background-repeat: no-repeat;
   background-position: center;
   transition: var(--transition);
-  transform: rotate(360deg);  
+  transform: rotate(180deg);  
 }
 
 details summary::-webkit-details-marker {
@@ -202,9 +203,11 @@ details:not([open]) summary::after {
   border-radius: 25px;
   font-weight: 600;
   color: var(--word-font-color);
-  background-color: rgb(23, 252, 229);
+  background-color: rgb(72, 200, 255);
   transition: var(--transition);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font-family: 'Poppins', 'Fira Mono', 'Consolas', 'Courier New', monospace;
 }
 
 .word-list .word.found {
@@ -226,7 +229,7 @@ details:not([open]) summary::after {
   background: linear-gradient(135deg, var(--primary-color), var(--accent6-color));
   border: 2px solid transparent;
   border-radius: var(--border-radius);
-  padding: 14px 28px;
+  padding: 13px 28px;
   font-weight: 600;
   transition: var(--transition);
   color: white;
@@ -357,8 +360,8 @@ details:not([open]) summary::after {
 
   .stats-button .bulb-icon,
   .stats-button svg {
-    width: 22px !important;
-    height: 22px !important;
+    width: 20px !important;
+    height: 20px !important;
     display: inline-block;
     vertical-align: middle;
   }
@@ -366,4 +369,5 @@ details:not([open]) summary::after {
     font-size: 6vw;
     padding: 12px 16px;
   }
+
 }
