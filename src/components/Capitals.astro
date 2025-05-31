@@ -102,6 +102,32 @@ function getColorClass(index: number) {
     const statesCount = document.getElementById("states-count");
     const utsCount = document.getElementById("uts-count");
 
+    // Store original text content for each card
+    const originalContent = new Map();
+
+    // Initialize original content storage
+    function storeOriginalContent() {
+      const allCards = document.querySelectorAll('.location-card');
+      allCards.forEach(card => {
+        const summary = card.querySelector('summary');
+        const p = card.querySelector('p');
+        if (summary && p) {
+          originalContent.set(card, {
+            name: summary.textContent,
+            capital: p.textContent
+          });
+        }
+      });
+    }
+
+    // Highlight matching text
+    function highlightText(text, query) {
+      if (!query || query.length === 0) return text;
+      
+      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+
     // Make entire card clickable
     function makeCardsClickable() {
       const allCards = document.querySelectorAll('.location-card');
@@ -116,7 +142,7 @@ function getColorClass(index: number) {
       });
     }
 
-    // Update visibility and counts
+    // Update visibility, counts, and highlighting
     function updateVisibility(query) {
       const stateCards = statesGrid.querySelectorAll("article");
       const utCards = utsGrid.querySelectorAll("article");
@@ -124,24 +150,58 @@ function getColorClass(index: number) {
       let visibleStates = 0;
       let visibleUts = 0;
 
-      // Filter states
+      // Filter and highlight states
       stateCards.forEach(card => {
-        const name = card.dataset.name || '';
-        const capital = card.dataset.capital || '';
-        const isVisible = name.includes(query) || capital.includes(query);
+        const original = originalContent.get(card);
+        if (!original) return;
+
+        const name = original.name.toLowerCase();
+        const capital = original.capital.toLowerCase();
+        const searchQuery = query.toLowerCase();
+        const isVisible = name.includes(searchQuery) || capital.includes(searchQuery);
         
-        card.style.display = isVisible ? "" : "none";
-        if (isVisible) visibleStates++;
+        if (isVisible) {
+          // Update content with highlighting
+          const summary = card.querySelector('summary');
+          const p = card.querySelector('p');
+          
+          if (summary && p) {
+            summary.innerHTML = highlightText(original.name, query);
+            p.innerHTML = highlightText(original.capital, query);
+          }
+          
+          card.style.display = "";
+          visibleStates++;
+        } else {
+          card.style.display = "none";
+        }
       });
 
-      // Filter UTs
+      // Filter and highlight UTs
       utCards.forEach(card => {
-        const name = card.dataset.name || '';
-        const capital = card.dataset.capital || '';
-        const isVisible = name.includes(query) || capital.includes(query);
+        const original = originalContent.get(card);
+        if (!original) return;
+
+        const name = original.name.toLowerCase();
+        const capital = original.capital.toLowerCase();
+        const searchQuery = query.toLowerCase();
+        const isVisible = name.includes(searchQuery) || capital.includes(searchQuery);
         
-        card.style.display = isVisible ? "" : "none";
-        if (isVisible) visibleUts++;
+        if (isVisible) {
+          // Update content with highlighting
+          const summary = card.querySelector('summary');
+          const p = card.querySelector('p');
+          
+          if (summary && p) {
+            summary.innerHTML = highlightText(original.name, query);
+            p.innerHTML = highlightText(original.capital, query);
+          }
+          
+          card.style.display = "";
+          visibleUts++;
+        } else {
+          card.style.display = "none";
+        }
       });
 
       // Update counts
@@ -153,32 +213,31 @@ function getColorClass(index: number) {
       utsNoResults.style.display = visibleUts === 0 && query ? 'block' : 'none';
     }
 
-    // Search functionality
+    // Search functionality with debounce
     function debounce(func, delay) {
-    let timeoutId;
-    return function (...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => func.apply(this, args), delay);
-  };
-  }
+      let timeoutId;
+      return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
 
-  if (searchBar) {
-    const handleSearch = debounce(function () {
-      const query = searchBar.value.toLowerCase().trim();
-      updateVisibility(query);
-    }, 500); 
+    if (searchBar) {
+      const handleSearch = debounce(function () {
+        const query = searchBar.value.trim();
+        updateVisibility(query);
+      }, 300); 
 
-    searchBar.addEventListener("input", handleSearch);
+      searchBar.addEventListener("input", handleSearch);
 
-    searchBar.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
-        this.value = "";
-        updateVisibility("");
-        this.blur();
-      }
-    });
-  }
-
+      searchBar.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          this.value = "";
+          updateVisibility("");
+          this.blur();
+        }
+      });
+    }
 
     // Clear button functionality
     if (clearButton) {
@@ -190,7 +249,8 @@ function getColorClass(index: number) {
     }
 
     // Initialize
+    storeOriginalContent();
     makeCardsClickable();
     updateVisibility(""); 
-      });
+  });
 </script>
