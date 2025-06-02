@@ -85,17 +85,18 @@
 
 .months-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(3,1fr);
   gap: 1.8rem;
   justify-content: center;
-  perspective: 1200px;
+  perspective: 1500px;
 }
 
 .month-card {
-  min-height: 300px; /* Increased base min-height */
-  height: auto; /* Allow card to grow if content is larger */
+  min-height: 350px; 
+  height: auto; 
   position: relative;
   cursor: default;
+  
 }
 
 .month-card-inner {
@@ -124,7 +125,7 @@
   background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
   color: var(--text);
   overflow: hidden; 
-  /* Make month-card-front a flex container to manage its direct children in flow */
+  
   display: flex; 
   /* align-items: stretch; /* Default, good for .month-card-front-content height */
   /* justify-content: stretch; /* Default, good for .month-card-front-content width */
@@ -144,10 +145,11 @@
   cursor: pointer;
   z-index: 20;
   transition: background-color 0.2s ease, transform 0.2s ease;
+  
 }
 
 .card-flip-action-btn:hover {
-  background-color: var(--primary, #007bff);
+  background-color: var(--primary, #1b6fc8);
   color: var(--background);
   transform: translateY(-1px);
 }
@@ -202,7 +204,7 @@
 /* This class was added in a previous step for the ordinal text */
 .hindu-ordinal-text-on-back {
   font-size: 1.7rem; 
-  color: var(--text-on-primary, var(--background)); 
+  color: var(white, var(--background)); 
   margin: 0; 
   font-weight: 600;
   line-height: 1.4; 
@@ -249,8 +251,8 @@
 
 .calendar-on-card-grid .calendar-header {
   font-weight: 700;
-  background-color: #ffcc80; /* Peachy orange background for headers */
-  color: #8c5a40; /* Darker text for contrast on peachy bg */
+  background-color: #3d99e4; /* Peachy orange background for headers */
+  color: #f5f2f1; /* Darker text for contrast on peachy bg */
   font-size: 0.7rem; 
   padding: 4px 0;
   margin-bottom: 5px; 
@@ -364,4 +366,33 @@
   }
 }
 
-/* ... (rest of your CSS) ... */
+/* Flip All Button Styling (to match Sun Signs) */
+.flip__all__button {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-on-primary, white);
+  background-color: var(--primary, #6a5acd);
+  border: 1px solid var(--primary-dark, #483d8b);
+  border-radius: 2rem; /* Pill shape */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.flip__all__button:hover {
+  background-color: var(--primary-dark, #483d8b);
+  border-color: var(--primary-darker, #3b2f70);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.flip__all__button:active,
+.flip__all__button.active { /* For visual feedback on click */
+  transform: translateY(0px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-darker, #3b2f70);
+}
+

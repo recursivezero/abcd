@@ -58,6 +58,7 @@ sitemapindex
 skimage
 sportrop
 streamlit
+sunsigns
 tailwindcss
 threadzip
 Threazip
