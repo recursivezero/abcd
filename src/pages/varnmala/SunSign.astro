@@ -1,0 +1,98 @@
+---
+import "@/assets/styles/varnmala/index.css"; 
+import "@/assets/styles/varnmala/sunsigns.css"; 
+import BaseLayout from "@/layouts/Base"; 
+import SunSignCard, { type SunSignEntry } from "@/components/SunSignCard.astro";
+
+
+const pageTitle = "Sun Signs";
+
+const sunSignsData: SunSignEntry[] = [
+  { id: "aries", name: "Aries (मेष)", symbol: "♈", dates: "March 21 - April 19" },
+  { id: "taurus", name: "Taurus (वृषभ)", symbol: "♉", dates: "April 20 - May 20" },
+  { id: "gemini", name: "Gemini (मिथुन)", symbol: "♊", dates: "May 21 - June 20" },
+  { id: "cancer", name: "Cancer (कर्क)", symbol: "♋", dates: "June 21 - July 22"},
+  { id: "leo", name: "Leo (सिंह)", symbol: "♌", dates: "July 23 - August 22" },
+  { id: "virgo", name: "Virgo (कन्या)", symbol: "♍", dates: "August 23 - September 22"},
+  { id: "libra", name: "Libra (तुला)", symbol: "♎", dates: "September 23 - October 22"},
+  { id: "scorpio", name: "Scorpio (वृश्चिक)", symbol: "♏", dates: "October 23 - November 21" },
+  { id: "sagittarius", name: "Sagittarius (धनु)", symbol: "♐", dates: "November 22 - December 21"},
+  { id: "capricorn", name: "Capricorn (मकर)", symbol: "♑", dates: "December 22 - January 19"},
+  { id: "aquarius", name: "Aquarius (कुंभ)", symbol: "♒", dates: "January 20 - February 18" },
+  { id: "pisces", name: "Pisces (मीन)", symbol: "♓", dates: "February 19 - March 20"},
+];
+---
+<BaseLayout meta={{ title: pageTitle }}>
+  <div class="container__page sun-sign-page-container">
+    <div class="page-header">
+     
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-sunsigns-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container sun-signs-grid">
+      {sunSignsData.map(sign => (
+        <SunSignCard item={sign} />
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const flipAllButton = document.getElementById('flip-all-sunsigns-button');
+  let allCardsFlipped = false;
+
+  if (flipAllButton) {
+    flipAllButton.addEventListener('click', () => {
+      allCardsFlipped = !allCardsFlipped;
+      
+      const cardsToFlip = document.querySelectorAll('.sun-signs-grid .flip__card.sun-sign-card');
+
+      cardsToFlip.forEach(card => {
+        if (allCardsFlipped) {
+          card.classList.add('flipped');
+        } else {
+          card.classList.remove('flipped');
+        }
+      });
+
+      flipAllButton.textContent = allCardsFlipped ? "Reset All Cards" : "Flip All Cards";
+      
+      
+      flipAllButton.classList.add('active'); 
+      setTimeout(() => {
+        flipAllButton.classList.remove('active');
+      }, 300);
+    });
+  }
+
+  
+  
+</script>
+
+<script>
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((letter) => {
+    letter.addEventListener("mousemove", (e: Event) => {
+      const htmlLetter = letter as HTMLElement;
+      const rect = htmlLetter.getBoundingClientRect();
+      const event = e as MouseEvent;
+      const x = ((event.clientX - rect.left) / htmlLetter.clientWidth) * 100;
+      const y = ((event.clientY - rect.top) / htmlLetter.clientHeight) * 100;
+      htmlLetter.style.setProperty("--mouse-x", `${x}%`);
+      htmlLetter.style.setProperty("--mouse-y", `${y}%`);
+    });
+  });
+
+  const flipCards = document.querySelectorAll(".flip__card");
+  flipCards.forEach((card) => {
+    const flipButtons = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+    flipButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        card.classList.toggle("flipped");
+      });
+    });
+  });
+</script>
+
