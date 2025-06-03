@@ -44,6 +44,7 @@
   background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
   background-size: 400% 400%;
   animation: gradient 10s infinite;
+  color: var(--background);
 }
 
 .tab-content {
@@ -54,7 +55,9 @@
   display: block;
 }
 
-
+.tab-content{
+  height: 110vh;
+}
 /* Tithi Header Styles */
 .tithi-header {
   display: flex;
@@ -66,11 +69,11 @@
 }
 
 .tithi-title-wrapper {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   max-width: 600px;
+  margin: 2rem;
 }
 
 .tithi-title {
@@ -79,53 +82,20 @@
   font-weight: 600;
   margin: 0;
 }
-
-.date-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 0.75rem;
-  transition: all 0.3s ease;
-}
-
-.date-toggle.active {
-  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
-  background-size: 400% 400%;
-  animation: gradient 10s infinite;
-  border-radius: 0.75rem;
-}
-
-.date-toggle:hover {
-  transform: scale(1.1);
-}
-
-.calendar-icon {
-  width: 28px;
-  height: 28px;
-  fill: var(--text);
-}
-
 .date-display {
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
 }
 
-.single-date,
 .date-format {
   padding: 1rem;
+  margin-bottom: 3rem;
   border-radius: 0.75rem;
   border: 1px solid var(--border);
   background-color: var(--background);
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
 }
-
-.multi-date {
-  display: none;
-  width: 100%;
-}
-
 /* Converter Horizontal Layout */
 .converter__horizontal {
   display: flex;
@@ -138,7 +108,18 @@
   border: 2px solid var(--border);
   background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
 }
-
+.converter__title{
+  color: var(--text);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  position: relative;
+  /* Not sticky anymore if container scrolls, but good for z-index */
+  z-index: 2;
+  padding: 0 2rem;
+  /* Add padding to title to prevent it from hugging the edge */
+}
 .form__group {
   display: flex;
   flex-direction: column;
@@ -220,17 +201,20 @@ select:focus {
   font-weight: 500;
   display: none;
 }
+
 /* Units Reference Card */
 .units__timeline-container {
   width: 100%;
   border-radius: 1rem;
   /* Changed padding: 2rem; to remove top padding */
-  padding: 0 2rem 2rem 2rem; /* Top padding removed, other paddings maintained */
+  padding: 2rem;
+  /* Top padding removed, other paddings maintained */
   margin-top: 2.5rem;
   border: 2px solid var(--border);
   background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
-  position: relative; /* Kept for child positioning, though not strictly for sticky */
-  height: 90vh;
+  position: relative;
+  /* Kept for child positioning, though not strictly for sticky */
+  height: 100vh;
   overflow-y: auto;
 }
 
@@ -238,34 +222,27 @@ select:focus {
   color: var(--text);
   font-size: 1.8rem;
   font-weight: 600;
-  border-radius: 0.75rem;
-  /* margin-bottom: 2.5rem; <--- This margin is now handled by padding-top on timeline-wrapper */
+  margin-bottom: 2.5rem;
   text-align: center;
-  position: sticky; /* Make the title sticky */
-  top: 0; /* Stick to the top of its scrolling container */
-  z-index: 10; /* Ensure it stays on top */
-  background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%); /* Match container background */
-  padding: 1.5rem 2rem; /* Initial padding */
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Start with no shadow */
-  transition: padding 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions for padding and shadow */
+  position: relative;
+  /* Not sticky anymore if container scrolls, but good for z-index */
+  z-index: 2;
+  padding: 0 2rem;
+  /* Add padding to title to prevent it from hugging the edge */
 }
-
-.units__title.scrolled {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* A slightly more pronounced and smoother shadow */
-  padding: 1rem 2rem; /* Slightly reduce padding when scrolled */
-}
-
 .timeline-wrapper {
   display: flex;
   flex-direction: column;
+  /* Changed to vertical column */
   align-items: center;
-  /* Add padding-top to push content below the sticky title */
-  padding-top: 2.5rem; /* This replaces the margin-bottom on the title */
+  /* Horizontally center items in the column */
+  padding: 0;
+  /* Let individual nodes handle spacing with transforms/margins */
   position: relative;
   gap: 80px;
-  padding-bottom: 2rem;
+  padding-bottom: 2rem; /* Add some padding at bottom */
+  /* Remove min-height: 800px */
 }
-
 .timeline-line {
   position: absolute;
   left: 50%;
@@ -466,7 +443,8 @@ select:focus {
 
   .units__timeline-container {
     height: 60vh;
-    padding: 0 1rem 1rem 1rem; /* Adjust padding for smaller screens (removed top) */
+    padding: 0 1rem 1rem 1rem;
+    /* Adjust padding for smaller screens (removed top) */
     max-height: 800px;
   }
 
@@ -474,12 +452,16 @@ select:focus {
     font-size: 1.5rem;
     padding: 0 1rem;
   }
+
   .units__title.scrolled {
-    padding: 0.5rem 1rem; /* Further reduced padding when scrolled on mobile */
+    padding: 0.5rem 1rem;
+    /* Further reduced padding when scrolled on mobile */
   }
+
   .timeline-wrapper {
     /* Add padding-top for mobile */
-    padding-top: 1.5rem; /* Compensate for the removed margin-bottom on title */
+    padding-top: 1.5rem;
+    /* Compensate for the removed margin-bottom on title */
     flex-direction: column;
     align-items: center;
     gap: 60px;
