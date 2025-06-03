@@ -3,6 +3,7 @@ import Base from "@/layouts/Base";
 import "@/assets/styles/quote-designer.css";
 import BackButton from "@/components/ui/backButton.astro";
 import Help from "@/components/Help.astro";
+import SettingIcon from "@/assets/icons/settings.svg";
 
 const pageTitle = "Quote Designer";
 const pageDescription = "Design beautiful quotes with our advanced tool.";
@@ -16,13 +17,32 @@ const pageMeta = {
 <Base meta={pageMeta}>
   <Fragment slot="header-right">
     <div class="header-tools-wrapper">
+      </div>
+
+    <button id="downloadBtn" class="metallic-button header-tools-btn" aria-label="Download Design">
+      <span class="btn-gradient">Download</span>
+      <span class="loading-spinner" style="display: none;"></span>
+    </button>
+
+    <button id="resetBtn" class="metallic-button header-tools-btn" aria-label="Reset Design">
+      <span class="btn-gradient">Reset</span>
+    </button>
+
+    <Help
+      title="Quote designer"
+      description="Design beautiful quotes through this intuitive visual editor. You can customize the text, font, and background color. You can also change the alignment of the text."
+    />
+  </Fragment>
+
+  <div class="header-controls">
+    <BackButton />
+    <div class="settings-button-container">
       <button
-        id="toggleDesignToolsBtn"
-        class="metallic-button small-btn header-tools-btn"
-        aria-expanded="false"
-        aria-controls="designToolsPopover"
+        id="settingsButton"
+        class="settings-button"
+        aria-label="Open design settings"
       >
-        <span class="btn-gradient">Design Tools</span>
+        <SettingIcon class="settings-icon"/>
       </button>
       <div id="designToolsPopover" class="design-tools-popover" aria-hidden="true">
         <h2 class="gradient-text">Design Tools</h2>
@@ -173,22 +193,8 @@ const pageMeta = {
             </div>
           </div>
         </details>
-
-        <div class="control-group download-section">
-          <button id="downloadBtn" class="metallic-button">
-            <span class="btn-gradient">Download Design</span>
-            <span class="loading-spinner" style="display: none;"></span>
-          </button>
-        </div>
       </div>
     </div>
-    <Help
-      title="Quote designer"
-      description="Design beautiful quotes through this intuitive visual editor. You can customize the text, font, and background color. You can also change the alignment of the text."
-    />
-  </Fragment>
-  <div class="header-controls">
-    <BackButton />
   </div>
   <div class="design-container">
     <div class="preview-panel">
@@ -229,23 +235,25 @@ const pageMeta = {
       return isValid;
     }
 
-    // Popover toggle logic
-    const toggleDesignToolsBtn = document.getElementById("toggleDesignToolsBtn");
-    const designToolsPopover = document.getElementById("designToolsPopover");
 
-    if (toggleDesignToolsBtn && designToolsPopover) {
-      toggleDesignToolsBtn.addEventListener("click", () => {
-        const isExpanded = toggleDesignToolsBtn.getAttribute("aria-expanded") === "true";
-        toggleDesignToolsBtn.setAttribute("aria-expanded", !isExpanded);
-        designToolsPopover.setAttribute("aria-hidden", isExpanded);
-        designToolsPopover.classList.toggle("open", !isExpanded);
+    const designToolsPopover = document.getElementById("designToolsPopover");
+    const settingsButton = document.getElementById("settingsButton");
+
+    // Logic for the settings button to open the popover
+    if (settingsButton && designToolsPopover) {
+      settingsButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const isOpen = designToolsPopover.classList.contains("open");
+        designToolsPopover.classList.toggle("open", !isOpen);
+        settingsButton.setAttribute("aria-expanded", !isOpen);
+        designToolsPopover.setAttribute("aria-hidden", isOpen);
       });
 
       // Close popover when clicking outside
       document.addEventListener("click", (event) => {
-        if (!designToolsPopover.contains(event.target) && !toggleDesignToolsBtn.contains(event.target)) {
+        if (!designToolsPopover.contains(event.target) && !settingsButton.contains(event.target)) {
           if (designToolsPopover.classList.contains("open")) {
-            toggleDesignToolsBtn.setAttribute("aria-expanded", "false");
+            settingsButton.setAttribute("aria-expanded", "false"); // Update settings button's aria-expanded
             designToolsPopover.setAttribute("aria-hidden", "true");
             designToolsPopover.classList.remove("open");
           }
@@ -272,15 +280,17 @@ const pageMeta = {
       const boldBtn = document.getElementById('boldBtn');
       const underlineBtn = document.getElementById('underlineBtn');
       const italicBtn = document.getElementById('italicBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
 
       const controls = {
-            bgColor: document.getElementById('bgColor'), 
-            textColor: document.getElementById('textColor'), 
-            fontFamily: document.getElementById('fontFamily'), 
-            fontSize: document.getElementById('fontSize'), 
-            downloadBtn: document.getElementById('downloadBtn'), 
-            bgImageUpload: document.getElementById('bgImageUpload'), 
-            clearBackgroundBtn: document.getElementById('clearBackgroundBtn'),
+        bgColor: document.getElementById('bgColor'),
+        textColor: document.getElementById('textColor'),
+        fontFamily: document.getElementById('fontFamily'),
+        fontSize: document.getElementById('fontSize'),
+        downloadBtn: document.getElementById('downloadBtn'),
+        bgImageUpload: document.getElementById('bgImageUpload'),
+        clearBackgroundBtn: document.getElementById('clearBackgroundBtn'),
       };
 
       const alignmentButtons = document.querySelectorAll('.alignment-btn');
@@ -309,13 +319,13 @@ const pageMeta = {
         preview.style.fontFamily = controls.fontFamily?.value || "'Space Mono', monospace";
         preview.style.fontSize = `${controls.fontSize?.value || 24}px`;
         preview.style.textAlign = currentAlignment;
-        preview.style.alignItems = 
+        preview.style.alignItems =
           currentAlignment === "left" ? "flex-start" : currentAlignment === "right" ? "flex-end" : "center";
 
         // Apply formatting classes
-            quoteTextEl.classList.toggle('bold', boldBtn?.classList.contains('active')); 
-            quoteTextEl.classList.toggle('underline', underlineBtn?.classList.contains('active')); 
-            quoteTextEl.classList.toggle('italic', italicBtn?.classList.contains('active')); 
+        quoteTextEl.classList.toggle('bold', boldBtn?.classList.contains('active'));
+        quoteTextEl.classList.toggle('underline', underlineBtn?.classList.contains('active'));
+        quoteTextEl.classList.toggle('italic', italicBtn?.classList.contains('active'));
 
         if (currentBackgroundImage) {
           preview.style.backgroundImage = `url('${currentBackgroundImage}')`;
@@ -328,6 +338,48 @@ const pageMeta = {
         }
         const selectedRatio = document.querySelector('input[name="aspectRatio"]:checked')?.value || 'free';
         if (aspectRatioWrapper) aspectRatioWrapper.className = `aspect-ratio-${selectedRatio}`;
+      }
+
+      function resetDesign() {
+        // Reset quote data
+        quoteData = { quote: "", author: "" };
+        if (editQuoteInput) editQuoteInput.value = "";
+        if (editAuthorInput) editAuthorInput.value = "";
+        if (editWordCountEl) updateWordCountDisplay(editQuoteInput, editWordCountEl);
+
+        // Reset colors
+        if (controls.bgColor) controls.bgColor.value = "#1a1a1a";
+        if (controls.textColor) controls.textColor.value = "#ffffff";
+
+        // Reset font settings
+        if (controls.fontFamily) controls.fontFamily.value = "'Space Mono', monospace";
+        if (controls.fontSize) {
+          controls.fontSize.value = "24";
+          if (fontSizeValueEl) fontSizeValueEl.textContent = "24";
+        }
+        boldBtn?.classList.remove('active');
+        underlineBtn?.classList.remove('active');
+        italicBtn?.classList.remove('active');
+
+        // Reset alignment
+        alignmentButtons.forEach(btn => btn.classList.remove('active'));
+        document.getElementById('alignCenter')?.classList.add('active');
+        currentAlignment = 'center';
+
+        // Reset background
+        if (uploadedBgObjectURL) {
+          URL.revokeObjectURL(uploadedBgObjectURL);
+          uploadedBgObjectURL = null;
+        }
+        if (controls.bgImageUpload) controls.bgImageUpload.value = "";
+        currentBackgroundImage = null;
+        backgroundImageOptions.forEach(opt => opt.classList.remove('active'));
+        if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = true;
+
+        // Reset aspect ratio
+        document.querySelector('input[name="aspectRatio"][value="free"]').checked = true;
+
+        updatePreview();
       }
 
       // Event Listeners
@@ -368,36 +420,36 @@ const pageMeta = {
         });
       }
 
-        alignmentButtons.forEach(button => { 
-            button.addEventListener('click', () => { 
-                alignmentButtons.forEach(btn => btn.classList.remove('active')); 
-                button.classList.add('active');
-          currentAlignment = button.dataset.align;
-          updatePreview();
+        alignmentButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              alignmentButtons.forEach(btn => btn.classList.remove('active'));
+              button.classList.add('active');
+            currentAlignment = button.dataset.align;
+            updatePreview();
         });
       });
 
-        [boldBtn, underlineBtn, italicBtn].forEach(button => { 
-            if(button) { 
-                button.addEventListener('click', () => { 
-                    button.classList.toggle('active'); 
+        [boldBtn, underlineBtn, italicBtn].forEach(button => {
+            if(button) {
+                button.addEventListener('click', () => {
+                    button.classList.toggle('active');
             updatePreview();
           });
         }
       });
 
-        backgroundImageOptions.forEach(option => { 
-            option.addEventListener('click', () => { 
-                backgroundImageOptions.forEach(opt => opt.classList.remove('active')); 
-                option.classList.add('active'); 
-          currentBackgroundImage = option.dataset.src;
-          if (uploadedBgObjectURL) {
-            URL.revokeObjectURL(uploadedBgObjectURL);
-            uploadedBgObjectURL = null;
-            if (controls.bgImageUpload) controls.bgImageUpload.value = "";
-          }
-          if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
-          updatePreview();
+        backgroundImageOptions.forEach(option => {
+            option.addEventListener('click', () => {
+              backgroundImageOptions.forEach(opt => opt.classList.remove('active'));
+              option.classList.add('active');
+            currentBackgroundImage = option.dataset.src;
+            if (uploadedBgObjectURL) {
+              URL.revokeObjectURL(uploadedBgObjectURL);
+              uploadedBgObjectURL = null;
+              if (controls.bgImageUpload) controls.bgImageUpload.value = "";
+            }
+            if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
+            updatePreview();
         });
       });
 
@@ -411,7 +463,7 @@ const pageMeta = {
             uploadedBgObjectURL = URL.createObjectURL(file);
             currentBackgroundImage = uploadedBgObjectURL;
             backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
-            if (controls.clearBackgroundBtn) controls.bgImageUpload.value = "";
+            if (controls.bgImageUpload) controls.bgImageUpload.value = "";
             if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
             updatePreview();
           } else if (file) {
@@ -488,6 +540,10 @@ const pageMeta = {
               controls.downloadBtn.disabled = false;
             });
         });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener("click", resetDesign);
       }
       initializeDesignPage();
     }

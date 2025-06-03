@@ -37,7 +37,7 @@ const letterRows = [
     gap: 0.7rem;
     padding: 2rem;
     margin-top: 3rem;
-    background: var(--primary-bg);
+    background: light-dark(#f8eeec,black);
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
@@ -54,8 +54,8 @@ const letterRows = [
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--default-bg);
-    color: var(--text-color);
+    background-color: light-dark(#ffffff,#0b1f54);
+    color: light-dark(black,white);
     border-radius: 0.25rem;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -64,7 +64,7 @@ const letterRows = [
   }
 
   .keyboard-item:hover {
-    background: color-mix(in srgb, var(--default-bg) 90%, white);
+    background: light-dark(grey,#2448ad);
     transform: translateY(-2px);
   }
 
@@ -73,8 +73,7 @@ const letterRows = [
   }
 
   .keyboard-item.active:hover {
-    /* When active and hovered, slightly lighten its assigned color */
-    background: color-mix(in srgb, var(--active-bg-color, var(--default-bg)) 90%, white);
+    background-color: light-dark(grey,#0b1f54);
   }
 
   @media (max-width: 640px) {
