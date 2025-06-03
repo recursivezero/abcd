@@ -84,9 +84,9 @@ const timeUnits = vedicData.time_units;
           <h1 class="tithi-title">Tithi</h1>
         </div>
         <div id="dateDisplay" class="date-display">
-            <p data-id="hindu" id="hindu" class="date-format"></p>
-            <p data-id="hindi" id="hindi" class="date-format"></p>
-            <p data-id="english" id="english" class="date-format"></p>
+            <p data-id="hindu" class="date-format"></p>
+            <p data-id="hindi" class="date-format"></p>
+            <p data-id="english" class="date-format"></p>
         </div>
       </div>
     </div>
@@ -265,7 +265,7 @@ const timeUnits = vedicData.time_units;
     const hindu = document.querySelector('[data-id="hindu"]');
     const hindi = document.querySelector('[data-id="hindi"]');
     const english = document.querySelector('[data-id="english"]');
-    const timeElem = document.querySelector('time');
+    const timeElem = document.querySelector('.date-format');
 
     const renderClock = () => {
       const today = new Date();
@@ -284,7 +284,6 @@ const timeUnits = vedicData.time_units;
       timeElem.style.setProperty("--h", h*15);
       timeElem.style.setProperty("--m", m);
       timeElem.style.setProperty("--s", s*10);
-      timeElem.style.backgroundColor  = `hsl(${h} ${m} ${s})`;
     };
     renderClock();
     setInterval(renderClock, 1000);
