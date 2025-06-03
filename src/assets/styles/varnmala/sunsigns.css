@@ -24,31 +24,29 @@
   flex-grow: 1; 
 }
 
+
+
 .flip__all__button {
- 
-  background-color: var(--primary, #6a5acd);
-  color: var(--text-on-primary, white);
-  border: none;
-  padding: 0.7rem 1.3rem;
-  border-radius: var(--border-radius-md, 8px);
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-}
+    background-color: var(--background);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 200;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+  }
 
-.flip__all__button:hover {
-  background-color: var(--primary-hover, #58499a);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
+  .flip__all__button:hover {
+    transform: translateY(-2px);
+  }
 
-.flip__all__button.active { 
-  transform: translateY(0px) scale(0.97);
-  background-color: var(--primary-active, #4a3d80); 
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
+  .flip__all__button.active {
+    transform: scale(0.95);
+    background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
+  }
+
 
 .sun-signs-grid {
   display: grid;

@@ -86,17 +86,17 @@
 .months-grid {
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  gap: 1.8rem;
+  gap: 0.1px 1rem;
   justify-content: center;
   perspective: 1500px;
 }
 
 .month-card {
-  min-height: 350px; 
+  min-height: 250px; 
   height: auto; 
   position: relative;
   cursor: default;
-  
+  margin: 4px;
 }
 
 .month-card-inner {
@@ -114,7 +114,7 @@
 }
 
 .month-card-front {
-  position: absolute; /* For its role as a card face */
+  position: absolute;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
@@ -127,12 +127,11 @@
   overflow: hidden; 
   
   display: flex; 
-  /* align-items: stretch; /* Default, good for .month-card-front-content height */
-  /* justify-content: stretch; /* Default, good for .month-card-front-content width */
+ 
 }
 
 .card-flip-action-btn {
-  position: absolute; /* Positioned relative to .month-card-front or .month-card-back */
+  position: absolute;
   top: 8px;
   right: 8px;
   padding: 0.3rem 0.6rem;
@@ -141,7 +140,7 @@
   background-color: var(--primary-light, color-mix(in srgb, var(--primary) 70%, white 30%));
   color: var(--primary-text, var(--text-on-primary, var(--background)));
   border: 1px solid var(--primary, #007bff);
-  border-radius: 15px; /* Or any value like 0.5rem, 50% for a pill shape, etc. */
+  border-radius: 15px; 
   cursor: pointer;
   z-index: 20;
   transition: background-color 0.2s ease, transform 0.2s ease;
@@ -155,17 +154,16 @@
 }
 
 .month-card-front-content {
-  /* This container will hold the actual text content. 
-     It will be a flex item within .month-card-front. */
-  flex-grow: 1; /* Allows this to take up all available space in the flex container (.month-card-front) */
+  
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: center; /* This centers the .month-english and .month-hindi spans horizontally */
-  justify-content: center; /* This centers them vertically */
-  padding: 1rem; /* Padding for the content itself */
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
   box-sizing: border-box;
-  width: 100%; /* Ensure it tries to fill width within flex context */
-  /* text-align: center; /* Adding here can also help as a fallback */
+  width: 100%;
+
 }
 
 .month-card-back {
@@ -179,8 +177,8 @@
   align-items: center;   
   justify-content: center; 
   border-radius: 0.5rem;
-  /* Adjusted padding: top, right, bottom, left */
-  padding: 50px 1rem 1rem 1rem; /* Increased top padding to make space for the flip button */
+  
+  padding: 50px 1rem 1rem 1rem; 
   box-shadow: 0 2px 6px color-mix(in srgb, var(--text) 15%, transparent);
   border: 1px solid var(--border);
   background-color: color-mix(in srgb, var(--primary) 20%, var(--background) 80%);
@@ -196,12 +194,12 @@
   align-items: center;   
   justify-content: center; 
   width: 100%; 
-  height: 100%; /* Ensure it can fill the back card */
+  height: 100%;
   flex-grow: 1; 
   box-sizing: border-box;
 }
 
-/* This class was added in a previous step for the ordinal text */
+
 .hindu-ordinal-text-on-back {
   font-size: 1.7rem; 
   color: var(white, var(--background)); 
@@ -212,72 +210,72 @@
   padding: 0 0.5rem; 
 }
 
-/* Styles for the calendar embedded on the card back - Vibrant & Playful */
+
 .calendar-on-card-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px; /* More distinct gap */
+  gap: 5px;
   text-align: center;
   width: 100%;
-  max-width: 260px; /* Allow it to be a bit larger */
+  max-width: 260px;
   margin: auto; 
   padding: 12px; 
-  border-radius: 12px; /* More pronounced rounding */
-  background-color: #cceeff; /* Cheerful Sky Blue background */
+  border-radius: 12px;
+  background-color: #cceeff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(255,255,255,0.5);
-  border: 2px solid #aaddff; /* Slightly darker blue border */
+  border: 2px solid #aaddff;
 }
 
 .calendar-on-card-grid .calendar-day {
   padding: 6px 3px; 
-  border-radius: 8px; /* Rounder cells */
-  background-color: #ffffff; /* Clean white cells */
-  color: #33475b; /* Dark blue-grey text for contrast */
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #33475b;
   min-height: 28px; 
   line-height: 28px; 
   font-size: 0.8rem; 
-  font-weight: 600; /* Bolder day numbers */
-  border: 1px solid #bee0f5; /* Light blue cell border */
-  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Playful transition */
+  font-weight: 600;
+  border: 1px solid #bee0f5;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 2px 3px rgba(0,0,0,0.07);
 }
 
 .calendar-on-card-grid .calendar-day:hover:not(.empty):not(.calendar-header) {
-  background-color: #ffeb99; /* Sunny yellow hover */
+  background-color: #ffeb99;
   transform: scale(1.1) translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  color: #5c4033; /* Brownish text on yellow hover */
+  color: #5c4033;
 }
 
 .calendar-on-card-grid .calendar-header {
   font-weight: 700;
-  background-color: #3d99e4; /* Peachy orange background for headers */
-  color: #f5f2f1; /* Darker text for contrast on peachy bg */
+  background-color: #3d99e4;
+  color: #f5f2f1;
   font-size: 0.7rem; 
   padding: 4px 0;
   margin-bottom: 5px; 
-  border-radius: 6px; /* Rounded headers */
+  border-radius: 6px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  /* Resetting properties from .calendar-day if they conflict */
+  
   min-height: auto;
   line-height: normal;
   border: none; 
 }
 
 .calendar-on-card-grid .calendar-day.empty {
-  background-color: #e9f5ff; /* Very light blue, almost transparent on grid */
+  background-color: #e9f5ff; 
   border-color: #d0e0f0;
   box-shadow: none;
   opacity: 0.8;
 }
 
 .calendar-on-card-grid .calendar-day.current-day {
-  background-color: #ff6b6b; /* Vibrant Coral/Red */
-  color: #ffffff; /* White text */
+  background-color: #ff6b6b;
+  color: #ffffff;
   font-weight: 700;
-  border: 2px solid #e05050; /* Darker coral border */
-  transform: scale(1.2); /* Pop out more */
-  box-shadow: 0 0 12px rgba(255, 107, 107, 0.8); /* Reddish glow */
+  border: 2px solid #e05050;
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(255, 107, 107, 0.8);
   z-index: 1;
 }
 .calendar-on-card-grid .calendar-day.current-day::before {
@@ -285,14 +283,14 @@
 }
 
 .calendar-on-card-grid .calendar-day.holiday-day {
-  background-color: #99e699; /* Cheerful Mint Green */
-  color: #226622; /* Dark green text */
+  background-color: #99e699;
+  color: #226622;
   font-weight: 700;
-  border: 2px dashed #66cc66; /* Dashed, brighter green border */
+  border: 2px dashed #66cc66;
   position: relative; 
 }
 .calendar-on-card-grid .calendar-day.holiday-day::after {
-  content: '🎈'; /* Balloon emoji for holidays */
+  content: '🎈';
   position: absolute;
   top: -5px; 
   right: -3px;
@@ -302,19 +300,19 @@
 }
 
 .calendar-on-card-grid .calendar-day.holiday-day.current-day {
-   background-color: #ff8c8c; /* Lighter coral if also holiday */
+   background-color: #ff8c8c;
    border-style: solid; 
    border-color: #e05050;
 }
 .calendar-on-card-grid .calendar-day.holiday-day.current-day::after {
-  color: #e05050; /* Match current day's emphasis */
-  transform: rotate(0deg); /* Straighten balloon if also current */
+  color: #e05050;
+  transform: rotate(0deg);
 }
 
-/* Responsive adjustments for the new vibrant calendar */
+
 @media (max-width: 768px) {
   .month-card {
-    min-height: 300px; /* Ensure enough space */
+    min-height: 300px;
   }
   .calendar-on-card-grid {
     gap: 4px;
@@ -366,33 +364,62 @@
   }
 }
 
-/* Flip All Button Styling (to match Sun Signs) */
+
 .flip__all__button {
-  padding: 0.6rem 1.2rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-on-primary, white);
-  background-color: var(--primary, #6a5acd);
-  border: 1px solid var(--primary-dark, #483d8b);
-  border-radius: 2rem; /* Pill shape */
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+    background-color: var(--background);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 200;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+  }
 
-.flip__all__button:hover {
-  background-color: var(--primary-dark, #483d8b);
-  border-color: var(--primary-darker, #3b2f70);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
+  .flip__all__button:hover {
+    transform: translateY(-2px);
+  }
 
-.flip__all__button:active,
-.flip__all__button.active { /* For visual feedback on click */
-  transform: translateY(0px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: var(--primary-darker, #3b2f70);
-}
+  .flip__all__button.active {
+    transform: scale(0.95);
+    background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
+  }
 
+.month-card .card {
+  max-height: 260px;
+}
+.flip__card { 
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+  min-height: 380px; 
+}
+.flip__card {
+  min-height: 300px;
+}
+.month-card .card {
+  padding: 1rem;
+}
+.month-card .character {
+  font-size: clamp(1rem, 5vw, 2.5rem);
+}
+.month-card .text {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+.month-card .flipped__text {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+}
+.calendar-on-card-grid {
+  max-width: 220px;
+  padding: 6px;
+  font-size: 0.65rem;
+}
+.calendar-on-card-grid .calendar-day {
+  min-height: 22px;
+  line-height: 22px;
+  min-height: 18px; 
+  line-height: 18px;
+  font-size: 0.6rem;
+  padding: 0;
+}

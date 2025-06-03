@@ -169,7 +169,7 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     width: 100%;
     height: 100%;
     perspective: 1000px;
-    min-height: 380px; 
+    min-height: 280px; 
   }
 
   .month-card .character, 
@@ -205,13 +205,13 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
 
   .month-card .flipped__text {
     font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
   }
 
   .month-card .card {
     background: linear-gradient(145deg, var(--card-bg-gradient-start), var(--card-bg-gradient-end));
     border-radius: 1.25rem;
-    padding: 1.5rem; 
+    padding: 3.5rem; 
     box-shadow:
       0 4px 15px rgba(0, 0, 0, 0.05),
       0 1px 2px rgba(0, 0, 0, 0.1);
@@ -335,7 +335,7 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
   }
   .month-card .text {
     font-size: clamp(1.4rem, 3vw, 2rem); 
-    font-weight: 700;
+    font-weight: 00;
     color: var(--text, #333);
     margin: 0;
     transition: color 0.3s ease;
@@ -371,7 +371,7 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     gap: 2px; 
     text-align: center;
     width: 100%;
-    max-width: 260px; 
+    max-width: 280px; 
     margin: 0.5rem auto; 
     padding: 10px; 
     border-radius: 10px; 
@@ -444,7 +444,7 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     .month-card .description { font-size: 0.85rem; }
     .month-card .flipped__text { font-size: clamp(1.3rem, 3vw, 2rem); }
     .calendar-on-card-grid { max-width: 240px; gap: 3px; padding: 8px; font-size: 0.7rem;}
-    .calendar-on-card-grid .calendar-day { min-height: 24px; line-height: 24px; }
+    .calendar-on-card-grid .calendar-day { min-height: 18px; line-height: 18px; }
   }
   @media (max-width: 480px) {
     .calendar-on-card-grid { max-width: 100%; font-size: 0.65rem; }

@@ -29,32 +29,29 @@
 
 
 .flip__all__button {
- 
-  font-size: 0.875rem;
-  color: var(--secondary);
-  padding: 0.35rem 0.75rem;
-  background: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
-  border-radius: 2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid var(--border);
-  appearance: none;
-  -webkit-appearance: none;
-  text-decoration: none; 
-  line-height: normal; 
-}
+    background-color: var(--background);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 200;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+  }
 
-.flip__all__button:hover {
-  
-  background: var(--primary);
-  color: var(--text-on-primary, white);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+  .flip__all__button:hover {
+    transform: translateY(-2px);
+  }
+
+  & .flip__all__button.active {
+    transform: scale(0.95);
+    background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
+  }
 
 .grid-container.alphabet-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust minmax as per LetterCard size */
+  grid-template-columns: repeat( 3,1fr); /* Adjust minmax as per LetterCard size */
   gap: 1.75rem;
   padding-top: 1.5rem;
 }

@@ -4,9 +4,8 @@ export interface SunSignEntry {
   name: string; 
   symbol: string; 
   dates: string; 
-  
   emoji?: string; 
-
+  suggestedLetters?: string;
 }
 
 interface Props {
@@ -37,11 +36,13 @@ const category = "sunsigns";
         <span class="flip__button__text" title="Flip Card">Flip Card</span>
       </div>
       <div class="sun-sign-details-back">
-        <h3 class="flipped__text">{item.name}</h3>
-        <!-- {item.image && <img src={`/assets/images/${category}/${item.image}`} alt={item.name} class="image" />}
-        {item.emoji && !item.image && <p class="emoji">{item.emoji}</p>} -->
+        <!-- <h3 class="flipped__text">{item.name}</h3> -->
+        {/* {item.image && <img src={`/assets/images/${category}/${item.image}`} alt={item.name} class="image" />}
+        {item.emoji && !item.image && <p class="emoji">{item.emoji}</p>} */}
         <p class="description"><strong>Date Range:</strong> {item.dates}</p>
-        
+        {item.suggestedLetters && (
+          <p class="description"><strong>Suggested Letters:</strong> {item.suggestedLetters}</p>
+        )}
       </div>
     </div>
   </div>
@@ -90,7 +91,7 @@ const category = "sunsigns";
     width: 100%;
     height: 100%;
     perspective: 1000px;
-    min-height: 320px;}
+    min-height: 280px;}
 
   .sun-sign-card .image {
     object-fit: contain;
@@ -102,12 +103,9 @@ const category = "sunsigns";
 
   .sun-sign-card .character, 
   .sun-sign-card .flipped__text { 
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-weight: 700;
     margin: 0;
-    line-height: 1;
+    line-height: 1; /* Important for consistent text height */
     background: linear-gradient(
       135deg,
       var(--character-gradient-start) 0%,
@@ -117,11 +115,11 @@ const category = "sunsigns";
     background-clip: text;
     color: transparent;
     text-shadow: var(--character-shadow);
-    text-align: center;
+    text-align: center; 
   }
   .sun-sign-card .character { 
     font-size: clamp(3rem, 6vw, 4.5rem); 
-    height: 100%; 
+    
   }
   .sun-sign-card .letter__header {
     min-height: 80px; 
@@ -129,6 +127,7 @@ const category = "sunsigns";
     display: flex; 
     align-items: center; 
     justify-content: center; 
+    width: 100%;
   }
 
   .sun-sign-card .flipped__text {
@@ -147,7 +146,7 @@ const category = "sunsigns";
   .sun-sign-card .card {
     background: linear-gradient(145deg, var(--card-bg-gradient-start), var(--card-bg-gradient-end));
     border-radius: 1.25rem;
-    padding: 1.5rem; 
+    padding: 4.5rem; 
     box-shadow:
       0 4px 15px rgba(0, 0, 0, 0.05),
       0 1px 2px rgba(0, 0, 0, 0.1);
@@ -204,23 +203,37 @@ const category = "sunsigns";
 
   .sun-sign-card .card__back {
     transform: rotateY(180deg);
-    justify-content: center;
-    align-items: center;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
     padding: 1rem; 
     overflow-y: auto; 
   }
+
   .sun-sign-details-back {
-    padding: 0.5rem;
+    padding: 0.5rem; 
     text-align: center;
-    width: 100%;
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.75rem;
+    justify-content: center; 
+    align-items: center; 
   }
+
   .sun-sign-details-back .description {
-    font-size: 0.85rem;
-    line-height: 1.5;
+    font-size: 0.9rem; 
+    line-height: 1.6; 
     color: var(--secondary, #555);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0; 
+    max-width: 90%;
   }
-  .sun-sign-details-back .detail-desc {
+  .sun-sign-details-back .description strong {
+    color: var(--text, #333); 
+  }
+
+  .sun-sign-details-back .detail-desc { 
     font-size: 0.9rem;
     margin-top: 0.5rem;
   }
@@ -280,7 +293,7 @@ const category = "sunsigns";
     opacity: 0.9;
   }
   .sun-sign-card .sun-sign-dates {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
   .sun-sign-card .sun-sign-keywords {
     font-size: 0.8rem;
@@ -316,75 +329,5 @@ const category = "sunsigns";
     }
   }
 </style>
-
-<!-- <script>
-  try {
-    // This script is scoped to each instance of SunSignCard.astro
-    const scriptTag = Astro.self; // The <script> element itself
-    let cardElement: HTMLElement | null = null;
-
-    // Attempt to find the .flip__card element.
-    // It's expected to be the direct previous sibling of this <script> tag,
-    // or the direct previous sibling of an intermediate <style> tag.
-    const elementImmediatelyBeforeScript = scriptTag.previousElementSibling;
-
-    if (elementImmediatelyBeforeScript) {
-      if (elementImmediatelyBeforeScript.classList.contains('flip__card') && elementImmediatelyBeforeScript instanceof HTMLElement) {
-        // Scenario 1: <div class="flip__card"></div> <script></script>
-        // The element before the script is the card itself.
-        cardElement = elementImmediatelyBeforeScript;
-      } else if (
-        elementImmediatelyBeforeScript.tagName === 'STYLE' && // The element before script is <style>
-        elementImmediatelyBeforeScript.previousElementSibling && // And <style> has a previous sibling
-        elementImmediatelyBeforeScript.previousElementSibling.classList.contains('flip__card') && // And that sibling is the card
-        elementImmediatelyBeforeScript.previousElementSibling instanceof HTMLElement
-      ) {
-        // Scenario 2: <div class="flip__card"></div> <style></style> <script></script>
-        // The element before <style> (which is before <script>) is the card.
-        cardElement = elementImmediatelyBeforeScript.previousElementSibling as HTMLElement;
-      }
-    }
-
-    if (cardElement) {
-      // Successfully found the card element, now set up event listeners.
-
-      const flipButtons = cardElement.querySelectorAll<HTMLElement>(".flip__button");
-      flipButtons.forEach((button) => {
-        button.addEventListener("click", (event: MouseEvent) => {
-          event.stopPropagation(); // Prevent click from bubbling up
-          if (cardElement) { // Check cardElement again inside closure
-              cardElement.classList.toggle("flipped");
-          }
-        });
-      });
-
-      const cardInnerElements = cardElement.querySelectorAll<HTMLElement>(".card"); // These are .card__front and .card__back
-      cardInnerElements.forEach((cardInner) => {
-        cardInner.addEventListener("mousemove", (event: MouseEvent) => {
-          const rect = cardInner.getBoundingClientRect();
-          // Ensure clientWidth and clientHeight are not zero to prevent division by zero
-          if (cardInner.clientWidth > 0 && cardInner.clientHeight > 0) {
-            const x = ((event.clientX - rect.left) / cardInner.clientWidth) * 100;
-            const y = ((event.clientY - rect.top) / cardInner.clientHeight) * 100;
-            cardInner.style.setProperty("--mouse-x", `${x}%`);
-            cardInner.style.setProperty("--mouse-y", `${y}%`);
-          }
-        });
-      });
-    } else {
-      // Failed to find the card element.
-      console.error(
-        "SunSignCard: CRITICAL - Could not find the .flip__card root element. Event listeners will NOT be attached. Please check the HTML structure and script placement.",
-        {
-          scriptElementTagName: scriptTag.tagName,
-          elementImmediatelyBeforeScriptTagName: elementImmediatelyBeforeScript ? elementImmediatelyBeforeScript.tagName : 'null',
-          elementImmediatelyBeforeScriptClasses: elementImmediatelyBeforeScript ? elementImmediatelyBeforeScript.classList.toString() : 'null',
-        }
-      );
-    }
-  } catch (error) {
-    console.error("SunSignCard: An unexpected JavaScript error occurred in the component script:", error);
-  }
-</script> -->
 
 
