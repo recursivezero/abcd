@@ -124,7 +124,10 @@ const timeUnits = vedicData.time_units;
           </select>
         </div>
       </div>
-      <div id="result" class="result__display in"></div>
+      <div id="ani_result" class="animated__result">
+        <div id="result" class="result__display in">
+        </div>
+    </div>
     </div>
     <div id="units-tab-content" class="tab-content">  
       <h2 class="units__title">Vedic Time Journey</h2>  
@@ -175,16 +178,18 @@ const timeUnits = vedicData.time_units;
       const fromUnit = document.getElementById("from__unit");
       const toUnit = document.getElementById("to__unit");
       const resultBox = document.getElementById("result");
-
+      const aniresultbox = document.getElementById("ani_result");
       if (inputValue.value && fromUnit.value && toUnit.value) {
         const value = parseFloat(inputValue.value);
         const result = convert(value, fromUnit.value, toUnit.value);
         resultBox.style.display = "block";
+        aniresultbox.style.display = "block";
         resultBox.textContent = `${value} ${fromUnit.value} = ${result.toLocaleString(undefined, {
           maximumFractionDigits: 4
         })} ${toUnit.value}`;
       } else {
         resultBox.style.display = "none";
+        aniresultbox.style.display = "none";
       }
     }
 
@@ -240,7 +245,7 @@ const timeUnits = vedicData.time_units;
       document.querySelector('.tab-button[data-tab="tithi"]').click(); // Simulate click to activate default tab
 
       // Tithi date display functionality
-         const tithiNames = [
+      const tithiNames = [
       "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
       "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी",
       "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"
