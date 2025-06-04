@@ -83,6 +83,7 @@ const letterPairs: LetterPair[] = [
 ];
 
 const languages = [
+  { code: "PL", name: "Select Primary Language" , disabled:true },
   { code: "hi", name: "हिंदी" },
   { code: "mr", name: "मराठी" },  // New
   { code: "kn", name: "ಕನ್ನಡ" },
@@ -90,7 +91,15 @@ const languages = [
   { code: "pa", name: "ਪੰਜਾਬੀ" }, // New
   { code: "en", name: "English" }
 ];
-
+const languages2 = [
+  { code: "SL", name: "Select Secondary Language" , disabled:true },
+  { code: "hi", name: "हिंदी" },
+  { code: "mr", name: "मराठी" },  // New
+  { code: "kn", name: "ಕನ್ನಡ" },
+  { code: "gu", name: "ગુજરાતી" }, // New
+  { code: "pa", name: "ਪੰਜਾਬੀ" }, // New
+  { code: "en", name: "English" }
+];
 let selectedLanguage1 = "hi";
 let selectedLanguage2 = "kn";
 
@@ -122,9 +131,10 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
 PRIMARY LANGUAGE
       </label>
       <select id="languageDropdown1">
-        {
+        
+        { 
           languages.map((lang) => (
-            <option value={lang.code} selected={lang.code === selectedLanguage1}>
+            <option class="opt" value={lang.code} selected={lang.code === selectedLanguage1}  disabled={lang.disabled ? 'disabled' : null}>
               {lang.name} ({lang.code.toUpperCase()})
             </option>
           ))
@@ -146,8 +156,8 @@ SECONDARY LANGUAGE
       </label>
       <select id="languageDropdown2">
         {
-          languages.map((lang) => (
-            <option value={lang.code} selected={lang.code === selectedLanguage2}>
+          languages2.map((lang) => (
+            <option class="opt" value={lang.code} selected={lang.code === selectedLanguage2} disabled={lang.disabled ? 'disabled' : null}>
               {lang.name} ({lang.code.toUpperCase()})
             </option>
           ))
