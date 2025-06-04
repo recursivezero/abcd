@@ -1,4 +1,5 @@
 ---
+import BackIcon from "@/assets/icons/back.svg";
 import GridGameIcon from "@/assets/icons/grid-game-icon.svg";
 import KeyboardGameIcon from "@/assets/icons/keyboard-game-icon.svg";
 import "@/assets/styles/games.css";
@@ -28,8 +29,13 @@ const games = {
 ---
 
 <BaseLayout meta={meta}>
-  <div class="game-page-container">
-    <h1 class="game-page-title">Choose your creative tool</h1> 
+  <div class="selection-container">
+    <div class="header-content">
+      <a href="/sample" class="back">
+        <BackIcon />
+      </a>
+      <h1 class="game-page-title">Select a creative mode</h1>
+    </div>
     <div class="game-selection-container">
       <div class="game-cards">
         {

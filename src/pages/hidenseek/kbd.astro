@@ -1,5 +1,5 @@
 ---
-import BackIcon from "@/assets/icons/back.svg";
+import BackButton from "@/components/ui/backButton.astro";
 //import "@/assets/styles/games.css";
 import "@/assets/styles/games.css";
 import Help from "@/components/Help.astro";
@@ -16,10 +16,7 @@ const meta = {
   <div class="game-page-container">
     <div class="game-wrapper">
       <div class="game-header">
-        <a href="/hidenseek" class="back">
-          <BackIcon />
-          Back
-        </a>
+        <BackButton />
       </div>
       <div class="game-menu">
         <Help

@@ -52,7 +52,7 @@ body::before {
 .word-count {
   font-size: 0.8rem;
   text-align: right;
-  color: var(--text-darker-grey); /* Using darker grey for less prominent info */
+  color: var(--text-darker-grey);
   margin-top: 0.25rem;
   min-height: 1.2em;
 }
@@ -72,7 +72,7 @@ select#fontFamily {
   margin-bottom: 1rem;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--accent-color);
-  color: var(--text-light); /* Input text color remains light for readability */
+  color: var(--text-light);
   font-family: inherit;
   border-radius: var(--border-radius);
   transition: all var(--transition-speed) ease;
@@ -586,7 +586,7 @@ textarea.metallic-textarea {
   width: 320px;
   max-height: 80vh;
   overflow-y: auto;
-  background: var(--popover-bg-dark); /* Slightly brighter popover background */
+  background: var(--popover-bg-dark);
   border: 1px solid var(--accent-color);
   border-radius: var(--border-radius);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
@@ -620,8 +620,8 @@ textarea.metallic-textarea {
   border: 2px solid var(--accent-color);
   color: var(--text-light);
   padding: 0.6rem;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   min-width: 40px;
   border-radius: 50%;
   display: flex;

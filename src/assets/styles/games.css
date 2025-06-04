@@ -39,16 +39,57 @@
   box-sizing: border-box;
 }
 
+.selection-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--primary, #4a90e2);
+  margin-bottom: 3rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles for the header content (back button and title) */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2rem;
+  margin-bottom: 3rem;
+}
+
 /* Add a title style for the page */
 .game-page-title {
   font-size: 2.8rem;
   font-weight: 700;
-  color: var(--accent-color);
-  margin-bottom: 2rem;
+  color: #4a90e2;
+  margin: 1;
+  flex-grow: 1;
   text-align: center;
   letter-spacing: 0.05em;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  margin-top: 2rem;
+}
+
+/* Navigation */
+.back {
+  position: absolute;
+  left: 14rem;
+  top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  text-decoration: none;
+  color: light-dark(black, white);
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.back svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
 }
 
 .game-wrapper {
@@ -66,7 +107,6 @@
   display: grid;
   place-items: center;
   width: 100%;
-  margin-top: 2rem;
 }
 
 .game-cards {
@@ -81,24 +121,6 @@
   display: grid;
   place-items: center;
   justify-content: flex-end;
-}
-
-/* Navigation */
-.back {
-  display: flex;
-  grid-auto-flow: column;
-  gap: 0.5rem;
-  align-items: center;
-  text-decoration: none;
-  font-weight: 500;
-  transition: var(--transition);
-  color: light-dark(black,white);
-}
-
-.back svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
 }
 
 /* Game Card Styles */
@@ -205,6 +227,26 @@
 @media (max-width: 768px) {
   .game-cards {
     grid-template-columns: 1fr;
+  }
+
+  .selection-container {
+    padding-top: 2rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 1rem;
+  }
+
+  .game-page-title {
+    text-align: left;
+    margin-top: 1rem;
+    flex-grow: unset;
+  }
+
+  .back {
+    margin-right: 0;
   }
 }
 
