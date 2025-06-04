@@ -92,7 +92,6 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
         0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
-
     &:focus {
       outline: none;
       border-color: #2dd4bf;

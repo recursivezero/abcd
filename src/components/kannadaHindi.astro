@@ -57,18 +57,21 @@ const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
 const hindiConsonants = generateLetters(2325, 37);
 const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
 const kannadaConsonants = generateLetters(3221, 37);
-
+const gujaratiVowels = generateLetters(0xA85, 16, [0xA8D, 0xA91]);
+const gujaratiConsonants = generateLetters(0xA95, 37);
 // Create letter pairs with all three scripts
 const letterPairs: LetterPair[] = [
   ...hindiVowels.map((hindi, i) => ({
     hindi,
     kannada: kannadaVowels[i],
+    gujarati: gujaratiVowels[i], // New
     english: englishVowels[i] || "",
     type: "vowel" as const
   })),
   ...hindiConsonants.map((hindi, i) => ({
     hindi,
     kannada: kannadaConsonants[i],
+    gujarati: gujaratiConsonants[i], // New
     english: englishConsonants[i] || "",
     type: "consonant" as const
   }))
@@ -77,6 +80,7 @@ const letterPairs: LetterPair[] = [
 const languages = [
   { code: "hi", name: "हिंदी" },
   { code: "kn", name: "ಕನ್ನಡ" },
+  { code: "gu", name: "ગુજરાતી" }, // New
   { code: "en", name: "English" }
 ];
 
@@ -89,6 +93,8 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
       return pair.hindi;
     case "kn":
       return pair.kannada;
+    case "gu":
+      return pair.gujarati; // New
     case "en":
       return pair.english;
     default:
@@ -180,6 +186,8 @@ SECONDARY LANGUAGE
   const hindiConsonants = generateLetters(2325, 37);
   const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
   const kannadaConsonants = generateLetters(3221, 37);
+  const gujaratiVowels = generateLetters(0xA85, 16, [0xA8D, 0xA91]);
+  const gujaratiConsonants = generateLetters(0xA95, 37);
 
   // Use correct English transliterations instead of just basic letters
   const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "e", "ai", "o", "au", "aṃ", "aḥ"];
@@ -244,6 +252,9 @@ SECONDARY LANGUAGE
     }
     if (lang === "kn") {
       return type === "vowel" ? kannadaVowels[index] || "" : kannadaConsonants[index] || "";
+    }
+    if (lang === "gu") { // New
+      return type === "vowel" ? gujaratiVowels[index] || "" : gujaratiConsonants[index] || "";
     }
     return "";
   }
