@@ -114,6 +114,7 @@ import "@/assets/styles/math.css";
 
     output.value = "";
     state.jsDrivenOutputValue = ""; 
+    output.style.textAlign = 'center'; // Ensure placeholder and initial state is centered
     resultIndicator.innerHTML = "";
     resultIndicator.className = "result-indicator";
 
@@ -135,7 +136,6 @@ import "@/assets/styles/math.css";
   function checkAnswer() {
     const first = parseInt(firstInput.value);
     const second = parseInt(secondInput.value);
-
     const outputValue = parseInt(output.value); 
 
     if (isNaN(outputValue)) { 
@@ -144,7 +144,6 @@ import "@/assets/styles/math.css";
       if (nextButton) {
         nextButton.disabled = true; 
       }
-      
       return;
     }
 
@@ -164,18 +163,16 @@ import "@/assets/styles/math.css";
     if (isValid) {
       resultIndicator.innerHTML = "✓";
       resultIndicator.className = "result-indicator success";
-      
       if (!state.isAnswerCorrect) { 
         updateScore();
         triggerCelebration();
         state.isAnswerCorrect = true; 
-       
       }
       if (nextButton) nextButton.disabled = false;
     } else { 
       resultIndicator.innerHTML = "✗";
       resultIndicator.className = "result-indicator error";
-      
+      // Do not set state.isAnswerCorrect = false here to prevent re-scoring
       if (nextButton) nextButton.disabled = true;
     }
   }
@@ -193,47 +190,42 @@ import "@/assets/styles/math.css";
 
       let charToPrepend = "";
 
+      // JS logic for RTL character order (prepending)
       if (inputEvent.inputType === 'insertText' && inputEvent.data) {
-
         const numericData = inputEvent.data.replace(/[^0-9]/g, "");
         if (numericData.length > 0) {
           charToPrepend = numericData[numericData.length - 1];
         }
       } else if (inputEvent.inputType === 'deleteContentBackward') {
-        
         if (state.jsDrivenOutputValue.length > 0) {
           state.jsDrivenOutputValue = state.jsDrivenOutputValue.substring(1);
         }
-        
       } else if (inputEvent.inputType && inputEvent.inputType.startsWith('history')) { 
-
         state.jsDrivenOutputValue = inputElement.value.replace(/[^0-9]/g, "").split('').reverse().join('');
-        
       } else if (!inputEvent.inputType || (inputEvent.inputType && !inputEvent.inputType.startsWith('delete'))) {
-
         state.jsDrivenOutputValue = inputElement.value.replace(/[^0-9]/g, "").split('').reverse().join('');
-       
       }
-
 
       if (charToPrepend) {
         state.jsDrivenOutputValue = charToPrepend + state.jsDrivenOutputValue;
       }
       
-      
       inputElement.value = state.jsDrivenOutputValue;
+      inputElement.setSelectionRange(0, 0); // Keep cursor to the left for JS RTL feel
       
-      inputElement.setSelectionRange(0, 0); 
-      // Call checkAnswer after processing input
+      // Ensure text alignment is always center
+      output.style.textAlign = 'center'; 
+
       if (output.value.length > 0) {
+        // output.style.textAlign = 'center'; // This line is now handled above, consistently
         checkAnswer();
       } else {
+        // output.style.textAlign = 'center'; // This line is now handled above, consistently
         resultIndicator.innerHTML = ""; 
         resultIndicator.className = "result-indicator";
         if (nextButton) {
           nextButton.disabled = true; 
         }
-        
       }
     });
 
@@ -275,9 +267,10 @@ import "@/assets/styles/math.css";
 </script>
 
 <style>
-  
+  /* Default alignment for placeholder AND typed text */
   #output {
-    text-align: right; 
+    text-align: center; 
+    /* If you were using CSS direction: rtl; remove it if JS is handling input logic */
   }
 
   /* Fullscreen celebration styles */

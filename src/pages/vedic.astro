@@ -75,36 +75,28 @@ const timeUnits = vedicData.time_units;
     <div class="tab-buttons">
       <button class="tab-button active" data-tab="tithi">Tithi</button>
       <button class="tab-button" data-tab="converter">Converter</button>
+      <button class="tab-button" data-tab="units">Units</button>
     </div>
 
     <div id="tithi-tab-content" class="tab-content active">
       <div class="tithi-header">
         <div class="tithi-title-wrapper">
           <h1 class="tithi-title">Tithi</h1>
-          <button id="dateToggle" class="date-toggle" aria-label="Toggle date formats">
-            <svg class="calendar-icon" viewBox="0 0 24 24" width="24" height="24">
-              <path fill="currentColor"
-                d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zM5 7V5h14v2H5z" />
-              <path fill="currentColor" d="M7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z" />
-            </svg>
-          </button>
         </div>
         <div id="dateDisplay" class="date-display">
-          <p id="singleDate" class="single-date">Loading date...</p>
-          <div id="multiDate" class="multi-date" style="display: none;">
-            <p class="date-format"></p>
-            <p class="date-format"></p>
-            <p class="date-format"></p>
-          </div>
+            <p data-id="hindu" class="date-format"></p>
+            <p data-id="hindi" class="date-format"></p>
+            <p data-id="english" class="date-format"></p>
         </div>
       </div>
     </div>
 
     <div id="converter-tab-content" class="tab-content">
+      <h2 class="converter__title">Vedic Unit Converter</h2> 
       <div class="converter__horizontal">
         <div class="form__group">
           <label for="input__value">Enter a number</label>
-          <input type="number" id="input__value" placeholder="e.g. 123" required />
+          <input type="number" id="input__value" placeholder=" 123 " required />
         </div>
 
         <div class="form__group">
@@ -132,11 +124,14 @@ const timeUnits = vedicData.time_units;
           </select>
         </div>
       </div>
-      <div id="result" class="result__display in"></div>
+      <div id="ani_result" class="animated__result">
+        <div id="result" class="result__display in">
+        </div>
     </div>
-
-    <div class="units__timeline-container">
-      <h2 class="units__title">Vedic Time Journey</h2>
+    </div>
+    <div id="units-tab-content" class="tab-content">  
+      <h2 class="units__title">Vedic Time Journey</h2>  
+      <div class="units__timeline-container">
       <div class="timeline-wrapper">
         <div class="timeline-line"></div>
         {timeUnits.map((unit, index) => (
@@ -166,6 +161,7 @@ const timeUnits = vedicData.time_units;
       </div>
     </div>
   </div>
+  </div>
 
   <script is:inline define:vars={{ timeUnits }}>
     function convert(value, fromUnit, toUnit) {
@@ -182,16 +178,18 @@ const timeUnits = vedicData.time_units;
       const fromUnit = document.getElementById("from__unit");
       const toUnit = document.getElementById("to__unit");
       const resultBox = document.getElementById("result");
-
+      const aniresultbox = document.getElementById("ani_result");
       if (inputValue.value && fromUnit.value && toUnit.value) {
         const value = parseFloat(inputValue.value);
         const result = convert(value, fromUnit.value, toUnit.value);
         resultBox.style.display = "block";
+        aniresultbox.style.display = "block";
         resultBox.textContent = `${value} ${fromUnit.value} = ${result.toLocaleString(undefined, {
           maximumFractionDigits: 4
         })} ${toUnit.value}`;
       } else {
         resultBox.style.display = "none";
+        aniresultbox.style.display = "none";
       }
     }
 
@@ -248,96 +246,52 @@ const timeUnits = vedicData.time_units;
 
       // Tithi date display functionality
       const tithiNames = [
-        "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
-        "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी",
-        "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"
-      ];
+      "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
+      "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी",
+      "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"
+    ];
 
-      const getLunarDate = (gregorianDay) => {
-        // Calculate the lunar day (1-30) based on the gregorian day
-        const lunarDay = (gregorianDay - 1) % 15 + 1; // Ensure it wraps correctly (1-15)
+    const getLunarDate = (gregorianDay) => {
+      // Calculate the lunar day (1-30) based on the gregorian day
+      const lunarDay = (gregorianDay - 1) % 15 + 1; // Ensure it wraps correctly (1-15)
 
-        // Calculate the paksha
-        const paksha = gregorianDay <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+      // Calculate the paksha
+      const paksha = gregorianDay <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
 
-        // Determine tithi
-        const tithi = lunarDay - 1;
-        console.log({ tithi });
+      // Determine tithi
+      const tithi = lunarDay - 1;
+      console.log({tithi});
 
-        return {
-          paksha,
-          tithi: tithiNames[tithi]
-        };
+      return {
+        paksha,
+        tithi: tithiNames[tithi]
       };
+    };
+    const hindu = document.querySelector('[data-id="hindu"]');
+    const hindi = document.querySelector('[data-id="hindi"]');
+    const english = document.querySelector('[data-id="english"]');
+    const timeElem = document.querySelector('.date-format');
 
-      const dateToggle = document.getElementById('dateToggle');
-      const singleDate = document.getElementById('singleDate');
-      const multiDate = document.getElementById('multiDate');
-      const dateFormats = document.querySelectorAll('.date-format');
-
-      function getEnglishDate() {
-        return new Date().toLocaleString('en-US', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        });
-      }
-
-      function getHindiDate() {
-        return new Date().toLocaleString('hi-IN', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        });
-      }
-
-      function getVedicDate() {
-        const today = new Date();
-        const gregorianDay = today.getDate(); // Get current day of the month (1-31)
-        const { paksha, tithi } = getLunarDate(gregorianDay);
-        return `Vedic Date: ${tithi} (${paksha})`;
-      }
-
-      function updateDates() {
-        const dates = [getEnglishDate(), getHindiDate(), getVedicDate()];
-        if (singleDate) singleDate.textContent = dates[0];
-
-        dateFormats.forEach((format, index) => {
-          if (format) format.textContent = dates[index];
-        });
-      }
-
-
-      if (dateToggle) {
-        dateToggle.addEventListener('click', () => {
-          if (multiDate && singleDate) {
-            if (multiDate.style.display === 'none') {
-              // Show multiple dates
-              multiDate.style.display = 'block';
-              singleDate.style.display = 'none';
-              dateToggle.classList.add('active'); // Add active class
-            } else {
-              // Show single date
-              multiDate.style.display = 'none';
-              singleDate.style.display = 'block';
-              dateToggle.classList.remove('active'); // Remove active class
-            }
-          }
-        });
-      }
-
-      // Initial update and set interval for Tithi
-      updateDates();
-      setInterval(updateDates, 1000);
-
+    const renderClock = () => {
+      const today = new Date();
+      const eng =  dateInEnglish.format(today);
+      const hi = samay.format(today);
+      console.log(samay.formatToParts());
+      const hindi_date = dateInHindi.format(today);
+      /* const { paksha, tithi } = getLunarDate(); */
+      /* console.log({paksha, tithi}) */
+      hindi.innerHTML = hindi_date;
+      hindu.innerHTML =  hi;
+      english.innerHTML = eng;
+      const h = today.getHours();
+      const m = today.getMinutes();
+      const s = today.getSeconds();
+      timeElem.style.setProperty("--h", h*15);
+      timeElem.style.setProperty("--m", m);
+      timeElem.style.setProperty("--s", s*10);
+    };
+    renderClock();
+    setInterval(renderClock, 1000);
       // Add scroll effect to title for timeline
       const timelineContainer = document.querySelector('.units__timeline-container');
       const title = document.querySelector('.units__title');

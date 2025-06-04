@@ -15,4 +15,7 @@ export interface StateData {
   famous_person?: string;
   famous_food?: string;
   famous_place?: string;
+  famous_dress?: string;
+  famous_language?:string;
+  famous_sport?: string;
 }

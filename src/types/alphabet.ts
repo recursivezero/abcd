@@ -27,3 +27,13 @@ export interface AlphabetsData {
   animals: AlphabetCategory;
   countries: AlphabetCategory;
 }
+
+export interface GreekAlphabetEntry {
+  id: number; 
+  letter: string;
+  text: string;
+  code: number; 
+  englishSound: string; 
+  description: string;
+  }
+  
