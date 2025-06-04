@@ -11,7 +11,7 @@
       justify-items: end;
       justify-content: center;
       top: 4rem;
-      right: 1rem;
+      right: 1.25rem;
       width: max-content;
       height: 3.5rem;
       border-radius: 10%;
@@ -30,6 +30,14 @@
         transform: scale(1.05) rotate(45deg);
       }*/
     }
+        @media (max-width: 480px) {
+          .setting__trigger {
+            font-size: 0.6rem; /* Adjust font size for smaller screens */
+            width: 2.5rem; /* Adjust width for smaller screens */
+            height: 2.5rem; /* Adjust height for smaller screens */
+            margin-top: 12px; 
+          }
+        }
 
     .setting__panel {
       position: fixed;
@@ -39,7 +47,7 @@
       justify-self: anchor-center;
       width: 20rem;
       height: 20rem;
-      background-color: hwb(20 68% 16%);
+      background-color: hwb(20 2% 4%);
       border-radius: 4px;
       padding: 0.74rem;
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -85,6 +93,7 @@
           height: 3rem;
           outline: 1px dashed green;
           justify-self: end;
+          border-radius: 6px;
 
           &:hover {
             font-size: 30px;
@@ -105,7 +114,6 @@
         background-color: Canvas;
         padding: 1rem;
         border: solid;
-        border-radius: 1rem;
         opacity: 0;
         visibility: hidden;
         transition:
@@ -128,6 +136,7 @@
             :where(button, select) {
             background: linear-gradient(90deg, rgb(17, 255, 247) 0%, rgb(39, 96, 241) 100%);
             transform: scaleZ(1) rotate(5deg);
+            border-radius: 7px;
             }
         }
 
@@ -145,4 +154,4 @@
       }
     }
   }
-}
+} 

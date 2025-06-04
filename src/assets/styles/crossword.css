@@ -219,7 +219,7 @@ details:not([open]) summary::after {
 /* Stats Components */
 .stats-container {
   display: flex;
-  gap: 24px;
+  gap: 14px;
   margin: 32px 0;
   justify-content: center;
   flex-wrap: wrap;
@@ -289,9 +289,13 @@ details:not([open]) summary::after {
   }
 
   .stats-button {
-    font-size: 0.85rem;
-    padding: 11px 18px;
+    font-size: 3vh;
+    padding: 11px 16px;
     min-width: 70px;
+    display: flex;
+      align-items: center;
+      gap: 6px;
+    
   }
 
   .word-list {
@@ -321,8 +325,11 @@ details:not([open]) summary::after {
   }
 
   .stats-button {
-    font-size: 0.8rem;
+    font-size: 3vh;
     padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 }
 
@@ -351,17 +358,28 @@ details:not([open]) summary::after {
     font-size: 4vw;
     padding: 8px 14px;
     min-width: 80px;
-    color: black;
+    color: rgb(255, 255, 255);
     background: var(--accent2-color);
     display: flex;
     align-items: center;
     gap: 6px;
   }
+  
+   #solutionBtn{
+    background: none;
+      border: none;
+      max-width: 45px;
+      max-height: 45px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+  }
 
   .stats-button .bulb-icon,
   .stats-button svg {
-    width: 20px !important;
-    height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
     display: inline-block;
     vertical-align: middle;
   }

@@ -16,6 +16,7 @@ import Settings from "@/components/Settings.astro";
     <div class="stats-button">
       <span>Found: <span id="foundCount">0</span>/<span id="totalWords"></span></span>
     </div>
+   
     <button id="solutionBtn" style="
     background: none;
     border: none;
@@ -34,7 +35,7 @@ import Settings from "@/components/Settings.astro";
     this.classList.toggle('active');
     const bulb = this.querySelector('svg path');
     if (this.classList.contains('active')) {
-      bulb.setAttribute('fill', 'white');
+      bulb.setAttribute('fill', 'orange');
       this.style.background = 'radial-gradient(circle, #fffacd 0%, #ffeb3b 100%)';
       this.style.boxShadow = '0 0 20px 5px yellow';
     } else {
