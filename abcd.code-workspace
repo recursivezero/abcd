@@ -191,6 +191,9 @@
     "files.readonlyInclude": {
       ".githooks/**": true
     },
-    "typescript.preferences.preferGoToSourceDefinition": true
+    "typescript.preferences.preferGoToSourceDefinition": true,
+    "[xml]": {
+      "editor.defaultFormatter": "redhat.vscode-xml"
+    }
   }
 }
