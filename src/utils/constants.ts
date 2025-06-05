@@ -158,8 +158,8 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "DrawPage",
-    title: "DrawPage",
+    name: "Draw",
+    title: "Draw",
     path: "/draw",
     isActive: true
   }
