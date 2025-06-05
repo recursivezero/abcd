@@ -74,7 +74,7 @@
         font-size: 1.5rem;
         letter-spacing: 0.01em;
         touch-action: pinch-zoom;
-
+               
         &:hover:not(.close) {
           background-color: color(xyz 0.02 0.01 0.02);
           transform: translateY(-3px);
@@ -83,7 +83,6 @@
         &.close {
           width: 2rem;
           height: 3rem;
-          outline: 1px dashed green;
           justify-self: end;
 
           &:hover {
