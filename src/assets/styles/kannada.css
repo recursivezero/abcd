@@ -50,7 +50,7 @@
     display: block;
     margin-bottom: 0.8rem;
     font-size: 1.1rem;
-    background-image: linear-gradient( 135deg, #69FF97 10%, #00E4FF 100%);
+    background-image: linear-gradient(135deg, #69ff97 10%, #00e4ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
@@ -60,9 +60,9 @@
     transition: color 0.3s ease;
 
     &.active {
-background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+      background-image: linear-gradient(135deg, #72edf2 10%, #5151e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 
@@ -156,7 +156,6 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
   &.toggled svg {
     fill: var(--navy-blue);
   }
-
 }
 
 .toggle-button.swapping {
@@ -263,10 +262,10 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
   & .language-letter-top {
     font-size: 71px;
     font-weight: 600;
-    background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
-    background-size : 600%;
-    animation : anime 16s linear infinite;
-    -webkit-background-clip:text;
+    background: linear-gradient(-45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
+    background-size: 600%;
+    animation: anime 16s linear infinite;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
@@ -296,16 +295,16 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
     }
   }
 }
-@keyframes anime{
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+@keyframes anime {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .language-letter-kannada,
 .language-letter-hindi {

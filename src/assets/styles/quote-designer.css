@@ -1,11 +1,11 @@
 :root {
   --metal-1: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
-  --metal-2: linear-gradient(145deg, #F5F5DC 0%, #F5F5DC 50%, #F5F5DC 100%);
+  --metal-2: linear-gradient(145deg, #f5f5dc 0%, #f5f5dc 50%, #f5f5dc 100%);
   --metal-3: linear-gradient(145deg, #404040 0%, #2a2a2a 100%);
   --text-light: #e0e0e0;
   --text-dark: #1a1a1a;
-  --accent-color: #F5F5DC;
-  --purple-accent: #444460; //purple accent
+  --accent-color: #f5f5dc;
+  --purple-accent: #444460;
   --border-radius: 8px;
   --transition-speed: 0.3s;
   /* Static Background Colors for this page */
@@ -27,7 +27,7 @@ html {
 body {
   background: linear-gradient(135deg, var(--bg-color-3) 0%, var(--bg-color-1) 50%, var(--bg-color-2) 100%);
   color: var(--text-light);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   min-height: 100vh;
   line-height: 1.6;
   container-type: unset;
@@ -533,7 +533,7 @@ textarea.metallic-textarea {
 }
 
 .control-section summary::after {
-  content: '+';
+  content: "+";
   position: absolute;
   right: 1rem;
   font-size: 1.2em;
@@ -544,7 +544,7 @@ textarea.metallic-textarea {
   transform: rotate(45deg);
 }
 
-.control-section[open]>div {
+.control-section[open] > div {
   padding: 0 1rem 1rem 1rem;
   margin-top: 0.5rem;
 }
@@ -595,7 +595,10 @@ textarea.metallic-textarea {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -661,7 +664,6 @@ textarea.metallic-textarea {
   width: auto;
   margin-top: 0;
 }
-
 
 /* === Responsiveness === */
 @media (max-width: 768px) {

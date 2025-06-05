@@ -54,6 +54,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   let currentFontIndex = 0;
   let isUpperCase = true;
   let hasKeyBeenPressed = false;
+  let showImages = true; // Track whether to show images or background colors
 
   // DOM elements
   const mainEl = document.querySelector("main");
@@ -62,11 +63,14 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   const instructionDiv = document.getElementById("instruction");
   const toggleCaseSwitch = document.getElementById("toggleCase");
   const toggleFontSwitch = document.getElementById("toggleFont");
+  const toggleImgSwitch = document.getElementById("toggleimg");
   const toggleBackgroundSwitch = document.getElementById("toggleBg");
   const info = document.querySelector(".info");
   const popupOverlay = document.getElementById("popupOverlay");
   const pressedKeySpan = document.getElementById("pressedKey");
   const popupClose = document.getElementById("popupClose");
+  const imgToggle = document.querySelector(".img-toggle");
+  const bgToggle = document.querySelector(".bg-toggle");
 
   // Show continue message
   function showContinueMessage() {
@@ -82,11 +86,14 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     instructionDiv.textContent = "";
     boardDiv.style.backgroundImage = "";
     boardDiv.style.backgroundColor = "";
-    info.textContent = "Press any key"; // Reset header text
+    info.textContent = "Press any key";
     const continueMsg = document.getElementById('continueMessage');
     if (continueMsg) {
       continueMsg.style.display = 'none';
     }
+    showImages = true;
+    if (imgToggle) imgToggle.classList.remove('active');
+    if (bgToggle) bgToggle.classList.remove('active');
   }
 
   function getRandomValue(arr) {
@@ -95,7 +102,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   // Show popup for invalid key presses
   function showPopup(key) {
-    pressedKeySpan.textContent = key; // Show the wrong key pressed
+    pressedKeySpan.textContent = key;
     popupOverlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
@@ -110,39 +117,77 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   function updateDisplay(key) {
     hasKeyBeenPressed = true;
-    instructionDiv.textContent = ""; // Clear previous instruction
+    instructionDiv.textContent = "";
 
     if (!isNaN(Number(key))) {
       boardDiv.style.backgroundColor = getRandomValue(colorBox);
       boardDiv.style.backgroundImage = "";
-      charDiv.textContent = key; // Display the number in the box
-      info.textContent = numberBox[key] || "Unknown"; // Update header with number word
+      charDiv.textContent = key;
+      info.textContent = numberBox[key] || "Unknown";
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+      // For numbers, keep normal font size (no image background)
+      charDiv.style.fontSize = "";
       showContinueMessage();
       return;
     }
 
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
-      // Display the corresponding word in the header
-      info.textContent = found.value; // Update header with alphabet word
-      charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase(); // Display the letter in the box
+      info.textContent = found.value;
+      charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
-      if (!toggleBackgroundSwitch?.checked) {
+      
+      if (showImages) {
         boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
         boardDiv.style.backgroundColor = "";
+        // Decrease font size when image is displayed
+        charDiv.style.fontSize = "25rem";
+      } else {
+        boardDiv.style.backgroundImage = "";
+        boardDiv.style.backgroundColor = getRandomValue(colorBox);
+        // Keep normal font size when only background color
+        charDiv.style.fontSize = "";
       }
     } else {
-      // Show popup for invalid key
       showPopup(key);
     }
 
     showContinueMessage();
   }
 
+  // Toggle between images and background colors
+  function toggleImageBackground() {
+    showImages = !showImages;
+    
+    if (showImages) {
+      imgToggle.classList.add('active');
+      bgToggle.classList.remove('active');
+      if (toggleImgSwitch) toggleImgSwitch.checked = true;
+      if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
+    } else {
+      imgToggle.classList.remove('active');
+      bgToggle.classList.add('active');
+      if (toggleImgSwitch) toggleImgSwitch.checked = false;
+      if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = true;
+    }
+    
+    // Update display if a key has been pressed
+    if (hasKeyBeenPressed && charDiv.textContent) {
+      updateDisplay(charDiv.textContent);
+    }
+  }
+
   // Handle key press events
   function handleKeyPress(e) {
     const key = e.key;
+    
+    // If popup is open, ignore all key presses except Escape
+    if (popupOverlay.style.display === 'flex') {
+      if (key === 'Escape') {
+        hidePopup();
+      }
+      return; // Don't process any other keys when popup is open
+    }
     
     if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
       updateDisplay(key);
@@ -168,9 +213,49 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     if (e.key === "Escape") {
       hidePopup();
     }
+    // Remove duplicate key handling - it's already handled in handleKeyPress
   });
 
-  // Optional toggle event listeners (if toggles exist in your UI)
+  // Image/Background toggle
+  if (imgToggle && bgToggle) {
+    imgToggle.addEventListener('click', () => {
+      if (!imgToggle.classList.contains('active')) {
+        showImages = true;
+        imgToggle.classList.add('active');
+        bgToggle.classList.remove('active');
+        if (toggleImgSwitch) toggleImgSwitch.checked = true;
+        if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
+        
+        // Update display if a key has been pressed
+        if (hasKeyBeenPressed && charDiv.textContent) {
+          updateDisplay(charDiv.textContent);
+        }
+      }
+    });
+
+    bgToggle.addEventListener('click', () => {
+      // Always change color on each click, regardless of active state
+      showImages = false;
+      bgToggle.classList.add('active');
+      imgToggle.classList.remove('active');
+      if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = true;
+      if (toggleImgSwitch) toggleImgSwitch.checked = false;
+      
+      // Always generate new random color on each click
+      if (hasKeyBeenPressed && charDiv.textContent) {
+        boardDiv.style.backgroundImage = "";
+        boardDiv.style.backgroundColor = getRandomValue(colorBox);
+        // Reset font size to normal when switching to background color
+        charDiv.style.fontSize = "";
+      } else {
+        // Even if no key pressed, show random color
+        boardDiv.style.backgroundImage = "";
+        boardDiv.style.backgroundColor = getRandomValue(colorBox);
+      }
+    });
+  }
+
+  // Case toggle functionality
   toggleCaseSwitch?.addEventListener("change", (e) => {
     isUpperCase = !e.target.checked;
     const currentText = charDiv.textContent;
@@ -192,21 +277,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     });
   });
 
-  // Background toggle functionality
-  toggleBackgroundSwitch?.addEventListener("change", (e) => {
-    if (e.target.checked) {
-      mainEl.style.backgroundBlendMode = "soft-light";
-      mainEl.style.filter = "brightness(0.9)";
-      boardDiv.style.backgroundImage = "none";
-      boardDiv.style.backgroundColor =
-        getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue("--solid-bg");
-    } else {
-      mainEl.style.backgroundBlendMode = "normal";
-      mainEl.style.filter = "brightness(1)";
-      boardDiv.style.backgroundColor = "";
-    }
-  });
-
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
 
   document.addEventListener('keyboardReset', (e) => {
@@ -223,6 +293,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     if (toggleCaseSwitch) toggleCaseSwitch.checked = false;
     if (toggleFontSwitch) toggleFontSwitch.checked = false;
     if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
+    if (toggleImgSwitch) toggleImgSwitch.checked = false;
     
     hidePopup();
   });
@@ -322,7 +393,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   font-weight: 400;
   font-style: italic;
   text-align: right;
-  margin-bottom: -20px;
+  margin-bottom: -15px;
 }
   @keyframes slideDown {
     from {

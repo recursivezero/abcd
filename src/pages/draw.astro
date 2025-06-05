@@ -23,6 +23,19 @@ import Help from "@/components/Help.astro";
           </span>
         </label>
 
+       <label for="toggleimg" class="control-item" data-tooltip="Change Image">
+          <input type="checkbox" name="toggle_img" id="toggleimg" class="visually-hidden hidden" />
+          <span id="img" class="control-button img-toggle" role="switch" aria-checked="false">
+            <span class="img-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5ZM15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10ZM5 16L9 12L19 19V19C19 19.5523 18.5523 20 18 20H6C5.44772 20 5 19.5523 5 19V16Z"/>
+              </svg></span>
+            <span class="img-icon-alt"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5ZM15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10ZM5 16L9 12L19 19V19C19 19.5523 18.5523 20 18 20H6C5.44772 20 5 19.5523 5 19V16Z"/>
+                </svg>
+                </span>
+          </span>
+        </label>
+
         <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
           <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
           <span class="control-button bg-toggle" role="switch" aria-checked="false">
@@ -34,12 +47,11 @@ import Help from "@/components/Help.astro";
         <div class="control-item" data-tooltip="Reset all">
           <button class="control-button reset-button" id="resetButton">↻</button>
         </div>
-
       </div>
 
       <Help 
         title="Draw Keyboard"
-        description="Draw letters by sliding your finger across the keys! Try the buttons to change the style, make it BIG or small, and pick cool backgrounds!"
+        description="Draw letters by sliding your finger across the keys! Try the buttons to change the style, make it BIG or small,chang the inmages and pick cool backgrounds!"
       />
     </div>
   </Fragment>
@@ -58,7 +70,7 @@ import Help from "@/components/Help.astro";
   .controls-container {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .controls {
@@ -109,7 +121,7 @@ import Help from "@/components/Help.astro";
   }
 
   .reset-button {
-    margin-left: 0.5rem;
+    margin-left: 0;
   }
 
   .reset-button:hover {
@@ -139,6 +151,28 @@ import Help from "@/components/Help.astro";
   }
 
   .font-toggle.active .font-icon-alt {
+    opacity: 1;
+  }
+
+  .img-icon, .img-icon-alt {
+    position: absolute;
+    transition: opacity 0.2s ease;
+    font-size: 1.25rem;
+  }
+
+  .img-icon {
+    opacity: 1;
+  }
+
+  .img-icon-alt {
+    opacity: 0;
+  }
+
+  .img-toggle.active .img-icon {
+    opacity: 0;
+  }
+
+  .img-toggle.active .img-icon-alt {
     opacity: 1;
   }
 
@@ -242,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get all buttons and elements
     const caseToggle = document.querySelector('.case-toggle');
     const fontToggle = document.querySelector('.font-toggle');
+    const imgToggle = document.querySelector('.img-toggle');
     const bgToggle = document.querySelector('.bg-toggle');
     const resetButton = document.getElementById('resetButton');
     
@@ -251,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const charDiv = document.getElementById("char");
     const toggleCaseSwitch = document.getElementById("toggleCase");
     const toggleFontSwitch = document.getElementById("toggleFont");
+    const toggleImgSwitch = document.getElementById("toggleimg");
     const toggleBackgroundSwitch = document.getElementById("toggleBg");
     const info = document.querySelector(".info");
     
@@ -283,16 +319,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Simple toggle for font button
+    // Modified toggle for font button - stays active until reset
     fontToggle.addEventListener('click', () => {
-        fontToggle.classList.add('active');
-        fontToggle.setAttribute('aria-checked', 'true');
+        const isActive = fontToggle.classList.contains('active');
+        if (!isActive) {
+            fontToggle.classList.add('active');
+            fontToggle.setAttribute('aria-checked', 'true');
+            if (toggleFontSwitch) {
+                toggleFontSwitch.checked = true;
+            }
+        }
     });
 
-    // Simple toggle for background button
+    // Modified toggle for image button - stays active until reset
+    imgToggle.addEventListener('click', () => {
+        const isActive = imgToggle.classList.contains('active');
+        if (!isActive) {
+            // Reset background toggle when image is clicked
+            bgToggle.classList.remove('active');
+            bgToggle.setAttribute('aria-checked', 'false');
+            if (toggleBackgroundSwitch) {
+                toggleBackgroundSwitch.checked = false;
+            }
+            
+            // Activate image toggle
+            imgToggle.classList.add('active');
+            imgToggle.setAttribute('aria-checked', 'true');
+            if (toggleImgSwitch) {
+                toggleImgSwitch.checked = true;
+            }
+            
+            // Here you can add future image change functionality
+            console.log('Image mode activated - ready for future container image changes');
+        }
+    });
+
+    // Modified toggle for background button - resets image when clicked
     bgToggle.addEventListener('click', () => {
-        bgToggle.classList.add('active');
-        bgToggle.setAttribute('aria-checked', 'true');
+        const isActive = bgToggle.classList.contains('active');
+        if (!isActive) {
+            // Reset image toggle when background is clicked
+            imgToggle.classList.remove('active');
+            imgToggle.setAttribute('aria-checked', 'false');
+            if (toggleImgSwitch) {
+                toggleImgSwitch.checked = false;
+            }
+            
+            // Activate background toggle
+            bgToggle.classList.add('active');
+            bgToggle.setAttribute('aria-checked', 'true');
+            if (toggleBackgroundSwitch) {
+                toggleBackgroundSwitch.checked = true;
+            }
+        }
     });
 
    
@@ -307,6 +386,10 @@ document.addEventListener('DOMContentLoaded', () => {
         fontToggle.classList.remove('active');
         fontToggle.setAttribute('aria-checked', 'false');
         
+        // Reset image toggle button
+        imgToggle.classList.remove('active');
+        imgToggle.setAttribute('aria-checked', 'false');
+        
         // Reset background toggle button
         bgToggle.classList.remove('active');
         bgToggle.setAttribute('aria-checked', 'false');
@@ -317,6 +400,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (toggleFontSwitch) {
             toggleFontSwitch.checked = false;
+        }
+        if (toggleImgSwitch) {
+            toggleImgSwitch.checked = false;
         }
         if (toggleBackgroundSwitch) {
             toggleBackgroundSwitch.checked = false;

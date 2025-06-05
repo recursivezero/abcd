@@ -41,7 +41,7 @@
 }
 
 .tab-button.active {
-  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background: linear-gradient(-45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
   background-size: 400% 400%;
   animation: gradient 10s infinite;
   color: var(--background);
@@ -173,7 +173,7 @@ select:focus {
 }
 
 .swap-button.active {
-  background: linear-gradient(45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background: linear-gradient(45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
   background-size: 400% 400%;
   animation: gradient 10s infinite;
 }
@@ -255,7 +255,7 @@ background: conic-gradient(from 0deg at 50% 50%, #000080, #00BFFF, #4682B4, #000
   top: 0;
   bottom: 0;
   width: 8px;
-  background: linear-gradient(180deg, #3CF0C5, #338AFF, #FF3D77, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background: linear-gradient(180deg, #3cf0c5, #338aff, #ff3d77, #ffa63d, #ff3d77, #338aff, #3cf0c5);
   background-size: 100% 200%;
   animation: timelineGradientVertical 10s linear infinite;
   transform: translateX(-50%);
@@ -297,7 +297,10 @@ background: conic-gradient(from 0deg at 50% 50%, #000080, #00BFFF, #4682B4, #000
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out,
+    background-color 0.3s ease;
   position: relative;
 }
 
@@ -480,7 +483,7 @@ background: conic-gradient(from 0deg at 50% 50%, #000080, #00BFFF, #4682B4, #000
     left: 50%;
     top: 0;
     transform: translateX(-50%);
-    background: linear-gradient(180deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+    background: linear-gradient(180deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
     animation: timelineGradientVertical 15s linear infinite;
   }
 

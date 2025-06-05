@@ -5,11 +5,11 @@ import type { LinkProps } from "@/types/index.ts";
 export const APP_NAME = "Template";
 
 let BASE_URL = "http://localhost:4321/draw";
-let IMAGE_DIR = "/images/background";
+let IMAGE_DIR = "/src/assets/images/background"; 
 
 if (import.meta.env.PROD) {
   BASE_URL = "https://bnm1w7hj00.execute-api.us-east-1.amazonaws.com/master/canvas";
-  IMAGE_DIR = "https://d2fcibdfky04dz.cloudfront.net/background";
+  IMAGE_DIR = "/assets/images/background";  
 }
 
 const colorBox = [
@@ -194,5 +194,3 @@ export const colors = [
 export { BASE_URL, IMAGE_DIR };
 
 export { colorBox, fontBox, numberBox };
-
-

@@ -18,48 +18,48 @@ const timeUnits = vedicData.time_units;
         minute: "numeric",
         second: "numeric",
         hour12: false,
-        timeZone: "America/Los_Angeles",
+        timeZone: "America/Los_Angeles"
       };
 
       const fullEnglish = {
-        weekday: 'long',
-        dayPeriod: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: 'numeric',
-        calendar: 'iso8601',
-        timeZone: 'Asia/Kolkata',
-        timeZoneName: 'short',
-        formatMatcher: 'basic',
-        hourCycle: 'h12',
+        weekday: "long",
+        dayPeriod: "long",
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "numeric",
+        calendar: "iso8601",
+        timeZone: "Asia/Kolkata",
+        timeZoneName: "short",
+        formatMatcher: "basic",
+        hourCycle: "h12"
       };
 
       const fullHindi = {
-        weekday: 'long',
-        dayPeriod: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: 'numeric',
-        calendar: 'indian',
-        timeZone: 'Asia/Kolkata',
-        numberingSystem: 'deva',
+        weekday: "long",
+        dayPeriod: "long",
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "numeric",
+        calendar: "indian",
+        timeZone: "Asia/Kolkata",
+        numberingSystem: "deva",
         /* timeZoneName: 'shortGeneric', */
-        formatMatcher: 'basic',
-        hourCycle: 'h12',
+        formatMatcher: "basic",
+        hourCycle: "h12"
       };
 
       const styleOption = {
-        dateStyle: 'full',
-        timeStyle: 'long',
-        calendar: 'iso8601', // 'indian',
+        dateStyle: "full",
+        timeStyle: "long",
+        calendar: "iso8601", // 'indian',
         /* numberingSystem: 'deva', */
-        timeZone: 'Asia/Kolkata',
+        timeZone: "Asia/Kolkata",
         hour12: false,
         useGrouping: true,
         minimumIntegerDigits: 1
@@ -68,9 +68,7 @@ const timeUnits = vedicData.time_units;
       const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
       const samay = new Intl.DateTimeFormat("hi", fullHindi);
       console.log(samay);
-      const dateInHindi = new Intl.DateTimeFormat('hi', styleOption);
-
-
+      const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);
     </script>
 
     <div class="tab-buttons">
@@ -103,25 +101,20 @@ const timeUnits = vedicData.time_units;
         <div class="form__group">
           <label for="from__unit">From</label>
           <select id="from__unit">
-            {timeUnits.map((unit) => (
-            <option value={unit.name}>{unit.name}</option>
-            ))}
+            {timeUnits.map((unit) => <option value={unit.name}>{unit.name}</option>)}
           </select>
         </div>
 
         <button id="swapButton" class="swap-button" aria-label="Swap units">
           <svg class="swap-icon" viewBox="0 0 24 24">
-            <path fill="currentColor"
-              d="M9 3L5 7H8V14H10V7H13M16 17V10H14V17H11L15 21L19 17H16Z" />
+            <path fill="currentColor" d="M9 3L5 7H8V14H10V7H13M16 17V10H14V17H11L15 21L19 17H16Z"></path>
           </svg>
         </button>
 
         <div class="form__group">
           <label for="to__unit">To</label>
           <select id="to__unit">
-            {timeUnits.map((unit) => (
-            <option value={unit.name}>{unit.name}</option>
-            ))}
+            {timeUnits.map((unit) => <option value={unit.name}>{unit.name}</option>)}
           </select>
         </div>
       </div>
@@ -135,30 +128,32 @@ const timeUnits = vedicData.time_units;
       <div class="units__timeline-container">
       <div class="timeline-wrapper">
         <div class="timeline-line"></div>
-        {timeUnits.map((unit, index) => (
-        <div class="timeline-node">
-          <div class="timeline-card">
-            <div class="unit__header">
-              <h3>{unit.name}</h3>
+        {
+          timeUnits.map((unit, index) => (
+            <div class="timeline-node">
+              <div class="timeline-card">
+                <div class="unit__header">
+                  <h3>{unit.name}</h3>
+                </div>
+                <div class="unit__details">
+                  <div class="unit__value">
+                    <span class="icon">🕛</span>
+                    {unit.seconds.toLocaleString()} seconds
+                  </div>
+                  <div class="unit__value">
+                    <span class="icon">⏳</span>
+                    {unit.minutes.toLocaleString()} minutes
+                  </div>
+                  <div class="unit__value">
+                    <span class="icon">📅</span>
+                    {unit.years.toLocaleString()} years
+                  </div>
+                </div>
+              </div>
+              <div class="timeline-dot" />
             </div>
-            <div class="unit__details">
-              <div class="unit__value">
-                <span class="icon">🕛</span>
-                {unit.seconds.toLocaleString()} seconds
-              </div>
-              <div class="unit__value">
-                <span class="icon">⏳</span>
-                {unit.minutes.toLocaleString()} minutes
-              </div>
-              <div class="unit__value">
-                <span class="icon">📅</span>
-                {unit.years.toLocaleString()} years
-              </div>
-            </div>
-          </div>
-          <div class="timeline-dot"></div>
-        </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </div>
@@ -194,7 +189,7 @@ const timeUnits = vedicData.time_units;
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
       // Setup event listeners for converter
       const inputValue = document.getElementById("input__value");
       const fromUnit = document.getElementById("from__unit");
@@ -219,24 +214,24 @@ const timeUnits = vedicData.time_units;
       }
 
       // Tab functionality
-      const tabButtons = document.querySelectorAll('.tab-button');
-      const tabContents = document.querySelectorAll('.tab-content');
+      const tabButtons = document.querySelectorAll(".tab-button");
+      const tabContents = document.querySelectorAll(".tab-content");
 
-      tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
           // Remove active class from all buttons and contents
-          tabButtons.forEach(btn => btn.classList.remove('active'));
-          tabContents.forEach(content => content.classList.remove('active'));
+          tabButtons.forEach((btn) => btn.classList.remove("active"));
+          tabContents.forEach((content) => content.classList.remove("active"));
 
           // Add active class to clicked button
-          button.classList.add('active');
+          button.classList.add("active");
 
           // Show corresponding tab content
           const targetTab = button.dataset.tab;
-          document.getElementById(`${targetTab}-tab-content`).classList.add('active');
+          document.getElementById(`${targetTab}-tab-content`).classList.add("active");
 
           // Call updateResult if switching to converter tab to ensure result is shown if inputs have values
-          if (targetTab === 'converter') {
+          if (targetTab === "converter") {
             updateResult();
           }
         });
@@ -294,15 +289,15 @@ const timeUnits = vedicData.time_units;
     renderClock();
     setInterval(renderClock, 1000);
       // Add scroll effect to title for timeline
-      const timelineContainer = document.querySelector('.units__timeline-container');
-      const title = document.querySelector('.units__title');
+      const timelineContainer = document.querySelector(".units__timeline-container");
+      const title = document.querySelector(".units__title");
 
       if (timelineContainer && title) {
-        timelineContainer.addEventListener('scroll', () => {
+        timelineContainer.addEventListener("scroll", () => {
           if (timelineContainer.scrollTop > 10) {
-            title.classList.add('scrolled');
+            title.classList.add("scrolled");
           } else {
-            title.classList.remove('scrolled');
+            title.classList.remove("scrolled");
           }
         });
       }

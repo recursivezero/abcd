@@ -16,8 +16,7 @@ const pageMeta = {
 
 <Base meta={pageMeta}>
   <Fragment slot="header-right">
-    <div class="header-tools-wrapper">
-      </div>
+    <div class="header-tools-wrapper"></div>
 
     <button id="downloadBtn" class="metallic-button header-tools-btn" aria-label="Download Design">
       <span class="btn-gradient">Download</span>
@@ -37,12 +36,8 @@ const pageMeta = {
   <div class="header-controls">
     <BackButton />
     <div class="settings-button-container">
-      <button
-        id="settingsButton"
-        class="settings-button"
-        aria-label="Open design settings"
-      >
-        <SettingIcon class="settings-icon"/>
+      <button id="settingsButton" class="settings-button" aria-label="Open design settings">
+        <SettingIcon class="settings-icon" />
       </button>
       <div id="designToolsPopover" class="design-tools-popover" aria-hidden="true">
         <h2 class="gradient-text">Design Tools</h2>
@@ -235,7 +230,6 @@ const pageMeta = {
       return isValid;
     }
 
-
     const designToolsPopover = document.getElementById("designToolsPopover");
     const settingsButton = document.getElementById("settingsButton");
 
@@ -269,35 +263,34 @@ const pageMeta = {
         quoteData = { quote: "", author: "" };
       }
 
-      const preview = document.getElementById('quotePreview');
-      const quoteTextEl = preview?.querySelector('.quote-text');
-      const authorNameEl = preview?.querySelector('.author-name');
-      const aspectRatioWrapper = document.getElementById('aspectRatioWrapper');
-      const editQuoteInput = document.getElementById('editQuote');
-      const editAuthorInput = document.getElementById('editAuthor');
-      const editWordCountEl = document.getElementById('editWordCount');
-      const fontSizeValueEl = document.getElementById('fontSizeValue');
-      const boldBtn = document.getElementById('boldBtn');
-      const underlineBtn = document.getElementById('underlineBtn');
-      const italicBtn = document.getElementById('italicBtn');
-      const resetBtn = document.getElementById('resetBtn');
-
+      const preview = document.getElementById("quotePreview");
+      const quoteTextEl = preview?.querySelector(".quote-text");
+      const authorNameEl = preview?.querySelector(".author-name");
+      const aspectRatioWrapper = document.getElementById("aspectRatioWrapper");
+      const editQuoteInput = document.getElementById("editQuote");
+      const editAuthorInput = document.getElementById("editAuthor");
+      const editWordCountEl = document.getElementById("editWordCount");
+      const fontSizeValueEl = document.getElementById("fontSizeValue");
+      const boldBtn = document.getElementById("boldBtn");
+      const underlineBtn = document.getElementById("underlineBtn");
+      const italicBtn = document.getElementById("italicBtn");
+      const resetBtn = document.getElementById("resetBtn");
 
       const controls = {
-        bgColor: document.getElementById('bgColor'),
-        textColor: document.getElementById('textColor'),
-        fontFamily: document.getElementById('fontFamily'),
-        fontSize: document.getElementById('fontSize'),
-        downloadBtn: document.getElementById('downloadBtn'),
-        bgImageUpload: document.getElementById('bgImageUpload'),
-        clearBackgroundBtn: document.getElementById('clearBackgroundBtn'),
+        bgColor: document.getElementById("bgColor"),
+        textColor: document.getElementById("textColor"),
+        fontFamily: document.getElementById("fontFamily"),
+        fontSize: document.getElementById("fontSize"),
+        downloadBtn: document.getElementById("downloadBtn"),
+        bgImageUpload: document.getElementById("bgImageUpload"),
+        clearBackgroundBtn: document.getElementById("clearBackgroundBtn")
       };
 
-      const alignmentButtons = document.querySelectorAll('.alignment-btn');
-      const backgroundImageOptions = document.querySelectorAll('.background-image-option');
+      const alignmentButtons = document.querySelectorAll(".alignment-btn");
+      const backgroundImageOptions = document.querySelectorAll(".background-image-option");
       const aspectRatioRadios = document.querySelectorAll('input[name="aspectRatio"]');
 
-      let currentAlignment = 'center';
+      let currentAlignment = "center";
       let currentBackgroundImage = null;
       let uploadedBgObjectURL = null;
 
@@ -315,7 +308,7 @@ const pageMeta = {
         if (!preview || !quoteData || !quoteTextEl || !authorNameEl) return;
         quoteTextEl.textContent = quoteData.quote || "";
         authorNameEl.textContent = quoteData.author ? `- ${quoteData.author}` : "";
-        preview.style.color = controls.textColor?.value || '#ffffff';
+        preview.style.color = controls.textColor?.value || "#ffffff";
         preview.style.fontFamily = controls.fontFamily?.value || "'Space Mono', monospace";
         preview.style.fontSize = `${controls.fontSize?.value || 24}px`;
         preview.style.textAlign = currentAlignment;
@@ -323,20 +316,20 @@ const pageMeta = {
           currentAlignment === "left" ? "flex-start" : currentAlignment === "right" ? "flex-end" : "center";
 
         // Apply formatting classes
-        quoteTextEl.classList.toggle('bold', boldBtn?.classList.contains('active'));
-        quoteTextEl.classList.toggle('underline', underlineBtn?.classList.contains('active'));
-        quoteTextEl.classList.toggle('italic', italicBtn?.classList.contains('active'));
+        quoteTextEl.classList.toggle("bold", boldBtn?.classList.contains("active"));
+        quoteTextEl.classList.toggle("underline", underlineBtn?.classList.contains("active"));
+        quoteTextEl.classList.toggle("italic", italicBtn?.classList.contains("active"));
 
         if (currentBackgroundImage) {
           preview.style.backgroundImage = `url('${currentBackgroundImage}')`;
-          preview.style.backgroundColor = 'transparent';
-          if(controls.bgColor) controls.bgColor.disabled = true;
+          preview.style.backgroundColor = "transparent";
+          if (controls.bgColor) controls.bgColor.disabled = true;
         } else {
-          preview.style.backgroundImage = 'none';
-          preview.style.backgroundColor = controls.bgColor?.value || '#1a1a1a';
-          if(controls.bgColor) controls.bgColor.disabled = false;
+          preview.style.backgroundImage = "none";
+          preview.style.backgroundColor = controls.bgColor?.value || "#1a1a1a";
+          if (controls.bgColor) controls.bgColor.disabled = false;
         }
-        const selectedRatio = document.querySelector('input[name="aspectRatio"]:checked')?.value || 'free';
+        const selectedRatio = document.querySelector('input[name="aspectRatio"]:checked')?.value || "free";
         if (aspectRatioWrapper) aspectRatioWrapper.className = `aspect-ratio-${selectedRatio}`;
       }
 
@@ -357,14 +350,14 @@ const pageMeta = {
           controls.fontSize.value = "24";
           if (fontSizeValueEl) fontSizeValueEl.textContent = "24";
         }
-        boldBtn?.classList.remove('active');
-        underlineBtn?.classList.remove('active');
-        italicBtn?.classList.remove('active');
+        boldBtn?.classList.remove("active");
+        underlineBtn?.classList.remove("active");
+        italicBtn?.classList.remove("active");
 
         // Reset alignment
-        alignmentButtons.forEach(btn => btn.classList.remove('active'));
-        document.getElementById('alignCenter')?.classList.add('active');
-        currentAlignment = 'center';
+        alignmentButtons.forEach((btn) => btn.classList.remove("active"));
+        document.getElementById("alignCenter")?.classList.add("active");
+        currentAlignment = "center";
 
         // Reset background
         if (uploadedBgObjectURL) {
@@ -373,7 +366,7 @@ const pageMeta = {
         }
         if (controls.bgImageUpload) controls.bgImageUpload.value = "";
         currentBackgroundImage = null;
-        backgroundImageOptions.forEach(opt => opt.classList.remove('active'));
+        backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
         if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = true;
 
         // Reset aspect ratio
@@ -384,7 +377,7 @@ const pageMeta = {
 
       // Event Listeners
       if (editQuoteInput && editWordCountEl) {
-        editQuoteInput.addEventListener('input', () => {
+        editQuoteInput.addEventListener("input", () => {
           const isValid = updateWordCountDisplay(editQuoteInput, editWordCountEl);
           if (isValid) {
             quoteData.quote = editQuoteInput.value;
@@ -393,19 +386,19 @@ const pageMeta = {
         });
       }
       if (editAuthorInput) {
-        editAuthorInput.addEventListener('input', () => {
+        editAuthorInput.addEventListener("input", () => {
           quoteData.author = editAuthorInput.value;
           updatePreview();
         });
       }
 
       // Generic controls (excluding color, buttons)
-      ['textColor', 'fontFamily', 'fontSize'].forEach((controlId) => {
+      ["textColor", "fontFamily", "fontSize"].forEach((controlId) => {
         const control = controls[controlId];
         if (control) {
           const eventType = control.type === "select-one" ? "change" : "input";
           control.addEventListener(eventType, () => {
-            if (controlId === 'fontSize' && fontSizeValueEl) {
+            if (controlId === "fontSize" && fontSizeValueEl) {
               fontSizeValueEl.textContent = control.value;
             }
             updatePreview();
@@ -415,48 +408,48 @@ const pageMeta = {
 
       // Specific Listener for Background Color using 'input' event
       if (controls.bgColor) {
-        controls.bgColor.addEventListener('input', () => {
+        controls.bgColor.addEventListener("input", () => {
           updatePreview();
         });
       }
 
-        alignmentButtons.forEach(button => {
-            button.addEventListener('click', () => {
-              alignmentButtons.forEach(btn => btn.classList.remove('active'));
-              button.classList.add('active');
-            currentAlignment = button.dataset.align;
-            updatePreview();
+      alignmentButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          alignmentButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          currentAlignment = button.dataset.align;
+          updatePreview();
         });
       });
 
-        [boldBtn, underlineBtn, italicBtn].forEach(button => {
-            if(button) {
-                button.addEventListener('click', () => {
-                    button.classList.toggle('active');
+      [boldBtn, underlineBtn, italicBtn].forEach((button) => {
+        if (button) {
+          button.addEventListener("click", () => {
+            button.classList.toggle("active");
             updatePreview();
           });
         }
       });
 
-        backgroundImageOptions.forEach(option => {
-            option.addEventListener('click', () => {
-              backgroundImageOptions.forEach(opt => opt.classList.remove('active'));
-              option.classList.add('active');
-            currentBackgroundImage = option.dataset.src;
-            if (uploadedBgObjectURL) {
-              URL.revokeObjectURL(uploadedBgObjectURL);
-              uploadedBgObjectURL = null;
-              if (controls.bgImageUpload) controls.bgImageUpload.value = "";
-            }
-            if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
-            updatePreview();
+      backgroundImageOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+          backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
+          option.classList.add("active");
+          currentBackgroundImage = option.dataset.src;
+          if (uploadedBgObjectURL) {
+            URL.revokeObjectURL(uploadedBgObjectURL);
+            uploadedBgObjectURL = null;
+            if (controls.bgImageUpload) controls.bgImageUpload.value = "";
+          }
+          if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
+          updatePreview();
         });
       });
 
       if (controls.bgImageUpload) {
-        controls.bgImageUpload.addEventListener('change', (event) => {
+        controls.bgImageUpload.addEventListener("change", (event) => {
           const file = event.target.files[0];
-          if (file && file.type.startsWith('image/')) {
+          if (file && file.type.startsWith("image/")) {
             if (uploadedBgObjectURL) {
               URL.revokeObjectURL(uploadedBgObjectURL);
             }
@@ -468,7 +461,7 @@ const pageMeta = {
             updatePreview();
           } else if (file) {
             alert("Please select a valid image file.");
-            event.target.value = '';
+            event.target.value = "";
           }
         });
       }

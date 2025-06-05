@@ -10,7 +10,6 @@ import BackButton from "@/components/ui/backButton.astro";
     <div class="action">
       <button type="button" title="click audio" id="mute" class="mute-button mute-button-audio"></button>
     </div>
-    
 
     <div class="voices-dropdown">
       <button type="button" id="voices-btn" class="voices-btn">
@@ -34,7 +33,6 @@ import BackButton from "@/components/ui/backButton.astro";
     <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
   </section>
   <script>
-
     import { getRandomValue, isAlphabet, isNumber } from "@/utils/index";
     import { emojiList } from "@/mappers/alphabet";
 
@@ -42,19 +40,18 @@ import BackButton from "@/components/ui/backButton.astro";
     const muteButton = document.querySelector("#mute") as HTMLButtonElement;
     const audioPlayer = document.querySelector("#audioPlayer") as HTMLAudioElement;
 
-
     const voicesButton = document.querySelector("#voices-btn") as HTMLButtonElement;
     const selectedVoiceText = document.querySelector("#selected-voice-text") as HTMLSpanElement;
     const voicesOptionsContainer = document.querySelector("#voices-options") as HTMLElement;
     const voiceOptionElements = Array.from(voicesOptionsContainer.querySelectorAll(".voice-option")) as HTMLElement[];
 
-    let speakerName: string | null = null; 
+    let speakerName: string | null = null;
     let isMuted = false;
 
     function setSpeaker(name: string | null | undefined, displayText: string) {
       speakerName = name ?? null;
-      
-      voiceOptionElements.forEach(opt => {
+
+      voiceOptionElements.forEach((opt) => {
         opt.classList.toggle("active", opt.dataset.name === name);
       });
       if (voicesOptionsContainer) {
@@ -62,24 +59,21 @@ import BackButton from "@/components/ui/backButton.astro";
       }
     }
 
-    
     if (voiceOptionElements.length > 0) {
-      const defaultSpeakerElement = voiceOptionElements[0]; 
+      const defaultSpeakerElement = voiceOptionElements[0];
       setSpeaker(defaultSpeakerElement.dataset.name, defaultSpeakerElement.textContent || "Mudra");
     } else {
-      setSpeaker(null, "Voices"); 
+      setSpeaker(null, "Voices");
     }
 
-    
     if (voicesButton) {
       voicesButton.addEventListener("click", (e) => {
-        e.stopPropagation(); 
+        e.stopPropagation();
         voicesOptionsContainer?.classList.toggle("show");
       });
     }
 
-    
-    voiceOptionElements.forEach(option => {
+    voiceOptionElements.forEach((option) => {
       option.addEventListener("click", (e) => {
         e.stopPropagation();
         const target = e.currentTarget as HTMLElement;
@@ -87,15 +81,17 @@ import BackButton from "@/components/ui/backButton.astro";
       });
     });
 
-    
     document.addEventListener("click", (e) => {
-      if (voicesButton && !voicesButton.contains(e.target as Node) &&
-          voicesOptionsContainer && !voicesOptionsContainer.contains(e.target as Node)) {
+      if (
+        voicesButton &&
+        !voicesButton.contains(e.target as Node) &&
+        voicesOptionsContainer &&
+        !voicesOptionsContainer.contains(e.target as Node)
+      ) {
         voicesOptionsContainer.classList.remove("show");
       }
     });
 
-    
     if (muteButton) {
       muteButton.addEventListener("click", (e: MouseEvent) => {
         isMuted = !isMuted;
@@ -104,16 +100,16 @@ import BackButton from "@/components/ui/backButton.astro";
         target.classList.toggle("mute");
       });
     }
-    
+
     const getEmoji = (letter: string): string => {
       type List = { [key: string]: number[] };
       const upperCase = letter.toUpperCase();
       const list = (emojiList as List)[upperCase];
-      if (list && list.length) { 
+      if (list && list.length) {
         const codePoint = getRandomValue(list);
         return String.fromCodePoint(codePoint);
       }
-      return ""; 
+      return "";
     };
 
     const attachAudio = (key: string, isNumberSound = false) => {
@@ -123,7 +119,7 @@ import BackButton from "@/components/ui/backButton.astro";
       }
 
       let keyName;
-      let location = "/assets/media/"; 
+      let location = "/assets/media/";
       if (isNumberSound) {
         keyName = key.replace("Digit", "");
         location += "numbers";
@@ -132,7 +128,7 @@ import BackButton from "@/components/ui/backButton.astro";
         location += "alphabets";
       }
       const source = `${location}/${speakerName}/${keyName}.ogg`;
-      
+
       if (audioPlayer) {
         audioPlayer.src = source;
         audioPlayer.load();
@@ -141,7 +137,10 @@ import BackButton from "@/components/ui/backButton.astro";
             try {
               await audioPlayer.play();
             } catch (playError: unknown) {
-              if (playError instanceof Error && (playError.name === "NotAllowedError" || playError.name === "NotSupportedError")) {
+              if (
+                playError instanceof Error &&
+                (playError.name === "NotAllowedError" || playError.name === "NotSupportedError")
+              ) {
                 console.error(`Audio play error for ${source}: ${playError.name}. User interaction might be required.`);
               } else {
                 console.error(`Audio play error for ${source}:`, playError);
@@ -168,7 +167,7 @@ import BackButton from "@/components/ui/backButton.astro";
         if (isAlphabet(which)) {
           const emoji = getEmoji(key);
           mainBlock.innerHTML = key + emoji;
-          if (muteButton) attachAudio(code); 
+          if (muteButton) attachAudio(code);
         } else if (isNumber(keyCode)) {
           mainBlock.innerHTML = key;
           if (muteButton) attachAudio(code, true);
