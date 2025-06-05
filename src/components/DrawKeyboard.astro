@@ -4,10 +4,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 ---
 
 <head>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lobster&family=Merriweather&family=Open+Sans&family=Orbitron&family=Press+Start+2P&family=Ubuntu&display=swap"
-  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lobster&family=Merriweather&family=Open+Sans&family=Orbitron&family=Press+Start+2P&family=Ubuntu&display=swap">
 </head>
 
 <div class="container">
@@ -18,7 +15,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     </header>
 
     <!-- Continue Message beside header -->
-    <div class="continue-message" id="continueMessage" style="display: none;">Press any key to continue</div>
+    <div class="continue-message" id="continueMessage" style="display: none;">
+      Press any key to continue
+    </div>
   </div>
 
   <main class="main">
@@ -49,13 +48,13 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     alphabetMapper,
     IMAGE_DIR
   }}
-  is:inline
->
+  is:inline>
+
   // Initialize state
   let currentFontIndex = 0;
   let isUpperCase = true;
   let hasKeyBeenPressed = false;
-  console.log({ currentFontIndex, isUpperCase, hasKeyBeenPressed });
+  let showImages = true; // Track whether to show images or background colors
 
   // DOM elements
   const mainEl = document.querySelector("main");
@@ -64,17 +63,20 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   const instructionDiv = document.getElementById("instruction");
   const toggleCaseSwitch = document.getElementById("toggleCase");
   const toggleFontSwitch = document.getElementById("toggleFont");
+  const toggleImgSwitch = document.getElementById("toggleimg");
   const toggleBackgroundSwitch = document.getElementById("toggleBg");
   const info = document.querySelector(".info");
   const popupOverlay = document.getElementById("popupOverlay");
   const pressedKeySpan = document.getElementById("pressedKey");
   const popupClose = document.getElementById("popupClose");
+  const imgToggle = document.querySelector(".img-toggle");
+  const bgToggle = document.querySelector(".bg-toggle");
 
   // Show continue message
   function showContinueMessage() {
-    const continueMsg = document.getElementById("continueMessage");
+    const continueMsg = document.getElementById('continueMessage');
     if (continueMsg) {
-      continueMsg.style.display = "block";
+      continueMsg.style.display = 'block';
     }
   }
 
@@ -84,11 +86,14 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     instructionDiv.textContent = "";
     boardDiv.style.backgroundImage = "";
     boardDiv.style.backgroundColor = "";
-    info.textContent = "Press any key"; // Reset header text
-    const continueMsg = document.getElementById("continueMessage");
+    info.textContent = "Press any key";
+    const continueMsg = document.getElementById('continueMessage');
     if (continueMsg) {
-      continueMsg.style.display = "none";
+      continueMsg.style.display = 'none';
     }
+    showImages = true;
+    if (imgToggle) imgToggle.classList.remove('active');
+    if (bgToggle) bgToggle.classList.remove('active');
   }
 
   function getRandomValue(arr) {
@@ -97,55 +102,93 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   // Show popup for invalid key presses
   function showPopup(key) {
-    pressedKeySpan.textContent = key; // Show the wrong key pressed
-    popupOverlay.style.display = "flex";
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
+    pressedKeySpan.textContent = key;
+    popupOverlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
 
   // Hide popup
   function hidePopup() {
-    popupOverlay.style.display = "none";
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
+    popupOverlay.style.display = 'none';
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
 
   function updateDisplay(key) {
     hasKeyBeenPressed = true;
-    instructionDiv.textContent = ""; // Clear previous instruction
+    instructionDiv.textContent = "";
 
     if (!isNaN(Number(key))) {
       boardDiv.style.backgroundColor = getRandomValue(colorBox);
       boardDiv.style.backgroundImage = "";
-      charDiv.textContent = key; // Display the number in the box
-      info.textContent = numberBox[key] || "Unknown"; // Update header with number word
+      charDiv.textContent = key;
+      info.textContent = numberBox[key] || "Unknown";
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+      // For numbers, keep normal font size (no image background)
+      charDiv.style.fontSize = "";
       showContinueMessage();
       return;
     }
 
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
     if (found) {
-      // Display the corresponding word in the header
-      info.textContent = found.value; // Update header with alphabet word
-      charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase(); // Display the letter in the box
+      info.textContent = found.value;
+      charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
-      if (!toggleBackgroundSwitch?.checked) {
+      
+      if (showImages) {
         boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
         boardDiv.style.backgroundColor = "";
+        // Decrease font size when image is displayed
+        charDiv.style.fontSize = "25rem";
+      } else {
+        boardDiv.style.backgroundImage = "";
+        boardDiv.style.backgroundColor = getRandomValue(colorBox);
+        // Keep normal font size when only background color
+        charDiv.style.fontSize = "";
       }
     } else {
-      // Show popup for invalid key
       showPopup(key);
     }
 
     showContinueMessage();
   }
 
+  // Toggle between images and background colors
+  function toggleImageBackground() {
+    showImages = !showImages;
+    
+    if (showImages) {
+      imgToggle.classList.add('active');
+      bgToggle.classList.remove('active');
+      if (toggleImgSwitch) toggleImgSwitch.checked = true;
+      if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
+    } else {
+      imgToggle.classList.remove('active');
+      bgToggle.classList.add('active');
+      if (toggleImgSwitch) toggleImgSwitch.checked = false;
+      if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = true;
+    }
+    
+    // Update display if a key has been pressed
+    if (hasKeyBeenPressed && charDiv.textContent) {
+      updateDisplay(charDiv.textContent);
+    }
+  }
+
   // Handle key press events
   function handleKeyPress(e) {
     const key = e.key;
-
+    
+    // If popup is open, ignore all key presses except Escape
+    if (popupOverlay.style.display === 'flex') {
+      if (key === 'Escape') {
+        hidePopup();
+      }
+      return; // Don't process any other keys when popup is open
+    }
+    
     if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
       updateDisplay(key);
     } else if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
@@ -159,7 +202,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   // Event listeners
   document.addEventListener("keydown", handleKeyPress);
   popupClose.addEventListener("click", hidePopup);
-
+  
   popupOverlay.addEventListener("click", (e) => {
     if (e.target === popupOverlay) {
       hidePopup();
@@ -170,9 +213,49 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     if (e.key === "Escape") {
       hidePopup();
     }
+    // Remove duplicate key handling - it's already handled in handleKeyPress
   });
 
-  // Optional toggle event listeners (if toggles exist in your UI)
+  // Image/Background toggle
+  if (imgToggle && bgToggle) {
+    imgToggle.addEventListener('click', () => {
+      if (!imgToggle.classList.contains('active')) {
+        showImages = true;
+        imgToggle.classList.add('active');
+        bgToggle.classList.remove('active');
+        if (toggleImgSwitch) toggleImgSwitch.checked = true;
+        if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
+        
+        // Update display if a key has been pressed
+        if (hasKeyBeenPressed && charDiv.textContent) {
+          updateDisplay(charDiv.textContent);
+        }
+      }
+    });
+
+    bgToggle.addEventListener('click', () => {
+      // Always change color on each click, regardless of active state
+      showImages = false;
+      bgToggle.classList.add('active');
+      imgToggle.classList.remove('active');
+      if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = true;
+      if (toggleImgSwitch) toggleImgSwitch.checked = false;
+      
+      // Always generate new random color on each click
+      if (hasKeyBeenPressed && charDiv.textContent) {
+        boardDiv.style.backgroundImage = "";
+        boardDiv.style.backgroundColor = getRandomValue(colorBox);
+        // Reset font size to normal when switching to background color
+        charDiv.style.fontSize = "";
+      } else {
+        // Even if no key pressed, show random color
+        boardDiv.style.backgroundImage = "";
+        boardDiv.style.backgroundColor = getRandomValue(colorBox);
+      }
+    });
+  }
+
+  // Case toggle functionality
   toggleCaseSwitch?.addEventListener("change", (e) => {
     isUpperCase = !e.target.checked;
     const currentText = charDiv.textContent;
@@ -186,49 +269,32 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     currentFontIndex = (currentFontIndex + 1) % fontBox.length;
     const currentFont = fontBox[currentFontIndex];
 
-    document.fonts
-      .load(`1em "${currentFont}"`)
-      .then(() => {
-        charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
-      })
-      .catch(() => {
-        console.warn(`Font "${currentFont}" failed to load.`);
-        charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
-      });
-  });
-
-  // Background toggle functionality
-  toggleBackgroundSwitch?.addEventListener("change", (e) => {
-    if (e.target.checked) {
-      mainEl.style.backgroundBlendMode = "soft-light";
-      mainEl.style.filter = "brightness(0.9)";
-      boardDiv.style.backgroundImage = "none";
-      boardDiv.style.backgroundColor =
-        getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue("--solid-bg");
-    } else {
-      mainEl.style.backgroundBlendMode = "normal";
-      mainEl.style.filter = "brightness(1)";
-      boardDiv.style.backgroundColor = "";
-    }
+    document.fonts.load(`1em "${currentFont}"`).then(() => {
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
+    }).catch(() => {
+      console.warn(`Font "${currentFont}" failed to load.`);
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
+    });
   });
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
 
-  document.addEventListener("keyboardReset", () => {
+  document.addEventListener('keyboardReset', (e) => {
     currentFontIndex = 0;
     isUpperCase = true;
     hasKeyBeenPressed = false;
     initializeDisplay();
-
+    
     if (mainEl) {
-      mainEl.style.backgroundBlendMode = "normal";
-      mainEl.style.filter = "brightness(1)";
+        mainEl.style.backgroundBlendMode = 'normal';
+        mainEl.style.filter = 'brightness(1)';
     }
     // Reset board styles
     if (toggleCaseSwitch) toggleCaseSwitch.checked = false;
     if (toggleFontSwitch) toggleFontSwitch.checked = false;
     if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
-
+    if (toggleImgSwitch) toggleImgSwitch.checked = false;
+    
     hidePopup();
   });
 </script>
@@ -268,67 +334,67 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   /* Header Container */
   .header-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    max-width: 1500px;
-    gap: 2rem;
-    margin-bottom: 1rem;
-    position: relative;
-  }
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  max-width: 1500px;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
 
-  /* Header Styles */
-  .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 75%;
-    height: 60px;
-    padding: 1rem 0.6rem;
-    gap: 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 16px;
-    box-shadow:
-      0 8px 32px rgba(31, 38, 135, 0.37),
-      0 4px 16px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
-  }
+/* Header Styles */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  height: 60px;
+  padding: 1rem 0.6rem;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(31, 38, 135, 0.37),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
 
-  /* Update Info Text Color */
-  .info {
-    color: #ffffff;
-    font-weight: 600;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 2rem;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: 0.1em;
-  }
+/* Update Info Text Color */
+.info {
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.1em;
+}
 
-  /* Continue Message */
-  .continue-message {
-    color: dark-light(#ffffff, black);
-    font-size: 1.1rem;
-    font-weight: 400;
-    font-style: italic;
-    text-align: right;
-    margin-bottom: -20px;
-  }
+/* Continue Message */
+.continue-message {
+  color:dark-light( #ffffff,black);
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+  text-align: right;
+  margin-bottom: -15px;
+}
   @keyframes slideDown {
     from {
       opacity: 0;
