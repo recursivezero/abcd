@@ -38,7 +38,7 @@ import "@/assets/styles/common.css";
         </label>
       </div>
 
-            <div class="controls" role="radiogroup" aria-labelledby="content-type-label">
+      <div class="controls" role="radiogroup" aria-labelledby="content-type-label">
         <span id="content-type-label" class="sr-only">Panel Content Type</span>
 
         <label class="alphabet" for="alphabet">
@@ -107,7 +107,7 @@ import "@/assets/styles/common.css";
       DOWN = 40
     }
 
-        enum ContentType {
+    enum ContentType {
       ALPHABET = "alphabet",
       NUMBERS = "numbers"
     }
@@ -192,8 +192,9 @@ import "@/assets/styles/common.css";
           this.buildPanel();
           this.changePanel();
         });
-        this.#cellRange.addEventListener("change", (e) => { // Add change event for final blur
-            this.#cellRange.blur();
+        this.#cellRange.addEventListener("change", (e) => {
+          // Add change event for final blur
+          this.#cellRange.blur();
         });
       }
 
@@ -206,7 +207,8 @@ import "@/assets/styles/common.css";
           // Ensure current value is within bounds
           if (Number(this.#cellRange.value) < 10) this.#cellRange.value = "10";
           if (Number(this.#cellRange.value) > 26) this.#cellRange.value = "26";
-        } else { // ContentType.NUMBERS
+        } else {
+          // ContentType.NUMBERS
           this.#cellRange.min = "3";
           this.#cellRange.max = "10";
           this.#minRangeValueSpan.textContent = "3";
@@ -236,7 +238,8 @@ import "@/assets/styles/common.css";
 
           if (this.#contentType === ContentType.ALPHABET) {
             div.textContent = String.fromCodePoint(65 + i); // A to Z
-          } else { // ContentType.NUMBERS
+          } else {
+            // ContentType.NUMBERS
             div.textContent = String(i % 10); // 0-9, wraps around after 9
           }
 
@@ -268,11 +271,12 @@ import "@/assets/styles/common.css";
           cell.classList.remove("front");
           // Calculate which cell should be "front" based on rotation
           const adjustedIndex = (index + normalizedIndex) % count;
-          if (adjustedIndex === 0) { // The cell that is currently at the 0-degree position (front)
+          if (adjustedIndex === 0) {
+            // The cell that is currently at the 0-degree position (front)
             cell.classList.add("front");
+          }
+        });
       }
-    });
-  }  
 
       rotatePanel({ by = "Y" }: { by?: "X" | "Y" }) {
         this.doTheMath();
@@ -287,7 +291,7 @@ import "@/assets/styles/common.css";
 
         switch (code) {
           case ArrowKeys.RIGHT: {
-            if (this.#orientation === "Y"){
+            if (this.#orientation === "Y") {
               this.#selectedIndex--;
             } else {
               this.#selectedIndex++;
@@ -321,25 +325,29 @@ import "@/assets/styles/common.css";
           default: {
             // Handle character input (alphabets and numbers)
             if (this.#contentType === ContentType.ALPHABET) {
-              if (code >= 65 && code <= 90) { // A-Z (uppercase)
+              if (code >= 65 && code <= 90) {
+                // A-Z (uppercase)
                 this.#selectedIndex = (65 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to A
-              } else if (code >= 97 && code <= 122) { // a-z (lowercase)
+              } else if (code >= 97 && code <= 122) {
+                // a-z (lowercase)
                 this.#selectedIndex = (97 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to a
               } else {
-                 // If not an alphabet, just move forward
+                // If not an alphabet, just move forward
                 this.#selectedIndex++;
               }
-            } else { // ContentType.NUMBERS
-              if (code >= 48 && code <= 57) { // 0-9
+            } else {
+              // ContentType.NUMBERS
+              if (code >= 48 && code <= 57) {
+                // 0-9
                 this.#selectedIndex = (48 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to 0
               } else {
-                 // If not a number, just move forward
+                // If not a number, just move forward
                 this.#selectedIndex++;
               }
             }
           }
         }
-        this.#selectedIndex = (this.#selectedIndex % currentPanelSize + currentPanelSize) % currentPanelSize;
+        this.#selectedIndex = ((this.#selectedIndex % currentPanelSize) + currentPanelSize) % currentPanelSize;
         this.changePanel();
       }
     }

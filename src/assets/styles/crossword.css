@@ -52,7 +52,9 @@
   gap: 12px;
   padding: 28px;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow), 0 0 0 15px rgba(99, 102, 241, 0.08);
+  box-shadow:
+    var(--box-shadow),
+    0 0 0 15px rgba(99, 102, 241, 0.08);
   margin: 0 auto;
   width: 100%;
   max-width: 600px;
@@ -91,7 +93,9 @@
   transform: translateY(-3px);
   background: #eef2ff;
   border-color: var(--primary-color);
-  box-shadow: 0 0 16px 4px var(--primary-color), 0 8px 20px rgba(99, 102, 241, 0.15);
+  box-shadow:
+    0 0 16px 4px var(--primary-color),
+    0 8px 20px rgba(99, 102, 241, 0.15);
 }
 
 .grid__puzzle .cell.selected {

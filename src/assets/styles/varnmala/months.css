@@ -39,7 +39,10 @@
   color: var(--text-secondary, var(--text));
   border-radius: 0.5rem 0.5rem 0 0;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
   margin-bottom: -2px;
   position: relative;
 }
@@ -79,8 +82,12 @@
 }
 
 @keyframes fadeInPane {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .months-grid {
@@ -123,9 +130,9 @@
   border: 1px solid var(--border);
   background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
   color: var(--text);
-  overflow: hidden; 
+  overflow: hidden;
   /* Make month-card-front a flex container to manage its direct children in flow */
-  display: flex; 
+  display: flex;
   /* align-items: stretch; /* Default, good for .month-card-front-content height */
   /* justify-content: stretch; /* Default, good for .month-card-front-content width */
 }
@@ -143,7 +150,9 @@
   border-radius: 15px; /* Or any value like 0.5rem, 50% for a pill shape, etc. */
   cursor: pointer;
   z-index: 20;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .card-flip-action-btn:hover {
@@ -172,10 +181,10 @@
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  display: flex; 
+  display: flex;
   flex-direction: column;
-  align-items: center;   
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
   border-radius: 0.5rem;
   /* Adjusted padding: top, right, bottom, left */
   padding: 50px 1rem 1rem 1rem; /* Increased top padding to make space for the flip button */
@@ -185,29 +194,29 @@
   color: var(--text);
   overflow: hidden;
   transform: rotateY(180deg);
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .month-card-back-content {
-  display: flex; 
+  display: flex;
   flex-direction: column;
-  align-items: center;   
-  justify-content: center; 
-  width: 100%; 
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   height: 100%; /* Ensure it can fill the back card */
-  flex-grow: 1; 
+  flex-grow: 1;
   box-sizing: border-box;
 }
 
 /* This class was added in a previous step for the ordinal text */
 .hindu-ordinal-text-on-back {
-  font-size: 1.7rem; 
-  color: var(--text-on-primary, var(--background)); 
-  margin: 0; 
+  font-size: 1.7rem;
+  color: var(--text-on-primary, var(--background));
+  margin: 0;
   font-weight: 600;
-  line-height: 1.4; 
-  text-align: center; 
-  padding: 0 0.5rem; 
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 0.5rem;
 }
 
 /* Styles for the calendar embedded on the card back - Vibrant & Playful */
@@ -218,32 +227,34 @@
   text-align: center;
   width: 100%;
   max-width: 260px; /* Allow it to be a bit larger */
-  margin: auto; 
-  padding: 12px; 
+  margin: auto;
+  padding: 12px;
   border-radius: 12px; /* More pronounced rounding */
   background-color: #cceeff; /* Cheerful Sky Blue background */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(255,255,255,0.5);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
   border: 2px solid #aaddff; /* Slightly darker blue border */
 }
 
 .calendar-on-card-grid .calendar-day {
-  padding: 6px 3px; 
+  padding: 6px 3px;
   border-radius: 8px; /* Rounder cells */
   background-color: #ffffff; /* Clean white cells */
   color: #33475b; /* Dark blue-grey text for contrast */
-  min-height: 28px; 
-  line-height: 28px; 
-  font-size: 0.8rem; 
+  min-height: 28px;
+  line-height: 28px;
+  font-size: 0.8rem;
   font-weight: 600; /* Bolder day numbers */
   border: 1px solid #bee0f5; /* Light blue cell border */
   transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Playful transition */
-  box-shadow: 0 2px 3px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
 }
 
 .calendar-on-card-grid .calendar-day:hover:not(.empty):not(.calendar-header) {
   background-color: #ffeb99; /* Sunny yellow hover */
   transform: scale(1.1) translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   color: #5c4033; /* Brownish text on yellow hover */
 }
 
@@ -251,15 +262,15 @@
   font-weight: 700;
   background-color: #ffcc80; /* Peachy orange background for headers */
   color: #8c5a40; /* Darker text for contrast on peachy bg */
-  font-size: 0.7rem; 
+  font-size: 0.7rem;
   padding: 4px 0;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
   border-radius: 6px; /* Rounded headers */
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   /* Resetting properties from .calendar-day if they conflict */
   min-height: auto;
   line-height: normal;
-  border: none; 
+  border: none;
 }
 
 .calendar-on-card-grid .calendar-day.empty {
@@ -279,7 +290,7 @@
   z-index: 1;
 }
 .calendar-on-card-grid .calendar-day.current-day::before {
-    content: none; 
+  content: none;
 }
 
 .calendar-on-card-grid .calendar-day.holiday-day {
@@ -287,22 +298,22 @@
   color: #226622; /* Dark green text */
   font-weight: 700;
   border: 2px dashed #66cc66; /* Dashed, brighter green border */
-  position: relative; 
+  position: relative;
 }
 .calendar-on-card-grid .calendar-day.holiday-day::after {
-  content: '🎈'; /* Balloon emoji for holidays */
+  content: "🎈"; /* Balloon emoji for holidays */
   position: absolute;
-  top: -5px; 
+  top: -5px;
   right: -3px;
-  font-size: 0.85rem; 
+  font-size: 0.85rem;
   line-height: 1;
   transform: rotate(15deg);
 }
 
 .calendar-on-card-grid .calendar-day.holiday-day.current-day {
-   background-color: #ff8c8c; /* Lighter coral if also holiday */
-   border-style: solid; 
-   border-color: #e05050;
+  background-color: #ff8c8c; /* Lighter coral if also holiday */
+  border-style: solid;
+  border-color: #e05050;
 }
 .calendar-on-card-grid .calendar-day.holiday-day.current-day::after {
   color: #e05050; /* Match current day's emphasis */
@@ -317,7 +328,7 @@
   .calendar-on-card-grid {
     gap: 4px;
     padding: 10px;
-    max-width: 230px; 
+    max-width: 230px;
     border-radius: 10px;
   }
   .calendar-on-card-grid .calendar-day {
@@ -326,12 +337,12 @@
     font-size: 0.75rem;
     border-radius: 6px;
   }
-   .calendar-on-card-grid .calendar-header {
+  .calendar-on-card-grid .calendar-header {
     font-size: 0.65rem;
     border-radius: 5px;
   }
   .calendar-on-card-grid .calendar-day.holiday-day::after {
-    font-size: 0.75rem; 
+    font-size: 0.75rem;
     top: -4px;
     right: -2px;
   }
@@ -339,10 +350,10 @@
 
 @media (max-width: 480px) {
   .month-card {
-    min-height: 280px; 
+    min-height: 280px;
   }
-   .calendar-on-card-grid {
-    max-width: 100%; 
+  .calendar-on-card-grid {
+    max-width: 100%;
     padding: 8px;
     gap: 3px;
     border-radius: 8px;

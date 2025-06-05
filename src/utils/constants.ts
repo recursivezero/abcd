@@ -194,5 +194,3 @@ export const colors = [
 export { BASE_URL, IMAGE_DIR };
 
 export { colorBox, fontBox, numberBox };
-
-

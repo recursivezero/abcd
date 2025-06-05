@@ -4,7 +4,10 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 ---
 
 <head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lobster&family=Merriweather&family=Open+Sans&family=Orbitron&family=Press+Start+2P&family=Ubuntu&display=swap">
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lobster&family=Merriweather&family=Open+Sans&family=Orbitron&family=Press+Start+2P&family=Ubuntu&display=swap"
+  />
 </head>
 
 <div class="container">
@@ -15,9 +18,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     </header>
 
     <!-- Continue Message beside header -->
-    <div class="continue-message" id="continueMessage" style="display: none;">
-      Press any key to continue
-    </div>
+    <div class="continue-message" id="continueMessage" style="display: none;">Press any key to continue</div>
   </div>
 
   <main class="main">
@@ -48,12 +49,13 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     alphabetMapper,
     IMAGE_DIR
   }}
-  is:inline>
-
+  is:inline
+>
   // Initialize state
   let currentFontIndex = 0;
   let isUpperCase = true;
   let hasKeyBeenPressed = false;
+  console.log({ currentFontIndex, isUpperCase, hasKeyBeenPressed });
 
   // DOM elements
   const mainEl = document.querySelector("main");
@@ -70,9 +72,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   // Show continue message
   function showContinueMessage() {
-    const continueMsg = document.getElementById('continueMessage');
+    const continueMsg = document.getElementById("continueMessage");
     if (continueMsg) {
-      continueMsg.style.display = 'block';
+      continueMsg.style.display = "block";
     }
   }
 
@@ -83,9 +85,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     boardDiv.style.backgroundImage = "";
     boardDiv.style.backgroundColor = "";
     info.textContent = "Press any key"; // Reset header text
-    const continueMsg = document.getElementById('continueMessage');
+    const continueMsg = document.getElementById("continueMessage");
     if (continueMsg) {
-      continueMsg.style.display = 'none';
+      continueMsg.style.display = "none";
     }
   }
 
@@ -96,16 +98,16 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   // Show popup for invalid key presses
   function showPopup(key) {
     pressedKeySpan.textContent = key; // Show the wrong key pressed
-    popupOverlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
+    popupOverlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
   }
 
   // Hide popup
   function hidePopup() {
-    popupOverlay.style.display = 'none';
-    document.body.style.overflow = '';
-    document.documentElement.style.overflow = '';
+    popupOverlay.style.display = "none";
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
   }
 
   function updateDisplay(key) {
@@ -143,7 +145,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   // Handle key press events
   function handleKeyPress(e) {
     const key = e.key;
-    
+
     if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
       updateDisplay(key);
     } else if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
@@ -157,7 +159,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   // Event listeners
   document.addEventListener("keydown", handleKeyPress);
   popupClose.addEventListener("click", hidePopup);
-  
+
   popupOverlay.addEventListener("click", (e) => {
     if (e.target === popupOverlay) {
       hidePopup();
@@ -184,12 +186,15 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     currentFontIndex = (currentFontIndex + 1) % fontBox.length;
     const currentFont = fontBox[currentFontIndex];
 
-    document.fonts.load(`1em "${currentFont}"`).then(() => {
-      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
-    }).catch(() => {
-      console.warn(`Font "${currentFont}" failed to load.`);
-      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
-    });
+    document.fonts
+      .load(`1em "${currentFont}"`)
+      .then(() => {
+        charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
+      })
+      .catch(() => {
+        console.warn(`Font "${currentFont}" failed to load.`);
+        charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${currentFont}"`;
+      });
   });
 
   // Background toggle functionality
@@ -209,21 +214,21 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
 
-  document.addEventListener('keyboardReset', (e) => {
+  document.addEventListener("keyboardReset", () => {
     currentFontIndex = 0;
     isUpperCase = true;
     hasKeyBeenPressed = false;
     initializeDisplay();
-    
+
     if (mainEl) {
-        mainEl.style.backgroundBlendMode = 'normal';
-        mainEl.style.filter = 'brightness(1)';
+      mainEl.style.backgroundBlendMode = "normal";
+      mainEl.style.filter = "brightness(1)";
     }
     // Reset board styles
     if (toggleCaseSwitch) toggleCaseSwitch.checked = false;
     if (toggleFontSwitch) toggleFontSwitch.checked = false;
     if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
-    
+
     hidePopup();
   });
 </script>
@@ -263,67 +268,67 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   /* Header Container */
   .header-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  max-width: 1500px;
-  gap: 2rem;
-  margin-bottom: 1rem;
-  position: relative;
-}
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 1500px;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
 
-/* Header Styles */
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 75%;
-  height: 60px;
-  padding: 1rem 0.6rem;
-  gap: 1rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  box-shadow: 
-    0 8px 32px rgba(31, 38, 135, 0.37),
-    0 4px 16px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
-}
+  /* Header Styles */
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    height: 60px;
+    padding: 1rem 0.6rem;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow:
+      0 8px 32px rgba(31, 38, 135, 0.37),
+      0 4px 16px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+  }
 
-/* Update Info Text Color */
-.info {
-  color: #ffffff;
-  font-weight: 600;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 2rem;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  letter-spacing: 0.1em;
-}
+  /* Update Info Text Color */
+  .info {
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.1em;
+  }
 
-/* Continue Message */
-.continue-message {
-  color:dark-light( #ffffff,black);
-  font-size: 1.1rem;
-  font-weight: 400;
-  font-style: italic;
-  text-align: right;
-  margin-bottom: -20px;
-}
+  /* Continue Message */
+  .continue-message {
+    color: dark-light(#ffffff, black);
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-style: italic;
+    text-align: right;
+    margin-bottom: -20px;
+  }
   @keyframes slideDown {
     from {
       opacity: 0;

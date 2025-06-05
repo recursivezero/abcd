@@ -60,10 +60,9 @@ const { title, description } = Astro.props;
 </script>
 
 <style>
+  /* Original code */
 
-/* Original code */
-
- /*
+  /*
   .help {
     display: flex;
     justify-content: center;
@@ -79,55 +78,54 @@ const { title, description } = Astro.props;
     cursor: pointer;
   }*/
 
-/* Modified code */
+  /* Modified code */
 
-.help {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 1.5rem;
-  width: 2rem;
-  height: 2rem;
-  color: var(--primary);
-  border-radius: 50%;
-  border: 1.5px solid var(--primary);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-}
+  .help {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    color: var(--primary);
+    border-radius: 50%;
+    border: 1.5px solid var(--primary);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+  }
 
-.help::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 8px;
-  background-color: transparent;
-  color: light-dark(black, white); 
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease-in-out;
-  pointer-events: none;
-}
+  .help::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    background-color: transparent;
+    color: light-dark(black, white);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+  }
 
-.help:hover::after {
-  opacity: 1;
-  visibility: visible;
-}
+  .help:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
 
-.help:hover {
-  transform: translateY(-2px) scale(1.05);
-  background-color: transparent;
-  color: #2563eb;
-  border-color: #2563eb;
-}
-
+  .help:hover {
+    transform: translateY(-2px) scale(1.05);
+    background-color: transparent;
+    color: #2563eb;
+    border-color: #2563eb;
+  }
 </style>

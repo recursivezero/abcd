@@ -10,9 +10,7 @@ import Help from "@/components/Help.astro";
       <div class="controls">
         <label for="toggleCase" class="control-item" data-tooltip="Toggle case">
           <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
-          <span id="text" class="control-button case-toggle" role="switch" aria-checked="false">
-            Aa
-          </span>
+          <span id="text" class="control-button case-toggle" role="switch" aria-checked="false"> Aa </span>
         </label>
 
         <label for="toggleFont" class="control-item" data-tooltip="Change font">
@@ -34,10 +32,9 @@ import Help from "@/components/Help.astro";
         <div class="control-item" data-tooltip="Reset all">
           <button class="control-button reset-button" id="resetButton">↻</button>
         </div>
-
       </div>
 
-      <Help 
+      <Help
         title="Draw Keyboard"
         description="Draw letters by sliding your finger across the keys! Try the buttons to change the style, make it BIG or small, and pick cool backgrounds!"
       />
@@ -47,12 +44,11 @@ import Help from "@/components/Help.astro";
 </Layout>
 
 <style>
-
   :root {
     --keyboard-bg: white;
     --keyboard-alt-bg: #f0f0f0;
-    --font-normal: 'Arial', sans-serif;
-    --font-fancy: 'Brush Script MT', cursive;
+    --font-normal: "Arial", sans-serif;
+    --font-fancy: "Brush Script MT", cursive;
   }
 
   .controls-container {
@@ -80,11 +76,11 @@ import Help from "@/components/Help.astro";
     height: 3.2rem;
     border-radius: 50%;
     cursor: pointer;
-    border: 1px solid #3B82f6;
+    border: 1px solid #3b82f6;
     transition: all 0.2s var(--ease);
     box-shadow: 0 1px 3px var(--shadow-sm);
     font-size: 1.25rem;
-    color: #3B82f6;
+    color: #3b82f6;
     font-weight: 600;
     background-color: transparent;
     position: relative;
@@ -98,7 +94,7 @@ import Help from "@/components/Help.astro";
   }
 
   .control-button.active {
-    background-color: #3B82f6;
+    background-color: #3b82f6;
     color: white;
   }
 
@@ -113,12 +109,13 @@ import Help from "@/components/Help.astro";
   }
 
   .reset-button:hover {
-  /*To rotate the reset button on hover*/
-  /*transform: translateY(-2px) scale(1.1) rotate(180deg);*/
+    /*To rotate the reset button on hover*/
+    /*transform: translateY(-2px) scale(1.1) rotate(180deg);*/
     transition: all 0.3s ease;
   }
 
-  .font-icon, .font-icon-alt {
+  .font-icon,
+  .font-icon-alt {
     position: absolute;
     transition: opacity 0.2s ease;
     font-size: 1.25rem;
@@ -131,7 +128,7 @@ import Help from "@/components/Help.astro";
 
   .font-icon-alt {
     opacity: 0;
-    font-family: 'Brush Script MT', cursive;
+    font-family: "Brush Script MT", cursive;
   }
 
   .font-toggle.active .font-icon {
@@ -142,7 +139,8 @@ import Help from "@/components/Help.astro";
     opacity: 1;
   }
 
-  .bg-icon, .bg-icon-alt {
+  .bg-icon,
+  .bg-icon-alt {
     position: absolute;
     transition: opacity 0.2s ease;
     font-size: 1.25rem;
@@ -210,19 +208,19 @@ import Help from "@/components/Help.astro";
     .controls-container {
       gap: 0.5rem;
     }
-    
+
     .control-button {
       width: 3.2rem;
       height: 3.2rem;
       font-size: 1rem;
     }
-    
+
     .control-item::after,
     .reset-button::after {
       font-size: 0.65rem;
       bottom: -2.25rem;
     }
-    
+
     .control-item:hover::after,
     .reset-button:hover::after {
       bottom: -1.75rem;
@@ -230,136 +228,126 @@ import Help from "@/components/Help.astro";
   }
 
   *:focus {
-  outline: none;
-  box-shadow: none;
-}
-
+    outline: none;
+    box-shadow: none;
+  }
 </style>
 
 <script>
-
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Get all buttons and elements
-    const caseToggle = document.querySelector('.case-toggle');
-    const fontToggle = document.querySelector('.font-toggle');
-    const bgToggle = document.querySelector('.bg-toggle');
-    const resetButton = document.getElementById('resetButton');
-    
+    const caseToggle = document.querySelector(".case-toggle") as HTMLElement;
+    const fontToggle = document.querySelector(".font-toggle") as HTMLElement;
+    const bgToggle = document.querySelector(".bg-toggle") as HTMLElement;
+    const resetButton = document.getElementById("resetButton") as HTMLButtonElement;
+
     // Get elements from the second file that need to be reset
     const mainEl = document.querySelector("main");
     const boardDiv = document.getElementById("board");
     const charDiv = document.getElementById("char");
-    const toggleCaseSwitch = document.getElementById("toggleCase");
-    const toggleFontSwitch = document.getElementById("toggleFont");
-    const toggleBackgroundSwitch = document.getElementById("toggleBg");
+    const toggleCaseSwitch = document.getElementById("toggleCase") as HTMLInputElement;
+    const toggleFontSwitch = document.getElementById("toggleFont") as HTMLInputElement;
+    const toggleBackgroundSwitch = document.getElementById("toggleBg") as HTMLInputElement;
     const info = document.querySelector(".info");
-    
+
     // Store original values for complete reset
     const originalState = {
-        isUpperCase: true,
-        currentFontIndex: 0,
-        mainElBackgroundBlendMode: 'normal',
-        mainElFilter: 'brightness(1)',
-        boardDivBackgroundColor: '',
-        boardDivBackgroundImage: '',
-        charDivFontFamily: '', // Will be set to default
-        infoText: 'Press any key',
-        charText: ''
+      isUpperCase: true,
+      currentFontIndex: 0,
+      mainElBackgroundBlendMode: "normal",
+      mainElFilter: "brightness(1)",
+      boardDivBackgroundColor: "",
+      boardDivBackgroundImage: "",
+      charDivFontFamily: "", // Will be set to default
+      infoText: "Press any key",
+      charText: ""
     };
 
     // Simple toggle for case button
-    caseToggle.addEventListener('click', () => {
-        const isActive = caseToggle.classList.contains('active');
-        if (isActive) {
-            caseToggle.classList.remove('active');
-            caseToggle.setAttribute('aria-checked', 'false');
-            caseToggle.textContent = 'Aa';
-            caseToggle.style.fontSize = '1.25rem';
-        } else {
-            caseToggle.classList.add('active');
-            caseToggle.setAttribute('aria-checked', 'true');
-            caseToggle.textContent = 'Aa';
-            caseToggle.style.fontSize = '1rem';
-        }
+    caseToggle!.addEventListener("click", () => {
+      const isActive = caseToggle.classList.contains("active");
+      if (isActive) {
+        caseToggle.classList.remove("active");
+        caseToggle.setAttribute("aria-checked", "false");
+        caseToggle.textContent = "Aa";
+        caseToggle.style.fontSize = "1.25rem";
+      } else {
+        caseToggle.classList.add("active");
+        caseToggle.setAttribute("aria-checked", "true");
+        caseToggle.textContent = "Aa";
+        caseToggle.style.fontSize = "1rem";
+      }
     });
 
     // Simple toggle for font button
-    fontToggle.addEventListener('click', () => {
-        fontToggle.classList.add('active');
-        fontToggle.setAttribute('aria-checked', 'true');
+    fontToggle.addEventListener("click", () => {
+      fontToggle.classList.add("active");
+      fontToggle.setAttribute("aria-checked", "true");
     });
 
     // Simple toggle for background button
-    bgToggle.addEventListener('click', () => {
-        bgToggle.classList.add('active');
-        bgToggle.setAttribute('aria-checked', 'true');
+    bgToggle.addEventListener("click", () => {
+      bgToggle.classList.add("active");
+      bgToggle.setAttribute("aria-checked", "true");
     });
 
-   
-    resetButton.addEventListener('click', () => {
-        // Reset case toggle button
-        caseToggle.classList.remove('active');
-        caseToggle.setAttribute('aria-checked', 'false');
-        caseToggle.textContent = 'Aa';
-        caseToggle.style.fontSize = '1.25rem';
-        
-        // Reset font toggle button
-        fontToggle.classList.remove('active');
-        fontToggle.setAttribute('aria-checked', 'false');
-        
-        // Reset background toggle button
-        bgToggle.classList.remove('active');
-        bgToggle.setAttribute('aria-checked', 'false');
-        
-        // Reset the actual checkboxes (if they exist)
-        if (toggleCaseSwitch) {
-            toggleCaseSwitch.checked = false;
-        }
-        if (toggleFontSwitch) {
-            toggleFontSwitch.checked = false;
-        }
-        if (toggleBackgroundSwitch) {
-            toggleBackgroundSwitch.checked = false;
-        }
-        
-        // Reset the main application state
-        if (mainEl) {
-            mainEl.style.backgroundBlendMode = originalState.mainElBackgroundBlendMode;
-            mainEl.style.filter = originalState.mainElFilter;
-        }
-        
-        // Reset board styles
-        if (boardDiv) {
-            boardDiv.style.backgroundColor = originalState.boardDivBackgroundColor;
-            boardDiv.style.backgroundImage = originalState.boardDivBackgroundImage;
-        }
-        
-        // Reset character display
-        if (charDiv) {
-            charDiv.style.fontFamily = originalState.charDivFontFamily;
-            charDiv.textContent = originalState.charText;
-        }
-        
-        // Reset info text
-        if (info) {
-            info.textContent = originalState.infoText;
-        }
-        
-        // Reset global variables (if accessible)
-        if (typeof window.currentFontIndex !== 'undefined') {
-            window.currentFontIndex = 0;
-        }
-        if (typeof window.isUpperCase !== 'undefined') {
-            window.isUpperCase = true;
-        }
-        
-        // Dispatch custom reset event for other scripts to listen to
-        document.dispatchEvent(new CustomEvent('keyboardReset', {
-            detail: { originalState: originalState }
-        }));
-        
-        console.log('Keyboard reset to original state');
-    });
-});
+    resetButton.addEventListener("click", () => {
+      // Reset case toggle button
+      caseToggle.classList.remove("active");
+      caseToggle.setAttribute("aria-checked", "false");
+      caseToggle.textContent = "Aa";
+      caseToggle.style.fontSize = "1.25rem";
 
+      // Reset font toggle button
+      fontToggle.classList.remove("active");
+      fontToggle.setAttribute("aria-checked", "false");
+
+      // Reset background toggle button
+      bgToggle.classList.remove("active");
+      bgToggle.setAttribute("aria-checked", "false");
+
+      // Reset the actual checkboxes (if they exist)
+      if (toggleCaseSwitch) {
+        toggleCaseSwitch.checked = false;
+      }
+      if (toggleFontSwitch) {
+        toggleFontSwitch.checked = false;
+      }
+      if (toggleBackgroundSwitch) {
+        toggleBackgroundSwitch.checked = false;
+      }
+
+      // Reset the main application state
+      if (mainEl) {
+        mainEl.style.backgroundBlendMode = originalState.mainElBackgroundBlendMode;
+        mainEl.style.filter = originalState.mainElFilter;
+      }
+
+      // Reset board styles
+      if (boardDiv) {
+        boardDiv.style.backgroundColor = originalState.boardDivBackgroundColor;
+        boardDiv.style.backgroundImage = originalState.boardDivBackgroundImage;
+      }
+
+      // Reset character display
+      if (charDiv) {
+        charDiv.style.fontFamily = originalState.charDivFontFamily;
+        charDiv.textContent = originalState.charText;
+      }
+
+      // Reset info text
+      if (info) {
+        info.textContent = originalState.infoText;
+      }
+
+      // Dispatch custom reset event for other scripts to listen to
+      document.dispatchEvent(
+        new CustomEvent("keyboardReset", {
+          detail: { originalState: originalState }
+        })
+      );
+
+      console.log("Keyboard reset to original state");
+    });
+  });
 </script>

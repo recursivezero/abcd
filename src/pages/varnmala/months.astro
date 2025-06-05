@@ -4,8 +4,8 @@ import BackButton from "@/components/ui/backButton.astro";
 import "@/assets/styles/varnmala/months.css";
 
 const pageTitle = "Months of the Year";
-const currentYear = 2025; 
-const today = new Date(currentYear, 4, 29); 
+const currentYear = 2025;
+const today = new Date(currentYear, 4, 29);
 
 const englishMonthsData = [
   { type: "english", name: "January", hindi: "जनवरी", monthIndex: 0 },
@@ -19,22 +19,106 @@ const englishMonthsData = [
   { type: "english", name: "September", hindi: "सितम्बर", monthIndex: 8 },
   { type: "english", name: "October", hindi: "अक्टूबर", monthIndex: 9 },
   { type: "english", name: "November", hindi: " नवम्बर", monthIndex: 10 },
-  { type: "english", name: "December", hindi: "दिसम्बर", monthIndex: 11 },
+  { type: "english", name: "December", hindi: "दिसम्बर", monthIndex: 11 }
 ];
 
 const indianMonthsData = [
-  { type: "indian", name: "चैत्र (Chaitra)", dates: "March 21 - April 20", monthIndex: 2, displayName: "Chaitra", hinduOrdinalText: "First Hindu Month" },
-  { type: "indian", name: "वैशाख (Vaishakha)", dates: "April 21 - May 21", monthIndex: 3, displayName: "Vaishakha", hinduOrdinalText: "Second Hindu Month" },
-  { type: "indian", name: "ज्येष्ठ (Jyeshtha)", dates: "May 22 - June 21", monthIndex: 4, displayName: "Jyeshtha", hinduOrdinalText: "Third Hindu Month" },
-  { type: "indian", name: "आषाढ़ (Ashadha)", dates: "June 22 - July 22", monthIndex: 5, displayName: "Ashadha", hinduOrdinalText: "Fourth Hindu Month" },
-  { type: "indian", name: "श्रावण (Shravana)", dates: "July 23 - August 22", monthIndex: 6, displayName: "Shravana", hinduOrdinalText: "Fifth Hindu Month" },
-  { type: "indian", name: "भाद्रपद (Bhadrapada)", dates: "August 23 - September 22", monthIndex: 7, displayName: "Bhadrapada", hinduOrdinalText: "Sixth Hindu Month" },
-  { type: "indian", name: "आश्विन (Ashvina)", dates: "September 23 - October 22", monthIndex: 8, displayName: "Ashvina", hinduOrdinalText: "Seventh Hindu Month" },
-  { type: "indian", name: "कार्तिक (Kartika)", dates: "October 23 - November 21", monthIndex: 9, displayName: "Kartika", hinduOrdinalText: "Eighth Hindu Month" },
-  { type: "indian", name: "मार्गशीर्ष (Margashirsha)", dates: "November 22 - December 21", monthIndex: 10, displayName: "Margashirsha", hinduOrdinalText: "Ninth Hindu Month" },
-  { type: "indian", name: "पौष (Pausha)", dates: "December 22 - January 20", monthIndex: 11, displayName: "Pausha", hinduOrdinalText: "Tenth Hindu Month" },
-  { type: "indian", name: "माघ (Magha)", dates: "January 21 - February 19", monthIndex: 0, displayName: "Magha", hinduOrdinalText: "Eleventh Hindu Month" },
-  { type: "indian", name: "फाल्गुन (Phalguna)", dates: "February 20 - March 20", monthIndex: 1, displayName: "Phalguna", hinduOrdinalText: "Twelfth Hindu Month" },
+  {
+    type: "indian",
+    name: "चैत्र (Chaitra)",
+    dates: "March 21 - April 20",
+    monthIndex: 2,
+    displayName: "Chaitra",
+    hinduOrdinalText: "First Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "वैशाख (Vaishakha)",
+    dates: "April 21 - May 21",
+    monthIndex: 3,
+    displayName: "Vaishakha",
+    hinduOrdinalText: "Second Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "ज्येष्ठ (Jyeshtha)",
+    dates: "May 22 - June 21",
+    monthIndex: 4,
+    displayName: "Jyeshtha",
+    hinduOrdinalText: "Third Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "आषाढ़ (Ashadha)",
+    dates: "June 22 - July 22",
+    monthIndex: 5,
+    displayName: "Ashadha",
+    hinduOrdinalText: "Fourth Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "श्रावण (Shravana)",
+    dates: "July 23 - August 22",
+    monthIndex: 6,
+    displayName: "Shravana",
+    hinduOrdinalText: "Fifth Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "भाद्रपद (Bhadrapada)",
+    dates: "August 23 - September 22",
+    monthIndex: 7,
+    displayName: "Bhadrapada",
+    hinduOrdinalText: "Sixth Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "आश्विन (Ashvina)",
+    dates: "September 23 - October 22",
+    monthIndex: 8,
+    displayName: "Ashvina",
+    hinduOrdinalText: "Seventh Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "कार्तिक (Kartika)",
+    dates: "October 23 - November 21",
+    monthIndex: 9,
+    displayName: "Kartika",
+    hinduOrdinalText: "Eighth Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "मार्गशीर्ष (Margashirsha)",
+    dates: "November 22 - December 21",
+    monthIndex: 10,
+    displayName: "Margashirsha",
+    hinduOrdinalText: "Ninth Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "पौष (Pausha)",
+    dates: "December 22 - January 20",
+    monthIndex: 11,
+    displayName: "Pausha",
+    hinduOrdinalText: "Tenth Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "माघ (Magha)",
+    dates: "January 21 - February 19",
+    monthIndex: 0,
+    displayName: "Magha",
+    hinduOrdinalText: "Eleventh Hindu Month"
+  },
+  {
+    type: "indian",
+    name: "फाल्गुन (Phalguna)",
+    dates: "February 20 - March 20",
+    monthIndex: 1,
+    displayName: "Phalguna",
+    hinduOrdinalText: "Twelfth Hindu Month"
+  }
 ];
 
 const nationalHolidaysData = [
@@ -47,7 +131,7 @@ const nationalHolidaysData = [
   { day: 2, month: 9, year: 2025, name: "Gandhi Jayanti" },
   { day: 21, month: 9, year: 2025, name: "Dussehra (Vijayadashami)" },
   { day: 10, month: 10, year: 2025, name: "Diwali (Deepavali)" },
-  { day: 25, month: 11, year: 2025, name: "Christmas Day" },
+  { day: 25, month: 11, year: 2025, name: "Christmas Day" }
 ];
 ---
 
@@ -58,18 +142,28 @@ const nationalHolidaysData = [
     </div>
 
     <div class="months-toggle-buttons" role="tablist">
-      <button id="englishMonthsBtn" class="toggle-button active" role="tab" aria-selected="true" aria-controls="english-months-pane">English Months</button>
-      <button id="hindiMonthsBtn" class="toggle-button" role="tab" aria-selected="false" aria-controls="indian-months-pane">Indian Months</button>
+      <button
+        id="englishMonthsBtn"
+        class="toggle-button active"
+        role="tab"
+        aria-selected="true"
+        aria-controls="english-months-pane">English Months</button
+      >
+      <button
+        id="hindiMonthsBtn"
+        class="toggle-button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="indian-months-pane">Indian Months</button
+      >
     </div>
 
     <div id="english-months-pane" class="months-content-pane active" role="tabpanel" aria-labelledby="englishMonthsBtn">
-      <div id="english-months-grid" class="months-grid">
-      </div>
+      <div id="english-months-grid" class="months-grid"></div>
     </div>
 
     <div id="indian-months-pane" class="months-content-pane" role="tabpanel" aria-labelledby="hindiMonthsBtn">
-      <div id="indian-months-grid" class="months-grid">
-      </div>
+      <div id="indian-months-grid" class="months-grid"></div>
     </div>
 
     {}
@@ -78,31 +172,39 @@ const nationalHolidaysData = [
     </div>
   </div>
 
-  <script define:vars={{ englishMonthsData, indianMonthsData, currentYear, todayDate: today.toISOString(), nationalHolidaysData }}>
-    const englishBtn = document.getElementById('englishMonthsBtn');
-    const hindiBtn = document.getElementById('hindiMonthsBtn');
-    const closeCalendarBtn = document.getElementById('closeCalendarViewBtn');
+  <script
+    define:vars={{
+      englishMonthsData,
+      indianMonthsData,
+      currentYear,
+      todayDate: today.toISOString(),
+      nationalHolidaysData
+    }}
+  >
+    const englishBtn = document.getElementById("englishMonthsBtn");
+    const hindiBtn = document.getElementById("hindiMonthsBtn");
+    const closeCalendarBtn = document.getElementById("closeCalendarViewBtn");
 
-    const englishMonthsPane = document.getElementById('english-months-pane');
-    const indianMonthsPane = document.getElementById('indian-months-pane');
-    const calendarViewPane = document.getElementById('calendar-view-pane');
+    const englishMonthsPane = document.getElementById("english-months-pane");
+    const indianMonthsPane = document.getElementById("indian-months-pane");
+    const calendarViewPane = document.getElementById("calendar-view-pane");
 
-    const englishGridContainer = document.getElementById('english-months-grid');
-    const indianGridContainer = document.getElementById('indian-months-grid');
-    
-    const calendarViewTitle = document.getElementById('calendar-view-title');
-    const calendarViewGrid = document.getElementById('calendar-view-grid');
+    const englishGridContainer = document.getElementById("english-months-grid");
+    const indianGridContainer = document.getElementById("indian-months-grid");
+
+    const calendarViewTitle = document.getElementById("calendar-view-title");
+    const calendarViewGrid = document.getElementById("calendar-view-grid");
     const parsedToday = new Date(todayDate);
-    let lastActiveMonthTab = 'english'; 
+    let lastActiveMonthTab = "english";
 
     function isHoliday(day, month, year, holidays) {
-      return holidays.find(h => h.day === day && h.month === month && h.year === year);
+      return holidays.find((h) => h.day === day && h.month === month && h.year === year);
     }
 
     function generateCalendarDaysHTML(monthIndex, year, holidays) {
-      let html = '';
-      const daysOfWeek = ['S', 'M', 'T', 'W', 'Th', 'F', 'S']; 
-      daysOfWeek.forEach(day => {
+      let html = "";
+      const daysOfWeek = ["S", "M", "T", "W", "Th", "F", "S"];
+      daysOfWeek.forEach((day) => {
         html += `<div class="calendar-day calendar-header">${day}</div>`;
       });
 
@@ -115,89 +217,94 @@ const nationalHolidaysData = [
       }
 
       for (let day = 1; day <= daysInMonth; day++) {
-        let dayClass = 'calendar-day';
+        let dayClass = "calendar-day";
         const holidayInfo = isHoliday(day, monthIndex, year, holidays);
 
-        if (year === parsedToday.getFullYear() && monthIndex === parsedToday.getMonth() && day === parsedToday.getDate()) {
-          dayClass += ' current-day';
+        if (
+          year === parsedToday.getFullYear() &&
+          monthIndex === parsedToday.getMonth() &&
+          day === parsedToday.getDate()
+        ) {
+          dayClass += " current-day";
         }
         if (holidayInfo) {
-          dayClass += ' holiday-day';
+          dayClass += " holiday-day";
         }
-        
-        html += `<div class="${dayClass}" title="${holidayInfo ? holidayInfo.name : ''}">${day}</div>`;
+
+        html += `<div class="${dayClass}" title="${holidayInfo ? holidayInfo.name : ""}">${day}</div>`;
       }
       return html;
     }
 
     function openCalendarView(monthIndex, displayMonthName) {
       if (calendarViewTitle) calendarViewTitle.textContent = `${displayMonthName}, ${currentYear}`;
-      if (calendarViewGrid) calendarViewGrid.innerHTML = generateCalendarDaysHTML(monthIndex, currentYear, nationalHolidaysData);
-      
-      if (englishMonthsPane.classList.contains('active')) {
-        lastActiveMonthTab = 'english';
-      } else if (indianMonthsPane.classList.contains('active')) {
-        lastActiveMonthTab = 'hindi';
+      if (calendarViewGrid)
+        calendarViewGrid.innerHTML = generateCalendarDaysHTML(monthIndex, currentYear, nationalHolidaysData);
+
+      if (englishMonthsPane.classList.contains("active")) {
+        lastActiveMonthTab = "english";
+      } else if (indianMonthsPane.classList.contains("active")) {
+        lastActiveMonthTab = "hindi";
       }
 
-      englishMonthsPane.classList.remove('active');
-      indianMonthsPane.classList.remove('active');
-      calendarViewPane.classList.add('active');
+      englishMonthsPane.classList.remove("active");
+      indianMonthsPane.classList.remove("active");
+      calendarViewPane.classList.add("active");
 
-      englishBtn.classList.remove('active');
-      englishBtn.setAttribute('aria-selected', 'false');
-      hindiBtn.classList.remove('active');
-      hindiBtn.setAttribute('aria-selected', 'false');
+      englishBtn.classList.remove("active");
+      englishBtn.setAttribute("aria-selected", "false");
+      hindiBtn.classList.remove("active");
+      hindiBtn.setAttribute("aria-selected", "false");
     }
-    
+
     function renderMonths(data, targetGridContainer) {
       if (!targetGridContainer) return;
-      targetGridContainer.innerHTML = ''; 
-      data.forEach(month => {
-        const card = document.createElement('div');
-        card.classList.add('month-card');
-        if (month.type === 'english') {
-          card.classList.add('english-month');
-        } else if (month.type === 'indian') {
-          card.classList.add('indian-month');
+      targetGridContainer.innerHTML = "";
+      data.forEach((month) => {
+        const card = document.createElement("div");
+        card.classList.add("month-card");
+        if (month.type === "english") {
+          card.classList.add("english-month");
+        } else if (month.type === "indian") {
+          card.classList.add("indian-month");
         }
 
-        const cardInner = document.createElement('div');
-        cardInner.classList.add('month-card-inner');
+        const cardInner = document.createElement("div");
+        cardInner.classList.add("month-card-inner");
 
-        const cardFront = document.createElement('div');
-        cardFront.classList.add('month-card-front');
+        const cardFront = document.createElement("div");
+        cardFront.classList.add("month-card-front");
 
-        const cardBack = document.createElement('div');
-        cardBack.classList.add('month-card-back');
-        
+        const cardBack = document.createElement("div");
+        cardBack.classList.add("month-card-back");
+
         const createFlipButton = (currentCardInnerEl) => {
-            const button = document.createElement('button');
-            button.classList.add('card-flip-action-btn');
-            button.textContent = 'Flip Card';
-            button.setAttribute('aria-label', 'Flip card');
-            button.addEventListener('click', (e) => {
-                e.stopPropagation(); 
-                currentCardInnerEl.classList.toggle('is-flipped');
-            });
-            return button;
+          const button = document.createElement("button");
+          button.classList.add("card-flip-action-btn");
+          button.textContent = "Flip Card";
+          button.setAttribute("aria-label", "Flip card");
+          button.addEventListener("click", (e) => {
+            e.stopPropagation();
+            currentCardInnerEl.classList.toggle("is-flipped");
+          });
+          return button;
         };
 
         const flipButtonFront = createFlipButton(cardInner);
         cardFront.appendChild(flipButtonFront);
 
-        const flipButtonBack = createFlipButton(cardInner); 
+        const flipButtonBack = createFlipButton(cardInner);
         cardBack.appendChild(flipButtonBack);
 
         // --- Content for the card's FRONT ---
-        const frontContentContainer = document.createElement('div');
-        frontContentContainer.classList.add('month-card-front-content');
-        if (month.type === 'english') {
+        const frontContentContainer = document.createElement("div");
+        frontContentContainer.classList.add("month-card-front-content");
+        if (month.type === "english") {
           frontContentContainer.innerHTML = `
             <span class="month-english">${month.name}</span>
             <span class="month-hindi">${month.hindi}</span>
           `;
-        } else if (month.type === 'indian') {
+        } else if (month.type === "indian") {
           frontContentContainer.innerHTML = `
             <h3 class="indian-month-name">${month.name}</h3>
             <p class="indian-month-dates"><span class="label">Dates:</span> ${month.dates}</p>
@@ -206,31 +313,31 @@ const nationalHolidaysData = [
         cardFront.appendChild(frontContentContainer);
 
         // --- Content for the card's BACK ---
-        const backContentContainer = document.createElement('div');
-        backContentContainer.classList.add('month-card-back-content'); 
-        
-        if (month.type === 'english') {
-            // For English months, show the calendar on the back
-            const calendarOnCard = document.createElement('div');
-            calendarOnCard.classList.add('calendar-on-card-grid');
-            const monthIdx = parseInt(month.monthIndex);
-            if (!isNaN(monthIdx)) {
-                calendarOnCard.innerHTML = generateCalendarDaysHTML(monthIdx, currentYear, nationalHolidaysData);
-            } else {
-                calendarOnCard.innerHTML = '<p>Error: Invalid month index.</p>';
-                console.error("Invalid monthIndex for English month:", month);
-            }
-            backContentContainer.appendChild(calendarOnCard);
-        } else if (month.type === 'indian') {
-            // For Indian months, show the generic Hindu ordinal text
-            const hinduOrdinalTextOnBack = document.createElement('h4');
-            hinduOrdinalTextOnBack.classList.add('hindu-ordinal-text-on-back'); 
-            hinduOrdinalTextOnBack.textContent = month.hinduOrdinalText || "Hindu Month"; 
-            backContentContainer.appendChild(hinduOrdinalTextOnBack);
+        const backContentContainer = document.createElement("div");
+        backContentContainer.classList.add("month-card-back-content");
+
+        if (month.type === "english") {
+          // For English months, show the calendar on the back
+          const calendarOnCard = document.createElement("div");
+          calendarOnCard.classList.add("calendar-on-card-grid");
+          const monthIdx = parseInt(month.monthIndex);
+          if (!isNaN(monthIdx)) {
+            calendarOnCard.innerHTML = generateCalendarDaysHTML(monthIdx, currentYear, nationalHolidaysData);
+          } else {
+            calendarOnCard.innerHTML = "<p>Error: Invalid month index.</p>";
+            console.error("Invalid monthIndex for English month:", month);
+          }
+          backContentContainer.appendChild(calendarOnCard);
+        } else if (month.type === "indian") {
+          // For Indian months, show the generic Hindu ordinal text
+          const hinduOrdinalTextOnBack = document.createElement("h4");
+          hinduOrdinalTextOnBack.classList.add("hindu-ordinal-text-on-back");
+          hinduOrdinalTextOnBack.textContent = month.hinduOrdinalText || "Hindu Month";
+          backContentContainer.appendChild(hinduOrdinalTextOnBack);
         }
-        
+
         cardBack.appendChild(backContentContainer);
-        
+
         cardInner.appendChild(cardFront);
         cardInner.appendChild(cardBack);
         card.appendChild(cardInner);
@@ -239,44 +346,50 @@ const nationalHolidaysData = [
     }
 
     const monthTabs = [
-        { btn: englishBtn, pane: englishMonthsPane, name: 'english', grid: englishGridContainer, data: englishMonthsData },
-        { btn: hindiBtn, pane: indianMonthsPane, name: 'hindi', grid: indianGridContainer, data: indianMonthsData }
+      {
+        btn: englishBtn,
+        pane: englishMonthsPane,
+        name: "english",
+        grid: englishGridContainer,
+        data: englishMonthsData
+      },
+      { btn: hindiBtn, pane: indianMonthsPane, name: "hindi", grid: indianGridContainer, data: indianMonthsData }
     ];
 
     function showMonthTab(tabName) {
-      calendarViewPane.classList.remove('active'); 
-      monthTabs.forEach(tab => {
+      calendarViewPane.classList.remove("active");
+      monthTabs.forEach((tab) => {
         if (tab.name === tabName) {
-          tab.pane.classList.add('active');
-          tab.btn.classList.add('active');
-          tab.btn.setAttribute('aria-selected', 'true');
+          tab.pane.classList.add("active");
+          tab.btn.classList.add("active");
+          tab.btn.setAttribute("aria-selected", "true");
           if (tab.grid && tab.data) {
             renderMonths(tab.data, tab.grid);
           }
-          lastActiveMonthTab = tabName; 
+          lastActiveMonthTab = tabName;
         } else {
-          tab.pane.classList.remove('active');
-          tab.btn.classList.remove('active');
-          tab.btn.setAttribute('aria-selected', 'false');
+          tab.pane.classList.remove("active");
+          tab.btn.classList.remove("active");
+          tab.btn.setAttribute("aria-selected", "false");
         }
       });
     }
 
-    if (englishBtn) englishBtn.addEventListener('click', () => showMonthTab('english'));
-    if (hindiBtn) hindiBtn.addEventListener('click', () => showMonthTab('hindi'));
-    
-    if (closeCalendarBtn) { 
-      closeCalendarBtn.addEventListener('click', () => {
-        calendarViewPane.classList.remove('active');
-        const activeTab = monthTabs.find(tab => tab.btn.classList.contains('active'));
+    if (englishBtn) englishBtn.addEventListener("click", () => showMonthTab("english"));
+    if (hindiBtn) hindiBtn.addEventListener("click", () => showMonthTab("hindi"));
+
+    if (closeCalendarBtn) {
+      closeCalendarBtn.addEventListener("click", () => {
+        calendarViewPane.classList.remove("active");
+        const activeTab = monthTabs.find((tab) => tab.btn.classList.contains("active"));
         if (activeTab) {
-            showMonthTab(activeTab.name);
+          showMonthTab(activeTab.name);
         } else {
-            showMonthTab(lastActiveMonthTab || 'english'); 
+          showMonthTab(lastActiveMonthTab || "english");
         }
       });
     }
-    
-    showMonthTab('english');
+
+    showMonthTab("english");
   </script>
 </BaseLayout>

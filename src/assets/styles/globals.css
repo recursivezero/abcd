@@ -170,10 +170,11 @@
     min-height: 100vh;
   }
 
-    @media (max-width: 768px) {
-      .content {
-          height: 10vh;   }
+  @media (max-width: 768px) {
+    .content {
+      height: 10vh;
     }
+  }
 
   .layout {
     height: fit-content;
