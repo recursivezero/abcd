@@ -52,34 +52,54 @@ const englishConsonants = [
   "ha",
   "ḷa"
 ];
-
 const hindiVowels = generateLetters(2309, 16, [2317, 2321]);
 const hindiConsonants = generateLetters(2325, 37);
 const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
 const kannadaConsonants = generateLetters(3221, 37);
-
+const gujaratiVowels = generateLetters(0xA85, 16, [0xA8D, 0xA91]);
+const gujaratiConsonants = generateLetters(0xA95, 37);
+const punjabiVowels = generateLetters(0xA05, 12); // Punjabi has 10 vowels + 2 extras
+const punjabiConsonants = generateLetters(0xA15, 37); // 35 consonants in Gurmukhi
 // Create letter pairs with all three scripts
 const letterPairs: LetterPair[] = [
   ...hindiVowels.map((hindi, i) => ({
     hindi,
+    marathi: hindi,
     kannada: kannadaVowels[i],
+    gujarati: gujaratiVowels[i], // New
+    punjabi: punjabiVowels[i] || "", // New
     english: englishVowels[i] || "",
     type: "vowel" as const
   })),
   ...hindiConsonants.map((hindi, i) => ({
     hindi,
+    marathi: hindi,
     kannada: kannadaConsonants[i],
+    gujarati: gujaratiConsonants[i], // New
+    punjabi: punjabiConsonants[i] || "", // New
     english: englishConsonants[i] || "",
     type: "consonant" as const
   }))
 ];
 
 const languages = [
+  { code: "PL", name: "Select Primary Language" , disabled:true },
   { code: "hi", name: "हिंदी" },
+  { code: "mr", name: "मराठी" },  // New
   { code: "kn", name: "ಕನ್ನಡ" },
+  { code: "gu", name: "ગુજરાતી" }, // New
+  { code: "pa", name: "ਪੰਜਾਬੀ" }, // New
   { code: "en", name: "English" }
 ];
-
+const languages2 = [
+  { code: "SL", name: "Select Secondary Language" , disabled:true },
+  { code: "hi", name: "हिंदी" },
+  { code: "mr", name: "मराठी" },  // New
+  { code: "kn", name: "ಕನ್ನಡ" },
+  { code: "gu", name: "ગુજરાતી" }, // New
+  { code: "pa", name: "ਪੰਜਾਬੀ" }, // New
+  { code: "en", name: "English" }
+];
 let selectedLanguage1 = "hi";
 let selectedLanguage2 = "kn";
 
@@ -87,8 +107,14 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   switch (langCode) {
     case "hi":
       return pair.hindi;
+    case "mr":
+      return pair.marathi;  // New
     case "kn":
       return pair.kannada;
+    case "gu":
+      return pair.gujarati; // New
+    case "pa":
+      return pair.punjabi; // New
     case "en":
       return pair.english;
     default:
@@ -105,9 +131,10 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
 PRIMARY LANGUAGE
       </label>
       <select id="languageDropdown1">
-        {
+        
+        { 
           languages.map((lang) => (
-            <option value={lang.code} selected={lang.code === selectedLanguage1}>
+            <option class="opt" value={lang.code} selected={lang.code === selectedLanguage1}  disabled={lang.disabled ? 'disabled' : null}>
               {lang.name} ({lang.code.toUpperCase()})
             </option>
           ))
@@ -129,8 +156,8 @@ SECONDARY LANGUAGE
       </label>
       <select id="languageDropdown2">
         {
-          languages.map((lang) => (
-            <option value={lang.code} selected={lang.code === selectedLanguage2}>
+          languages2.map((lang) => (
+            <option class="opt" value={lang.code} selected={lang.code === selectedLanguage2} disabled={lang.disabled ? 'disabled' : null}>
               {lang.name} ({lang.code.toUpperCase()})
             </option>
           ))
@@ -180,7 +207,10 @@ SECONDARY LANGUAGE
   const hindiConsonants = generateLetters(2325, 37);
   const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
   const kannadaConsonants = generateLetters(3221, 37);
-
+  const gujaratiVowels = generateLetters(0xA85, 16, [0xA8D, 0xA91]);
+  const gujaratiConsonants = generateLetters(0xA95, 37);
+  const punjabiVowels = generateLetters(0xA05, 12); // Punjabi has 10 vowels + 2 extras
+  const punjabiConsonants = generateLetters(0xA15, 37); // 35 consonants in Gurmukhi
   // Use correct English transliterations instead of just basic letters
   const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "e", "ai", "o", "au", "aṃ", "aḥ"];
   const englishConsonants = [
@@ -226,9 +256,12 @@ SECONDARY LANGUAGE
   ];
 
   const languages = [
-    { code: "hi", name: "हिंदी" },
-    { code: "kn", name: "ಕನ್ನಡ" },
-    { code: "en", name: "English" }
+  { code: "hi", name: "हिंदी" },
+  { code: "mr", name: "मराठी" },  // New
+  { code: "kn", name: "ಕನ್ನಡ" },
+  { code: "gu", name: "ગુજરાતી" }, // New
+  { code: "pa", name: "ਪੰਜਾਬੀ" }, // New
+  { code: "en", name: "English" }
   ];
 
   let selectedLanguage1 = "hi";
@@ -239,12 +272,18 @@ SECONDARY LANGUAGE
     if (lang === "en") {
       return type === "vowel" ? englishVowels[index] || "" : englishConsonants[index] || "";
     }
-    if (lang === "hi") {
+    if (lang === "hi" || lang === "mr") {// Marathi shares Hindi letters
       return type === "vowel" ? hindiVowels[index] || "" : hindiConsonants[index] || "";
     }
     if (lang === "kn") {
       return type === "vowel" ? kannadaVowels[index] || "" : kannadaConsonants[index] || "";
     }
+    if (lang === "gu") { // New
+      return type === "vowel" ? gujaratiVowels[index] || "" : gujaratiConsonants[index] || "";
+    }
+    if (lang === "pa") { // New
+    return type === "vowel" ? punjabiVowels[index] || "" : punjabiConsonants[index] || "";
+  }
     return "";
   }
   // Main function to swap languages
