@@ -3,6 +3,13 @@ import "@/assets/styles/kannada.css";
 interface LetterPair {
   hindi: string;
   kannada: string;
+  marathi: string;
+  gujarati: string;
+  punjabi: string;
+  malayalam: string;
+  bengali:string;
+  assamese: string; // New field
+  manipuri: string; // New field
   english: string;
   type: "vowel" | "consonant" | "separator";
 }
@@ -58,8 +65,17 @@ const kannadaVowels = generateLetters(3205, 16, [3213, 3217]);
 const kannadaConsonants = generateLetters(3221, 37);
 const gujaratiVowels = generateLetters(0xA85, 16, [0xA8D, 0xA91]);
 const gujaratiConsonants = generateLetters(0xA95, 37);
-const punjabiVowels = generateLetters(0xA05, 12); // Punjabi has 10 vowels + 2 extras
+const punjabiVowels = generateLetters(2565, 12, [2575, 2579]); // Punjabi has 10 vowels + 2 extras
 const punjabiConsonants = generateLetters(0xA15, 37); // 35 consonants in Gurmukhi
+const malayalamVowels = generateLetters(0xD05, 16, [0xD0D, 0xD11]);
+const malayalamConsonants = generateLetters(0xD15, 42); // Malayalam has more consonants
+const bengaliVowels = generateLetters(0x985, 16, [0x98D, 0x991]);
+const bengaliConsonants = generateLetters(0x995, 37);
+const assameseVowels = generateLetters(0x985, 16, [0x98D, 0x991]); // Same as Bengali but may differ in some characters
+const assameseConsonants = generateLetters(0x995, 45); // Assamese has some additional consonants
+// Manipuri (Meitei Mayek) Unicode ranges
+const manipuriVowels = generateLetters(0xABC0, 8); // Basic vowels in Meetei Mayek
+const manipuriConsonants = generateLetters(0xABD0, 27); // 27 consonants in Meetei Mayek
 // Create letter pairs with all three scripts
 const letterPairs: LetterPair[] = [
   ...hindiVowels.map((hindi, i) => ({
@@ -68,6 +84,10 @@ const letterPairs: LetterPair[] = [
     kannada: kannadaVowels[i],
     gujarati: gujaratiVowels[i], // New
     punjabi: punjabiVowels[i] || "", // New
+    malayalam: malayalamVowels[i], // New
+    bengali: bengaliVowels[i] || "", // New
+    assamese: assameseVowels[i] || "", // New
+    manipuri: manipuriVowels[i] || "", // New
     english: englishVowels[i] || "",
     type: "vowel" as const
   })),
@@ -77,6 +97,10 @@ const letterPairs: LetterPair[] = [
     kannada: kannadaConsonants[i],
     gujarati: gujaratiConsonants[i], // New
     punjabi: punjabiConsonants[i] || "", // New
+    malayalam: i < malayalamConsonants.length ? malayalamConsonants[i] : "", // New
+    bengali: bengaliConsonants[i], // New
+    assamese: i < assameseConsonants.length ? assameseConsonants[i] : "", // New
+    manipuri: i < manipuriConsonants.length ? manipuriConsonants[i] : "", // New
     english: englishConsonants[i] || "",
     type: "consonant" as const
   }))
@@ -89,6 +113,10 @@ const languages = [
   { code: "kn", name: "ಕನ್ನಡ" },
   { code: "gu", name: "ગુજરાતી" }, // New
   { code: "pa", name: "ਪੰਜਾਬੀ" }, // New
+  { code: "ml", name: "മലയാളം" }, // New
+  { code: "bn", name: "বাংলা" }, // New
+  { code: "as", name: "অসমীয়া" }, // New
+  { code: "mni", name: "ꯃꯤꯇꯩꯂꯣꯟ" }, // New - Manipuri in Meetei Mayek
   { code: "en", name: "English" }
 ];
 const languages2 = [
@@ -98,6 +126,10 @@ const languages2 = [
   { code: "kn", name: "ಕನ್ನಡ" },
   { code: "gu", name: "ગુજરાતી" }, // New
   { code: "pa", name: "ਪੰਜਾਬੀ" }, // New
+  { code: "ml", name: "മലയാളം" }, // New 
+  { code: "bn", name: "বাংলা" }, // New
+  { code: "as", name: "অসমীয়া" }, // New
+  { code: "mni", name: "ꯃꯤꯇꯩꯂꯣꯟ" }, // New - Manipuri in Meetei Mayek
   { code: "en", name: "English" }
 ];
 let selectedLanguage1 = "hi";
@@ -115,6 +147,14 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
       return pair.gujarati; // New
     case "pa":
       return pair.punjabi; // New
+    case "ml":
+      return pair.malayalam; // New
+    case "bn":
+      return pair.bengali; // New
+    case "as":
+      return pair.assamese; // New
+    case "mni":
+      return pair.manipuri; // New
     case "en":
       return pair.english;
     default:
@@ -127,7 +167,9 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   <!-- Dropdown Section -->
   <div class="toggle-container">
     <div class="dropdown-wrapper">
-      <label id="lang1Label" class="dropdown-label language-label active"> PRIMARY LANGUAGE </label>
+      <label id="lang1Label" class="dropdown-label language-label active">
+PRIMARY LANGUAGE
+      </label>
       <select id="languageDropdown1">
         
         { 
@@ -139,16 +181,19 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
         }
       </select>
     </div>
-    <!-- Add this swap button -->
-    <button id="toggleButton" class="toggle-button" aria-label="Swap languages" title="Swap languages">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M17 14 9 14 9 16 17 16 17 19 22 15 17 11 17 14z"></path><path
-          d="M15 10 15 8 7 8 7 5 2 9 7 13 7 10 15 10z"></path>
-      </svg>
-    </button>
+<!-- Add this swap button -->
+  <button id="toggleButton" class="toggle-button" aria-label="Swap languages" title="Swap languges">
+<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+fill="currentColor" viewBox="0 0 24 24" >
+<!--Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free-->
+<path d="M17 14 9 14 9 16 17 16 17 19 22 15 17 11 17 14z"></path><path d="M15 10 15 8 7 8 7 5 2 9 7 13 7 10 15 10z"></path>
+</svg>
+  </button>
 
     <div class="dropdown-wrapper">
-      <label id="lang2Label" class="dropdown-label language-label"> SECONDARY LANGUAGE </label>
+      <label id="lang2Label" class="dropdown-label language-label">
+SECONDARY LANGUAGE
+      </label>
       <select id="languageDropdown2">
         {
           languages2.map((lang) => (
@@ -163,7 +208,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
 
   <!-- Letters Grid Section -->
   <div class="language-letters-grid">
-    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS (स्वर)</h2>
+    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS</h2>
     {
       letterPairs
         .filter((pair) => pair.type === "vowel")
@@ -177,7 +222,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
 
     <div class="language-letters-separator" style="grid-column: 1 / -1;"></div>
 
-    <h2 class="group-heading" style="grid-column: 1 / -1;">CONSONANTS (व्यंजन)</h2>
+    <h2 class="group-heading" style="grid-column: 1 / -1;">CONSONANTS</h2>
     {
       letterPairs
         .filter((pair) => pair.type === "consonant")
@@ -206,6 +251,15 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   const gujaratiConsonants = generateLetters(0xA95, 37);
   const punjabiVowels = generateLetters(0xA05, 12); // Punjabi has 10 vowels + 2 extras
   const punjabiConsonants = generateLetters(0xA15, 37); // 35 consonants in Gurmukhi
+  const malayalamVowels = generateLetters(0xD05, 16, [0xD0D, 0xD11]);
+  const malayalamConsonants = generateLetters(0xD15, 42); // Malayalam has more consonants
+  const bengaliVowels = generateLetters(0x985, 16, [0x98D, 0x991]);
+  const bengaliConsonants = generateLetters(0x995, 37);
+  const assameseVowels = generateLetters(0x985, 16, [0x98D, 0x991]); // Same as Bengali but may differ in some characters
+  const assameseConsonants = generateLetters(0x995, 45); // Assamese has some additional consonants
+// Manipuri (Meitei Mayek) Unicode ranges
+  const manipuriVowels = generateLetters(0xABC0, 8); // Basic vowels in Meetei Mayek
+  const manipuriConsonants = generateLetters(0xABD0, 27); // 27 consonants in Meetei Mayek
   // Use correct English transliterations instead of just basic letters
   const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "e", "ai", "o", "au", "aṃ", "aḥ"];
   const englishConsonants = [
@@ -256,12 +310,16 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   { code: "kn", name: "ಕನ್ನಡ" },
   { code: "gu", name: "ગુજરાતી" }, // New
   { code: "pa", name: "ਪੰਜਾਬੀ" }, // New
+  { code: "ml", name: "മലയാളം" }, // New
+  { code: "bn", name: "বাংলা" }, // New
+  { code: "as", name: "অসমীয়া" }, // New
+  { code: "mni", name: "ꯃꯤꯇꯩꯂꯣꯟ" }, // New - Manipuri in Meetei Mayek
   { code: "en", name: "English" }
   ];
 
   let selectedLanguage1 = "hi";
   let selectedLanguage2 = "kn";
-  //let isReversed = false;
+  let isReversed = false;
 
   function getLetter(lang, type, index) {
     if (lang === "en") {
@@ -278,7 +336,25 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
     }
     if (lang === "pa") { // New
     return type === "vowel" ? punjabiVowels[index] || "" : punjabiConsonants[index] || "";
-  }
+    }
+    if (lang === "ml") { // New
+    return type === "vowel" 
+      ? malayalamVowels[index] || "" 
+      : (index < malayalamConsonants.length ? malayalamConsonants[index] : "");
+    }
+    if (lang === "bn") { // New
+    return type === "vowel" ? bengaliVowels[index] || "" : bengaliConsonants[index] || "";
+    }
+    if (lang === "as") { // New
+    return type === "vowel" 
+      ? assameseVowels[index] || "" 
+      : (index < assameseConsonants.length ? assameseConsonants[index] : "");
+    }
+    if (lang === "mni") { // New
+    return type === "vowel" 
+      ? manipuriVowels[index] || "" 
+      : (index < manipuriConsonants.length ? manipuriConsonants[index] : "");
+    }
     return "";
   }
   // Main function to swap languages
@@ -287,94 +363,75 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
     [selectedLanguage1, selectedLanguage2] = [selectedLanguage2, selectedLanguage1];
 
     // Update the dropdown values
-    document.getElementById("languageDropdown1").value = selectedLanguage1;
-    document.getElementById("languageDropdown2").value = selectedLanguage2;
-
+    document.getElementById('languageDropdown1').value = selectedLanguage1;
+    document.getElementById('languageDropdown2').value = selectedLanguage2;
     // Refresh the grid
     updateGrid();
-    // Toggle persistent state
-    const button = document.getElementById("toggleButton");
-    button.classList.toggle("toggled");
-
-    // Keep the animation
-    button.classList.add("swapping");
-    setTimeout(() => button.classList.remove("swapping"), 300);
+     // Toggle persistent state
+  const button = document.getElementById('toggleButton');
+  button.classList.toggle('toggled');
+  // Keep the animation
+  button.classList.add('swapping');
+  setTimeout(() => button.classList.remove('swapping'), 300);
     // Add visual feedback
-    const toggleButton = document.getElementById("toggleButton");
-    toggleButton.classList.add("swapping");
+    const toggleButton = document.getElementById('toggleButton');
+    toggleButton.classList.add('swapping');
     setTimeout(() => {
-      toggleButton.classList.remove("swapping");
+      toggleButton.classList.remove('swapping');
     }, 300);
   }
-
   // Helper function to update language labels
-
   function updateGrid() {
     // Update all letter cards
     const vowelCards = document.querySelectorAll(".language-letter-card-vowel");
     const consonantCards = document.querySelectorAll(".language-letter-card-consonant");
-
     // Update vowels
     vowelCards.forEach((card, index) => {
       const topElement = card.querySelector(".language-letter-top");
       const bottomElement = card.querySelector(".language-letter-bottom");
-
       if (topElement && bottomElement) {
         topElement.textContent = getLetter(selectedLanguage1, "vowel", index);
         bottomElement.textContent = getLetter(selectedLanguage2, "vowel", index);
-
         // Add special styling for English text
         topElement.classList.toggle("english-text", selectedLanguage1 === "en");
         bottomElement.classList.toggle("english-text", selectedLanguage2 === "en");
-
         // Add transliteration class for proper display of diacritical marks
         topElement.classList.toggle("transliteration", selectedLanguage1 === "en");
         bottomElement.classList.toggle("transliteration", selectedLanguage2 === "en");
       }
     });
-
     // Update consonants
     consonantCards.forEach((card, index) => {
       const topElement = card.querySelector(".language-letter-top");
       const bottomElement = card.querySelector(".language-letter-bottom");
-
       if (topElement && bottomElement) {
         topElement.textContent = getLetter(selectedLanguage1, "consonant", index);
         bottomElement.textContent = getLetter(selectedLanguage2, "consonant", index);
-
         // Add special styling for English text
         topElement.classList.toggle("english-text", selectedLanguage1 === "en");
         bottomElement.classList.toggle("english-text", selectedLanguage2 === "en");
-
         // Add transliteration class for proper display of diacritical marks
         topElement.classList.toggle("transliteration", selectedLanguage1 === "en");
         bottomElement.classList.toggle("transliteration", selectedLanguage2 === "en");
       }
     });
   }
-
   // Set up event listeners
   document.addEventListener("DOMContentLoaded", () => {
     const dropdown1 = document.getElementById("languageDropdown1");
     const dropdown2 = document.getElementById("languageDropdown2");
-    const toggleButton = document.getElementById("toggleButton");
-
+    const toggleButton = document.getElementById('toggleButton');
     // Event listeners
-    dropdown1.addEventListener("change", (e) => {
+    dropdown1.addEventListener('change', (e) => {
       selectedLanguage1 = e.target.value;
-
       updateGrid();
     });
-
-    dropdown2.addEventListener("change", (e) => {
+    dropdown2.addEventListener('change', (e) => {
       selectedLanguage2 = e.target.value;
-
       updateGrid();
     });
-
     // Add click handler for swap button
-    toggleButton.addEventListener("click", swapLanguages);
-
+    toggleButton.addEventListener('click', swapLanguages);
     updateGrid();
   });
 </script>
