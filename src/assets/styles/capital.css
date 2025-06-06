@@ -53,17 +53,6 @@
   overflow: hidden;
 }
 
-.head::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(81, 123, 126, 0.2), transparent);
-  animation: shimmer 3s infinite;
-}
-
 /* Search Controls */
 .controls-bar {
   display: flex;
@@ -181,17 +170,6 @@ input[type="search"]::-webkit-search-cancel-button {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
-}
-
-.count-badge::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: badge-shine 3s infinite;
 }
 
 /* Location Grid */
