@@ -14,12 +14,15 @@ export function getStaticPaths() {
   }));
 }
 const { stateInfo } = Astro.props;
-const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
+const { name, dance, festival, image, wikiLink, description } = stateInfo;
 // Optional properties with type checking
 const famous_quote = stateInfo.famous_quote || "Coming soon";
 const famous_person = stateInfo.famous_person || "Coming soon";
 const famous_food = stateInfo.famous_food || "Coming soon";
 const famous_place = stateInfo.famous_place || "Coming soon";
+const famous_dress = stateInfo.famous_dress || "Coming soon";
+const famous_language = stateInfo.famous_language || "Coming soon";
+const famous_sport = stateInfo.famous_sport || "Coming soon";
 ---
 
 <BaseLayout meta={{ title: `${name} - ${dance}` }}>
@@ -47,12 +50,12 @@ const famous_place = stateInfo.famous_place || "Coming soon";
         <div class="content-text">
           <div class="info-grid">
             <div class="info-card">
-              <h4>Dance Form</h4>
-              <p>{dance}</p>
-            </div>
-            <div class="info-card">
               <h4>Famous Quote</h4>
               <p>{famous_quote}</p>
+            </div>
+            <div class="info-card">
+              <h4>Dance Form</h4>
+              <p>{dance}</p>
             </div>
             <div class="info-card">
               <h4>Famous Person</h4>
@@ -69,6 +72,18 @@ const famous_place = stateInfo.famous_place || "Coming soon";
             <div class="info-card">
               <h4>Famous Place</h4>
               <p>{famous_place || "Coming soon"}</p>
+            </div>
+            <div class="info-card">
+              <h4>Famous Dress</h4>
+              <p>{famous_dress}</p>
+            </div>
+            <div class="info-card">
+              <h4>Language</h4>
+              <p>{famous_language}</p>
+            </div>
+            <div class="info-card">
+              <h4>Famous Sport</h4>
+              <p>{famous_sport}</p>
             </div>
           </div>
           <div class="quick-facts">

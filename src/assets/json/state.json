@@ -303,7 +303,14 @@
     "svg": "Rajasthan.svg",
     "wikiLink": "https://en.wikipedia.org/wiki/Rajasthan",
     "official_website": "https://rajasthan.gov.in/",
-    "isActive": true
+    "isActive": true,
+    "famous_quote": "Padharo mhare desh",
+    "famous_person": "Maharana Pratap",
+    "famous_food": "Dal Baati Churma",
+    "famous_place": "Hawa Mahal",
+    "famous_dress":"Ghagra-Choli",
+    "famous_language":"Rajasthani",
+    "famous_sport":"Polo"
   },
   {
     "id": "sikkim",

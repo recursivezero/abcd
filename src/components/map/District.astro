@@ -12,9 +12,40 @@ const { state } = Astro.props;
     aspect-ratio: 3/2;
   }
 
+  .view-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .view-button {
+    background-color: #000000;
+    color: white;
+    border: 3px solid white;
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .view-button:hover {
+    transform: scale(1.05);
+    background-color: #333;
+  }
+
+  .view-button.active {
+    background-color: #ff6b6b;
+  }
+
   .district {
     width: 100%;
     height: 100%;
+    margin-top: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +59,6 @@ const { state } = Astro.props;
     max-height: 100%;
     object-fit: contain;
   }
-
   .district path {
     transition: fill 0.3s ease;
     fill: #e0f2f1;
@@ -47,21 +77,60 @@ const { state } = Astro.props;
 
   .district-tooltip {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #000000; /* Cheerful coral color */
     color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 16px; /* More rounded corners */
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif; /* Kid-friendly font */
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
     z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 3px solid white; /* White border for pop-out effect */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    max-width: 200px;
+    text-align: center;
+    transform: scale(0.95);
+    transform-origin: bottom center;
+  }
+
+  .district-tooltip.visible {
+    opacity: 1;
+    transform: scale(1);
+    animation: bounce 0.5s ease;
+  }
+
+  /* Fun bounce animation */
+  @keyframes bounce {
+    0% {
+      transform: scale(0.95);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Add a little arrow for tooltip */
+  .district-tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #000000 transparent transparent;
   }
 
   .district-tooltip.visible {
     opacity: 1;
   }
-
   @media (max-width: 768px) {
     .map-container {
       padding: 10px;
@@ -70,9 +139,19 @@ const { state } = Astro.props;
       transform: scale(1.2);
     }
   }
+  .district path {
+    stroke: transparent;
+    stroke-width: 1px;
+    transition: all 0.3s ease;
+  }
 </style>
 
 <div class="map-container">
+  <div class="view-controls">
+    <button class="view-button" data-view="map">Map Only</button>
+    <button class="view-button" data-view="boundaries">With Boundaries</button>
+    <button class="view-button" data-view="full">Full View</button>
+  </div>
   <div class="district">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -91,21 +170,77 @@ const { state } = Astro.props;
   async function loadSVG() {
     try {
       const response = await fetch(`../../../public/map/svg/statesvg/${state}.svg`);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
       const svgText = await response.text();
       const svgContainer = document.querySelector(".district svg");
-
       if (svgContainer) {
         svgContainer.innerHTML = svgText;
         processPaths();
+        setupViewControls();
       }
     } catch (error) {
       console.error("Error loading SVG:", error);
     }
+  }
+
+  function setupViewControls() {
+    const buttons = document.querySelectorAll(".view-button");
+    const paths = document.querySelectorAll(".district path");
+    const texts = document.querySelectorAll(".district text");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        // Add active class to clicked button
+        button.classList.add("active");
+
+        const view = button.dataset.view;
+
+        // Reset all elements
+        paths.forEach((path) => {
+          path.style.stroke = "transparent";
+          path.style.strokeWidth = "0px";
+        });
+        texts.forEach((text) => {
+          text.style.display = "block";
+        });
+
+        // Apply view-specific styles
+        switch (view) {
+          case "map":
+            paths.forEach((path) => {
+              path.style.stroke = "transparent";
+            });
+            texts.forEach((text) => {
+              text.style.display = "none";
+            });
+            break;
+          case "boundaries":
+            paths.forEach((path) => {
+              path.style.stroke = "#333";
+              path.style.strokeWidth = "1px";
+            });
+            texts.forEach((text) => {
+              text.style.display = "none";
+            });
+            break;
+          case "full":
+            paths.forEach((path) => {
+              path.style.stroke = "#333";
+              path.style.strokeWidth = "1px";
+            });
+            texts.forEach((text) => {
+              text.style.display = "block";
+            });
+            break;
+        }
+      });
+    });
+
+    //// Set default view
+    buttons[0].click();
   }
 
   function processPaths() {
@@ -121,35 +256,28 @@ const { state } = Astro.props;
     paths.forEach((path, index) => {
       path.style.cursor = "pointer";
       const districtName = labels[index + 1];
-      console.log(districtName);
+
       path.addEventListener("mouseenter", (e) => {
         path.style.fill = "orange";
         if (!tooltip || !districtName) return;
 
-        tooltip.textContent = districtName;
+        tooltip.textContent = path.id === "capital" ? `${districtName}, the Capital of Rajasthan` : districtName;
         tooltip.classList.add("visible");
 
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
-        // Position tooltip relative to mouse
         tooltip.style.left = `${mouseX - 250}px`;
         tooltip.style.top = `${mouseY - 120}px`;
+        path.style.transition = "fill 0.3s ease, stroke 0.3s ease, stroke-width 0.3s ease";
       });
 
       path.addEventListener("mouseleave", () => {
         path.style.fill = "";
-        // Hide tooltip
         if (tooltip) {
           tooltip.classList.remove("visible");
         }
       });
-
-      /* path.addEventListener("click", (e) => {
-        // add click event like; add links..etc
-        console.log(districtName)
-      });
-      */
     });
   }
 
