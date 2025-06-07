@@ -33,15 +33,7 @@ const famous_sport = stateInfo.famous_sport || "Coming soon";
     <div class="main-container">
       <div id="state-svg-container">
         <h3 class="state-title">{name}</h3>
-        <!--{
-          stateInfo.id === "andhrapradesh" ? (
-            <AndhraPradeshMap />
-          ) : (
-            //<div id="state-svg" data-svg-path={`/map/svg/${svg}`} />
-            
-          )
-        }-->
-        {(<District state={stateInfo.id} />)}
+        <District state={stateInfo.id} />
       </div>
       <div class="right-content">
         <div class="state-image-container">
@@ -67,11 +59,11 @@ const famous_sport = stateInfo.famous_sport || "Coming soon";
             </div>
             <div class="info-card">
               <h4>Famous Food</h4>
-              <p>{famous_food || "Coming soon"}</p>
+              <p>{famous_food}</p>
             </div>
             <div class="info-card">
               <h4>Famous Place</h4>
-              <p>{famous_place || "Coming soon"}</p>
+              <p>{famous_place}</p>
             </div>
             <div class="info-card">
               <h4>Famous Dress</h4>
@@ -89,8 +81,11 @@ const famous_sport = stateInfo.famous_sport || "Coming soon";
           <div class="quick-facts">
             <h4>Quick facts about {name}</h4>
             <div class="facts-content">
-              <p class="description">
-                {description.length > 120 ? description.slice(0,120) + ".." + "Read More" : description}
+              <p class="description" id="description">
+                <span id="descriptionText">{description.length > 150 ? description.slice(0, 150) + "..." : description}</span>
+                {description.length > 150 && (
+                  <button class="read-more" id="readMoreBtn">Read More</button>
+                )}
               </p>
               <div class="links">
                 {
@@ -220,10 +215,23 @@ const famous_sport = stateInfo.famous_sport || "Coming soon";
   }
 
   .description {
-    color: #636e72;
-    line-height: 1.6;
-    margin-bottom: 20px;
     font-size: 0.9rem;
+    line-height: 1.5;
+    color: #4b5563;
+  }
+
+  .read-more {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.25rem;
+    font-weight: 500;
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
   }
 
   .links {
@@ -272,21 +280,20 @@ const famous_sport = stateInfo.famous_sport || "Coming soon";
   }
 </style>
 
-<script>
-  // Load SVG when the page loads
-  document.addEventListener("DOMContentLoaded", async () => {
-    const svgContainer = document.getElementById("state-svg");
-    if (!svgContainer) return;
-    const svgPath = svgContainer.dataset.svgPath;
-    if (!svgPath) return;
-    try {
-      const response = await fetch(svgPath);
-      if (!response.ok) throw new Error("Failed to load SVG");
-      const svgContent = await response.text();
-      svgContainer.innerHTML = svgContent;
-    } catch (error) {
-      console.error("Error loading SVG:", error);
-      svgContainer.innerHTML = '<p class="error">Failed to load state map</p>';
-    }
+<script define:vars={{ description }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const descriptionText = document.getElementById('descriptionText');
+    if (!readMoreBtn || !descriptionText) return;
+
+    readMoreBtn.addEventListener('click', () => {
+      if (descriptionText.textContent?.includes('...')) {
+        descriptionText.textContent = description;
+        readMoreBtn.textContent = 'Show Less';
+      } else {
+        descriptionText.textContent = description.slice(0, 150) + '...';
+        readMoreBtn.textContent = 'Read More';
+      }
+    });
   });
 </script>
