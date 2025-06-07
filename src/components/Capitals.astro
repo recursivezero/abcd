@@ -9,7 +9,7 @@ const { stateList, utList } = Astro.props;
 function getColorClass(index: number) {
   const colorClasses = [
     "card-color-1",
-    "card-color-2", 
+    "card-color-2",
     "card-color-3",
     "card-color-4",
     "card-color-5",
@@ -28,10 +28,14 @@ function getColorClass(index: number) {
 
   <div class="controls-bar">
     <div class="search-container" role="search">
-      <span class="search-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
-  <path fill-rule="evenodd" d="M11.742 10.344a6.5 6.5 0 10-1.398 1.398l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"/>
-</svg>
-</span>
+      <span class="search-icon" aria-hidden="true"
+        ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path
+            fill-rule="evenodd"
+            d="M11.742 10.344a6.5 6.5 0 10-1.398 1.398l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"
+          ></path>
+        </svg>
+      </span>
       <input
         type="search"
         id="searchBar"
@@ -53,7 +57,11 @@ function getColorClass(index: number) {
       <div class="location-grid" id="states-grid">
         {
           stateList.map((state, index) => (
-            <article class={`location-card color-${getColorClass(index)}`} data-name={state.name.toLowerCase()} data-capital={state.capital.toLowerCase()}>
+            <article
+              class={`location-card color-${getColorClass(index)}`}
+              data-name={state.name.toLowerCase()}
+              data-capital={state.capital.toLowerCase()}
+            >
               <details>
                 <summary title={state.name}>{state.name}</summary>
                 <p title={state.capital}>{state.capital}</p>
@@ -62,9 +70,7 @@ function getColorClass(index: number) {
           ))
         }
       </div>
-      <div class="no-results" id="states-no-results">
-        No states found matching your search.
-      </div>
+      <div class="no-results" id="states-no-results">No states found matching your search.</div>
     </section>
 
     <section class="location-section ut-section" id="uts">
@@ -75,7 +81,11 @@ function getColorClass(index: number) {
       <div class="location-grid" id="uts-grid">
         {
           utList.map((ut, index) => (
-            <article class={`location-card color-${getColorClass(index)}`} data-name={ut.name.toLowerCase()} data-capital={ut.capital.toLowerCase()}>
+            <article
+              class={`location-card color-${getColorClass(index)}`}
+              data-name={ut.name.toLowerCase()}
+              data-capital={ut.capital.toLowerCase()}
+            >
               <details>
                 <summary title={ut.name}>{ut.name}</summary>
                 <p title={ut.capital}>{ut.capital}</p>
@@ -84,33 +94,31 @@ function getColorClass(index: number) {
           ))
         }
       </div>
-      <div class="no-results" id="uts-no-results">
-        No union territories found matching your search.
-      </div>
+      <div class="no-results" id="uts-no-results">No union territories found matching your search.</div>
     </section>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const searchBar = document.getElementById("searchBar");
-    const clearButton = document.querySelector(".clear-button");
-    const statesGrid = document.getElementById("states-grid");
-    const utsGrid = document.getElementById("uts-grid");
-    const statesNoResults = document.getElementById("states-no-results");
-    const utsNoResults = document.getElementById("uts-no-results");
-    const statesCount = document.getElementById("states-count");
-    const utsCount = document.getElementById("uts-count");
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchBar = document.getElementById("searchBar") as HTMLInputElement;
+    const clearButton = document.querySelector(".clear-button") as HTMLElement;
+    const statesGrid = document.getElementById("states-grid") as HTMLElement;
+    const utsGrid = document.getElementById("uts-grid") as HTMLElement;
+    const statesNoResults = document.getElementById("states-no-results") as HTMLElement;
+    const utsNoResults = document.getElementById("uts-no-results") as HTMLElement;
+    const statesCount = document.getElementById("states-count") as HTMLElement;
+    const utsCount = document.getElementById("uts-count") as HTMLElement;
 
     // Store original text content for each card
     const originalContent = new Map();
 
     // Initialize original content storage
     function storeOriginalContent() {
-      const allCards = document.querySelectorAll('.location-card');
-      allCards.forEach(card => {
-        const summary = card.querySelector('summary');
-        const p = card.querySelector('p');
+      const allCards = document.querySelectorAll(".location-card");
+      allCards.forEach((card) => {
+        const summary = card.querySelector("summary");
+        const p = card.querySelector("p");
         if (summary && p) {
           originalContent.set(card, {
             name: summary.textContent,
@@ -121,20 +129,20 @@ function getColorClass(index: number) {
     }
 
     // Highlight matching text
-    function highlightText(text, query) {
+    function highlightText(text: string, query: string) {
       if (!query || query.length === 0) return text;
-      
-      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+
+      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
       return text.replace(regex, '<span class="highlight">$1</span>');
     }
 
     // Make entire card clickable
     function makeCardsClickable() {
-      const allCards = document.querySelectorAll('.location-card');
-      allCards.forEach(card => {
-        card.addEventListener('click', function(e) {
+      const allCards = document.querySelectorAll(".location-card");
+      allCards.forEach((card) => {
+        card.addEventListener("click", function (this: HTMLElement, e) {
           e.preventDefault();
-          const details = this.querySelector('details');
+          const details = this.querySelector("details");
           if (details) {
             details.open = !details.open;
           }
@@ -143,15 +151,15 @@ function getColorClass(index: number) {
     }
 
     // Update visibility, counts, and highlighting
-    function updateVisibility(query) {
+    function updateVisibility(query: string) {
       const stateCards = statesGrid.querySelectorAll("article");
       const utCards = utsGrid.querySelectorAll("article");
-      
+
       let visibleStates = 0;
       let visibleUts = 0;
 
       // Filter and highlight states
-      stateCards.forEach(card => {
+      stateCards.forEach((card) => {
         const original = originalContent.get(card);
         if (!original) return;
 
@@ -159,17 +167,17 @@ function getColorClass(index: number) {
         const capital = original.capital.toLowerCase();
         const searchQuery = query.toLowerCase();
         const isVisible = name.includes(searchQuery) || capital.includes(searchQuery);
-        
+
         if (isVisible) {
           // Update content with highlighting
-          const summary = card.querySelector('summary');
-          const p = card.querySelector('p');
-          
+          const summary = card.querySelector("summary");
+          const p = card.querySelector("p");
+
           if (summary && p) {
             summary.innerHTML = highlightText(original.name, query);
             p.innerHTML = highlightText(original.capital, query);
           }
-          
+
           card.style.display = "";
           visibleStates++;
         } else {
@@ -178,7 +186,7 @@ function getColorClass(index: number) {
       });
 
       // Filter and highlight UTs
-      utCards.forEach(card => {
+      utCards.forEach((card) => {
         const original = originalContent.get(card);
         if (!original) return;
 
@@ -186,17 +194,17 @@ function getColorClass(index: number) {
         const capital = original.capital.toLowerCase();
         const searchQuery = query.toLowerCase();
         const isVisible = name.includes(searchQuery) || capital.includes(searchQuery);
-        
+
         if (isVisible) {
           // Update content with highlighting
-          const summary = card.querySelector('summary');
-          const p = card.querySelector('p');
-          
+          const summary = card.querySelector("summary");
+          const p = card.querySelector("p");
+
           if (summary && p) {
             summary.innerHTML = highlightText(original.name, query);
             p.innerHTML = highlightText(original.capital, query);
           }
-          
+
           card.style.display = "";
           visibleUts++;
         } else {
@@ -205,28 +213,28 @@ function getColorClass(index: number) {
       });
 
       // Update counts
-      statesCount.textContent = `${visibleStates} State${visibleStates !== 1 ? 's' : ''}`;
-      utsCount.textContent = `${visibleUts} UT${visibleUts !== 1 ? 's' : ''}`;
+      statesCount.textContent = `${visibleStates} State${visibleStates !== 1 ? "s" : ""}`;
+      utsCount.textContent = `${visibleUts} UT${visibleUts !== 1 ? "s" : ""}`;
 
       // Show/hide no results messages
-      statesNoResults.style.display = visibleStates === 0 && query ? 'block' : 'none';
-      utsNoResults.style.display = visibleUts === 0 && query ? 'block' : 'none';
+      statesNoResults.style.display = visibleStates === 0 && query ? "block" : "none";
+      utsNoResults.style.display = visibleUts === 0 && query ? "block" : "none";
     }
 
     // Search functionality with debounce
-    function debounce(func, delay) {
-      let timeoutId;
-      return function (...args) {
+    const debounce = (func: any, delay: number) => {
+      let timeoutId: any;
+      return (...args: any) => {
         clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func.apply(this, args), delay);
+        timeoutId = setTimeout(() => func(...args), delay);
       };
-    }
+    };
 
     if (searchBar) {
       const handleSearch = debounce(function () {
         const query = searchBar.value.trim();
         updateVisibility(query);
-      }, 300); 
+      }, 300);
 
       searchBar.addEventListener("input", handleSearch);
 
@@ -241,7 +249,7 @@ function getColorClass(index: number) {
 
     // Clear button functionality
     if (clearButton) {
-      clearButton.addEventListener("click", function() {
+      clearButton.addEventListener("click", function () {
         searchBar.value = "";
         updateVisibility("");
         searchBar.focus();
@@ -251,6 +259,6 @@ function getColorClass(index: number) {
     // Initialize
     storeOriginalContent();
     makeCardsClickable();
-    updateVisibility(""); 
+    updateVisibility("");
   });
 </script>
