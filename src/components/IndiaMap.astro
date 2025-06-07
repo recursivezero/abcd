@@ -1,8 +1,12 @@
 ---
 import stateJson from "@/assets/json/state.json";
+import BackButton from "@/components/ui/backButton.astro";
 ---
 
 <div class="container__map">
+  <div class="back-button-container">
+    <BackButton />
+  </div>
   <svg id="india-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1800" height="90vh" width="90vw">
     <!-- States will be loaded dynamically -->
   </svg>
@@ -86,3 +90,4 @@ import stateJson from "@/assets/json/state.json";
     loadStateSVGs();
   });
 </script>
+

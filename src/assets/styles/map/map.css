@@ -53,3 +53,9 @@
     transform: scale(1);
   }
 }
+.back-button-container {
+  position: absolute;
+  top: -2.5rem;
+  left: 1rem;
+  z-index: 100;
+}
