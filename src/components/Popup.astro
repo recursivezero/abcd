@@ -5,7 +5,7 @@
   <img class="state-popup__image" src="" alt="State Image" />
   <div class="state-popup__info">State Information</div>
   <div class="state-popup__buttons">
-    <button class="state-popup__button state-popup__button--copy">Copy Info</button>
+    <!--<button class="state-popup__button state-popup__button--copy">Copy Info</button>-->
     <button class="state-popup__button state-popup__button--more">See More</button>
   </div>
 </div>
@@ -17,7 +17,7 @@
   const popupStateImage = document.querySelector(".state-popup__image") as HTMLImageElement;
   const seeMoreButton = document.querySelector(".state-popup__button--more") as HTMLElement;
   const closePopup = document.querySelector(".state-popup__close") as HTMLElement;
-  const copyButton = document.querySelector(".state-popup__button--copy") as HTMLElement;
+  //const copyButton = document.querySelector(".state-popup__button--copy") as HTMLElement;
 
   function showPopup(event: MouseEvent, stateInfo: any) {
     // Update popup content
@@ -79,21 +79,21 @@
     popup.style.opacity = "0";
   });
 
-  copyButton?.addEventListener("click", () => {
-    const stateName = popupStateName.textContent;
-    const stateInfo = popupStateInfo.textContent;
-    if (stateName && stateInfo) {
-      navigator.clipboard
-        .writeText(`${stateName} - ${stateInfo}`)
-        .then(() => {
-          alert("State information copied to clipboard!");
-        })
-        .catch((err) => {
-          console.error("Failed to copy text: ", err);
-          alert("Failed to copy to clipboard");
-        });
-    }
-  });
+  //copyButton?.addEventListener("click", () => {
+  //  const stateName = popupStateName.textContent;
+  //  const stateInfo = popupStateInfo.textContent;
+  //  if (stateName && stateInfo) {
+  //    navigator.clipboard
+  //      .writeText(`${stateName} - ${stateInfo}`)
+  //      .then(() => {
+  //        alert("State information copied to clipboard!");
+  //      })
+  //      .catch((err) => {
+  //        console.error("Failed to copy text: ", err);
+  //        alert("Failed to copy to clipboard");
+  //      });
+  //  }
+  //});
 
   seeMoreButton?.addEventListener("click", () => {
     const stateName = popupStateName.textContent;

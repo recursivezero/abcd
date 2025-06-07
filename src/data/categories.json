@@ -1,0 +1,14 @@
+{
+  "categories": {
+    "dance": {
+      "title": "Explore Dances of India",
+      "description": "Discover the rich cultural heritage of Indian classical and folk dances",
+      "route": "dance"
+    },
+    "birds": {
+      "title": "Explore Birds",
+      "description": "Learn about different species of birds and their habitats",
+      "route": "birds"
+    }
+  }
+} 

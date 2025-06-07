@@ -1,0 +1,34 @@
+---
+import "@/assets/styles/map/map.css";
+import "@/assets/styles/map/popup.css";
+import IndiaMap from "@/components/IndiaMap.astro";
+import Popup from "@/components/Popup.astro";
+import BaseLayout from "@/layouts/Base";
+import categoryData from "@/data/categories.json";
+
+type CategoryData = {
+  title: string;
+  description: string;
+  route: string;
+};
+
+export async function getStaticPaths() {
+  return Object.entries(categoryData.categories).map(([key, value]) => ({
+    params: { category: value.route }
+  }));
+}
+
+const { category } = Astro.params;
+
+const data = Object.values(categoryData.categories).find(
+  (cat) => cat.route === category
+) || {
+  title: "Category Not Found",
+  description: "This category is not available"
+};
+---
+
+<BaseLayout meta={{ title: data.title }}>
+  <IndiaMap />
+  <Popup />
+</BaseLayout>

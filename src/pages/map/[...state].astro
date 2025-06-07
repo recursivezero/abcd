@@ -89,7 +89,9 @@ const famous_sport = stateInfo.famous_sport || "Coming soon";
           <div class="quick-facts">
             <h4>Quick facts about {name}</h4>
             <div class="facts-content">
-              <p class="description">{description}</p>
+              <p class="description">
+                {description.length > 120 ? description.slice(0,120) + ".." + "Read More" : description}
+              </p>
               <div class="links">
                 {
                   stateInfo.official_website && (
