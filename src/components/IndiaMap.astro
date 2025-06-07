@@ -14,12 +14,15 @@ import stateJson from "@/assets/json/state.json";
     const indiaSvg = document.getElementById("india-map");
     const tooltip = document.getElementById("state-tooltip");
 
+    let visitedStates = JSON.parse(localStorage.getItem("visitedStates") || "[]");
+
     async function loadStateSVGs() {
       const statesGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
       statesGroup.setAttribute("id", "india-states");
 
-      for (const stateKey in stateJson) {
-        const stateInfo = stateJson[stateKey];
+      const fragment = document.createDocumentFragment();
+
+      const statePromises = Object.entries(stateJson).map(async ([stateKey, stateInfo]) => {
         try {
           const response = await fetch(`/map/svg/${stateInfo.svg}`);
           const svgText = await response.text();
@@ -31,19 +34,27 @@ import stateJson from "@/assets/json/state.json";
           statePaths.forEach((path) => {
             const clonedPath = path.cloneNode(true);
             clonedPath.setAttribute("data-state", stateKey);
-            addEventListenersToState(clonedPath, stateInfo);
-            statesGroup.appendChild(clonedPath);
+            clonedPath.setAttribute("data-state-name", stateInfo.name);
+
+            clonedPath.style.fill = visitedStates.includes(stateKey) ? "#aee38a" : "#92ad5c";
+
+            addEventListenersToState(clonedPath, stateInfo, stateKey);
+            fragment.appendChild(clonedPath);
           });
         } catch (error) {
           console.error(`Error loading SVG for ${stateKey}:`, error);
         }
-      }
+      });
+
+      // Wait for all SVGs to load
+      await Promise.all(statePromises);
+
+      // Append all states at once
+      statesGroup.appendChild(fragment);
       indiaSvg.appendChild(statesGroup);
     }
 
-    function addEventListenersToState(path, stateInfo) {
-      path.style.fill = "#92ad5c";
-
+    function addEventListenersToState(path, stateInfo, stateKey) {
       path.addEventListener("mousemove", (event) => {
         path.style.fill = "#FFA500";
         path.style.transform = "scale(1)";
@@ -53,21 +64,25 @@ import stateJson from "@/assets/json/state.json";
         tooltip.style.top = `${event.pageY + 10}px`;
         tooltip.style.display = "block";
       });
-
       path.addEventListener("mouseleave", () => {
-        path.style.fill = "#aee38a";
+        path.style.fill = visitedStates.includes(stateKey) ? "#aee38a" : "#92ad5c";
         path.style.transform = "scale(1)";
         tooltip.style.display = "none";
       });
 
       path.addEventListener("click", (event) => {
+        if (!visitedStates.includes(stateKey)) {
+          visitedStates.push(stateKey);
+          localStorage.setItem("visitedStates", JSON.stringify(visitedStates));
+          path.style.fill = "#aee38a";
+        }
+
         const popupEvent = new CustomEvent("showStatePopup", {
           detail: { event, stateInfo }
         });
         document.dispatchEvent(popupEvent);
       });
     }
-
     loadStateSVGs();
   });
 </script>

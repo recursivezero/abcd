@@ -1,9 +1,9 @@
 ---
-import BackIcon from "@/assets/icons/back.svg";
+import "@/assets/styles/games.css";
 import Help from "@/components/Help.astro";
 import HideSeekGrid from "@/components/HideSeekGrid.astro";
+import BackButton from "@/components/ui/backButton.astro";
 import Layout from "@/layouts/Base";
-import "@/assets/styles/games.css";
 
 const meta = {
   title: "Grid Game",
@@ -15,10 +15,7 @@ const meta = {
   <div class="game-page-container">
     <div class="game-wrapper">
       <div class="game-header">
-        <a href="/hidenseek" class="back">
-          <BackIcon />
-          Back
-        </a>
+        <BackButton />
       </div>
       <div class="game-menu">
         <Help

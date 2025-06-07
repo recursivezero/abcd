@@ -37,9 +37,7 @@ export const hindiConsonants = [
   // य-row
   2351, 2352, 2354, 2357,
   // श-row
-  2358, 2359, 2360, 2361,
-
-  2365
+  2358, 2359, 2360, 2361
 ]
   .map((code) => String.fromCharCode(code))
   .concat(additionalConsonants);

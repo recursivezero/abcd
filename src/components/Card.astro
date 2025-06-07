@@ -34,7 +34,7 @@ interface Branch {
   surnames: Surname[];
 }
 
-const { placeholder = "Search...", initialData = [] } = Astro.props;
+const { initialData = [] } = Astro.props;
 
 // Server-side data processing
 const processedData = initialData.map((branch, index) => ({

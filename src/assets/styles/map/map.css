@@ -22,7 +22,22 @@
     pointer-events: none;
     z-index: 500;
     display: none;
-    transform: translate(-300%, -200%);
+    transform: translate(-15vw, -20vh);
+    margin-top: -10px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .tooltip {
+      transform: translate(-50%, -120%);
+      margin-top: -15px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .tooltip {
+      transform: translate(-15vw, -20vh);
+      margin-top: -20px;
+    }
   }
 
   & path {
