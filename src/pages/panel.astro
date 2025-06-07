@@ -3,88 +3,111 @@ import "@/assets/styles/panel.css";
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/common.css";
+import SettingIcon from "@/assets/icons/settings.svg";
+
 ---
 
 <BaseLayout meta={{ title: "Panel" }}>
   <Fragment slot="header-right">
-    <section id="option-box" class="panel__options">
-      <div class="controls" role="radiogroup" aria-labelledby="orientation-label">
-        <span id="orientation-label" class="sr-only">Panel Orientation</span>
+    <div class="right-header-buttons">
+      <div class="settings-button-container">
+        <button
+          id="settingsButton"
+          class="settings-button"
+          aria-label="Open panel settings"
+        >
+          <SettingIcon class="settings-icon" />
+        </button>
+        <div
+          id="panelToolsPopover"
+          class="panel-tools-popover"
+          aria-hidden="true"
+        >
+          <h2 class="gradient-text">Panel Tools</h2>
+          <section id="option-box" class="panel__options">
+            <div class="controls" role="radiogroup" aria-labelledby="orientation-label">
+              <span id="orientation-label" class="sr-only"
+                >Panel Orientation</span
+              >
 
-        <label class="vertical" for="vertical">
-          <input
-            type="radio"
-            class="orientation"
-            name="orientation"
-            id="vertical"
-            value="X"
-            aria-label="Vertical Orientation"
-          />
-          <span class="icon" aria-hidden="true">⇕</span>
-          <span class="sr-only">Vertical Orientation</span>
-        </label>
+              <label class="vertical" for="vertical">
+                <input
+                  type="radio"
+                  class="orientation"
+                  name="orientation"
+                  id="vertical"
+                  value="X"
+                  aria-label="Vertical Orientation"
+                />
+                <span class="icon" aria-hidden="true">⇕</span>
+                <span class="sr-only">Vertical Orientation</span>
+              </label>
 
-        <label class="horizontal" for="horizontal">
-          <input
-            type="radio"
-            class="orientation"
-            name="orientation"
-            id="horizontal"
-            value="Y"
-            aria-label="Horizontal Orientation"
-          />
-          <span class="icon" aria-hidden="true">⇔</span>
-          <span class="sr-only">Horizontal Orientation</span>
-        </label>
+              <label class="horizontal" for="horizontal">
+                <input
+                  type="radio"
+                  class="orientation"
+                  name="orientation"
+                  id="horizontal"
+                  value="Y"
+                  aria-label="Horizontal Orientation"
+                />
+                <span class="icon" aria-hidden="true">⇔</span>
+                <span class="sr-only">Horizontal Orientation</span>
+              </label>
+            </div>
+
+            <div class="controls" role="radiogroup" aria-labelledby="content-type-label">
+              <span id="content-type-label" class="sr-only"
+                >Panel Content Type</span
+              >
+
+              <label class="alphabet" for="alphabet">
+                <input
+                  type="radio"
+                  class="content-type"
+                  name="content-type"
+                  id="alphabet"
+                  value="alphabet"
+                  aria-label="Alphabet Panel"
+                  checked
+                />
+                <span class="icon" aria-hidden="true">A-Z</span>
+                <span class="sr-only">Alphabet Panel</span>
+              </label>
+
+              <label class="numbers" for="numbers">
+                <input
+                  type="radio"
+                  class="content-type"
+                  name="content-type"
+                  id="numbers"
+                  value="numbers"
+                  aria-label="Numbers Panel"
+                />
+                <span class="icon" aria-hidden="true">0-9</span>
+                <span class="sr-only">Numbers Panel</span>
+              </label>
+            </div>
+
+            <div class="range__option">
+              <span id="min-range-value">10</span>
+              <input
+                type="range"
+                name="range"
+                id="range"
+                class="range__slider"
+                value="0"
+                min="10"
+                max="26"
+                title="Adjust panel size"
+              />
+              <span id="max-range-value">26</span>
+            </div>
+          </section>
+        </div>
       </div>
-
-      <div class="controls" role="radiogroup" aria-labelledby="content-type-label">
-        <span id="content-type-label" class="sr-only">Panel Content Type</span>
-
-        <label class="alphabet" for="alphabet">
-          <input
-            type="radio"
-            class="content-type"
-            name="content-type"
-            id="alphabet"
-            value="alphabet"
-            aria-label="Alphabet Panel"
-            checked
-          />
-          <span class="icon" aria-hidden="true">A-Z</span>
-          <span class="sr-only">Alphabet Panel</span>
-        </label>
-
-        <label class="numbers" for="numbers">
-          <input
-            type="radio"
-            class="content-type"
-            name="content-type"
-            id="numbers"
-            value="numbers"
-            aria-label="Numbers Panel"
-          />
-          <span class="icon" aria-hidden="true">0-9</span>
-          <span class="sr-only">Numbers Panel</span>
-        </label>
-      </div>
-
-      <div class="range__option">
-        <span id="min-range-value">10</span>
-        <input
-          type="range"
-          name="range"
-          id="range"
-          class="range__slider"
-          value="0"
-          min="10"
-          max="26"
-          title="Adjust panel size"
-        />
-        <span id="max-range-value">26</span>
-      </div>
-    </section>
-
+    </div>
     <Help
       title="Panel"
       description="Use arrow keys to navigate through letters/numbers. Up/down for vertical orientation, left/right for horizontal. Type any letter or number to jump to it. Adjust panel size with the slider."
@@ -104,12 +127,12 @@ import "@/assets/styles/common.css";
       LEFT = 37,
       UP = 38,
       RIGHT = 39,
-      DOWN = 40
+      DOWN = 40,
     }
 
     enum ContentType {
       ALPHABET = "alphabet",
-      NUMBERS = "numbers"
+      NUMBERS = "numbers",
     }
 
     // Define the behaviour for our new type of HTML element.
@@ -196,6 +219,29 @@ import "@/assets/styles/common.css";
           // Add change event for final blur
           this.#cellRange.blur();
         });
+
+        const panelToolsPopover = document.getElementById("panelToolsPopover");
+        const settingsButton = document.getElementById("settingsButton");
+        // Panel tools logic
+        if (settingsButton && panelToolsPopover) {
+          settingsButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const isOpen = panelToolsPopover.classList.contains("open");
+            panelToolsPopover.classList.toggle("open", !isOpen);
+            settingsButton.setAttribute("aria-expanded", String(!isOpen)); // Convert boolean to string
+            panelToolsPopover.setAttribute("aria-hidden", String(isOpen)); // Convert boolean to string
+          });
+
+          document.addEventListener("click", (event) => {
+            if (!panelToolsPopover.contains(event.target as Node) && !settingsButton.contains(event.target as Node)) {
+              if (panelToolsPopover.classList.contains("open")) {
+                settingsButton.setAttribute("aria-expanded", "false");
+                panelToolsPopover.setAttribute("aria-hidden", "true");
+                panelToolsPopover.classList.remove("open");
+              }
+            }
+          });
+        }
       }
 
       updateRangeAttributes() {

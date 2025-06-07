@@ -1,10 +1,10 @@
 :root {
   --metal-1: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
-  --metal-2: linear-gradient(145deg, #f5f5dc 0%, #f5f5dc 50%, #f5f5dc 100%);
+  --metal-2: linear-gradient(145deg, #F5F5DC 0%, #F5F5DC 50%, #F5F5DC 100%);
   --metal-3: linear-gradient(145deg, #404040 0%, #2a2a2a 100%);
   --text-light: #e0e0e0;
   --text-dark: #1a1a1a;
-  --accent-color: #f5f5dc;
+  --accent-color: #F5F5DC;
   --purple-accent: #444460;
   --border-radius: 8px;
   --transition-speed: 0.3s;
@@ -27,7 +27,7 @@ html {
 body {
   background: linear-gradient(135deg, var(--bg-color-3) 0%, var(--bg-color-1) 50%, var(--bg-color-2) 100%);
   color: var(--text-light);
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   min-height: 100vh;
   line-height: 1.6;
   container-type: unset;
@@ -151,7 +151,6 @@ textarea.metallic-textarea {
   background: var(--purple-accent);
   border: 2px solid var(--purple-accent);
   padding: 0.8rem 1.5rem;
-  margin-top: 1rem;
   border-radius: var(--border-radius);
   position: relative;
   overflow: hidden;
@@ -235,10 +234,20 @@ textarea.metallic-textarea {
 .header-controls {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
   padding: 1.5rem;
   padding-top: 0rem;
   width: 100%;
 }
+
+/* New style for the right-aligned buttons group */
+.right-header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem; /* Gap between download, reset, and settings button */
+}
+
 
 .design-container {
   display: grid;
@@ -330,6 +339,24 @@ textarea.metallic-textarea {
   right: 0;
 }
 
+.header-icon {
+  width: 1.2em;
+  height: 1.2em;
+  fill: var(--text-light);
+  transition: fill var(--transition-speed) ease;
+}
+
+
+.metallic-button:hover .header-icon {
+  fill: var(--text-dark);
+}
+
+.header-tools-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  width: auto;
+  margin-top: 0;
+}
 /* === Control Elements === */
 .control-group {
   margin-bottom: 1.5rem;
@@ -533,7 +560,7 @@ textarea.metallic-textarea {
 }
 
 .control-section summary::after {
-  content: "+";
+  content: '+';
   position: absolute;
   right: 1rem;
   font-size: 1.2em;
@@ -544,7 +571,7 @@ textarea.metallic-textarea {
   transform: rotate(45deg);
 }
 
-.control-section[open] > div {
+.control-section[open]>div {
   padding: 0 1rem 1rem 1rem;
   margin-top: 0.5rem;
 }
@@ -577,6 +604,9 @@ textarea.metallic-textarea {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  margin-left: auto;
+  padding-right: 1.5rem;
+  position: relative;
 }
 
 .design-tools-popover {
@@ -595,10 +625,7 @@ textarea.metallic-textarea {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    visibility 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -623,8 +650,8 @@ textarea.metallic-textarea {
   border: 2px solid var(--accent-color);
   color: var(--text-light);
   padding: 0.6rem;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   min-width: 40px;
   border-radius: 50%;
   display: flex;
@@ -664,6 +691,7 @@ textarea.metallic-textarea {
   width: auto;
   margin-top: 0;
 }
+
 
 /* === Responsiveness === */
 @media (max-width: 768px) {

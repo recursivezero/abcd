@@ -88,16 +88,6 @@ const letterRows = [
 
 <script>
   const dialog = document.getElementById("game-instructions") as HTMLDialogElement;
-  const helpButton = document.getElementById("help-button");
-  const closeButton = document.getElementById("close-instructions");
-
-  helpButton?.addEventListener("click", () => {
-    dialog?.showModal();
-  });
-
-  closeButton?.addEventListener("click", () => {
-    dialog?.close();
-  });
 
   // New Color Generation and Management
   const letterColors: Record<string, string> = {};

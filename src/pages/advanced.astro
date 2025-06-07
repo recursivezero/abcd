@@ -4,6 +4,8 @@ import "@/assets/styles/quote-designer.css";
 import BackButton from "@/components/ui/backButton.astro";
 import Help from "@/components/Help.astro";
 import SettingIcon from "@/assets/icons/settings.svg";
+import DownloadIcon from "@/assets/icons/download.svg";
+import ResetIcon from "@/assets/icons/reset.svg";
 
 const pageTitle = "Quote Designer";
 const pageDescription = "Design beautiful quotes with our advanced tool.";
@@ -17,16 +19,6 @@ const pageMeta = {
 <Base meta={pageMeta}>
   <Fragment slot="header-right">
     <div class="header-tools-wrapper"></div>
-
-    <button id="downloadBtn" class="metallic-button header-tools-btn" aria-label="Download Design">
-      <span class="btn-gradient">Download</span>
-      <span class="loading-spinner" style="display: none;"></span>
-    </button>
-
-    <button id="resetBtn" class="metallic-button header-tools-btn" aria-label="Reset Design">
-      <span class="btn-gradient">Reset</span>
-    </button>
-
     <Help
       title="Quote designer"
       description="Design beautiful quotes through this intuitive visual editor. You can customize the text, font, and background color. You can also change the alignment of the text."
@@ -35,159 +27,170 @@ const pageMeta = {
 
   <div class="header-controls">
     <BackButton />
-    <div class="settings-button-container">
-      <button id="settingsButton" class="settings-button" aria-label="Open design settings">
-        <SettingIcon class="settings-icon" />
-      </button>
-      <div id="designToolsPopover" class="design-tools-popover" aria-hidden="true">
-        <h2 class="gradient-text">Design Tools</h2>
+    <div class="right-header-buttons">
+    <button id="downloadBtn" class="metallic-button header-tools-btn" aria-label="Download Design">
+      <DownloadIcon class="header-icon" style="width: 1.4em; height: 1.4em;" />
+      <span class="loading-spinner" style="display: none;"></span>
+    </button>
 
-        <details class="control-section" open>
-          <summary>Edit Text</summary>
-          <div class="control-group">
-            <label for="editQuote">Edit Quote:</label>
-            <textarea id="editQuote" class="metallic-input" rows="3" aria-label="Edit Quote Text"></textarea>
-            <div id="editWordCount" class="word-count">0 / 20 words</div>
-            <label for="editAuthor">Edit Author:</label>
-            <input type="text" id="editAuthor" class="metallic-input" aria-label="Edit Author Name" />
-          </div>
-        </details>
+      <button id="resetBtn" class="metallic-button header-tools-btn" aria-label="Reset Design">
+        <ResetIcon class="header-icon" style="width: 1.5em; height: 1.5em;" />
+        <span class="loading-spinner" style="display: none;"></span>
+        </button>
+      <div class="settings-button-container">
+        <button id="settingsButton" class="settings-button" aria-label="Open design settings">
+          <SettingIcon class="settings-icon" />
+        </button>
+        <div id="designToolsPopover" class="design-tools-popover" aria-hidden="true">
+          <h2 class="gradient-text">Design Tools</h2>
 
-        <details class="control-section" open>
-          <summary>Background</summary>
-          <div class="control-group">
-            <label for="bgColor">Background Color:</label>
-            <input
-              type="color"
-              id="bgColor"
-              value="#1a1a1a"
-              class="metallic-input color-input"
-              aria-label="Background Color Picker"
-            />
-          </div>
-          <div class="control-group">
-            <label for="bgImageUpload">Upload Background Image:</label>
-            <input
-              type="file"
-              id="bgImageUpload"
-              accept="image/*"
-              class="metallic-input file-input"
-              aria-label="Upload Background Image"
-            />
-          </div>
-          <div class="control-group">
-            <label>Preset Background Images:</label>
-            <div class="background-image-selector">
-              <div class="background-image-grid">
-                <div
-                  class="background-image-option"
-                  data-src="/images/color1.svg"
-                  aria-label="Select Background Image 1"
-                >
-                  <img src="/images/color1.svg" alt="Background 1" />
+          <details class="control-section" open>
+            <summary>Edit Text</summary>
+            <div class="control-group">
+              <label for="editQuote">Edit Quote:</label>
+              <textarea id="editQuote" class="metallic-input" rows="3" aria-label="Edit Quote Text"></textarea>
+              <div id="editWordCount" class="word-count">0 / 20 words</div>
+              <label for="editAuthor">Edit Author:</label>
+              <input type="text" id="editAuthor" class="metallic-input" aria-label="Edit Author Name" />
+            </div>
+          </details>
+
+          <details class="control-section" open>
+            <summary>Background</summary>
+            <div class="control-group">
+              <label for="bgColor">Background Color:</label>
+              <input
+                type="color"
+                id="bgColor"
+                value="#1a1a1a"
+                class="metallic-input color-input"
+                aria-label="Background Color Picker"
+              />
+            </div>
+            <div class="control-group">
+              <label for="bgImageUpload">Upload Background Image:</label>
+              <input
+                type="file"
+                id="bgImageUpload"
+                accept="image/*"
+                class="metallic-input file-input"
+                aria-label="Upload Background Image"
+              />
+            </div>
+            <div class="control-group">
+              <label>Preset Background Images:</label>
+              <div class="background-image-selector">
+                <div class="background-image-grid">
+                  <div
+                    class="background-image-option"
+                    data-src="src/assets/icons/color1.svg"
+                    aria-label="Select Background Image 1"
+                  >
+                    <img src="src/assets/icons/color1.svg" alt="Background 1" />
+                  </div>
+                  <div
+                    class="background-image-option"
+                    data-src="src/assets/icons/color2.svg"
+                    aria-label="Select Background Image 2"
+                  >
+                    <img src="src/assets/icons/color2.svg" alt="Background 2" />
+                  </div>
+                  <div
+                    class="background-image-option"
+                    data-src="src/assets/icons/color3.svg"
+                    aria-label="Select Background Image 3"
+                  >
+                    <img src="src/assets/icons/color3.svg" alt="Background 3" />
+                  </div>
+                  <div
+                    class="background-image-option"
+                    data-src="src/assets/icons/color4.svg"
+                    aria-label="Select Background Image 4"
+                  >
+                    <img src="src/assets/icons/color4.svg" alt="Background 4" />
+                  </div>
                 </div>
-                <div
-                  class="background-image-option"
-                  data-src="/images/color2.svg"
-                  aria-label="Select Background Image 2"
-                >
-                  <img src="/images/color2.svg" alt="Background 2" />
-                </div>
-                <div
-                  class="background-image-option"
-                  data-src="/images/color3.svg"
-                  aria-label="Select Background Image 3"
-                >
-                  <img src="/images/color3.svg" alt="Background 3" />
-                </div>
-                <div
-                  class="background-image-option"
-                  data-src="/images/color4.svg"
-                  aria-label="Select Background Image 4"
-                >
-                  <img src="/images/color4.svg" alt="Background 4" />
-                </div>
+                <button id="clearBackgroundBtn" class="metallic-button small-btn">
+                  <span class="btn-gradient">Clear Background</span>
+                </button>
               </div>
-              <button id="clearBackgroundBtn" class="metallic-button small-btn">
-                <span class="btn-gradient">Clear Background</span>
-              </button>
             </div>
-          </div>
-        </details>
+          </details>
 
-        <details class="control-section" open>
-          <summary>Text Style</summary>
-          <div class="control-group">
-            <label for="textColor">Text Color:</label>
-            <input
-              type="color"
-              id="textColor"
-              value="#ffffff"
-              class="metallic-input color-input"
-              aria-label="Text Color Picker"
-            />
-          </div>
-          <div class="control-group">
-            <label for="fontFamily">Font Family:</label>
-            <select id="fontFamily" class="metallic-input" aria-label="Font Family Selector">
-              <option value="'Space Mono', monospace" style="font-family: 'Space Mono', monospace;">Space Mono</option>
-              <option value="'Roboto', sans-serif" style="font-family: 'Roboto', sans-serif;">Roboto</option>
-              <option value="'Merriweather', serif" style="font-family: 'Merriweather', serif;">Merriweather</option>
-              <option value="'Lobster', cursive" style="font-family: 'Lobster', cursive;">Lobster</option>
-              <option value="Arial, sans-serif" style="font-family: Arial, sans-serif;">Arial</option>
-              <option value="'Times New Roman', Times, serif" style="font-family: 'Times New Roman', Times, serif;"
-                >Times New Roman</option
-              >
-            </select>
-          </div>
-          <div class="control-group">
-            <label for="fontSize">Font Size: <span id="fontSizeValue">24</span>px</label>
-            <input
-              type="range"
-              id="fontSize"
-              min="12"
-              max="80"
-              value="24"
-              class="metallic-slider"
-              aria-label="Font Size Slider"
-            />
-          </div>
-          <div class="control-group">
-            <label>Text Format:</label>
-            <div class="text-format-controls">
-              <button id="boldBtn" class="format-btn" data-format="bold" aria-label="Toggle Bold Text">B</button>
-              <button id="underlineBtn" class="format-btn" data-format="underline" aria-label="Toggle Underline Text"
-                >U</button
-              >
-              <button id="italicBtn" class="format-btn" data-format="italic" aria-label="Toggle Italic Text">I</button>
+          <details class="control-section" open>
+            <summary>Text Style</summary>
+            <div class="control-group">
+              <label for="textColor">Text Color:</label>
+              <input
+                type="color"
+                id="textColor"
+                value="#ffffff"
+                class="metallic-input color-input"
+                aria-label="Text Color Picker"
+              />
             </div>
-          </div>
-        </details>
+            <div class="control-group">
+              <label for="fontFamily">Font Family:</label>
+              <select id="fontFamily" class="metallic-input" aria-label="Font Family Selector">
+                <option value="'Space Mono', monospace" style="font-family: 'Space Mono', monospace;">Space Mono</option>
+                <option value="'Roboto', sans-serif" style="font-family: 'Roboto', sans-serif;">Roboto</option>
+                <option value="'Merriweather', serif" style="font-family: 'Merriweather', serif;">Merriweather</option>
+                <option value="'Lobster', cursive" style="font-family: 'Lobster', cursive;">Lobster</option>
+                <option value="Arial, sans-serif" style="font-family: Arial, sans-serif;">Arial</option>
+                <option value="'Times New Roman', Times, serif" style="font-family: 'Times New Roman', Times, serif;"
+                  >Times New Roman</option
+                >
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="fontSize">Font Size: <span id="fontSizeValue">24</span>px</label>
+              <input
+                type="range"
+                id="fontSize"
+                min="12"
+                max="80"
+                value="24"
+                class="metallic-slider"
+                aria-label="Font Size Slider"
+              />
+            </div>
+            <div class="control-group">
+              <label>Text Format:</label>
+              <div class="text-format-controls">
+                <button id="boldBtn" class="format-btn" data-format="bold" aria-label="Toggle Bold Text">B</button>
+                <button id="underlineBtn" class="format-btn" data-format="underline" aria-label="Toggle Underline Text"
+                  >U</button
+                >
+                <button id="italicBtn" class="format-btn" data-format="italic" aria-label="Toggle Italic Text">I</button>
+              </div>
+            </div>
+          </details>
 
-        <details class="control-section" open>
-          <summary>Layout</summary>
-          <div class="control-group">
-            <label>Text Alignment:</label>
-            <div class="alignment-controls">
-              <button id="alignLeft" class="alignment-btn" data-align="left" aria-label="Align Text Left">Left</button>
-              <button id="alignCenter" class="alignment-btn active" data-align="center" aria-label="Align Text Center"
-                >Center</button
-              >
-              <button id="alignRight" class="alignment-btn" data-align="right" aria-label="Align Text Right"
-                >Right</button
-              >
+          <details class="control-section" open>
+            <summary>Layout</summary>
+            <div class="control-group">
+              <label>Text Alignment:</label>
+              <div class="alignment-controls">
+                <button id="alignLeft" class="alignment-btn" data-align="left" aria-label="Align Text Left">Left</button>
+                <button id="alignCenter" class="alignment-btn active" data-align="center" aria-label="Align Text Center"
+                  >Center</button
+                >
+                <button id="alignRight" class="alignment-btn" data-align="right" aria-label="Align Text Right"
+                  >Right</button
+                >
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label>Aspect Ratio:</label>
-            <div class="aspect-ratio-controls">
-              <label><input type="radio" name="aspectRatio" value="free" checked /> Free</label>
-              <label><input type="radio" name="aspectRatio" value="square" /> Square (1:1)</label>
-              <label><input type="radio" name="aspectRatio" value="landscape" /> Landscape (16:9)</label>
-              <label><input type="radio" name="aspectRatio" value="portrait" /> Portrait (9:16)</label>
+            <div class="control-group">
+              <label>Aspect Ratio:</label>
+              <div class="aspect-ratio-controls">
+                <label><input type="radio" name="aspectRatio" value="free" checked /> Free</label>
+                <label><input type="radio" name="aspectRatio" value="square" /> Square (1:1)</label>
+                <label><input type="radio" name="aspectRatio" value="landscape" /> Landscape (16:9)</label>
+                <label><input type="radio" name="aspectRatio" value="portrait" /> Portrait (9:16)</label>
+              </div>
             </div>
-          </div>
-        </details>
+          </details>
+        </div>
       </div>
     </div>
   </div>
@@ -210,335 +213,346 @@ const pageMeta = {
     crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
 
-  <script is:inline>
-    const MAX_WORDS = 20;
+<script is:inline>
+  const MAX_WORDS = 20;
 
-    // --- Helper Functions ---
-    function countWords(str) {
-      if (!str) return 0;
-      return str
-        .trim()
-        .split(/\s+/)
-        .filter((word) => word.length > 0).length;
-    }
+  // --- Helper Functions ---
+  function countWords(str) {
+    if (!str) return 0;
+    return str
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+  }
 
-    function updateWordCountDisplay(textArea, displayElement) {
-      const words = countWords(textArea.value);
-      const isValid = words <= MAX_WORDS;
-      displayElement.textContent = `${words} / ${MAX_WORDS} words`;
-      displayElement.classList.toggle("error", !isValid);
-      return isValid;
-    }
+  function updateWordCountDisplay(textArea, displayElement) {
+    const words = countWords(textArea.value);
+    const isValid = words <= MAX_WORDS;
+    displayElement.textContent = `${words} / ${MAX_WORDS} words`;
+    displayElement.classList.toggle("error", !isValid);
+    return isValid;
+  }
 
-    const designToolsPopover = document.getElementById("designToolsPopover");
-    const settingsButton = document.getElementById("settingsButton");
+  const designToolsPopover = document.getElementById("designToolsPopover");
+  const settingsButton = document.getElementById("settingsButton");
 
-    // Logic for the settings button to open the popover
-    if (settingsButton && designToolsPopover) {
-      settingsButton.addEventListener("click", (event) => {
-        event.stopPropagation();
-        const isOpen = designToolsPopover.classList.contains("open");
-        designToolsPopover.classList.toggle("open", !isOpen);
-        settingsButton.setAttribute("aria-expanded", !isOpen);
-        designToolsPopover.setAttribute("aria-hidden", isOpen);
-      });
+  // Logic for the settings button to open the popover
+  if (settingsButton && designToolsPopover) {
+    settingsButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = designToolsPopover.classList.contains("open");
+      designToolsPopover.classList.toggle("open", !isOpen);
+      settingsButton.setAttribute("aria-expanded", !isOpen);
+      designToolsPopover.setAttribute("aria-hidden", isOpen);
+    });
 
-      // Close popover when clicking outside
-      document.addEventListener("click", (event) => {
-        if (!designToolsPopover.contains(event.target) && !settingsButton.contains(event.target)) {
-          if (designToolsPopover.classList.contains("open")) {
-            settingsButton.setAttribute("aria-expanded", "false"); // Update settings button's aria-expanded
-            designToolsPopover.setAttribute("aria-hidden", "true");
-            designToolsPopover.classList.remove("open");
-          }
+    // Close popover when clicking outside
+    document.addEventListener("click", (event) => {
+      if (!designToolsPopover.contains(event.target) && !settingsButton.contains(event.target)) {
+        if (designToolsPopover.classList.contains("open")) {
+          settingsButton.setAttribute("aria-expanded", "false"); // Update settings button's aria-expanded
+          designToolsPopover.setAttribute("aria-hidden", "true");
+          designToolsPopover.classList.remove("open");
         }
-      });
-    }
-
-    const designContainer = document.querySelector(".design-container");
-    if (designContainer) {
-      let quoteData = JSON.parse(localStorage.getItem("quoteData"));
-
-      if (!quoteData) {
-        quoteData = { quote: "", author: "" };
       }
+    });
+  }
 
-      const preview = document.getElementById("quotePreview");
-      const quoteTextEl = preview?.querySelector(".quote-text");
-      const authorNameEl = preview?.querySelector(".author-name");
-      const aspectRatioWrapper = document.getElementById("aspectRatioWrapper");
-      const editQuoteInput = document.getElementById("editQuote");
-      const editAuthorInput = document.getElementById("editAuthor");
-      const editWordCountEl = document.getElementById("editWordCount");
-      const fontSizeValueEl = document.getElementById("fontSizeValue");
-      const boldBtn = document.getElementById("boldBtn");
-      const underlineBtn = document.getElementById("underlineBtn");
-      const italicBtn = document.getElementById("italicBtn");
-      const resetBtn = document.getElementById("resetBtn");
+  const designContainer = document.querySelector(".design-container");
+  if (designContainer) {
+    let quoteData = JSON.parse(localStorage.getItem("quoteData"));
 
-      const controls = {
-        bgColor: document.getElementById("bgColor"),
-        textColor: document.getElementById("textColor"),
-        fontFamily: document.getElementById("fontFamily"),
-        fontSize: document.getElementById("fontSize"),
-        downloadBtn: document.getElementById("downloadBtn"),
-        bgImageUpload: document.getElementById("bgImageUpload"),
-        clearBackgroundBtn: document.getElementById("clearBackgroundBtn")
-      };
+    if (!quoteData) {
+      quoteData = { quote: "", author: "" };
+    }
 
-      const alignmentButtons = document.querySelectorAll(".alignment-btn");
-      const backgroundImageOptions = document.querySelectorAll(".background-image-option");
-      const aspectRatioRadios = document.querySelectorAll('input[name="aspectRatio"]');
+    const preview = document.getElementById("quotePreview");
+    const quoteTextEl = preview?.querySelector(".quote-text");
+    const authorNameEl = preview?.querySelector(".author-name");
+    const aspectRatioWrapper = document.getElementById("aspectRatioWrapper");
+    const editQuoteInput = document.getElementById("editQuote");
+    const editAuthorInput = document.getElementById("editAuthor");
+    const editWordCountEl = document.getElementById("editWordCount");
+    const fontSizeValueEl = document.getElementById("fontSizeValue");
+    const boldBtn = document.getElementById("boldBtn");
+    const underlineBtn = document.getElementById("underlineBtn");
+    const italicBtn = document.getElementById("italicBtn");
+    const resetBtn = document.getElementById("resetBtn");
 
-      let currentAlignment = "center";
-      let currentBackgroundImage = null;
-      let uploadedBgObjectURL = null;
+    const controls = {
+      bgColor: document.getElementById("bgColor"),
+      textColor: document.getElementById("textColor"),
+      fontFamily: document.getElementById("fontFamily"),
+      fontSize: document.getElementById("fontSize"),
+      downloadBtn: document.getElementById("downloadBtn"),
+      bgImageUpload: document.getElementById("bgImageUpload"),
+      clearBackgroundBtn: document.getElementById("clearBackgroundBtn")
+    };
 
-      function initializeDesignPage() {
-        if (editQuoteInput && editWordCountEl) {
-          editQuoteInput.value = quoteData.quote;
-          updateWordCountDisplay(editQuoteInput, editWordCountEl);
+    const alignmentButtons = document.querySelectorAll(".alignment-btn");
+    const backgroundImageOptions = document.querySelectorAll(".background-image-option");
+    const aspectRatioRadios = document.querySelectorAll('input[name="aspectRatio"]');
+    const DOWNLOAD_COOLDOWN_MS = 5000;
+    let isDownloadOnCooldown = false;
+
+    let currentAlignment = "center";
+    let currentBackgroundImage = null;
+    let uploadedBgObjectURL = null;
+
+    function initializeDesignPage() {
+      if (editQuoteInput && editWordCountEl) {
+        editQuoteInput.value = quoteData.quote;
+        updateWordCountDisplay(editQuoteInput, editWordCountEl);
+      }
+      if (editAuthorInput) editAuthorInput.value = quoteData.author;
+      if (controls.fontSize && fontSizeValueEl) fontSizeValueEl.textContent = controls.fontSize.value;
+      updatePreview();
+    }
+
+    function updatePreview() {
+      if (!preview || !quoteData || !quoteTextEl || !authorNameEl) return;
+      quoteTextEl.textContent = quoteData.quote || "";
+      authorNameEl.textContent = quoteData.author ? `- ${quoteData.author}` : "";
+      preview.style.color = controls.textColor?.value || "#ffffff";
+      preview.style.fontFamily = controls.fontFamily?.value || "'Space Mono', monospace";
+      preview.style.fontSize = `${controls.fontSize?.value || 24}px`;
+      preview.style.textAlign = currentAlignment;
+      preview.style.alignItems =
+        currentAlignment === "left" ? "flex-start" : currentAlignment === "right" ? "flex-end" : "center";
+
+      // Apply formatting classes
+      quoteTextEl.classList.toggle("bold", boldBtn?.classList.contains("active"));
+      quoteTextEl.classList.toggle("underline", underlineBtn?.classList.contains("active"));
+      quoteTextEl.classList.toggle("italic", italicBtn?.classList.contains("active"));
+
+      if (currentBackgroundImage) {
+        preview.style.backgroundImage = `url('${currentBackgroundImage}')`;
+        preview.style.backgroundColor = "transparent";
+        if (controls.bgColor) controls.bgColor.disabled = true;
+      } else {
+        preview.style.backgroundImage = "none";
+        preview.style.backgroundColor = controls.bgColor?.value || "#1a1a1a";
+        if (controls.bgColor) controls.bgColor.disabled = false;
+      }
+      const selectedRatio = document.querySelector('input[name="aspectRatio"]:checked')?.value || "free";
+      if (aspectRatioWrapper) aspectRatioWrapper.className = `aspect-ratio-${selectedRatio}`;
+    }
+
+    function resetDesign() {
+      // Reset quote data
+      quoteData = { quote: "", author: "" };
+      if (editQuoteInput) editQuoteInput.value = "";
+      if (editAuthorInput) editAuthorInput.value = "";
+      if (editWordCountEl) updateWordCountDisplay(editQuoteInput, editWordCountEl);
+
+      // Reset colors
+      if (controls.bgColor) controls.bgColor.value = "#1a1a1a";
+      if (controls.textColor) controls.textColor.value = "#ffffff";
+
+      // Reset font settings
+      if (controls.fontFamily) controls.fontFamily.value = "'Space Mono', monospace";
+      if (controls.fontSize) {
+        controls.fontSize.value = "24";
+        if (fontSizeValueEl) fontSizeValueEl.textContent = "24";
+      }
+      boldBtn?.classList.remove("active");
+      underlineBtn?.classList.remove("active");
+      italicBtn?.classList.remove("active");
+
+      // Reset alignment
+      alignmentButtons.forEach((btn) => btn.classList.remove("active"));
+      document.getElementById("alignCenter")?.classList.add("active");
+      currentAlignment = "center";
+
+      // Reset background
+      if (uploadedBgObjectURL) {
+        URL.revokeObjectURL(uploadedBgObjectURL);
+        uploadedBgObjectURL = null;
+      }
+      if (controls.bgImageUpload) controls.bgImageUpload.value = "";
+      currentBackgroundImage = null;
+      backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
+      if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = true;
+
+      // Reset aspect ratio
+      document.querySelector('input[name="aspectRatio"][value="free"]').checked = true;
+
+      updatePreview();
+    }
+
+    // Event Listeners
+    if (editQuoteInput && editWordCountEl) {
+      editQuoteInput.addEventListener("input", () => {
+        const isValid = updateWordCountDisplay(editQuoteInput, editWordCountEl);
+        if (isValid) {
+          quoteData.quote = editQuoteInput.value;
+          updatePreview();
         }
-        if (editAuthorInput) editAuthorInput.value = quoteData.author;
-        if (controls.fontSize && fontSizeValueEl) fontSizeValueEl.textContent = controls.fontSize.value;
+      });
+    }
+    if (editAuthorInput) {
+      editAuthorInput.addEventListener("input", () => {
+        quoteData.author = editAuthorInput.value;
         updatePreview();
+      });
+    }
+
+    // Generic controls (excluding color, buttons)
+    ["textColor", "fontFamily", "fontSize"].forEach((controlId) => {
+      const control = controls[controlId];
+      if (control) {
+        const eventType = control.type === "select-one" ? "change" : "input";
+        control.addEventListener(eventType, () => {
+          if (controlId === "fontSize" && fontSizeValueEl) {
+            fontSizeValueEl.textContent = control.value;
+          }
+          updatePreview();
+        });
       }
+    });
 
-      function updatePreview() {
-        if (!preview || !quoteData || !quoteTextEl || !authorNameEl) return;
-        quoteTextEl.textContent = quoteData.quote || "";
-        authorNameEl.textContent = quoteData.author ? `- ${quoteData.author}` : "";
-        preview.style.color = controls.textColor?.value || "#ffffff";
-        preview.style.fontFamily = controls.fontFamily?.value || "'Space Mono', monospace";
-        preview.style.fontSize = `${controls.fontSize?.value || 24}px`;
-        preview.style.textAlign = currentAlignment;
-        preview.style.alignItems =
-          currentAlignment === "left" ? "flex-start" : currentAlignment === "right" ? "flex-end" : "center";
+    // Specific Listener for Background Color using 'input' event
+    if (controls.bgColor) {
+      controls.bgColor.addEventListener("input", () => {
+        updatePreview();
+      });
+    }
 
-        // Apply formatting classes
-        quoteTextEl.classList.toggle("bold", boldBtn?.classList.contains("active"));
-        quoteTextEl.classList.toggle("underline", underlineBtn?.classList.contains("active"));
-        quoteTextEl.classList.toggle("italic", italicBtn?.classList.contains("active"));
-
-        if (currentBackgroundImage) {
-          preview.style.backgroundImage = `url('${currentBackgroundImage}')`;
-          preview.style.backgroundColor = "transparent";
-          if (controls.bgColor) controls.bgColor.disabled = true;
-        } else {
-          preview.style.backgroundImage = "none";
-          preview.style.backgroundColor = controls.bgColor?.value || "#1a1a1a";
-          if (controls.bgColor) controls.bgColor.disabled = false;
-        }
-        const selectedRatio = document.querySelector('input[name="aspectRatio"]:checked')?.value || "free";
-        if (aspectRatioWrapper) aspectRatioWrapper.className = `aspect-ratio-${selectedRatio}`;
-      }
-
-      function resetDesign() {
-        // Reset quote data
-        quoteData = { quote: "", author: "" };
-        if (editQuoteInput) editQuoteInput.value = "";
-        if (editAuthorInput) editAuthorInput.value = "";
-        if (editWordCountEl) updateWordCountDisplay(editQuoteInput, editWordCountEl);
-
-        // Reset colors
-        if (controls.bgColor) controls.bgColor.value = "#1a1a1a";
-        if (controls.textColor) controls.textColor.value = "#ffffff";
-
-        // Reset font settings
-        if (controls.fontFamily) controls.fontFamily.value = "'Space Mono', monospace";
-        if (controls.fontSize) {
-          controls.fontSize.value = "24";
-          if (fontSizeValueEl) fontSizeValueEl.textContent = "24";
-        }
-        boldBtn?.classList.remove("active");
-        underlineBtn?.classList.remove("active");
-        italicBtn?.classList.remove("active");
-
-        // Reset alignment
+    alignmentButtons.forEach((button) => {
+      button.addEventListener("click", () => {
         alignmentButtons.forEach((btn) => btn.classList.remove("active"));
-        document.getElementById("alignCenter")?.classList.add("active");
-        currentAlignment = "center";
+        button.classList.add("active");
+        currentAlignment = button.dataset.align;
+        updatePreview();
+      });
+    });
 
-        // Reset background
+    [boldBtn, underlineBtn, italicBtn].forEach((button) => {
+      if (button) {
+        button.addEventListener("click", () => {
+          button.classList.toggle("active");
+          updatePreview();
+        });
+      }
+    });
+
+    backgroundImageOptions.forEach((option) => {
+      option.addEventListener("click", () => {
+        backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
+        option.classList.add("active");
+        currentBackgroundImage = option.dataset.src;
+        if (uploadedBgObjectURL) {
+          URL.revokeObjectURL(uploadedBgObjectURL);
+          uploadedBgObjectURL = null;
+          if (controls.bgImageUpload) controls.bgImageUpload.value = "";
+        }
+        if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
+        updatePreview();
+      });
+    });
+
+    if (controls.bgImageUpload) {
+      controls.bgImageUpload.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith("image/")) {
+          if (uploadedBgObjectURL) {
+            URL.revokeObjectURL(uploadedBgObjectURL);
+          }
+          uploadedBgObjectURL = URL.createObjectURL(file);
+          currentBackgroundImage = uploadedBgObjectURL;
+          backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
+          if (controls.bgImageUpload) controls.bgImageUpload.value = "";
+          if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
+          updatePreview();
+        } else if (file) {
+          alert("Please select a valid image file.");
+          event.target.value = "";
+        }
+      });
+    }
+
+    if (controls.clearBackgroundBtn) {
+      controls.clearBackgroundBtn.addEventListener("click", () => {
+        backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
         if (uploadedBgObjectURL) {
           URL.revokeObjectURL(uploadedBgObjectURL);
           uploadedBgObjectURL = null;
         }
         if (controls.bgImageUpload) controls.bgImageUpload.value = "";
         currentBackgroundImage = null;
-        backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
-        if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = true;
-
-        // Reset aspect ratio
-        document.querySelector('input[name="aspectRatio"][value="free"]').checked = true;
-
+        controls.clearBackgroundBtn.disabled = true;
         updatePreview();
-      }
-
-      // Event Listeners
-      if (editQuoteInput && editWordCountEl) {
-        editQuoteInput.addEventListener("input", () => {
-          const isValid = updateWordCountDisplay(editQuoteInput, editWordCountEl);
-          if (isValid) {
-            quoteData.quote = editQuoteInput.value;
-            updatePreview();
-          }
-        });
-      }
-      if (editAuthorInput) {
-        editAuthorInput.addEventListener("input", () => {
-          quoteData.author = editAuthorInput.value;
-          updatePreview();
-        });
-      }
-
-      // Generic controls (excluding color, buttons)
-      ["textColor", "fontFamily", "fontSize"].forEach((controlId) => {
-        const control = controls[controlId];
-        if (control) {
-          const eventType = control.type === "select-one" ? "change" : "input";
-          control.addEventListener(eventType, () => {
-            if (controlId === "fontSize" && fontSizeValueEl) {
-              fontSizeValueEl.textContent = control.value;
-            }
-            updatePreview();
-          });
-        }
       });
-
-      // Specific Listener for Background Color using 'input' event
-      if (controls.bgColor) {
-        controls.bgColor.addEventListener("input", () => {
-          updatePreview();
-        });
-      }
-
-      alignmentButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          alignmentButtons.forEach((btn) => btn.classList.remove("active"));
-          button.classList.add("active");
-          currentAlignment = button.dataset.align;
-          updatePreview();
-        });
-      });
-
-      [boldBtn, underlineBtn, italicBtn].forEach((button) => {
-        if (button) {
-          button.addEventListener("click", () => {
-            button.classList.toggle("active");
-            updatePreview();
-          });
-        }
-      });
-
-      backgroundImageOptions.forEach((option) => {
-        option.addEventListener("click", () => {
-          backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
-          option.classList.add("active");
-          currentBackgroundImage = option.dataset.src;
-          if (uploadedBgObjectURL) {
-            URL.revokeObjectURL(uploadedBgObjectURL);
-            uploadedBgObjectURL = null;
-            if (controls.bgImageUpload) controls.bgImageUpload.value = "";
-          }
-          if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
-          updatePreview();
-        });
-      });
-
-      if (controls.bgImageUpload) {
-        controls.bgImageUpload.addEventListener("change", (event) => {
-          const file = event.target.files[0];
-          if (file && file.type.startsWith("image/")) {
-            if (uploadedBgObjectURL) {
-              URL.revokeObjectURL(uploadedBgObjectURL);
-            }
-            uploadedBgObjectURL = URL.createObjectURL(file);
-            currentBackgroundImage = uploadedBgObjectURL;
-            backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
-            if (controls.bgImageUpload) controls.bgImageUpload.value = "";
-            if (controls.clearBackgroundBtn) controls.clearBackgroundBtn.disabled = false;
-            updatePreview();
-          } else if (file) {
-            alert("Please select a valid image file.");
-            event.target.value = "";
-          }
-        });
-      }
-
-      if (controls.clearBackgroundBtn) {
-        controls.clearBackgroundBtn.addEventListener("click", () => {
-          backgroundImageOptions.forEach((opt) => opt.classList.remove("active"));
-          if (uploadedBgObjectURL) {
-            URL.revokeObjectURL(uploadedBgObjectURL);
-            uploadedBgObjectURL = null;
-          }
-          if (controls.bgImageUpload) controls.bgImageUpload.value = "";
-          currentBackgroundImage = null;
-          controls.clearBackgroundBtn.disabled = true;
-          updatePreview();
-        });
-        controls.clearBackgroundBtn.disabled = !currentBackgroundImage;
-      }
-
-      aspectRatioRadios.forEach((radio) => {
-        radio.addEventListener("change", () => {
-          updatePreview();
-        });
-      });
-
-      if (controls.downloadBtn && preview) {
-        controls.downloadBtn.addEventListener("click", () => {
-          if (typeof html2canvas === "undefined") {
-            alert("Error: html2canvas library is not loaded.");
-            return;
-          }
-          const buttonText = controls.downloadBtn.querySelector(".btn-gradient");
-          const spinner = controls.downloadBtn.querySelector(".loading-spinner");
-          const originalButtonText = buttonText.textContent;
-          buttonText.textContent = "Generating...";
-          if (spinner) spinner.style.display = "inline-block";
-          controls.downloadBtn.disabled = true;
-          const canvasOptions = {
-            backgroundColor: currentBackgroundImage ? null : controls.bgColor?.value,
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            logging: false
-          };
-          const elementToCapture = aspectRatioWrapper.className === "aspect-ratio-free" ? preview : aspectRatioWrapper;
-          html2canvas(elementToCapture, canvasOptions)
-            .then((canvas) => {
-              try {
-                const link = document.createElement("a");
-                link.download = `quote-design-${Date.now()}.png`;
-                link.href = canvas.toDataURL("image/png");
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              } catch (downloadError) {
-                console.error("Download stage error:", downloadError);
-                alert("Error creating download link.");
-              } finally {
-                buttonText.textContent = originalButtonText;
-                if (spinner) spinner.style.display = "none";
-                controls.downloadBtn.disabled = false;
-              }
-            })
-            .catch((renderError) => {
-              console.error("html2canvas rendering error:", renderError);
-              alert("Could not generate the image. Check console (F12) for details.");
-              buttonText.textContent = originalButtonText;
-              if (spinner) spinner.style.display = "none";
-              controls.downloadBtn.disabled = false;
-            });
-        });
-      }
-
-      if (resetBtn) {
-        resetBtn.addEventListener("click", resetDesign);
-      }
-      initializeDesignPage();
+      controls.clearBackgroundBtn.disabled = !currentBackgroundImage;
     }
-  </script>
-</Base>
+
+    aspectRatioRadios.forEach((radio) => {
+      radio.addEventListener("change", () => {
+        updatePreview();
+      });
+    });
+
+    if (controls.downloadBtn && preview) {
+      controls.downloadBtn.addEventListener("click", () => {
+        if (isDownloadOnCooldown) {
+          return;
+        }
+
+        isDownloadOnCooldown = true;
+        controls.downloadBtn.disabled = true; 
+
+        // Only define spinner once
+        const spinner = controls.downloadBtn.querySelector(".loading-spinner");
+        if (spinner) spinner.style.display = "inline-block";
+
+        if (typeof html2canvas === "undefined") {
+          alert("Error: html2canvas library is not loaded.");
+          // Re-enable and reset cooldown if html2canvas is not loaded
+          isDownloadOnCooldown = false;
+          controls.downloadBtn.disabled = false;
+          if (spinner) spinner.style.display = "none";
+          return;
+        }
+
+        const canvasOptions = {
+          backgroundColor: currentBackgroundImage ? null : controls.bgColor?.value,
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          imageTimeout: 5000
+        };
+        const elementToCapture = aspectRatioWrapper.className === "aspect-ratio-free" ? preview : aspectRatioWrapper;
+        html2canvas(elementToCapture, canvasOptions)
+          .then((canvas) => {
+            try {
+              const link = document.createElement("a");
+              link.download = `quote-design-${Date.now()}.png`;
+              link.href = canvas.toDataURL("image/png");
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            } catch (downloadError) {
+              alert("Error creating download link.");
+            }
+          })
+          .catch((renderError) => {
+            alert("Could not generate the image.");
+          })
+          .finally(() => {
+            if (spinner) spinner.style.display = "none";
+
+            setTimeout(() => {
+              isDownloadOnCooldown = false;
+              controls.downloadBtn.disabled = false;
+            }, DOWNLOAD_COOLDOWN_MS);
+          });
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", resetDesign);
+    }
+    initializeDesignPage();
+  }
+</script>
