@@ -1,14 +1,20 @@
 {
   "categories": {
     "dance": {
+      "id": "dance",
       "title": "Explore Dances of India",
       "description": "Discover the rich cultural heritage of Indian classical and folk dances",
-      "route": "dance"
+      "route": "dance",
+      "image": "https://static.vecteezy.com/system/resources/thumbnails/041/053/132/small/ai-generated-beautiful-ballerina-in-long-dress-dancing-ai-generative-free-photo.jpeg",
+      "color": "#3B82F6"
     },
     "birds": {
+      "id": "birds",
       "title": "Explore Birds",
       "description": "Learn about different species of birds and their habitats",
-      "route": "birds"
+      "route": "birds",
+      "image": "https://www.shutterstock.com/image-photo/bird-dance-crane-sunset-love-260nw-2515802735.jpg",
+      "color": "#22C55E"
     }
   }
 } 

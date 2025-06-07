@@ -6,11 +6,6 @@ import Popup from "@/components/Popup.astro";
 import BaseLayout from "@/layouts/Base";
 import categoryData from "@/data/categories.json";
 
-type CategoryData = {
-  title: string;
-  description: string;
-  route: string;
-};
 
 export async function getStaticPaths() {
   return Object.entries(categoryData.categories).map(([key, value]) => ({

@@ -2,24 +2,17 @@
 import "@/assets/styles/map/map.css";
 import BaseLayout from "@/layouts/Base";
 import { Image } from "astro:assets";
+import categoryData from "@/data/categories.json";
 
-const categories = [
-  {
-    id: "dance",
-    title: "Explore Dances of India",
-    description: "Discover the rich cultural heritage of Indian classical and folk dances",
-    image:
-      "https://static.vecteezy.com/system/resources/thumbnails/041/053/132/small/ai-generated-beautiful-ballerina-in-long-dress-dancing-ai-generative-free-photo.jpeg",
-    color: "#3B82F6"
-  },
-  {
-    id: "birds",
-    title: "Explore Birds",
-    description: "Learn about different species of birds and their habitats",
-    image: "https://www.shutterstock.com/image-photo/bird-dance-crane-sunset-love-260nw-2515802735.jpg",
-    color: "#22C55E"
-  }
-];
+type Category = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  color: string;
+};
+
+const categories: Category[] = Object.values(categoryData.categories);
 ---
 
 <BaseLayout meta={{ title: "Explore India" }}>
@@ -30,7 +23,7 @@ const categories = [
 
     <div class="explore-grid">
       {
-        categories.map((category) => (
+        categories.map((category: Category) => (
           <a href={`/map/${category.id}`} class="explore-card">
             <div class="card-image">
               <Image src={category.image} alt={category.title} width={400} height={225} />
@@ -51,7 +44,6 @@ const categories = [
 
 <style>
   .explore-container {
-    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
     display: flex;
