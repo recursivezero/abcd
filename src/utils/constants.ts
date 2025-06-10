@@ -25,6 +25,21 @@ const colorBox = [
   "#d4d4d4"
 ];
 
+const fontColor = [
+  "#FFFFFF",
+  "#1A1A1A",
+  "#0D47A1",
+  "#F44336",
+  "#4CAF50",
+  "#FFEB3B",
+  "#9C27B0",
+  "#795548",
+  "#00BCD4",
+  "#FF9800",
+  "#607D8B",
+  "#E0E0E0"
+];
+
 const numberBox: Record<number, string> = {
   0: "zero",
   1: "one",
@@ -162,6 +177,12 @@ export const NavbarLinks: LinkProps[] = [
     title: "Draw",
     path: "/draw",
     isActive: true
+  },
+  {
+    name: "DrawCard",
+    title: "DrawCard",
+    path: "/DrawCard",
+    isActive: true
   }
 ];
 
@@ -193,4 +214,4 @@ export const colors = [
 
 export { BASE_URL, IMAGE_DIR };
 
-export { colorBox, fontBox, numberBox };
+export { colorBox, fontBox, fontColor, numberBox };
