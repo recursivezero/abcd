@@ -6,16 +6,18 @@ const { state } = Astro.props;
   .map-container {
     position: relative;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 35px;
-    aspect-ratio: 3/2;
   }
 
   .view-controls {
     position: absolute;
     top: 20px;
-    right: 20px;
     display: flex;
     gap: 10px;
     z-index: 100;
@@ -43,7 +45,7 @@ const { state } = Astro.props;
   }
 
   .district {
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     margin-top: 4rem;
     display: flex;
@@ -53,10 +55,8 @@ const { state } = Astro.props;
   }
 
   .district svg {
-    width: 100%;
-    height: 20rem;
-    max-width: 100%;
-    max-height: 100%;
+    height: 21rem;
+    margin-top: 20px;
     object-fit: contain;
   }
   .district path {
@@ -104,7 +104,7 @@ const { state } = Astro.props;
   }
 
   /* Fun bounce animation */
-  @keyframes bounce {
+  /* @keyframes bounce {
     0% {
       transform: scale(0.95);
     }
@@ -114,7 +114,7 @@ const { state } = Astro.props;
     100% {
       transform: scale(1);
     }
-  }
+  } */
 
   /* Add a little arrow for tooltip */
   .district-tooltip::after {
@@ -131,14 +131,84 @@ const { state } = Astro.props;
   .district-tooltip.visible {
     opacity: 1;
   }
+
+  /* Responsive styles */
+  @media (max-width: 1200px) {
+    .map-container {
+      max-width: 100%;
+      padding: 25px;
+    }
+    .district {
+      transform: scale(1.3);
+    }
+    .district svg {
+      height: 20rem;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .map-container {
+      padding: 20px;
+    }
+    .district {
+      transform: scale(1.2);
+      margin-top: 3rem;
+    }
+    .district svg {
+      height: 18rem;
+    }
+    .view-controls {
+      top: 15px;
+    }
+    .view-button {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+  }
+
   @media (max-width: 768px) {
+    .map-container {
+      padding: 15px;
+    }
+    .district {
+      transform: scale(1.1);
+      margin-top: 2.5rem;
+    }
+    .district svg {
+      height: 16rem;
+    }
+    .view-controls {
+      top: 10px;
+      flex-direction: row;
+      gap: 5px;
+    }
+    .view-button {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
     .map-container {
       padding: 10px;
     }
     .district {
-      transform: scale(1.2);
+      transform: scale(0.5);
+      margin-top: 2rem;
+    }
+    .district svg {
+      height: 14rem;
+    }
+    .view-controls {
+      top: 5px;
+      gap: 3px;
+    }
+    .view-button {
+      padding: 4px 8px;
+      font-size: 11px;
     }
   }
+
   .district path {
     stroke: transparent;
     stroke-width: 1px;
