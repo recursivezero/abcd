@@ -1,6 +1,6 @@
 ---
 import { alphabetMapper } from "@/mappers/alphabet";
-import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
+import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/constants";
 ---
 
 <head>
@@ -8,7 +8,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 </head>
 
 <div class="container">
-  <!-- Header and Continue Message Container -->
+
   <div class="header-container">
     <header class="header">
       <h1 class="info" aria-live="polite">Press any key</h1>
@@ -46,17 +46,20 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     fontBox,
     numberBox,
     alphabetMapper,
-    IMAGE_DIR
+    IMAGE_DIR,
+    fontColor
   }}
   is:inline
 >
   // Initialize state
   let currentFontIndex = 0;
+  let currentFontColorIndex = 0;
   let isUpperCase = true;
   let hasKeyBeenPressed = false;
   let showImages = true;
   let isNumberPressed = false;
-  let backgroundMode = "none"; // 'none', 'image', 'color'
+  let backgroundMode = "none"; 
+  let currentDisplayedKey = "";
 
   // DOM elements
   const mainEl = document.querySelector("main");
@@ -65,14 +68,16 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
   const instructionDiv = document.getElementById("instruction");
   const toggleCaseSwitch = document.getElementById("toggleCase");
   const toggleFontSwitch = document.getElementById("toggleFont");
-  const toggleImgSwitch = document.getElementById("toggleimg");
+  const toggleImgSwitch = document.getElementById("toggleImg");
   const toggleBackgroundSwitch = document.getElementById("toggleBg");
+  const toggleColorSwitch = document.getElementById("toggleColor");
   const info = document.querySelector(".info");
   const popupOverlay = document.getElementById("popupOverlay");
   const pressedKeySpan = document.getElementById("pressedKey");
   const popupClose = document.getElementById("popupClose");
   const imgToggle = document.querySelector(".img-toggle");
   const bgToggle = document.querySelector(".bg-toggle");
+  const colorToggle = document.querySelector(".color-toggle");
 
   function showContinueMessage() {
     const continueMsg = document.getElementById("continueMessage");
@@ -89,6 +94,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     isNumberPressed = false;
     backgroundMode = "none";
     showImages = true;
+    currentDisplayedKey = "";
+    currentFontColorIndex = 0;
+    updateFontColor();
 
     const continueMsg = document.getElementById("continueMessage");
     if (continueMsg) {
@@ -127,7 +135,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
       boardDiv.style.backgroundColor = "";
       boardDiv.style.background = "";
       boardDiv.removeAttribute("style");
-      // Force clear any inline styles
       boardDiv.setAttribute("style", "");
     }
     backgroundMode = "none";
@@ -152,6 +159,16 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     backgroundMode = "color";
   }
 
+  function updateFontColor() {
+    const currentColor = fontColor[currentFontColorIndex];
+    if (charDiv) {
+      charDiv.style.color = currentColor;
+    }
+    if (instructionDiv) {
+      instructionDiv.style.color = currentColor;
+    }
+  }
+
   function forceUpdateToggleButtons() {
     if (imgToggle) {
       imgToggle.classList.remove("active");
@@ -163,12 +180,17 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
       bgToggle.style.backgroundColor = "";
       bgToggle.style.color = "";
     }
+    if (colorToggle) {
+      colorToggle.classList.remove("active");
+      colorToggle.style.backgroundColor = "";
+      colorToggle.style.color = "";
+    }
 
     updateToggleButtons();
   }
 
   function updateToggleButtons() {
-    if (!imgToggle || !bgToggle) return;
+    if (!imgToggle || !bgToggle || !colorToggle) return;
 
     if (backgroundMode === "image") {
       imgToggle.classList.add("active");
@@ -218,6 +240,12 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     hasKeyBeenPressed = true;
     instructionDiv.textContent = "";
 
+    const isDifferentKey = currentDisplayedKey !== key.toUpperCase();
+    
+    if (isDifferentKey) {
+      currentFontColorIndex = 0;
+    }
+
     if (!isNaN(Number(key))) {
       isNumberPressed = true;
       const randomColor = getRandomValue(colorBox);
@@ -226,6 +254,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
       info.textContent = numberBox[key] || "Unknown";
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
       charDiv.style.fontSize = "";
+      currentDisplayedKey = key;
+      updateFontColor();
       showContinueMessage();
       updateToggleButtons();
       return;
@@ -237,6 +267,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
       info.textContent = found.value;
       charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+
+      currentDisplayedKey = key.toUpperCase();
+      updateFontColor();
 
       if (backgroundMode === "color") {
         const randomColor = getRandomValue(colorBox);
@@ -315,7 +348,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
             const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === currentChar.toUpperCase());
             if (found) {
               setBackgroundImage(`${IMAGE_DIR}/${found.value}.jpg`);
-              charDiv.style.fontSize = "25rem"; // Set large font size for image mode
+              charDiv.style.fontSize = "25rem";
+              updateFontColor();
             }
           }
         }
@@ -353,6 +387,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
           const randomColor = getRandomValue(colorBox);
           setBackgroundColor(randomColor);
           charDiv.style.fontSize = "";
+          updateFontColor();
         } else {
           const randomColor = getRandomValue(colorBox);
           setBackgroundColor(randomColor);
@@ -361,6 +396,22 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
         bgToggle.classList.add("active");
         bgToggle.style.backgroundColor = "#007bff";
         bgToggle.style.color = "white";
+      }
+    });
+  }
+
+  // Font color toggle functionality
+  if (colorToggle) {
+    colorToggle.addEventListener("click", () => {
+      currentFontColorIndex = (currentFontColorIndex + 1) % fontColor.length;
+      updateFontColor();
+      
+      colorToggle.classList.add("active");
+      colorToggle.style.backgroundColor = "#007bff";
+      colorToggle.style.color = "white";
+      
+      if (toggleColorSwitch) {
+        toggleColorSwitch.checked = true;
       }
     });
   }
@@ -398,12 +449,13 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
 
   document.addEventListener("keyboardReset", (e) => {
     currentFontIndex = 0;
+    currentFontColorIndex = 0;
     isUpperCase = true;
     hasKeyBeenPressed = false;
     showImages = true;
     isNumberPressed = false;
     backgroundMode = "none";
-
+    currentDisplayedKey = "";
     initializeDisplay();
 
     if (mainEl) {
@@ -416,6 +468,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     if (toggleFontSwitch) toggleFontSwitch.checked = false;
     if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
     if (toggleImgSwitch) toggleImgSwitch.checked = true;
+    if (toggleColorSwitch) toggleColorSwitch.checked = false;
 
     hidePopup();
   });
