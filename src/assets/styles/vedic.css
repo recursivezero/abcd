@@ -1,3 +1,5 @@
+
+
 .container__vedic {
   min-height: 100vh;
   padding: 3rem 1.5rem;
@@ -55,9 +57,10 @@
   display: block;
 }
 
-.tab-content{
+.tab-content {
   height: 110vh;
 }
+
 /* Tithi Header Styles */
 .tithi-header {
   display: flex;
@@ -82,6 +85,7 @@
   font-weight: 600;
   margin: 0;
 }
+
 .date-display {
   width: 100%;
   max-width: 900px;
@@ -96,6 +100,7 @@
   text-align: center;
   font-size: 1.8rem;
 }
+
 /* Converter Horizontal Layout */
 .converter__horizontal {
   display: flex;
@@ -108,7 +113,8 @@
   border: 2px solid var(--border);
   background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
 }
-.converter__title{
+
+.converter__title {
   color: var(--text);
   font-size: 1.8rem;
   font-weight: 600;
@@ -120,6 +126,7 @@
   padding: 0 2rem;
   /* Add padding to title to prevent it from hugging the edge */
 }
+
 .form__group {
   display: flex;
   flex-direction: column;
@@ -129,7 +136,7 @@
 
 .form__group label {
   color: var(--text);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 500;
   padding: 0.5rem;
 }
@@ -142,7 +149,7 @@ select {
   border: 1px solid var(--border);
   background-color: var(--background);
   color: var(--text);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
 }
 
 input:focus,
@@ -189,12 +196,14 @@ select:focus {
   fill: var(--background);
   transform: rotate(180deg);
 }
-.animated__result{
+
+.animated__result {
   width: 100%;
   padding: 1.5rem;
   border-radius: 0.75rem;
-background: conic-gradient(from 0deg at 50% 50%, #000080, #00BFFF, #4682B4, #000080);
+  background: conic-gradient(from 0deg at 50% 50%, #000080, #00BFFF, #4682B4, #000080);
 }
+
 .result__display {
   width: 99%;
   margin-left: 0.5%;
@@ -236,6 +245,7 @@ background: conic-gradient(from 0deg at 50% 50%, #000080, #00BFFF, #4682B4, #000
   padding: 0 2rem;
   /* Add padding to title to prevent it from hugging the edge */
 }
+
 .timeline-wrapper {
   display: flex;
   flex-direction: column;
@@ -246,9 +256,11 @@ background: conic-gradient(from 0deg at 50% 50%, #000080, #00BFFF, #4682B4, #000
   /* Let individual nodes handle spacing with transforms/margins */
   position: relative;
   gap: 80px;
-  padding-bottom: 2rem; /* Add some padding at bottom */
+  padding-bottom: 2rem;
+  /* Add some padding at bottom */
   /* Remove min-height: 800px */
 }
+
 .timeline-line {
   position: absolute;
   left: 50%;
