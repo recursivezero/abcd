@@ -8,6 +8,7 @@ astype
 audiorec
 audiorecorder
 avgrah
+Barahkhadi
 Bhadrapada
 bincount
 Chaitra
@@ -59,6 +60,8 @@ sitemapindex
 skimage
 sportrop
 streamlit
+sunsign
+sunsigns
 tailwindcss
 threadzip
 Threazip
