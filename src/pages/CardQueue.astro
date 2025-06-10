@@ -1,0 +1,801 @@
+---
+import { alphabetMapper } from "@/mappers/alphabet";
+import { IMAGE_DIR } from "@/utils/constants";
+import Base from "@/layouts/Base";
+import BackButton from "@/components/ui/backButton.astro" ;
+import Help from "@/components/Help.astro";
+
+const pageTitle = "Queue | Interactive Alphabet";
+const pageDescription = "Explore the interactive alphabet with images and descriptions for each letter in a queue format.";
+
+const pageMeta = {
+  title: pageTitle,
+  description: pageDescription
+};
+
+interface AlphabetItem {
+  key: string;
+  value: string;
+  desc: string;
+}
+
+const items: Record<string, AlphabetItem> = alphabetMapper.reduce((acc, { key, value }) => {
+  acc[key.toUpperCase()] = {
+    key: key.toUpperCase(),
+    value,
+    desc: `${value} representing the letter ${key.toUpperCase()}`
+  };
+  return acc;
+}, {} as Record<string, AlphabetItem>);
+
+const entries = Object.entries(items);
+const count = entries.length;
+
+function randomAngle(max: number, min: number): number {
+  return +(min + (max - min) * Math.random()).toFixed(2);
+}
+
+let currentIndex = 0;
+---
+
+<Base meta={pageMeta}>
+  <Fragment slot="header-right">
+    <div class="header-tools-wrapper"></div>
+    <Help
+      title="Queue Designer"
+      description="Swipe or press arrow keys to view the next alphabet-based quote design."
+    />
+  </Fragment>
+    <BackButton  class="back"/>
+  <div class="alphabet-main-wrapper">
+    <section
+      class="alphabet-container"
+      style={`--n: ${count}; --k: ${currentIndex}`}
+      data-total={count}
+      data-current-index={currentIndex}
+      role="region"
+      aria-label="Interactive Alphabet Explorer"
+    >
+      <header class="alphabet-header">
+        <h1 class="alphabet-title">Interactive Alphabet</h1>
+      </header>
+      
+      <main class="content-area">
+        <div class="image-container">
+          {entries.map(([key, item], i) => {
+            const angle = randomAngle(15, -15);
+            return (
+              <article
+                class="alphabet-item"
+                style={`--i: ${i}; --a: ${angle}deg;`}
+                data-letter={key}
+                data-index={i}
+                role="img"
+                aria-label={`Letter ${key} - ${item.value}`}
+                tabindex={i === currentIndex ? "0" : "-1"}
+              >
+                <img
+                  class="item-image"
+                  src={`${IMAGE_DIR}/${item.value}.jpg`}
+                  alt={item.desc}
+                  loading="lazy"
+                />
+                <div class="text-content">
+                  <h2 class="letter" aria-hidden="true">{key}</h2>
+                  <p class="item-desc">{item.value}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </main>
+      
+      <nav class="nav-buttons" aria-label="Alphabet navigation">
+        <button
+          class="nav-button prev-button"
+          aria-label="Previous letter"
+          data-direction="prev"
+          type="button"
+        >
+          <span class="sr-only">Previous</span>
+        </button>
+        <button
+          class="nav-button next-button"
+          aria-label="Next letter"
+          data-direction="next"
+          type="button"
+        >
+          <span class="sr-only">Next</span>
+        </button>
+      </nav>
+    </section>
+
+    <div class="keyboard-hint" role="status" aria-live="polite">
+      Use arrow keys or press any letter key to navigate
+    </div>
+  </div>
+
+  <style is:global>
+    @charset "UTF-8";
+    :root {
+      --t: 0.6s; 
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @property --current {
+      syntax: "<number>";
+      initial-value: 0;
+      inherits: true;
+    }
+
+    * { 
+      margin: 0; 
+      box-sizing: border-box;
+    }
+
+
+    .alphabet-main-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      padding: 2rem;
+      background: linear-gradient(135deg, #070410 0%, #1a1a2e 50%, #16213e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .alphabet-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 100%;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      color: #f1f5f9;
+    }
+
+    .alphabet-container::before {
+      display: none; 
+    }
+
+    .alphabet-header {
+      text-align: center;
+      z-index: 100;
+    }
+
+    .alphabet-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #818cf8, #a5b4fc, #c7d2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+      text-shadow: 0 4px 20px rgba(129, 140, 248, 0.3);
+    }
+
+    .content-area {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .image-container {
+      position: relative;
+      width: 500px;
+      height: 400px;
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .alphabet-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      
+      transition: 
+        transform var(--t) var(--ease),
+        opacity var(--t) var(--ease),
+        z-index 0s var(--t);
+      
+
+      transform: translateZ(-100px) scale(0.8);
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    .alphabet-item.active {
+      transform: translateZ(0) scale(1);
+      opacity: 1;
+      z-index: 100;
+    }
+
+    .alphabet-item.next {
+      transform: translateX(120px) translateZ(-80px) rotateY(-25deg) scale(0.85);
+      opacity: 0.7;
+      z-index: 50;
+    }
+
+    .alphabet-item.prev {
+      transform: translateX(-120px) translateZ(-80px) rotateY(25deg) scale(0.85);
+      opacity: 0.7;
+      z-index: 50;
+    }
+
+    .alphabet-item.far {
+      transform: translateZ(-150px) scale(0.6);
+      opacity: 0.3;
+      z-index: 10;
+    }
+
+    .item-image {
+      width: 450px;
+      height: 300px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 1rem;
+      border: 3px solid rgba(129, 140, 248, 0.4); 
+      backdrop-filter: blur(10px);
+      transition: all var(--t) var(--ease);
+      flex-shrink: 0;
+      box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(129, 140, 248, 0.2);
+    }
+
+    .alphabet-item.active .item-image {
+      border-color: rgba(129, 140, 248, 0.8);
+      box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 8px 25px rgba(129, 140, 248, 0.3);
+    }
+
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 400px;
+      flex-shrink: 0;
+    }
+
+    .letter {
+      font-size: 3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow: 0 4px 20px rgba(129, 140, 248, 0.3);
+      background: linear-gradient(135deg, #818cf8, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+      line-height: 1;
+      transition: all var(--t) var(--ease);
+      min-height: 3rem;
+    }
+
+    .item-desc {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      color: rgba(241, 245, 249, 0.9);
+      font-weight: 600;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      transition: all var(--t) var(--ease);
+      margin: 0;
+      line-height: 1.2;
+      min-height: 2rem;
+    }
+
+    .alphabet-item:not(.active) .text-content {
+      display: none;
+    }
+
+
+    .nav-buttons {
+      display: flex;
+      gap: 5rem;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .nav-button {
+      position: relative;
+      border: none;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(129, 140, 248, 0.2), rgba(165, 180, 252, 0.1));
+      color: #818cf8;
+      font-size: 1rem;
+      font-weight: 900;
+      transition: all 0.3s ease-out;
+      cursor: pointer;
+      border: 2px solid rgba(129, 140, 248, 0.3);
+      backdrop-filter: blur(10px);
+      box-shadow:
+        0 4px 15px rgba(129, 140, 248, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-button::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border: solid 3px currentColor;
+      border-width: 0 3px 3px 0;
+      transform: translate(-50%, -50%) rotate(135deg);
+      transition: transform 0.3s ease-out;
+    }
+
+    .nav-button.next-button::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .nav-button:hover,
+    .nav-button:focus {
+      background: linear-gradient(135deg, rgba(129, 140, 248, 0.4), rgba(165, 180, 252, 0.2));
+      color: #a5b4fc;
+      border-color: rgba(129, 140, 248, 0.6);
+      box-shadow:
+        0 6px 25px rgba(129, 140, 248, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .nav-button:active {
+      transform: translateY(0) scale(0.95);
+    }
+
+    .keyboard-hint {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(241, 245, 249, 0.5);
+      font-size: 0.875rem;
+      text-align: center;
+      z-index: 1000;
+      transition: opacity 0s ease-out;
+      background: rgba(7, 4, 16, 0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(129, 140, 248, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .alphabet-container.transitioning {
+      pointer-events: none;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .alphabet-main-wrapper {
+        padding: 2rem 1rem;
+      }
+      
+      .alphabet-title {
+        font-size: 2rem;
+      }
+      
+      .image-container {
+        width: 400px;
+        height: 380px;
+      }
+      
+      .item-image {
+        width: 360px;
+        height: 260px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .alphabet-main-wrapper {
+        padding: 1.5rem 1rem;
+      }
+      
+      .alphabet-title {
+        font-size: 1.75rem;
+      }
+      
+      .image-container {
+        width: 300px;
+        height: 360px;
+      }
+      
+      .item-image {
+        width: 260px;
+        height: 240px;
+      }
+      
+      .letter {
+        font-size: 2.5rem;
+        min-height: 2.5rem;
+      }
+      
+      .item-desc {
+        font-size: 1.25rem;
+        min-height: 1.8rem;
+      }
+
+      .nav-button {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+
+      .nav-buttons {
+        gap: 3rem;
+      }
+
+      .alphabet-item.next {
+        transform: translateX(80px) translateZ(-60px) rotateY(-20deg) scale(0.8);
+      }
+
+      .alphabet-item.prev {
+        transform: translateX(-80px) translateZ(-60px) rotateY(20deg) scale(0.8);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .alphabet-main-wrapper {
+        padding: 1rem 0.5rem;
+      }
+      
+      .alphabet-title {
+        font-size: 1.5rem;
+      }
+      
+      .image-container {
+        width: 280px;
+        height: 340px;
+      }
+      
+      .item-image {
+        width: 240px;
+        height: 200px;
+      }
+      
+      .letter {
+        font-size: 2rem;
+        min-height: 2rem;
+      }
+      
+      .item-desc {
+        font-size: 1.1rem;
+        min-height: 1.5rem;
+      }
+
+      .nav-button {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .nav-buttons {
+        gap: 2rem;
+      }
+
+      .alphabet-item.next {
+        transform: translateX(60px) translateZ(-40px) rotateY(-15deg) scale(0.75);
+      }
+
+      .alphabet-item.prev {
+        transform: translateX(-60px) translateZ(-40px) rotateY(15deg) scale(0.75);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :root {
+        --t: 0.2s;
+        --ease: ease;
+      }
+      
+      .alphabet-item,
+      .nav-button {
+        transition-duration: 0.2s;
+      }
+    }
+
+    .nav-button:focus-visible {
+      outline: 2px solid #818cf8;
+      outline-offset: 2px;
+    }
+
+    .alphabet-item:focus { 
+        outline: none;
+    }
+    .alphabet-item:focus-visible {
+        outline: none;
+    }
+
+  </style>
+
+  <script is:inline>
+    (function() {
+      const container = document.querySelector('.alphabet-container');
+      const items = Array.from(document.querySelectorAll('.alphabet-item'));
+      const navButtons = Array.from(document.querySelectorAll('[data-direction]'));
+      const count = parseInt(container.dataset.total);
+      let currentIndex = parseInt(container.dataset.currentIndex) || 0;
+      let isTransitioning = false;
+
+      // Create alphabet mapping for direct letter navigation
+      const alphabetMap = {};
+      items.forEach((item, index) => {
+        const letter = item.dataset.letter;
+        alphabetMap[letter] = index;
+      });
+
+      function updateItemPositions() {
+        items.forEach((item, index) => {
+
+          item.classList.remove('active', 'next', 'prev', 'far');
+
+          const diff = index - currentIndex;
+          
+          if (diff === 0) {
+            item.classList.add('active');
+            item.setAttribute('tabindex', '0');
+            item.setAttribute('aria-current', 'true');
+          } else { // All other items
+            item.setAttribute('tabindex', '-1');
+            item.removeAttribute('aria-current');
+            if (diff === 1 || (diff === -(count - 1))) {
+                item.classList.add('next');
+            } else if (diff === -1 || (diff === (count - 1))) {
+                item.classList.add('prev');
+            } else {
+                item.classList.add('far');
+            }
+          }
+        });
+      }
+
+      function navigateToIndex(newIndex, animate = true) {
+        if (isTransitioning || newIndex === currentIndex) return;
+        
+        const targetIndex = ((newIndex % count) + count) % count;
+
+        if (animate) {
+          isTransitioning = true;
+          container.classList.add('transitioning');
+          
+          const newActiveItem = items[targetIndex];
+          const previousActiveItem = items[currentIndex];
+
+
+          if (previousActiveItem) {
+              previousActiveItem.blur(); 
+          }
+
+          let transitionEndCounter = 0;
+          const expectedTransitions = 3; // Active, next, prev items typically transition
+
+          const handleTransitionEnd = (event) => {
+            if (event.propertyName === 'transform' || event.propertyName === 'opacity') {
+              transitionEndCounter++;
+              if (transitionEndCounter >= expectedTransitions) {
+                isTransitioning = false;
+                container.classList.remove('transitioning');
+
+                if (newActiveItem && document.activeElement !== newActiveItem) {
+                  newActiveItem.focus({ preventScroll: true }); 
+                }
+
+                items.forEach(item => {
+                  item.removeEventListener('transitionend', handleTransitionEnd);
+                });
+              }
+            }
+          };
+
+          items.forEach(item => {
+            if (item.classList.contains('active') || item.classList.contains('next') || item.classList.contains('prev')) {
+                item.addEventListener('transitionend', handleTransitionEnd);
+            }
+          });
+
+          setTimeout(() => {
+            if (isTransitioning) { 
+              isTransitioning = false;
+              container.classList.remove('transitioning');
+              if (newActiveItem && document.activeElement !== newActiveItem) {
+                newActiveItem.focus({ preventScroll: true });
+              }
+              items.forEach(item => {
+                item.removeEventListener('transitionend', handleTransitionEnd);
+              });
+            }
+          }, 600); // Matches CSS transition duration
+
+        } else {
+          const activeItem = items[targetIndex];
+          if (activeItem && document.activeElement !== activeItem) {
+            activeItem.focus({ preventScroll: true });
+          }
+        }
+
+        currentIndex = targetIndex;
+        container.dataset.currentIndex = currentIndex;
+        updateItemPositions();
+      }
+
+      function navigateToLetter(letter) {
+        const targetIndex = alphabetMap[letter.toUpperCase()];
+        if (targetIndex !== undefined) {
+          navigateToIndex(targetIndex);
+        }
+      }
+
+      function handleNavigation(direction) {
+        if (isTransitioning) return;
+        
+        const increment = direction === 'next' ? 1 : -1;
+        const newIndex = currentIndex + increment;
+        navigateToIndex(newIndex);
+      }
+
+      navButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const direction = button.dataset.direction;
+          handleNavigation(direction);
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+          return;
+        }
+
+        switch (e.key) {
+          case 'ArrowLeft':
+            e.preventDefault();
+            handleNavigation('prev');
+            break;
+          case 'ArrowRight':
+            e.preventDefault();
+            handleNavigation('next');
+            break;
+          case 'Home':
+            e.preventDefault();
+            navigateToIndex(0);
+            break;
+          case 'End':
+            e.preventDefault();
+            navigateToIndex(count - 1);
+            break;
+          default:
+            if (e.key.match(/^[a-zA-Z]$/)) {
+              e.preventDefault();
+              navigateToLetter(e.key);
+            }
+            break;
+        }
+      });
+      // Touch navigation for mobile devices
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const minSwipeDistance = 50;
+
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const deltaX = touchEndX - touchStartX;
+
+        if (Math.abs(deltaX) > minSwipeDistance) {
+          if (deltaX > 0) {
+            handleNavigation('prev');
+          } else {
+            handleNavigation('next');
+          }
+        }
+      }, { passive: true });
+
+      let hintTimeout;
+      const keyboardHint = document.querySelector('.keyboard-hint');
+      
+      function hideHintAfterDelay() {
+        clearTimeout(hintTimeout);
+        hintTimeout = setTimeout(() => {
+          if (keyboardHint) {
+            keyboardHint.style.opacity = '0';
+          }
+        }, 10);
+      }
+
+      ['keydown', 'click', 'touchstart'].forEach(event => {
+        document.addEventListener(event, hideHintAfterDelay, { once: true });
+      });
+
+      function preloadImages() {
+        items.forEach((item) => {
+          const img = item.querySelector('.item-image');
+          if (img && img.src) {
+            const preloadImg = new Image();
+            preloadImg.src = img.src;
+          }
+        });
+      }
+
+      items.forEach(item => {
+        const img = item.querySelector('.item-image');
+        if (img) {
+          img.addEventListener('error', () => {
+            img.style.backgroundColor = 'rgba(129, 140, 248, 0.1)';
+            img.style.display = 'flex';
+            img.style.alignItems = 'center';
+            img.style.justifyContent = 'center';
+            img.innerHTML = '<span style="color: rgba(241, 245, 249, 0.5); font-size: 2rem;">📷</span>';
+          });
+        }
+      });
+
+      // Initialize component
+      function initializeAlphabet() {
+        updateItemPositions();
+        preloadImages();
+      }
+
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          updateItemPositions();
+        }, 250);
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeAlphabet);
+      } else {
+        initializeAlphabet();
+      }
+
+      window.alphabetCleanup = function() {
+        clearTimeout(hintTimeout);
+        clearTimeout(resizeTimeout);
+      };
+    })();
+  </script>
+</Base>
