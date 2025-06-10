@@ -7,7 +7,7 @@
   --text-secondary: #374151;    
 
   --primary: #4f46e5;           
-  --text-on-primary: #ffffff;
+  --text-on-primary: #ffffff; /* This is correctly defined for white text on primary background */
   --border: #d1d5db;
   
 }
@@ -19,7 +19,9 @@
   border-radius: 1rem;
   background: var(--background);
   display: flex;
+  align-items: center; /* Added for better vertical alignment of tab content */
   gap: 1rem;
+  padding: 0.5rem; /* Added some padding around the tabs */
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
@@ -31,17 +33,21 @@
   position: relative;
   background: var(--background-alt);
   border-radius: 0.5rem;
+  color: var(--text-secondary); /* Added default text color for tabs */
+  cursor: pointer; /* Added for better UX */
+  white-space: nowrap; /* Prevent text inside tab from wrapping */
 
   &:hover {
     background: var(--background-hover);
+    color: var(--text); /* Added text color change on hover */
   }
 }
 
 .tab.active {
-  color: var(--primary);
+  /* color: var(--primary); */ /* Original - this would be overridden by the next color property */
   border-bottom-color: var(--primary);
   background: var(--primary);
-  color: var(--background);
+  color: var(--text-on-primary); /* CORRECTED: Use text-on-primary for visibility */
 }
 
 .container__alphabets {
@@ -50,3 +56,64 @@
     scroll-margin-top: calc(var(--header-height) + 80px);
   }
 }
+
+/* Mobile View Adjustments */
+@media (max-width: 767px) { 
+  .tabs {
+    gap: 0.2rem;
+    padding: 0.2rem;
+    flex-shrink: 1; 
+  }
+
+  .tab {
+    padding: 0.3rem 0.6rem; 
+    font-size: 0.85rem;   
+    border-radius: 0.25rem;
+  }
+
+  /* Styles for the Help Icon in mobile view */
+  
+ 
+  .your-help-icon-selector { 
+    
+    font-size: 1.1rem; 
+    
+    
+    width: 22px;
+    height: 22px;      
+
+
+    padding: 0.25rem;
+    
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; 
+  }
+}
+
+@media (max-width: 480px) { 
+  .tabs {
+    gap: 0.1rem;
+    padding: 0.1rem;
+  }
+  .tab {
+    padding: 0.2rem 0.4rem; 
+    font-size: 0.75rem;
+  }
+
+  
+  .your-help-icon-selector { 
+   
+    font-size: 1rem;
+    
+    
+    width: 18px;
+    height: 18px;
+
+
+    padding: 0.2rem;
+  }
+}
+

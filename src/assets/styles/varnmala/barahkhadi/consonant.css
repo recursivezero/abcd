@@ -60,8 +60,8 @@
     }
   }
 
-  @container (max-width: 480px) {
-    .combinations-grid {
+  @media (max-width: 480px) {
+    & .combinations__grid {
       grid-template-columns: 1fr;
     }
   }
