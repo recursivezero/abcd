@@ -14,21 +14,31 @@ import ImageIcon from "@/assets/icons/image.svg";
           <span id="text" class="control-button case-toggle" role="switch" aria-checked="false"> Aa </span>
         </label>
 
-        <label for="toggleFont" class="control-item" data-tooltip="Change font">
+        <label for="toggleFont" class="control-item" data-tooltip="Toggle font">
           <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
           <span id="font" class="control-button font-toggle" role="switch" aria-checked="false">
-            <span class="font-icon">T</span>
-            <span class="font-icon-alt">T</span>
+            <span class="font-icon">F</span>
+            <span class="font-icon-alt">F</span>
           </span>
         </label>
 
-        <label for="toggleimg" class="control-item" data-tooltip="Change Image">
-          <input type="checkbox" name="toggle_img" id="toggleimg" class="visually-hidden hidden" />
-          <span id="img" class="control-button img-toggle" role="switch" aria-checked="false">
-            <ImageIcon class="img-icon" />
-            <ImageIcon class="img-icon-alt" />
-          </span>
-        </label>
+        <div class="control-group">
+          <label for="toggleImg" class="control-item" data-tooltip="Toggle Image">
+            <input type="checkbox" name="toggle_img" id="toggleImg" class="visually-hidden hidden" />
+            <span id="img" class="control-button img-toggle" role="switch" aria-checked="false">
+              <ImageIcon class="img-icon" />
+              <ImageIcon class="img-icon-alt" />
+            </span>
+          </label>
+
+          <label for="toggleColor" class="control-item" data-tooltip="Toggle Font Color">
+            <input type="checkbox" name="toggle_color" id="toggleColor" class="visually-hidden hidden" />
+            <span class="control-button color-toggle" role="switch" aria-checked="false">
+              <span class="color-icon">T</span>
+              <span class="color-icon-alt">T</span>
+            </span>
+          </label>
+        </div>
 
         <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
           <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
@@ -45,7 +55,7 @@ import ImageIcon from "@/assets/icons/image.svg";
 
       <Help
         title="Draw Keyboard"
-        description="Draw letters by sliding your finger across the keys! Try the buttons to change the style, make it BIG or small,chang the inmages and pick cool backgrounds!"
+        description="Draw letters by sliding your finger across the keys! Try the buttons to change the style, make it BIG or small, change the images, pick cool backgrounds, and customize font colors!"
       />
     </div>
   </Fragment>
@@ -69,6 +79,11 @@ import ImageIcon from "@/assets/icons/image.svg";
   .controls {
     display: flex;
     gap: 0.5rem;
+  }
+
+  .control-group {
+    display: flex;
+    gap: 0.25rem;
   }
 
   .control-item {
@@ -118,8 +133,6 @@ import ImageIcon from "@/assets/icons/image.svg";
   }
 
   .reset-button:hover {
-    /*To rotate the reset button on hover*/
-    /*transform: translateY(-2px) scale(1.1) rotate(180deg);*/
     transition: all 0.3s ease;
   }
 
@@ -152,19 +165,16 @@ import ImageIcon from "@/assets/icons/image.svg";
   .img-icon-alt {
     position: absolute;
     transition: opacity 0.2s ease;
-    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   .img-icon {
-    width: 1.25rem;
-    height: 1.25rem;
     opacity: 1;
   }
 
   .img-icon-alt {
-    width: 1.25rem;
-    height: 1.25rem;
-    opacity: 1;
+    opacity: 0;
   }
 
   .img-toggle.active .img-icon {
@@ -172,6 +182,30 @@ import ImageIcon from "@/assets/icons/image.svg";
   }
 
   .img-toggle.active .img-icon-alt {
+    opacity: 1;
+  }
+
+  .color-icon,
+  .color-icon-alt {
+    position: absolute;
+    transition: opacity 0.2s ease;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .color-icon {
+    opacity: 1;
+  }
+
+  .color-icon-alt {
+    opacity: 0;
+  }
+
+  .color-toggle.active .color-icon {
+    opacity: 0;
+  }
+
+  .color-toggle.active .color-icon-alt {
     opacity: 1;
   }
 
@@ -275,16 +309,18 @@ import ImageIcon from "@/assets/icons/image.svg";
     const caseToggle = document.querySelector(".case-toggle") as HTMLElement;
     const fontToggle = document.querySelector(".font-toggle") as HTMLElement;
     const bgToggle = document.querySelector(".bg-toggle") as HTMLElement;
+    const colorToggle = document.querySelector(".color-toggle") as HTMLElement;
     const resetButton = document.getElementById("resetButton") as HTMLButtonElement;
 
     // Get elements from the second file that need to be reset
     const mainEl = document.querySelector("main");
     const boardDiv = document.getElementById("board");
     const charDiv = document.getElementById("char");
-    const toggleImgSwitch = document.getElementById("toggleimg") as HTMLInputElement;
+    const toggleImgSwitch = document.getElementById("toggleImg") as HTMLInputElement;
     const toggleCaseSwitch = document.getElementById("toggleCase") as HTMLInputElement;
     const toggleFontSwitch = document.getElementById("toggleFont") as HTMLInputElement;
     const toggleBackgroundSwitch = document.getElementById("toggleBg") as HTMLInputElement;
+    const toggleColorSwitch = document.getElementById("toggleColor") as HTMLInputElement;
     const info = document.querySelector(".info");
 
     // Store original values for complete reset
@@ -295,7 +331,8 @@ import ImageIcon from "@/assets/icons/image.svg";
       mainElFilter: "brightness(1)",
       boardDivBackgroundColor: "",
       boardDivBackgroundImage: "",
-      charDivFontFamily: "", // Will be set to default
+      charDivFontFamily: "",
+      charDivColor: "",
       infoText: "Press any key",
       charText: ""
     };
@@ -346,8 +383,21 @@ import ImageIcon from "@/assets/icons/image.svg";
           toggleImgSwitch.checked = true;
         }
 
-        // Here you can add future image change functionality
         console.log("Image mode activated - ready for future container image changes");
+      }
+    });
+
+    // Modified toggle for color button - stays active until reset
+    colorToggle.addEventListener("click", () => {
+      const isActive = colorToggle.classList.contains("active");
+      if (!isActive) {
+        colorToggle.classList.add("active");
+        colorToggle.setAttribute("aria-checked", "true");
+        if (toggleColorSwitch) {
+          toggleColorSwitch.checked = true;
+        }
+        
+        console.log("Color mode activated - ready for font color changes");
       }
     });
 
@@ -386,6 +436,10 @@ import ImageIcon from "@/assets/icons/image.svg";
       toggleImgSwitch.classList.remove("active");
       toggleImgSwitch.setAttribute("aria-checked", "false");
 
+      // Reset color toggle button
+      colorToggle.classList.remove("active");
+      colorToggle.setAttribute("aria-checked", "false");
+
       // Reset background toggle button
       bgToggle.classList.remove("active");
       bgToggle.setAttribute("aria-checked", "false");
@@ -399,6 +453,9 @@ import ImageIcon from "@/assets/icons/image.svg";
       }
       if (toggleImgSwitch) {
         toggleImgSwitch.checked = false;
+      }
+      if (toggleColorSwitch) {
+        toggleColorSwitch.checked = false;
       }
       if (toggleBackgroundSwitch) {
         toggleBackgroundSwitch.checked = false;
@@ -419,6 +476,7 @@ import ImageIcon from "@/assets/icons/image.svg";
       // Reset character display
       if (charDiv) {
         charDiv.style.fontFamily = originalState.charDivFontFamily;
+        charDiv.style.color = originalState.charDivColor;
         charDiv.textContent = originalState.charText;
       }
 
