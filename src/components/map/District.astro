@@ -239,7 +239,8 @@ const { state } = Astro.props;
 <script define:vars={{ state }}>
   async function loadSVG() {
     try {
-      const response = await fetch(`../../../public/map/svg/states/${state}.svg`);
+      const stateName = state.split(" ").join("");
+      const response = await fetch(`../../../public/map/svg/states/${stateName}.svg`);
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
       const svgText = await response.text();
