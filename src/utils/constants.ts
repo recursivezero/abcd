@@ -167,8 +167,8 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Kannada",
-    title: "Kannada",
+    name: "Indic",
+    title: "Indic",
     path: "/kannada",
     isActive: true
   },
