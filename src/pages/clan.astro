@@ -60,12 +60,6 @@ const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
   <article class="container__clan">
     <div class="clan__header">
       <h1 class="clan__title">Discover Your Heritage and Family Connections</h1>
-      <div class="card-actions-top">
-        <button id="downloadPdf" class="download-button" aria-label="Download as PDF">
-          <span class="icon">📄</span>
-          <span class="text">Download PDF</span>
-        </button>
-      </div>
       <div class="clan__search">
         <div class="clan__search-wrapper">
           <span class="clan__search-icon">🔍</span>
@@ -76,6 +70,11 @@ const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
             placeholder="Search by Gotra, Deity, or Caste..."
           />
         </div>
+        <div class="card-actions-top">
+        <button id="downloadPdf" class="download-button" aria-label="Download as PDF">
+          <span class="text">Download PDF</span>
+        </button>
+      </div>
       </div>
       <div class="clan__legend">
         <dl title="Gotra">

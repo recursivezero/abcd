@@ -56,8 +56,39 @@
 
   .clan__search {
     margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 0.5rem; /* Decreased gap between search bar and button */
 
-    .clan__search-wrapper {
+    #downloadPdf {
+      background: linear-gradient(135deg, #0ee7ff, #924ddc);
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 0; /* Remove margin-left to rely on gap */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.3s, box-shadow 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+      height: 100%; /* Make button height match search bar */
+      min-height: 3.5rem; /* Ensure button and search bar have same minimum height */
+        }
+
+        #downloadPdf:hover, #downloadPdf:focus {
+      background: linear-gradient(135deg, #cb2cfb, #10f4f0);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      outline: none;
+        }
+
+        .clan__search-wrapper {
       display: flex;
       align-items: center;
       background: rgba(255, 255, 255, 0.15);
@@ -66,35 +97,63 @@
       padding: 0.75rem 1rem;
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
-      max-width: 600px;
+      width: 100%;
+      max-width: 800px; /* Increased max-width for larger search bar */
       margin: 0 auto;
-    }
+      box-sizing: border-box;
+      flex: 2 1 0; /* Increased flex-grow for larger search bar */
+      min-height: 3.5rem; /* Ensure search bar and button have same minimum height */
+        }
 
-    .clan__search-wrapper:focus-within {
+        .clan__search-wrapper:focus-within {
       background: rgba(255, 255, 255, 0.2);
       border-color: rgba(255, 255, 255, 0.3);
       box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
-    }
+        }
 
-    .clan__search-icon {
+        .clan__search-icon {
       font-size: 1.25rem;
       margin-right: 0.5rem;
       color: #ffffff;
-    }
+        }
 
-    .clan__search-input {
+        .clan__search-input {
       width: 100%;
       background: none;
       border: none;
       color: #ffffff;
       font-size: 1rem;
       outline: none;
-    }
+        }
 
-    .clan__search-input::placeholder {
+        .clan__search-input::placeholder {
       color: rgba(255, 255, 255, 0.7);
-    }
-  }
+        }
+        }
+
+        @media (max-width: 768px) {
+        .clan__search {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: 0; /* Remove gap for stacked layout */
+
+      #downloadPdf {
+      margin-left: 0;
+      margin-top: 1rem;
+      width: 100%;
+      height: 3.5rem; /* Match min-height for mobile */
+      min-height: 3.5rem;
+      }
+
+      .clan__search-wrapper {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      min-height: 3.5rem;
+      }
+        }
+        }
 
   .clan__content {
     display: flex;
