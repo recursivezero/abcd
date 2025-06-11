@@ -1,6 +1,5 @@
 ---
 import "@/assets/styles/kannada.css";
-import { toUnicode } from "punycode";
 interface LetterPair {
   hindi: string;
   kannada: string;
@@ -9,8 +8,8 @@ interface LetterPair {
   punjabi: string;
   malayalam: string;
   bengali: string;
-  assamese: string; // New field
-  manipuri: string; // New field
+  assamese: string;
+  manipuri: string; 
   english: string;
   type: "vowel" | "consonant" | "separator";
 }
@@ -21,14 +20,18 @@ const generateLetters = (startCode: number, length: number, extraKeys: number[] 
     (_, index) => !extraKeys.includes(startCode + index)
   );
 
-type GenerateLettersfParams = {
+type GenerateAlphabetParams = {
   startCode: number;
   totalLength: number;
   extraKeys?: number[];
   insertEmptyAt?: number[]; // Indices to insert "಍"
   insertUnicodeAt?: { index: number; unicode: number }[]; // Indices to insert a specific Unicode character
 };
-const generateLettersf = (params: GenerateLettersfParams): string[] => {
+/** 
+ * @input generateAlphabets({ startCode: 2309, totalLength: 16 })
+ * @output [ "अ", "आ", "इ", "ई", "उ", "ऊ", "ऋ", "ऌ", "ऍ", "ऎ", "ए", "ऐ", "ऑ", "ऒ", "ओ", "औ" ]
+*/
+const generateAlphabets = (params: GenerateAlphabetParams): string[] => {
   const {
     startCode,
     totalLength,
@@ -40,6 +43,7 @@ const generateLettersf = (params: GenerateLettersfParams): string[] => {
   const baseCharacters: string[] = [];
   for (let i = 0; i < totalLength; i++) {
     const codePoint = startCode + i;
+    //excluding extra characters
     if (!extraKeys.includes(codePoint)) {
       baseCharacters.push(String.fromCodePoint(codePoint));
     }
@@ -117,60 +121,60 @@ const englishConsonants = [
 ];
 
 // Define allAlphabets structure
-const allAlphabets = {
+const allAlphabet = {
   vowels: {
-    hindiVowels: generateLettersf({ startCode: 2309, totalLength: 16 }),
-    kannadaVowels: generateLettersf({ startCode: 3205, totalLength: 16 }),
-    gujaratiVowels: generateLettersf({startCode:0xa85, totalLength: 16, extraKeys: [0xa8d, 0xa91]}),
-    punjabiVowels: generateLettersf({startCode:2565, totalLength:16}),
-    malayalamVowels: generateLettersf({startCode:0xd05, totalLength:16,extraKeys: [0xd0d, 0xd11]}),
-    bengaliVowels: generateLettersf({startCode:0x985, totalLength:16, extraKeys: [0x98d, 0x991]}),
-    assameseVowels: generateLettersf({startCode:0x985, totalLength: 16, extraKeys :[0x98d, 0x991]}),
-    manipuriVowels: generateLettersf({startCode:0xabc0, totalLength: 8}),
-    englishVowels: englishVowels // Directly use the array
+    hindi: generateAlphabets({ startCode: 2309, totalLength: 16 }),
+    kannada: generateAlphabets({ startCode: 3205, totalLength: 16 }),
+    gujarati: generateAlphabets({startCode:0xa85, totalLength: 16, extraKeys: [0xa8d, 0xa91]}),
+    punjabi: generateAlphabets({startCode:2565, totalLength:16}),
+    malayalam: generateAlphabets({startCode:0xd05, totalLength:16,extraKeys: [0xd0d, 0xd11]}),
+    bengali: generateAlphabets({startCode:0x985, totalLength:16, extraKeys: [0x98d, 0x991]}),
+    assamese: generateAlphabets({startCode:0x985, totalLength: 16, extraKeys :[0x98d, 0x991]}),
+    manipuri: generateAlphabets({startCode:0xabc0, totalLength: 8}),
+    english: englishVowels // Directly use the array
   },
   consonants: {
-    hindiConsonants: generateLettersf({startCode:2325, totalLength: 37}),
-    kannadaConsonants: generateLettersf({startCode:3221, totalLength: 37}),
-    gujaratiConsonants: generateLettersf({startCode:0xa95, totalLength: 37}),
-    punjabiConsonants: generateLettersf({startCode:0xa15, totalLength: 37}),
-    malayalamConsonants: generateLettersf({startCode:0xd15, totalLength: 42}),
-    bengaliConsonants: generateLettersf({startCode:0x995, totalLength: 37}),
-    assameseConsonants: generateLettersf({startCode:0x995, totalLength: 45}),
-    manipuriConsonants: generateLettersf({startCode:0xabd0, totalLength: 27}),
-    englishConsonants: englishConsonants // Directly use the array
+    hindi: generateAlphabets({startCode:2325, totalLength: 37}),
+    kannada: generateAlphabets({startCode:3221, totalLength: 37}),
+    gujarati: generateAlphabets({startCode:0xa95, totalLength: 37}),
+    punjabi: generateAlphabets({startCode:0xa15, totalLength: 37}),
+    malayalam: generateAlphabets({startCode:0xd15, totalLength: 42}),
+    bengali: generateAlphabets({startCode:0x995, totalLength: 37}),
+    assamese: generateAlphabets({startCode:0x995, totalLength: 45}),
+    manipuri: generateAlphabets({startCode:0xabd0, totalLength: 27}),
+    english: englishConsonants // Directly use the array
   }
 };
 
 // Create letter pairs with all three scripts
 const letterPairs: LetterPair[] = [
-  ...allAlphabets.vowels.hindiVowels.map((hindi, i) => ({
+  ...allAlphabet.vowels.hindi.map((hindi, i) => ({
     hindi,
-    marathi: allAlphabets.vowels.hindiVowels[i], // Marathi shares Hindi vowels
-    kannada: allAlphabets.vowels.kannadaVowels[i] || "",
-    gujarati: allAlphabets.vowels.gujaratiVowels[i] || "",
-    punjabi: allAlphabets.vowels.punjabiVowels[i] || "",
-    malayalam: allAlphabets.vowels.malayalamVowels[i] || "",
-    bengali: allAlphabets.vowels.bengaliVowels[i] || "",
-    assamese: allAlphabets.vowels.assameseVowels[i] || "",
-    manipuri: allAlphabets.vowels.manipuriVowels[i] || "",
-    english: allAlphabets.vowels.englishVowels[i] || "",
+    marathi: allAlphabet.vowels.hindi[i], // Marathi shares Hindi vowels
+    kannada: allAlphabet.vowels.kannada[i],
+    gujarati: allAlphabet.vowels.gujarati[i],
+    punjabi: allAlphabet.vowels.punjabi[i],
+    malayalam: allAlphabet.vowels.malayalam[i],
+    bengali: allAlphabet.vowels.bengali[i],
+    assamese: allAlphabet.vowels.assamese[i],
+    manipuri: allAlphabet.vowels.manipuri[i],
+    english: allAlphabet.vowels.english[i],
     type: "vowel" as const
   })),
-  ...allAlphabets.consonants.hindiConsonants.map((hindi, i) => ({
+  ...allAlphabet.consonants.hindi.map((hindi, i) => ({
     hindi,
-    marathi: allAlphabets.consonants.hindiConsonants[i], // Marathi shares Hindi consonants
-    kannada: allAlphabets.consonants.kannadaConsonants[i] || "",
-    gujarati: allAlphabets.consonants.gujaratiConsonants[i] || "",
-    punjabi: allAlphabets.consonants.punjabiConsonants[i] || "",
+    marathi: allAlphabet.consonants.hindi[i], // Marathi shares Hindi consonants
+    kannada: allAlphabet.consonants.kannada[i],
+    gujarati: allAlphabet.consonants.gujarati[i],
+    punjabi: allAlphabet.consonants.punjabi[i],
     malayalam:
-      i < allAlphabets.consonants.malayalamConsonants.length ? allAlphabets.consonants.malayalamConsonants[i] : "",
-    bengali: allAlphabets.consonants.bengaliConsonants[i],
+      i < allAlphabet.consonants.malayalam.length ? allAlphabet.consonants.malayalam[i] : "",
+    bengali: allAlphabet.consonants.bengali[i],
     assamese:
-      i < allAlphabets.consonants.assameseConsonants.length ? allAlphabets.consonants.assameseConsonants[i] : "",
+      i < allAlphabet.consonants.assamese.length ? allAlphabet.consonants.assamese[i] : "",
     manipuri:
-      i < allAlphabets.consonants.manipuriConsonants.length ? allAlphabets.consonants.manipuriConsonants[i] : "",
-    english: allAlphabets.consonants.englishConsonants[i] || "",
+      i < allAlphabet.consonants.manipuri.length ? allAlphabet.consonants.manipuri[i] : "",
+    english: allAlphabet.consonants.english[i] || "",
     type: "consonant" as const
   }))
 ];
@@ -190,15 +194,15 @@ const languages = [
 ];
 const languages2 = [
   { code: "SL", name: "Select Secondary Language", disabled: true },
-  { code: "hi", name: "hindi" },
-  { code: "mr", name: "marathi" },
-  { code: "kn", name: "kannada" },
-  { code: "gu", name: "gujarati" },
-  { code: "pa", name: "punjabi" },
-  { code: "ml", name: "malayalam" },
-  { code: "bn", name: "bengali" },
-  { code: "as", name: "assamese" },
-  { code: "mni", name: "manipuri" },
+  { code: "hi", name: "हिंदी" },
+  { code: "mr", name: "मराठी" },
+  { code: "kn", name: "ಕನ್ನಡ" },
+  { code: "gu", name: "ગુજરાતી" }, 
+  { code: "pa", name: "ਪੰਜਾਬੀ" }, 
+  { code: "ml", name: "മലയാളം" }, 
+  { code: "bn", name: "বাংলা" }, 
+  { code: "as", name: "অসমীয়া" }, 
+  { code: "mni", name: "ꯃꯤꯇꯩꯂꯣꯟ" },
   { code: "en", name: "english" }
 ];
 let selectedLanguage1 = "hi";
@@ -231,7 +235,6 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   }
 };
 ---
-
 <div class="language-letters-container">
   <div class="toggle-container">
     <div class="dropdown-wrapper">
@@ -245,7 +248,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
               selected={lang.code === selectedLanguage1}
               disabled={lang.disabled ? "disabled" : null}
             >
-              {lang.name} ({lang.code.toUpperCase()})
+              {lang.name}
             </option>
           ))
         }
@@ -269,7 +272,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
               selected={lang.code === selectedLanguage2}
               disabled={lang.disabled ? "disabled" : null}
             >
-              {lang.name} ({lang.code.toUpperCase()})
+              {lang.name}
             </option>
           ))
         }
@@ -325,7 +328,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
       (_, i) => !extraCodes.includes(startCode + i)
     );
   /**
-   * @typedef {object} GenerateLettersfParams
+   * @typedef {object} GenerateAlphabetParams
    * @property {number} startCode
    * @property {number} totalLength
    * @property {number[]} [extraKeys] - Optional. Unicode code points to exclude from the generated sequence.
@@ -336,10 +339,10 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
    * Generates an array of characters based on a starting Unicode code, total length,
    * and allows for filtering specific characters and inserting placeholders or custom Unicode characters at given indices.
    *
-   * @param {GenerateLettersfParams} params - The parameters object.
+   * @param {GenerateAlphabetParams} params - The parameters object.
    * @returns {string[]} An array of generated characters.
    */
-  const generateLettersf = (params) => {
+  const generateAlphabets = (params) => {
     const { startCode, totalLength, extraKeys = [], insertEmptyAt = [], insertUnicodeAt = [] } = params;
 
     // Step 1: Generate the base characters after filtering out extraKeys
@@ -435,27 +438,27 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   ];
 
   // Restructured allAlphabets object
-  const allAlphabets = {
+  const allAlphabet = {
     vowels: {
-      hindi: generateLettersf({ startCode: 2309, totalLength: 16 }),
-      kannada: generateLettersf({ startCode: 3205, totalLength: 16 }),
-      gujarati: generateLettersf(0xa85, 16, [0xa8d, 0xa91]),
-      punjabi:generateLettersf({startCode:2565, totalLength:16}),
-      malayalam: generateLettersf({startCode:0xd05,totalLength: 16, extraKeys: [0xd0d, 0xd11]}),
-      bengali: generateLettersf({startCode:0x985,totalLength:  16, extraKeys: [0x98d, 0x991]}),
-      assamese: generateLettersf({startCode:0x985, totalLength: 16, extraKeys: [0x98d, 0x991]}),
-      manipuri: generateLettersf({startCode:0xabc0, totalLength: 8}),
+      hindi: generateAlphabets({ startCode: 2309, totalLength: 16 }),
+      kannada: generateAlphabets({ startCode: 3205, totalLength: 16 }),
+      gujarati: generateAlphabets(0xa85, 16, [0xa8d, 0xa91]),
+      punjabi:generateAlphabets({startCode:2565, totalLength:16}),
+      malayalam: generateAlphabets({startCode:0xd05,totalLength: 16, extraKeys: [0xd0d, 0xd11]}),
+      bengali: generateAlphabets({startCode:0x985,totalLength:  16, extraKeys: [0x98d, 0x991]}),
+      assamese: generateAlphabets({startCode:0x985, totalLength: 16, extraKeys: [0x98d, 0x991]}),
+      manipuri: generateAlphabets({startCode:0xabc0, totalLength: 8}),
       english: englishVowels
     },
     consonants: {
-      hindi: generateLettersf({startCode:2325,totalLength : 37}),
-      kannada: generateLettersf({startCode:3221,totalLength : 37}),
-      gujarati: generateLettersf({startCode:0xa95,totalLength : 37}),
-      punjabi: generateLettersf({startCode:0xa15,totalLength : 37}),
-      malayalam: generateLettersf({startCode:0xd15,totalLength : 42}),
-      bengali: generateLettersf({startCode:0x995,totalLength : 37}),
-      assamese: generateLettersf({startCode:0x995,totalLength : 45}),
-      manipuri: generateLettersf({startCode:0xabd0,totalLength : 27}),
+      hindi: generateAlphabets({startCode:2325,totalLength : 37}),
+      kannada: generateAlphabets({startCode:3221,totalLength : 37}),
+      gujarati: generateAlphabets({startCode:0xa95,totalLength : 37}),
+      punjabi: generateAlphabets({startCode:0xa15,totalLength : 37}),
+      malayalam: generateAlphabets({startCode:0xd15,totalLength : 42}),
+      bengali: generateAlphabets({startCode:0x995,totalLength : 37}),
+      assamese: generateAlphabets({startCode:0x995,totalLength : 45}),
+      manipuri: generateAlphabets({startCode:0xabd0,totalLength : 27}),
       english: englishConsonants
     }
   };
@@ -491,17 +494,17 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
     if (type === "vowel") {
       // Handle Marathi separately as it shares Hindi vowels
       if (langCode === "mr") {
-        return allAlphabets.vowels.hindi[index] || "";
+        return allAlphabet.vowels.hindi[index] || "";
       }
       // Use the languageName to access the correct array in allAlphabets.vowels
-      return allAlphabets.vowels[languageName]?.[index] || "";
+      return allAlphabet.vowels[languageName]?.[index] || "";
     } else if (type === "consonant") {
       // Handle Marathi separately as it shares Hindi consonants
       if (langCode === "mr") {
-        return allAlphabets.consonants.hindi[index] || "";
+        return allAlphabet.consonants.hindi[index] || "";
       }
       // Use the languageName to access the correct array in allAlphabets.consonants
-      return allAlphabets.consonants[languageName]?.[index] || "";
+      return allAlphabet.consonants[languageName]?.[index] || "";
     }
     return "";
   }
@@ -594,6 +597,9 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
     });
     // Close popup when close button is clicked
     closeButton.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+        closeButton.addEventListener("click", () => {
       popup.style.display = "none";
     });
   });
