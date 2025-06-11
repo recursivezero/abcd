@@ -28,15 +28,17 @@ const pageMeta = {
   <div class="header-controls">
     <BackButton />
     <div class="right-header-buttons">
-    <button id="downloadBtn" class="metallic-button header-tools-btn" aria-label="Download Design">
-      <DownloadIcon class="header-icon" style="width: 1.4em; height: 1.4em;" />
-      <span class="loading-spinner" style="display: none;"></span>
-    </button>
+      <button id="downloadBtn" class="metallic-button header-tools-btn" aria-label="Download Design" >
+        <DownloadIcon class="header-icon" />
+        <span class="button-text">Download</span>
+        <span class="loading-spinner" style="display: none;"></span>
+      </button>
 
       <button id="resetBtn" class="metallic-button header-tools-btn" aria-label="Reset Design">
-        <ResetIcon class="header-icon" style="width: 1.5em; height: 1.5em;" />
+        <ResetIcon class="header-icon" />
+        <span class="button-text">Reset</span>
         <span class="loading-spinner" style="display: none;"></span>
-        </button>
+      </button>
       <div class="settings-button-container">
         <button id="settingsButton" class="settings-button" aria-label="Open design settings">
           <SettingIcon class="settings-icon" />
@@ -62,7 +64,7 @@ const pageMeta = {
               <input
                 type="color"
                 id="bgColor"
-                value="#1a1a1a"
+                value="#000000"
                 class="metallic-input color-input"
                 aria-label="Background Color Picker"
               />
@@ -124,7 +126,7 @@ const pageMeta = {
               <input
                 type="color"
                 id="textColor"
-                value="#ffffff"
+                value="#000000"
                 class="metallic-input color-input"
                 aria-label="Text Color Picker"
               />
@@ -239,7 +241,6 @@ const pageMeta = {
   // Logic for the settings button to open the popover
   if (settingsButton && designToolsPopover) {
     settingsButton.addEventListener("click", (event) => {
-      event.stopPropagation();
       const isOpen = designToolsPopover.classList.contains("open");
       designToolsPopover.classList.toggle("open", !isOpen);
       settingsButton.setAttribute("aria-expanded", !isOpen);
@@ -331,7 +332,7 @@ const pageMeta = {
         if (controls.bgColor) controls.bgColor.disabled = true;
       } else {
         preview.style.backgroundImage = "none";
-        preview.style.backgroundColor = controls.bgColor?.value || "#1a1a1a";
+        preview.style.backgroundColor = controls.bgColor?.value === "#000000" ? "transparent" : controls.bgColor?.value;
         if (controls.bgColor) controls.bgColor.disabled = false;
       }
       const selectedRatio = document.querySelector('input[name="aspectRatio"]:checked')?.value || "free";
@@ -346,7 +347,7 @@ const pageMeta = {
       if (editWordCountEl) updateWordCountDisplay(editQuoteInput, editWordCountEl);
 
       // Reset colors
-      if (controls.bgColor) controls.bgColor.value = "#1a1a1a";
+      if (controls.bgColor) controls.bgColor.value = "#000000";
       if (controls.textColor) controls.textColor.value = "#ffffff";
 
       // Reset font settings
@@ -499,15 +500,13 @@ const pageMeta = {
         }
 
         isDownloadOnCooldown = true;
-        controls.downloadBtn.disabled = true; 
+        controls.downloadBtn.disabled = true;
 
-        // Only define spinner once
         const spinner = controls.downloadBtn.querySelector(".loading-spinner");
         if (spinner) spinner.style.display = "inline-block";
 
         if (typeof html2canvas === "undefined") {
           alert("Error: html2canvas library is not loaded.");
-          // Re-enable and reset cooldown if html2canvas is not loaded
           isDownloadOnCooldown = false;
           controls.downloadBtn.disabled = false;
           if (spinner) spinner.style.display = "none";
@@ -515,7 +514,7 @@ const pageMeta = {
         }
 
         const canvasOptions = {
-          backgroundColor: currentBackgroundImage ? null : controls.bgColor?.value,
+          backgroundColor: currentBackgroundImage ? null : (controls.bgColor?.value === "#000000" ? null : controls.bgColor?.value),
           scale: 2,
           useCORS: true,
           allowTaint: true,

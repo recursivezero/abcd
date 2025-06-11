@@ -13,7 +13,7 @@ const meta = {
 
 <BaseLayout {meta}>
   <div class="selection-container">
-    <a href="/sample" class="back">
+    <a href="/" class="back">
       <BackIcon />
     </a>
     <h1 class="selection-title">Select a creative mode</h1>
@@ -93,7 +93,7 @@ const meta = {
       align-items: center;
       text-align: center;
       text-decoration: none;
-      background-color: var(--card-bg, #2b2b40);
+      background-color: var(--card-bg, light-dark(#ffffff,#2b2b40));
       padding: 2.5rem;
       border-radius: 20px;
       border: 2px solid var(--card-border, #444460);
@@ -103,7 +103,7 @@ const meta = {
     }
 
     .selection-card:hover {
-      background-color: var(--card-hover-bg, #3c3c5a);
+      background-color: var(--card-hover-bg, light-dark(#ffffff,#3c3c5a));
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
       border-color: var(--primary, #4a90e2);
@@ -129,7 +129,7 @@ const meta = {
 
     .card-description {
       font-size: 1.1rem;
-      color: var(--secondary, #a0a0a0);
+      color: var(--secondary, #cfcfcf);
       line-height: 1.5;
       max-width: 250px;
     }

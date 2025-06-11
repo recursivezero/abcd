@@ -270,7 +270,7 @@
 }
 
 .settings-button {
-  background: light-dark(#ffffff, #444460);
+  background: light-dark(#000000, #444460);
   border: 2px light-dark(#ffffff, #444460);
   color: var(--text-light);
   padding: 0.6rem;
