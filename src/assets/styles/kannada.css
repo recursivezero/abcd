@@ -9,7 +9,20 @@
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
 }
-
+.main-header {
+    position: sticky;
+    top: 0;
+    border-radius: 0.75rem;
+    z-index: 100; 
+    background: light-dark(white, var(--deep-blue));
+    padding-top: 1rem;
+    padding-bottom: 1rem; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.main-header.scrolled-header {
+    padding-top: 4rem;
+    padding-bottom: 0.5rem; /* Reduced padding-top */
+}
 .language-letters-container {
   max-width: 1400px;
   margin: 1px auto;
@@ -17,7 +30,7 @@
   /*background: var(--deep-blue);*/
   border-radius: 1.5rem;
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
   /*box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);*/
 
   &::before {
@@ -71,13 +84,13 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
 
   & select {
     width: 100%;
-    padding: 0.5rem 1.25rem 0.5rem 0.75rem;
+    padding: 0.7rem 1.39rem 0.7rem 0.89rem;
     font-size: 1.3rem;
     text-transform: capitalize;
     letter-spacing: 2px;
     text-align: center;
     border: 2px solid rgba(125, 211, 252, 0.3);
-    border-radius: 12px;
+    border-radius: 0.75rem;
     background: linear-gradient(145deg, #1d4ed8, #123085);
     color: light-dark (black, white);
     cursor: pointer;
@@ -106,7 +119,6 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
 
     & option {
       padding: 0.5rem 1.25rem 0.5rem 0.75rem;
-      margin: 4rem;
       text-transform: capitalize;
       letter-spacing: 2px;
       background: light-dark(white,#1e293b);
@@ -124,7 +136,7 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
 .toggle-button {
   background: light-dark (var(--navy-blue), var(--text-primary));
   border: 1px solid rgba(125, 211, 252, 0.3);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   width: 48px;
   height: 48px;
   display: flex;

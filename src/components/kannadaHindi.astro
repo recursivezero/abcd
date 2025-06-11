@@ -236,6 +236,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
 };
 ---
 <div class="language-letters-container">
+  <div class="main-header">  
   <div class="toggle-container">
     <div class="dropdown-wrapper">
       <label id="lang1Label" class="dropdown-label language-label active"> PRIMARY LANGUAGE </label>
@@ -279,7 +280,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
       </select>
     </div>
   </div>
-
+</div>
   <!-- Letters Grid Section -->
   <div class="language-letters-grid">
     <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS</h2>
@@ -576,6 +577,22 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
     // Get the popup elements
     const popup = document.getElementById("letterPopup");
     const closeButton = document.getElementById("closePopup");
+    const mainHeader = document.querySelector(".main-header");
+    const scrollThreshold = 50; // Pixels to scroll before the header shrinks
+        function handleScroll() {
+      if (window.scrollY > scrollThreshold) {
+        mainHeader.classList.add("scrolled-header");
+      } else {
+        mainHeader.classList.remove("scrolled-header");
+      }
+    }
+
+    // Initial check in case the page is loaded with a scroll position
+    handleScroll();
+
+    // Listen for scroll events
+    window.addEventListener("scroll", handleScroll);
+
     // Event listeners
     dropdown1.addEventListener("change", (e) => {
       selectedLanguage1 = e.target.value;
