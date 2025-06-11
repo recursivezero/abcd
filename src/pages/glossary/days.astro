@@ -1,0 +1,122 @@
+---
+
+import BaseLayout from "../../layouts/Base.astro"; 
+import LetterCard from "../../components/LetterCard.astro"; 
+import BackButton from "../../components/ui/backButton.astro";     
+import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+
+// Define the type for our day data entries
+export interface DayEntry {
+  id: string;
+  letter: string; // First letter of the day
+  fullName: string;   
+
+}
+
+const pageTitle = "Days of the Week";
+const category = "days"; 
+
+const daysData: DayEntry[] = [
+  {
+    id: "sunday",
+    letter: "S", 
+    fullName: "Sunday (रविवार)",
+  },
+  {
+    id: "monday",
+    letter: "M", 
+    fullName: "Monday (सोमवार)",
+  },
+  {
+    id: "tuesday",
+    letter: "T", 
+    fullName: "Tuesday (मंगलवार)",
+  },
+  {
+    id: "wednesday",
+    letter: "W", 
+    fullName: "Wednesday (बुधवार)",
+  },
+  {
+    id: "thursday",
+    letter: "T", 
+    fullName: "Thursday (गुरुवार)",
+  },
+  {
+    id: "friday",
+    letter: "F", 
+    fullName: "Friday (शुक्रवार)",
+  },
+  {
+    id: "saturday",
+    letter: "S", 
+    fullName: "Saturday (शनिवार)",
+  }
+];
+
+// Helper function to parse English and Hindi names
+function parseDayNames(fullName: string): { english: string; hindi: string } {
+  const match = fullName.match(/^(.*?) \((.*?)\)$/);
+  if (match && match.length === 3) {
+    return { english: match[1].trim(), hindi: match[2].trim() };
+  }
+  return { english: fullName, hindi: "" }; // Fallback
+}
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <BackButton href="/Glossary" />
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        daysData.map((entry) => {
+          const names = parseDayNames(entry.fullName);
+          const letterCardItem = {
+            id: entry.id,
+            letter: entry.letter, // e.g., "S" - for the main front display
+            text: names.english,    // English name for the front
+            description: names.hindi, // Hindi name for the back
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+
+  <script>
+    // Script identical for "Flip All Cards"
+    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+    const flipCards = document.querySelectorAll(".flip__card");
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          if (allFlipped) {
+            card.classList.add("flipped");
+          } else {
+            card.classList.remove("flipped");
+          }
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+        
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) { 
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+  </script>
+</BaseLayout>

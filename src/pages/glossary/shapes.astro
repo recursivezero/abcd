@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../../layouts/Base.astro";
+import LetterCard from "../../components/LetterCard.astro";
+import BackButton from "../../components/ui/backButton.astro";
+import "../../assets/styles/varnmala/greek-alphabet.css"; // Imported the CSS styles
+
+// Define the type for our shape data entries
+export interface ShapeEntry {
+  id: string;
+  letter: string; // Unicode character for the shape
+  text: string; // Name of the shape
+  description: string; // Geometric properties
+}
+
+const pageTitle = "Geometric Shapes";
+const category = "shapes";
+
+const shapesData: ShapeEntry[] = [
+  {
+    id: "circle",
+    letter: "●", // Black Circle U+25CF
+    text: "Circle (वृत्त)",
+    description:
+      "A perfectly round shape with no corners or edges. All points on the edge are equidistant from the center."
+  },
+  {
+    id: "square",
+    letter: "■", // Black Square U+25A0
+    text: "Square (वर्ग)",
+    description: "A quadrilateral with 4 equal sides and 4 right (90-degree) angles."
+  },
+  {
+    id: "triangle",
+    letter: "▲", // Black Up-Pointing Triangle U+25B2
+    text: "Triangle (त्रिभुज)",
+    description: "A polygon with 3 sides and 3 angles (vertices)."
+  },
+  {
+    id: "rectangle",
+    letter: "▭", // White Rectangle U+25AD (or ■ if filled preferred)
+    text: "Rectangle (आयत)",
+    description: "A quadrilateral with 4 right angles. Opposite sides are equal in length and parallel."
+  },
+  {
+    id: "pentagon",
+    letter: "⬠", // White Pentagon U+2B20
+    text: "Pentagon (पंचभुज)",
+    description: "A polygon with 5 sides and 5 angles."
+  },
+  {
+    id: "hexagon",
+    letter: "⬢", // Black Hexagon U+2B22
+    text: "Hexagon (षट्भुज)",
+    description: "A polygon with 6 sides and 6 angles."
+  },
+  {
+    id: "oval",
+    letter: "⬬", // White Ellipse U+2B2C (closest Unicode for oval)
+    text: "Oval / Ellipse (अंडाकार)",
+    description: "An elongated circle, like an egg shape. A regular oval is an ellipse."
+  },
+  {
+    id: "star",
+    letter: "★", // Black Star U+2605
+    text: "Star (तारा)",
+    description: "A pointed shape, typically with 5 or 6 points, formed by connecting vertices of a polygon."
+  },
+  {
+    id: "rhombus",
+    letter: "◆", // Black Diamond U+25C6
+    text: "Rhombus (समचतुर्भुज)",
+    description: "A quadrilateral with all 4 sides of equal length. Opposite angles are equal."
+  },
+
+  {
+    id: "parallelogram",
+    letter: "▰", // Black Parallelogram U+25B0
+    text: "Parallelogram (समांतर चतुर्भुज)",
+    description: "A quadrilateral with two pairs of parallel sides. Opposite sides are equal in length."
+  }
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container">
+    {}
+    <div class="page-header">
+      {}
+      <BackButton href="/Glossary" />
+      {}
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        shapesData.map((entry) => {
+          // Prepare the item for LetterCard, ensuring text and description are non-optional
+          const letterCardItem = {
+            ...entry, // Spread all properties from the entry
+            text: entry.text || "",
+            description: entry.description || ""
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+
+  <script>
+    // Script identical  for "Flip All Cards"
+    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+    const flipCards = document.querySelectorAll(".flip__card"); // Assumes LetterCard has .flip__card class
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          if (allFlipped) {
+            card.classList.add("flipped");
+          } else {
+            card.classList.remove("flipped");
+          }
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) {
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+  </script>
+</BaseLayout>

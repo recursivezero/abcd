@@ -1,0 +1,187 @@
+---
+import BaseLayout from "../../layouts/Base.astro"; 
+import LetterCard from "../../components/LetterCard.astro"; 
+import BackButton from "../../components/ui/backButton.astro";     
+import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+
+// Define the type for our English number data entries
+export interface EnglishNumberEntry {
+  id: number;
+  letter: string; // The numeral itself (e.g., "1", "2")
+  text?: string;   // The English word for the number (e.g., "One", "Two")
+  description?: string; // Original description, will be overridden for LetterCard item
+  code?: number;   // ASCII code for the digit
+  emoji?: string;  // Emoji for the number
+  relatedWords?: Array<{ word: string; meaning: string }>; // For the multiplication table
+}
+
+const pageTitle = "English Numbers & Tables";
+const category = "english-numbers-tables"; 
+
+// Function to generate multiplication table for a number
+function generateMultiplicationTable(num: number): Array<{ word: string; meaning: string }> {
+  const table = [];
+  for (let i = 1; i <= 10; i++) {
+    table.push({ word: `${num} × ${i}`, meaning: `= ${num * i}` });
+  }
+  return table;
+}
+
+const englishNumbersData: EnglishNumberEntry[] = [
+  {
+    id: 1,
+    letter: "1",
+    text: "One",
+    description: "Multiplication table for One", // Original description, if any
+    code: 49,
+    emoji: "1️⃣",
+    relatedWords: generateMultiplicationTable(1)
+  },
+  {
+    id: 2,
+    letter: "2",
+    text: "Two",
+    description: "Multiplication table for Two",
+    code: 50,
+    emoji: "2️⃣",
+    relatedWords: generateMultiplicationTable(2)
+  },
+  {
+    id: 3,
+    letter: "3",
+    text: "Three",
+    description: "Multiplication table for Three",
+    code: 51,
+    emoji: "3️⃣",
+    relatedWords: generateMultiplicationTable(3)
+  },
+  {
+    id: 4,
+    letter: "4",
+    text: "Four",
+    description: "Multiplication table for Four",
+    code: 52,
+    emoji: "4️⃣",
+    relatedWords: generateMultiplicationTable(4)
+  },
+  {
+    id: 5,
+    letter: "5",
+    text: "Five",
+    description: "Multiplication table for Five",
+    code: 53,
+    emoji: "5️⃣",
+    relatedWords: generateMultiplicationTable(5)
+  },
+  {
+    id: 6,
+    letter: "6",
+    text: "Six",
+    description: "Multiplication table for Six",
+    code: 54,
+    emoji: "6️⃣",
+    relatedWords: generateMultiplicationTable(6)
+  },
+  {
+    id: 7,
+    letter: "7",
+    text: "Seven",
+    description: "Multiplication table for Seven",
+    code: 55,
+    emoji: "7️⃣",
+    relatedWords: generateMultiplicationTable(7)
+  },
+  {
+    id: 8,
+    letter: "8",
+    text: "Eight",
+    description: "Multiplication table for Eight",
+    code: 56,
+    emoji: "8️⃣",
+    relatedWords: generateMultiplicationTable(8)
+  },
+  {
+    id: 9,
+    letter: "9",
+    text: "Nine",
+    description: "Multiplication table for Nine",
+    code: 57,
+    emoji: "9️⃣",
+    relatedWords: generateMultiplicationTable(9)
+  },
+  {
+    id: 10,
+    letter: "10",
+    text: "Ten",
+    description: "Multiplication table for Ten",
+    code: 4948, 
+    emoji: "🔟",
+    relatedWords: generateMultiplicationTable(10)
+  }
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <BackButton href="/numbers" />
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        englishNumbersData.map((entry) => {
+          // Format the multiplication table into a multi-line string
+          const tableString = entry.relatedWords
+            ? entry.relatedWords.map(line => `${line.word} ${line.meaning}`).join('\n')
+            : "";
+
+          const letterCardItem = {
+            ...entry, // Spread existing properties from entry
+            text: entry.text || "", // Ensure text is a non-optional string (likely for front)
+            // Use the formatted table string for the description prop,
+            // as LetterCard might use this for its back content.
+            description: tableString, 
+            // If table data (relatedWords) is present, set emoji to undefined
+            // to prevent it from showing on the back.
+            emoji: (entry.relatedWords && entry.relatedWords.length > 0) ? undefined : entry.emoji,
+            // relatedWords is still part of the item, in case LetterCard uses it directly.
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+
+  <script>
+    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+    const flipCards = document.querySelectorAll(".flip__card"); 
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          if (allFlipped) {
+            card.classList.add("flipped");
+          } else {
+            card.classList.remove("flipped");
+          }
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+        
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) { 
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,151 @@
+---
+
+import BaseLayout from "../../layouts/Base.astro"; 
+import LetterCard from "../../components/LetterCard.astro"; 
+import BackButton from "../../components/ui/backButton.astro";     
+import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+
+// Define the type for our flag data entries
+export interface FlagEntry {
+  id: string;
+  letter: string;
+  text: string;
+  description: string;
+}
+
+const pageTitle = "Country Flags";
+const category = "flags"; 
+
+const flagsData: FlagEntry[] = [
+  {
+    id: "usa",
+    letter: "🇺🇸",
+    text: "United States",
+    description: "Capital: Washington, D.C."
+  },
+  {
+    id: "canada",
+    letter: "🇨🇦",
+    text: "Canada",
+    description: "Capital: Ottawa"
+  },
+  {
+    id: "india",
+    letter: "🇮🇳",
+    text: "India",
+    description: "Capital: New Delhi"
+  },
+  {
+    id: "japan",
+    letter: "🇯🇵",
+    text: "Japan",
+    description: "Capital: Tokyo"
+  },
+  {
+    id: "brazil",
+    letter: "🇧🇷",
+    text: "Brazil",
+    description: "Capital: Brasília"
+  },
+  {
+    id: "australia",
+    letter: "🇦🇺",
+    text: "Australia",
+    description: "Capital: Canberra"
+  },
+  {
+    id: "germany",
+    letter: "🇩🇪",
+    text: "Germany",
+    description: "Capital: Berlin"
+  },
+  {
+    id: "southafrica",
+    letter: "🇿🇦",
+    text: "South Africa",
+    description: "Capitals: Pretoria, Cape Town, Bloemfontein"
+  },
+  {
+    id: "france",
+    letter: "🇫🇷",
+    text: "France",
+    description: "Capital: Paris"
+  },
+  {
+    id: "unitedkingdom",
+    letter: "🇬🇧",
+    text: "United Kingdom",
+    description: "Capital: London"
+  },
+  {
+    id: "china",
+    letter: "🇨🇳",
+    text: "China",
+    description: "Capital: Beijing"
+  },
+  {
+    id: "italy",
+    letter: "🇮🇹",
+    text: "Italy",
+    description: "Capital: Rome"
+  }
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container"> {/* Using class names from greek-alphabet.css */}
+    <div class="page-header"> {/* Using class names from greek-alphabet.css */}
+      <BackButton href="/Glossary" /> {/* Link back to the Glossary index page */}
+      <h1 class="page-main-title">{pageTitle}</h1> {/* Using class names from greek-alphabet.css */}
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button> {/* Using class names from greek-alphabet.css */}
+    </div>
+
+    <div class="grid-container alphabet-grid"> {/* Using class names from greek-alphabet.css */}
+      {
+        flagsData.map((entry) => {
+          // Prepare the item for LetterCard, ensuring text and description are non-optional
+          const letterCardItem = {
+            ...entry, // Spread all properties from the entry
+            text: entry.text || "", 
+            description: entry.description || "", 
+            // If LetterCard expects a specific 'emoji' prop distinct from 'letter', 
+            // you might need to add it here, e.g., emoji: entry.letter
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+
+  <script>
+    // Script identical to the one in hindi.astro for "Flip All Cards"
+    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+    const flipCards = document.querySelectorAll(".flip__card"); // Assumes LetterCard has .flip__card class
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          if (allFlipped) {
+            card.classList.add("flipped");
+          } else {
+            card.classList.remove("flipped");
+          }
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+        
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) { 
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+  </script>
+</BaseLayout>

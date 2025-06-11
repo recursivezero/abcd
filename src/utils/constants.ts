@@ -183,7 +183,19 @@ export const NavbarLinks: LinkProps[] = [
     title: "DrawCard",
     path: "/DrawCard",
     isActive: true
-  }
+  },
+  {
+    name: "Numbers", 
+    title: "Numbers", 
+    path: "/numbers", 
+    isActive: true
+  },
+  {
+    name: "Glossary", 
+    title: "Glossary", 
+    path: "/glossary", 
+    isActive: true
+  },
 ];
 
 export const FooterLinks: LinkProps[] = [

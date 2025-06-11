@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../../layouts/Base.astro"; 
+import LetterCard from "../../components/LetterCard.astro"; 
+import BackButton from "../../components/ui/backButton.astro";     
+import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+
+// Define the type for our Roman numeral data entries
+export interface RomanNumeralEntry {
+  id: number;
+  letter: string; // The Roman numeral itself (e.g., "I", "V")
+  text?: string;   // The numeric value (e.g., "1", "5")
+  description?: string; // The word for the number (e.g., "One", "Five")
+  code?: number;   // Unicode or other code if applicable
+  emoji?: string;  // Associated emoji (e.g., Braille)
+  
+}
+
+const pageTitle = "Roman Numerals";
+const category = "roman-numerals"; 
+
+const romanNumeralsData: RomanNumeralEntry[] = [
+  {
+    id: 1,
+    letter: "I",
+    code: 49, 
+    emoji: "⠁",
+    text: "1",
+    description: "One"
+  },
+  {
+    id: 2,
+    letter: "II",
+    code: 50,
+    emoji: "⠃",
+    text: "2",
+    description: "Two"
+  },
+  {
+    id: 3,
+    letter: "III",
+    code: 51,
+    emoji: "⠇",
+    text: "3",
+    description: "Three"
+  },
+  {
+    id: 4,
+    letter: "IV",
+    code: 52,
+    emoji: "⠏",
+    text: "4",
+    description: "Four"
+  },
+  {
+    id: 5,
+    letter: "V",
+    code: 53,
+    emoji: "⠟",
+    text: "5",
+    description: "Five"
+  },
+  {
+    id: 6,
+    letter: "VI",
+    code: 54,
+    emoji: "⠿",
+    text: "6",
+    description: "Six"
+  },
+  {
+    id: 7,
+    letter: "VII",
+    code: 55,
+    emoji: "⡿ ", 
+    text: "7",
+    description: "Seven"
+  },
+  {
+    id: 8,
+    letter: "VIII",
+    code: 56,
+    emoji: "⣿",
+    text: "8",
+    description: "Eight"
+  },
+  {
+    id: 9,
+    letter: "IX",
+    code: 57,
+    emoji: "⣿⠁",
+    text: "9",
+    description: "Nine"
+  },
+  {
+    id: 10,
+    letter: "X",
+    code: 58,
+    emoji: "⣿⠃",
+    text: "10",
+    description: "Ten"
+  }
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container"> {}
+    <div class="page-header"> {}
+      <BackButton href="/numbers" /> {}
+      <h1 class="page-main-title">{pageTitle}</h1> {}
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button> {}
+    </div>
+
+    <div class="grid-container alphabet-grid"> {}
+      {
+        romanNumeralsData.map((entry) => {
+          const letterCardItem = {
+            ...entry,
+            text: entry.text || "", 
+            description: entry.description || "", 
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+
+  <script>
+    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+    const flipCards = document.querySelectorAll(".flip__card"); 
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          if (allFlipped) {
+            card.classList.add("flipped");
+          } else {
+            card.classList.remove("flipped");
+          }
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+        
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) { 
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+  </script>
+</BaseLayout>
