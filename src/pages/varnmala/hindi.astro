@@ -6,10 +6,10 @@ import AlphabetComponent from "@/components/Alphabet.astro";
 import Help from "@/components/Help.astro";
 import BackButton from "@/components/ui/backButton.astro";
 
-import { varnmala_english } from "@/utils/characters";
+import { varnmala_hindi } from "@/utils/characters";
 ---
 
-<BaseLayout meta={{ title: "Alphabets" }}>
+<BaseLayout meta={{ title: "Hindi Alphabets" }}>
   <Fragment slot="header-right">
     <!-- <nav class="tabs">
       <button class="tab active" data-target="english">English</button>
@@ -17,18 +17,18 @@ import { varnmala_english } from "@/utils/characters";
     </nav> -->
     <Help
       title="Varnmala"
-      description="It is a collection of alphabets in English. It is used to teach kids the basics of language."
+      description="It is a collection of alphabets in Hindi. It is used to teach kids the basics of language."
     />
   </Fragment>
   <BackButton />
 
   <article class="container__alphabets">
-    <section id="english">
+    <!-- <section id="english">
       <AlphabetComponent list={varnmala_english} title="English Alphabets" />
-    </section>
-    <!-- <section id="hindi">
-      <AlphabetComponent list={varnmala_hindi} title="Hindi" />
     </section> -->
+    <section id="hindi">
+      <AlphabetComponent list={varnmala_hindi} title="Hindi" />
+    </section>
   </article>
   <script>
     const tabs = document.querySelectorAll(".tab");

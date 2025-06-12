@@ -23,7 +23,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 1,
     letter: "I",
     code: 49, 
-    emoji: "⠁",
+    emoji: "⠁", // Braille for 1
     text: "1",
     description: "One"
   },
@@ -31,7 +31,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 2,
     letter: "II",
     code: 50,
-    emoji: "⠃",
+    emoji: "⠃", // Braille for 2
     text: "2",
     description: "Two"
   },
@@ -39,7 +39,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 3,
     letter: "III",
     code: 51,
-    emoji: "⠇",
+    emoji: "⠇", // Braille for 3
     text: "3",
     description: "Three"
   },
@@ -47,7 +47,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 4,
     letter: "IV",
     code: 52,
-    emoji: "⠏",
+    emoji: "⠏", // Braille for 4
     text: "4",
     description: "Four"
   },
@@ -55,7 +55,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 5,
     letter: "V",
     code: 53,
-    emoji: "⠟",
+    emoji: "⠟", // Braille for 5
     text: "5",
     description: "Five"
   },
@@ -63,7 +63,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 6,
     letter: "VI",
     code: 54,
-    emoji: "⠿",
+    emoji: "⠿", // Braille for 6
     text: "6",
     description: "Six"
   },
@@ -71,7 +71,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 7,
     letter: "VII",
     code: 55,
-    emoji: "⡿ ", 
+    emoji: "⡿", // Braille for 7 (removed trailing space)
     text: "7",
     description: "Seven"
   },
@@ -79,7 +79,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 8,
     letter: "VIII",
     code: 56,
-    emoji: "⣿",
+    emoji: "⣿", // Braille for 8
     text: "8",
     description: "Eight"
   },
@@ -87,7 +87,7 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 9,
     letter: "IX",
     code: 57,
-    emoji: "⣿⠁",
+    emoji: "⣿⠁", // Braille for 9
     text: "9",
     description: "Nine"
   },
@@ -95,9 +95,41 @@ const romanNumeralsData: RomanNumeralEntry[] = [
     id: 10,
     letter: "X",
     code: 58,
-    emoji: "⣿⠃",
+    emoji: "⣿⠃", // Braille for 0 (as in 10)
     text: "10",
     description: "Ten"
+  },
+  {
+    id: 50,
+    letter: "L",
+    code: 59, // Continuing sequence
+    emoji: "⠇", // Braille for L
+    text: "50",
+    description: "Fifty"
+  },
+  {
+    id: 100,
+    letter: "C",
+    code: 60, // Continuing sequence
+    emoji: "⠉", // Braille for C
+    text: "100",
+    description: "One Hundred"
+  },
+  {
+    id: 500,
+    letter: "D",
+    code: 61, // Continuing sequence
+    emoji: "⠙", // Braille for D
+    text: "500",
+    description: "Five Hundred"
+  },
+  {
+    id: 1000,
+    letter: "M",
+    code: 62, // Continuing sequence
+    emoji: "⠍", // Braille for M
+    text: "1000",
+    description: "One Thousand"
   }
 ];
 ---

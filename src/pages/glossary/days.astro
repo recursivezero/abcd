@@ -19,37 +19,37 @@ const category = "days";
 const daysData: DayEntry[] = [
   {
     id: "sunday",
-    letter: "S", 
+    letter: "Sun", 
     fullName: "Sunday (रविवार)",
   },
   {
     id: "monday",
-    letter: "M", 
+    letter: "Mon", 
     fullName: "Monday (सोमवार)",
   },
   {
     id: "tuesday",
-    letter: "T", 
+    letter: "Tue", 
     fullName: "Tuesday (मंगलवार)",
   },
   {
     id: "wednesday",
-    letter: "W", 
+    letter: "Wed", 
     fullName: "Wednesday (बुधवार)",
   },
   {
     id: "thursday",
-    letter: "T", 
+    letter: "Thu", 
     fullName: "Thursday (गुरुवार)",
   },
   {
     id: "friday",
-    letter: "F", 
+    letter: "Fri", 
     fullName: "Friday (शुक्रवार)",
   },
   {
     id: "saturday",
-    letter: "S", 
+    letter: "Sat", 
     fullName: "Saturday (शनिवार)",
   }
 ];
@@ -79,8 +79,8 @@ function parseDayNames(fullName: string): { english: string; hindi: string } {
           const letterCardItem = {
             id: entry.id,
             letter: entry.letter, // e.g., "S" - for the main front display
-            text: names.english,    // English name for the front
-            description: names.hindi, // Hindi name for the back
+            text: names.hindi,    // English name for the front
+            description: names.english, 
           };
           return <LetterCard item={letterCardItem} category={category} />;
         })
