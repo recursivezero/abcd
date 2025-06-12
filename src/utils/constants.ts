@@ -179,9 +179,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "DrawCard",
-    title: "DrawCard",
-    path: "/DrawCard",
+    name: "Cards",
+    title: "Cards",
+    path: "/Cards",
     isActive: true
   },
   {
