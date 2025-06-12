@@ -125,7 +125,7 @@ const allAlphabet = {
   vowels: {
     hindi: generateAlphabets({ startCode: 2309, totalLength: 16 }),
     kannada: generateAlphabets({ startCode: 3205, totalLength: 16 }),
-    gujarati: generateAlphabets({startCode:0xa85, totalLength: 16, extraKeys: [0xa8d, 0xa91]}),
+    gujarati: generateAlphabets({startCode:2693,totalLength: 16}),
     punjabi: generateAlphabets({startCode:2565, totalLength:16}),
     malayalam: generateAlphabets({startCode:0xd05, totalLength:16,extraKeys: [0xd0d, 0xd11]}),
     bengali: generateAlphabets({startCode:0x985, totalLength:16, extraKeys: [0x98d, 0x991]}),
@@ -443,7 +443,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
     vowels: {
       hindi: generateAlphabets({ startCode: 2309, totalLength: 16 }),
       kannada: generateAlphabets({ startCode: 3205, totalLength: 16 }),
-      gujarati: generateAlphabets(0xa85, 16, [0xa8d, 0xa91]),
+      gujarati: generateAlphabets({startCode:2693,totalLength: 16}),
       punjabi:generateAlphabets({startCode:2565, totalLength:16}),
       malayalam: generateAlphabets({startCode:0xd05,totalLength: 16, extraKeys: [0xd0d, 0xd11]}),
       bengali: generateAlphabets({startCode:0x985,totalLength:  16, extraKeys: [0x98d, 0x991]}),

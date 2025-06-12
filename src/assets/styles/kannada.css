@@ -14,13 +14,13 @@
     top: 0;
     border-radius: 0.75rem;
     z-index: 100; 
-    background: light-dark(white, var(--deep-blue));
+    background: light-dark(white, var(--navy-blue));
     padding-top: 1rem;
     padding-bottom: 1rem; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .main-header.scrolled-header {
-    padding-top: 4rem;
+    padding-top: 2rem;
     padding-bottom: 0.5rem; /* Reduced padding-top */
 }
 .language-letters-container {
@@ -65,7 +65,6 @@
     display: block;
     margin-bottom: 0.8rem;
     font-size: 1.1rem;
-    text-align: center;
     background-image: linear-gradient( 135deg, #69FF97 10%, #00E4FF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -81,14 +80,12 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
     -webkit-text-fill-color: transparent;
     }
   }
-
   & select {
     width: 100%;
     padding: 0.7rem 1.39rem 0.7rem 0.89rem;
     font-size: 1.3rem;
-    text-transform: capitalize;
+    text-transform:uppercase;
     letter-spacing: 2px;
-    text-align: center;
     border: 2px solid rgba(125, 211, 252, 0.3);
     border-radius: 0.75rem;
     background: linear-gradient(145deg, #1d4ed8, #123085);
@@ -103,7 +100,6 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1.5em;
-
     &:hover {
       border-color: #7dd3fc;
       transform: translateY(-1px);
@@ -116,15 +112,13 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
       border-color: #2dd4bf;
       box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.3);
     }
-
     & option {
       padding: 0.5rem 1.25rem 0.5rem 0.75rem;
-      text-transform: capitalize;
+      text-transform:uppercase;
       letter-spacing: 2px;
       background: light-dark(white,#1e293b);
       color: light-dark (black, white);
       border-bottom: 1px solid rgba(125, 211, 252, 0.1);
-
       &:checked {
         background: rgba(29, 78, 216, 0.5);
         font-weight: 600;
