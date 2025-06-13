@@ -14,7 +14,6 @@ export interface FlagEntry {
 }
 
 const pageTitle = "Country Flags";
-// const category = "flags"; // Not directly used when card logic is inlined
 
 const flagsData: FlagEntry[] = [
   {
@@ -22,7 +21,7 @@ const flagsData: FlagEntry[] = [
     letter: "🇺🇸",
     text: "United States",
     description: "Capital: Washington, D.C.",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg" // Ensure this path is correct and image exists in public/images/flags/
+    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg"
   },
   {
     id: "canada",
@@ -115,30 +114,33 @@ const flagsData: FlagEntry[] = [
     <div class="grid-container alphabet-grid flags-grid">
       {
         flagsData.map((entry) => (
-          <div class="flip__card" data-id={entry.id}> {/* Inlined Card Structure Starts */}
+          <div class="flip__card" data-id={entry.id}>
             <div class="flip__card__inner">
               <div class="card card__front">
                 <div class="flip__button">
-                  <span class="flip__button__text" title="Flip Card">Flip Card</span>
+                  {/* Modified flip button content */}
+                  <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
+                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
                 </div>
                 <div class="letter__header">
-                  <p class="character">{entry.letter}</p> {/* Flag emoji */}
+                  <p class="character">{entry.letter}</p>
                 </div>
                 <div class="letter__content">
-                  <h2 class="text">{entry.text}</h2> {/* Country Name */}
-                  <p class="description">{entry.description}</p> {/* Capital City */}
+                  <h2 class="text">{entry.text}</h2>
+                  <p class="description">{entry.description}</p>
                 </div>
                 <div class="card__glow"></div>
               </div>
               <div class="card card__back">
                 <div class="flip__button">
-                  <span class="flip__button__text" title="Flip Card">Flip Card</span>
+                  {/* Modified flip button content */}
+                  <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
+                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
                 </div>
-                {/* Display flag image on the back */}
                 {entry.imageUrl ? (
                   <img src={entry.imageUrl} alt={entry.description} class="image flag-image" />
                 ) : (
-                  <p class="flipped__text">{entry.description || entry.text}</p> /* Fallback */
+                  <p class="flipped__text">{entry.description || entry.text}</p>
                 )}
               </div>
             </div>
@@ -158,11 +160,27 @@ const flagsData: FlagEntry[] = [
       flipAllButtonPage.addEventListener("click", () => {
         allFlippedStatus = !allFlippedStatus;
         pageFlipCards.forEach((card) => {
+          const flipCardElement = card as HTMLElement;
           if (allFlippedStatus) {
-            card.classList.add("flipped");
+            flipCardElement.classList.add("flipped");
           } else {
-            card.classList.remove("flipped");
+            flipCardElement.classList.remove("flipped");
           }
+          // Update text/icons for all buttons on this card based on new status
+          const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+          allButtonsOnThisCard.forEach(btn => {
+            const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
+            const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
+            if (textLabel && symbolLabel) {
+              if (allFlippedStatus) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
         });
         flipAllButtonPage.textContent = allFlippedStatus ? "Reset All Cards" : "Flip All Cards";
         flipAllButtonPage.classList.add("active");
@@ -191,13 +209,30 @@ const flagsData: FlagEntry[] = [
     });
 
     const individualFlipCards = document.querySelectorAll(".flags-grid .flip__card"); 
-    individualFlipCards.forEach((card) => {
-      const flipButtons = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+    individualFlipCards.forEach((card) => { // card is .flip__card
+      const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>; // Gets buttons on front and back of this card
 
-      flipButtons.forEach((button) => {
+      flipButtonsOnThisCard.forEach((button) => { 
         button.addEventListener("click", (event) => {
           event.stopPropagation(); 
-          card.classList.toggle("flipped");
+          card.classList.toggle("flipped"); // Toggle the card's class
+
+          const isFlipped = card.classList.contains("flipped");
+          
+          // Update text/icons for all buttons on this card
+          flipButtonsOnThisCard.forEach(btnInstance => {
+            const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+            const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+            if (textLabel && symbolLabel) {
+              if (isFlipped) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
         });
       });
     });
@@ -448,5 +483,14 @@ const flagsData: FlagEntry[] = [
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* This creates responsive columns */
     gap: 1.5rem; 
     padding: 1rem; 
+  }
+
+  .is-hidden {
+    display: none !important;
+  }
+
+  .flags-grid .flip__card .flip__button__text.rotate-symbol-label {
+    font-size: 1.1em; /* Slightly larger if needed, or adjust as preferred */
+    line-height: 1; /* Ensure proper alignment */
   }
 </style>

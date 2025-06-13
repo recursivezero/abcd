@@ -9,37 +9,37 @@ export interface ColourEntry {
   id: string;
   letter: string; 
   fullName: string;
-  imageUrl: string; 
+  // imageUrl: string;
+  cssColor: string; 
 }
 
 const pageTitle = "Colours";
 // const category = "colours"; 
 
 const coloursData: ColourEntry[] = [
-  { id: "black",  letter: "⬛", fullName: "Black (काला)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/black.webp" },
-  { id: "white",  letter: "⬜", fullName: "White (सफ़ेद)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/white.webp" },
-  { id: "red",    letter: "🟥", fullName: "Red (लाल)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/red.webp" },
-  { id: "green",  letter: "🟩", fullName: "Green (हरा)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/green.webp" },
-  { id: "yellow", letter: "🟨", fullName: "Yellow (पीला)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/yellow.webp" },
-  { id: "blue",   letter: "🟦", fullName: "Blue (नीला)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/blue.webp" },
-  { id: "brown",  letter: "🟫", fullName: "Brown (भूरा)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/brown.webp" },
-  { id: "orange", letter: "🟧", fullName: "Orange (नारंगी)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/orange.webp" },
-  { id: "pink",   letter: "💖", fullName: "Pink (गुलाबी)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/pink.webp" },
-  { id: "purple", letter: "🟪", fullName: "Purple (बैंगनी)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/purple.webp" },
-  { id: "gray",   letter: "🩶", fullName: "Gray (स्लेटी)", imageUrl: "https://kids-flashcards.com/images/en/30/cards/picture-flashcard/gray.webp" }
+  { id: "black",  letter: "⬛", fullName: "Black (काला)", cssColor: "black" },
+  { id: "white",  letter: "⬜", fullName: "White (सफ़ेद)", cssColor: "white" },
+  { id: "red",    letter: "🟥", fullName: "Red (लाल)",    cssColor: "red" },
+  { id: "green",  letter: "🟩", fullName: "Green (हरा)",  cssColor: "green" },
+  { id: "yellow", letter: "🟨", fullName: "Yellow (पीला)", cssColor: "yellow" },
+  { id: "blue",   letter: "🟦", fullName: "Blue (नीला)",   cssColor: "blue" },
+  { id: "brown",  letter: "🟫", fullName: "Brown (भूरा)",  cssColor: "brown" },
+  { id: "orange", letter: "🟧", fullName: "Orange (नारंगी)",cssColor: "orange" },
+  { id: "pink",   letter: "💖", fullName: "Pink (गुलाबी)", cssColor: "pink" },
+  { id: "purple", letter: "🟪", fullName: "Purple (बैंगनी)",cssColor: "purple" },
+  { id: "gray",   letter: "🩶", fullName: "Gray (स्लेटी)", cssColor: "gray" }
 ];
 
-// Helper function to parse English and Hindi names
+// Helper function to parse English and Hindi names (only English part will be used for front)
 function parseNames(fullName: string): { english: string; hindi: string } {
   const match = fullName.match(/^(.*?) \((.*?)\)$/);
   if (match && match.length === 3) {
     return { english: match[1].trim(), hindi: match[2].trim() };
   }
-  const hindiMatch = fullName.match(/([\u0900-\u097F]+)/); 
-  if (hindiMatch) {
-    const hindi = hindiMatch[0].trim();
-    const english = fullName.replace(hindi, "").replace("()", "").trim(); 
-    return { english, hindi };
+  // Fallback if parsing fails, attempt to extract English part
+  const englishOnlyMatch = fullName.match(/^([a-zA-Z\s]+)/);
+  if (englishOnlyMatch) {
+    return { english: englishOnlyMatch[1].trim(), hindi: "" };
   }
   return { english: fullName, hindi: "" }; 
 }
@@ -53,33 +53,34 @@ function parseNames(fullName: string): { english: string; hindi: string } {
       <button id="flip-all-button-colours" class="flip__all__button">Flip All Cards</button>
     </div>
 
-    <div class="grid-container alphabet-grid colours-grid"> {/* Added 'colours-grid' for specific targeting */}
+    <div class="grid-container alphabet-grid colours-grid">
       {
         coloursData.map((entry) => {
           const names = parseNames(entry.fullName);
           return (
-            <div class="flip__card" data-id={entry.id}> {/* Inlined Card Structure Starts */}
+            <div class="flip__card" data-id={entry.id}>
               <div class="flip__card__inner">
                 <div class="card card__front">
                   <div class="flip__button">
-                    <span class="flip__button__text" title="Flip Card">Flip Card</span>
+                    {/* Modified flip button content */}
+                    <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
+                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
                   </div>
-                  {/* Front content: Only Colour Name */}
                   <div class="card-content-front">
                     <h2 class="text">{names.english}</h2>
                   </div>
                   <div class="card__glow"></div>
                 </div>
-                <div class="card card__back">
+                <div 
+                  class="card card__back" 
+                  style={`background: ${entry.cssColor || 'var(--background)'};`}
+                >
                   <div class="flip__button">
-                    <span class="flip__button__text" title="Flip Card">Flip Card</span>
+                    {/* Modified flip button content */}
+                    <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
+                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
                   </div>
-                  {/* Back content: Colour Image */}
-                  {entry.imageUrl ? (
-                    <img src={entry.imageUrl} alt={`${names.english} (${names.hindi})`} class="image colour-image" />
-                  ) : (
-                    <p class="flipped__text">{names.hindi || entry.letter}</p> /* Fallback to Hindi name or emoji */
-                  )}
+                  {/* No image or text on the back, just the color */}
                 </div>
               </div>
             </div> 
@@ -99,11 +100,27 @@ function parseNames(fullName: string): { english: string; hindi: string } {
       flipAllButtonPage.addEventListener("click", () => {
         allFlippedStatus = !allFlippedStatus;
         pageFlipCards.forEach((card) => {
+          const flipCardElement = card as HTMLElement;
           if (allFlippedStatus) {
-            card.classList.add("flipped");
+            flipCardElement.classList.add("flipped");
           } else {
-            card.classList.remove("flipped");
+            flipCardElement.classList.remove("flipped");
           }
+          // Update text/icons for all buttons on this card based on new status
+          const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+          allButtonsOnThisCard.forEach(btn => {
+            const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
+            const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
+            if (textLabel && symbolLabel) {
+              if (allFlippedStatus) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
         });
         flipAllButtonPage.textContent = allFlippedStatus ? "Reset All Cards" : "Flip All Cards";
         flipAllButtonPage.classList.add("active");
@@ -132,13 +149,30 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     });
 
     const individualFlipCards = document.querySelectorAll(".colours-grid .flip__card"); 
-    individualFlipCards.forEach((card) => {
-      const flipButtons = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+    individualFlipCards.forEach((card) => { // card is .flip__card
+      const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>; // Gets buttons on front and back of this card
 
-      flipButtons.forEach((button) => {
+      flipButtonsOnThisCard.forEach((button) => { 
         button.addEventListener("click", (event) => {
           event.stopPropagation(); 
-          card.classList.toggle("flipped");
+          card.classList.toggle("flipped"); // Toggle the card's class
+
+          const isFlipped = card.classList.contains("flipped");
+          
+          // Update text/icons for all buttons on this card
+          flipButtonsOnThisCard.forEach(btnInstance => {
+            const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+            const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+            if (textLabel && symbolLabel) {
+              if (isFlipped) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
         });
       });
     });
@@ -146,23 +180,20 @@ function parseNames(fullName: string): { english: string; hindi: string } {
 </BaseLayout>
 
 <style is:global>
-  /* Color variables and base styles (adapt from flags.astro or your theme) */
+  /* Color variables and base styles */
   :root[data-theme="light"] {
-    /* Define your theme's --primary, --secondary, --text, --background, --border etc. */
-    /* Example: */
     --primary: #007bff;
     --primary-light: #54aeff;
     --secondary: #6c757d;
     --text: #212529;
     --background: #ffffff;
     --border: #dee2e6;
-    --character-gradient-start: var(--primary); /* Used for text hover effect */
+    --character-gradient-start: var(--primary);
     --character-gradient-end: var(--primary-light);
     --character-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   :root[data-theme="dark"] {
-    
     --primary: #0d6efd;
     --primary-light: #5fa2ff;
     --secondary: #adb5bd;
@@ -179,33 +210,17 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     width: 100%;
     height: 100%;
     perspective: 1000px;
-    min-height: 200px;
-  }
-
-  .colours-grid .flip__card .image {
-    object-fit: cover; 
-    width: 100%;
-    height: 100%;
-    background-color: var(--border); 
-  }
-
-  /* Specific style for colour images on the back */
-  .colours-grid .flip__card .colour-image {
-    object-fit: cover;
-    background-color: transparent !important;
-    /* border: 1px solid #eee; */ /* Optional border for the image */
-    max-width: 100%; 
-    max-height: 100%;
+    min-height: 220px; /* Adjusted min-height */
   }
   
   .colours-grid .flip__card .card-content-front {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    height: 100%; /* Take full height of the card front's content area */
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     text-align: center;
-    padding: 1rem; /* Add some padding */
+    padding: 1rem;
   }
 
   .colours-grid .flip__card .text { /* For the Colour Name on the front */
@@ -216,32 +231,15 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     transition: color 0.3s ease;
   }
 
-  .colours-grid .flip__card .flipped__text { /* Fallback text on back */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin: 0;
-    line-height: 1;
-    color: var(--text); 
-    text-shadow: var(--character-shadow);
-    text-align: center;
-    padding: 1rem;
-  }
-
   .colours-grid .flip__card .card {
     background: linear-gradient(145deg, var(--background), color-mix(in srgb, var(--background) 97%, var(--text) 3%));
     border-radius: 1.25rem;
-    /* padding: 1.75rem; /* Padding is now in .card-content-front for better control */
     box-shadow:
       0 4px 15px rgba(0, 0, 0, 0.05),
       0 1px 2px rgba(0, 0, 0, 0.1);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex; /* Keep for overall card structure */
-    flex-direction: column; /* Keep for overall card structure */
-    /* gap: 1.25rem; /* Gap might not be needed if front content is simple */
+    display: flex; 
+    flex-direction: column; 
     position: relative;
     overflow: hidden;
     border: 1px solid var(--border);
@@ -254,19 +252,17 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     opacity: 1;
   }
 
-  .colours-grid .flip__card .card.card__front:hover .text { /* Colour name text on front hover */
-    /* Remove background gradient effect */
+  .colours-grid .flip__card .card.card__front:hover .text { 
     background: none;
     -webkit-background-clip: initial;
     background-clip: initial;
-    /* Set text color to primary */
     color: var(--primary); 
   }
 
   .colours-grid .flip__card .flip__card__inner {
     width: 100%;
     height: 100%;
-    text-align: left;
+    text-align: left; 
     transition: transform 0.8s;
     transform-style: preserve-3d;
   }
@@ -280,15 +276,16 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     backface-visibility: hidden;
     top: 0;
     left: 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
   }
 
   .colours-grid .flip__card .card__back {
-    padding: 0; /* Remove padding if image is to fill the back */
+    padding: 0; 
     transform: rotateY(180deg);
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    background-color: var(--background); /* Or a specific back card color */
+    /* The background is now fully set by the inline style in the template.
+       Ensure no other background properties here conflict. */
   }
 
   .colours-grid .flip__card.flipped .flip__card__inner {
@@ -321,6 +318,10 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
+  .is-hidden {
+    display: none !important;
+  }
+
   .colours-grid .flip__card .card__glow {
     position: absolute;
     inset: 0;
@@ -338,16 +339,12 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     .colours-grid .flip__card .text { 
       font-size: 1.25rem;
     }
-    .colours-grid .flip__card .flipped__text { 
-        font-size: 1.2rem;
-    }
   }
 
-  /* Grid layout for the colours page */
   .colours-grid.grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust card size */
-    gap: 1.5rem; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 1rem; 
     padding: 1rem; 
   }
 </style>

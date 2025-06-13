@@ -13,10 +13,7 @@ import { varnmala_hindi, hindiVowelList } from "@/utils/characters";
 // Assuming AlphabetComponent expects an array of objects like: { letter: string, code: number, name?: string, ... }
 const formattedVowelList = hindiVowelList.map((vowel) => ({
   letter: vowel.value, // Using the 'value' property which holds the character
-  code: vowel.key,     // Using the 'key' property for the 'code'
-  // You can add a 'name' or other properties here if your AlphabetComponent uses them
-  // For example, if you have a way to get the phonetic name:
-  // name: getPhoneticName(vowel.value) 
+  code: vowel.key,     // Using the 'key' property for the 'code' 
 }));
 ---
 
