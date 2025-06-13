@@ -4,182 +4,140 @@
   margin: 0 auto;
   padding: 2rem;
   container: clan / inline-size;
+}
 
-  .clan__header {
-    text-align: center;
-    margin-bottom: 3rem;
-    background: linear-gradient(135deg, #1a365d, #2c5282);
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+.clan__header {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #1a365d, #2c5282);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-  .clan__legend {
-    display: flex;
-    border: 2px solid rgb(241, 230, 230);
-    border-radius: 0.5rem;
-    position: relative;
-    width: max-content;
+.clan__title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-    .legend {
-      font-size: large;
-      color: greenyellow;
+.clan__search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-      &::before {
-        content: attr(data-icon);
-      }
-    }
+.clan__search-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  width: 100%;
+}
 
-    dl {
-      display: flex;
-      align-items: anchor-center;
-      gap: 10px;
-      padding: 0.5rem;
-      cursor: pointer;
+.clan__search-wrapper:focus-within {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
 
-      &:not(:last-child) {
-        border-right: 3px solid #babad6;
-      }
+.clan__search-icon {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+  color: white;
+}
 
-      &:hover {
-        background-color: crimson;
-      }
-    }
-  }
+.clan__search-input {
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
 
-  .clan__title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
+.clan__search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
 
-  .clan__search {
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    gap: 0.5rem; /* Decreased gap between search bar and button */
+.download-button {
+  background: linear-gradient(135deg, #0ee7ff, #924ddc);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
 
-    #downloadPdf {
-      background: linear-gradient(135deg, #0ee7ff, #924ddc);
-      color: #fff;
-      border: none;
-      border-radius: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      margin-left: 0; /* Remove margin-left to rely on gap */
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: background 0.3s, box-shadow 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-shrink: 0;
-      height: 100%; /* Make button height match search bar */
-      min-height: 3.5rem; /* Ensure button and search bar have same minimum height */
-        }
+.download-button:hover {
+  background: linear-gradient(135deg, #cb2cfb, #10f4f0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 
-        #downloadPdf:hover, #downloadPdf:focus {
-      background: linear-gradient(135deg, #cb2cfb, #10f4f0);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      outline: none;
-        }
+.clan__legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
 
-        .clan__search-wrapper {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 0.5rem;
-      padding: 0.75rem 1rem;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      width: 100%;
-      max-width: 800px; /* Increased max-width for larger search bar */
-      margin: 0 auto;
-      box-sizing: border-box;
-      flex: 2 1 0; /* Increased flex-grow for larger search bar */
-      min-height: 3.5rem; /* Ensure search bar and button have same minimum height */
-        }
+.clan__legend dl {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
 
-        .clan__search-wrapper:focus-within {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
-        }
+.clan__legend dl:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
-        .clan__search-icon {
-      font-size: 1.25rem;
-      margin-right: 0.5rem;
-      color: #ffffff;
-        }
+.clan__legend .legend {
+  font-size: 1.2rem;
+}
 
-        .clan__search-input {
-      width: 100%;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 1rem;
-      outline: none;
-        }
+.clan__legend dd {
+  margin: 0;
+  color: white;
+  font-weight: 500;
+}
 
-        .clan__search-input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-        }
-        }
+.clan__content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-        @media (max-width: 768px) {
-        .clan__search {
-      flex-direction: column;
-      align-items: stretch;
-      width: 100%;
-      gap: 0; /* Remove gap for stacked layout */
-
-      #downloadPdf {
-      margin-left: 0;
-      margin-top: 1rem;
-      width: 100%;
-      height: 3.5rem; /* Match min-height for mobile */
-      min-height: 3.5rem;
-      }
-
-      .clan__search-wrapper {
-      margin: 0;
-      width: 100%;
-      max-width: 100%;
-      min-height: 3.5rem;
-      }
-        }
-        }
-
-  .clan__content {
-    display: flex;
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .clan__section {
-    flex: 1;
-  }
+.highlight {
+  background: var(--highlight-bg);
+  color: var(--highlight-text);
+  padding: 0.1em 0.3em;
+  border-radius: 0.25em;
 }
 
 @container clan (max-width: 768px) {
-  .clan__legend {
-    flex-direction: column;
-    right: 1rem;
-
-    dl {
-      &:not(:last-child) {
-        border-right: none;
-        border-bottom: 3px solid #babad6;
-      }
-    }
-  }
-
   .clan__header {
     padding: 1.5rem;
   }
@@ -188,232 +146,31 @@
     font-size: 2rem;
   }
 
-  .clan__search-wrapper {
-    margin: 0 1rem;
-  }
-
-  .clan__content {
+  .clan__search {
     flex-direction: column;
-  }
-}
-
-.highlight {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0.2rem 0.4rem;
-  border-radius: 0.25rem;
-}
-
-/* card style */
-
-:root {
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --text-light: #ffffff;
-  --border-radius-sm: 0.5rem;
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-}
-
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  padding: 0 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.card {
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--card-color, #4a90e2), rgba(74, 144, 226, 0.8));
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  margin-bottom: 1rem;
-}
-
-.card-info {
-  display: grid;
-  gap: 1rem;
-}
-
-.info-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.value {
-  color: var(--text-light);
-  font-weight: bold;
-  font-size: 1.75rem;
-
-  &::before {
-    content: attr(data-icon);
-  }
-}
-
-.card-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.surname-count {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-sm);
-  color: var(--text-light);
-  font-weight: bold;
-}
-
-.surname-count .count {
-  font-size: 1.25rem;
-}
-
-.card-body {
-  background: var(--glass-bg);
-  margin: 0 1.5rem 1.5rem;
-  border-radius: var(--border-radius-sm);
-  height: 100%;
-  overflow-y: scroll;
-  transition: max-height 0.3s ease-out;
-}
-
-.card.expanded .card-body {
-  max-height: 500px;
-}
-
-.surname-container {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.surname-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius-sm);
-  padding: 0.75rem;
-  transition: var(--transition);
-  transform: translateX(0);
-}
-
-.surname-card:hover {
-  transform: translateX(5px);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.surname-card p {
-  margin: 0;
-  color: var(--text-light);
-  font-size: 1.5rem;
-
-  &::before {
-    content: attr(data-icon);
-  }
-}
-
-.highlight {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0.2rem 0.4rem;
-  border-radius: 0.25rem;
-}
-
-.copy-button {
-  background: none;
-  border: none;
-  color: var(--text-light);
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50%;
-  transition: var(--transition);
-}
-
-.copy-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.copied-tooltip {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  color: var(--text-light);
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-sm);
-  font-size: 0.875rem;
-  animation: fadeInOut 1.5s ease-in-out;
-}
-
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  20% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  80% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
-.error-message {
-  color: #ff6b6b;
-  text-align: center;
-  padding: 2rem;
-  background: rgba(255, 107, 107, 0.1);
-  border-radius: var(--border-radius-sm);
-  margin: 1rem;
-}
-
-@media (max-width: 768px) {
-  .card-container {
-    grid-template-columns: 1fr;
-    padding: 1rem;
     gap: 1rem;
   }
 
-  .card-header {
-    padding: 1rem;
+  .download-button {
+    width: 100%;
+    justify-content: center;
   }
 
-  .card-body {
-    margin: 0 1rem 1rem;
+  .clan__legend {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+@media print {
+
+  .clan__search,
+  .clan__legend {
+    display: none;
   }
 
-  .value {
-    font-size: 1.25rem;
-  }
-
-  .surname-count {
-    padding: 0.5rem;
-  }
-
-  .surname-count .count {
-    font-size: 1rem;
+  .card {
+    break-inside: avoid;
   }
 }

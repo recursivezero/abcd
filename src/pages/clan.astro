@@ -30,7 +30,6 @@ interface Branch {
   surnames: Surname[];
 }
 
-// Type guard to validate Branch structure
 function isBranch(data: any): data is Branch {
   return (
     data &&
@@ -52,7 +51,6 @@ function isBranch(data: any): data is Branch {
   );
 }
 
-// Filter and validate clan data
 const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
 ---
 
@@ -70,11 +68,9 @@ const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
             placeholder="Search by Gotra, Deity, or Caste..."
           />
         </div>
-        <div class="card-actions-top">
         <button id="downloadPdf" class="download-button" aria-label="Download as PDF">
           <span class="text">Download PDF</span>
         </button>
-      </div>
       </div>
       <div class="clan__legend">
         <dl title="Gotra">
@@ -101,91 +97,57 @@ const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
 </BaseLayout>
 
 <script>
-  function highlightText(text: string, query: string): string {
+  function highlightText(text, query) {
     if (!text || !query) return text;
     const regex = new RegExp(`(${query.trim()})`, "gi");
     return text.replace(regex, `<span class="highlight">$1</span>`);
   }
 
-  // Wait for the DOM to be fully loaded
-  window.addEventListener("load", () => {
-    const searchInput = document.getElementById("searchInput") as HTMLInputElement;
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const downloadBtn = document.getElementById("downloadPdf");
+    const cards = document.querySelectorAll(".card");
 
-    if (!searchInput) {
-      console.error("Search input not found");
-      return;
-    }
-
-    // Set up search functionality
-    searchInput.addEventListener("input", (event: Event) => {
-      const query = (event.target as HTMLInputElement).value.toLowerCase().trim();
-      const cards = document.querySelectorAll(".card") as NodeListOf<HTMLElement>;
-
-      if (!cards.length) {
-        console.error("No cards found");
-        return;
-      }
-
-      cards.forEach((card) => {
-        // Get all searchable text from the card
-        const gotraEl = card.querySelector(".info-group:nth-child(1) .value") as HTMLElement;
-        const deityEl = card.querySelector(".info-group:nth-child(2) .value") as HTMLElement;
-        const casteEl = card.querySelector(".info-group:nth-child(3) .value") as HTMLElement;
-
-        // Get both Hindi and English versions
-        const gotraHi = gotraEl?.getAttribute("data-hi")?.toLowerCase() || "";
-        const gotraEn = gotraEl?.getAttribute("data-en")?.toLowerCase() || "";
-        const deityHi = deityEl?.getAttribute("data-hi")?.toLowerCase() || "";
-        const deityEn = deityEl?.getAttribute("data-en")?.toLowerCase() || "";
-        const casteHi = casteEl?.getAttribute("data-hi")?.toLowerCase() || "";
-        const casteEn = casteEl?.getAttribute("data-en")?.toLowerCase() || "";
-
-        // Get all surnames (both Hindi and English)
-        const surnameElements = card.querySelectorAll(".surname-card p") as NodeListOf<HTMLElement>;
-        const surnames = Array.from(surnameElements)
-          .map((el) => {
-            const hi = el.getAttribute("data-hi")?.toLowerCase() || "";
-            const en = el.getAttribute("data-en")?.toLowerCase() || "";
-            return `${hi} ${en}`;
-          })
-          .join(" ");
-
-        // Check if any field contains the search query
-        const hasMatch =
-          gotraHi.includes(query) ||
-          gotraEn.includes(query) ||
-          deityHi.includes(query) ||
-          deityEn.includes(query) ||
-          casteHi.includes(query) ||
-          casteEn.includes(query) ||
-          surnames.includes(query);
-
-        // Show/hide card based on match
+    // Search functionality
+    searchInput?.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      
+      cards.forEach(card => {
+        const gotra = card.dataset.gotra.toLowerCase();
+        const deity = card.dataset.deity.toLowerCase();
+        const caste = card.dataset.caste.toLowerCase();
+        
+        const hasMatch = gotra.includes(query) || 
+                        deity.includes(query) || 
+                        caste.includes(query);
+        
         card.style.display = hasMatch ? "block" : "none";
-
-        // If there's a match, highlight the matching text
+        
         if (hasMatch) {
-          // Highlight in main fields
-          if (gotraEl) {
-            const gotraText = gotraEl.textContent || "";
-            gotraEl.innerHTML = highlightText(gotraText, query);
-          }
-          if (deityEl) {
-            const deityText = deityEl.textContent || "";
-            deityEl.innerHTML = highlightText(deityText, query);
-          }
-          if (casteEl) {
-            const casteText = casteEl.textContent || "";
-            casteEl.innerHTML = highlightText(casteText, query);
-          }
-
-          // Highlight in surnames
-          surnameElements.forEach((el) => {
-            const surnameText = el.textContent || "";
-            el.innerHTML = highlightText(surnameText, query);
+          // Highlight matching text
+          const values = card.querySelectorAll(".value");
+          values.forEach(el => {
+            const text = el.textContent;
+            el.innerHTML = highlightText(text, query);
           });
         }
       });
+    });
+
+    // PDF download
+    downloadBtn?.addEventListener("click", () => {
+      // Expand all cards for printing
+      cards.forEach(card => {
+        card.classList.add("expanded");
+        const btn = card.querySelector(".surname-count");
+        const body = card.querySelector(".card-body");
+        btn?.setAttribute("aria-expanded", "true");
+        body?.setAttribute("aria-hidden", "false");
+      });
+      
+      setTimeout(() => {
+        window.print();
+      }, 500);
     });
   });
 </script>
