@@ -4,8 +4,8 @@ import type { LinkProps } from "@/types/index.ts";
 
 export const APP_NAME = "Template";
 
-let BASE_URL = "http://localhost:4321/draw";
-let IMAGE_DIR = "/src/assets/images/background";
+let BASE_URL = "http://localhost:4321";
+let IMAGE_DIR = "/assets/images/background";
 
 if (import.meta.env.PROD) {
   BASE_URL = "https://bnm1w7hj00.execute-api.us-east-1.amazonaws.com/master/canvas";
@@ -53,31 +53,7 @@ const numberBox: Record<number, string> = {
   9: "nine"
 };
 
-const fontBox = [
-  "boisuStroke",
-  "BungeeSpice",
-  "atkinson",
-  "sportrop",
-  "MudraMohta",
-  "Roboto",
-  "Fira Sans",
-  "Open Sans",
-  "Lobster",
-  "Orbitron",
-  "Merriweather",
-  "Ubuntu",
-  "Press Start 2P",
-  "Playfair Display",
-  "Cinzel",
-  "Raleway",
-  "Rubik",
-  "Pacifico",
-  "Josefin Sans",
-  "Baloo 2",
-  "Zilla Slab",
-  "Cabin",
-  "Quicksand"
-];
+const fontBox = ["Arial" , "Verdana" , "Trebuchet MS" , "Times New Roman","Georgia","Courier New","Comic Sans MS","Impact","boisuStroke", "BungeeSpice", "atkinson", "sportrop", "MudraMohta", "Roboto"];
 
 export const NavbarLinks: LinkProps[] = [
   {
