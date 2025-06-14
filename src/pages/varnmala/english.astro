@@ -9,14 +9,14 @@ import BackButton from "@/components/ui/backButton.astro";
 import { varnmala_english } from "@/utils/characters";
 ---
 
-<BaseLayout meta={{ title: "Alphabets" }}>
+<BaseLayout meta={{ title: "English" }}>
   <Fragment slot="header-right">
     <!-- <nav class="tabs">
       <button class="tab active" data-target="english">English</button>
       <button class="tab" data-target="hindi">Hindi</button>
     </nav> -->
     <Help
-      title="Varnmala"
+      title="English "
       description="It is a collection of alphabets in English. It is used to teach kids the basics of language."
     />
   </Fragment>
@@ -24,7 +24,7 @@ import { varnmala_english } from "@/utils/characters";
 
   <article class="container__alphabets">
     <section id="english">
-      <AlphabetComponent list={varnmala_english} title="English Alphabets" />
+      <AlphabetComponent list={varnmala_english} title="English" />
     </section>
     <!-- <section id="hindi">
       <AlphabetComponent list={varnmala_hindi} title="Hindi" />
