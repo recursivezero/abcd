@@ -12,7 +12,8 @@
     --background: #0f172a;
     --text: #f1f5f9;
     --border: #1e293b;
-
+    --card: rgba(37, 53, 79, 0.8);
+    --card-bg: rgba(37, 53, 79, 0.8);
     --header-h: 4rem;
     --footer-h: 4rem;
     --sidebar-w: 16rem;
@@ -25,6 +26,7 @@
     --background: #0f172a;
     --text: #f1f5f9;
     --border: #1e293b;
+    --card-bg: rgba(37, 53, 79, 0.8);
   }
 
   [data-theme="light"] {
@@ -34,6 +36,7 @@
     --background: #ffffff;
     --text: #0f172a;
     --border: #e2e8f0;
+    --card-bg: rgba(255, 255, 255, 0.8);
   }
 
   html {

@@ -10,55 +10,99 @@ const { state } = Astro.props;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px;
     margin: 0 auto;
     padding: 35px;
   }
 
   .view-controls {
     position: absolute;
-    top: 20px;
+    top: 0px;
     display: flex;
     gap: 10px;
     z-index: 100;
   }
 
+  .zoom-controls {
+    position: absolute;
+    right: -7px;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .zoom-button {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border: 2px solid var(--primary-light);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .zoom-button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-light);
+  }
+
   .view-button {
-    background-color: #000000;
-    color: white;
-    border: 3px solid white;
+    background-color: var(--card-bg);
+    color: var(--text);
+    border: 3px solid var(--primary-light);
     padding: 8px 16px;
     border-radius: 16px;
     font-family: "Comic Sans MS", cursive, sans-serif;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
   }
 
   .view-button:hover {
     transform: scale(1.05);
-    background-color: #333;
+    opacity: 90%;
+    background-color: #cfe3fde7;
   }
 
   .view-button.active {
-    background-color: #ff6b6b;
+    background-color: var(--primary-light);
   }
 
   .district {
-    /* width: 100%; */
-    height: 100%;
+    position: relative;
+    width: 30rem;
+    height: 0;
+    padding-bottom: 75%; /* 4:3 Aspect Ratio */
     margin-top: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: scale(1.5);
+    overflow: hidden;
+    cursor: grab;
+  }
+
+  .district.grabbing {
+    cursor: grabbing;
   }
 
   .district svg {
-    height: 21rem;
-    margin-top: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    transform-origin: center;
+    transition: transform 0.1s ease;
+    user-select: none;
   }
+
   .district path {
     transition: fill 0.3s ease;
     fill: #e0f2f1;
@@ -77,19 +121,19 @@ const { state } = Astro.props;
 
   .district-tooltip {
     position: absolute;
-    background-color: #000000; /* Cheerful coral color */
-    color: white;
+    background-color: var(--card-bg);
+    color: var(--text);
     padding: 12px 16px;
-    border-radius: 16px; /* More rounded corners */
+    border-radius: 16px;
     font-size: 16px;
     font-weight: bold;
-    font-family: "Comic Sans MS", cursive, sans-serif; /* Kid-friendly font */
+    font-family: "Comic Sans MS", cursive, sans-serif;
     pointer-events: none;
     opacity: 0;
     transition: all 0.3s ease;
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: 3px solid white; /* White border for pop-out effect */
+    border: 3px solid var(--primary-light);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     max-width: 200px;
     text-align: center;
@@ -100,21 +144,7 @@ const { state } = Astro.props;
   .district-tooltip.visible {
     opacity: 1;
     transform: scale(1);
-    animation: bounce 0.5s ease;
   }
-
-  /* Fun bounce animation */
-  /* @keyframes bounce {
-    0% {
-      transform: scale(0.95);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
-  } */
 
   /* Add a little arrow for tooltip */
   .district-tooltip::after {
@@ -125,24 +155,30 @@ const { state } = Astro.props;
     transform: translateX(-50%);
     border-width: 10px 10px 0;
     border-style: solid;
-    border-color: #000000 transparent transparent;
+    border-color: var(--card-bg) transparent transparent;
   }
 
   .district-tooltip.visible {
     opacity: 1;
   }
 
+
   /* Responsive styles */
   @media (max-width: 1200px) {
     .map-container {
-      max-width: 100%;
       padding: 25px;
     }
     .district {
-      transform: scale(1.3);
+      padding-bottom: 70%;
+      margin-top: 5rem;
+      width: 22rem;
     }
-    .district svg {
-      height: 20rem;
+    .zoom-controls {
+      right: -15px;
+      top: 100px;
+    }
+    .view-button {
+      font-size: 15px;
     }
   }
 
@@ -151,18 +187,25 @@ const { state } = Astro.props;
       padding: 20px;
     }
     .district {
-      transform: scale(1.2);
-      margin-top: 3rem;
-    }
-    .district svg {
-      height: 18rem;
+      padding-bottom: 65%;
+      margin-top: 5rem;
+      width: 18rem;
     }
     .view-controls {
       top: 15px;
     }
+    .zoom-controls {
+      right: -15px;
+      top: 95px;
+    }
     .view-button {
       padding: 6px 12px;
-      font-size: 14px;
+      font-size: 12px;
+    }
+    .zoom-button {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
     }
   }
 
@@ -171,20 +214,27 @@ const { state } = Astro.props;
       padding: 15px;
     }
     .district {
-      transform: scale(1.1);
-      margin-top: 2.5rem;
-    }
-    .district svg {
-      height: 16rem;
+      padding-bottom: 60%;
+      margin-top: 3.5rem;
+      width: 20rem;
     }
     .view-controls {
       top: 10px;
       flex-direction: row;
       gap: 5px;
     }
+    .zoom-controls {
+      right: -15px;
+      top: 70px;
+    }
     .view-button {
       padding: 5px 10px;
-      font-size: 12px;
+      font-size: 11px;
+    }
+    .zoom-button {
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
     }
   }
 
@@ -193,19 +243,26 @@ const { state } = Astro.props;
       padding: 10px;
     }
     .district {
-      transform: scale(0.5);
-      margin-top: 2rem;
-    }
-    .district svg {
-      height: 14rem;
+      padding-bottom: 55%;
+      margin-top: 4rem;
+      width: 15rem;
     }
     .view-controls {
       top: 5px;
       gap: 3px;
     }
+    .zoom-controls {
+      right: -4px;
+      top: 80px;
+    }
     .view-button {
       padding: 4px 8px;
-      font-size: 11px;
+      font-size: 10px;
+    }
+    .zoom-button {
+      width: 24px;
+      height: 24px;
+      font-size: 14px;
     }
   }
 
@@ -222,6 +279,11 @@ const { state } = Astro.props;
     <button class="view-button" data-view="boundaries">With Boundaries</button>
     <button class="view-button" data-view="full">Full View</button>
   </div>
+  <div class="zoom-controls">
+    <button class="zoom-button" data-zoom="in">+</button>
+    <button class="zoom-button" data-zoom="out">-</button>
+    <button class="zoom-button" data-zoom="reset">↺</button>
+  </div>
   <div class="district">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -237,10 +299,19 @@ const { state } = Astro.props;
 </div>
 
 <script define:vars={{ state }}>
+  let currentScale = 1;
+  let currentX = 0;
+  let currentY = 0;
+  const ZOOM_FACTOR = 0.2;
+  const MAX_ZOOM = 3;
+  const MIN_ZOOM = 0.5;
+  let isDragging = false;
+  let startX, startY;
+
   async function loadSVG() {
     try {
       const stateName = state.split(" ").join("");
-      const response = await fetch(`../../../public/map/svg/states/${stateName}.svg`);
+      const response = await fetch(`/public/map/svg/states/${stateName}.svg`);
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
       const svgText = await response.text();
@@ -249,6 +320,8 @@ const { state } = Astro.props;
         svgContainer.innerHTML = svgText;
         processPaths();
         setupViewControls();
+        setupZoomControls();
+        setupPanControls();
       }
     } catch (error) {
       console.error("Error loading SVG:", error);
@@ -314,6 +387,102 @@ const { state } = Astro.props;
     buttons[0].click();
   }
 
+  function setupZoomControls() {
+    const zoomButtons = document.querySelectorAll(".zoom-button");
+
+    zoomButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const action = button.dataset.zoom;
+        
+        switch(action) {
+          case "in":
+            if (currentScale < MAX_ZOOM) {
+              currentScale += ZOOM_FACTOR;
+            }
+            break;
+          case "out":
+            if (currentScale > MIN_ZOOM) {
+              currentScale -= ZOOM_FACTOR;
+            }
+            break;
+          case "reset":
+            currentScale = 1;
+            currentX = 0;
+            currentY = 0;
+            break;
+        }
+
+        updateTransform();
+      });
+    });
+  }
+
+  function setupPanControls() {
+    const district = document.querySelector(".district");
+
+    district.addEventListener("mousedown", (e) => {
+      if (currentScale > 1) {
+        isDragging = true;
+        district.classList.add("grabbing");
+        startX = e.clientX - currentX;
+        startY = e.clientY - currentY;
+      }
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      
+      currentX = e.clientX - startX;
+      currentY = e.clientY - startY;
+      
+      // Limit panning to prevent map from going too far
+      const maxPan = (currentScale - 1) * 100;
+      currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
+      currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
+      
+      updateTransform();
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+      district.classList.remove("grabbing");
+    });
+
+    // Touch events for mobile
+    district.addEventListener("touchstart", (e) => {
+      if (currentScale > 1) {
+        isDragging = true;
+        district.classList.add("grabbing");
+        startX = e.touches[0].clientX - currentX;
+        startY = e.touches[0].clientY - currentY;
+      }
+    });
+
+    document.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      
+      currentX = e.touches[0].clientX - startX;
+      currentY = e.touches[0].clientY - startY;
+      
+      // Limit panning to prevent map from going too far
+      const maxPan = (currentScale - 1) * 100;
+      currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
+      currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
+      
+      updateTransform();
+    });
+
+    document.addEventListener("touchend", () => {
+      isDragging = false;
+      district.classList.remove("grabbing");
+    });
+  }
+
+  function updateTransform() {
+    const svg = document.querySelector(".district svg");
+    svg.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+  }
+
   function processPaths() {
     const allPaths = Array.from(document.querySelectorAll(".district path"));
     const halfLength = Math.floor(allPaths.length / 2);
@@ -326,7 +495,7 @@ const { state } = Astro.props;
 
     paths.forEach((path, index) => {
       path.style.cursor = "pointer";
-      const districtName = labels[index + 1];
+      const districtName = labels[index];
 
       path.addEventListener("mouseenter", (e) => {
         path.style.fill = "orange";

@@ -51,6 +51,7 @@ const categories: Category[] = Object.values(categoryData.categories);
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    color: var(--text);;
   }
 
   .explore-header {
@@ -60,7 +61,7 @@ const categories: Category[] = Object.values(categoryData.categories);
   .explore-header h1 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #1f2937;
+    color: var(--text);
   }
 
   .back {
@@ -86,8 +87,8 @@ const categories: Category[] = Object.values(categoryData.categories);
   .explore-card {
     display: block;
     text-decoration: none;
-    color: inherit;
-    background: white;
+    color: var(--text);
+    background: var(--background);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition:
@@ -114,6 +115,7 @@ const categories: Category[] = Object.values(categoryData.categories);
 
   .card-content {
     padding: 1.5rem;
+    background: var(--card);
   }
 
   .card-header {
@@ -132,13 +134,13 @@ const categories: Category[] = Object.values(categoryData.categories);
   .card-header h2 {
     font-size: 1.125rem;
     font-weight: 600;
-    color: #1f2937;
+    color: var(--text);
     margin: 0;
   }
 
   .card-content p {
     font-size: 0.875rem;
-    color: #4b5563;
+    color: var(--text);
     margin: 0;
     line-height: 1.5;
   }

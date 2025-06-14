@@ -47,7 +47,7 @@
 
 #state-svg-container h3 {
   /*margin-bottom: calc(var(--spacing-unit) * 1);*/
-  color: var(--primary-text);
+  color: var(--text);
   font-size: 1.5rem;
   text-align: center;
 }
