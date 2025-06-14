@@ -53,7 +53,7 @@ const numberBox: Record<number, string> = {
   9: "nine"
 };
 
-const fontBox = ["Arial" , "Verdana" , "Trebuchet MS" , "Times New Roman","Georgia","Courier New","Comic Sans MS","Impact","boisuStroke", "BungeeSpice", "atkinson", "sportrop", "MudraMohta", "Roboto"];
+const fontBox = ["Times New Roman", "Arial" , "Verdana" , "Trebuchet MS" , "Georgia","Courier New","Comic Sans MS","Impact","boisuStroke", "BungeeSpice", "atkinson", "sportrop", "MudraMohta", "Roboto"];
 
 export const NavbarLinks: LinkProps[] = [
   {
@@ -157,7 +157,7 @@ export const NavbarLinks: LinkProps[] = [
   {
     name: "Cards",
     title: "Cards",
-    path: "/Cards",
+    path: "/cards",
     isActive: true
   },
   {
