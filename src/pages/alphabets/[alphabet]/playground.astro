@@ -31,7 +31,10 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
     />
   </Fragment>
 
-  <BackButton />
+  <span>
+    <BackButton />
+    <h1 class="title_header">Press key to see the magic</h1>
+  </span>
   <article class="tv container__typing">
     <div id="letter" class="letter">A</div>
     <div class="content__display">

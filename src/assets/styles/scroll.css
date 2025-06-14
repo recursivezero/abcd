@@ -1,8 +1,11 @@
-section {
-  margin: 1rem;
+.container__scrolling {
+  display: block;
+  text-align: center;
+  position: relative;
+  width: 100%;
 }
 
-.container__scroll {
+.scroll__section {
   height: 40vh;
   overflow-y: scroll;
   border: 2px solid seashell;

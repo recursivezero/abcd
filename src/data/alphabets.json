@@ -213,6 +213,68 @@
       }
     ]
   },
+  "greek": {
+    "icon": "🔤",
+    "description": "Explore the letters of the ancient and modern Greek alphabet. Type an English letter (A-Z) to see its common Greek equivalent.",
+    "data": [
+      { "letter": "A", "text": "Alpha (Α α)", "description": "First letter of the Greek alphabet. Sound: 'a' as in father.", "code": 913, "emoji": "Α" },
+      { "letter": "B", "text": "Beta (Β β)", "description": "Second letter of the Greek alphabet. Sound: 'v' as in vase (Modern Greek).", "code": 914, "emoji": "Β" },
+      { "letter": "G", "text": "Gamma (Γ γ)", "description": "Third letter of the Greek alphabet. Sound: 'g' as in go, or 'y' as in yes.", "code": 915, "emoji": "Γ" },
+      { "letter": "D", "text": "Delta (Δ δ)", "description": "Fourth letter of the Greek alphabet. Sound: 'th' as in then (Modern Greek).", "code": 916, "emoji": "Δ" },
+      { "letter": "E", "text": "Epsilon (Ε ε)", "description": "Fifth letter of the Greek alphabet. Sound: 'e' as in met.", "code": 917, "emoji": "Ε" },
+      { "letter": "Z", "text": "Zeta (Ζ ζ)", "description": "Sixth letter of the Greek alphabet. Sound: 'z' as in zoo.", "code": 918, "emoji": "Ζ" },
+      { "letter": "H", "text": "Eta (Η η)", "description": "Seventh letter of the Greek alphabet. Sound: 'i' as in machine.", "code": 919, "emoji": "Η" },
+      { "letter": "Q", "text": "Theta (Θ θ)", "description": "Eighth letter of the Greek alphabet. Sound: 'th' as in thin.", "code": 920, "emoji": "Θ" },
+      { "letter": "I", "text": "Iota (Ι ι)", "description": "Ninth letter of the Greek alphabet. Sound: 'i' as in machine.", "code": 921, "emoji": "Ι" },
+      { "letter": "K", "text": "Kappa (Κ κ)", "description": "Tenth letter of the Greek alphabet. Sound: 'k' as in kite.", "code": 922, "emoji": "Κ" },
+      { "letter": "L", "text": "Lambda (Λ λ)", "description": "Eleventh letter of the Greek alphabet. Sound: 'l' as in lamp.", "code": 923, "emoji": "Λ" },
+      { "letter": "M", "text": "Mu (Μ μ)", "description": "Twelfth letter of the Greek alphabet. Sound: 'm' as in map.", "code": 924, "emoji": "Μ" },
+      { "letter": "N", "text": "Nu (Ν ν)", "description": "Thirteenth letter of the Greek alphabet. Sound: 'n' as in net.", "code": 925, "emoji": "Ν" },
+      { "letter": "X", "text": "Xi (Ξ ξ)", "description": "Fourteenth letter of the Greek alphabet. Sound: 'x' as in axe.", "code": 926, "emoji": "Ξ" },
+      { "letter": "O", "text": "Omicron (Ο ο)", "description": "Fifteenth letter of the Greek alphabet. Sound: 'o' as in pot.", "code": 927, "emoji": "Ο" },
+      { "letter": "P", "text": "Pi (Π π)", "description": "Sixteenth letter of the Greek alphabet. Sound: 'p' as in pen.", "code": 928, "emoji": "Π" },
+      { "letter": "R", "text": "Rho (Ρ ρ)", "description": "Seventeenth letter of the Greek alphabet. Sound: 'r' as in run (often rolled).", "code": 929, "emoji": "Ρ" },
+      { "letter": "S", "text": "Sigma (Σ σ/ς)", "description": "Eighteenth letter of the Greek alphabet. Sound: 's' as in sun.", "code": 931, "emoji": "Σ" },
+      { "letter": "T", "text": "Tau (Τ τ)", "description": "Nineteenth letter of the Greek alphabet. Sound: 't' as in tap.", "code": 932, "emoji": "Τ" },
+      { "letter": "U", "text": "Upsilon (Υ υ)", "description": "Twentieth letter of the Greek alphabet. Sound: 'i' as in machine (Modern Greek).", "code": 933, "emoji": "Υ" },
+      { "letter": "F", "text": "Phi (Φ φ)", "description": "Twenty-first letter of the Greek alphabet. Sound: 'f' as in fan.", "code": 934, "emoji": "Φ" },
+      { "letter": "C", "text": "Chi (Χ χ)", "description": "Twenty-second letter of the Greek alphabet. Sound: 'ch' as in Scottish loch, or 'h' as in huge.", "code": 935, "emoji": "Χ" },
+      { "letter": "Y", "text": "Psi (Ψ ψ)", "description": "Twenty-third letter of the Greek alphabet. Sound: 'ps' as in psychology.", "code": 936, "emoji": "Ψ" },
+      { "letter": "W", "text": "Omega (Ω ω)", "description": "Twenty-fourth letter of the Greek alphabet. Sound: 'o' as in go.", "code": 937, "emoji": "Ω" }
+    ]
+  },
+  "geek": {
+    "icon": "🔤",
+    "description": "Discover common 'leet speak' and other geeky character representations. Type an English letter (A-Z).",
+    "data": [
+      { "letter": "A", "text": "4, @, /-\\", "description": "Common representations for A." },
+      { "letter": "B", "text": "8, |3, ß", "description": "Common representations for B." },
+      { "letter": "C", "text": "(, <, [, {", "description": "Common representations for C." },
+      { "letter": "D", "text": "|), |>, Ð, ð", "description": "Common representations for D." },
+      { "letter": "E", "text": "3, £, €", "description": "Common representations for E." },
+      { "letter": "F", "text": "|=, ph, ƒ", "description": "Common representations for F." },
+      { "letter": "G", "text": "6, 9, (_+", "description": "Common representations for G." },
+      { "letter": "H", "text": "#, |-|, H", "description": "Common representations for H." },
+      { "letter": "I", "text": "1, !, |, ][", "description": "Common representations for I." },
+      { "letter": "J", "text": "_|, ;|, _/", "description": "Common representations for J." },
+      { "letter": "K", "text": "|<, /<, |{", "description": "Common representations for K." },
+      { "letter": "L", "text": "1, |_, £, |", "description": "Common representations for L." },
+      { "letter": "M", "text": "|\\/|, /\\/\\, (V)", "description": "Common representations for M." },
+      { "letter": "N", "text": "|\\|, /\\/, |V", "description": "Common representations for N." },
+      { "letter": "O", "text": "0, (), <>", "description": "Common representations for O." },
+      { "letter": "P", "text": "|*, |D, |>", "description": "Common representations for P." },
+      { "letter": "Q", "text": "(_,)", "description": "Common representations for Q." },
+      { "letter": "R", "text": "|2, |?, ®", "description": "Common representations for R." },
+      { "letter": "S", "text": "5, $, §", "description": "Common representations for S." },
+      { "letter": "T", "text": "7, +, ']['", "description": "Common representations for T." },
+      { "letter": "U", "text": "|_|, (_), V", "description": "Common representations for U." },
+      { "letter": "V", "text": "\\/, |/", "description": "Common representations for V." },
+      { "letter": "W", "text": "\\/\\/, VV, \\^/", "description": "Common representations for W." },
+      { "letter": "X", "text": "><, %", "description": "Common representations for X." },
+      { "letter": "Y", "text": "j, `/, ¥", "description": "Common representations for Y." },
+      { "letter": "Z", "text": "2, 7_, >_", "description": "Common representations for Z." }
+    ]
+  },
   "nato": {
     "description": "NATO phonetic alphabet",
     "icon": "🎖️",
@@ -1338,186 +1400,6 @@
         "code": 90,
         "text": "Zodiac",
         "description": "Vedic astrology (Jyotish) with its unique zodiac system"
-      }
-    ]
-  },
-  "Hindi Numbers": {
-    "description": "Hindi numbers from 1 to 10",
-    "icon": "🔢",
-    "data": [
-      {
-        "id": 0,
-        "letter": "०",
-        "code": 48,
-        "emoji": " ",
-        "text": "शून्य",
-        "description": "Zero"
-      },
-      {
-        "id": 1,
-        "letter": "१",
-        "code": 49,
-        "emoji": "⠁",
-        "text": "एक",
-        "description": "One"
-      },
-      {
-        "id": 2,
-        "letter": "२",
-        "code": 50,
-        "emoji": "⠃",
-        "text": "दो",
-        "description": "Two"
-      },
-      {
-        "id": 3,
-        "letter": "३",
-        "code": 51,
-        "emoji": "⠇",
-        "text": "तीन",
-        "description": "Three"
-      },
-      {
-        "id": 4,
-        "letter": "४",
-        "code": 52,
-        "emoji": "⠏",
-        "text": "चार",
-        "description": "Four"
-      },
-      {
-        "id": 5,
-        "letter": "५",
-        "code": 53,
-        "emoji": "⠟",
-        "text": "पांच",
-        "description": "Five"
-      },
-      {
-        "id": 6,
-        "letter": "६",
-        "code": 54,
-        "emoji": "⠿",
-        "text": "छह",
-        "description": "Six"
-      },
-      {
-        "id": 7,
-        "letter": "७",
-        "code": 55,
-        "emoji": "⡿ ",
-        "text": "सात",
-        "description": "Seven"
-      },
-      {
-        "id": 8,
-        "letter": "८",
-        "code": 56,
-        "emoji": "⣿",
-        "text": "आठ",
-        "description": "Eight"
-      },
-      {
-        "id": 9,
-        "letter": "९",
-        "code": 57,
-        "emoji": "⣿⠁",
-        "text": "नौ",
-        "description": "Nine"
-      },
-      {
-        "id": 10,
-        "letter": "१०",
-        "code": 58,
-        "emoji": "⣿⠃",
-        "text": "दस",
-        "description": "Ten"
-      }
-    ]
-  },
-  "Roman Numerals": {
-    "description": "Roman numerals from 1 to 10",
-    "icon": "Ⅰ",
-    "data": [
-      {
-        "id": 1,
-        "letter": "I",
-        "code": 49,
-        "emoji": "⠁",
-        "text": "1",
-        "description": "One"
-      },
-      {
-        "id": 2,
-        "letter": "II",
-        "code": 50,
-        "emoji": "⠃",
-        "text": "2",
-        "description": "Two"
-      },
-      {
-        "id": 3,
-        "letter": "III",
-        "code": 51,
-        "emoji": "⠇",
-        "text": "3",
-        "description": "Three"
-      },
-      {
-        "id": 4,
-        "letter": "IV",
-        "code": 52,
-        "emoji": "⠏",
-        "text": "4",
-        "description": "Four"
-      },
-      {
-        "id": 5,
-        "letter": "V",
-        "code": 53,
-        "emoji": "⠟",
-        "text": "5",
-        "description": "Five"
-      },
-      {
-        "id": 6,
-        "letter": "VI",
-        "code": 54,
-        "emoji": "⠿",
-        "text": "6",
-        "description": "Six"
-      },
-      {
-        "id": 7,
-        "letter": "VII",
-        "code": 55,
-        "emoji": "⡿ ",
-        "text": "7",
-        "description": "Seven"
-      },
-      {
-        "id": 8,
-        "letter": "VIII",
-        "code": 56,
-        "emoji": "⣿",
-        "text": "8",
-        "description": "Eight"
-      },
-      {
-        "id": 9,
-        "letter": "IX",
-        "code": 57,
-        "emoji": "⣿⠁",
-        "text": "9",
-        "description": "Nine"
-      },
-      {
-        "id": 10,
-        "letter": "X",
-        "code": 58,
-        "emoji": "⣿⠃",
-        "text": "10",
-        "description": "Ten"
       }
     ]
   }

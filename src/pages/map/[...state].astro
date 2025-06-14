@@ -2,95 +2,366 @@
 import BaseLayout from "@/layouts/Base";
 import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
+import BackButton from "@/components/ui/backButton.astro";
+import type { StateData } from "@/types/state";
+import District from "@/components/map/District.astro";
+
 export const prerender = true;
 export function getStaticPaths() {
-  return stateData.map((state) => ({
+  return stateData.map((state: StateData) => ({
     params: { state: state.id },
     props: { stateInfo: state }
   }));
 }
 const { stateInfo } = Astro.props;
-const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
+const { name, dance, festival, image, wikiLink, description } = stateInfo;
+// Optional properties with type checking
+const famous_quote = stateInfo.famous_quote || "Coming soon";
+const famous_person = stateInfo.famous_person || "Coming soon";
+const famous_food = stateInfo.famous_food || "Coming soon";
+const famous_place = stateInfo.famous_place || "Coming soon";
+const famous_dress = stateInfo.famous_dress || "Coming soon";
+const famous_language = stateInfo.famous_language || "Coming soon";
+const famous_sport = stateInfo.famous_sport || "Coming soon";
 ---
 
 <BaseLayout meta={{ title: `${name} - ${dance}` }}>
-  <section>
-    <div class="back-button-container">
-      <button onclick="window.history.back()" class="back-button"> ← Back to Previous Page </button>
+  <section class="state-page">
+    <div class="back-button-container" set:html>
+      <BackButton />
     </div>
     <div class="main-container">
       <div id="state-svg-container">
-        <h3>{name}</h3>
-        <div id="state-svg" data-svg-path={`/map/svg/${svg}`}></div>
+        <District state={name} />
       </div>
       <div class="right-content">
-        <img src={`/map/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
+        <div class="state-image-container">
+          <img src={`/map/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
+        </div>
         <div class="content-text">
-          <table class="info-table">
-            <tr>
-              <th colspan="2">
-                Quick Facts
+          <div class="info-grid">
+            <div class="info-card">
+              <h4>Famous Quote</h4>
+              <p>{famous_quote}</p>
+            </div>
+            <div class="info-card">
+              <h4>Dance Form</h4>
+              <p>{dance}</p>
+            </div>
+            <div class="info-card">
+              <h4>Famous Person</h4>
+              <p>{famous_person}</p>
+            </div>
+            <div class="info-card">
+              <h4>Festival</h4>
+              <p>{festival}</p>
+            </div>
+            <div class="info-card">
+              <h4>Famous Food</h4>
+              <p>{famous_food}</p>
+            </div>
+            <div class="info-card">
+              <h4>Famous Place</h4>
+              <p>{famous_place}</p>
+            </div>
+            <div class="info-card">
+              <h4>Famous Dress</h4>
+              <p>{famous_dress}</p>
+            </div>
+            <div class="info-card">
+              <h4>Language</h4>
+              <p>{famous_language}</p>
+            </div>
+            <div class="info-card">
+              <h4>Famous Sport</h4>
+              <p>{famous_sport}</p>
+            </div>
+          </div>
+          <div class="quick-facts">
+            <h4>Quick facts about {name}</h4>
+            <div class="facts-content">
+              <p class="description" id="description">
+                <span id="descriptionText">{description.length > 150 ? description.slice(0, 150) + "..." : description}</span>
+                {description.length > 150 && (
+                  <button class="read-more" id="readMoreBtn">Read More</button>
+                )}
+              </p>
+              <div class="links">
                 {
                   stateInfo.official_website && (
-                    <>
-                      <br />
-                      <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
-                        Visit the official website of {name}
-                      </a>
-                    </>
+                    <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer" class="link-button">
+                      Official website
+                    </a>
                   )
                 }
-              </th>
-            </tr>
-            <tr><td>Dance Form</td><td>{dance}</td></tr>
-            <tr><td>Origin</td><td>{name}, India</td></tr>
-            <tr><td>Festival</td><td>{festival}</td></tr>
-            <tr>
-              <td>Description</td>
-              <td>
-                <p>{description}</p>
-                <a href={wikiLink} target="_blank" rel="noopener noreferrer">
-                  Read more about {dance} on Wikipedia
-                </a>
-              </td>
-            </tr>
-          </table>
+                <a href={wikiLink} target="_blank" rel="noopener noreferrer" class="link-button"> Wikipedia </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
 <style>
+
+  .state-page {
+    padding: 20px;
+    margin: 0 auto;
+    background-color: var(--background);
+    color: var(--text);
+  }
+
   .back-button-container {
     margin-bottom: 20px;
   }
+
   .back-button {
-    background-color: #123085;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-    border-radius: 5px;
+    background-color: var(--primary);
+    color: var(--text);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
   }
+
   .back-button:hover {
-    background-color: #e0e0e0;
+    background-color: var(--primary-light);
+    transform: scale(1.05);
+  }
+
+  .main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+    background-color: var(--background);
+  }
+
+
+  .state-image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 8px solid var(--card);
+    background-color: var(--card-bg);
+  }
+
+  .state-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .info-card {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: 3px solid var(--primary);
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover {
+    background: var(--primary-light);
+    transform: scale(1.02);
+    border-color: var(--primary);
+  }
+
+  .info-card h4 {
+    color: var(--text);
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+
+  .info-card p {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 0.9rem;
+  }
+
+  .quick-facts {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--primary);
+  }
+
+  .quick-facts h4 {
+    color: var(--text);
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--secondary);
+  }
+
+  .read-more {
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.25rem;
+    font-weight: 500;
+  }
+
+  .read-more:hover {
+    color: var(--primary-light);
+  }
+
+  .links {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .link-button:hover {
+    background: var(--primary-light);
+    transform: scale(1.05);
+  }
+
+  /* Theme-specific styles */
+  :global([data-theme="light"]) {
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-border: #e2e8f0;
+    --hover-bg: #f8fafc;
+  }
+
+  :global([data-theme="dark"]) {
+    --card-bg: rgba(37, 53, 79, 0.8);
+    --card-border: #334155;
+    --hover-bg: #2d3748;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 1200px) {
+    .state-page {
+      padding: 15px;
+    }
+    .main-container {
+      gap: 20px;
+    }
+    .info-grid {
+      gap: 15px;
+    }
+  }
+
+  @media (max-width: 921px){
+    .main-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 992px) {
+    .info-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .info-card h4 {
+      font-size: 1rem;
+    }
+    .info-card p {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .main-container {
+      grid-template-columns: 1fr;
+    }
+    .info-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .info-card {
+      padding: 12px;
+    }
+    .quick-facts {
+      padding: 15px;
+    }
+    .links {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .link-button {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .state-page {
+      padding: 10px;
+    }
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+    .back-button {
+      padding: 10px 16px;
+      font-size: 1rem;
+    }
+    .info-card {
+      padding: 10px;
+    }
+    .info-card h4 {
+      font-size: 0.95rem;
+    }
+    .info-card p {
+      font-size: 0.8rem;
+    }
+    .quick-facts h4 {
+      font-size: 1rem;
+    }
+    .description {
+      font-size: 0.85rem;
+    }
   }
 </style>
-<script>
-  // Load SVG when the page loads
-  document.addEventListener("DOMContentLoaded", async () => {
-    const svgContainer = document.getElementById("state-svg");
-    if (!svgContainer) return;
-    const svgPath = svgContainer.dataset.svgPath;
-    if (!svgPath) return;
-    try {
-      const response = await fetch(svgPath);
-      if (!response.ok) throw new Error("Failed to load SVG");
-      const svgContent = await response.text();
-      svgContainer.innerHTML = svgContent;
-    } catch (error) {
-      console.error("Error loading SVG:", error);
-      svgContainer.innerHTML = '<p class="error">Failed to load state map</p>';
-    }
+
+<script define:vars={{ description }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const descriptionText = document.getElementById('descriptionText');
+    if (!readMoreBtn || !descriptionText) return;
+
+    readMoreBtn.addEventListener('click', () => {
+      if (descriptionText.textContent?.includes('...')) {
+        descriptionText.textContent = description;
+        readMoreBtn.textContent = 'Show Less';
+      } else {
+        descriptionText.textContent = description.slice(0, 150) + '...';
+        readMoreBtn.textContent = 'Read More';
+      }
+    });
   });
 </script>

@@ -1,0 +1,525 @@
+---
+const { state } = Astro.props;
+---
+
+<style>
+  .map-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 35px;
+  }
+
+  .view-controls {
+    position: absolute;
+    top: 0px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .zoom-controls {
+    position: absolute;
+    right: -7px;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .zoom-button {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border: 2px solid var(--primary-light);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .zoom-button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-light);
+  }
+
+  .view-button {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border: 3px solid var(--primary-light);
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+  }
+
+  .view-button:hover {
+    transform: scale(1.05);
+    opacity: 90%;
+    background-color: #cfe3fde7;
+  }
+
+  .view-button.active {
+    background-color: var(--primary-light);
+  }
+
+  .district {
+    position: relative;
+    width: 30rem;
+    height: 0;
+    padding-bottom: 75%; /* 4:3 Aspect Ratio */
+    margin-top: 4rem;
+    overflow: hidden;
+    cursor: grab;
+  }
+
+  .district.grabbing {
+    cursor: grabbing;
+  }
+
+  .district svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform-origin: center;
+    transition: transform 0.1s ease;
+    user-select: none;
+  }
+
+  .district path {
+    transition: fill 0.3s ease;
+    fill: #e0f2f1;
+  }
+
+  .district path:hover {
+    fill: orange;
+    stroke: #333;
+    stroke-width: 1px;
+  }
+
+  .district text {
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .district-tooltip {
+    position: absolute;
+    background-color: var(--card-bg);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--primary-light);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    max-width: 200px;
+    text-align: center;
+    transform: scale(0.95);
+    transform-origin: bottom center;
+  }
+
+  .district-tooltip.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Add a little arrow for tooltip */
+  .district-tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: var(--card-bg) transparent transparent;
+  }
+
+  .district-tooltip.visible {
+    opacity: 1;
+  }
+
+
+  /* Responsive styles */
+  @media (max-width: 1200px) {
+    .map-container {
+      padding: 25px;
+    }
+    .district {
+      padding-bottom: 70%;
+      margin-top: 5rem;
+      width: 22rem;
+    }
+    .zoom-controls {
+      right: -15px;
+      top: 100px;
+    }
+    .view-button {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .map-container {
+      padding: 20px;
+    }
+    .district {
+      padding-bottom: 65%;
+      margin-top: 5rem;
+      width: 18rem;
+    }
+    .view-controls {
+      top: 15px;
+    }
+    .zoom-controls {
+      right: -15px;
+      top: 95px;
+    }
+    .view-button {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+    .zoom-button {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .map-container {
+      padding: 15px;
+    }
+    .district {
+      padding-bottom: 60%;
+      margin-top: 3.5rem;
+      width: 20rem;
+    }
+    .view-controls {
+      top: 10px;
+      flex-direction: row;
+      gap: 5px;
+    }
+    .zoom-controls {
+      right: -15px;
+      top: 70px;
+    }
+    .view-button {
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+    .zoom-button {
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .map-container {
+      padding: 10px;
+    }
+    .district {
+      padding-bottom: 55%;
+      margin-top: 4rem;
+      width: 15rem;
+    }
+    .view-controls {
+      top: 5px;
+      gap: 3px;
+    }
+    .zoom-controls {
+      right: -4px;
+      top: 80px;
+    }
+    .view-button {
+      padding: 4px 8px;
+      font-size: 10px;
+    }
+    .zoom-button {
+      width: 24px;
+      height: 24px;
+      font-size: 14px;
+    }
+  }
+
+  .district path {
+    stroke: transparent;
+    stroke-width: 1px;
+    transition: all 0.3s ease;
+  }
+</style>
+
+<div class="map-container">
+  <div class="view-controls">
+    <button class="view-button" data-view="map">Map Only</button>
+    <button class="view-button" data-view="boundaries">With Boundaries</button>
+    <button class="view-button" data-view="full">Full View</button>
+  </div>
+  <div class="zoom-controls">
+    <button class="zoom-button" data-zoom="in">+</button>
+    <button class="zoom-button" data-zoom="out">-</button>
+    <button class="zoom-button" data-zoom="reset">↺</button>
+  </div>
+  <div class="district">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      baseProfile="full"
+      viewBox="0 0 800 533"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <!-- SVG content will be loaded here -->
+    </svg>
+  </div>
+  <div class="district-tooltip" id="tooltip"></div>
+</div>
+
+<script define:vars={{ state }}>
+  let currentScale = 1;
+  let currentX = 0;
+  let currentY = 0;
+  const ZOOM_FACTOR = 0.2;
+  const MAX_ZOOM = 3;
+  const MIN_ZOOM = 0.5;
+  let isDragging = false;
+  let startX, startY;
+
+  async function loadSVG() {
+    try {
+      const stateName = state.split(" ").join("");
+      const response = await fetch(`/public/map/svg/states/${stateName}.svg`);
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+      const svgText = await response.text();
+      const svgContainer = document.querySelector(".district svg");
+      if (svgContainer) {
+        svgContainer.innerHTML = svgText;
+        processPaths();
+        setupViewControls();
+        setupZoomControls();
+        setupPanControls();
+      }
+    } catch (error) {
+      console.error("Error loading SVG:", error);
+    }
+  }
+
+  function setupViewControls() {
+    const buttons = document.querySelectorAll(".view-button");
+    const paths = document.querySelectorAll(".district path");
+    const texts = document.querySelectorAll(".district text");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        // Add active class to clicked button
+        button.classList.add("active");
+
+        const view = button.dataset.view;
+
+        // Reset all elements
+        paths.forEach((path) => {
+          path.style.stroke = "transparent";
+          path.style.strokeWidth = "0px";
+        });
+        texts.forEach((text) => {
+          text.style.display = "block";
+        });
+
+        // Apply view-specific styles
+        switch (view) {
+          case "map":
+            paths.forEach((path) => {
+              path.style.stroke = "transparent";
+            });
+            texts.forEach((text) => {
+              text.style.display = "none";
+            });
+            break;
+          case "boundaries":
+            paths.forEach((path) => {
+              path.style.stroke = "#333";
+              path.style.strokeWidth = "1px";
+            });
+            texts.forEach((text) => {
+              text.style.display = "none";
+            });
+            break;
+          case "full":
+            paths.forEach((path) => {
+              path.style.stroke = "#333";
+              path.style.strokeWidth = "1px";
+            });
+            texts.forEach((text) => {
+              text.style.display = "block";
+            });
+            break;
+        }
+      });
+    });
+
+    //// Set default view
+    buttons[0].click();
+  }
+
+  function setupZoomControls() {
+    const zoomButtons = document.querySelectorAll(".zoom-button");
+
+    zoomButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const action = button.dataset.zoom;
+        
+        switch(action) {
+          case "in":
+            if (currentScale < MAX_ZOOM) {
+              currentScale += ZOOM_FACTOR;
+            }
+            break;
+          case "out":
+            if (currentScale > MIN_ZOOM) {
+              currentScale -= ZOOM_FACTOR;
+            }
+            break;
+          case "reset":
+            currentScale = 1;
+            currentX = 0;
+            currentY = 0;
+            break;
+        }
+
+        updateTransform();
+      });
+    });
+  }
+
+  function setupPanControls() {
+    const district = document.querySelector(".district");
+
+    district.addEventListener("mousedown", (e) => {
+      if (currentScale > 1) {
+        isDragging = true;
+        district.classList.add("grabbing");
+        startX = e.clientX - currentX;
+        startY = e.clientY - currentY;
+      }
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      
+      currentX = e.clientX - startX;
+      currentY = e.clientY - startY;
+      
+      // Limit panning to prevent map from going too far
+      const maxPan = (currentScale - 1) * 100;
+      currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
+      currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
+      
+      updateTransform();
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+      district.classList.remove("grabbing");
+    });
+
+    // Touch events for mobile
+    district.addEventListener("touchstart", (e) => {
+      if (currentScale > 1) {
+        isDragging = true;
+        district.classList.add("grabbing");
+        startX = e.touches[0].clientX - currentX;
+        startY = e.touches[0].clientY - currentY;
+      }
+    });
+
+    document.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      
+      currentX = e.touches[0].clientX - startX;
+      currentY = e.touches[0].clientY - startY;
+      
+      // Limit panning to prevent map from going too far
+      const maxPan = (currentScale - 1) * 100;
+      currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
+      currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
+      
+      updateTransform();
+    });
+
+    document.addEventListener("touchend", () => {
+      isDragging = false;
+      district.classList.remove("grabbing");
+    });
+  }
+
+  function updateTransform() {
+    const svg = document.querySelector(".district svg");
+    svg.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+  }
+
+  function processPaths() {
+    const allPaths = Array.from(document.querySelectorAll(".district path"));
+    const halfLength = Math.floor(allPaths.length / 2);
+    const paths = allPaths.slice(halfLength);
+    const tooltip = document.getElementById("tooltip");
+    const texts = document.querySelectorAll("svg text");
+    const labels = Array.from(texts)
+      .map((el) => el.textContent.trim())
+      .filter((text) => text.length > 1);
+
+    paths.forEach((path, index) => {
+      path.style.cursor = "pointer";
+      const districtName = labels[index];
+
+      path.addEventListener("mouseenter", (e) => {
+        path.style.fill = "orange";
+        if (!tooltip || !districtName) return;
+
+        tooltip.textContent = path.id === "capital" ? `${districtName}, the Capital of Rajasthan` : districtName;
+        tooltip.classList.add("visible");
+
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        tooltip.style.left = `${mouseX - 250}px`;
+        tooltip.style.top = `${mouseY - 120}px`;
+        path.style.transition = "fill 0.3s ease, stroke 0.3s ease, stroke-width 0.3s ease";
+      });
+
+      path.addEventListener("mouseleave", () => {
+        path.style.fill = "";
+        if (tooltip) {
+          tooltip.classList.remove("visible");
+        }
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", loadSVG);
+</script>

@@ -1,0 +1,123 @@
+---
+
+import BaseLayout from "../../layouts/Base.astro"; 
+import LetterCard from "../../components/LetterCard.astro"; 
+import BackButton from "../../components/ui/backButton.astro";     
+import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+
+// Define the type for our season data entries
+export interface SeasonEntry {
+  id: string;
+  letter: string; // First letter of the season or a representative emoji
+  fullName: string;  
+}
+
+const pageTitle = "Seasons";
+const category = "seasons"; 
+
+const seasonsData: SeasonEntry[] = [
+  {
+    id: "spring",
+    letter: "🌸",
+    fullName: "Spring (वसन्त)",
+  },
+  {
+    id: "summer",
+    letter: "☀️",
+    fullName: "Summer (ग्रीष्म)",
+  },
+  {
+    id: "monsoon",
+    letter: "🌧️",
+    fullName: "Monsoon (वर्षा)",
+  },
+  {
+    id: "autumn",
+    letter: "🍂",
+    fullName: "Autumn (शरद)",
+  },
+  {
+    id: "pre_winter",
+    letter: "🌬️",
+    fullName: "Pre-Winter (हेमन्त)",
+  },
+  {
+    id: "winter",
+    letter: "❄️",
+    fullName: "Winter (शिशिर/शीत)",
+  }
+];
+
+// Helper function to parse English and Hindi names
+function parseNames(fullName: string): { english: string; hindi: string } {
+  const match = fullName.match(/^(.*?) \((.*?)\)$/);
+  if (match && match.length === 3) {
+    return { english: match[1].trim(), hindi: match[2].trim() };
+  }
+  // Fallback if no Hindi name is found in parentheses
+  const hindiMatch = fullName.match(/([\u0900-\u097F]+)/); // Basic Hindi Unicode range
+  if (hindiMatch) {
+    const hindi = hindiMatch[0].trim();
+    const english = fullName.replace(hindi, "").trim();
+    return { english, hindi };
+  }
+  return { english: fullName, hindi: "" }; // Absolute fallback
+}
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <BackButton href="/Glossary" />
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        seasonsData.map((entry) => {
+          const names = parseNames(entry.fullName);
+          const letterCardItem = {
+            id: entry.id,
+            letter: entry.letter, 
+            text: names.english,    // English name for the front
+            description: names.hindi, // Hindi name for the back
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+
+  <script>
+    // Script identical for "Flip All Cards"
+    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+    const flipCards = document.querySelectorAll(".flip__card");
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          if (allFlipped) {
+            card.classList.add("flipped");
+          } else {
+            card.classList.remove("flipped");
+          }
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+        
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) { 
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+  </script>
+</BaseLayout>
