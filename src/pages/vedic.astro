@@ -5,93 +5,302 @@ import vedicData from "@/assets/json/vedic.json";
 
 const timeUnits = vedicData.time_units;
 ---
-
 <BaseLayout meta={{ title: "Vedic Time" }}>
   <div class="container__vedic">
-    <div class="vedic__layout">
-      <!-- Converter Card -->
-      <div class="converter__card">
-        <form id="converter__form" class="converter__form">
-          <div class="form__group">
-            <label for="input__value">Enter Value</label>
-            <input type="number" id="input__value" placeholder="Enter value" required />
-          </div>
+    <script type="text/javascript" async>
+      const options = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false,
+        timeZone: "America/Los_Angeles",
+      };
 
-          <div class="form__grid">
-            {
-              ["From", "To"].map((label) => (
-                <div class="form__group">
-                  <label for={`${label.toLowerCase()}__unit`}>{label}</label>
-                  <select id={`${label.toLowerCase()}__unit`}>
-                    {timeUnits.map((unit) => (
-                      <option value={unit.name}>{unit.name}</option>
-                    ))}
-                  </select>
-                </div>
-              ))
-            }
-          </div>
+      const fullEnglish = {
+        weekday: 'long',
+        dayPeriod: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: 'numeric',
+        calendar: 'iso8601',
+        timeZone: 'Asia/Kolkata',
+        timeZoneName: 'short',
+        formatMatcher: 'basic',
+        hourCycle: 'h12',
+      };
 
-          <button type="submit" class="convert__button">Convert</button>
-          <div id="result" class="result__display"></div>
-        </form>
-      </div>
+      const fullHindi = {
+        weekday: 'long',
+        dayPeriod: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: 'numeric',
+        calendar: 'indian',
+        timeZone: 'Asia/Kolkata',
+        numberingSystem: 'deva',
+        /* timeZoneName: 'shortGeneric', */
+        formatMatcher: 'basic',
+        hourCycle: 'h12',
+      };
 
-      <!-- Units Reference -->
-      <div class="units__card">
-        <h2 class="units__title">Vedic Time Units</h2>
-        <div class="units__grid">
-          {
-            timeUnits.map((unit) => (
-              <div class="unit__item">
-                <div class="unit__header">
-                  <h3>{unit.name}</h3>
-                  <span class="approx">≈</span>
-                </div>
-                <div class="unit__details">
-                  <div class="unit__value">
-                    <span class="icon">🕛</span>
-                    {unit.seconds.toLocaleString()} seconds
-                  </div>
-                  <div class="unit__value">
-                    <span class="icon">⏳</span>
-                    {unit.minutes.toLocaleString()} minutes
-                  </div>
-                  <div class="unit__value">
-                    <span class="icon">📅</span>
-                    {unit.years.toLocaleString()} years
-                  </div>
-                </div>
-              </div>
-            ))
-          }
+      const styleOption = {
+        dateStyle: 'full',
+        timeStyle: 'long',
+        calendar: 'iso8601', // 'indian',
+        /* numberingSystem: 'deva', */
+        timeZone: 'Asia/Kolkata',
+        hour12: false,
+        useGrouping: true,
+        minimumIntegerDigits: 1
+      };
+
+      const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
+      const samay = new Intl.DateTimeFormat("hi", fullHindi);
+      console.log(samay);
+      const dateInHindi = new Intl.DateTimeFormat('hi', styleOption);
+
+
+    </script>
+
+    <div class="tab-buttons">
+      <button class="tab-button active" data-tab="tithi">Tithi</button>
+      <button class="tab-button" data-tab="converter">Converter</button>
+      <button class="tab-button" data-tab="units">Units</button>
+    </div>
+
+    <div id="tithi-tab-content" class="tab-content active">
+      <div class="tithi-header">
+        <div class="tithi-title-wrapper">
+          <h1 class="tithi-title">Tithi</h1>
+        </div>
+        <div id="dateDisplay" class="date-display">
+            <p data-id="hindu" class="date-format"></p>
+            <p data-id="hindi" class="date-format"></p>
+            <p data-id="english" class="date-format"></p>
         </div>
       </div>
     </div>
+
+    <div id="converter-tab-content" class="tab-content">
+      <h2 class="converter__title">Vedic Unit Converter</h2> 
+      <div class="converter__horizontal">
+        <div class="form__group">
+          <label for="input__value">Enter a number</label>
+          <input type="number" id="input__value" placeholder=" 123 " required />
+        </div>
+
+        <div class="form__group">
+          <label for="from__unit">From</label>
+          <select id="from__unit">
+            {timeUnits.map((unit) => (
+            <option value={unit.name}>{unit.name}</option>
+            ))}
+          </select>
+        </div>
+
+        <button id="swapButton" class="swap-button" aria-label="Swap units">
+          <svg class="swap-icon" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M9 3L5 7H8V14H10V7H13M16 17V10H14V17H11L15 21L19 17H16Z" />
+          </svg>
+        </button>
+
+        <div class="form__group">
+          <label for="to__unit">To</label>
+          <select id="to__unit">
+            {timeUnits.map((unit) => (
+            <option value={unit.name}>{unit.name}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div id="ani_result" class="animated__result">
+        <div id="result" class="result__display in">
+        </div>
+    </div>
+    </div>
+    <div id="units-tab-content" class="tab-content">  
+      <h2 class="units__title">Vedic Time Journey</h2>  
+      <div class="units__timeline-container">
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div>
+        {timeUnits.map((unit, index) => (
+        <div class="timeline-node">
+          <div class="timeline-card">
+            <div class="unit__header">
+              <h3>{unit.name}</h3>
+            </div>
+            <div class="unit__details">
+              <div class="unit__value">
+                {unit.firstEquivalent.toLocaleString()} 
+              </div>
+              <div class="unit__value">
+                {unit.secondEquivalent.toLocaleString()} 
+              </div>
+              <div class="unit__value">
+                {unit.thirdEquivalent.toLocaleString()} 
+              </div>
+            </div>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        ))}
+      </div>
+    </div>
   </div>
+  </div>
+
+  <script is:inline define:vars={{ timeUnits }}>
+    function convert(value, fromUnit, toUnit) {
+      const from = timeUnits.find((u) => u.name === fromUnit);
+      const to = timeUnits.find((u) => u.name === toUnit);
+      if (!from || !to) return null;
+
+      const seconds = value * from.seconds;
+      return seconds / to.seconds;
+    }
+
+    function updateResult() {
+      const inputValue = document.getElementById("input__value");
+      const fromUnit = document.getElementById("from__unit");
+      const toUnit = document.getElementById("to__unit");
+      const resultBox = document.getElementById("result");
+      const aniresultbox = document.getElementById("ani_result");
+      if (inputValue.value && fromUnit.value && toUnit.value) {
+        const value = parseFloat(inputValue.value);
+        const result = convert(value, fromUnit.value, toUnit.value);
+        resultBox.style.display = "block";
+        aniresultbox.style.display = "block";
+        resultBox.textContent = `${value} ${fromUnit.value} = ${result.toLocaleString(undefined, {
+          maximumFractionDigits: 4
+        })} ${toUnit.value}`;
+      } else {
+        resultBox.style.display = "none";
+        aniresultbox.style.display = "none";
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Setup event listeners for converter
+      const inputValue = document.getElementById("input__value");
+      const fromUnit = document.getElementById("from__unit");
+      const toUnit = document.getElementById("to__unit");
+      const swapButton = document.getElementById("swapButton");
+
+      if (inputValue) inputValue.addEventListener("input", updateResult);
+      if (fromUnit) fromUnit.addEventListener("change", updateResult);
+      if (toUnit) toUnit.addEventListener("change", updateResult);
+
+      // Swap button functionality
+      if (swapButton) {
+        swapButton.addEventListener("click", () => {
+          const temp = fromUnit.value;
+          fromUnit.value = toUnit.value;
+          toUnit.value = temp;
+
+          swapButton.classList.toggle("active");
+
+          updateResult();
+        });
+      }
+
+      // Tab functionality
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons and contents
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+
+          // Add active class to clicked button
+          button.classList.add('active');
+
+          // Show corresponding tab content
+          const targetTab = button.dataset.tab;
+          document.getElementById(`${targetTab}-tab-content`).classList.add('active');
+
+          // Call updateResult if switching to converter tab to ensure result is shown if inputs have values
+          if (targetTab === 'converter') {
+            updateResult();
+          }
+        });
+      });
+
+      // Initialize with Tithi tab active
+      document.querySelector('.tab-button[data-tab="tithi"]').click(); // Simulate click to activate default tab
+
+      // Tithi date display functionality
+      const tithiNames = [
+      "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
+      "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी",
+      "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"
+    ];
+
+    const getLunarDate = (gregorianDay) => {
+      // Calculate the lunar day (1-30) based on the gregorian day
+      const lunarDay = (gregorianDay - 1) % 15 + 1; // Ensure it wraps correctly (1-15)
+
+      // Calculate the paksha
+      const paksha = gregorianDay <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+
+      // Determine tithi
+      const tithi = lunarDay - 1;
+      console.log({tithi});
+
+      return {
+        paksha,
+        tithi: tithiNames[tithi]
+      };
+    };
+    const hindu = document.querySelector('[data-id="hindu"]');
+    const hindi = document.querySelector('[data-id="hindi"]');
+    const english = document.querySelector('[data-id="english"]');
+    const timeElem = document.querySelector('.date-format');
+
+    const renderClock = () => {
+      const today = new Date();
+      const eng =  dateInEnglish.format(today);
+      const hi = samay.format(today);
+      console.log(samay.formatToParts());
+      const hindi_date = dateInHindi.format(today);
+      /* const { paksha, tithi } = getLunarDate(); */
+      /* console.log({paksha, tithi}) */
+      hindi.innerHTML = hindi_date;
+      hindu.innerHTML =  hi;
+      english.innerHTML = eng;
+      const h = today.getHours();
+      const m = today.getMinutes();
+      const s = today.getSeconds();
+      timeElem.style.setProperty("--h", h*15);
+      timeElem.style.setProperty("--m", m);
+      timeElem.style.setProperty("--s", s*10);
+    };
+    renderClock();
+    setInterval(renderClock, 1000);
+      // Add scroll effect to title for timeline
+      const timelineContainer = document.querySelector('.units__timeline-container');
+      const title = document.querySelector('.units__title');
+
+      if (timelineContainer && title) {
+        timelineContainer.addEventListener('scroll', () => {
+          if (timelineContainer.scrollTop > 10) {
+            title.classList.add('scrolled');
+          } else {
+            title.classList.remove('scrolled');
+          }
+        });
+      }
+    });
+  </script>
 </BaseLayout>
-
-<script is:inline define:vars={{ timeUnits }}>
-  function convert(value, fromUnit, toUnit) {
-    const from = timeUnits.find((u) => u.name === fromUnit);
-    const to = timeUnits.find((u) => u.name === toUnit);
-    if (!from || !to) return null;
-
-    const seconds = value * from.seconds;
-    return seconds / to.seconds;
-  }
-
-  document.getElementById("converter__form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const value = parseFloat(document.getElementById("input__value").value);
-    const fromUnit = document.getElementById("from__unit").value;
-    const toUnit = document.getElementById("to__unit").value;
-
-    const result = convert(value, fromUnit, toUnit);
-    const resultBox = document.getElementById("result");
-    resultBox.style.display = "block";
-    resultBox.textContent = `${value} ${fromUnit} = ${result.toLocaleString(undefined, {
-      maximumFractionDigits: 4
-    })} ${toUnit}`;
-  });
-</script>

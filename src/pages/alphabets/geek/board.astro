@@ -1,0 +1,138 @@
+---
+// filepath: src/pages/alphabets/geek/board.astro
+import BaseLayout from "@/layouts/Base";
+import LetterCard from "@/components/LetterCard.astro";
+import BackButton from "@/components/ui/backButton.astro";
+// Consider moving geek-alphabet.css to a path like @/assets/styles/alphabets/geek.css
+import "@/assets/styles/varnmala/geek-alphabet.css"; 
+
+import { type GeekAlphabetEntry, type AlphabetEntry } from "@/types/alphabet.ts";
+
+const pageTitle = "Geek Alphabet"; // Updated title
+const category = "geek"; 
+const geekData: GeekAlphabetEntry[] = [
+  { id: "A", letter: "A", name: "First letter of the Geek alphabet", representations: ["4", "@", "/-\\"] },
+  { id: "B", letter: "B", name: "Second letter of the Geek alphabet", representations: ["8", "|3", "B"] },
+  { id: "C", letter: "C", name: "Third letter of the Geek alphabet", representations: ["(", "<", "["] },
+  { id: "D", letter: "D", name: "Fourth letter of the Geek alphabet", representations: ["|)", "|>", "D"] },
+  { id: "E", letter: "E", name: "Fifth letter of the Geek alphabet", representations: ["3", "£"] },
+  { id: "F", letter: "F", name: "Sixth letter of the Geek alphabet", representations: ["F", "ph"] },
+  { id: "G", letter: "G", name: "Seventh letter of the Geek alphabet", representations: ["6", "9"] },
+  { id: "H", letter: "H", name: "Eighth letter of the Geek alphabet", representations: ["#", "|-|"] },
+  { id: "I", letter: "I", name: "Ninth letter of the Geek alphabet", representations: ["1", "!", "|", "]["] },
+  { id: "J", letter: "J", name: "Tenth letter of the Geek alphabet", representations: ["_|", "J"] },
+  { id: "K", letter: "K", name: "Eleventh letter of the Geek alphabet", representations: ["|<", "/<"] },
+  { id: "L", letter: "L", name: "Twelfth letter of the Geek alphabet", representations: ["1", "|", "|_", "L"] },
+  { id: "M", letter: "M", name: "Thirteenth letter of the Geek alphabet", representations: ["//", "|V|", "[V]"] },
+  { id: "N", letter: "N", name: "Fourteenth letter of the Geek alphabet", representations: ["/\\/", "||", "N"] },
+  { id: "O", letter: "O", name: "Fifteenth letter of the Geek alphabet", representations: ["0", "()"] },
+  { id: "P", letter: "P", name: "Sixteenth letter of the Geek alphabet", representations: ["|*", "P"] },
+  { id: "Q", letter: "Q", name: "Seventeenth letter of the Geek alphabet", representations: ["(_,)", "Q"] },
+  { id: "R", letter: "R", name: "Eighteenth letter of the Geek alphabet", representations: ["|?", "|2", "R"] },
+  { id: "S", letter: "S", name: "Nineteenth letter of the Geek alphabet", representations: ["5", "$", "§"] },
+  { id: "T", letter: "T", name: "Twentieth letter of the Geek alphabet", representations: ["7", "+", "']"] },
+  { id: "U", letter: "U", name: "Twenty-first letter of the Geek alphabet", representations: ["|_|", "V"] },
+  { id: "V", letter: "V", name: "Twenty-second letter of the Geek alphabet", representations: ["\\|/", "\\/"] },
+  { id: "W", letter: "W", name: "Twenty-third letter of the Geek alphabet", representations: ["\\/\\/", "VV", "^/", "W"] },
+  { id: "X", letter: "X", name: "Twenty-fourth letter of the Geek alphabet", representations: ["><", "%", "X"] },
+  { id: "Y", letter: "Y", name: "Twenty-fifth letter of the Geek alphabet", representations: ["`/", "Y"] },
+  { id: "Z", letter: "Z", name: "Twenty-sixth letter of the Geek alphabet", representations: ["2", "7_", "Z"] },
+];
+
+const letterCardItems: AlphabetEntry[] = geekData.map(item => ({
+  id: item.id,
+  letter: item.letter, 
+  text:` ${item.representations.join(" , ")}` ,     
+  description:item.name, 
+}));
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <BackButton href="/alphabets/" /> {/* Updated href */}
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        letterCardItems.map((item) => (
+          <LetterCard item={item} category={category} />
+        ))
+      }
+    </div>
+  </article>
+
+  <script>
+    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+    const flipCards = document.querySelectorAll(".flip__card");
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          const flipCardElement = card as HTMLElement;
+          const textLabel = flipCardElement.querySelector(".flip-text-label") as HTMLElement | null;
+          const symbolLabel = flipCardElement.querySelector(".rotate-symbol-label") as HTMLElement | null;
+
+          if (allFlipped) {
+            flipCardElement.classList.add("flipped");
+            if (textLabel && symbolLabel) {
+              textLabel.classList.add("is-hidden");
+              symbolLabel.classList.remove("is-hidden");
+            }
+          } else {
+            flipCardElement.classList.remove("flipped");
+            if (textLabel && symbolLabel) {
+              textLabel.classList.remove("is-hidden");
+              symbolLabel.classList.add("is-hidden");
+            }
+          }
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+        
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) {
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+
+    // Individual card flip logic (if LetterCard.astro includes flip buttons with these classes)
+    const individualFlipCards = document.querySelectorAll(".alphabet-grid .flip__card"); 
+    individualFlipCards.forEach((card) => {
+      const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+      flipButtonsOnThisCard.forEach((button) => { 
+        button.addEventListener("click", (event) => {
+          event.stopPropagation(); 
+          card.classList.toggle("flipped"); 
+
+          const isFlipped = card.classList.contains("flipped");
+          
+          flipButtonsOnThisCard.forEach(btnInstance => {
+            const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+            const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+            if (textLabel && symbolLabel) {
+              if (isFlipped) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
+        });
+      });
+    });
+  </script>
+</BaseLayout>

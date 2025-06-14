@@ -1,0 +1,277 @@
+---
+import BaseLayout from "@/layouts/Base"; 
+import MonthCard, { type MonthEntry } from "@/components/monthcard.astro"; 
+import "@/assets/styles/varnmala/months.css";
+import BackButton from "@/components/ui/backButton.astro";
+
+const pageTitle = "Months";
+const currentYear = 2025;
+const today = new Date(currentYear, 5, 11); 
+
+const englishMonthsData: MonthEntry[] = [
+  { type: "english", name: "January", hindi: "जनवरी", monthIndex: 0 },
+  { type: "english", name: "February", hindi: "फ़रवरी", monthIndex: 1 },
+  { type: "english", name: "March", hindi: "मार्च", monthIndex: 2 },
+  { type: "english", name: "April", hindi: "अप्रैल", monthIndex: 3 },
+  { type: "english", name: "May", hindi: "मई", monthIndex: 4 },
+  { type: "english", name: "June", hindi: "जून", monthIndex: 5 },
+  { type: "english", name: "July", hindi: "जुलाई", monthIndex: 6 },
+  { type: "english", name: "August", hindi: "अगस्त", monthIndex: 7 },
+  { type: "english", name: "September", hindi: "सितम्बर", monthIndex: 8 },
+  { type: "english", name: "October", hindi: "अक्टूबर", monthIndex: 9 },
+  { type: "english", name: "November", hindi: " नवम्बर", monthIndex: 10 }, 
+  { type: "english", name: "December", hindi: "दिसम्बर", monthIndex: 11 },
+];
+
+const indianMonthsData: MonthEntry[] = [
+  { type: "indian", name: "चैत्र ", dates: "March 21 - April 20", monthIndex: 2, displayName: "Chaitra", hinduOrdinalText: "First Hindu Month" },
+  { type: "indian", name: "वैशाख ", dates: "April 21 - May 21", monthIndex: 3, displayName: "Vaishakha", hinduOrdinalText: "Second Hindu Month" },
+  { type: "indian", name: "ज्येष्ठ ", dates: "May 22 - June 21", monthIndex: 4, displayName: "Jyeshtha", hinduOrdinalText: "Third Hindu Month" },
+  { type: "indian", name: "आषाढ़ ", dates: "June 22 - July 22", monthIndex: 5, displayName: "Ashadha", hinduOrdinalText: "Fourth Hindu Month" },
+  { type: "indian", name: "श्रावण ", dates: "July 23 - August 22", monthIndex: 6, displayName: "Shravana", hinduOrdinalText: "Fifth Hindu Month" },
+  { type: "indian", name: "भाद्रपद ", dates: "August 23 - September 22", monthIndex: 7, displayName: "Bhadrapada", hinduOrdinalText: "Sixth Hindu Month" },
+  { type: "indian", name: "आश्विन ", dates: "September 23 - October 22", monthIndex: 8, displayName: "Ashvina", hinduOrdinalText: "Seventh Hindu Month" },
+  { type: "indian", name: "कार्तिक ", dates: "October 23 - November 21", monthIndex: 9, displayName: "Kartika", hinduOrdinalText: "Eighth Hindu Month" },
+  { type: "indian", name: "मार्गशीर्ष ", dates: "November 22 - December 21", monthIndex: 10, displayName: "Margashirsha", hinduOrdinalText: "Ninth Hindu Month" },
+  { type: "indian", name: "पौष", dates: "December 22 - January 20", monthIndex: 11, displayName: "Pausha", hinduOrdinalText: "Tenth Hindu Month" },
+  { type: "indian", name: "माघ ", dates: "January 21 - February 19", monthIndex: 0, displayName: "Magha", hinduOrdinalText: "Eleventh Hindu Month" },
+  { type: "indian", name: "फाल्गुन ", dates: "February 20 - March 20", monthIndex: 1, displayName: "Phalguna", hinduOrdinalText: "Twelfth Hindu Month" },
+];
+
+const nationalHolidaysData = [
+  { day: 1, month: 0, year: 2025, name: "New Year's Day" },
+  { day: 26, month: 0, year: 2025, name: "Republic Day" },
+  { day: 14, month: 2, year: 2025, name: "Holi (Second Day)" }, // Holi can vary, this is an example
+  { day: 18, month: 3, year: 2025, name: "Good Friday" }, // Good Friday varies
+  { day: 1, month: 4, year: 2025, name: "May Day / Labour Day" },
+  { day: 15, month: 7, year: 2025, name: "Independence Day" },
+  { day: 2, month: 9, year: 2025, name: "Gandhi Jayanti" },
+  { day: 21, month: 9, year: 2025, name: "Dussehra (Vijayadashami)" }, // Dussehra varies
+  { day: 10, month: 10, year: 2025, name: "Diwali (Deepavali)" }, // Diwali varies
+  { day: 25, month: 11, year: 2025, name: "Christmas Day" },
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <div class="container__page months-page-container">
+    <div class="page-header">
+      <BackButton href="/Glossary" /> {}
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-months-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="months-toggle-buttons" role="tablist">
+      <button id="englishMonthsBtn" class="toggle-button active" role="tab" aria-selected="true" aria-controls="english-months-pane">English Months</button>
+      <button id="hindiMonthsBtn" class="toggle-button" role="tab" aria-selected="false" aria-controls="indian-months-pane">Indian Months</button>
+    </div>
+
+    <div id="english-months-pane" class="months-content-pane active" role="tabpanel" aria-labelledby="englishMonthsBtn">
+      <div id="english-months-grid" class="grid-container months-grid">
+        {englishMonthsData.map(month => (
+          <MonthCard item={month} currentYear={currentYear} nationalHolidaysData={nationalHolidaysData} parsedToday={today} />
+        ))}
+      </div>
+    </div>
+
+    <div id="indian-months-pane" class="months-content-pane" role="tabpanel" aria-labelledby="hindiMonthsBtn">
+      <div id="indian-months-grid" class="grid-container months-grid">
+        {indianMonthsData.map(month => (
+          <MonthCard item={month} currentYear={currentYear} nationalHolidaysData={nationalHolidaysData} parsedToday={today} />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Script for tab switching
+    const englishBtn = document.getElementById('englishMonthsBtn');
+    const hindiBtn = document.getElementById('hindiMonthsBtn');
+    const englishMonthsPane = document.getElementById('english-months-pane');
+    const indianMonthsPane = document.getElementById('indian-months-pane');
+    
+    const monthTabs = [
+        { btn: englishBtn, pane: englishMonthsPane, name: 'english' },
+        { btn: hindiBtn, pane: indianMonthsPane, name: 'hindi' }
+    ];
+
+    function showMonthTab(tabName: 'english' | 'hindi') {
+      monthTabs.forEach(tab => {
+        if (!tab.btn || !tab.pane) return;
+        if (tab.name === tabName) {
+          tab.pane.classList.add('active');
+          tab.btn.classList.add('active');
+          tab.btn.setAttribute('aria-selected', 'true');
+        } else {
+          tab.pane.classList.remove('active');
+          tab.btn.classList.remove('active');
+          tab.btn.setAttribute('aria-selected', 'false');
+        }
+      });
+    }
+
+    if (englishBtn) englishBtn.addEventListener('click', () => showMonthTab('english'));
+    if (hindiBtn) hindiBtn.addEventListener('click', () => showMonthTab('hindi'));
+    
+    showMonthTab('english'); // Show English months by default
+
+    // Script for Flip All Button
+    const flipAllMonthsButton = document.getElementById('flip-all-months-button');
+    let allMonthCardsFlipped = false;
+
+    if (flipAllMonthsButton) {
+      flipAllMonthsButton.addEventListener('click', () => {
+        allMonthCardsFlipped = !allMonthCardsFlipped;
+        const activePane = document.querySelector('.months-content-pane.active');
+        if (activePane) {
+            const cardsToFlip = activePane.querySelectorAll('.flip__card.month-card'); // Ensure MonthCard has these classes
+            cardsToFlip.forEach(card => {
+                if (allMonthCardsFlipped) {
+                card.classList.add('flipped');
+                } else {
+                card.classList.remove('flipped');
+                }
+            });
+        }
+        flipAllMonthsButton.textContent = allMonthCardsFlipped ? "Reset All Cards" : "Flip All Cards";
+        
+        flipAllMonthsButton.classList.add('active'); 
+        setTimeout(() => {
+          if (flipAllMonthsButton) { // Check if button still exists
+            flipAllMonthsButton.classList.remove('active');
+          }
+        }, 300);
+      });
+    }
+  </script>
+
+  <script>
+  // Mouse move effect for cards (ensure .card is the correct selector for MonthCard's outer element)
+  const cards = document.querySelectorAll(".months-grid .card"); // Scoped to months-grid
+  cards.forEach((letter) => {
+    letter.addEventListener("mousemove", (e: Event) => {
+      const htmlLetter = letter as HTMLElement;
+      const rect = htmlLetter.getBoundingClientRect();
+      const event = e as MouseEvent;
+      const x = ((event.clientX - rect.left) / htmlLetter.clientWidth) * 100;
+      const y = ((event.clientY - rect.top) / htmlLetter.clientHeight) * 100;
+      htmlLetter.style.setProperty("--mouse-x", `${x}%`);
+      htmlLetter.style.setProperty("--mouse-y", `${y}%`);
+    });
+    // Add mouseleave to reset properties
+    letter.addEventListener("mouseleave", () => {
+        const htmlLetter = letter as HTMLElement;
+        htmlLetter.style.removeProperty("--mouse-x");
+        htmlLetter.style.removeProperty("--mouse-y");
+    });
+  });
+
+  // Individual card flip (ensure .flip__card and .flip__button are correct for MonthCard)
+  const flipCards = document.querySelectorAll(".months-grid .flip__card"); // Scoped to months-grid
+  flipCards.forEach((card) => {
+    const flipButtons = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+    flipButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent card click if button is inside clickable area
+        const parentCard = button.closest('.flip__card');
+        if (parentCard) {
+            parentCard.classList.toggle("flipped");
+        }
+      });
+    });
+  });
+</script>
+</BaseLayout>
+
+<style is:global>
+  /* Responsive styles for months page */
+  /* These styles can be moved to your months.css file for better organization */
+
+  /* Page Header adjustments */
+  @media (max-width: 768px) {
+    .months-page-container .page-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem; /* Add some space between stacked items */
+    }
+    .months-page-container .page-main-title {
+      font-size: 1.8rem; /* Adjust title size */
+    }
+    .months-page-container .flip__all__button {
+      align-self: flex-start; /* Align button to the start when stacked */
+      margin-top: 0.5rem;
+    }
+  }
+
+  /* Toggle Buttons adjustments */
+  .months-toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem; /* Ensure space below buttons */
+    gap: 1rem; /* Space between buttons */
+  }
+
+  .months-toggle-buttons .toggle-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    /* other existing styles for toggle-button from months.css apply here */
+  }
+
+  @media (max-width: 480px) {
+    .months-toggle-buttons {
+      flex-direction: column; /* Stack buttons vertically */
+      align-items: stretch; /* Make buttons full width */
+      gap: 0.5rem;
+    }
+    .months-toggle-buttons .toggle-button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  /* Grid container for month cards */
+  /* Assuming .months-grid already has display: grid and gap from months.css */
+  /* Default to 3 columns for larger screens if not already set in months.css */
+  /* .months-grid { */
+    /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */ /* Example default */
+  /* } */
+
+
+  @media (max-width: 1024px) {
+    .months-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust for tablets */
+       /* Or use a fixed number of columns */
+       /* grid-template-columns: repeat(2, 1fr); */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .months-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      /* Or switch to 2 columns */
+      /* grid-template-columns: repeat(2, 1fr); */
+    }
+  }
+
+  @media (max-width: 600px) { /* More aggressive for smaller tablets / large phones */
+    .months-grid {
+      grid-template-columns: 1fr; /* Single column for small mobile */
+    }
+  }
+  
+  /* Month Card specific adjustments (if MonthCard component needs it) */
+  /* For example, if font sizes inside MonthCard need to be smaller on mobile */
+  /* This would typically be handled within MonthCard.astro or its specific CSS */
+  /* Example: */
+  /* @media (max-width: 480px) { */
+  /*   .month-card .month-name { font-size: 1.2rem; } */
+  /*   .month-card .day-number { font-size: 0.8rem; } */
+  /* } */
+
+  /* Ensure container has some padding */
+  .months-page-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+</style>

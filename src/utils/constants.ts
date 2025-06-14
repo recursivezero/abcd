@@ -4,12 +4,12 @@ import type { LinkProps } from "@/types/index.ts";
 
 export const APP_NAME = "Template";
 
-let BASE_URL = "http://localhost:4321/draw";
-let IMAGE_DIR = "/images/background";
+let BASE_URL = "http://localhost:4321";
+let IMAGE_DIR = "/assets/images/background";
 
 if (import.meta.env.PROD) {
   BASE_URL = "https://bnm1w7hj00.execute-api.us-east-1.amazonaws.com/master/canvas";
-  IMAGE_DIR = "https://d2fcibdfky04dz.cloudfront.net/background";
+  IMAGE_DIR = "/assets/images/background";
 }
 
 const colorBox = [
@@ -25,6 +25,21 @@ const colorBox = [
   "#d4d4d4"
 ];
 
+const fontColor = [
+  "#FFFFFF",
+  "#1A1A1A",
+  "#0D47A1",
+  "#F44336",
+  "#4CAF50",
+  "#FFEB3B",
+  "#9C27B0",
+  "#795548",
+  "#00BCD4",
+  "#FF9800",
+  "#607D8B",
+  "#E0E0E0"
+];
+
 const numberBox: Record<number, string> = {
   0: "zero",
   1: "one",
@@ -38,7 +53,7 @@ const numberBox: Record<number, string> = {
   9: "nine"
 };
 
-const fontBox = ["boisuStroke", "BungeeSpice", "atkinson", "sportrop", "MudraMohta", "Roboto"];
+const fontBox = ["Times New Roman", "Arial" , "Verdana" , "Trebuchet MS" , "Georgia","Courier New","Comic Sans MS","Impact","boisuStroke", "BungeeSpice", "atkinson", "sportrop", "MudraMohta", "Roboto"];
 
 export const NavbarLinks: LinkProps[] = [
   {
@@ -118,7 +133,7 @@ export const NavbarLinks: LinkProps[] = [
   {
     name: "Canvas",
     title: "Canvas",
-    path: "/canvas",
+    path: "/Canvas",
     isActive: true
   },
   {
@@ -128,8 +143,8 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Kannada",
-    title: "Kannada",
+    name: "Indic",
+    title: "Indic",
     path: "/kannada",
     isActive: true
   },
@@ -138,7 +153,31 @@ export const NavbarLinks: LinkProps[] = [
     title: "Draw",
     path: "/draw",
     isActive: true
-  }
+  },
+  {
+    name: "Cards",
+    title: "Cards",
+    path: "/cards",
+    isActive: true
+  },
+  {
+    name: "Numbers", 
+    title: "Numbers", 
+    path: "/numbers", 
+    isActive: true
+  },
+  {
+    name: "Glossary", 
+    title: "Glossary", 
+    path: "/glossary", 
+    isActive: true
+  },
+  {
+    name: "Sunsigns",
+    title: "Sunsigns",
+    path: "/sunsigns",
+    isActive: true
+  },
 ];
 
 export const FooterLinks: LinkProps[] = [
@@ -169,4 +208,4 @@ export const colors = [
 
 export { BASE_URL, IMAGE_DIR };
 
-export { colorBox, fontBox, numberBox };
+export { colorBox, fontBox, fontColor, numberBox };
