@@ -5,12 +5,13 @@ export interface SunSignEntry {
   symbol: string; 
   dates: string; 
   emoji?: string; 
-  firstLetters?: string;
+  firstLetters?: string; // Original, kept for data integrity if needed elsewhere
+  parsedHindiLetters?: string; // New property for processed Hindi letters
+  parsedEnglishLetters?: string; // New property for processed English letters
 }
 
 interface Props {
   item: SunSignEntry;
-  
 }
 
 const { item } = Astro.props;
@@ -36,13 +37,28 @@ const category = "sunsigns";
         <span class="flip__button__text" title="Flip Card">Flip Card</span>
       </div>
       <div class="sun-sign-details-back">
-        <!-- <h3 class="flipped__text">{item.name}</h3> -->
+        {/* <h3 class="flipped__text">{item.name}</h3> */}
         {/* {item.image && <img src={`/assets/images/${category}/${item.image}`} alt={item.name} class="image" />}
         {item.emoji && !item.image && <p class="emoji">{item.emoji}</p>} */}
         <p class="description"><strong>Date Range:</strong> {item.dates}</p>
-        {item.firstLetters && (
+        
+        {/* Remove old display of combined firstLetters */}
+        {/* {item.firstLetters && (
           <p class="description"><strong>First Letters:</strong> {item.firstLetters}</p>
-        )}
+        )} */}
+
+        {/* New display for separated Hindi and English first letters */}
+        { (item.parsedHindiLetters && item.parsedHindiLetters.length > 0) || (item.parsedEnglishLetters && item.parsedEnglishLetters.length > 0) ? (
+          <>
+            <p class="description"><strong>First Letters:</strong></p>
+            {item.parsedHindiLetters && item.parsedHindiLetters.length > 0 && (
+              <p class="description">{item.parsedHindiLetters}</p>
+            )}
+            {item.parsedEnglishLetters && item.parsedEnglishLetters.length > 0 && (
+              <p class="description">{item.parsedEnglishLetters}</p>
+            )}
+          </>
+        ) : null}
       </div>
     </div>
   </div>

@@ -172,6 +172,12 @@ export const NavbarLinks: LinkProps[] = [
     path: "/glossary", 
     isActive: true
   },
+  {
+    name: "Sunsigns",
+    title: "Sunsigns",
+    path: "/sunsigns",
+    isActive: true
+  },
 ];
 
 export const FooterLinks: LinkProps[] = [
