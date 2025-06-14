@@ -1,0 +1,108 @@
+---
+const rows = [
+  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+  ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+  ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+  ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
+  ['SPACE', 'ENTER', 'BACKSPACE']
+];
+---
+<div class="virtual-keyboard" id="virtualKeyboard">
+  {rows.map((row) => (
+    <div class="keyboard-row">
+      {row.map((key) => (
+        <button
+          class="keyboard-key"
+          data-key={key}
+          aria-label={`Press ${key}`}
+        >
+          {key === 'SPACE' ? '␣' : key === 'BACKSPACE' ? '⌫' : key === 'ENTER' ? '⏎' : key}
+        </button>
+      ))}
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll(".keyboard-key").forEach((button) => {
+    button.addEventListener("click", () => {
+      const key = button.getAttribute("data-key");
+      if (key) {
+        const event = new CustomEvent("virtualKeyPress", {
+          detail: { key },
+          bubbles: true,
+        });
+        document.dispatchEvent(event);
+      }
+    });
+  });
+</script>
+
+<style>
+.virtual-keyboard {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  background:#0f172a;
+  padding: 1rem 0.5rem;
+  border-top: 1px solid var(--light-border);
+  z-index: 1000;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard-row {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0 0.5rem;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.keyboard-key {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  text-transform: uppercase;
+  flex: 1 1 0;
+  text-align: center;
+  min-width: 0;
+}
+
+.keyboard-key:hover {
+  background: #e2e8f0;
+  transform: scale(1.05);
+}
+
+.keyboard-key:active {
+  background: #cbd5e1;
+  transform: scale(0.95);
+}
+
+.keyboard-key[data-key="SPACE"] {
+  flex: 3 1 0;
+}
+
+.keyboard-key[data-key="ENTER"],
+.keyboard-key[data-key="BACKSPACE"] {
+  flex: 2 1 0;
+}
+
+@media (max-width: 1024px) {
+  .virtual-keyboard {
+    display: block;
+  }
+}
+
+</style>
