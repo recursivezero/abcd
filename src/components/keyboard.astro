@@ -46,43 +46,42 @@ const rows = [
   left: 0;
   right: 0;
   width: 100vw;
-  background:#0f172a;
-  padding: 1rem 0.5rem;
+  background: #0f172a;
+  padding: 0.25rem 0.25rem;
   border-top: 1px solid var(--light-border);
   z-index: 1000;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .keyboard-row {
   display: flex;
   width: 100%;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 0 0.5rem;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .keyboard-key {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 0.75rem 0;
-  font-size: 1rem;
+  border-radius: 4px;
+  padding: 0.35rem 0;
+  font-size: 0.65rem;
   font-weight: 500;
   color: #374151;
   cursor: pointer;
   transition: transform 0.1s ease;
   text-transform: uppercase;
-  flex: 1 1 0;
+  flex: 1 1 7%;
+  min-width: 28px;
   text-align: center;
-  min-width: 0;
 }
 
 .keyboard-key:hover {
   background: #e2e8f0;
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .keyboard-key:active {
@@ -91,18 +90,43 @@ const rows = [
 }
 
 .keyboard-key[data-key="SPACE"] {
-  flex: 3 1 0;
+  flex: 3 1 25%;
 }
 
 .keyboard-key[data-key="ENTER"],
 .keyboard-key[data-key="BACKSPACE"] {
-  flex: 2 1 0;
+  flex: 2 1 20%;
 }
 
 @media (max-width: 1024px) {
   .virtual-keyboard {
     display: block;
   }
+
+  .keyboard-key {
+    font-size: 0.6rem;
+    padding: 0.3rem 0;
+  }
+
+  .keyboard-row {
+    gap: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
 }
 
+@media (max-width: 480px) {
+  .keyboard-key {
+    font-size: 0.55rem;
+    padding: 0.25rem 0;
+  }
+
+  .keyboard-key[data-key="SPACE"] {
+    flex: 3 1 30%;
+  }
+
+  .keyboard-key[data-key="ENTER"],
+  .keyboard-key[data-key="BACKSPACE"] {
+    flex: 2 1 22%;
+  }
+}
 </style>
