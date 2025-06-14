@@ -91,7 +91,7 @@
 
 .image-container {
   position: relative;
-  width: 500px;
+  width: 600px;
   height: 400px;
   perspective: 1200px;
   transform-style: preserve-3d;
@@ -129,8 +129,8 @@
 }
 
 .item-image {
-  width: 450px;
-  height: 300px;
+  width: 600px;
+  height: 400px;
   object-fit: cover;
   object-position: center;
   border-radius: 1rem;
@@ -163,13 +163,14 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 0;
+  margin-top: 2rem;
   line-height: 1;
   min-height: 3rem;
 }
 
 .item-desc {
   font-size: 1.5rem;
+  margin-top: 100px;
   text-transform: uppercase;
   color: light-dark(#000000,#ffffff);
   font-weight: 600;
@@ -182,13 +183,14 @@
 .nav-buttons {
   display: flex;
   gap: 5rem;
+  margin-top: 100px;
   justify-content: center;
   align-items: center;
   z-index: 200;
   margin-top: 1rem;
   width: 100%;
   position: relative;
-  top: -2rem; /* Moved buttons closer to the content */
+  top: 5rem; 
 }
 
 .nav-button {
@@ -244,7 +246,7 @@
 
 .keyboard-hint {
   position: absolute;
-  bottom: 20px;
+  bottom: -2.5rem;
   left: 50%;
   transform: translateX(-50%);
   color: light-dark(#000000,#ffffff);
@@ -252,8 +254,7 @@
   text-align: center;
   z-index: 1000;
   padding: 0.5rem 1rem;
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent;
   border-radius: 20px;
   width: auto;
   max-width: 90%;
