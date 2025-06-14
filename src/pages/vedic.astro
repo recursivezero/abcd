@@ -1,4 +1,3 @@
-
 ---
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/vedic.css";
@@ -6,7 +5,6 @@ import vedicData from "@/assets/json/vedic.json";
 
 const timeUnits = vedicData.time_units;
 ---
-
 <BaseLayout meta={{ title: "Vedic Time" }}>
   <div class="container__vedic">
     <script type="text/javascript" async>
@@ -143,16 +141,13 @@ const timeUnits = vedicData.time_units;
             </div>
             <div class="unit__details">
               <div class="unit__value">
-                <span class="icon">🕛</span>
-                {unit.seconds.toLocaleString()} seconds
+                {unit.firstEquivalent.toLocaleString()} 
               </div>
               <div class="unit__value">
-                <span class="icon">⏳</span>
-                {unit.minutes.toLocaleString()} minutes
+                {unit.secondEquivalent.toLocaleString()} 
               </div>
               <div class="unit__value">
-                <span class="icon">📅</span>
-                {unit.years.toLocaleString()} years
+                {unit.thirdEquivalent.toLocaleString()} 
               </div>
             </div>
           </div>
