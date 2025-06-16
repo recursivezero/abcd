@@ -213,6 +213,7 @@
       }
     ]
   },
+  
   "greek": {
     "icon": "🔤",
     "description": "Explore the letters of the ancient and modern Greek alphabet. Type an English letter (A-Z) to see its common Greek equivalent.",
@@ -1402,5 +1403,60 @@
         "description": "Vedic astrology (Jyotish) with its unique zodiac system"
       }
     ]
+  },
+  "hindi": {
+    "icon": "🕉️",
+    "description": "Learn the Hindi alphabet, including Swar (vowels) and Vyanjan (consonants).",
+    "data": {
+      "vowels": [
+        { "letter": "अ", "code": "0905", "meaning": "अमरुद (Guava)", "emoji": "🥝", "unicode": "U+1F95D" },
+        { "letter": "आ", "code": "0906", "meaning": "आम (Mango)", "emoji": "🥭", "unicode": "U+1F96D" },
+        { "letter": "इ", "code": "0907", "meaning": "इमली (Tamarind)", "emoji": "🌰", "unicode": "U+1F330" },
+        { "letter": "ई", "code": "0908", "meaning": "ईख (Sugarcane)", "emoji": "🍬", "unicode": "U+1F36C" },
+        { "letter": "उ", "code": "0909", "meaning": "उल्लू (Owl)", "emoji": "🦉", "unicode": "U+1F989" },
+        { "letter": "ऊ", "code": "090A", "meaning": "ऊँट (Camel)", "emoji": "🐫", "unicode": "U+1F42B" },
+        { "letter": "ऋ", "code": "090B", "meaning": "ऋषि (Sage)", "emoji": "🧘‍♂️", "unicode": "U+1F9D8" },
+        { "letter": "ए", "code": "090F", "meaning": "एड़ी (Heel)", "emoji": "🦶", "unicode": "U+1F9B6" },
+        { "letter": "ऐ", "code": "0910", "meaning": "ऐनक (Glasses)", "emoji": "👓", "unicode": "U+1F453" },
+        { "letter": "ओ", "code": "0913", "meaning": "ओखली (Mortar)", "emoji": "🪨", "unicode": "U+1FAA8" },
+        { "letter": "औ", "code": "0914", "meaning": "औरत (Woman)", "emoji": "👩", "unicode": "U+1F469" }
+      ],
+      "consonants": [
+        { "letter": "क", "code": "0915", "meaning": "kabutar (pigeon)", "emoji": "🐦", "unicode": "U+1F426" },
+        { "letter": "ख", "code": "0916", "meaning": "khargosh (rabbit)", "emoji": "🐇", "unicode": "U+1F407" },
+        { "letter": "ग", "code": "0917", "meaning": "gay (cow)", "emoji": "🐄", "unicode": "U+1F404" },
+        { "letter": "घ", "code": "0918", "meaning": "ghoda (horse)", "emoji": "🐎", "unicode": "U+1F40E" },
+        { "letter": "च", "code": "091A", "meaning": "chammach (spoon)", "emoji": "🥄", "unicode": "U+1F944" },
+        { "letter": "छ", "code": "091B", "meaning": "chhatri (umbrella)", "emoji": "☂️", "unicode": "U+2602" },
+        { "letter": "ज", "code": "091C", "meaning": "jahaaz (ship)", "emoji": "🚢", "unicode": "U+1F6A2" },
+        { "letter": "झ", "code": "091D", "meaning": "jhanda (flag)", "emoji": "🏁", "unicode": "U+1F3C1" },
+        { "letter": "ट", "code": "091F", "meaning": "tamatar (tomato)", "emoji": "🍅", "unicode": "U+1F345" },
+        { "letter": "ठ", "code": "0920", "meaning": "thappad (clap)", "emoji": "👏", "unicode": "U+1F44F" },
+        { "letter": "ड", "code": "0921", "meaning": "damru (Shiva's drum)", "emoji": "🥁", "unicode": "U+1F941" },
+        { "letter": "ढ", "code": "0922", "meaning": "dholak (drum)", "emoji": "🪘", "unicode": "U+1FA98" },
+        { "letter": "ण", "code": "0923", "meaning": "none", "emoji": "♨️", "unicode": "U+2668" },
+        { "letter": "त", "code": "0924", "meaning": "tarbooz (watermelon)", "emoji": "🍉", "unicode": "U+1F349" },
+        { "letter": "थ", "code": "0925", "meaning": "thali (plate)", "emoji": "🍽️", "unicode": "U+1F37D" },
+        { "letter": "द", "code": "0926", "meaning": "davva (lamp)", "emoji": "🪔", "unicode": "U+1FA94" },
+        { "letter": "ध", "code": "0927", "meaning": "dhanush (bow)", "emoji": "🏹", "unicode": "U+1F3F9" },
+        { "letter": "न", "code": "0928", "meaning": "naag (snake)", "emoji": "🐍", "unicode": "U+1F40D" },
+        { "letter": "प", "code": "092A", "meaning": "patang (kite)", "emoji": "🪁", "unicode": "U+1FA81" },
+        { "letter": "फ", "code": "092B", "meaning": "phal (fruit)", "emoji": "🍎", "unicode": "U+1F34E" },
+        { "letter": "ब", "code": "092C", "meaning": "bakri (goat)", "emoji": "🐐", "unicode": "U+1F410" },
+        { "letter": "भ", "code": "092D", "meaning": "bhains (buffalo)", "emoji": "🐃", "unicode": "U+1F403" },
+        { "letter": "म", "code": "092E", "meaning": "makkhi (fly)", "emoji": "🪰", "unicode": "U+1FAB0" },
+        { "letter": "य", "code": "092F", "meaning": "yagya (fire ritual)", "emoji": "🔥", "unicode": "U+1F525" },
+        { "letter": "र", "code": "0930", "meaning": "rath (chariot)", "emoji": "🛺", "unicode": "U+1F6FA" },
+        { "letter": "ल", "code": "0932", "meaning": "lattu (top)", "emoji": "🪀", "unicode": "U+1FA80" },
+        { "letter": "व", "code": "0935", "meaning": "vriksh (tree)", "emoji": "🌳", "unicode": "U+1F333" },
+        { "letter": "श", "code": "0936", "meaning": "shankh (conch)", "emoji": "🐚", "unicode": "U+1F41A" },
+        { "letter": "ष", "code": "0937", "meaning": "sher (lion)", "emoji": "🦁", "unicode": "U+1F981" },
+        { "letter": "स", "code": "0938", "meaning": "saanp (snake)", "emoji": "🐍", "unicode": "U+1F40D" },
+        { "letter": "ह", "code": "0939", "meaning": "haathi (elephant)", "emoji": "🐘", "unicode": "U+1F418" },
+        { "letter": "क्ष", "code": "0915+094D+0937", "meaning": "kshatriya (warrior)", "emoji": "⚔️", "unicode": "U+2694" },
+        { "letter": "त्र", "code": "0924+094D+0930", "meaning": "trishul (trident)", "emoji": "🔱", "unicode": "U+1F531" },
+        { "letter": "ज्ञ", "code": "091C+094D+091E", "meaning": "gyan (knowledge)", "emoji": "📚", "unicode": "U+1F4DA" }
+      ]
+    }
   }
 }

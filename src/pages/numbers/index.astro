@@ -15,8 +15,43 @@ interface NumeralCategory {
   title?: string; 
 }
 
+interface HindiLetter {
+  letter: string;
+  code: string;
+  meaning: string;
+  emoji: string;
+  unicode: string;
+}
+
+interface HindiAlphabetData {
+  icon: string;
+  description: string;
+  data: {
+    vowels: HindiLetter[];
+    consonants: HindiLetter[];
+  };
+}
+
+// For other alphabets:
+interface AlphabetCategory {
+  icon: string;
+  description: string;
+  data: any[]; // or a more specific type for those categories
+}
+
+// The main type:
 interface AlphabetsData {
-  [key: string]: NumeralCategory;
+  general?: AlphabetCategory;
+  greek?: AlphabetCategory;
+  geek?: AlphabetCategory;
+  nato?: AlphabetCategory;
+  braille?: AlphabetCategory;
+  fruits?: AlphabetCategory;
+  animals?: AlphabetCategory;
+  countries?: AlphabetCategory;
+  Indian?: AlphabetCategory;
+  hindi?: HindiAlphabetData;
+  [key: string]: any; // (optional) allows for future flexibility
 }
 
 const typedAlphabetData = allAlphabetsData as AlphabetsData;
