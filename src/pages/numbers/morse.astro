@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../../layouts/Base.astro";
+import LetterCard from "../../components/LetterCard.astro";
+import BackButton from "../../components/ui/backButton.astro";
+import "../../assets/styles/varnmala/greek-alphabet.css";
+
+export interface MorseNumberEntry {
+  id: number;
+  letter: string;      // The digit (e.g., "1")
+  text?: string;       // The digit as text (for flip)
+  description?: string;// Description (e.g., "One")
+  code?: number;       // Numeric value
+  emoji?: string;      // Morse code string (for back)
+}
+
+const pageTitle = "Morse Code Numbers";
+const category = "morse-numbers";
+
+const morseNumbersData: MorseNumberEntry[] = [
+  { id: 0, letter: "0", text: "0", description: "Zero", code: 0, emoji: "-----" },
+  { id: 1, letter: "1", text: "1", description: "One", code: 1, emoji: ".----" },
+  { id: 2, letter: "2", text: "2", description: "Two", code: 2, emoji: "..---" },
+  { id: 3, letter: "3", text: "3", description: "Three", code: 3, emoji: "...--" },
+  { id: 4, letter: "4", text: "4", description: "Four", code: 4, emoji: "....-" },
+  { id: 5, letter: "5", text: "5", description: "Five", code: 5, emoji: "....." },
+  { id: 6, letter: "6", text: "6", description: "Six", code: 6, emoji: "-...." },
+  { id: 7, letter: "7", text: "7", description: "Seven", code: 7, emoji: "--..." },
+  { id: 8, letter: "8", text: "8", description: "Eight", code: 8, emoji: "---.." },
+  { id: 9, letter: "9", text: "9", description: "Nine", code: 9, emoji: "----." }
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <BackButton href="/numbers" />
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        morseNumbersData.map((entry) => {
+          const letterCardItem = {
+            ...entry,
+            text: entry.letter, // Show digit on front
+            description: entry.description || "",
+            emoji: entry.emoji // Morse code on back
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+
+  <script>
+    const flipAllButton = document.getElementById("flip-all-button");
+    const flipCards = document.querySelectorAll(".flip__card");
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          const flipCardElement = card;
+          if (allFlipped) {
+            flipCardElement.classList.add("flipped");
+          } else {
+            flipCardElement.classList.remove("flipped");
+          }
+          const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button");
+          allButtonsOnThisCard.forEach(btn => {
+            const textLabel = btn.querySelector(".flip-text-label");
+            const symbolLabel = btn.querySelector(".rotate-symbol-label");
+            if (textLabel && symbolLabel) {
+              if (allFlipped) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) { 
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+
+    const cardsForMouseInteraction = document.querySelectorAll(".alphabet-grid .card"); 
+    cardsForMouseInteraction.forEach((cardElement) => { 
+      cardElement.addEventListener("mousemove", (e) => {
+        const htmlCardElement = cardElement as HTMLElement; // Cast to HTMLElement
+        const event = e as MouseEvent;
+        const rect = htmlCardElement.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
+        const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
+        htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
+        htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
+      });
+    });
+  </script>
+</BaseLayout>

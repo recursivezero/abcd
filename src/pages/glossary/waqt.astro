@@ -1,0 +1,468 @@
+---
+import BaseLayout from "../../layouts/Base.astro";
+import BackButton from "../../components/ui/backButton.astro";
+
+import "../../assets/styles/varnmala/greek-alphabet.css"; // General styles, adjust if needed
+
+const pageTitle = "Waqt (Times of Day)";
+
+interface WaqtEntry {
+  id: string;
+  englishTerm: string;
+  hindiTranslation: string;
+  description: string;
+  icon: string;
+}
+
+const waqtData: WaqtEntry[] = [
+  {
+    id: "morning",
+    englishTerm: "Morning",
+    hindiTranslation: "सुबह (Subah), प्रातः (Praatah)",
+    description: "The early part of the day, from dawn until around noon.",
+    icon: "🌅"
+  },
+  {
+    id: "evening",
+    englishTerm: "Evening",
+    hindiTranslation: "शाम (Shaam)",
+    description: "The period from late afternoon until nightfall/dusk.",
+    icon: "🌇"
+  },
+  {
+    id: "noon",
+    englishTerm: "Noon",
+    hindiTranslation: "दोपहर (Dopehar)",
+    description: "Midday, exactly 12:00 PM, or broadly the middle of the day.",
+    icon: "🕛"
+  },
+  {
+    id: "dusk",
+    englishTerm: "Dusk",
+    hindiTranslation: "गोधूलि (Godhuli), शाम (Shaam)",
+    description: "The darker stage of twilight immediately after sunset.",
+    icon: "🌆"
+  },
+  {
+    id: "dawn",
+    englishTerm: "Dawn",
+    hindiTranslation: "भोर (Bhor), सुबह (Subah)",
+    description: "The first light of day before sunrise; early morning twilight.",
+    icon: "🌄"
+  },
+  {
+    id: "afternoon",
+    englishTerm: "Afternoon",
+    hindiTranslation: "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)",
+    description: "The time after noon until late afternoon/early evening.",
+    icon: "☀️"
+  },
+  {
+    id: "midnight",
+    englishTerm: "Midnight",
+    hindiTranslation: "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)",
+    description: "Exactly 12:00 AM, the middle of the night.",
+    icon: "🌃"
+  },
+  {
+    id: "night",
+    englishTerm: "Night",
+    hindiTranslation: "रात (Raat), रात्रि (Raatri)",
+    description: "The period of darkness from sunset to sunrise.",
+    icon: "🌙"
+  },
+  {
+    id: "late-night",
+    englishTerm: "Late Night",
+    hindiTranslation: "रात गहराना (Raat Gahraana), देर रात (Der Raat)",
+    description: "The deep part of the night, usually well after midnight.",
+    icon: "🌌"
+  },
+  {
+    id: "twilight",
+    englishTerm: "Twilight",
+    hindiTranslation: "सांझ (Saanjh), गोधूलि बेला (Godhuli Bela)",
+    description: "Dim light period either just before sunrise or just after sunset.",
+    icon: "🌥️"
+  },
+  {
+    id: "sunrise",
+    englishTerm: "Sunrise / Daybreak",
+    hindiTranslation: "सूर्योदय (Sooryoday), भोर (Bhor)",
+    description: "The moment the sun appears above the horizon.",
+    icon: "🌅"
+  },
+  {
+    id: "sunset",
+    englishTerm: "Sunset",
+    hindiTranslation: "सूर्यास्त (Sooryaast), शाम (Shaam)",
+    description: "The moment the sun disappears below the horizon.",
+    icon: "🌇"
+  }
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <BackButton href="/Glossary" />
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button-waqt" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid waqt-grid"> {/* Added waqt-grid class */}
+      {
+        waqtData.map((entry) => (
+          <div class="flip__card" data-id={entry.id}>
+            <div class="flip__card__inner">
+              <div class="card card__front">
+                <div class="flip__button">
+                  <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
+                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span>
+                </div>
+                <div class="card-content-front">
+                  <div class="waqt-icon">{entry.icon}</div>
+                  <h2 class="text">{entry.englishTerm}</h2>
+                </div>
+                <div class="card__glow"></div>
+              </div>
+              <div class="card card__back">
+                <div class="flip__button">
+                  <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
+                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span>
+                </div>
+                <div class="card-content-back">
+                  <h3 class="hindi-term">{entry.hindiTranslation}</h3>
+                  <p class="description">{entry.description}</p>
+                </div>
+                <div class="card__glow"></div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </article>
+
+  <script>
+    // Script for "Flip All Cards" button on the page
+    const flipAllButtonPageWaqt = document.getElementById("flip-all-button-waqt") as HTMLButtonElement | null;
+    const pageFlipCardsWaqt = document.querySelectorAll(".waqt-grid .flip__card");
+    let allFlippedStatusWaqt = false;
+
+    if (flipAllButtonPageWaqt) {
+      flipAllButtonPageWaqt.addEventListener("click", () => {
+        allFlippedStatusWaqt = !allFlippedStatusWaqt;
+        pageFlipCardsWaqt.forEach((card) => {
+          const flipCardElement = card as HTMLElement;
+          if (allFlippedStatusWaqt) {
+            flipCardElement.classList.add("flipped");
+          } else {
+            flipCardElement.classList.remove("flipped");
+          }
+          const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+          allButtonsOnThisCard.forEach(btn => {
+            const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
+            const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
+            if (textLabel && symbolLabel) {
+              if (allFlippedStatusWaqt) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
+        });
+        flipAllButtonPageWaqt.textContent = allFlippedStatusWaqt ? "Reset All Cards" : "Flip All Cards";
+        flipAllButtonPageWaqt.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButtonPageWaqt) {
+            flipAllButtonPageWaqt.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Page's Flip All button for waqt not found.");
+    }
+
+    // Script for individual card interactions (mousemove and flip button)
+    const cardsForMouseInteractionWaqt = document.querySelectorAll(".waqt-grid .card");
+    cardsForMouseInteractionWaqt.forEach((cardElement) => {
+      cardElement.addEventListener("mousemove", (e: Event) => {
+        const htmlCardElement = cardElement as HTMLElement;
+        const rect = htmlCardElement.getBoundingClientRect();
+        const event = e as MouseEvent;
+        const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
+        const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
+        htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
+        htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
+      });
+    });
+
+    const individualFlipCardsWaqt = document.querySelectorAll(".waqt-grid .flip__card");
+    individualFlipCardsWaqt.forEach((card) => {
+      const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+      flipButtonsOnThisCard.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          card.classList.toggle("flipped");
+
+          const isFlipped = card.classList.contains("flipped");
+          
+          flipButtonsOnThisCard.forEach(btnInstance => {
+            const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+            const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+            if (textLabel && symbolLabel) {
+              if (isFlipped) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
+        });
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style is:global>
+  /* Color variables and base styles (copied from colours.astro for consistency) */
+  :root[data-theme="light"] {
+    --primary: #007bff;
+    --primary-light: #54aeff;
+    --secondary: #6c757d;
+    --text: #212529;
+    --background: #ffffff;
+    --border: #dee2e6;
+    --character-gradient-start: var(--primary);
+    --character-gradient-end: var(--primary-light);
+    --character-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  :root[data-theme="dark"] {
+    --primary: #0d6efd;
+    --primary-light: #5fa2ff;
+    --secondary: #adb5bd;
+    --text: #f8f9fa;
+    --background: #212529;
+    --border: #495057;
+    --character-gradient-start: hsl(211, 100%, 75%);
+    --character-gradient-end: hsl(211, 100%, 85%);
+    --character-shadow: 0 0 20px hsla(211, 100%, 75%, 0.2);
+  }
+
+  /* Styles for cards within .waqt-grid (adapted from .colours-grid) */
+  .waqt-grid .flip__card {
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    min-height: 250px; /* Adjusted min-height for potentially more content */
+  }
+  
+  .waqt-grid .flip__card .card-content-front,
+  .waqt-grid .flip__card .card-content-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 1.5rem; /* Increased padding */
+    box-sizing: border-box;
+  }
+
+  .waqt-grid .flip__card .waqt-icon {
+    font-size: 3rem; /* Size for the icon */
+    margin-bottom: 0.75rem;
+  }
+
+  .waqt-grid .flip__card .text { /* For the English Term on the front */
+    font-size: 1.75rem; 
+    font-weight: 600;
+    color: var(--text); 
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+  
+  .waqt-grid .flip__card .card-content-back .hindi-term {
+    font-size: 1.5rem; /* Size for Hindi term */
+    font-weight: bold;
+    color: var(--primary); /* Or var(--text) depending on preference */
+    margin-bottom: 0.5rem;
+  }
+
+  .waqt-grid .flip__card .card-content-back .description {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+
+  .waqt-grid .flip__card .card {
+    background: linear-gradient(145deg, var(--background), color-mix(in srgb, var(--background) 97%, var(--text) 3%));
+    border-radius: 1.25rem;
+    box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.05),
+      0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; 
+    flex-direction: column; 
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    height: 100%;
+  }
+
+  .waqt-grid .flip__card .card:hover .card__glow {
+    opacity: 1;
+  }
+
+  .waqt-grid .flip__card .card.card__front:hover .text { 
+    color: var(--primary); 
+  }
+   .waqt-grid .flip__card .card.card__front:hover .waqt-icon {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+
+
+  .waqt-grid .flip__card .flip__card__inner {
+    width: 100%;
+    height: 100%;
+    text-align: left; 
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .waqt-grid .flip__card .card__front,
+  .waqt-grid .flip__card .card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+  }
+
+  .waqt-grid .flip__card .card__back {
+    transform: rotateY(180deg);
+    
+  }
+
+  .waqt-grid .flip__card.flipped .flip__card__inner {
+    transform: rotateY(180deg);
+  }
+
+  .waqt-grid .flip__card .flip__button {
+    position: absolute;
+    top: 0.75rem; 
+    right: 0.75rem;
+    z-index: 10; 
+  }
+
+  .waqt-grid .flip__card .flip__button__text {
+    font-size: 0.875rem;
+    color: var(--secondary);
+    padding: 0.35rem 0.75rem;
+    background: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+
+  .waqt-grid .flip__card .flip__button__text:hover {
+    background: var(--primary);
+    color: var(--text-on-primary, #fff); 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .is-hidden {
+    display: none !important;
+  }
+
+  .waqt-grid .flip__card .card__glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      color-mix(in srgb, var(--primary) 10%, transparent) 0%,
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .waqt-grid .flip__card .text { 
+      font-size: 1.25rem;
+    }
+    .waqt-grid .flip__card .waqt-icon {
+      font-size: 2.5rem;
+    }
+    .waqt-grid .flip__card .card-content-back .hindi-term {
+      font-size: 1.2rem;
+    }
+    .waqt-grid .flip__card .card-content-back .description {
+      font-size: 0.85rem;
+    }
+     .waqt-grid .flip__card {
+        min-height: 220px; 
+    }
+  }
+
+  .waqt-grid.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 1.5rem; /* Increased gap slightly */
+    padding: 1rem; 
+  }
+
+  /* Page header specific to waqt.astro if needed, or rely on global styles */
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* To space out BackButton, Title, FlipAllButton */
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem; /* Add some padding if grid has padding */
+  }
+
+  .page-header .page-main-title {
+    margin-bottom: 0; 
+    text-align: center; /* Center title if BackButton and FlipAllButton are on sides */
+    flex-grow: 1; /* Allow title to take available space */
+  }
+  .flip__all__button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary);
+    background-color: var(--background);
+    color: var(--primary);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+  }
+
+  .flip__all__button:hover,
+  .flip__all__button.active {
+    background-color: var(--primary);
+    color: var(--text-on-primary, #fff);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--primary) 40%, transparent);
+  }
+</style>

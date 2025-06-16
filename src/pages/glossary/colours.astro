@@ -70,6 +70,7 @@ function parseNames(fullName: string): { english: string; hindi: string } {
                     <h2 class="text">{names.english}</h2>
                   </div>
                   <div class="card__glow"></div>
+                  <div class="corner-triangle" style={`--triangle-color: ${entry.cssColor};`}></div> {/* Added triangle */}
                 </div>
                 <div 
                   class="card card__back" 
@@ -346,5 +347,17 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
     gap: 1rem; 
     padding: 1rem; 
+  }
+
+  /* Added CSS for the corner triangle */
+  .corner-triangle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 50px solid var(--triangle-color); 
+    border-left: 50px solid transparent;      
+    z-index: 1; 
   }
 </style>
