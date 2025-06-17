@@ -152,6 +152,9 @@ const count = entries.length;
   align-items: center;
   gap: 20px;
   position: relative;
+  gap:1%;
+  margin-left: -4rem;
+  margin-right: -4rem;
 }
 
 .gallery-scroller {
@@ -180,6 +183,7 @@ const count = entries.length;
 .nav-button {
   width: var(--nav-button-size);
   height: var(--nav-button-size);
+  margin-bottom: 12%;
   border-radius: 50%;
   background: rgba(129, 140, 248, 0.2);
   border: none;
@@ -335,6 +339,9 @@ const count = entries.length;
     --item-gap: 30px;
     --nav-button-size: 40px;
   }
+  .gallery-page{
+    margin-left: 15%;
+  }
 }
 
 @media (max-width: 900px) {
@@ -348,6 +355,10 @@ const count = entries.length;
     font-size: 2rem;
   }
   
+  .gallery-page{
+    margin-left: 15%;
+  }
+
   .letter {
     font-size: 2rem;
   }
@@ -364,6 +375,10 @@ const count = entries.length;
     --item-gap: 20px;
     --scrollbar-height: 4px;
     --nav-button-size: 36px;
+  }
+  
+  .gallery-page{
+    margin-left: 15%;
   }
   
   .gallery-wrapper {
