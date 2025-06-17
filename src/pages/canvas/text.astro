@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/Base";
+import CanvasGenerator from "@/components/canvasDialogue.astro";
+import Help from "@/components/Help.astro";
+
+const meta = {
+  title: "Canvas Image Generator",
+  description: "Generate custom canvas images with text or time"
+};
+---
+
+<BaseLayout {meta}>
+  <Fragment slot="header-right">
+    <Help
+      title="Canvas Image Generator"
+      description="Generate custom canvas images with text or time. You can customize the text, font, and background color. You can also add the current time to the image."
+    />
+  </Fragment>
+  <CanvasGenerator />
+</BaseLayout>
