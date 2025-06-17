@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../../../layouts/Base.astro"; 
+import LetterCard from "../../../components/LetterCard.astro"; 
+import BackButton from "../../../components/ui/backButton.astro"; 
+import "../../../assets/styles/varnmala/greek-alphabet.css"; 
+
+
+export interface MorseAlphabetEntry {
+  id: number;
+  letter: string;
+  text?: string;
+  description?: string;
+  emoji?: string;      
+}
+
+const pageTitle = "Morse Code Alphabet";
+const category = "morse-alphabet";
+
+const morseAlphabetData: MorseAlphabetEntry[] = [
+  { id: 1, letter: "A", description: "First letter of the alphabet", emoji: ".-" },
+  { id: 2, letter: "B", description: "Second letter of alphabet", emoji: "-..." },
+  { id: 3, letter: "C", description: "Third letter of alphabet", emoji: "-.-." },
+  { id: 4, letter: "D", description: "Fourth letter of alphabet", emoji: "-.." },
+  { id: 5, letter: "E", description: "Fifth letter of alphabet", emoji: "." },
+  { id: 6, letter: "F", description: "Sixth letter of alphabet", emoji: "..-." },
+  { id: 7, letter: "G", description: "Seventh letter of alphabet", emoji: "--." },
+  { id: 8, letter: "H", description: "Eighth letter of alphabet", emoji: "...." },
+  { id: 9, letter: "I", description: "Ninth letter of alphabet", emoji: ".." },
+  { id: 10, letter: "J", description: "Tenth letter of alphabet", emoji: ".---" },
+  { id: 11, letter: "K", description: "Eleventh letter of alphabet", emoji: "-.-" },
+  { id: 12, letter: "L", description: "Twelfth letter of alphabet", emoji: ".-.." },
+  { id: 13, letter: "M", description: "Thirteenth letter of alphabet", emoji: "--" },
+  { id: 14, letter: "N", description: "Fourteenth letter of alphabet", emoji: "-." },
+  { id: 15, letter: "O", description: "Fifteenth letter of alphabet", emoji: "---" },
+  { id: 16, letter: "P", description: "Sixteenth letter of alphabet", emoji: ".--." },
+  { id: 17, letter: "Q", description: "Seventeenth letter of alphabet", emoji: "--.-" },
+  { id: 18, letter: "R", description: "Eighteenth letter of alphabet", emoji: ".-." },
+  { id: 19, letter: "S", description: "Nineteenth letter of alphabet", emoji: "..." },
+  { id: 20, letter: "T", description: "Twentieth letter of alphabet", emoji: "-" },
+  { id: 21, letter: "U", description: "Twenty-first letter of alphabet", emoji: "..-" },
+  { id: 22, letter: "V", description: "Twenty-second letter of alphabet", emoji: "...-" },
+  { id: 23, letter: "W", description: "Twenty-third letter of alphabet", emoji: ".--" },
+  { id: 24, letter: "X", description: "Twenty-fourth letter of alphabet", emoji: "-..-" },
+  { id: 25, letter: "Y", description: "Twenty-fifth letter of alphabet", emoji: "-.--" },
+  { id: 26, letter: "Z", description: "Twenty-sixth letter of alphabet", emoji: "--.." }
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <BackButton href="/alphabets" /> {}
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        morseAlphabetData.map((entry) => {
+          // Prepare item for LetterCard, similar to numbers/morse.astro
+          const letterCardItem = {
+            id: String(entry.id), 
+            letter: entry.letter,
+            text: entry.letter, // Show letter on front
+            description: entry.description || entry.letter, // Fallback for description
+            emoji: entry.emoji // Morse code string for the back (handled by LetterCard)
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+
+  <script>
+    // Script copied from numbers/morse.astro
+    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+    const flipCards = document.querySelectorAll(".flip__card");
+    let allFlipped = false;
+
+    if (flipAllButton) {
+      flipAllButton.addEventListener("click", () => {
+        allFlipped = !allFlipped;
+
+        flipCards.forEach((card) => {
+          const flipCardElement = card as HTMLElement; // Cast for classList
+          if (allFlipped) {
+            flipCardElement.classList.add("flipped");
+          } else {
+            flipCardElement.classList.remove("flipped");
+          }
+          const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button");
+          allButtonsOnThisCard.forEach(btn => {
+            const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null; // Cast
+            const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null; // Cast
+            if (textLabel && symbolLabel) {
+              if (allFlipped) {
+                textLabel.classList.add("is-hidden");
+                symbolLabel.classList.remove("is-hidden");
+              } else {
+                textLabel.classList.remove("is-hidden");
+                symbolLabel.classList.add("is-hidden");
+              }
+            }
+          });
+        });
+
+        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+        flipAllButton.classList.add("active");
+        setTimeout(() => {
+          if (flipAllButton) {
+            flipAllButton.classList.remove("active");
+          }
+        }, 300);
+      });
+    } else {
+      console.warn("Flip All button with ID 'flip-all-button' not found.");
+    }
+
+    // Mouse interaction script from numbers/morse.astro
+    const cardsForMouseInteraction = document.querySelectorAll(".alphabet-grid .card");
+    cardsForMouseInteraction.forEach((cardElement) => {
+      cardElement.addEventListener("mousemove", (e) => {
+        const htmlCardElement = cardElement as HTMLElement;
+        const event = e as MouseEvent;
+        const rect = htmlCardElement.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
+        const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
+        htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
+        htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
+      });
+    });
+
+    // Individual card flip logic (if LetterCard.astro doesn't handle its own flip button clicks internally)
+    // This assumes .flip__button is part of LetterCard's structure and is intended to flip its parent .flip__card
+    const individualFlipCards = document.querySelectorAll(".alphabet-grid .flip__card");
+    individualFlipCards.forEach((card) => {
+        const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+        flipButtonsOnThisCard.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                event.stopPropagation(); // Prevent card click if button is clicked
+                const currentCard = card as HTMLElement;
+                currentCard.classList.toggle("flipped");
+
+                const isFlipped = currentCard.classList.contains("flipped");
+
+                // Toggle labels on all flip buttons within this card
+                const allButtonsOnThisCardAgain = currentCard.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+                allButtonsOnThisCardAgain.forEach(btnInstance => {
+                    const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+                    const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+                    if (textLabel && symbolLabel) {
+                        textLabel.classList.toggle("is-hidden", isFlipped);
+                        symbolLabel.classList.toggle("is-hidden", !isFlipped);
+                    }
+                });
+            });
+        });
+    });
+  </script>
+</BaseLayout>
