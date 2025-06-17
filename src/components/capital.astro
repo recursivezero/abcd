@@ -5,7 +5,7 @@ export interface Props {
 }
 import "@/assets/styles/capital.css";
 const { stateList, utList } = Astro.props;
-// Create a function to generate a color class based on index
+
 function getColorClass(index: number) {
   const colorClasses = [
     "card-color-1",
@@ -23,7 +23,7 @@ function getColorClass(index: number) {
 
 <div class="geographical-mosaic">
   <nav class="head">
-    <h1>States of India</h1>
+    <h1>India's Geographical Mosaic</h1>
   </nav>
 
   <div class="controls-bar">

@@ -40,6 +40,7 @@
 .head {
   display: flex;
   height: 50px;
+  font-size:30px;
   color: light-dark(#667eea, #ffffff);
   background: light-dark(var(--header-gradient-light), var(--header-gradient-dark));
   border: 2px solid light-dark(#667eea, #06ffa5);
