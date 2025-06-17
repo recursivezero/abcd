@@ -46,21 +46,47 @@ import { NavbarLinks } from "@/utils/constants";
 
 <script>
   // codepen: https://codepen.io/xkeshav/pen/GgKKBWm
-  const popover = document.querySelector("#nav") as HTMLElement;
-  const themer = document.querySelector(".theme-toggle") as HTMLElement;
-  const placer = document.querySelector(".placement-toggle") as HTMLElement;
-  const hider = document.querySelector(".hider") as HTMLElement;
-  const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLElement;
+  const popover = document.querySelector("#nav");
+  const themer = document.querySelector(".theme-toggle");
+  const placer = document.querySelector(".placement-toggle");
+  const hider = document.querySelector(".hider");
+  const minimizeBtn = document.querySelector(".minimize-toggle");
 
-  const config = {
-    theme: "system"
-  };
   const themeOptions = ["system", "light", "dark"];
 
-  let debounce: any;
+  let debounce;
   document.documentElement.dataset.resizing = String(false);
-  document.documentElement.dataset.theme = "system";
   document.documentElement.dataset.placement = "top";
+
+  // 👇 Load theme from localStorage or fallback to "system"
+  let themeIndex = 0;
+  const storedTheme = localStorage.getItem("theme");
+  if (storedTheme && themeOptions.includes(storedTheme)) {
+    themeIndex = themeOptions.indexOf(storedTheme);
+  }
+  const config = {
+    theme: themeOptions[themeIndex],
+  };
+
+  const update = () => {
+    document.documentElement.dataset.theme = config.theme;
+    localStorage.setItem("theme", config.theme); // Save to localStorage
+  };
+
+  const sync = () => {
+    if (!document.startViewTransition) return update();
+    document.startViewTransition(() => update());
+  };
+
+  const switchTheme = () => {
+    themeIndex += 1;
+    config.theme = themeOptions[themeIndex % 3];
+    sync();
+  };
+
+  themer.addEventListener("click", switchTheme);
+
+  update(); // initial theme apply
 
   window.addEventListener("resize", () => {
     if (popover.matches(":popover-open")) popover.hidePopover();
@@ -77,41 +103,21 @@ import { NavbarLinks } from "@/utils/constants";
   };
   placer.addEventListener("click", switchPlace);
 
-  let themeIndex = 0;
-  const switchTheme = () => {
-    themeIndex += 1;
-    config.theme = themeOptions[themeIndex % 3];
-    sync();
-  };
-
-  themer.addEventListener("click", switchTheme);
-
-  const update = () => {
-    document.documentElement.dataset.theme = config.theme;
-  };
-
-  const sync = () => {
-    if (!document.startViewTransition) return update();
-    document.startViewTransition(() => update());
-  };
-
-  update();
   hider.removeAttribute("popovertargetaction");
+
   const reset = () => {
     document.documentElement.dataset.complete = String(false);
     document.documentElement.style.setProperty("--complete", "0");
     popover.style.setProperty("--ty", "0");
   };
-
   popover.addEventListener("toggle", reset);
 
   const toggleMinimize = () => {
     const nav = document.querySelector("#nav");
-    const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLButtonElement;
     nav?.classList.toggle("minimized");
     minimizeBtn?.classList.toggle("rotated");
     minimizeBtn.title = nav?.classList.contains("minimized") ? "Open sidebar" : "Close sidebar";
   };
-
   minimizeBtn?.addEventListener("click", toggleMinimize);
 </script>
+
