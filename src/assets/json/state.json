@@ -310,7 +310,18 @@
     "famous_place": "Hawa Mahal",
     "famous_dress":"Ghagra-Choli",
     "famous_language":"Rajasthani",
-    "famous_sport":"Polo"
+    "famous_sport":"Polo",
+    "state_color": "Pink",
+    "state_animal": "Camel",
+    "state_flower": "Rohida",
+    "surface_area": 342239,
+    "districts_count": 41,
+    "largest_city": "Jaipur",
+    "capital": "Jaipur",
+    "population": 68548437,
+    "literacy_rate": 66.11,
+    "languages": ["Rajasthani", "Hindi", "Marwari", "Mewari"],
+    "major_rivers": ["Chambal", "Luni", "Banas", "Mahi"]
   },
   {
     "id": "sikkim",

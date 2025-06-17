@@ -16,6 +16,17 @@ export interface StateData {
   famous_food?: string;
   famous_place?: string;
   famous_dress?: string;
-  famous_language?:string;
+  famous_language?: string;
   famous_sport?: string;
+  state_color?: string;
+  state_animal?: string;
+  state_flower?: string;
+  surface_area?: number;  // in square kilometers
+  districts_count?: number;
+  largest_city?: string;
+  capital?: string;
+  population?: number;
+  literacy_rate?: number;
+  languages?: string[];
+  major_rivers?: string[];
 }
