@@ -15,10 +15,16 @@
   --white: #ffffff;
   --black: #000000;
 
+  /* Light mode defaults */
   --card-bg: var(--white);
   --card-border: #e5e7eb;
   --text-primary: var(--gray-800);
   --text-secondary: #6b7280;
+  --text-on-primary: var(--white);
+  --surname-bg: rgba(0, 0, 0, 0.08);
+  --surname-hover-bg: rgba(0, 0, 0, 0.12);
+  --surname-card-bg: rgba(0, 0, 0, 0.05);
+  --surname-card-hover: rgba(0, 0, 0, 0.08);
 
   --border-radius: 0.5rem;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -26,13 +32,31 @@
   --transition: all 0.2s ease;
 }
 
-/* Dark mode colors */
+/* Dark mode overrides */
+[data-theme="dark"],
+.dark-mode {
+  --card-bg: var(--gray-800);
+  --card-border: #374151;
+  --text-primary: var(--gray-100);
+  --text-secondary: #9ca3af;
+  --text-on-primary: var(--white);
+  --surname-bg: rgba(255, 255, 255, 0.15);
+  --surname-hover-bg: rgba(255, 255, 255, 0.25);
+  --surname-card-bg: rgba(255, 255, 255, 0.05);
+  --surname-card-hover: rgba(255, 255, 255, 0.08);
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --card-bg: var(--gray-800);
     --card-border: #374151;
     --text-primary: var(--gray-100);
     --text-secondary: #9ca3af;
+    --text-on-primary: var(--white);
+    --surname-bg: rgba(255, 255, 255, 0.15);
+    --surname-hover-bg: rgba(255, 255, 255, 0.25);
+    --surname-card-bg: rgba(255, 255, 255, 0.05);
+    --surname-card-hover: rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -62,7 +86,7 @@
 .card-header {
   background: linear-gradient(to right, var(--primary-600), var(--primary-500));
   padding: 0.75rem 1rem;
-  color: var(--white);
+  color: var(--text-on-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,7 +130,7 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--surname-bg);
   padding: 0.35rem 0.7rem;
   border-radius: var(--border-radius);
   font-size: 0.8rem;
@@ -114,12 +138,12 @@
   border: none;
   cursor: pointer;
   transition: var(--transition);
-  color: var(--white);
-  align-items: start;
+  color: var(--text-primary);
 }
 
 .surname-count:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--surname-hover-bg);
+  color: var(--text-primary);
 }
 
 .copy-button {
@@ -170,14 +194,14 @@
 }
 
 .surname-card {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--surname-card-bg);
   border-radius: calc(var(--border-radius) - 0.1rem);
   padding: 0.5rem;
   transition: var(--transition);
 }
 
 .surname-card:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--surname-card-hover);
 }
 
 .surname-card p {
