@@ -2,7 +2,7 @@
 import { alphabetMapper } from "@/mappers/alphabet";
 import { IMAGE_DIR } from "@/utils/constants";
 import Base from "@/layouts/Base";
-import BackButton from "@/components/ui/backButton.astro" ;
+import BackButton from "@/components/ui/backButton.astro";
 import Help from "@/components/Help.astro";
 import "@/assets/styles/CardStack.css";
 
@@ -44,10 +44,10 @@ let currentIndex = 0;
     <div class="header-tools-wrapper"></div>
     <Help
       title="Stack Designer"
-      description="Swipe or press arrow keys to view the next alphabet-based stack design. "
+      description="Swipe or press arrow keys to view the next alphabet-based stack design."
     />
   </Fragment>
-    <BackButton/>
+  <BackButton />
   <main class="alphabet-page">
     <div class="alphabet-wrapper">
       <section
@@ -75,6 +75,7 @@ let currentIndex = 0;
                   role="img"
                   aria-label={`Letter ${key} - ${item.value}`}
                   tabindex={i === currentIndex ? "0" : "-1"}
+                  style="outline: none;"
                 >
                   <img
                     class="item-image"
@@ -113,27 +114,20 @@ let currentIndex = 0;
       </section>
 
       <div class="keyboard-hint" role="status" aria-live="polite">
-        Use arrow keys or press any letter key to navigate
+        Use arrow keys or swipe your screen to navigate
       </div>
     </div>
   </main>
 
-<script>(function () {
-  const container = document.querySelector('.alphabet-container')! as HTMLElement; // <-- fixed here
+<script>
+(function () {
+  const container = document.querySelector('.alphabet-container')! as HTMLElement;
   const items = Array.from(document.querySelectorAll('.alphabet-item')) as HTMLElement[];
   const navButtons = Array.from(document.querySelectorAll('[data-direction]')) as HTMLElement[];
 
   const count: number = parseInt(container.dataset.total || '0', 10);
   let currentIndex: number = parseInt(container.dataset.currentIndex || '0', 10);
   let isTransitioning = false;
-
-  const alphabetMap: Record<string, number> = {};
-  items.forEach((item, index) => {
-    const letter = item.dataset.letter;
-    if (letter) {
-      alphabetMap[letter.toUpperCase()] = index;
-    }
-  });
 
   function updateItemPositions(): void {
     items.forEach((item, index) => {
@@ -159,7 +153,7 @@ let currentIndex = 0;
       const newActiveItem = items[targetIndex];
       const previousActiveItem = items[currentIndex];
 
-      if (previousActiveItem) previousActiveItem.blur();
+      if (previousActiveItem) previousActiveItem.blur(); // Remove focus from previous item
 
       currentIndex = targetIndex;
       container.dataset.currentIndex = currentIndex.toString();
@@ -167,8 +161,10 @@ let currentIndex = 0;
 
       setTimeout(() => {
         isTransitioning = false;
-        if (newActiveItem && document.activeElement !== newActiveItem) {
+        if (newActiveItem) {
           newActiveItem.focus({ preventScroll: true });
+          // Ensure no unwanted outline by forcing a style reset
+          newActiveItem.style.outline = 'none';
         }
       }, 800);
     } else {
@@ -177,16 +173,10 @@ let currentIndex = 0;
       updateItemPositions();
 
       const activeItem = items[targetIndex];
-      if (activeItem && document.activeElement !== activeItem) {
+      if (activeItem) {
         activeItem.focus({ preventScroll: true });
+        activeItem.style.outline = 'none'; // Remove outline on instant navigation
       }
-    }
-  }
-
-  function navigateToLetter(letter: string): void {
-    const targetIndex = alphabetMap[letter.toUpperCase()];
-    if (targetIndex !== undefined) {
-      navigateToIndex(targetIndex);
     }
   }
 
@@ -225,12 +215,6 @@ let currentIndex = 0;
       case 'End':
         e.preventDefault();
         navigateToIndex(count - 1);
-        break;
-      default:
-        if (/^[a-zA-Z]$/.test(e.key)) {
-          e.preventDefault();
-          navigateToLetter(e.key);
-        }
         break;
     }
   });

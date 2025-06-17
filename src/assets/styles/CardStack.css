@@ -9,6 +9,7 @@
   initial-value: 0;
   inherits: true;
 }
+
 @property --v {
   syntax: '<number>';
   initial-value: 0;
@@ -64,6 +65,7 @@
 .alphabet-header {
   text-align: center;
   z-index: 100;
+  margin: 2% 0;
 }
 
 .alphabet-title {
@@ -111,14 +113,15 @@
   --sin: sin(var(--prg)*.5turn);
   
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center; 
   gap: 1rem;
   z-index: mod(calc(var(--n) - 1 + var(--i) - var(--k)), var(--n));
   transition: z-index var(--t) cubic-bezier(1, -.9, 0, 1.9);
@@ -149,9 +152,11 @@
   gap: 0.5rem;
   width: 100%;
   max-width: 400px;
-  translate: 0 calc(var(--not-top)*1lh);
+  translate: 0 0;
   opacity: var(--top);
-  transition: translate calc(.5*var(--t)) calc(var(--top)*.5*var(--t)), opacity calc(.5*var(--t)) calc(var(--top)*.5*var(--t));
+  transition: opacity calc(.5*var(--t)) calc(var(--top)*.5*var(--t));
+  position: absolute;
+  bottom: -120px; 
 }
 
 .letter {
@@ -163,34 +168,27 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-top: 2rem;
   line-height: 1;
-  min-height: 3rem;
 }
 
 .item-desc {
   font-size: 1.5rem;
-  margin-top: 100px;
   text-transform: uppercase;
   color: light-dark(#000000,#ffffff);
   font-weight: 600;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  margin: 0;
   line-height: 1.2;
-  min-height: 2rem;
 }
 
 .nav-buttons {
   display: flex;
   gap: 5rem;
-  margin-top: 100px;
   justify-content: center;
   align-items: center;
   z-index: 200;
-  margin-top: 1rem;
+  margin-top: 2rem;
   width: 100%;
   position: relative;
-  top: 5rem; 
 }
 
 .nav-button {
@@ -198,6 +196,7 @@
   border: none;
   width: 3.5rem;
   height: 3.5rem;
+  margin-top: 8%;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(129, 140, 248, 0.2), rgba(165, 180, 252, 0.1));
   color: #4f5ff0;
@@ -273,7 +272,6 @@
   border: 0;
 }
 
-/* Support for browsers without abs() or sign() */
 @supports not (scale: Abs(-2)) {
   .alphabet-container {
     --abs-p: max(var(--k) - var(--p), var(--p) - var(--k));
@@ -312,6 +310,20 @@
     width: 360px;
     height: 260px;
   }
+  
+  .text-content {
+    bottom: -60px;
+  }
+  
+  .nav-buttons {
+    gap: 3rem;
+    margin-top: 1.5rem;
+  }
+  
+  .nav-button {
+    width: 3rem;
+    height: 3rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -328,7 +340,6 @@
   .image-container {
     width: 300px;
     height: 360px;
-    margin-top: -50rem;
   }
   
   .item-image {
@@ -338,23 +349,30 @@
   
   .letter {
     font-size: 2.5rem;
-    min-height: 2.5rem;
   }
   
   .item-desc {
     font-size: 1.25rem;
-    min-height: 1.8rem;
+  }
+
+  .text-content {
+    bottom: -50px;
   }
 
   .nav-buttons {
-    gap: 3rem;
-    margin-top: -40rem; 
+    gap: 2rem;
+    margin-top: 1rem;
   }
 
   .nav-button {
-    width: 3rem;
-    height: 3rem;
-    margin-top: -50rem;
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .nav-button::before {
+    width: 10px;
+    height: 10px;
+    border-width: 0 2px 2px 0;
   }
 
   .keyboard-hint {
@@ -387,23 +405,24 @@
   
   .letter {
     font-size: 2rem;
-    min-height: 2rem;
   }
   
   .item-desc {
     font-size: 1.1rem;
-    min-height: 1.5rem;
+  }
+
+  .text-content {
+    bottom: -40px;
   }
 
   .nav-buttons {
-    gap: 2rem;
-    top: -10rem; 
+    gap: 1.5rem;
+    margin-top: 0.5rem;
   }
 
   .nav-button {
     width: 2.5rem;
     height: 2.5rem;
-    margin-top: -50rem;
   }
 
   .nav-button::before {
