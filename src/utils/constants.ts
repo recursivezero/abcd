@@ -133,7 +133,7 @@ export const NavbarLinks: LinkProps[] = [
   {
     name: "Canvas",
     title: "Canvas",
-    path: "/Canvas",
+    path: "/canvas",
     isActive: true
   },
   {

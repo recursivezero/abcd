@@ -245,7 +245,7 @@ textarea.metallic-textarea {
 .right-header-buttons {
   display: flex;
   align-items: center;
-    gap: 0.7rem; /* Gap between download, reset, and settings button */
+  gap: 0.7rem; /* Gap between download, reset, and settings button */
 }
 
 .design-container {
@@ -269,9 +269,10 @@ textarea.metallic-textarea {
 
 .preview-container {
   background-color: transparent;
-  border: 2px solid #0b0c10;
+  border: 3px solid #444460;
   border-radius: var(--border-radius);
   padding: 1rem;
+  box-shadow: inset 0px 0px 0 16px light-dark(#E2DFD2, #0f172a);
   width: 100%;
   height: 100%;
   display: flex;
@@ -346,10 +347,7 @@ textarea.metallic-textarea {
   flex-shrink: 0;
 }
 
-.metallic-button:hover .header-icon {
-  fill: light-dark(white, black);
-}
-
+/* Base styles for header tools button */
 .header-tools-btn {
   display: flex;
   align-items: center;
@@ -358,6 +356,7 @@ textarea.metallic-textarea {
   font-size: 0.9rem;
   width: auto;
   margin-top: 0;
+  transition: all var(--transition-speed) ease;
 }
 
 .header-tools-btn .button-text {
@@ -370,12 +369,46 @@ textarea.metallic-textarea {
   font-weight: bold;
 }
 
-.header-tools-btn:hover .button-text {
+.header-tools-btn:hover .button-text,
+.header-tools-btn.active-popover-trigger .button-text {
   max-width: 100px;
   opacity: 1;
   margin-left: 0.5em;
   color: light-dark(white, black);
 }
+
+/* Style for the active popover trigger button */
+.header-tools-btn.active-popover-trigger {
+  background: light-dark(#2a2a2a,#ffffff);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(var(--accent-color), 0.6);
+}
+
+.header-tools-btn.active-popover-trigger .header-icon,
+.header-tools-btn.active-popover-trigger .button-text-initial {
+  fill: var(--text-dark);
+  color: light-dark(#ffffff,#000000);
+}
+
+
+/* Style for initial text in new buttons */
+.popover-trigger-btn .button-text-initial,
+.header-tools-btn .button-text-initial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.2em;
+  height: 1.2em;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: light-dark(white, black);
+  transition: color var(--transition-speed) ease;
+}
+
+.popover-trigger-btn:hover .button-text-initial {
+  color: light-dark(white, black);
+}
+
 
 .control-group {
   margin-bottom: 1.5rem;
@@ -453,7 +486,7 @@ textarea.metallic-textarea {
 
 .format-btn {
   flex-grow: 0;
-  padding: 0.6rem 1.6rem;
+  padding: 0.6rem 2rem;
   font-weight: bold;
 }
 
@@ -487,6 +520,7 @@ textarea.metallic-textarea {
   width: 100%;
   font-weight: normal;
   font-style: normal;
+  color: light-dark(#000000, #ffffff);
   text-decoration: none;
   transition: all var(--transition-speed) ease;
 }
@@ -508,6 +542,7 @@ textarea.metallic-textarea {
   margin-top: 1rem;
   font-size: 0.9em;
   font-style: italic;
+  color: light-dark(#000000, #ffffff);
   opacity: 0.9;
   transition: all var(--transition-speed) ease;
 }
@@ -549,6 +584,51 @@ textarea.metallic-textarea {
 .background-image-option:hover:not(.active) {
   transform: scale(1.05);
 }
+
+.popover-details {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+  background: transparent;
+}
+
+.popover-details summary {
+  padding: 0.8rem 1rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  cursor: pointer;
+  outline: none;
+  list-style: none;
+  position: relative;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom var(--transition-speed) ease;
+}
+
+.popover-details[open] summary {
+  border-bottom-color: var(--section-border-color);
+}
+
+.popover-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.popover-details summary::after {
+  content: '+';
+  position: absolute;
+  right: 1rem;
+  font-size: 1.2em;
+  transition: transform var(--transition-speed) ease;
+}
+
+.popover-details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.popover-details[open]>div {
+  padding: 0 1rem 1rem 1rem;
+  margin-top: 0.5rem;
+}
+
 
 /* Collapsible Sections */
 .control-section {
@@ -628,10 +708,9 @@ textarea.metallic-textarea {
   position: relative;
 }
 
+/* General Popover styling */
 .design-tools-popover {
   position: absolute;
-  top: 100%;
-  right: 0;
   width: 320px;
   max-height: 80vh;
   overflow-y: auto;
@@ -645,8 +724,6 @@ textarea.metallic-textarea {
   visibility: hidden;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .design-tools-popover.open {
@@ -655,52 +732,28 @@ textarea.metallic-textarea {
   transform: translateY(0);
 }
 
-/* Specific styling for the new settings button container */
-.settings-button-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Specific Popover Positioning */
+#editTextPopover {
+  top: 90px;
+  right: 395px;
 }
 
-/* Specific styling for the new settings button */
-.settings-button {
-  background: light-dark(black, #444460);
-  border: 2px solid transparent;
-  color: var(--text-light);
-  padding: 0.6rem;
-  width: 45px;
-  height: 45px;
-  min-width: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  transition: all var(--transition-speed) ease;
-  cursor: pointer;
-  margin-top: 0;
-  font-size: 16px;
+#backgroundPopover {
+  top: 90px;
+  right: 327px;
 }
 
-.settings-button:hover {
-  background: var(--accent-color);
-  border-color: var(--purple-accent);
-  transform: scale(1.05);
-  color: var(--text-dark);
+#textStylePopover {
+  top: 90px;
+  right: 258px;
 }
 
-.settings-button:active {
-  transform: scale(0.98);
+#layoutPopover {
+  top: 90px;
+  right: 190px;
 }
 
-.settings-button .settings-icon {
-  width: 1.2em;
-  height: 1.2em;
-  fill: currentColor;
-  transition: fill var(--transition-speed) ease;
-  flex-shrink: 0;
-}
+
 /* === Responsiveness === */
 @media (max-width: 768px) {
   .design-container {
@@ -724,10 +777,6 @@ textarea.metallic-textarea {
     padding: 1rem;
   }
 
-  h1.gradient-text {
-    font-size: 1.8rem;
-  }
-
   select#fontFamily {
     background-position: right 0.5rem center;
     padding-right: 2.5rem;
@@ -742,6 +791,14 @@ textarea.metallic-textarea {
     transform: translateY(10px);
   }
 
+  #editTextPopover,
+  #backgroundPopover,
+  #textStylePopover,
+  #layoutPopover {
+    top: 60px;
+    right: 1rem;
+  }
+
   /* Header-right slot for mobile */
   [slot="header-right"] {
     justify-content: flex-end;
@@ -751,20 +808,7 @@ textarea.metallic-textarea {
     gap: 0.5rem;
   }
 
-  /* Settings button size for mobile */
-  .settings-button {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    font-size: 14px;
-  }
-
-  /* Settings SVG icon size for mobile */
-  .settings-button .settings-icon {
-    width: 1.2em;
-    height: 1.2em;
-  }
-
+  /* Header tools button size for mobile */
   .header-tools-btn {
     margin-top: 0;
     padding: 0.5rem 0.8rem;

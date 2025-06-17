@@ -34,8 +34,8 @@ const letterRows = [
   .container__keyboard {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
-    padding: 2rem;
+    gap: 1.2rem;
+    padding: 3rem;
     margin-top: 3rem;
     background: light-dark(#f8eeec, #87807c);
     border-radius: 0.5rem;
@@ -45,12 +45,12 @@ const letterRows = [
   .keyboard-row {
     display: flex;
     justify-content: center;
-    gap: 0.7rem;
+    gap: 1.2rem;
   }
 
   .keyboard-item {
-    width: 5rem;
-    height: 5rem;
+    width: 5.5rem;
+    height: 5.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,6 +61,7 @@ const letterRows = [
     transition: all 0.2s ease;
     font-weight: bold;
     user-select: none;
+    font-size: 1.7rem
   }
 
   .keyboard-item:hover {
@@ -76,14 +77,23 @@ const letterRows = [
     background-color: light-dark(grey, #0b1f54);
   }
 
-  @media (max-width: 640px) {
-    .letter-box,
-    .keyboard-item {
-      width: 2rem;
-      height: 2rem;
-      font-size: 0.875rem;
-    }
+@media (max-width: 640px) {
+  .container__keyboard {
+    gap: 0.8rem;
+    padding: 1.5rem;
   }
+
+  .keyboard-row {
+    gap: 0.8rem;
+  }
+
+  .letter-box,
+  .keyboard-item {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+}
 </style>
 
 <script>
