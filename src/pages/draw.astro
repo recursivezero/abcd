@@ -8,50 +8,49 @@ import ImageIcon from "@/assets/icons/image.svg";
 <Layout meta={{ title: "Draw by Keyboard" }}>
   <Fragment slot="header-right">
     <div class="controls-container">
-      <div class="controls">
-        <label for="toggleCase" class="control-item" data-tooltip="Toggle case">
-          <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
-          <span id="text" class="control-button case-toggle" role="switch" aria-checked="false"> Aa </span>
-        </label>
+    <div class="controls">
+  <label for="toggleCase" class="control-item" data-tooltip="Toggle case"><input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
+    <span id="text" class="control-button case-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle case"> Aa </span>
+  </label>
 
-        <label for="toggleFont" class="control-item" data-tooltip="Toggle font">
-          <input type="checkbox" name="change_font" id="toggleFont" class="visually-hidden hidden" />
-          <span id="font" class="control-button font-toggle" role="switch" aria-checked="false">
-            <span class="font-icon">F</span>
-            <span class="font-icon-alt">F</span>
-          </span>
-        </label>
+  <label for="toggleFont" class="control-item" data-tooltip="Toggle font">
+    <input type="checkbox" name="toggle_font" id="toggleFont" class="visually-hidden hidden" />
+    <span id="font" class="control-button font-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle font">
+      <span class="font-icon">F</span>
+      <span class="font-icon-alt">F</span>
+    </span>
+  </label>
 
-        <div class="control-group">
-          <label for="toggleImg" class="control-item" data-tooltip="Toggle Image">
-            <input type="checkbox" name="toggle_img" id="toggleImg" class="visually-hidden hidden" />
-            <span id="img" class="control-button img-toggle" role="switch" aria-checked="false">
-              <ImageIcon class="img-icon" />
-              <ImageIcon class="img-icon-alt" />
-            </span>
-          </label>
+  <div class="control-group">
+    <label for="toggleImg" class="control-item" data-tooltip="Toggle Image">
+      <input type="checkbox" name="toggle_img" id="toggleImg" class="visually-hidden hidden" />
+      <span id="img" class="control-button img-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle Image">
+        <ImageIcon class="img-icon" />
+        <ImageIcon class="img-icon-alt" />
+      </span>
+    </label>
 
-          <label for="toggleColor" class="control-item" data-tooltip="Toggle Font Color">
-            <input type="checkbox" name="toggle_color" id="toggleColor" class="visually-hidden hidden" />
-            <span class="control-button color-toggle" role="switch" aria-checked="false">
-              <span class="color-icon">T</span>
-              <span class="color-icon-alt">T</span>
-            </span>
-          </label>
-        </div>
+    <label for="toggleColor" class="control-item" data-tooltip="Toggle Font Color">
+      <input type="checkbox" name="toggle_color" id="toggleColor" class="visually-hidden hidden" />
+      <span class="control-button color-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle Font Color">
+        <span class="color-icon">T</span>
+        <span class="color-icon-alt">T</span>
+      </span>
+    </label>
+  </div>
 
-        <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
-          <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
-          <span class="control-button bg-toggle" role="switch" aria-checked="false">
-            <span class="bg-icon">🎨</span>
-            <span class="bg-icon-alt">🎨</span>
-          </span>
-        </label>
+  <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
+    <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
+    <span class="control-button bg-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle background">
+      <span class="bg-icon">🎨</span>
+      <span class="bg-icon-alt">🎨</span>
+    </span>
+  </label>
 
-        <div class="control-item" data-tooltip="Reset all">
-          <button class="control-button reset-button" id="resetButton">↻</button>
-        </div>
-      </div>
+  <div class="control-item" data-tooltip="Reset all">
+    <button class="control-button reset-button" id="resetButton" tabindex="0" aria-label="Reset all">↻</button>
+  </div>
+</div>
 
       <Help
         title="Draw Keyboard"
@@ -126,6 +125,16 @@ import ImageIcon from "@/assets/icons/image.svg";
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
     background-color: #2563eb;
+  }
+
+  .control-button:focus {
+    outline: none;
+  }
+
+  .control-button.keyboard-focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+    border-radius: 50px; 
   }
 
   .reset-button {
@@ -436,11 +445,12 @@ import ImageIcon from "@/assets/icons/image.svg";
     // Get all buttons and elements
     const caseToggle = document.querySelector(".case-toggle") as HTMLElement;
     const fontToggle = document.querySelector(".font-toggle") as HTMLElement;
-    const bgToggle = document.querySelector(".bg-toggle") as HTMLElement;
+    const imgToggle = document.querySelector(".img-toggle") as HTMLElement;
     const colorToggle = document.querySelector(".color-toggle") as HTMLElement;
+    const bgToggle = document.querySelector(".bg-toggle") as HTMLElement;
     const resetButton = document.getElementById("resetButton") as HTMLButtonElement;
 
-    // Get elements from the second file that need to be reset
+    // Get elements from the DrawKeyboard.astro that need to be reset
     const mainEl = document.querySelector("main");
     const boardDiv = document.getElementById("board");
     const charDiv = document.getElementById("char");
@@ -464,6 +474,17 @@ import ImageIcon from "@/assets/icons/image.svg";
       infoText: "Press any key",
       charText: ""
     };
+
+    const controlButtons = [
+      caseToggle,
+      fontToggle,
+      imgToggle,
+      colorToggle,
+      bgToggle,
+      resetButton
+    ];
+
+    let isKeyboardNav = false;
 
     // Simple toggle for case button
     caseToggle.addEventListener("click", () => {
@@ -494,8 +515,8 @@ import ImageIcon from "@/assets/icons/image.svg";
     });
 
     // Modified toggle for image button - stays active until reset
-    toggleImgSwitch.addEventListener("click", () => {
-      const isActive = toggleImgSwitch.classList.contains("active");
+    imgToggle.addEventListener("click", () => {
+      const isActive = imgToggle.classList.contains("active");
       if (!isActive) {
         // Reset background toggle when image is clicked
         bgToggle.classList.remove("active");
@@ -505,8 +526,8 @@ import ImageIcon from "@/assets/icons/image.svg";
         }
 
         // Activate image toggle
-        toggleImgSwitch.classList.add("active");
-        toggleImgSwitch.setAttribute("aria-checked", "true");
+        imgToggle.classList.add("active");
+        imgToggle.setAttribute("aria-checked", "true");
         if (toggleImgSwitch) {
           toggleImgSwitch.checked = true;
         }
@@ -534,8 +555,8 @@ import ImageIcon from "@/assets/icons/image.svg";
       const isActive = bgToggle.classList.contains("active");
       if (!isActive) {
         // Reset image toggle when background is clicked
-        toggleImgSwitch.classList.remove("active");
-        toggleImgSwitch.setAttribute("aria-checked", "false");
+        imgToggle.classList.remove("active");
+        imgToggle.setAttribute("aria-checked", "false");
         if (toggleImgSwitch) {
           toggleImgSwitch.checked = false;
         }
@@ -561,8 +582,8 @@ import ImageIcon from "@/assets/icons/image.svg";
       fontToggle.setAttribute("aria-checked", "false");
 
       // Reset image toggle button
-      toggleImgSwitch.classList.remove("active");
-      toggleImgSwitch.setAttribute("aria-checked", "false");
+      imgToggle.classList.remove("active");
+      imgToggle.setAttribute("aria-checked", "false");
 
       // Reset color toggle button
       colorToggle.classList.remove("active");
@@ -621,6 +642,44 @@ import ImageIcon from "@/assets/icons/image.svg";
       );
 
       console.log("Keyboard reset to original state");
+    });
+
+    controlButtons.forEach((button) => {
+      button.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          button.click(); 
+        } else if (event.key === "Tab") {
+          isKeyboardNav = true; 
+        }
+      });
+
+      button.addEventListener("focus", () => {
+        if (isKeyboardNav) {
+          controlButtons.forEach((btn) => btn.classList.remove("keyboard-focus"));
+          button.classList.add("keyboard-focus");
+        }
+      });
+
+      button.addEventListener("blur", () => {
+        button.classList.remove("keyboard-focus");
+      });
+      
+      button.addEventListener("mousedown", () => {
+        isKeyboardNav = false;
+        button.classList.remove("keyboard-focus");
+      });
+    });
+
+    document.addEventListener("mousedown", () => {
+      isKeyboardNav = false;
+      controlButtons.forEach((btn) => btn.classList.remove("keyboard-focus"));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") {
+        isKeyboardNav = true;
+      }
     });
   });
 </script>
