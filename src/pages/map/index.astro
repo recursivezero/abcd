@@ -14,15 +14,14 @@ type Category = {
 
 const categories: Category[] = Object.values(categoryData.categories);
 ---
-
 <BaseLayout meta={{ title: "Explore India" }}>
+  <a href="/sample" class="back" style="color: var(--text); width:30px;">
+    <BackIcon />
+  </a>
   <main class="explore-container">
     <div class="explore-header">
       <h1>Explore India</h1>
     </div>
-    <a href="/sample" class="back">
-      <BackIcon />
-    </a>
     <div class="explore-grid">
       {
         categories.map((category: Category) => (
@@ -63,7 +62,7 @@ const categories: Category[] = Object.values(categoryData.categories);
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    color: #ffffff;
+    color: var(--text);
   }
 
   .explore-header {
@@ -73,7 +72,7 @@ const categories: Category[] = Object.values(categoryData.categories);
   .explore-header h1 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--text);
   }
 
   .back {
@@ -84,10 +83,9 @@ const categories: Category[] = Object.values(categoryData.categories);
       align-items: center;
       gap: 0.1rem;
       text-decoration: none;
-      color: light-dark(black, white);
-      font-weight: 500;
       font-size: 1.1rem;
       transition: color 0.3s ease;
+      z-index: 100;
     }
 
   .explore-grid {
@@ -166,6 +164,10 @@ const categories: Category[] = Object.values(categoryData.categories);
 
     .explore-grid {
       grid-template-columns: 1fr;
+    }
+
+    .back{
+      display: none;
     }
   }
 </style>
