@@ -9,6 +9,7 @@ import MoonIcon from "@/assets/icons/moon.svg";
     width: 20px;
   }
 </style>
+
 <theme-toggle class="ms-2 sm:ms-4">
   <button type="button" id="toggle-theme" class="toggle__theme" aria-label="Toggle Dark Mode">
     <SunIcon />
@@ -17,82 +18,47 @@ import MoonIcon from "@/assets/icons/moon.svg";
 </theme-toggle>
 
 <script>
-  import { rootHasDarkClass } from "@/utils/dom-element";
-
   class ThemeToggle extends HTMLElement {
-    private button: HTMLButtonElement;
+    private button: HTMLButtonElement | null;
     private observer: MutationObserver | null;
-    private observerConfig = {
-      attributes: true,
-      attributeFilter: ["data-theme", "class", "data-placement", "data-resizing"]
-    };
 
     constructor() {
       super();
-      this.button = this.querySelector("button") as HTMLButtonElement;
+      this.button = this.querySelector("button");
       this.observer = null;
 
-      // set initial aria-pressed value
-      this.button.setAttribute("aria-pressed", String(rootHasDarkClass()));
+      this.button?.setAttribute(
+        "aria-pressed",
+        String(document.documentElement.dataset.theme === "dark")
+      );
 
-      // button clicked, fire event
-      this.button.addEventListener("click", this.handleThemeBtnClick);
+      this.button?.addEventListener("click", this.handleThemeClick);
     }
 
     connectedCallback() {
       const root = document.documentElement;
       const mutationCallback = (mutationsList: MutationRecord[]) => {
         for (const mutation of mutationsList) {
-          if (mutation.type === "attributes") {
-            if (mutation.attributeName === "data-theme") {
-              const newValue = root.getAttribute("data-theme");
-              console.log(
-                `The ${mutation.attributeName} attribute modified with %c${newValue}`,
-                `color:blue;background-color:yellow;padding-inline:0.5rem`,
-                `.`
-              );
-              this.button.setAttribute("aria-pressed", String(newValue === "dark"));
-            }
-            if (mutation.attributeName === "data-resizing") {
-              const newValue = root.getAttribute("data-resizing");
-              console.log(
-                `The ${mutation.attributeName} attribute modified with %c${newValue}`,
-                `color:red;background-color:yellow;padding-inline:0.5rem`,
-                `.`
-              );
-            }
-            if (mutation.attributeName === "class") {
-              const rootIsDark = (mutation.target as Element).classList.contains("dark");
-              console.log(
-                `The ${mutation.attributeName} attribute modified with %c${rootIsDark ? "dark" : "Light"}`,
-                `color:white;background-color:black;padding-inline:0.5rem`,
-                `.`
-              );
-              this.button.setAttribute("aria-pressed", String(rootIsDark));
-            }
+          if (mutation.attributeName === "data-theme") {
+            const newTheme = root.dataset.theme;
+            this.button?.setAttribute("aria-pressed", String(newTheme === "dark"));
           }
         }
       };
-      // MutationObserver for <html> class changes, as the theme could be changed elsewhere
+
       this.observer = new MutationObserver(mutationCallback);
-      this.observer.observe(root, this.observerConfig);
+      this.observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
     }
 
     disconnectedCallback() {
       this.observer?.disconnect();
     }
 
-    handleThemeBtnClick = () => {
-      let isDark = rootHasDarkClass();
-
-      // invert theme
-      let themeChangeEvent = new CustomEvent("theme-change", {
-        detail: {
-          theme: isDark ? "light" : "dark"
-        }
-      });
-      // dispatch event -> ThemeProvider.astro
-      document.dispatchEvent(themeChangeEvent);
+    handleThemeClick = () => {
+      const current = document.documentElement.dataset.theme || "light";
+      const next = current === "dark" ? "light" : "dark";
+      const event = new CustomEvent("theme-change", { detail: { theme: next } });
+      document.dispatchEvent(event);
     };
   }
 
