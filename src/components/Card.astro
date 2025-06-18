@@ -99,7 +99,6 @@ const processedData = initialData.map((branch, index) => ({
 </div>
 
 <script>
-
   document.addEventListener("DOMContentLoaded", () => {
     // Card expansion logic
     const cards = document.querySelectorAll(".card");
@@ -110,26 +109,26 @@ const processedData = initialData.map((branch, index) => ({
       
       toggleBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
-        
-        // Close all other cards first
-        cards.forEach(otherCard => {
-          if (otherCard !== card) {
-            otherCard.classList.remove("expanded");
-            const otherBtn = otherCard.querySelector(".surname-count");
-            const otherBody = otherCard.querySelector(".card-body");
-            otherBtn?.setAttribute("aria-expanded", "false");
-            otherBody?.setAttribute("aria-hidden", "true");
-          }
-        });
-        
-        // Toggle current card
         const isExpanded = card.classList.toggle("expanded");
         toggleBtn.setAttribute("aria-expanded", isExpanded.toString());
         cardBody.setAttribute("aria-hidden", (!isExpanded).toString());
       });
     });
 
-    // Copy button functionality
+    // Close cards when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".card")) {
+        cards.forEach(card => {
+          card.classList.remove("expanded");
+          const toggleBtn = card.querySelector(".surname-count");
+          const cardBody = card.querySelector(".card-body");
+          toggleBtn?.setAttribute("aria-expanded", "false");
+          cardBody?.setAttribute("aria-hidden", "true");
+        });
+      }
+    });
+
+    // Copy button functionality with fixed tooltip stacking
     document.querySelectorAll(".copy-button").forEach(btn => {
       btn.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -144,6 +143,12 @@ const processedData = initialData.map((branch, index) => ({
         const data = { gotra, deity, caste, surnames };
         navigator.clipboard.writeText(JSON.stringify(data, null, 2))
           .then(() => {
+            // Remove any existing tooltip first
+            const existingTooltip = btn.querySelector(".copied-tooltip");
+            if (existingTooltip) {
+              existingTooltip.remove();
+            }
+            
             const tooltip = document.createElement("span");
             tooltip.className = "copied-tooltip";
             tooltip.textContent = "Copied!";
