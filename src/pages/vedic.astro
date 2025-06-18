@@ -128,35 +128,68 @@ const timeUnits = vedicData.time_units;
         </div>
     </div>
     </div>
-    <div id="units-tab-content" class="tab-content">  
-      <h2 class="units__title">Vedic Time Journey</h2>  
-      <div class="units__timeline-container">
-      <div class="timeline-wrapper">
-        <div class="timeline-line"></div>
-        {timeUnits.map((unit, index) => (
-        <div class="timeline-node">
-          <div class="timeline-card">
-            <div class="unit__header">
-              <h3>{unit.name}</h3>
-            </div>
-            <div class="unit__details">
-              <div class="unit__value">
-                {unit.firstEquivalent.toLocaleString()} 
-              </div>
-              <div class="unit__value">
-                {unit.secondEquivalent.toLocaleString()} 
-              </div>
-              <div class="unit__value">
-                {unit.thirdEquivalent.toLocaleString()} 
-              </div>
-            </div>
-          </div>
-          <div class="timeline-dot"></div>
-        </div>
-        ))}
+<div id="units-tab-content" class="tab-content">  
+  <div class="units__timeline-container">
+    <!-- Parallax starfield layers -->
+    <div class="units__parallax-layer units__parallax-layer--back">
+      <div class="units__starfield">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
+    <div class="units__parallax-layer units__parallax-layer--back2">
+      <div class="units__starfield">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="units__parallax-layer units__parallax-layer--back3">
+      <div class="units__starfield">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="units__parallax-layer units__parallax-layer--base">
+      <div class="units__starfield">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <!-- Original content with timeline -->
+    <h2 class="units__title">Vedic Time Journey</h2>  
+    <div class="timeline-wrapper">
+      {timeUnits.map((unit, index) => (
+      <div class="timeline-node">
+        <div class="timeline-card">
+          <div class="unit__header">
+            <h3>{unit.name}</h3>
+          </div>
+          <div class="unit__details">
+            <div class="unit__value">
+              {unit.firstEquivalent.toLocaleString()} 
+            </div>
+            <div class="unit__value">
+              {unit.secondEquivalent.toLocaleString()} 
+            </div>
+            <div class="unit__value">
+              {unit.thirdEquivalent.toLocaleString()} 
+            </div>
+          </div>
+        </div>
+      </div>
+      ))}
+    </div>
   </div>
+</div>
   </div>
 
   <script is:inline define:vars={{ timeUnits }}>
