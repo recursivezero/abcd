@@ -1,4 +1,5 @@
 ---
+import BackIcon from "@/assets/icons/back.svg";
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/vedic.css";
 import vedicData from "@/assets/json/vedic.json";
@@ -7,6 +8,9 @@ const timeUnits = vedicData.time_units;
 ---
 <BaseLayout meta={{ title: "Vedic Time" }}>
   <div class="container__vedic">
+        <a href="/" class="back">
+      <BackIcon class="bck"/>
+    </a>
     <script type="text/javascript" async>
       const options = {
         year: "numeric",
@@ -275,17 +279,15 @@ const timeUnits = vedicData.time_units;
 
       // Tithi date display functionality
       const tithiNames = [
-      "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
-      "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी",
-      "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"
+      "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी","पंचमी", "षष्ठी","सप्तमी", "अष्टमी", "नवमी", "दशमी","एकादशी", "द्वादशी","त्रयोदशी", "चतुर्दशी","अमावस्या","प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी","पंचमी", "षष्ठी","सप्तमी", "अष्टमी", "नवमी", "दशमी","एकादशी", "द्वादशी","त्रयोदशी", "चतुर्दशी","पूर्णिमा"
     ];
 
     const getLunarDate = (gregorianDay) => {
       // Calculate the lunar day (1-30) based on the gregorian day
-      const lunarDay = (gregorianDay - 1) % 15 + 1; // Ensure it wraps correctly (1-15)
+      const lunarDay = (gregorianDay - 1); // Ensure it wraps correctly (1-15)
 
-      // Calculate the paksha
       const paksha = gregorianDay <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+      // Calculate the paksha
 
       // Determine tithi
       const tithi = lunarDay - 1;

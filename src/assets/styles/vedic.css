@@ -43,7 +43,24 @@
   min-height: 100vh;
   padding: 3rem 1.5rem;
 }
+  .back {
+  left:0;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  text-decoration: none;
+  color: light-dark(black, white);
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
 
+.back svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
 .vedic__layout {
   max-width: 1200px;
   margin: 0 auto;
