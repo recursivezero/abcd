@@ -284,8 +284,29 @@ const pageMeta = {
     // Get all popover triggers and popovers
 
     const popoverTriggers = document.querySelectorAll(".popover-trigger-btn");
-    const popovers = document.querySelectorAll(".design-tools-popover"); // Logic for opening and closing popovers
+    const popovers = document.querySelectorAll(".design-tools-popover");
 
+    // Function to close all open popovers
+    function closeAllPopovers() {
+      popovers.forEach((popover) => {
+        if (popover.classList.contains("open")) {
+          popover.classList.remove("open");
+          popover.setAttribute("aria-hidden", "true");
+          const relatedTrigger = document.querySelector(`[data-popover-target="${popover.id}"]`);
+          if (relatedTrigger) {
+            relatedTrigger.setAttribute("aria-expanded", "false");
+            relatedTrigger.classList.remove("active-popover-trigger");
+          }
+          // Ensure the details element is also closed
+          const detailsElement = popover.querySelector("details");
+          if (detailsElement) {
+            detailsElement.open = false;
+          }
+        }
+      });
+    }
+
+    // Logic for opening and closing popovers
     popoverTriggers.forEach((trigger) => {
       trigger.addEventListener("click", (event) => {
         const targetPopoverId = trigger.dataset.popoverTarget;
@@ -293,11 +314,15 @@ const pageMeta = {
 
         if (targetPopover) {
           const isOpen = targetPopover.classList.contains("open");
+          const detailsElement = targetPopover.querySelector("details");
 
+          // Close all other open popovers
           popovers.forEach((p) => {
             if (p !== targetPopover && p.classList.contains("open")) {
               p.classList.remove("open");
               p.setAttribute("aria-hidden", "true");
+              const closedDetails = p.querySelector("details");
+              if (closedDetails) closedDetails.open = false;
               const closedPopoverTrigger = document.querySelector(`[data-popover-target="${p.id}"]`);
               if (closedPopoverTrigger) {
                 closedPopoverTrigger.setAttribute("aria-expanded", "false");
@@ -311,6 +336,8 @@ const pageMeta = {
           trigger.setAttribute("aria-expanded", !isOpen);
           targetPopover.setAttribute("aria-hidden", isOpen);
           trigger.classList.toggle("active-popover-trigger", !isOpen);
+
+          if (detailsElement) detailsElement.open = !isOpen;
         }
       });
     });
@@ -332,17 +359,14 @@ const pageMeta = {
       });
 
       if (!clickedInsidePopover && !clickedOnTrigger) {
-        popovers.forEach((popover) => {
-          if (popover.classList.contains("open")) {
-            popover.classList.remove("open");
-            popover.setAttribute("aria-hidden", "true");
-            const relatedTrigger = document.querySelector(`[data-popover-target="${popover.id}"]`);
-            if (relatedTrigger) {
-              relatedTrigger.setAttribute("aria-expanded", "false");
-              relatedTrigger.classList.remove("active-popover-trigger");
-            }
-          }
-        });
+        closeAllPopovers();
+      }
+    });
+
+    // Close popover when pressing Escape key
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeAllPopovers();
       }
     });
 
@@ -391,7 +415,6 @@ const pageMeta = {
         { quote: "Act as if what you do makes a difference. It does.", author: "William James" },
         { quote: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" }
       ];
-
 
       const alignmentButtons = document.querySelectorAll(".alignment-btn");
       const backgroundImageOptions = document.querySelectorAll(".background-image-option");

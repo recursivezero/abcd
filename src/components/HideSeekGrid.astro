@@ -32,7 +32,7 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
     gap: 1rem;
     width: 100%;
     padding: 1rem;
-    background: #092745;
+    background: light-dark(#f8eeec, #87807c);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 1.5rem;
     box-shadow: var(--shadow-sm);
@@ -45,6 +45,7 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
   }
 
   .grid__item {
+    color: light-dark(#000000, #ffffff);
     --hue: calc(360 / 26 * var(--letter-index, 0));
     --letter-color: hsl(var(--hue) 85% 60%);
 
@@ -61,20 +62,20 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
     transition: var(--transition);
   }
 
-  .grid__item:hover {
-    background-color: var(--letter-color);
-    color: var(--text-light);
-    transform: translateY(-2px) rotateY(10deg);
-    box-shadow: var(--shadow-md);
-  }
-
   .grid__item.active {
     background-color: var(--letter-color);
     color: var(--text-light);
   }
+  
+  .grid__item:hover:not(.active) {
+    background: light-dark(#808080, #5f5f5f);
+    transform: translateY(-2px) rotateY(10deg);
+    box-shadow: var(--shadow-md);
+  }
 
   .grid__item:not(.active) {
-    background-color: var(--default-bg);
+    color: light-dark(#ffffff, #232025);
+    background-color: light-dark(#ffffff, #232025);
   }
 
   @media (max-width: 768px) {

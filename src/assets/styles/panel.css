@@ -119,6 +119,7 @@
 }
 
 .container__panel {
+  margin-top: 2rem;
   background: var(--bg);
   padding: 0 2rem 2rem;
   min-height: calc(100vh - 10rem);
@@ -127,6 +128,7 @@
   gap: 2rem;
   overflow: hidden;
   position: relative;
+  padding-top: 10rem;
 
   & .scene {
     width: var(--panel-width);
@@ -270,12 +272,12 @@
 }
 
 .settings-button {
-  background: light-dark(#000000, #444460);
-  border: 2px light-dark(#ffffff, #444460);
+  background: light-dark(#ffffff,#0f172a);
+  border: 1px solid #3b82f6;
   color: var(--text-light);
   padding: 0.6rem;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   min-width: 40px;
   border-radius: 50%;
   display: flex;
@@ -289,8 +291,6 @@
 }
 
 .settings-button:hover {
-  background: var(--accent-color);
-  border-color: var(--purple-accent);
   transform: scale(1.05);
   color: var(--text-dark);
 }
@@ -300,8 +300,9 @@
 }
 
 .settings-button .settings-icon {
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.4em;
+  height: 1.4em;
+  color: #3b82f6;
   fill: currentColor;
   transition: fill var(--transition-speed) ease;
   flex-shrink: 0;
@@ -370,6 +371,26 @@
 
 .panel-tools-popover .panel__options input[type="range"] {
   flex-grow: 1;
+}
+
+.back {
+  position: absolute;
+  left: 14rem;
+  top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  text-decoration: none;
+  color: light-dark(black, white);
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.back svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
 }
 
 /* === Responsiveness === */

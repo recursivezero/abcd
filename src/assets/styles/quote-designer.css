@@ -148,8 +148,8 @@ textarea.metallic-textarea {
 }
 
 .metallic-button {
-  background: light-dark(black, #444460);
-  border: 2px solid transparent;
+  background: light-dark(#ffffff, #0f172a);
+  border: 1px solid #1e293b;
   padding: 0.8rem 1.5rem;
   border-radius: var(--border-radius);
   position: relative;
@@ -245,7 +245,7 @@ textarea.metallic-textarea {
 .right-header-buttons {
   display: flex;
   align-items: center;
-  gap: 0.7rem; /* Gap between download, reset, and settings button */
+  gap: 0.7rem; /* Gap between buttons */
 }
 
 .design-container {
@@ -269,7 +269,7 @@ textarea.metallic-textarea {
 
 .preview-container {
   background-color: transparent;
-  border: 3px solid #444460;
+  border: 3px solid light-dark(#171717,#27334b);
   border-radius: var(--border-radius);
   padding: 1rem;
   box-shadow: inset 0px 0px 0 16px light-dark(#E2DFD2, #0f172a);
@@ -340,9 +340,9 @@ textarea.metallic-textarea {
 }
 
 .header-icon {
-  width: 1.4em;
-  height: 1.4em;
-  fill: light-dark(white, black);
+  width: 1.6em;
+  height: 1.6em;
+  fill: light-dark(#000000, #ffffff);
   transition: fill var(--transition-speed) ease;
   flex-shrink: 0;
 }
@@ -365,7 +365,7 @@ textarea.metallic-textarea {
   white-space: nowrap;
   transition: max-width 0.3s ease-out, opacity 0.3s ease-out;
   opacity: 0;
-  color: light-dark(white, black);
+  color: light-dark(#000000, #ffffff);
   font-weight: bold;
 }
 
@@ -374,12 +374,12 @@ textarea.metallic-textarea {
   max-width: 100px;
   opacity: 1;
   margin-left: 0.5em;
-  color: light-dark(white, black);
+  color: light-dark(#000000, #ffffff);
 }
 
 /* Style for the active popover trigger button */
 .header-tools-btn.active-popover-trigger {
-  background: light-dark(#2a2a2a,#ffffff);
+  background: light-dark(#808080, #21213b);
   border-color: var(--accent-color);
   box-shadow: 0 0 10px rgba(var(--accent-color), 0.6);
 }
@@ -387,7 +387,7 @@ textarea.metallic-textarea {
 .header-tools-btn.active-popover-trigger .header-icon,
 .header-tools-btn.active-popover-trigger .button-text-initial {
   fill: var(--text-dark);
-  color: light-dark(#ffffff,#000000);
+  color: light-dark(#000000, #ffffff);
 }
 
 
@@ -399,14 +399,14 @@ textarea.metallic-textarea {
   align-items: center;
   width: 1.2em;
   height: 1.2em;
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: bold;
-  color: light-dark(white, black);
+  color: light-dark(#000000, #ffffff);
   transition: color var(--transition-speed) ease;
 }
 
 .popover-trigger-btn:hover .button-text-initial {
-  color: light-dark(white, black);
+  color: light-dark(#000000, #ffffff);
 }
 
 
