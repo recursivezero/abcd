@@ -1,4 +1,5 @@
 ---
+import BackIcon from "@/assets/icons/back.svg";
 import "@/assets/styles/kannada.css";
 interface LetterPair {
   hindi: string;
@@ -258,6 +259,9 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
 };
 ---
 <div class="language-letters-container">
+          <a href="/" class="back">
+      <BackIcon class="bck"/>
+    </a>
   <div class="main-header">  
   <div class="toggle-container">
     <div class="dropdown-wrapper">
