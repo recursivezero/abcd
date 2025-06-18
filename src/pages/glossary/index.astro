@@ -1,5 +1,5 @@
 ---
-
+import BackIcon from "@/assets/icons/back.svg";
 import BaseLayout from "../../layouts/Base.astro";
 // Assuming global styles or styles from alphabets/index.css are desired for consistency
 
@@ -76,7 +76,10 @@ const glossarySections: GlossarySection[] = [
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
-  <section class="container__alphabets"> {}
+  <section class="container__alphabets">
+    <a href="/" class="back">
+      <BackIcon class="bck"/>
+    </a> 
     <div class="alphabets__header"> {}
       <h1>{pageTitle}</h1>
     </div>
@@ -106,6 +109,27 @@ const glossarySections: GlossarySection[] = [
 
 {/* Styles copied directly from src/pages/numbers/index.astro  */}
 <style>
+
+   .back {
+  left:0;
+  top: 1rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  text-decoration: none;
+  color: light-dark(black, white);
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.back svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
+
   .card__inner {
     background: var(--background);
     border: 2px solid var(--border);

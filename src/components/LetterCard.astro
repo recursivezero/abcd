@@ -91,7 +91,7 @@ const { item, category } = Astro.props;
       font-size: clamp(3rem, 6vw, 5rem);
       font-weight: 800;
       margin: 0;
-      line-height: 1;
+      line-height: 1.2; /* Adjusted line-height */
       background: linear-gradient(
         135deg,
         var(--character-gradient-start, var(--primary)) 0%,
@@ -101,7 +101,7 @@ const { item, category } = Astro.props;
       background-clip: text;
       color: transparent;
       text-shadow: var(--character-shadow);
-      text-align: left;
+      text-align: center; /* Adjusted text-align */
     }
 
     & .flipped__text {
@@ -140,6 +140,7 @@ const { item, category } = Astro.props;
       &:hover .card__glow {
         opacity: 1;
       }
+      
 
       &:hover .text {
         background: linear-gradient(135deg, var(--primary), var(--primary-light));

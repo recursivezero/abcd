@@ -1,16 +1,15 @@
 ---
-import BaseLayout from "../../../layouts/Base.astro"; 
-import LetterCard from "../../../components/LetterCard.astro"; 
-import BackButton from "../../../components/ui/backButton.astro"; 
-import "../../../assets/styles/varnmala/greek-alphabet.css"; 
-
+import BaseLayout from "../../../layouts/Base.astro";
+import LetterCard from "../../../components/LetterCard.astro";
+import BackButton from "../../../components/ui/backButton.astro";
+import "../../../assets/styles/varnmala/greek-alphabet.css";
 
 export interface MorseAlphabetEntry {
   id: number;
   letter: string;
   text?: string;
   description?: string;
-  emoji?: string;      
+  emoji?: string;
 }
 
 const pageTitle = "Morse Code Alphabet";
@@ -59,9 +58,9 @@ const morseAlphabetData: MorseAlphabetEntry[] = [
         morseAlphabetData.map((entry) => {
           // Prepare item for LetterCard, similar to numbers/morse.astro
           const letterCardItem = {
-            id: String(entry.id), 
+            id: String(entry.id),
             letter: entry.letter,
-            text: entry.letter, // Show letter on front
+            text: "", // Remove letter from text
             description: entry.description || entry.letter, // Fallback for description
             emoji: entry.emoji // Morse code string for the back (handled by LetterCard)
           };
@@ -134,28 +133,28 @@ const morseAlphabetData: MorseAlphabetEntry[] = [
     // This assumes .flip__button is part of LetterCard's structure and is intended to flip its parent .flip__card
     const individualFlipCards = document.querySelectorAll(".alphabet-grid .flip__card");
     individualFlipCards.forEach((card) => {
-        const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+      const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
 
-        flipButtonsOnThisCard.forEach((button) => {
-            button.addEventListener("click", (event) => {
-                event.stopPropagation(); // Prevent card click if button is clicked
-                const currentCard = card as HTMLElement;
-                currentCard.classList.toggle("flipped");
+      flipButtonsOnThisCard.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.stopPropagation(); // Prevent card click if button is clicked
+          const currentCard = card as HTMLElement;
+          currentCard.classList.toggle("flipped");
 
-                const isFlipped = currentCard.classList.contains("flipped");
+          const isFlipped = currentCard.classList.contains("flipped");
 
-                // Toggle labels on all flip buttons within this card
-                const allButtonsOnThisCardAgain = currentCard.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
-                allButtonsOnThisCardAgain.forEach(btnInstance => {
-                    const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
-                    const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
-                    if (textLabel && symbolLabel) {
-                        textLabel.classList.toggle("is-hidden", isFlipped);
-                        symbolLabel.classList.toggle("is-hidden", !isFlipped);
-                    }
-                });
-            });
+          // Toggle labels on all flip buttons within this card
+          const allButtonsOnThisCardAgain = currentCard.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+          allButtonsOnThisCardAgain.forEach(btnInstance => {
+            const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+            const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+            if (textLabel && symbolLabel) {
+              textLabel.classList.toggle("is-hidden", isFlipped);
+              symbolLabel.classList.toggle("is-hidden", !isFlipped);
+            }
+          });
         });
+      });
     });
   </script>
 </BaseLayout>

@@ -70,24 +70,14 @@ const shapesData: ShapeEntry[] = [
     letter: "◆", // Black Diamond U+25C6
     text: "Rhombus ",
     description: "A quadrilateral with all 4 sides of equal length. Opposite angles are equal."
-  },
-
-  // {
-  //   id: "parallelogram",
-  //   letter: "▰", // Black Parallelogram U+25B0
-  //   text: "Parallelogram (समांतर चतुर्भुज)",
-  //   description: "A quadrilateral with two pairs of parallel sides. Opposite sides are equal in length."
-  // }
+  }
 ];
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
   <article class="container__page alphabet-page-container">
-    {}
     <div class="page-header">
-      {}
       <BackButton href="/Glossary" />
-      {}
       <h1 class="page-main-title">{pageTitle}</h1>
       <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
     </div>
@@ -99,7 +89,8 @@ const shapesData: ShapeEntry[] = [
           const letterCardItem = {
             ...entry, // Spread all properties from the entry
             text: entry.text || "",
-            description: entry.description || ""
+            description: entry.description || "",
+            emoji: entry.letter // Use letter as emoji
           };
           return <LetterCard item={letterCardItem} category={category} />;
         })
