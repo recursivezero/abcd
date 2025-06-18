@@ -16,18 +16,25 @@ interface WaqtEntry {
 
 const waqtData: WaqtEntry[] = [
   {
+    id: "dawn",
+    englishTerm: "Dawn",
+    hindiTranslation: "भोर (Bhor), सुबह (Subah)",
+    description: "The first light of day before sunrise; early morning twilight.",
+    icon: "🌄"
+  },
+  {
+    id: "sunrise",
+    englishTerm: "Sunrise ",
+    hindiTranslation: "सूर्योदय (Sooryoday), भोर (Bhor)",
+    description: "The moment the sun appears above the horizon.",
+    icon: "🌅"
+  },
+  {
     id: "morning",
     englishTerm: "Morning",
     hindiTranslation: "सुबह (Subah), प्रातः (Praatah)",
     description: "The early part of the day, from dawn until around noon.",
     icon: "🌅"
-  },
-  {
-    id: "evening",
-    englishTerm: "Evening",
-    hindiTranslation: "शाम (Shaam)",
-    description: "The period from late afternoon until nightfall/dusk.",
-    icon: "🌇"
   },
   {
     id: "noon",
@@ -37,20 +44,6 @@ const waqtData: WaqtEntry[] = [
     icon: "🕛"
   },
   {
-    id: "dusk",
-    englishTerm: "Dusk",
-    hindiTranslation: "गोधूलि (Godhuli), शाम (Shaam)",
-    description: "The darker stage of twilight immediately after sunset.",
-    icon: "🌆"
-  },
-  {
-    id: "dawn",
-    englishTerm: "Dawn",
-    hindiTranslation: "भोर (Bhor), सुबह (Subah)",
-    description: "The first light of day before sunrise; early morning twilight.",
-    icon: "🌄"
-  },
-  {
     id: "afternoon",
     englishTerm: "Afternoon",
     hindiTranslation: "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)",
@@ -58,25 +51,11 @@ const waqtData: WaqtEntry[] = [
     icon: "☀️"
   },
   {
-    id: "midnight",
-    englishTerm: "Midnight",
-    hindiTranslation: "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)",
-    description: "Exactly 12:00 AM, the middle of the night.",
-    icon: "🌃"
-  },
-  {
-    id: "night",
-    englishTerm: "Night",
-    hindiTranslation: "रात (Raat), रात्रि (Raatri)",
-    description: "The period of darkness from sunset to sunrise.",
-    icon: "🌙"
-  },
-  {
-    id: "late-night",
-    englishTerm: "Late Night",
-    hindiTranslation: "रात गहराना (Raat Gahraana), देर रात (Der Raat)",
-    description: "The deep part of the night, usually well after midnight.",
-    icon: "🌌"
+    id: "evening",
+    englishTerm: "Evening",
+    hindiTranslation: "शाम (Shaam)",
+    description: "The period from late afternoon until nightfall/dusk.",
+    icon: "🌇"
   },
   {
     id: "twilight",
@@ -86,11 +65,11 @@ const waqtData: WaqtEntry[] = [
     icon: "🌥️"
   },
   {
-    id: "sunrise",
-    englishTerm: "Sunrise / Daybreak",
-    hindiTranslation: "सूर्योदय (Sooryoday), भोर (Bhor)",
-    description: "The moment the sun appears above the horizon.",
-    icon: "🌅"
+    id: "dusk",
+    englishTerm: "Dusk",
+    hindiTranslation: "गोधूलि (Godhuli), शाम (Shaam)",
+    description: "The darker stage of twilight immediately after sunset.",
+    icon: "🌆"
   },
   {
     id: "sunset",
@@ -98,6 +77,27 @@ const waqtData: WaqtEntry[] = [
     hindiTranslation: "सूर्यास्त (Sooryaast), शाम (Shaam)",
     description: "The moment the sun disappears below the horizon.",
     icon: "🌇"
+  },
+  {
+    id: "night",
+    englishTerm: "Night",
+    hindiTranslation: "रात (Raat), रात्रि (Raatri)",
+    description: "The period of darkness from sunset to sunrise.",
+    icon: "🌙"
+  },
+  {
+    id: "midnight",
+    englishTerm: "Midnight",
+    hindiTranslation: "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)",
+    description: "Exactly 12:00 AM, the middle of the night.",
+    icon: "🌃"
+  },
+  {
+    id: "late-night",
+    englishTerm: "Late Night",
+    hindiTranslation: "रात गहराना (Raat Gahraana), देर रात (Der Raat)",
+    description: "The deep part of the night, usually well after midnight.",
+    icon: "🌌"
   }
 ];
 ---
@@ -256,6 +256,26 @@ const waqtData: WaqtEntry[] = [
     --character-gradient-end: hsl(211, 100%, 85%);
     --character-shadow: 0 0 20px hsla(211, 100%, 75%, 0.2);
   }
+
+  .back {
+  left:0;
+  top: 1rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  text-decoration: none;
+  color: light-dark(black, white);
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.back svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
 
   /* Styles for cards within .waqt-grid (adapted from .colours-grid) */
   .waqt-grid .flip__card {

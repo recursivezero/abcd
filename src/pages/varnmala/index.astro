@@ -1,4 +1,5 @@
 ---
+import BackIcon from "@/assets/icons/back.svg";
 import "@/assets/styles/varnmala/index.css";
 import BaseLayout from "@/layouts/Base";
 
@@ -34,6 +35,9 @@ const sections = [
 
 <BaseLayout meta={{ title: "Varnmala" }}>
   <div class="container__varnmala">
+    <a href="/" class="back">
+      <BackIcon class="bck"/>
+    </a>
     <ul class="list__alphabets">
       {
         sections.map((section, index) => (

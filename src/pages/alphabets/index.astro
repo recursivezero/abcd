@@ -1,4 +1,5 @@
 ---
+import BackIcon from "@/assets/icons/back.svg";
 import "@/assets/styles/alphabets/index.css";
 import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
@@ -12,6 +13,9 @@ const getCategoryDescription = (category: string) => alphabetData[category as ke
 
 <BaseLayout meta={{ title: "Alphabets Explorer" }}>
   <section class="container__alphabets">
+    <a href="/" class="back">
+      <BackIcon class="bck"/>
+    </a>
     <div class="alphabets__header">
       <h1>Alphabet Categories</h1>
       <p class="subtitle">Choose a category to discover different alphabet representations</p>

@@ -207,6 +207,18 @@ function parseNames(fullName: string): { english: string; hindi: string } {
   }
 
   /* Styles for cards within .colours-grid */
+
+  #back-btn {
+    position: fixed; /* Changed to fixed */
+    top: 10px;
+    left: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; /* Added z-index */
+  }
   .colours-grid .flip__card {
     width: 100%;
     height: 100%;
@@ -353,11 +365,11 @@ function parseNames(fullName: string): { english: string; hindi: string } {
   .corner-triangle {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     width: 0;
     height: 0;
-    border-top: 50px solid var(--triangle-color); 
-    border-left: 50px solid transparent;      
-    z-index: 1; 
+    border-top: 70px solid var(--triangle-color); /* Increased size */
+    border-right: 70px solid transparent; /* Increased size */
+    z-index: 1;
   }
 </style>
