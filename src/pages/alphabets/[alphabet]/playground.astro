@@ -73,7 +73,7 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
       spellDiv.style.fontSize = "";
       spellDiv.style.marginTop = "";
       spellDiv.style.display = "block";
-      spellDiv.innerHTML = info.text || info.meaning || "";
+      spellDiv.innerHTML = info.text ||  "";
       spellDiv.style.color = color;
 
       document.documentElement.style.setProperty("--steps", (info.text || info.meaning || "").length * 2);
