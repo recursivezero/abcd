@@ -6,7 +6,7 @@ import AlphabetComponent from "@/components/Alphabet.astro";
 import Help from "@/components/Help.astro";
 import BackButton from "@/components/ui/backButton.astro";
 
-// Import consonants and the vowel list
+// Imported consonants and the vowel list
 import { varnmala_hindi, hindiVowelList } from "@/utils/characters";
 
 // Vowels to be excluded
@@ -23,10 +23,7 @@ const formattedVowelList = hindiVowelList
 
 <BaseLayout meta={{ title: "Hindi" }}>
   <Fragment slot="header-right">
-    {/* <nav class="tabs">
-      <button class="tab active" data-target="consonants">Consonants</button>
-      <button class="tab" data-target="vowels">Vowels</button>
-    </nav> */}
+
     <Help
       title="Hindi"
       description="It is a collection of alphabets in Hindi. It is used to teach kids the basics of language."

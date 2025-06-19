@@ -68,7 +68,7 @@ const processedSunSignsData = sunSignsDataRaw.map(sign => {
 </BaseLayout>
 
 <script>
-  // User's existing script for flip all
+  // existing script for flip all
   const flipAllButton = document.getElementById('flip-all-sunsigns-button');
   let allCardsFlipped = false;
 
@@ -95,10 +95,8 @@ const processedSunSignsData = sunSignsDataRaw.map(sign => {
       }, 300);
     });
   }
-</script>
 
-<script>
-  // User's existing script for mousemove and individual card flip
+  // existing script for mousemove and individual card flip
   const cards = document.querySelectorAll(".card");
   cards.forEach((letter) => {
     letter.addEventListener("mousemove", (e: Event) => {

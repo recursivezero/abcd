@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/Base";
-import "@/assets/styles/varnmala/english.css";
+import "@/assets/styles/varnmala/speak.css";
 import Help from "@/components/Help.astro";
 import BackButton from "@/components/ui/backButton.astro";
 ---
@@ -55,6 +55,9 @@ import BackButton from "@/components/ui/backButton.astro";
     <article class="container__hindi" id="letterContainer">
       <div class="letter">A</div>
     </article>
+    </article>
+</BaseLayout>
+
     <script>
       const letterDiv = document.querySelector(".letter") as HTMLDivElement;
       const controls = document.getElementById("controls") as HTMLElement;
@@ -165,34 +168,3 @@ import BackButton from "@/components/ui/backButton.astro";
         }
       });
     </script>
-  </article>
-  <style>
-    .bg-gradient3 {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-    }
-    .bg-gradient4 {
-      background: linear-gradient(135deg, #2af598, #009efd);
-    }
-    .bg-gradient5 {
-      background: linear-gradient(135deg, #f83600, #f9d423);
-    }
-    .bg-pattern2 {
-      background-image: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(0, 0, 0, 0.05) 10px,
-        rgba(0, 0, 0, 0.05) 20px
-      );
-    }
-    .bg-pattern3 {
-      background-image: repeating-radial-gradient(
-        circle,
-        transparent,
-        transparent 10px,
-        rgba(0, 0, 0, 0.05) 10px,
-        rgba(0, 0, 0, 0.05) 20px
-      );
-    }
-  </style>
-</BaseLayout>

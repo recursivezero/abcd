@@ -1,7 +1,6 @@
 ---
 import "@/assets/styles/varnmala/alphabet.css";
 import BaseLayout from "@/layouts/Base";
-
 import AlphabetComponent from "@/components/Alphabet.astro";
 import Help from "@/components/Help.astro";
 import BackButton from "@/components/ui/backButton.astro";
@@ -11,10 +10,6 @@ import { varnmala_english } from "@/utils/characters";
 
 <BaseLayout meta={{ title: "English" }}>
   <Fragment slot="header-right">
-    <!-- <nav class="tabs">
-      <button class="tab active" data-target="english">English</button>
-      <button class="tab" data-target="hindi">Hindi</button>
-    </nav> -->
     <Help
       title="English "
       description="It is a collection of alphabets in English. It is used to teach kids the basics of language."
@@ -26,10 +21,9 @@ import { varnmala_english } from "@/utils/characters";
     <section id="english">
       <AlphabetComponent list={varnmala_english} title="English" />
     </section>
-    <!-- <section id="hindi">
-      <AlphabetComponent list={varnmala_hindi} title="Hindi" />
-    </section> -->
+    
   </article>
+  </BaseLayout>
   <script>
     const tabs = document.querySelectorAll(".tab");
 
@@ -52,4 +46,4 @@ import { varnmala_english } from "@/utils/characters";
       });
     });
   </script>
-</BaseLayout>
+
