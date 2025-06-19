@@ -52,9 +52,9 @@ const processedSunSignsData = sunSignsDataRaw.map(sign => {
 });
 ---
 <BaseLayout meta={{ title: pageTitle }}>
+  <BackButton href="/glossary" />
   <div class="container__page sun-sign-page-container">
     <div class="page-header">
-     <BackButton href="/varnmala" />
       <h1 class="page-main-title">{pageTitle}</h1>
       <button id="flip-all-sunsigns-button" class="flip__all__button">Flip All Cards</button>
     </div>

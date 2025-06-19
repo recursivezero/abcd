@@ -31,9 +31,10 @@ const morseNumbersData: MorseNumberEntry[] = [
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
+  <BackButton href="/numbers" />
   <article class="container__page alphabet-page-container">
     <div class="page-header">
-      <BackButton href="/numbers" />
+      <!-- <BackButton href="/numbers" /> -->
       <h1 class="page-main-title">{pageTitle}</h1>
       <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
     </div>

@@ -1,12 +1,14 @@
 ---
 import BaseLayout from "../../layouts/Base.astro";
 import LetterAnimation from "../../components/LetterAnimation.astro";
+import BackButton from "../../components/ui/backButton.astro";
 
 const url = new URL(Astro.request.url);
 const letterParam = url.searchParams.get("letter")?.toUpperCase() ?? "A";
 ---
 
 <BaseLayout meta={{ title: "Alphabet Writing Animation" }}>
+  <BackButton href="/varnmala" />
   <main class="writing-panel-main">
     <section class="writing-panel-section">
       <h1 class="writing-panel-title">✏️ Alphabet Writing Animation ✏️</h1>

@@ -94,8 +94,16 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
         descriptionDiv.classList.remove("animation");
         void descriptionDiv.offsetWidth;
         descriptionDiv.classList.add("animation");
+      } else if (info.meaning) {
+        descriptionDiv.innerHTML = info.meaning;
+        descriptionDiv.style.color = color;
+        descriptionDiv.style.display = "block";
+        descriptionDiv.classList.remove("animation");
+        void descriptionDiv.offsetWidth;
+        descriptionDiv.classList.add("animation");
       } else {
-        descriptionDiv.innerHTML = ""; // Clear the description
+        descriptionDiv.classList.remove("animation");
+        descriptionDiv.innerHTML = "";
         descriptionDiv.style.display = "none";
       }
 
@@ -122,7 +130,10 @@ const currentCategory = alphabetData[alphabet as keyof AlphabetsData];
       } else {
         emojiDiv.style.display = "none";
         imageContainer.style.display = "flex";
-        imageContainer.innerHTML = `<div class="content__spelling"></div>`; // Keep it empty
+        imageContainer.innerHTML = `<div class="content__spelling">${info.text || info.meaning || ""}</div>`;
+
+        const contentSpelling = imageContainer.querySelector(".content__spelling");
+        contentSpelling.style.color = color;
 
         spellDiv.style.display = "none";
       }
