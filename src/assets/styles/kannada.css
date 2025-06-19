@@ -342,52 +342,6 @@ background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
 		background-position: 0% 50%;
 	}
 }
-.language-letter-kannada,
-.language-letter-hindi {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    transform 0.3s ease,
-    color 0.3s ease,
-    order 0.01s ease;
-}
-
-.language-letter-kannada {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.language-letter-hindi {
-  font-size: 1.7rem;
-  /* Increased from 1.25rem */
-  font-weight: 700;
-  color: var(--text-secondary);
-  opacity: 0.9;
-}
-
-.language-letter-card.reverse {
-  & .language-letter-kannada {
-    order: 2;
-    transform: scale(1.6);
-    /* Adjusted scale to match increased font size */
-    font-size: 2rem;
-    color: var(--text-secondary);
-  }
-
-  & .language-letter-hindi {
-    order: 1;
-    transform: scale(1.6);
-    /* Increased scale */
-    font-size: 2rem;
-    color: var(--text-primary);
-  }
-}
-
 /* English text styling */
 .english-text {
   font-family: sans-serif;

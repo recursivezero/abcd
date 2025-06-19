@@ -19,12 +19,7 @@ interface LetterPair {
   type: "vowel" | "consonant" | "separator";
 }
 
-// Generate unicode characters for Hindi and Kannada
-const generateLetters = (startCode: number, length: number, extraKeys: number[] = []): string[] =>
-  Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
-    (_, index) => !extraKeys.includes(startCode + index)
-  );
-
+// Generate unicode characters for languages
 type GenerateAlphabetParams = {
   startCode: number;
   totalLength: number;
@@ -268,7 +263,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
 };
 ---
 <div class="language-letters-container">
-          <a href="/" class="back">
+    <a href="/" class="back">
       <BackIcon class="bck"/>
     </a>
   <div class="main-header">  
@@ -359,10 +354,6 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   </div>
 <script type="module" is:inline>
   // Letter generation helpers
-  const generateLetters = (startCode, length, extraCodes = []) =>
-    Array.from({ length }, (_, i) => String.fromCodePoint(startCode + i)).filter(
-      (_, i) => !extraCodes.includes(startCode + i)
-    );
   /**
    * @typedef {object} GenerateAlphabetParams
    * @property {number} startCode
@@ -526,7 +517,6 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
 
   let selectedLanguage1 = "hi";
   let selectedLanguage2 = "kn";
-  let isReversed = false;
 
   function getLetter(langCode, type, index) {
     // Find the language object from the `languages` array
