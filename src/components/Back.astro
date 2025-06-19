@@ -1,0 +1,23 @@
+---
+import BackIcon from "@/assets/icons/back.svg";
+---
+
+<a href="/" class="back">
+  <BackIcon />
+</a>
+
+<style>
+  .back {
+    display: flex;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--text);
+    width: fit-content;
+    position: absolute;
+  }
+
+  .back svg {
+    width: 24px;
+    height: 24px;
+  }
+</style>
