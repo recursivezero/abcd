@@ -9,7 +9,7 @@ let IMAGE_DIR = "/assets/images/background";
 
 if (import.meta.env.PROD) {
   BASE_URL = "https://bnm1w7hj00.execute-api.us-east-1.amazonaws.com/master/canvas";
-  IMAGE_DIR = "/assets/images/background";
+  IMAGE_DIR = "https://d2fcibdfky04dz.cloudfront.net/background";
 }
 
 const colorBox = [

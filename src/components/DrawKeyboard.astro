@@ -2,12 +2,10 @@
 import { alphabetMapper } from "@/mappers/alphabet";
 import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/constants";
 import Keyboard from "@/components/keyboard.astro";
-import BackIcon from "@/assets/icons/back.svg"; 
 ---
 
 <div class="container">
   <div class="header-container">
-      <a href="/" class="back"><BackIcon class="bck" /></a>
       <header class="header">
         <h1 class="info" aria-live="polite">Press any key</h1>
     </header>
@@ -741,26 +739,6 @@ import BackIcon from "@/assets/icons/back.svg";
     background: rgba(15, 23, 42, 0.7);
     transform: translateY(-2px);
   }
-
-  .back {
-  position: absolute;
-  left:-5px;
-  top: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  text-decoration: none;
-  color: light-dark(black, white);
-  font-weight: 500;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-}
-
-.back svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-}
 
   @media (max-width: 1024px) {
     .header-container {
