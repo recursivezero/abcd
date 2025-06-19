@@ -119,7 +119,7 @@ body {
   display: flex;
   align-items: center;
   background: color-mix(in srgb, var(--background) 90%, var(--text-primary) 10%);
-  border: 2px solid var(--card-border);
+  border: 2px solid #000; /* Changed to black border */
   border-radius: var(--border-radius);
   padding: 0.75rem 1.25rem;
   transition: var(--transition);
@@ -414,10 +414,6 @@ border-color: #000;  }
     display: none;
   }
 
-  .card {
-    break-inside: avoid;
-  }
-
   .container__clan {
     padding: 0;
     background: none;
@@ -429,5 +425,26 @@ border-color: #000;  }
     margin-bottom: 1rem;
     background: #f3f4f6 !important;
     color: #000 !important;
+  }
+
+  /*  Ensure cards don't break awkwardly */
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /*  Force card body to be visible */
+  .card-body {
+    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /*  Optional: Hide expand/collapse button if you want cleaner print */
+  .surname-count,
+  .copy-button {
+    display: none !important;
   }
 }
