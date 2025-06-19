@@ -9,12 +9,16 @@ import BackButton from "@/components/ui/backButton.astro";
 // Import consonants and the vowel list
 import { varnmala_hindi, hindiVowelList } from "@/utils/characters";
 
-// Prepare the vowel data for the AlphabetComponent
-// Assuming AlphabetComponent expects an array of objects like: { letter: string, code: number, name?: string, ... }
-const formattedVowelList = hindiVowelList.map((vowel) => ({
-  letter: vowel.value, // Using the 'value' property which holds the character
-  code: vowel.key,     // Using the 'key' property for the 'code' 
-}));
+// Vowels to be excluded
+const vowelsToRemove = ['ऌ', 'ऎ', 'ऒ'];
+
+// Prepare the vowel data for the AlphabetComponent, filtering out the unwanted vowels
+const formattedVowelList = hindiVowelList
+  .filter(vowel => !vowelsToRemove.includes(vowel.value))
+  .map((vowel) => ({
+    letter: vowel.value, // Using the 'value' property which holds the character
+    code: vowel.key,     // Using the 'key' property for the 'code' 
+  }));
 ---
 
 <BaseLayout meta={{ title: "Hindi" }}>
