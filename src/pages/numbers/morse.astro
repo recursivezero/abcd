@@ -44,7 +44,7 @@ const morseNumbersData: MorseNumberEntry[] = [
         morseNumbersData.map((entry) => {
           const letterCardItem = {
             ...entry,
-            text: entry.letter, // Show digit on front
+            text: "", // Show digit on front
             description: entry.description || "",
             emoji: entry.emoji // Morse code on back
           };
