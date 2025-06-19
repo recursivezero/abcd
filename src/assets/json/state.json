@@ -113,8 +113,8 @@
     "dance": "Garba",
     "festival": "Navratri",
     "description": "Garba is a popular folk dance of Gujarat performed during the Navratri festival.",
-    "image": "gujrat.webp",
-    "svg": "Gujrat.svg",
+    "image": "gujarat.webp",
+    "svg": "Gujarat.svg",
     "wikiLink": "https://en.wikipedia.org/wiki/Gujarat",
     "official_website": "https://gujaratindia.gov.in",
     "isActive": true
@@ -308,9 +308,9 @@
     "famous_person": "Maharana Pratap",
     "famous_food": "Dal Baati Churma",
     "famous_place": "Hawa Mahal",
-    "famous_dress":"Ghagra-Choli",
-    "famous_language":"Rajasthani",
-    "famous_sport":"Polo",
+    "famous_dress": "Ghagra-Choli",
+    "famous_language": "Rajasthani",
+    "famous_sport": "Polo",
     "state_color": "Pink",
     "state_animal": "Camel",
     "state_flower": "Rohida",
@@ -320,8 +320,18 @@
     "capital": "Jaipur",
     "population": 68548437,
     "literacy_rate": 66.11,
-    "languages": ["Rajasthani", "Hindi", "Marwari", "Mewari"],
-    "major_rivers": ["Chambal", "Luni", "Banas", "Mahi"]
+    "languages": [
+      "Rajasthani",
+      "Hindi",
+      "Marwari",
+      "Mewari"
+    ],
+    "major_rivers": [
+      "Chambal",
+      "Luni",
+      "Banas",
+      "Mahi"
+    ]
   },
   {
     "id": "sikkim",
