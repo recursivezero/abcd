@@ -31,9 +31,6 @@
   // Initial load
   setTheme(getThemePreference());
 
-  // Restore on page transition
-  document.addEventListener("astro:after-swap", () => setTheme(getThemePreference()));
-
   // Listen to global theme-change events
   document.addEventListener("theme-change", (e) => {
     console.log("Theme changed to:", e.detail.theme);
