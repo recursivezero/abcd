@@ -114,14 +114,13 @@
   justify-content: space-between;
   width: 100%;
   max-width: 600px;
-  margin: 2rem;
 }
 
 .tithi-title {
   color: var(--text);
   font-size: 2rem;
   font-weight: 600;
-  margin: 0;
+  margin: 1rem;
 }
 
 .date-display {
@@ -131,14 +130,69 @@
 
 .date-format {
   padding: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   border-radius: 0.75rem;
   border: 1px solid var(--border);
   background-color: var(--background);
+  border-left: 4px solid color-mix(in srgb, var(--primary) 60%, transparent 40%);
   text-align: center;
   font-size: 1.8rem;
+  word-spacing: 6px;
+}
+.disclaimer {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.75rem;
+  background-color: color-mix(in srgb, var(--background) 92%, var(--text) 8%);
+  border-left: 4px solid color-mix(in srgb, var(--primary) 60%, transparent 40%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  position: relative;
 }
 
+.disclaimer p {
+  margin: 0;
+}
+
+.disclaimer strong {
+  color: color-mix(in srgb, var(--primary) 80%, var(--text) 20%);
+}
+
+/* Add a subtle fade-in animation */
+@keyframes gentleAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.disclaimer {
+  animation: gentleAppear 0.6s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .disclaimer {
+    margin: 1.5rem;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .disclaimer {
+    margin: 1rem 0.5rem;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+}
 /* Converter Horizontal Layout */
 .converter__horizontal {
   display: flex;
@@ -486,29 +540,9 @@ select:focus {
   .tithi-title {
     font-size: 1.8rem;
   }
-}
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .container__vedic {
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-
-  .converter__horizontal {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .swap-button {
-    margin: 0.5rem 0;
-    align-self: center;
-  }
-
-  .tithi-title {
-    font-size: 1.8rem;
+  .date-format {
+    font-size: 1.62rem;
   }
 
   .units__timeline-container {
@@ -555,6 +589,10 @@ select:focus {
   }
 }
 @media (max-width: 480px) {
+    .date-format {
+      font-size: 1.2rem;
+    }
+
     .units__title {
       margin-top: 5rem ;
       margin-bottom: 5rem;

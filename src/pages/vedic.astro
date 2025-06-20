@@ -12,49 +12,37 @@ const timeUnits = vedicData.time_units;
       <BackIcon class="bck"/>
     </a>
     <script type="text/javascript" async>
-      const options = {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: false,
-        timeZone: "America/Los_Angeles",
-      };
+    const fullEnglish = {
+      weekday: 'long',
+      dayPeriod: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: 'numeric',
+      calendar: 'iso8601',
+      timeZone: 'Asia/Kolkata',
+      timeZoneName: 'short',
+      formatMatcher: 'basic',
+      hourCycle: 'h12',
+    };
 
-      const fullEnglish = {
-        weekday: 'long',
-        dayPeriod: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: 'numeric',
-        calendar: 'iso8601',
-        timeZone: 'Asia/Kolkata',
-        timeZoneName: 'short',
-        formatMatcher: 'basic',
-        hourCycle: 'h12',
-      };
-
-      const fullHindi = {
-        weekday: 'long',
-        dayPeriod: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: 'numeric',
-        calendar: 'indian',
-        timeZone: 'Asia/Kolkata',
-        numberingSystem: 'deva',
-        /* timeZoneName: 'shortGeneric', */
-        formatMatcher: 'basic',
-        hourCycle: 'h12',
-      };
+    const fullHindi = {
+      weekday: 'long',
+      dayPeriod: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: 'numeric',
+      calendar: 'indian',
+      timeZone: 'Asia/Kolkata',
+      numberingSystem: 'deva',
+      formatMatcher: 'basic',
+      hourCycle: 'h12',
+    };
 
       const styleOption = {
         dateStyle: 'full',
@@ -71,7 +59,6 @@ const timeUnits = vedicData.time_units;
       const samay = new Intl.DateTimeFormat("hi", fullHindi);
       const dateInHindi = new Intl.DateTimeFormat('hi', styleOption);
 
-
     </script>
 
     <div class="tab-buttons">
@@ -85,10 +72,13 @@ const timeUnits = vedicData.time_units;
         <div class="tithi-title-wrapper">
           <h1 class="tithi-title">Tithi</h1>
         </div>
-        <div id="dateDisplay" class="date-display">
+        <time id="today" class="date-display">
             <p data-id="hindu" class="date-format"></p>
             <p data-id="hindi" class="date-format"></p>
             <p data-id="english" class="date-format"></p>
+        </time>
+        <div class="disclaimer">
+          <p><strong>Note:</strong> The tithi (lunar day) and paksha (lunar phase) displayed here are calculated based on a numeric logic following the Gregorian calendar. Due to technical limitations, this may not always match the exact tithi according to traditional Hindu calendar calculations which consider actual astronomical positions of the sun and moon. For precise religious observances, please consult authoritative panchang sources.</p>
         </div>
       </div>
     </div>
@@ -277,48 +267,65 @@ const timeUnits = vedicData.time_units;
       document.querySelector('.tab-button[data-tab="tithi"]').click(); // Simulate click to activate default tab
 
       // Tithi date display functionality
-      const tithiNames = [
-      "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी","पंचमी", "षष्ठी","सप्तमी", "अष्टमी", "नवमी", "दशमी","एकादशी", "द्वादशी","त्रयोदशी", "चतुर्दशी","अमावस्या","प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी","पंचमी", "षष्ठी","सप्तमी", "अष्टमी", "नवमी", "दशमी","एकादशी", "द्वादशी","त्रयोदशी", "चतुर्दशी","पूर्णिमा"
+    const tithiNames = [
+      "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
+      "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी",
+      "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"
     ];
 
-    const getLunarDate = (gregorianDay) => {
-      // Calculate the lunar day (1-30) based on the gregorian day
-      const lunarDay = (gregorianDay - 1); // Ensure it wraps correctly (1-15)
-
-      const paksha = gregorianDay <= 15 ? "कृष्ण पक्ष":"शुक्ल पक्ष";
-      // Calculate the paksha
-
-      // Determine tithi
-      const tithi = lunarDay - 1;
-      console.log({tithi});
-
-      return {
-        paksha,
-        tithi: tithiNames[tithi]
-      };
+    const getLunarDate = (gregorianDate) => {
+      const day = gregorianDate.getDate();
+      const lunarDay = (day - 1) % 15 + 1;
+      const paksha = day <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+      const tithi = tithiNames[lunarDay - 1];
+      return { paksha, tithi };
     };
+
     const hindu = document.querySelector('[data-id="hindu"]');
     const hindi = document.querySelector('[data-id="hindi"]');
     const english = document.querySelector('[data-id="english"]');
-    const timeElem = document.querySelector('.date-format');
+    const timeElem = document.querySelector('time');
+
+        const modifyHinduDateString = (dateString, { tithi, paksha }) => {
+      // Split the formatted date string into parts
+      const parts = samay.formatToParts(new Date());
+      
+      // Reconstruct the string with modifications
+      let result = '';
+      let monthFound = false;
+      
+      for (const part of parts) {
+        if (part.type === 'day') {
+          // Replace numeric day with tithi
+          result += tithi;
+        } 
+        else if (part.type === 'month' && !monthFound) {
+          // Add month then paksha
+          result += part.value + ' ' + paksha;
+          monthFound = true;
+        }
+        else {
+          // Keep all other parts as-is
+          result += part.value;
+        }
+      }
+      
+      return result;
+    };
 
     const renderClock = () => {
       const today = new Date();
-      const eng =  dateInEnglish.format(today);
-      const hi = samay.format(today);
-      console.log(samay.formatToParts());
-      const hindi_date = dateInHindi.format(today);
-      /* const { paksha, tithi } = getLunarDate(); */
-      /* console.log({paksha, tithi}) */
-      hindi.innerHTML = hindi_date;
-      hindu.innerHTML =  hi;
+      const { paksha, tithi } = getLunarDate(today);
+
+      // Format dates
+      const eng = dateInEnglish.format(today);
+      const hi = dateInHindi.format(today);
+      const hinduDateStr = modifyHinduDateString(hi, { tithi, paksha }); 
+
+      // Update displays      
+      hindi.innerHTML = hi;
+      hindu.innerHTML =  hinduDateStr;
       english.innerHTML = eng;
-      const h = today.getHours();
-      const m = today.getMinutes();
-      const s = today.getSeconds();
-      timeElem.style.setProperty("--h", h*15);
-      timeElem.style.setProperty("--m", m);
-      timeElem.style.setProperty("--s", s*10);
     };
     renderClock();
     setInterval(renderClock, 1000);
