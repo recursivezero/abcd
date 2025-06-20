@@ -1,107 +1,17 @@
 ---
-// filepath: c:\Users\Lenovo\OneDrive\Desktop\parixan\abcd\src\pages\glossary\flags.astro
 import BaseLayout from "../../layouts/Base.astro"; 
 import BackButton from "../../components/ui/backButton.astro";     
-import "../../assets/styles/varnmala/greek-alphabet.css"; // Keep for general page styles if needed
-import "../../assets/styles/glossary/flags.css"; // Import the specific styles for this page
+import "../../assets/styles/varnmala/greek-alphabet.css";
+import "../../assets/styles/glossary/flags.css"; 
+import glossaryData from "../../data/glossary.json";
 
-// Define the type for our flag data entries
-export interface FlagEntry {
-  id: string;
-  letter: string; // Emoji for front
-  text: string;   // Country name for front
-  description: string; // Capital city (used for alt text & front)
-  imageUrl: string; // Path to the flag image for the back
-}
+const pageTitle = glossaryData.flags.title;
+const flagsData = glossaryData.flags.data;
 
-const pageTitle = "Country Flags";
-
-const flagsData: FlagEntry[] = [
-  {
-    id: "usa",
-    letter: "🇺🇸",
-    text: "United States",
-    description: "Capital: Washington, D.C.",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg"
-  },
-  {
-    id: "canada",
-    letter: "🇨🇦",
-    text: "Canada",
-    description: "Capital: Ottawa",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/ca.svg"
-  },
-  {
-    id: "india",
-    letter: "🇮🇳",
-    text: "India",
-    description: "Capital: New Delhi",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/in.svg"
-  },
-  {
-    id: "japan",
-    letter: "🇯🇵",
-    text: "Japan",
-    description: "Capital: Tokyo",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/jp.svg"
-  },
-  {
-    id: "brazil",
-    letter: "🇧🇷",
-    text: "Brazil",
-    description: "Capital: Brasília",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/br.svg"
-  },
-  {
-    id: "australia",
-    letter: "🇦🇺",
-    text: "Australia",
-    description: "Capital: Canberra",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/au.svg"
-  },
-  {
-    id: "germany",
-    letter: "🇩🇪",
-    text: "Germany",
-    description: "Capital: Berlin",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/de.svg"
-  },
-  {
-    id: "southafrica",
-    letter: "🇿🇦",
-    text: "South Africa",
-    description: "Capitals: Pretoria, Cape Town, Bloemfontein",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/za.svg"
-  },
-  {
-    id: "france",
-    letter: "🇫🇷",
-    text: "France",
-    description: "Capital: Paris",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/fr.svg"
-  },
-  {
-    id: "unitedkingdom",
-    letter: "🇬🇧",
-    text: "United Kingdom",
-    description: "Capital: London",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/gb.svg"
-  },
-  {
-    id: "china",
-    letter: "🇨🇳",
-    text: "China",
-    description: "Capital: Beijing",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/cn.svg"
-  },
-  {
-    id: "italy",
-    letter: "🇮🇹",
-    text: "Italy",
-    description: "Capital: Rome",
-    imageUrl: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/it.svg"
-  }
-];
+const getFlagEmoji = (countryCode: string = 'IN') => {
+    const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0));
+    return String.fromCodePoint(...codePoints);
+};
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
@@ -114,39 +24,36 @@ const flagsData: FlagEntry[] = [
 
     <div class="grid-container alphabet-grid flags-grid">
       {
-        flagsData.map((entry) => (
-          <div class="flip__card" data-id={entry.id}>
-            <div class="flip__card__inner">
-              <div class="card card__front">
-                <div class="flip__button">
-                  {/* Modified flip button content */}
-                  <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
-                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
+        flagsData.map((entry) => {
+          const flagEmoji = getFlagEmoji(entry.countryCode);
+          return (
+            <div class="flip__card" data-id={entry.id}>
+              <div class="flip__card__inner">
+                <div class="card card__front">
+                  <div class="flip__button">
+                    <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
+                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span>
+                  </div>
+                  <div class="letter__header">
+                    <p class="character">{flagEmoji}</p>
+                  </div>
+                  <div class="letter__content">
+                    <h2 class="text">{entry.text}</h2>
+                    <p class="description">{entry.description}</p>
+                  </div>
+                  <div class="card__glow"></div>
                 </div>
-                <div class="letter__header">
-                  <p class="character">{entry.letter}</p>
+                <div class="card card__back">
+                  <div class="flip__button">
+                    <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
+                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span>
+                  </div>
+                  <p class="character">{flagEmoji}</p>
                 </div>
-                <div class="letter__content">
-                  <h2 class="text">{entry.text}</h2>
-                  <p class="description">{entry.description}</p>
-                </div>
-                <div class="card__glow"></div>
               </div>
-              <div class="card card__back">
-                <div class="flip__button">
-                  {/* Modified flip button content */}
-                  <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
-                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
-                </div>
-                {entry.imageUrl ? (
-                  <img src={entry.imageUrl} alt={entry.description} class="image flag-image" />
-                ) : (
-                  <p class="flipped__text">{entry.description || entry.text}</p>
-                )}
-              </div>
-            </div>
-          </div> 
-        ))
+            </div> 
+          );
+        })
       }
     </div>
   </article>

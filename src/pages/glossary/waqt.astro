@@ -1,106 +1,12 @@
 ---
 import BaseLayout from "../../layouts/Base.astro";
 import BackButton from "../../components/ui/backButton.astro";
-
 import "../../assets/styles/varnmala/greek-alphabet.css"; // General styles, adjust if needed
 import "../../assets/styles/glossary/waqt.css"; 
+import glossaryData from "../../data/glossary.json";
 
-const pageTitle = "Waqt (Times of Day)";
-
-interface WaqtEntry {
-  id: string;
-  englishTerm: string;
-  hindiTranslation: string;
-  description: string;
-  icon: string;
-}
-
-const waqtData: WaqtEntry[] = [
-  {
-    id: "dawn",
-    englishTerm: "Dawn",
-    hindiTranslation: "भोर (Bhor), सुबह (Subah)",
-    description: "The first light of day before sunrise; early morning twilight.",
-    icon: "🌄"
-  },
-  {
-    id: "sunrise",
-    englishTerm: "Sunrise ",
-    hindiTranslation: "सूर्योदय (Sooryoday), भोर (Bhor)",
-    description: "The moment the sun appears above the horizon.",
-    icon: "🌅"
-  },
-  {
-    id: "morning",
-    englishTerm: "Morning",
-    hindiTranslation: "सुबह (Subah), प्रातः (Praatah)",
-    description: "The early part of the day, from dawn until around noon.",
-    icon: "🌅"
-  },
-  {
-    id: "noon",
-    englishTerm: "Noon",
-    hindiTranslation: "दोपहर (Dopehar)",
-    description: "Midday, exactly 12:00 PM, or broadly the middle of the day.",
-    icon: "🕛"
-  },
-  {
-    id: "afternoon",
-    englishTerm: "Afternoon",
-    hindiTranslation: "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)",
-    description: "The time after noon until late afternoon/early evening.",
-    icon: "☀️"
-  },
-  {
-    id: "evening",
-    englishTerm: "Evening",
-    hindiTranslation: "शाम (Shaam)",
-    description: "The period from late afternoon until nightfall/dusk.",
-    icon: "🌇"
-  },
-  {
-    id: "twilight",
-    englishTerm: "Twilight",
-    hindiTranslation: "सांझ (Saanjh), गोधूलि बेला (Godhuli Bela)",
-    description: "Dim light period either just before sunrise or just after sunset.",
-    icon: "🌥️"
-  },
-  {
-    id: "dusk",
-    englishTerm: "Dusk",
-    hindiTranslation: "गोधूलि (Godhuli), शाम (Shaam)",
-    description: "The darker stage of twilight immediately after sunset.",
-    icon: "🌆"
-  },
-  {
-    id: "sunset",
-    englishTerm: "Sunset",
-    hindiTranslation: "सूर्यास्त (Sooryaast), शाम (Shaam)",
-    description: "The moment the sun disappears below the horizon.",
-    icon: "🌇"
-  },
-  {
-    id: "night",
-    englishTerm: "Night",
-    hindiTranslation: "रात (Raat), रात्रि (Raatri)",
-    description: "The period of darkness from sunset to sunrise.",
-    icon: "🌙"
-  },
-  {
-    id: "midnight",
-    englishTerm: "Midnight",
-    hindiTranslation: "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)",
-    description: "Exactly 12:00 AM, the middle of the night.",
-    icon: "🌃"
-  },
-  {
-    id: "late-night",
-    englishTerm: "Late Night",
-    hindiTranslation: "रात गहराना (Raat Gahraana), देर रात (Der Raat)",
-    description: "The deep part of the night, usually well after midnight.",
-    icon: "🌌"
-  }
-];
+const pageTitle = glossaryData.waqt.title;
+const waqtData = glossaryData.waqt.data;
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>

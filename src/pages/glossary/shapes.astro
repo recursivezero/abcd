@@ -3,75 +3,11 @@ import BaseLayout from "../../layouts/Base.astro";
 import LetterCard from "../../components/LetterCard.astro";
 import BackButton from "../../components/ui/backButton.astro";
 import "../../assets/styles/varnmala/greek-alphabet.css"; // Imported the CSS styles
+import glossaryData from "../../data/glossary.json";
 
-// Define the type for our shape data entries
-export interface ShapeEntry {
-  id: string;
-  letter: string; // Unicode character for the shape
-  text: string; // Name of the shape
-  description: string; // Geometric properties
-}
-
-const pageTitle = "Geometric Shapes";
+const pageTitle = glossaryData.shapes.title;
 const category = "shapes";
-
-const shapesData: ShapeEntry[] = [
-  {
-    id: "circle",
-    letter: "●", // Black Circle U+25CF
-    text: "Circle ",
-    description:
-      "A perfectly round shape with no corners or edges. All points on the edge are equidistant from the center."
-  },
-  {
-    id: "square",
-    letter: "■", // Black Square U+25A0
-    text: "Square ",
-    description: "A quadrilateral with 4 equal sides and 4 right (90-degree) angles."
-  },
-  {
-    id: "triangle",
-    letter: "▲", // Black Up-Pointing Triangle U+25B2
-    text: "Triangle",
-    description: "A polygon with 3 sides and 3 angles (vertices)."
-  },
-  {
-    id: "rectangle",
-    letter: "▭", // White Rectangle U+25AD (or ■ if filled preferred)
-    text: "Rectangle",
-    description: "A quadrilateral with 4 right angles. Opposite sides are equal in length and parallel."
-  },
-  {
-    id: "pentagon",
-    letter: "⬠", // White Pentagon U+2B20
-    text: "Pentagon",
-    description: "A polygon with 5 sides and 5 angles."
-  },
-  {
-    id: "hexagon",
-    letter: "⬢", // Black Hexagon U+2B22
-    text: "Hexagon",
-    description: "A polygon with 6 sides and 6 angles."
-  },
-  {
-    id: "oval",
-    letter: "⬬", // White Ellipse U+2B2C (closest Unicode for oval)
-    text: "Oval ",
-    description: "An elongated circle, like an egg shape. A regular oval is an ellipse."
-  },
-  {
-    id: "star",
-    letter: "★", // Black Star U+2605
-    text: "Star ",
-    description: "A pointed shape, typically with 5 or 6 points, formed by connecting vertices of a polygon."
-  },
-  {
-    id: "rhombus",
-    letter: "◆", // Black Diamond U+25C6
-    text: "Rhombus ",
-    description: "A quadrilateral with all 4 sides of equal length. Opposite angles are equal."
-  }
-];
+const shapesData = glossaryData.shapes.data;
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>

@@ -3,32 +3,10 @@ import BaseLayout from "../../layouts/Base.astro";
 import BackButton from "../../components/ui/backButton.astro";     
 import "../../assets/styles/varnmala/greek-alphabet.css"; // General styles
 import "../../assets/styles/glossary/colour.css"; // Import the specific styles for this page
+import glossaryData from "../../data/glossary.json";
 
-// Define the type for our colour data entries
-export interface ColourEntry {
-  id: string;
-  letter: string; 
-  fullName: string;
-  // imageUrl: string;
-  cssColor: string; 
-}
-
-const pageTitle = "Colours";
-// const category = "colours"; 
-
-const coloursData: ColourEntry[] = [
-  { id: "black",  letter: "⬛", fullName: "Black (काला)", cssColor: "black" },
-  { id: "white",  letter: "⬜", fullName: "White (सफ़ेद)", cssColor: "white" },
-  { id: "red",    letter: "🟥", fullName: "Red (लाल)",    cssColor: "red" },
-  { id: "green",  letter: "🟩", fullName: "Green (हरा)",  cssColor: "green" },
-  { id: "yellow", letter: "🟨", fullName: "Yellow (पीला)", cssColor: "yellow" },
-  { id: "blue",   letter: "🟦", fullName: "Blue (नीला)",   cssColor: "blue" },
-  { id: "brown",  letter: "🟫", fullName: "Brown (भूरा)",  cssColor: "brown" },
-  { id: "orange", letter: "🟧", fullName: "Orange (नारंगी)",cssColor: "orange" },
-  { id: "pink",   letter: "💖", fullName: "Pink (गुलाबी)", cssColor: "pink" },
-  { id: "purple", letter: "🟪", fullName: "Purple (बैंगनी)",cssColor: "purple" },
-  { id: "gray",   letter: "🩶", fullName: "Gray (स्लेटी)", cssColor: "gray" }
-];
+const pageTitle = glossaryData.colours.title;
+const coloursData = glossaryData.colours.data;
 
 // Helper function to parse English and Hindi names (only English part will be used for front)
 function parseNames(fullName: string): { english: string; hindi: string } {

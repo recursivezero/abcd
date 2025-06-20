@@ -4,55 +4,11 @@ import BaseLayout from "../../layouts/Base.astro";
 import LetterCard from "../../components/LetterCard.astro"; 
 import BackButton from "../../components/ui/backButton.astro";     
 import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+import glossaryData from "../../data/glossary.json";
 
-// Define the type for our day data entries
-export interface DayEntry {
-  id: string;
-  letter: string; 
-  fullName: string;   
-
-}
-
-const pageTitle = "Days of the Week";
+const pageTitle = glossaryData.days.title;
 const category = "days"; 
-
-const daysData: DayEntry[] = [
-  {
-    id: "sunday",
-    letter: "Sun", 
-    fullName: "Sunday (रविवार)",
-  },
-  {
-    id: "monday",
-    letter: "Mon", 
-    fullName: "Monday (सोमवार)",
-  },
-  {
-    id: "tuesday",
-    letter: "Tue", 
-    fullName: "Tuesday (मंगलवार)",
-  },
-  {
-    id: "wednesday",
-    letter: "Wed", 
-    fullName: "Wednesday (बुधवार)",
-  },
-  {
-    id: "thursday",
-    letter: "Thu", 
-    fullName: "Thursday (गुरुवार)",
-  },
-  {
-    id: "friday",
-    letter: "Fri", 
-    fullName: "Friday (शुक्रवार)",
-  },
-  {
-    id: "saturday",
-    letter: "Sat", 
-    fullName: "Saturday (शनिवार)",
-  }
-];
+const daysData = glossaryData.days.data;
 
 // Helper function to parse English and Hindi names
 function parseDayNames(fullName: string): { english: string; hindi: string } {

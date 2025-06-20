@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/Base.astro";
 import LetterCard from "../../components/LetterCard.astro"; 
 import BackButton from "../../components/ui/backButton.astro";     
 import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+import glossaryData from "../../data/glossary.json";
 
 // Define the type for our season data entries
 export interface SeasonEntry {
@@ -12,41 +13,9 @@ export interface SeasonEntry {
   fullName: string;  
 }
 
-const pageTitle = "Seasons";
+const pageTitle = glossaryData.seasons.title;
 const category = "seasons"; 
-
-const seasonsData: SeasonEntry[] = [
-  {
-    id: "spring",
-    letter: "🌸",
-    fullName: "Spring (वसन्त)",
-  },
-  {
-    id: "summer",
-    letter: "☀️",
-    fullName: "Summer (ग्रीष्म)",
-  },
-  {
-    id: "monsoon",
-    letter: "🌧️",
-    fullName: "Monsoon (वर्षा)",
-  },
-  {
-    id: "autumn",
-    letter: "🍂",
-    fullName: "Autumn (शरद)",
-  },
-  {
-    id: "pre_winter",
-    letter: "🌬️",
-    fullName: "Pre-Winter (हेमन्त)",
-  },
-  {
-    id: "winter",
-    letter: "❄️",
-    fullName: "Winter (शिशिर/शीत)",
-  }
-];
+const seasonsData: SeasonEntry[] = glossaryData.seasons.data;
 
 // Helper function to parse English and Hindi names
 function parseNames(fullName: string): { english: string; hindi: string } {
