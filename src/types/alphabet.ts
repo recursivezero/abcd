@@ -6,7 +6,7 @@ export type LetterEntity = {
 };
 
 export interface AlphabetEntry {
-  id: number | string;
+  id: number | string; 
   letter: string;
   code?: number;
   text: string;
