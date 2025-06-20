@@ -1468,7 +1468,7 @@
       { "id": 3, "letter": "C", "emoji": "−·−·", "text": "Morse for C" },
       { "id": 4, "letter": "D", "emoji": "−··", "text": "Morse for D" },
       { "id": 5, "letter": "E", "emoji": "·", "text": "Morse for E" },
-      { "id": 6, "letter": "F", "emoji": "··−.", "text": "Morse for F" },
+      { "id": 6, "letter": "F", "emoji": "··−", "text": "Morse for F" },
       { "id": 7, "letter": "G", "emoji": "−−·", "text": "Morse for G" },
       { "id": 8, "letter": "H", "emoji": "····", "text": "Morse for H" },
       { "id": 9, "letter": "I", "emoji": "··", "text": "Morse for I" },
@@ -1489,6 +1489,382 @@
       { "id": 24, "letter": "X", "emoji": "−..−", "text": "Morse for X" },
       { "id": 25, "letter": "Y", "emoji": "−.−−", "text": "Morse for Y" },
       { "id": 26, "letter": "Z", "emoji": "−−..", "text": "Morse for Z" }
+    ]
+  },
+  "colors": {
+    "description": "Colors of the English alphabet with their hex codes.",
+    "icon": "🎨",
+    "data": [
+      {
+        "id": 1,
+        "letter": "A",
+        "code": 65,
+        "text": "Amber",
+        "description": "A honey-yellow color.",
+        "colorCode": "#FFBF00"
+      },
+      {
+        "id": 2,
+        "letter": "B",
+        "code": 66,
+        "text": "Blue",
+        "description": "The color of the sky and sea.",
+        "colorCode": "#0000FF"
+      },
+      {
+        "id": 3,
+        "letter": "C",
+        "code": 67,
+        "text": "Cyan",
+        "description": "A greenish-blue color.",
+        "colorCode": "#00FFFF"
+      },
+      {
+        "id": 4,
+        "letter": "D",
+        "code": 68,
+        "text": "Denim",
+        "description": "A sturdy cotton twill fabric, typically blue.",
+        "colorCode": "#1560BD"
+      },
+      {
+        "id": 5,
+        "letter": "E",
+        "code": 69,
+        "text": "Emerald",
+        "description": "A bright green color.",
+        "colorCode": "#50C878"
+      },
+      {
+        "id": 6,
+        "letter": "F",
+        "code": 70,
+        "text": "Fuchsia",
+        "description": "A vivid purplish-red color.",
+        "colorCode": "#FF00FF"
+      },
+      {
+        "id": 7,
+        "letter": "G",
+        "code": 71,
+        "text": "Green",
+        "description": "The color of living grass and leaves.",
+        "colorCode": "#008000"
+      },
+      {
+        "id": 8,
+        "letter": "H",
+        "code": 72,
+        "text": "Heliotrope",
+        "description": "A pink-purple tint.",
+        "colorCode": "#DF73FF"
+      },
+      {
+        "id": 9,
+        "letter": "I",
+        "code": 73,
+        "text": "Indigo",
+        "description": "A deep and rich color close to the color wheel blue.",
+        "colorCode": "#4B0082"
+      },
+      {
+        "id": 10,
+        "letter": "J",
+        "code": 74,
+        "text": "Jade",
+        "description": "A light green color.",
+        "colorCode": "#00A86B"
+      },
+      {
+        "id": 11,
+        "letter": "K",
+        "code": 75,
+        "text": "Khaki",
+        "description": "A light brownish-yellow color.",
+        "colorCode": "#C3B091"
+      },
+      {
+        "id": 12,
+        "letter": "L",
+        "code": 76,
+        "text": "Lavender",
+        "description": "A light purple color.",
+        "colorCode": "#E6E6FA"
+      },
+      {
+        "id": 13,
+        "letter": "M",
+        "code": 77,
+        "text": "Magenta",
+        "description": "A purplish-pink color.",
+        "colorCode": "#FF00FF"
+      },
+      {
+        "id": 14,
+        "letter": "N",
+        "code": 78,
+        "text": "Navy",
+        "description": "A very dark blue color.",
+        "colorCode": "#000080"
+      },
+      {
+        "id": 15,
+        "letter": "O",
+        "code": 79,
+        "text": "Orange",
+        "description": "A bright, warm color.",
+        "colorCode": "#FFA500"
+      },
+      {
+        "id": 16,
+        "letter": "P",
+        "code": 80,
+        "text": "Purple",
+        "description": "A color intermediate between blue and red.",
+        "colorCode": "#800080"
+      },
+      {
+        "id": 17,
+        "letter": "Q",
+        "code": 81,
+        "text": "Quartz",
+        "description": "A greyish-white color.",
+        "colorCode": "#51484F"
+      },
+      {
+        "id": 18,
+        "letter": "R",
+        "code": 82,
+        "text": "Red",
+        "description": "The color of blood, or a ruby.",
+        "colorCode": "#FF0000"
+      },
+      {
+        "id": 19,
+        "letter": "S",
+        "code": 83,
+        "text": "Silver",
+        "description": "A precious shiny grayish-white color.",
+        "colorCode": "#C0C0C0"
+      },
+      {
+        "id": 20,
+        "letter": "T",
+        "code": 84,
+        "text": "Teal",
+        "description": "A medium to dark greenish-blue color.",
+        "colorCode": "#008080"
+      },
+      {
+        "id": 21,
+        "letter": "U",
+        "code": 85,
+        "text": "Ultramarine",
+        "description": "A deep blue color pigment.",
+        "colorCode": "#120A8F"
+      },
+      {
+        "id": 22,
+        "letter": "V",
+        "code": 86,
+        "text": "Violet",
+        "description": "A bluish-purple color.",
+        "colorCode": "#EE82EE"
+      },
+      {
+        "id": 23,
+        "letter": "W",
+        "code": 87,
+        "text": "White",
+        "description": "The color of milk or fresh snow.",
+        "colorCode": "#FFFFFF"
+      },
+      {
+        "id": 24,
+        "letter": "X",
+        "code": 88,
+        "text": "Xanadu",
+        "description": "A grayish-green color.",
+        "colorCode": "#738678"
+      },
+      {
+        "id": 25,
+        "letter": "Y",
+        "code": 89,
+        "text": "Yellow",
+        "description": "The color of ripe lemons or egg yolks.",
+        "colorCode": "#FFFF00"
+      },
+      {
+        "id": 26,
+        "letter": "Z",
+        "code": 90,
+        "text": "Zaffre",
+        "description": "A deep blue pigment.",
+        "colorCode": "#0014A8"
+      }
+    ]
+  },
+  "birds": {
+    "description": "A list of birds from A to Z.",
+    "icon": "🐦",
+    "data": [
+      {
+        "id": 1,
+        "letter": "A",
+        "text": "Albatross",
+        "description": "A large seabird known for its long wingspan."
+      },
+      {
+        "id": 2,
+        "letter": "B",
+        "text": "Bluebird",
+        "description": "A small thrush known for its bright blue plumage."
+      },
+      {
+        "id": 3,
+        "letter": "C",
+        "text": "Crow",
+        "description": "A small songbird in the finch family, often kept as a pet."
+      },
+      {
+        "id": 4,
+        "letter": "D",
+        "text": "Dove",
+        "description": "A stocky bird with a short neck and legs, related to pigeons."
+      },
+      {
+        "id": 5,
+        "letter": "E",
+        "text": "Eagle",
+        "description": "A large bird of prey with a heavy head and beak."
+      },
+      {
+        "id": 6,
+        "letter": "F",
+        "text": "Flamingo",
+        "description": "A large wading bird known for its pink feathers and long legs."
+      },
+      {
+        "id": 7,
+        "letter": "G",
+        "text": "Goose",
+        "description": "A large waterbird with a long neck and webbed feet."
+      },
+      {
+        "id": 8,
+        "letter": "H",
+        "text": "Hummingbird",
+        "description": "A small bird capable of hovering in mid-air by rapidly flapping its wings."
+      },
+      {
+        "id": 9,
+        "letter": "I",
+        "text": "Ibis",
+        "description": "A long-legged wading bird with a long, down-curved bill."
+      },
+      {
+        "id": 10,
+        "letter": "J",
+        "text": "Jay",
+        "description": "A noisy, brightly colored bird of the crow family."
+      },
+      {
+        "id": 11,
+        "letter": "K",
+        "text": "Kiwi",
+        "description": "A flightless bird native to New Zealand."
+      },
+      {
+        "id": 12,
+        "letter": "L",
+        "text": "Lark",
+        "description": "A small ground-dwelling bird, known for its melodious song."
+      },
+      {
+        "id": 13,
+        "letter": "M",
+        "text": "Macaw",
+        "description": "A large, long-tailed parrot with brightly colored plumage."
+      },
+      {
+        "id": 14,
+        "letter": "N",
+        "text": "Nightingale",
+        "description": "A small thrush famous for its powerful and beautiful song."
+      },
+      {
+        "id": 15,
+        "letter": "O",
+        "text": "Ostrich",
+        "description": "A large flightless bird native to Africa."
+      },
+      {
+        "id": 16,
+        "letter": "P",
+        "text": "Penguin",
+        "description": "A flightless aquatic bird found in the Southern Hemisphere."
+      },
+      {
+        "id": 17,
+        "letter": "Q",
+        "text": "Quail",
+        "description": "A small, short-tailed game bird."
+      },
+      {
+        "id": 18,
+        "letter": "R",
+        "text": "Robin",
+        "description": "A small insectivorous songbird with a reddish-orange breast."
+      },
+      {
+        "id": 19,
+        "letter": "S",
+        "text": "Sparrow",
+        "description": "A small bird with a stout bill, typically with brown and grey plumage."
+      },
+      {
+        "id": 20,
+        "letter": "T",
+        "text": "Toucan",
+        "description": "A tropical bird known for its large, colorful bill."
+      },
+      {
+        "id": 21,
+        "letter": "U",
+        "text": "Umbrella bird",
+        "description": "A tropical bird with a large crest on its head."
+      },
+      {
+        "id": 22,
+        "letter": "V",
+        "text": "Vulture",
+        "description": "A large bird of prey that scavenges on carrion."
+      },
+      {
+        "id": 23,
+        "letter": "W",
+        "text": "Woodpecker",
+        "description": "A bird that pecks at tree trunks to find insects."
+      },
+      {
+        "id": 24,
+        "letter": "X",
+        "text": "Xenops",
+        "description": "A small rainforest bird in the ovenbird family."
+      },
+      {
+        "id": 25,
+        "letter": "Y",
+        "text": "Yellow hammer",
+        "description": "A passerine bird in the bunting family."
+      },
+      {
+        "id": 26,
+        "letter": "Z",
+        "text": "Zebra Finch",
+        "description": "A common finch of Central Australia."
+      }
     ]
   }
 }

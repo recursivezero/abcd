@@ -1,5 +1,4 @@
 ---
-// filepath: c:\Users\Lenovo\OneDrive\Desktop\parixan\abcd\src\pages\glossary\colours.astro
 import BaseLayout from "../../layouts/Base.astro"; 
 import BackButton from "../../components/ui/backButton.astro";     
 import "../../assets/styles/varnmala/greek-alphabet.css"; // General styles
@@ -81,7 +80,6 @@ function parseNames(fullName: string): { english: string; hindi: string } {
                     <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
                     <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
                   </div>
-                  {/* No image or text on the back, just the color */}
                 </div>
               </div>
             </div> 
@@ -181,32 +179,7 @@ function parseNames(fullName: string): { english: string; hindi: string } {
   </script>
 
 
-<style is:global>
-  /* Color variables and base styles */
-  :root[data-theme="light"] {
-    --primary: #007bff;
-    --primary-light: #54aeff;
-    --secondary: #6c757d;
-    --text: #212529;
-    --background: #ffffff;
-    --border: #dee2e6;
-    --character-gradient-start: var(--primary);
-    --character-gradient-end: var(--primary-light);
-    --character-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  :root[data-theme="dark"] {
-    --primary: #0d6efd;
-    --primary-light: #5fa2ff;
-    --secondary: #adb5bd;
-    --text: #f8f9fa;
-    --background: #212529;
-    --border: #495057;
-    --character-gradient-start: hsl(211, 100%, 75%);
-    --character-gradient-end: hsl(211, 100%, 85%);
-    --character-shadow: 0 0 20px hsla(211, 100%, 75%, 0.2);
-  }
-
+<style>
   /* Styles for cards within .colours-grid */
 
   #back-btn {

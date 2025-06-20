@@ -183,10 +183,7 @@ const nationalHolidaysData = [
   });
 </script>
 
-<style is:global>
-  /* Responsive styles for months page */
-  /* These styles can be moved to your months.css file for better organization */
-
+<style>
   /* Page Header adjustments */
   @media (max-width: 768px) {
     .months-page-container .page-header {
@@ -207,14 +204,13 @@ const nationalHolidaysData = [
   .months-toggle-buttons {
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem; /* Ensure space below buttons */
-    gap: 1rem; /* Space between buttons */
+    margin-bottom: 1.5rem; 
+    gap: 1rem; 
   }
 
   .months-toggle-buttons .toggle-button {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
-    /* other existing styles for toggle-button from months.css apply here */
   }
 
   @media (max-width: 480px) {
@@ -228,20 +224,9 @@ const nationalHolidaysData = [
       text-align: center;
     }
   }
-
-  /* Grid container for month cards */
-  /* Assuming .months-grid already has display: grid and gap from months.css */
-  /* Default to 3 columns for larger screens if not already set in months.css */
-  /* .months-grid { */
-    /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */ /* Example default */
-  /* } */
-
-
   @media (max-width: 1024px) {
     .months-grid {
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjust for tablets */
-       /* Or use a fixed number of columns */
-       /* grid-template-columns: repeat(2, 1fr); */
     }
   }
 
@@ -259,14 +244,6 @@ const nationalHolidaysData = [
     }
   }
   
-  /* Month Card specific adjustments (if MonthCard component needs it) */
-  /* For example, if font sizes inside MonthCard need to be smaller on mobile */
-  /* This would typically be handled within MonthCard.astro or its specific CSS */
-  /* Example: */
-  /* @media (max-width: 480px) { */
-  /*   .month-card .month-name { font-size: 1.2rem; } */
-  /*   .month-card .day-number { font-size: 0.8rem; } */
-  /* } */
 
   /* Ensure container has some padding */
   .months-page-container {

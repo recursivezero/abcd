@@ -8,7 +8,7 @@ import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styl
 // Define the type for our day data entries
 export interface DayEntry {
   id: string;
-  letter: string; // First letter of the day
+  letter: string; 
   fullName: string;   
 
 }
@@ -60,7 +60,7 @@ function parseDayNames(fullName: string): { english: string; hindi: string } {
   if (match && match.length === 3) {
     return { english: match[1].trim(), hindi: match[2].trim() };
   }
-  return { english: fullName, hindi: "" }; // Fallback
+  return { english: fullName, hindi: "" }; 
 }
 ---
 
