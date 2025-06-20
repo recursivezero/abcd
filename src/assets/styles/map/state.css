@@ -245,7 +245,8 @@
   max-width: 100%;
 }
 
-.tooltip, #state-tooltip {
+.tooltip,
+#state-tooltip {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
@@ -260,14 +261,16 @@
 }
 
 @media screen and (min-width: 768px) {
-  .tooltip, #state-tooltip {
+  .tooltip,
+  #state-tooltip {
     transform: translate(-50%, -120%);
     margin-top: -15px;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .tooltip, #state-tooltip {
+  .tooltip,
+  #state-tooltip {
     transform: translate(-15vw, -20vh);
     margin-top: -20px;
   }
@@ -411,7 +414,7 @@
   }
 }
 
-@media (max-width: 921px){
+@media (max-width: 921px) {
   .main-container {
     grid-template-columns: 1fr;
   }

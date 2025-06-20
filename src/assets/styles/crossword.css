@@ -351,28 +351,28 @@ details:not([open]) summary::after {
     align-items: center;
   }
 
-    .stats-button {
-      font-size: 4vw;
-      padding: 8px 14px;
-      min-width: 80px;
-      color: black;
-      color: rgb(255, 255, 255);
-      background: var(--accent2-color);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+  .stats-button {
+    font-size: 4vw;
+    padding: 8px 14px;
+    min-width: 80px;
+    color: black;
+    color: rgb(255, 255, 255);
+    background: var(--accent2-color);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
 
-    #solutionBtn {
-      background: none;
-      border: none;
-      max-width: 45px;
-      max-height: 45px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-    }
+  #solutionBtn {
+    background: none;
+    border: none;
+    max-width: 45px;
+    max-height: 45px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
 
   .stats-button .bulb-icon,
   .stats-button svg {

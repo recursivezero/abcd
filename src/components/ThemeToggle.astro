@@ -27,10 +27,7 @@ import MoonIcon from "@/assets/icons/moon.svg";
       this.button = this.querySelector("button");
       this.observer = null;
 
-      this.button?.setAttribute(
-        "aria-pressed",
-        String(document.documentElement.dataset.theme === "dark")
-      );
+      this.button?.setAttribute("aria-pressed", String(document.documentElement.dataset.theme === "dark"));
 
       this.button?.addEventListener("click", this.handleThemeClick);
     }

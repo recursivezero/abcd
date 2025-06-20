@@ -55,116 +55,116 @@ import BackButton from "@/components/ui/backButton.astro";
     <article class="container__hindi" id="letterContainer">
       <div class="letter">A</div>
     </article>
-    </article>
+  </article>
 </BaseLayout>
 
-    <script>
-      const letterDiv = document.querySelector(".letter") as HTMLDivElement;
-      const controls = document.getElementById("controls") as HTMLElement;
-      const letterContainer = document.getElementById("letterContainer") as HTMLElement;
-      const bgSelector = document.getElementById("bgSelector") as HTMLSelectElement;
-      const fontSelector = document.getElementById("fontSelector") as HTMLSelectElement;
-      const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
-      const toggleBg = document.getElementById("toggleBg") as HTMLButtonElement;
-      const speakBtn = document.getElementById("speakBtn") as HTMLButtonElement;
+<script>
+  const letterDiv = document.querySelector(".letter") as HTMLDivElement;
+  const controls = document.getElementById("controls") as HTMLElement;
+  const letterContainer = document.getElementById("letterContainer") as HTMLElement;
+  const bgSelector = document.getElementById("bgSelector") as HTMLSelectElement;
+  const fontSelector = document.getElementById("fontSelector") as HTMLSelectElement;
+  const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
+  const toggleBg = document.getElementById("toggleBg") as HTMLButtonElement;
+  const speakBtn = document.getElementById("speakBtn") as HTMLButtonElement;
 
-      const synth = window.speechSynthesis;
+  const synth = window.speechSynthesis;
 
-      function isAlphabet(keyCode: number): boolean {
-        return keyCode >= 65 && keyCode <= 90;
+  function isAlphabet(keyCode: number): boolean {
+    return keyCode >= 65 && keyCode <= 90;
+  }
+
+  function speak(text: string) {
+    if (synth.speaking) {
+      synth.cancel(); // Stop any currently playing speech
+    }
+    if (!text) {
+      return;
+    }
+
+    const utterThis = new SpeechSynthesisUtterance(text);
+    utterThis.onerror = (event) => {
+      console.error("SpeechSynthesisUtterance.onerror", event);
+    };
+
+    const voices = synth.getVoices().filter((voice) => voice.lang.startsWith("en"));
+    if (voices.length > 0) {
+      utterThis.voice = voices[0];
+    } else {
+      console.warn("No English voice found, using browser default.");
+    }
+
+    synth.speak(utterThis);
+  }
+
+  function drawLetter(letter: string, color = "pink") {
+    letterDiv.innerHTML = letter;
+    letterDiv.style.color = color;
+    letterDiv.style.animation = "letterPop 0.3s ease-out";
+    setTimeout(() => {
+      letterDiv.style.animation = "";
+    }, 300);
+    // Speech is no longer called automatically here.
+  }
+
+  // Event Listeners
+  bgSelector?.addEventListener("change", updateBackground);
+  fontSelector?.addEventListener("change", updateFont);
+  colorPicker?.addEventListener("change", updateColor);
+  toggleBg?.addEventListener("click", toggleBackground);
+
+  // When the "Speak" button is clicked, speak the current letter.
+  speakBtn?.addEventListener("click", () => {
+    const textToSpeak = letterDiv.textContent;
+    if (textToSpeak) {
+      speak(textToSpeak);
+    }
+  });
+
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      e.preventDefault();
+      const { key, keyCode } = e;
+      if (isAlphabet(keyCode)) {
+        drawLetter(key.toUpperCase(), colorPicker.value);
       }
+    },
+    false
+  );
 
-      function speak(text: string) {
-        if (synth.speaking) {
-          synth.cancel(); // Stop any currently playing speech
-        }
-        if (!text) {
-          return;
-        }
+  function updateBackground() {
+    letterContainer.className = "container__hindi";
+    if (bgSelector.value !== "none") {
+      letterContainer.classList.add(`bg-${bgSelector.value}`);
+    }
+  }
 
-        const utterThis = new SpeechSynthesisUtterance(text);
-        utterThis.onerror = (event) => {
-          console.error("SpeechSynthesisUtterance.onerror", event);
-        };
+  function updateFont() {
+    letterDiv.style.fontFamily = fontSelector.value;
+  }
 
-        const voices = synth.getVoices().filter((voice) => voice.lang.startsWith("en"));
-        if (voices.length > 0) {
-          utterThis.voice = voices[0];
-        } else {
-          console.warn("No English voice found, using browser default.");
-        }
+  function updateColor() {
+    letterDiv.style.color = colorPicker.value;
+  }
 
-        synth.speak(utterThis);
-      }
+  function toggleBackground() {
+    letterContainer.classList.toggle("no-background");
+  }
 
-      function drawLetter(letter: string, color = "pink") {
-        letterDiv.innerHTML = letter;
-        letterDiv.style.color = color;
-        letterDiv.style.animation = "letterPop 0.3s ease-out";
-        setTimeout(() => {
-          letterDiv.style.animation = "";
-        }, 300);
-        // Speech is no longer called automatically here.
-      }
+  const observer = new IntersectionObserver(
+    ([e]) => {
+      controls.classList.toggle("sticky", e.intersectionRatio < 1);
+    },
+    { threshold: [1] }
+  );
 
-      // Event Listeners
-      bgSelector?.addEventListener("change", updateBackground);
-      fontSelector?.addEventListener("change", updateFont);
-      colorPicker?.addEventListener("change", updateColor);
-      toggleBg?.addEventListener("click", toggleBackground);
+  observer.observe(controls);
 
-      // When the "Speak" button is clicked, speak the current letter.
-      speakBtn?.addEventListener("click", () => {
-        const textToSpeak = letterDiv.textContent;
-        if (textToSpeak) {
-          speak(textToSpeak);
-        }
-      });
-
-      document.addEventListener(
-        "keydown",
-        (e) => {
-          e.preventDefault();
-          const { key, keyCode } = e;
-          if (isAlphabet(keyCode)) {
-            drawLetter(key.toUpperCase(), colorPicker.value);
-          }
-        },
-        false
-      );
-
-      function updateBackground() {
-        letterContainer.className = "container__hindi";
-        if (bgSelector.value !== "none") {
-          letterContainer.classList.add(`bg-${bgSelector.value}`);
-        }
-      }
-
-      function updateFont() {
-        letterDiv.style.fontFamily = fontSelector.value;
-      }
-
-      function updateColor() {
-        letterDiv.style.color = colorPicker.value;
-      }
-
-      function toggleBackground() {
-        letterContainer.classList.toggle("no-background");
-      }
-
-      const observer = new IntersectionObserver(
-        ([e]) => {
-          controls.classList.toggle("sticky", e.intersectionRatio < 1);
-        },
-        { threshold: [1] }
-      );
-
-      observer.observe(controls);
-
-      // A common workaround to ensure voices are loaded on some browsers.
-      window.addEventListener('load', () => {
-        if (synth.getVoices().length === 0) {
-            synth.speak(new SpeechSynthesisUtterance(''));
-        }
-      });
-    </script>
+  // A common workaround to ensure voices are loaded on some browsers.
+  window.addEventListener("load", () => {
+    if (synth.getVoices().length === 0) {
+      synth.speak(new SpeechSynthesisUtterance(""));
+    }
+  });
+</script>

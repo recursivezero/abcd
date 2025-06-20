@@ -155,9 +155,8 @@
   opacity: 1;
 }
 
- 
-@media (min-width: 1450px){
-  .district{
+@media (min-width: 1450px) {
+  .district {
     width: 50rem;
   }
 }

@@ -112,22 +112,20 @@ const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
     searchInput?.addEventListener("input", (e: Event) => {
       const target = e.target as HTMLInputElement | null;
       const query = target?.value?.toLowerCase().trim() ?? "";
-      
-      cards.forEach(card => {
+
+      cards.forEach((card) => {
         const gotra = (card.dataset.gotra ?? "").toLowerCase();
         const deity = (card.dataset.deity ?? "").toLowerCase();
         const caste = (card.dataset.caste ?? "").toLowerCase();
-        
-        const hasMatch = gotra.includes(query) || 
-                        deity.includes(query) || 
-                        caste.includes(query);
-        
+
+        const hasMatch = gotra.includes(query) || deity.includes(query) || caste.includes(query);
+
         card.style.display = hasMatch ? "block" : "none";
-        
+
         if (hasMatch) {
           // Highlight matching text
           const values = card.querySelectorAll<HTMLElement>(".value");
-          values.forEach(el => {
+          values.forEach((el) => {
             const text = el.textContent ?? "";
             el.innerHTML = highlightText(text, query);
           });
@@ -138,14 +136,14 @@ const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
     // PDF download
     downloadBtn?.addEventListener("click", () => {
       // Expand all cards for printing
-      cards.forEach(card => {
+      cards.forEach((card) => {
         card.classList.add("expanded");
         const btn = card.querySelector<HTMLElement>(".surname-count");
         const body = card.querySelector<HTMLElement>(".card-body");
         btn?.setAttribute("aria-expanded", "true");
         body?.setAttribute("aria-hidden", "false");
       });
-      
+
       setTimeout(() => {
         window.print();
       }, 500);

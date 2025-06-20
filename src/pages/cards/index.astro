@@ -6,12 +6,12 @@ import BaseLayout from "@/layouts/Base";
 
 const meta = {
   title: "Alphabet Explorer: Learn with Motion",
-  description: "Choose your display mode to explore the world of cards",
+  description: "Choose your display mode to explore the world of cards"
 };
 ---
 
 <BaseLayout {meta}>
-  <a href="/" class="back"><BackIcon class="bck"/></a>
+  <a href="/" class="back"><BackIcon class="bck" /></a>
   <div class="selection-container">
     <h1 class="selection-title">Explore Display Modes</h1>
     <div class="selection-buttons-grid">
@@ -78,7 +78,7 @@ const meta = {
       align-items: center;
       text-align: center;
       text-decoration: none;
-      background-color: var(--card-bg, light-dark(#ffffff,#2b2b40));
+      background-color: var(--card-bg, light-dark(#ffffff, #2b2b40));
       padding: 2.5rem;
       border-radius: 20px;
       border: 2px solid var(--card-border, #444460);
@@ -88,7 +88,7 @@ const meta = {
     }
 
     .selection-card:hover {
-      background-color: var(--card-hover-bg, light-dark(#ffffff,#3c3c5a));
+      background-color: var(--card-hover-bg, light-dark(#ffffff, #3c3c5a));
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
       border-color: var(--primary, #4a90e2);
@@ -146,11 +146,11 @@ const meta = {
       .back {
         left: 1rem;
         top: 2rem;
-        font-size: 0.9rem; 
+        font-size: 0.9rem;
       }
 
       .back svg {
-        width: 25px; 
+        width: 25px;
         height: 25px;
       }
     }
@@ -183,11 +183,11 @@ const meta = {
       .back {
         left: 1rem;
         top: 3em;
-        font-size: 0.9rem; 
+        font-size: 0.9rem;
       }
 
       .back svg {
-        width: 25px; 
+        width: 25px;
         height: 25px;
       }
     }

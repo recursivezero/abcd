@@ -1,4 +1,3 @@
-
 <script is:inline>
   const getSystemPreference = () => {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -16,14 +15,14 @@
     if (!["light", "dark", "system"].includes(theme)) return;
 
     document.documentElement.dataset.theme = theme;
-    
+
     // Apply the actual theme
     const actualTheme = theme === "system" ? getSystemPreference() : theme;
     document.documentElement.classList.toggle("dark", actualTheme === "dark");
 
     const meta = document.querySelector("meta[name='theme-color']");
     const bg = getComputedStyle(document.body).getPropertyValue("--theme-bg");
-    meta?.setAttribute("content", `hsl(${bg || '0, 0%, 100%'})`);
+    meta?.setAttribute("content", `hsl(${bg || "0, 0%, 100%"})`);
 
     localStorage.setItem("theme", theme);
   }

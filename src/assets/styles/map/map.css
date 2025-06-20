@@ -30,17 +30,17 @@
 }
 
 .back {
-    position: absolute;
-    left: 14rem;
-    top: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.1rem;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    z-index: 100;
-  }
+  position: absolute;
+  left: 14rem;
+  top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  z-index: 100;
+}
 
 .explore-grid {
   display: grid;
@@ -120,7 +120,7 @@
     grid-template-columns: 1fr;
   }
 
-  .back{
+  .back {
     display: none;
   }
 }

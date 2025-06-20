@@ -1,13 +1,12 @@
 ---
-
-import BaseLayout from "../../layouts/Base.astro"; 
-import LetterCard from "../../components/LetterCard.astro"; 
-import BackButton from "../../components/ui/backButton.astro";     
+import BaseLayout from "../../layouts/Base.astro";
+import LetterCard from "../../components/LetterCard.astro";
+import BackButton from "../../components/ui/backButton.astro";
 import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
 import glossaryData from "../../data/glossary.json";
 
 const pageTitle = glossaryData.days.title;
-const category = "days"; 
+const category = "days";
 const daysData = glossaryData.days.data;
 
 // Helper function to parse English and Hindi names
@@ -16,7 +15,7 @@ function parseDayNames(fullName: string): { english: string; hindi: string } {
   if (match && match.length === 3) {
     return { english: match[1].trim(), hindi: match[2].trim() };
   }
-  return { english: fullName, hindi: "" }; 
+  return { english: fullName, hindi: "" };
 }
 ---
 
@@ -35,12 +34,12 @@ function parseDayNames(fullName: string): { english: string; hindi: string } {
           const letterCardItem = {
             id: entry.id,
             letter: entry.letter, // e.g., "S" - for the main front display
-            text: names.hindi,    // English name for the front
-            description: names.english, 
+            text: names.hindi, // English name for the front
+            description: names.english
           };
           return <LetterCard item={letterCardItem} category={category} />;
         })
       }
     </div>
   </article>
-  </BaseLayout>
+</BaseLayout>

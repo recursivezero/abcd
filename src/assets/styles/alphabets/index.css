@@ -11,24 +11,24 @@
   }
 
   .back {
-  left:0;
-  top: 1rem;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  text-decoration: none;
-  color: light-dark(black, white);
-  font-weight: 500;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-}
+    left: 0;
+    top: 1rem;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    text-decoration: none;
+    color: light-dark(black, white);
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
 
-.back svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-}
+  .back svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+  }
   & .alphabets__header h1 {
     font-size: clamp(2.5rem, 4vw, 3rem);
     font-weight: 800;

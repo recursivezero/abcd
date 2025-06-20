@@ -6,9 +6,9 @@ export type LetterEntity = {
 };
 
 export interface AlphabetEntry {
-   id: number | string; 
+  id: number | string;
   letter: string;
-  code?: number ; 
+  code?: number;
   text: string;
   description: string;
   emoji?: string;
@@ -32,13 +32,13 @@ export interface AlphabetsData {
 }
 
 export interface GreekAlphabetEntry {
-  id: number; 
+  id: number;
   letter: string;
   text: string;
-  code: number; 
-  englishSound: string; 
+  code: number;
+  englishSound: string;
   description: string;
-  }
+}
 export interface GeekAlphabetEntry {
   id: string;
   letter: string;

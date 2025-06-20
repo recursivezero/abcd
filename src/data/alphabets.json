@@ -213,35 +213,179 @@
       }
     ]
   },
-  
+
   "greek": {
     "icon": "🔤",
     "description": "Explore the letters of the ancient and modern Greek alphabet.",
     "data": [
-      { "letter": "A", "text": "Alpha (Α α)", "description": "First letter of the Greek alphabet. Sound: 'a' as in father.", "code": 913, "emoji": "Α" },
-      { "letter": "B", "text": "Beta (Β β)", "description": "Second letter of the Greek alphabet. Sound: 'v' as in vase (Modern Greek).", "code": 914, "emoji": "Β" },
-      { "letter": "G", "text": "Gamma (Γ γ)", "description": "Third letter of the Greek alphabet. Sound: 'g' as in go, or 'y' as in yes.", "code": 915, "emoji": "Γ" },
-      { "letter": "D", "text": "Delta (Δ δ)", "description": "Fourth letter of the Greek alphabet. Sound: 'th' as in then (Modern Greek).", "code": 916, "emoji": "Δ" },
-      { "letter": "E", "text": "Epsilon (Ε ε)", "description": "Fifth letter of the Greek alphabet. Sound: 'e' as in met.", "code": 917, "emoji": "Ε" },
-      { "letter": "Z", "text": "Zeta (Ζ ζ)", "description": "Sixth letter of the Greek alphabet. Sound: 'z' as in zoo.", "code": 918, "emoji": "Ζ" },
-      { "letter": "H", "text": "Eta (Η η)", "description": "Seventh letter of the Greek alphabet. Sound: 'i' as in machine.", "code": 919, "emoji": "Η" },
-      { "letter": "Q", "text": "Theta (Θ θ)", "description": "Eighth letter of the Greek alphabet. Sound: 'th' as in thin.", "code": 920, "emoji": "Θ" },
-      { "letter": "I", "text": "Iota (Ι ι)", "description": "Ninth letter of the Greek alphabet. Sound: 'i' as in machine.", "code": 921, "emoji": "Ι" },
-      { "letter": "K", "text": "Kappa (Κ κ)", "description": "Tenth letter of the Greek alphabet. Sound: 'k' as in kite.", "code": 922, "emoji": "Κ" },
-      { "letter": "L", "text": "Lambda (Λ λ)", "description": "Eleventh letter of the Greek alphabet. Sound: 'l' as in lamp.", "code": 923, "emoji": "Λ" },
-      { "letter": "M", "text": "Mu (Μ μ)", "description": "Twelfth letter of the Greek alphabet. Sound: 'm' as in map.", "code": 924, "emoji": "Μ" },
-      { "letter": "N", "text": "Nu (Ν ν)", "description": "Thirteenth letter of the Greek alphabet. Sound: 'n' as in net.", "code": 925, "emoji": "Ν" },
-      { "letter": "X", "text": "Xi (Ξ ξ)", "description": "Fourteenth letter of the Greek alphabet. Sound: 'x' as in axe.", "code": 926, "emoji": "Ξ" },
-      { "letter": "O", "text": "Omicron (Ο ο)", "description": "Fifteenth letter of the Greek alphabet. Sound: 'o' as in pot.", "code": 927, "emoji": "Ο" },
-      { "letter": "P", "text": "Pi (Π π)", "description": "Sixteenth letter of the Greek alphabet. Sound: 'p' as in pen.", "code": 928, "emoji": "Π" },
-      { "letter": "R", "text": "Rho (Ρ ρ)", "description": "Seventeenth letter of the Greek alphabet. Sound: 'r' as in run (often rolled).", "code": 929, "emoji": "Ρ" },
-      { "letter": "S", "text": "Sigma (Σ σ/ς)", "description": "Eighteenth letter of the Greek alphabet. Sound: 's' as in sun.", "code": 931, "emoji": "Σ" },
-      { "letter": "T", "text": "Tau (Τ τ)", "description": "Nineteenth letter of the Greek alphabet. Sound: 't' as in tap.", "code": 932, "emoji": "Τ" },
-      { "letter": "U", "text": "Upsilon (Υ υ)", "description": "Twentieth letter of the Greek alphabet. Sound: 'i' as in machine (Modern Greek).", "code": 933, "emoji": "Υ" },
-      { "letter": "F", "text": "Phi (Φ φ)", "description": "Twenty-first letter of the Greek alphabet. Sound: 'f' as in fan.", "code": 934, "emoji": "Φ" },
-      { "letter": "C", "text": "Chi (Χ χ)", "description": "Twenty-second letter of the Greek alphabet. Sound: 'ch' as in Scottish loch, or 'h' as in huge.", "code": 935, "emoji": "Χ" },
-      { "letter": "Y", "text": "Psi (Ψ ψ)", "description": "Twenty-third letter of the Greek alphabet. Sound: 'ps' as in psychology.", "code": 936, "emoji": "Ψ" },
-      { "letter": "W", "text": "Omega (Ω ω)", "description": "Twenty-fourth letter of the Greek alphabet. Sound: 'o' as in go.", "code": 937, "emoji": "Ω" }
+      {
+        "letter": "A",
+        "text": "Alpha (Α α)",
+        "description": "First letter of the Greek alphabet. Sound: 'a' as in father.",
+        "code": 913,
+        "emoji": "Α"
+      },
+      {
+        "letter": "B",
+        "text": "Beta (Β β)",
+        "description": "Second letter of the Greek alphabet. Sound: 'v' as in vase (Modern Greek).",
+        "code": 914,
+        "emoji": "Β"
+      },
+      {
+        "letter": "G",
+        "text": "Gamma (Γ γ)",
+        "description": "Third letter of the Greek alphabet. Sound: 'g' as in go, or 'y' as in yes.",
+        "code": 915,
+        "emoji": "Γ"
+      },
+      {
+        "letter": "D",
+        "text": "Delta (Δ δ)",
+        "description": "Fourth letter of the Greek alphabet. Sound: 'th' as in then (Modern Greek).",
+        "code": 916,
+        "emoji": "Δ"
+      },
+      {
+        "letter": "E",
+        "text": "Epsilon (Ε ε)",
+        "description": "Fifth letter of the Greek alphabet. Sound: 'e' as in met.",
+        "code": 917,
+        "emoji": "Ε"
+      },
+      {
+        "letter": "Z",
+        "text": "Zeta (Ζ ζ)",
+        "description": "Sixth letter of the Greek alphabet. Sound: 'z' as in zoo.",
+        "code": 918,
+        "emoji": "Ζ"
+      },
+      {
+        "letter": "H",
+        "text": "Eta (Η η)",
+        "description": "Seventh letter of the Greek alphabet. Sound: 'i' as in machine.",
+        "code": 919,
+        "emoji": "Η"
+      },
+      {
+        "letter": "Q",
+        "text": "Theta (Θ θ)",
+        "description": "Eighth letter of the Greek alphabet. Sound: 'th' as in thin.",
+        "code": 920,
+        "emoji": "Θ"
+      },
+      {
+        "letter": "I",
+        "text": "Iota (Ι ι)",
+        "description": "Ninth letter of the Greek alphabet. Sound: 'i' as in machine.",
+        "code": 921,
+        "emoji": "Ι"
+      },
+      {
+        "letter": "K",
+        "text": "Kappa (Κ κ)",
+        "description": "Tenth letter of the Greek alphabet. Sound: 'k' as in kite.",
+        "code": 922,
+        "emoji": "Κ"
+      },
+      {
+        "letter": "L",
+        "text": "Lambda (Λ λ)",
+        "description": "Eleventh letter of the Greek alphabet. Sound: 'l' as in lamp.",
+        "code": 923,
+        "emoji": "Λ"
+      },
+      {
+        "letter": "M",
+        "text": "Mu (Μ μ)",
+        "description": "Twelfth letter of the Greek alphabet. Sound: 'm' as in map.",
+        "code": 924,
+        "emoji": "Μ"
+      },
+      {
+        "letter": "N",
+        "text": "Nu (Ν ν)",
+        "description": "Thirteenth letter of the Greek alphabet. Sound: 'n' as in net.",
+        "code": 925,
+        "emoji": "Ν"
+      },
+      {
+        "letter": "X",
+        "text": "Xi (Ξ ξ)",
+        "description": "Fourteenth letter of the Greek alphabet. Sound: 'x' as in axe.",
+        "code": 926,
+        "emoji": "Ξ"
+      },
+      {
+        "letter": "O",
+        "text": "Omicron (Ο ο)",
+        "description": "Fifteenth letter of the Greek alphabet. Sound: 'o' as in pot.",
+        "code": 927,
+        "emoji": "Ο"
+      },
+      {
+        "letter": "P",
+        "text": "Pi (Π π)",
+        "description": "Sixteenth letter of the Greek alphabet. Sound: 'p' as in pen.",
+        "code": 928,
+        "emoji": "Π"
+      },
+      {
+        "letter": "R",
+        "text": "Rho (Ρ ρ)",
+        "description": "Seventeenth letter of the Greek alphabet. Sound: 'r' as in run (often rolled).",
+        "code": 929,
+        "emoji": "Ρ"
+      },
+      {
+        "letter": "S",
+        "text": "Sigma (Σ σ/ς)",
+        "description": "Eighteenth letter of the Greek alphabet. Sound: 's' as in sun.",
+        "code": 931,
+        "emoji": "Σ"
+      },
+      {
+        "letter": "T",
+        "text": "Tau (Τ τ)",
+        "description": "Nineteenth letter of the Greek alphabet. Sound: 't' as in tap.",
+        "code": 932,
+        "emoji": "Τ"
+      },
+      {
+        "letter": "U",
+        "text": "Upsilon (Υ υ)",
+        "description": "Twentieth letter of the Greek alphabet. Sound: 'i' as in machine (Modern Greek).",
+        "code": 933,
+        "emoji": "Υ"
+      },
+      {
+        "letter": "F",
+        "text": "Phi (Φ φ)",
+        "description": "Twenty-first letter of the Greek alphabet. Sound: 'f' as in fan.",
+        "code": 934,
+        "emoji": "Φ"
+      },
+      {
+        "letter": "C",
+        "text": "Chi (Χ χ)",
+        "description": "Twenty-second letter of the Greek alphabet. Sound: 'ch' as in Scottish loch, or 'h' as in huge.",
+        "code": 935,
+        "emoji": "Χ"
+      },
+      {
+        "letter": "Y",
+        "text": "Psi (Ψ ψ)",
+        "description": "Twenty-third letter of the Greek alphabet. Sound: 'ps' as in psychology.",
+        "code": 936,
+        "emoji": "Ψ"
+      },
+      {
+        "letter": "W",
+        "text": "Omega (Ω ω)",
+        "description": "Twenty-fourth letter of the Greek alphabet. Sound: 'o' as in go.",
+        "code": 937,
+        "emoji": "Ω"
+      }
     ]
   },
   "geek": {
@@ -1453,9 +1597,27 @@
         { "letter": "ष", "code": "0937", "meaning": "षट्कोण (hexagon)", "emoji": "⬡", "unicode": "U+1F981" },
         { "letter": "स", "code": "0938", "meaning": "सांप (snake)", "emoji": "🐍", "unicode": "U+1F40D" },
         { "letter": "ह", "code": "0939", "meaning": "हाथी (elephant)", "emoji": "🐘", "unicode": "U+1F418" },
-        { "letter": "क्ष", "code": "0915+094D+0937", "meaning": "क्षत्रिय (warrior)", "emoji": "⚔️", "unicode": "U+2694" },
-        { "letter": "त्र", "code": "0924+094D+0930", "meaning": "त्रिशूल (trident)", "emoji": "🔱", "unicode": "U+1F531" },
-        { "letter": "ज्ञ", "code": "091C+094D+091E", "meaning": "ज्ञान (knowledge)", "emoji": "📚", "unicode": "U+1F4DA" }
+        {
+          "letter": "क्ष",
+          "code": "0915+094D+0937",
+          "meaning": "क्षत्रिय (warrior)",
+          "emoji": "⚔️",
+          "unicode": "U+2694"
+        },
+        {
+          "letter": "त्र",
+          "code": "0924+094D+0930",
+          "meaning": "त्रिशूल (trident)",
+          "emoji": "🔱",
+          "unicode": "U+1F531"
+        },
+        {
+          "letter": "ज्ञ",
+          "code": "091C+094D+091E",
+          "meaning": "ज्ञान (knowledge)",
+          "emoji": "📚",
+          "unicode": "U+1F4DA"
+        }
       ]
     }
   },

@@ -17,10 +17,10 @@
   --color-8: linear-gradient(135deg, #6366f1, #4f46e5);
   --color-9: linear-gradient(135deg, #0ea5e9, #0284c7);
   --color-10: linear-gradient(135deg, #14b8a6, #0d9488);
-  --metal-2: linear-gradient(145deg, #F5F5DC 0%, #F5F5DC 50%, #F5F5DC 100%);
+  --metal-2: linear-gradient(145deg, #f5f5dc 0%, #f5f5dc 50%, #f5f5dc 100%);
   --text-light: #e0e0e0;
   --text-dark: #1a1a1a;
-  --accent-color: #F5F5DC;
+  --accent-color: #f5f5dc;
   --purple-accent: #444460;
   --border-radius: 8px;
   --popover-bg-dark: rgba(25, 25, 30, 0.98);
@@ -272,7 +272,7 @@
 }
 
 .settings-button {
-  background: light-dark(#ffffff,#0f172a);
+  background: light-dark(#ffffff, #0f172a);
   border: 1px solid #3b82f6;
   color: var(--text-light);
   padding: 0.6rem;
@@ -323,7 +323,10 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease, visibility var(--transition-speed) ease;
+  transition:
+    opacity var(--transition-speed) ease,
+    transform var(--transition-speed) ease,
+    visibility var(--transition-speed) ease;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }

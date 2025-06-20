@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/Base.astro";
 import BackButton from "../../components/ui/backButton.astro";
 import "../../assets/styles/varnmala/greek-alphabet.css"; // General styles, adjust if needed
-import "../../assets/styles/glossary/waqt.css"; 
+import "../../assets/styles/glossary/waqt.css";
 import glossaryData from "../../data/glossary.json";
 
 const pageTitle = glossaryData.waqt.title;
@@ -17,32 +17,41 @@ const waqtData = glossaryData.waqt.data;
       <button id="flip-all-button-waqt" class="flip__all__button">Flip All Cards</button>
     </div>
 
-    <div class="grid-container alphabet-grid waqt-grid"> {/* Added waqt-grid class */}
+    <div class="grid-container alphabet-grid waqt-grid">
+      {/* Added waqt-grid class */}
       {
         waqtData.map((entry) => (
           <div class="flip__card" data-id={entry.id}>
             <div class="flip__card__inner">
               <div class="card card__front">
                 <div class="flip__button">
-                  <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
-                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span>
+                  <span class="flip__button__text flip-text-label" title="Flip Card">
+                    Flip Card
+                  </span>
+                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">
+                    &#x21bb;
+                  </span>
                 </div>
                 <div class="card-content-front">
                   <div class="waqt-icon">{entry.icon}</div>
                   <h2 class="text">{entry.englishTerm}</h2>
                 </div>
-                <div class="card__glow"></div>
+                <div class="card__glow" />
               </div>
               <div class="card card__back">
                 <div class="flip__button">
-                  <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
-                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span>
+                  <span class="flip__button__text flip-text-label" title="Flip Card">
+                    Flip Card
+                  </span>
+                  <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">
+                    &#x21bb;
+                  </span>
                 </div>
                 <div class="card-content-back">
                   <h3 class="hindi-term">{entry.hindiTranslation}</h3>
                   <p class="description">{entry.description}</p>
                 </div>
-                <div class="card__glow"></div>
+                <div class="card__glow" />
               </div>
             </div>
           </div>
@@ -50,90 +59,90 @@ const waqtData = glossaryData.waqt.data;
       }
     </div>
   </article>
-  </BaseLayout>
+</BaseLayout>
 
-  <script>
-    // Script for "Flip All Cards" button on the page
-    const flipAllButtonPageWaqt = document.getElementById("flip-all-button-waqt") as HTMLButtonElement | null;
-    const pageFlipCardsWaqt = document.querySelectorAll(".waqt-grid .flip__card");
-    let allFlippedStatusWaqt = false;
+<script>
+  // Script for "Flip All Cards" button on the page
+  const flipAllButtonPageWaqt = document.getElementById("flip-all-button-waqt") as HTMLButtonElement | null;
+  const pageFlipCardsWaqt = document.querySelectorAll(".waqt-grid .flip__card");
+  let allFlippedStatusWaqt = false;
 
-    if (flipAllButtonPageWaqt) {
-      flipAllButtonPageWaqt.addEventListener("click", () => {
-        allFlippedStatusWaqt = !allFlippedStatusWaqt;
-        pageFlipCardsWaqt.forEach((card) => {
-          const flipCardElement = card as HTMLElement;
-          if (allFlippedStatusWaqt) {
-            flipCardElement.classList.add("flipped");
-          } else {
-            flipCardElement.classList.remove("flipped");
-          }
-          const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
-          allButtonsOnThisCard.forEach(btn => {
-            const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
-            const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
-            if (textLabel && symbolLabel) {
-              if (allFlippedStatusWaqt) {
-                textLabel.classList.add("is-hidden");
-                symbolLabel.classList.remove("is-hidden");
-              } else {
-                textLabel.classList.remove("is-hidden");
-                symbolLabel.classList.add("is-hidden");
-              }
+  if (flipAllButtonPageWaqt) {
+    flipAllButtonPageWaqt.addEventListener("click", () => {
+      allFlippedStatusWaqt = !allFlippedStatusWaqt;
+      pageFlipCardsWaqt.forEach((card) => {
+        const flipCardElement = card as HTMLElement;
+        if (allFlippedStatusWaqt) {
+          flipCardElement.classList.add("flipped");
+        } else {
+          flipCardElement.classList.remove("flipped");
+        }
+        const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+        allButtonsOnThisCard.forEach((btn) => {
+          const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
+          const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
+          if (textLabel && symbolLabel) {
+            if (allFlippedStatusWaqt) {
+              textLabel.classList.add("is-hidden");
+              symbolLabel.classList.remove("is-hidden");
+            } else {
+              textLabel.classList.remove("is-hidden");
+              symbolLabel.classList.add("is-hidden");
             }
-          });
-        });
-        flipAllButtonPageWaqt.textContent = allFlippedStatusWaqt ? "Reset All Cards" : "Flip All Cards";
-        flipAllButtonPageWaqt.classList.add("active");
-        setTimeout(() => {
-          if (flipAllButtonPageWaqt) {
-            flipAllButtonPageWaqt.classList.remove("active");
           }
-        }, 300);
-      });
-    } else {
-      console.warn("Page's Flip All button for waqt not found.");
-    }
-
-    // Script for individual card interactions (mousemove and flip button)
-    const cardsForMouseInteractionWaqt = document.querySelectorAll(".waqt-grid .card");
-    cardsForMouseInteractionWaqt.forEach((cardElement) => {
-      cardElement.addEventListener("mousemove", (e: Event) => {
-        const htmlCardElement = cardElement as HTMLElement;
-        const rect = htmlCardElement.getBoundingClientRect();
-        const event = e as MouseEvent;
-        const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
-        const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
-        htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
-        htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
-      });
-    });
-
-    const individualFlipCardsWaqt = document.querySelectorAll(".waqt-grid .flip__card");
-    individualFlipCardsWaqt.forEach((card) => {
-      const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
-
-      flipButtonsOnThisCard.forEach((button) => {
-        button.addEventListener("click", (event) => {
-          event.stopPropagation();
-          card.classList.toggle("flipped");
-
-          const isFlipped = card.classList.contains("flipped");
-          
-          flipButtonsOnThisCard.forEach(btnInstance => {
-            const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
-            const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
-            if (textLabel && symbolLabel) {
-              if (isFlipped) {
-                textLabel.classList.add("is-hidden");
-                symbolLabel.classList.remove("is-hidden");
-              } else {
-                textLabel.classList.remove("is-hidden");
-                symbolLabel.classList.add("is-hidden");
-              }
-            }
-          });
         });
       });
+      flipAllButtonPageWaqt.textContent = allFlippedStatusWaqt ? "Reset All Cards" : "Flip All Cards";
+      flipAllButtonPageWaqt.classList.add("active");
+      setTimeout(() => {
+        if (flipAllButtonPageWaqt) {
+          flipAllButtonPageWaqt.classList.remove("active");
+        }
+      }, 300);
     });
-  </script>
+  } else {
+    console.warn("Page's Flip All button for waqt not found.");
+  }
+
+  // Script for individual card interactions (mousemove and flip button)
+  const cardsForMouseInteractionWaqt = document.querySelectorAll(".waqt-grid .card");
+  cardsForMouseInteractionWaqt.forEach((cardElement) => {
+    cardElement.addEventListener("mousemove", (e: Event) => {
+      const htmlCardElement = cardElement as HTMLElement;
+      const rect = htmlCardElement.getBoundingClientRect();
+      const event = e as MouseEvent;
+      const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
+      const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
+      htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
+      htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
+    });
+  });
+
+  const individualFlipCardsWaqt = document.querySelectorAll(".waqt-grid .flip__card");
+  individualFlipCardsWaqt.forEach((card) => {
+    const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+    flipButtonsOnThisCard.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        card.classList.toggle("flipped");
+
+        const isFlipped = card.classList.contains("flipped");
+
+        flipButtonsOnThisCard.forEach((btnInstance) => {
+          const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+          const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+          if (textLabel && symbolLabel) {
+            if (isFlipped) {
+              textLabel.classList.add("is-hidden");
+              symbolLabel.classList.remove("is-hidden");
+            } else {
+              textLabel.classList.remove("is-hidden");
+              symbolLabel.classList.add("is-hidden");
+            }
+          }
+        });
+      });
+    });
+  });
+</script>

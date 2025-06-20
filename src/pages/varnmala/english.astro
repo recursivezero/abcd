@@ -21,29 +21,27 @@ import { varnmala_english } from "@/utils/characters";
     <section id="english">
       <AlphabetComponent list={varnmala_english} title="English" />
     </section>
-    
   </article>
-  </BaseLayout>
-  <script>
-    const tabs = document.querySelectorAll(".tab");
+</BaseLayout>
+<script>
+  const tabs = document.querySelectorAll(".tab");
 
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        // Remove active class from all tabs
-        tabs.forEach((t) => t.classList.remove("active"));
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Remove active class from all tabs
+      tabs.forEach((t) => t.classList.remove("active"));
 
-        // Add active class to clicked tab
-        tab.classList.add("active");
+      // Add active class to clicked tab
+      tab.classList.add("active");
 
-        // Scroll to target section with offset
-        const targetId = tab.getAttribute("data-target");
-        if (targetId) {
-          const targetSection = document.getElementById(targetId);
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: "smooth" });
-          }
+      // Scroll to target section with offset
+      const targetId = tab.getAttribute("data-target");
+      if (targetId) {
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth" });
         }
-      });
+      }
     });
-  </script>
-
+  });
+</script>

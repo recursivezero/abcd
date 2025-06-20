@@ -27,11 +27,7 @@ const pageMeta = {
   <div class="header-controls">
     <BackButton />
     <div class="right-header-buttons">
-      <button
-        id="presetQuoteBtn"
-        class="metallic-button header-tools-btn"
-        aria-label="Get a Preset Quote"
-      >
+      <button id="presetQuoteBtn" class="metallic-button header-tools-btn" aria-label="Get a Preset Quote">
         <span class="button-text-initial">P</span>
         <span class="button-text">Preset Quote</span>
       </button>
@@ -234,13 +230,13 @@ const pageMeta = {
       <div class="control-group">
         <label>Text Alignment:</label>
         <div class="alignment-controls">
-          <button id="alignLeft" class="alignment-btn active" data-align="left" aria-label="Align Text Left">Left</button>
+          <button id="alignLeft" class="alignment-btn active" data-align="left" aria-label="Align Text Left"
+            >Left</button
+          >
           <button id="alignCenter" class="alignment-btn" data-align="center" aria-label="Align Text Center"
             >Center</button
           >
-          <button id="alignRight" class="alignment-btn" data-align="right" aria-label="Align Text Right"
-            >Right</button
-          >
+          <button id="alignRight" class="alignment-btn" data-align="right" aria-label="Align Text Right">Right</button>
         </div>
       </div>
       <div class="control-group">
@@ -407,13 +403,22 @@ const pageMeta = {
         { quote: "The best way to predict the future is to create it.", author: "Peter Drucker" },
         { quote: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
         { quote: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-        { quote: "Spread love everywhere you go. Let no one ever come to you without leaving happier.", author: "Mother Teresa" },
-        { quote: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+        {
+          quote: "Spread love everywhere you go. Let no one ever come to you without leaving happier.",
+          author: "Mother Teresa"
+        },
+        {
+          quote: "The future belongs to those who believe in the beauty of their dreams.",
+          author: "Eleanor Roosevelt"
+        },
         { quote: "It is during our darkest moments that we must focus to see the light.", author: "Aristotle" },
         { quote: "Keep your eyes on the stars, and your feet on the ground.", author: "Theodore Roosevelt" },
         { quote: "The only impossible journey is the one you never begin.", author: "Tony Robbins" },
         { quote: "Act as if what you do makes a difference. It does.", author: "William James" },
-        { quote: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" }
+        {
+          quote: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+          author: "Winston Churchill"
+        }
       ];
 
       const alignmentButtons = document.querySelectorAll(".alignment-btn");
@@ -447,7 +452,7 @@ const pageMeta = {
         preview.style.fontSize = `${controls.fontSize?.value || 24}px`;
         preview.style.textAlign = currentAlignment;
         preview.style.alignItems =
-        currentAlignment === "left" ? "flex-start" : currentAlignment === "right" ? "flex-end" : "center";
+          currentAlignment === "left" ? "flex-start" : currentAlignment === "right" ? "flex-end" : "center";
 
         quoteTextEl.classList.toggle("bold", boldBtn?.classList.contains("active"));
         quoteTextEl.classList.toggle("underline", underlineBtn?.classList.contains("active"));
@@ -505,7 +510,7 @@ const pageMeta = {
           popover.classList.remove("open");
           popover.setAttribute("aria-hidden", "true");
           // Set the details element to closed
-          const detailsElement = popover.querySelector('details');
+          const detailsElement = popover.querySelector("details");
           if (detailsElement) {
             detailsElement.open = false;
           }

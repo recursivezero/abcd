@@ -24,8 +24,8 @@
 .months-toggle-buttons {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem; 
-  gap: 1rem; 
+  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
 .toggle-button {
@@ -38,7 +38,10 @@
   color: var(--text-secondary, var(--text));
   border-radius: 0.5rem 0.5rem 0 0;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
   margin-bottom: -2px;
   position: relative;
 }
@@ -78,21 +81,25 @@
 }
 
 @keyframes fadeInPane {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .months-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.1px 1rem;
   justify-content: center;
   perspective: 1500px;
 }
 
 .month-card {
-  min-height: 250px; 
-  height: auto; 
+  min-height: 250px;
+  height: auto;
   position: relative;
   cursor: default;
   margin: 4px;
@@ -123,10 +130,9 @@
   border: 1px solid var(--border);
   background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
   color: var(--text);
-  overflow: hidden; 
-  
-  display: flex; 
- 
+  overflow: hidden;
+
+  display: flex;
 }
 
 .card-flip-action-btn {
@@ -139,11 +145,12 @@
   background-color: var(--primary-light, color-mix(in srgb, var(--primary) 70%, white 30%));
   color: var(--primary-text, var(--text-on-primary, var(--background)));
   border: 1px solid var(--primary, #007bff);
-  border-radius: 15px; 
+  border-radius: 15px;
   cursor: pointer;
   z-index: 20;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .card-flip-action-btn:hover {
@@ -153,7 +160,6 @@
 }
 
 .month-card-front-content {
-  
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -162,7 +168,6 @@
   padding: 1rem;
   box-sizing: border-box;
   width: 100%;
-
 }
 
 .month-card-back {
@@ -171,44 +176,42 @@
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  display: flex; 
+  display: flex;
   flex-direction: column;
-  align-items: center;   
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
   border-radius: 0.5rem;
-  
-  padding: 50px 1rem 1rem 1rem; 
+
+  padding: 50px 1rem 1rem 1rem;
   box-shadow: 0 2px 6px color-mix(in srgb, var(--text) 15%, transparent);
   border: 1px solid var(--border);
   background-color: color-mix(in srgb, var(--primary) 20%, var(--background) 80%);
   color: var(--text);
   overflow: hidden;
   transform: rotateY(180deg);
-  box-sizing: border-box; 
-}
-
-.month-card-back-content {
-  display: flex; 
-  flex-direction: column;
-  align-items: center;   
-  justify-content: center; 
-  width: 100%; 
-  height: 100%;
-  flex-grow: 1; 
   box-sizing: border-box;
 }
 
-
-.hindu-ordinal-text-on-back {
-  font-size: 1.7rem; 
-  color: var(white, var(--background)); 
-  margin: 0; 
-  font-weight: 600;
-  line-height: 1.4; 
-  text-align: center; 
-  padding: 0 0.5rem; 
+.month-card-back-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  box-sizing: border-box;
 }
 
+.hindu-ordinal-text-on-back {
+  font-size: 1.7rem;
+  color: var(white, var(--background));
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 0.5rem;
+}
 
 .calendar-on-card-grid {
   display: grid;
@@ -217,32 +220,34 @@
   text-align: center;
   width: 100%;
   max-width: 260px;
-  margin: auto; 
-  padding: 12px; 
+  margin: auto;
+  padding: 12px;
   border-radius: 12px;
   background-color: #cceeff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(255,255,255,0.5);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
   border: 2px solid #aaddff;
 }
 
 .calendar-on-card-grid .calendar-day {
-  padding: 6px 3px; 
+  padding: 6px 3px;
   border-radius: 8px;
   background-color: #ffffff;
   color: #33475b;
-  min-height: 28px; 
-  line-height: 28px; 
-  font-size: 0.8rem; 
+  min-height: 28px;
+  line-height: 28px;
+  font-size: 0.8rem;
   font-weight: 600;
   border: 1px solid #bee0f5;
   transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 2px 3px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
 }
 
 .calendar-on-card-grid .calendar-day:hover:not(.empty):not(.calendar-header) {
   background-color: #ffeb99;
   transform: scale(1.1) translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   color: #5c4033;
 }
 
@@ -250,19 +255,19 @@
   font-weight: 700;
   background-color: #3d99e4;
   color: #f5f2f1;
-  font-size: 0.7rem; 
+  font-size: 0.7rem;
   padding: 4px 0;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
   border-radius: 6px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
   min-height: auto;
   line-height: normal;
-  border: none; 
+  border: none;
 }
 
 .calendar-on-card-grid .calendar-day.empty {
-  background-color: #e9f5ff; 
+  background-color: #e9f5ff;
   border-color: #d0e0f0;
   box-shadow: none;
   opacity: 0.8;
@@ -278,7 +283,7 @@
   z-index: 1;
 }
 .calendar-on-card-grid .calendar-day.current-day::before {
-    content: none; 
+  content: none;
 }
 
 .calendar-on-card-grid .calendar-day.holiday-day {
@@ -286,28 +291,27 @@
   color: #226622;
   font-weight: 700;
   border: 2px dashed #66cc66;
-  position: relative; 
+  position: relative;
 }
 .calendar-on-card-grid .calendar-day.holiday-day::after {
-  content: '🎈';
+  content: "🎈";
   position: absolute;
-  top: -5px; 
+  top: -5px;
   right: -3px;
-  font-size: 0.85rem; 
+  font-size: 0.85rem;
   line-height: 1;
   transform: rotate(15deg);
 }
 
 .calendar-on-card-grid .calendar-day.holiday-day.current-day {
-   background-color: #ff8c8c;
-   border-style: solid; 
-   border-color: #e05050;
+  background-color: #ff8c8c;
+  border-style: solid;
+  border-color: #e05050;
 }
 .calendar-on-card-grid .calendar-day.holiday-day.current-day::after {
   color: #e05050;
   transform: rotate(0deg);
 }
-
 
 @media (max-width: 768px) {
   .month-card {
@@ -316,7 +320,7 @@
   .calendar-on-card-grid {
     gap: 4px;
     padding: 10px;
-    max-width: 230px; 
+    max-width: 230px;
     border-radius: 10px;
   }
   .calendar-on-card-grid .calendar-day {
@@ -325,12 +329,12 @@
     font-size: 0.75rem;
     border-radius: 6px;
   }
-   .calendar-on-card-grid .calendar-header {
+  .calendar-on-card-grid .calendar-header {
     font-size: 0.65rem;
     border-radius: 5px;
   }
   .calendar-on-card-grid .calendar-day.holiday-day::after {
-    font-size: 0.75rem; 
+    font-size: 0.75rem;
     top: -4px;
     right: -2px;
   }
@@ -338,10 +342,10 @@
 
 @media (max-width: 480px) {
   .month-card {
-    min-height: 280px; 
+    min-height: 280px;
   }
-   .calendar-on-card-grid {
-    max-width: 100%; 
+  .calendar-on-card-grid {
+    max-width: 100%;
     padding: 8px;
     gap: 3px;
     border-radius: 8px;
@@ -363,36 +367,35 @@
   }
 }
 
-
 .flip__all__button {
-    background-color: var(--background);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-weight: 200;
-    margin: 1rem 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    align-self: flex-end;
-  }
+  background-color: var(--background);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 200;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
 
-  .flip__all__button:hover {
-    transform: translateY(-2px);
-  }
+.flip__all__button:hover {
+  transform: translateY(-2px);
+}
 
-  .flip__all__button.active {
-    transform: scale(0.95);
-    background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
-  }
+.flip__all__button.active {
+  transform: scale(0.95);
+  background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
+}
 
 .month-card .card {
   max-height: 260px;
 }
-.flip__card { 
+.flip__card {
   width: 100%;
   height: 100%;
   perspective: 1000px;
-  min-height: 380px; 
+  min-height: 380px;
 }
 .flip__card {
   min-height: 300px;
@@ -417,7 +420,7 @@
 .calendar-on-card-grid .calendar-day {
   min-height: 22px;
   line-height: 22px;
-  min-height: 18px; 
+  min-height: 18px;
   line-height: 18px;
   font-size: 0.6rem;
   padding: 0;
@@ -443,8 +446,8 @@
 .months-toggle-buttons {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem; 
-  gap: 1rem; 
+  margin-bottom: 1.5rem;
+  gap: 1rem;
 }
 
 .months-toggle-buttons .toggle-button {
@@ -477,12 +480,12 @@
   }
 }
 
-@media (max-width: 600px) { /* More aggressive for smaller tablets / large phones */
+@media (max-width: 600px) {
+  /* More aggressive for smaller tablets / large phones */
   .months-grid {
     grid-template-columns: 1fr; /* Single column for small mobile */
   }
 }
-
 
 /* Ensure container has some padding */
 .months-page-container {

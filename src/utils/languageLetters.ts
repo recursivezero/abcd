@@ -10,8 +10,8 @@ interface LetterPair {
   tamil: string;
   telugu: string;
   odia: string;
-  dogri:string;
-  mithilakshar:string; // Older name for Mathili , Maithili is also kmown as Tirhuti
+  dogri: string;
+  mithilakshar: string; // Older name for Mathili , Maithili is also kmown as Tirhuti
   english: string;
   type: "vowel" | "consonant" | "separator";
 }
@@ -24,10 +24,10 @@ type GenerateAlphabetParams = {
   insertEmptyAt?: number[]; // Indices to insert "಍"
   insertUnicodeAt?: { index: number; unicode: number }[]; // Indices to insert a specific Unicode character
 };
-/** 
+/**
  * @input generateAlphabets({ startCode: 2309, totalLength: 16 })
  * @output [ "अ", "आ", "इ", "ई", "उ", "ऊ", "ऋ", "ऌ", "ऍ", "ऎ", "ए", "ऐ", "ऑ", "ऒ", "ओ", "औ" ]
-*/
+ */
 const generateAlphabets = (params: GenerateAlphabetParams): string[] => {
   const {
     startCode,
@@ -35,7 +35,7 @@ const generateAlphabets = (params: GenerateAlphabetParams): string[] => {
     extraKeys = [],
     insertEmptyAt = [],
     insertUnicodeAt = [] // Default to empty array if not provided
-  } = params
+  } = params;
   // Step 1: Generate the base characters after filtering out extraKeys
   const baseCharacters: string[] = [];
   for (let i = 0; i < totalLength; i++) {
@@ -122,31 +122,46 @@ const allAlphabet = {
   vowels: {
     hindi: generateAlphabets({ startCode: 2309, totalLength: 16 }),
     kannada: generateAlphabets({ startCode: 3205, totalLength: 16 }),
-    gujarati: generateAlphabets({startCode:2693,totalLength: 16}),
-    punjabi: generateAlphabets({startCode:2565, totalLength:16}),
-    malayalam: generateAlphabets({startCode:3333, totalLength:16,insertUnicodeAt:[{ index:9,unicode:3343},{index:10,unicode:3342}]}),
-    bengali: generateAlphabets({startCode:2437, totalLength:16}),
-    assamese: generateAlphabets({startCode:2437, totalLength:16}),
-    tamil: generateAlphabets({startCode:2949,totalLength:16}),
-    telugu: generateAlphabets({startCode:3077,totalLength:16}),
-    odia: generateAlphabets({startCode:2821,totalLength:16}),
-    dogri:generateAlphabets({startCode:71680,totalLength:16,insertEmptyAt:[6,7,8,9,12,13]}),
-    mithilakshar:generateAlphabets({startCode:70785,totalLength:16, extraKeys:[70792]}),
+    gujarati: generateAlphabets({ startCode: 2693, totalLength: 16 }),
+    punjabi: generateAlphabets({ startCode: 2565, totalLength: 16 }),
+    malayalam: generateAlphabets({
+      startCode: 3333,
+      totalLength: 16,
+      insertUnicodeAt: [
+        { index: 9, unicode: 3343 },
+        { index: 10, unicode: 3342 }
+      ]
+    }),
+    bengali: generateAlphabets({ startCode: 2437, totalLength: 16 }),
+    assamese: generateAlphabets({ startCode: 2437, totalLength: 16 }),
+    tamil: generateAlphabets({ startCode: 2949, totalLength: 16 }),
+    telugu: generateAlphabets({ startCode: 3077, totalLength: 16 }),
+    odia: generateAlphabets({ startCode: 2821, totalLength: 16 }),
+    dogri: generateAlphabets({ startCode: 71680, totalLength: 16, insertEmptyAt: [6, 7, 8, 9, 12, 13] }),
+    mithilakshar: generateAlphabets({ startCode: 70785, totalLength: 16, extraKeys: [70792] }),
     english: englishVowels // Directly use the array
   },
   consonants: {
-    hindi: generateAlphabets({startCode:2325, totalLength: 38,insertEmptyAt:[37]}),
-    kannada: generateAlphabets({startCode:3221, totalLength: 37}),
-    gujarati: generateAlphabets({startCode:2709, totalLength: 37}),
-    punjabi: generateAlphabets({startCode:2581, totalLength: 37}),
-    malayalam: generateAlphabets({startCode:3349, totalLength: 38}),
-    bengali: generateAlphabets({startCode:2453, totalLength: 37}),
-    assamese: generateAlphabets({startCode:2453,totalLength : 39,extraKeys:[2480,2485],insertUnicodeAt:[{ index:32,unicode:2544},{index:27,unicode:2545}]}),
-    tamil: generateAlphabets({startCode:2965,totalLength:37}),
-    telugu: generateAlphabets({startCode:3093,totalLength:37}),
-    odia: generateAlphabets({startCode:2837,totalLength:37}),
-    dogri:generateAlphabets({startCode:71690,totalLength:37,insertEmptyAt:[20,28,30,31]}),
-    mithilakshar:generateAlphabets({startCode:70799,totalLength:37,insertEmptyAt:[20,28,30,31]}),
+    hindi: generateAlphabets({ startCode: 2325, totalLength: 38, insertEmptyAt: [37] }),
+    kannada: generateAlphabets({ startCode: 3221, totalLength: 37 }),
+    gujarati: generateAlphabets({ startCode: 2709, totalLength: 37 }),
+    punjabi: generateAlphabets({ startCode: 2581, totalLength: 37 }),
+    malayalam: generateAlphabets({ startCode: 3349, totalLength: 38 }),
+    bengali: generateAlphabets({ startCode: 2453, totalLength: 37 }),
+    assamese: generateAlphabets({
+      startCode: 2453,
+      totalLength: 39,
+      extraKeys: [2480, 2485],
+      insertUnicodeAt: [
+        { index: 32, unicode: 2544 },
+        { index: 27, unicode: 2545 }
+      ]
+    }),
+    tamil: generateAlphabets({ startCode: 2965, totalLength: 37 }),
+    telugu: generateAlphabets({ startCode: 3093, totalLength: 37 }),
+    odia: generateAlphabets({ startCode: 2837, totalLength: 37 }),
+    dogri: generateAlphabets({ startCode: 71690, totalLength: 37, insertEmptyAt: [20, 28, 30, 31] }),
+    mithilakshar: generateAlphabets({ startCode: 70799, totalLength: 37, insertEmptyAt: [20, 28, 30, 31] }),
     english: englishConsonants // Directly use the array
   }
 };
@@ -166,7 +181,7 @@ const letterPairs: LetterPair[] = [
     telugu: allAlphabet.vowels.telugu[i],
     odia: allAlphabet.vowels.odia[i],
     dogri: allAlphabet.vowels.dogri[i],
-    mithilakshar:  allAlphabet.vowels.mithilakshar[i],
+    mithilakshar: allAlphabet.vowels.mithilakshar[i],
     english: allAlphabet.vowels.english[i],
     type: "vowel" as const
   })),
@@ -183,7 +198,7 @@ const letterPairs: LetterPair[] = [
     telugu: allAlphabet.consonants.telugu[i],
     odia: allAlphabet.consonants.odia[i],
     dogri: allAlphabet.consonants.dogri[i],
-    mithilakshar:  allAlphabet.consonants.mithilakshar[i],
+    mithilakshar: allAlphabet.consonants.mithilakshar[i],
     english: allAlphabet.consonants.english[i] || "",
     type: "consonant" as const
   }))
@@ -193,7 +208,7 @@ const languages = [
   { code: "PL", name: "Select Primary Language", disabled: true },
   { code: "as", name: "assamese" },
   { code: "bn", name: "bengali" },
-  { code: "do", name: "dogri"},
+  { code: "do", name: "dogri" },
   { code: "en", name: "english" },
   { code: "gu", name: "gujarati" },
   { code: "hi", name: "hindi" },
@@ -208,18 +223,18 @@ const languages = [
 ];
 const languages2 = [
   { code: "SL", name: "Select Secondary Language", disabled: true },
-  { code: "as", name: "অসমীয়া" }, 
-  { code: "bn", name: "বাংলা" }, 
-  { code: "do", name: "𑠖𑠵𑠌𑠤𑠮"},
+  { code: "as", name: "অসমীয়া" },
+  { code: "bn", name: "বাংলা" },
+  { code: "do", name: "𑠖𑠵𑠌𑠤𑠮" },
   { code: "en", name: "english" },
-  { code: "gu", name: "ગુજરાતી" }, 
+  { code: "gu", name: "ગુજરાતી" },
   { code: "hi", name: "हिंदी" },
   { code: "kn", name: "ಕನ್ನಡ" },
-  { code: "ml", name: "മലയാളം" }, 
+  { code: "ml", name: "മലയാളം" },
   { code: "mi", name: "𑒧𑒱𑒟𑒱𑒪𑒰𑒏𑓂𑒬𑒰𑒩" },
   { code: "mr", name: "मराठी" },
   { code: "or", name: "ଓଡ଼ିଆ" },
-  { code: "pa", name: "ਪੰਜਾਬੀ" }, 
+  { code: "pa", name: "ਪੰਜਾਬੀ" },
   { code: "tm", name: "தமிழ்" },
   { code: "te", name: "తెలుగు" }
 ];
@@ -259,4 +274,14 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   }
 };
 
-export { englishVowels, englishConsonants, allAlphabet, letterPairs, languages, languages2,selectedLanguage1,selectedLanguage2, getLetterForLanguage };
+export {
+  englishVowels,
+  englishConsonants,
+  allAlphabet,
+  letterPairs,
+  languages,
+  languages2,
+  selectedLanguage1,
+  selectedLanguage2,
+  getLetterForLanguage
+};

@@ -1,6 +1,6 @@
 ---
-import BaseLayout from "../../layouts/Base.astro"; 
-import BackButton from "../../components/ui/backButton.astro";     
+import BaseLayout from "../../layouts/Base.astro";
+import BackButton from "../../components/ui/backButton.astro";
 import "../../assets/styles/varnmala/greek-alphabet.css"; // General styles
 import "../../assets/styles/glossary/colour.css"; // Import the specific styles for this page
 import glossaryData from "../../data/glossary.json";
@@ -19,7 +19,7 @@ function parseNames(fullName: string): { english: string; hindi: string } {
   if (englishOnlyMatch) {
     return { english: englishOnlyMatch[1].trim(), hindi: "" };
   }
-  return { english: fullName, hindi: "" }; 
+  return { english: fullName, hindi: "" };
 }
 ---
 
@@ -41,118 +41,126 @@ function parseNames(fullName: string): { english: string; hindi: string } {
                 <div class="card card__front">
                   <div class="flip__button">
                     {/* Modified flip button content */}
-                    <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
-                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
+                    <span class="flip__button__text flip-text-label" title="Flip Card">
+                      Flip Card
+                    </span>
+                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">
+                      &#x21bb;
+                    </span>{" "}
+                    {/* ↻ symbol */}
                   </div>
                   <div class="card-content-front">
                     <h2 class="text">{names.english}</h2>
                   </div>
-                  <div class="card__glow"></div>
-                  <div class="corner-triangle" style={`--triangle-color: ${entry.cssColor};`}></div> {/* Added triangle */}
+                  <div class="card__glow" />
+                  <div class="corner-triangle" style={`--triangle-color: ${entry.cssColor};`} /> {/* Added triangle */}
                 </div>
-                <div 
-                  class="card card__back" 
-                  style={`background: ${entry.cssColor || 'var(--background)'};`}
-                >
+                <div class="card card__back" style={`background: ${entry.cssColor || "var(--background)"};`}>
                   <div class="flip__button">
                     {/* Modified flip button content */}
-                    <span class="flip__button__text flip-text-label" title="Flip Card">Flip Card</span>
-                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">&#x21bb;</span> {/* ↻ symbol */}
+                    <span class="flip__button__text flip-text-label" title="Flip Card">
+                      Flip Card
+                    </span>
+                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">
+                      &#x21bb;
+                    </span>{" "}
+                    {/* ↻ symbol */}
                   </div>
                 </div>
               </div>
-            </div> 
+            </div>
           );
         })
       }
     </div>
   </article>
-  </BaseLayout>
+</BaseLayout>
 
-  <script>
-    // Script for "Flip All Cards" button on the page
-    const flipAllButtonPage = document.getElementById("flip-all-button-colours") as HTMLButtonElement | null;
-    const pageFlipCards = document.querySelectorAll(".colours-grid .flip__card"); 
-    let allFlippedStatus = false;
+<script>
+  // Script for "Flip All Cards" button on the page
+  const flipAllButtonPage = document.getElementById("flip-all-button-colours") as HTMLButtonElement | null;
+  const pageFlipCards = document.querySelectorAll(".colours-grid .flip__card");
+  let allFlippedStatus = false;
 
-    if (flipAllButtonPage) {
-      flipAllButtonPage.addEventListener("click", () => {
-        allFlippedStatus = !allFlippedStatus;
-        pageFlipCards.forEach((card) => {
-          const flipCardElement = card as HTMLElement;
-          if (allFlippedStatus) {
-            flipCardElement.classList.add("flipped");
-          } else {
-            flipCardElement.classList.remove("flipped");
-          }
-          // Update text/icons for all buttons on this card based on new status
-          const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
-          allButtonsOnThisCard.forEach(btn => {
-            const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
-            const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
-            if (textLabel && symbolLabel) {
-              if (allFlippedStatus) {
-                textLabel.classList.add("is-hidden");
-                symbolLabel.classList.remove("is-hidden");
-              } else {
-                textLabel.classList.remove("is-hidden");
-                symbolLabel.classList.add("is-hidden");
-              }
+  if (flipAllButtonPage) {
+    flipAllButtonPage.addEventListener("click", () => {
+      allFlippedStatus = !allFlippedStatus;
+      pageFlipCards.forEach((card) => {
+        const flipCardElement = card as HTMLElement;
+        if (allFlippedStatus) {
+          flipCardElement.classList.add("flipped");
+        } else {
+          flipCardElement.classList.remove("flipped");
+        }
+        // Update text/icons for all buttons on this card based on new status
+        const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+        allButtonsOnThisCard.forEach((btn) => {
+          const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
+          const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
+          if (textLabel && symbolLabel) {
+            if (allFlippedStatus) {
+              textLabel.classList.add("is-hidden");
+              symbolLabel.classList.remove("is-hidden");
+            } else {
+              textLabel.classList.remove("is-hidden");
+              symbolLabel.classList.add("is-hidden");
             }
-          });
-        });
-        flipAllButtonPage.textContent = allFlippedStatus ? "Reset All Cards" : "Flip All Cards";
-        flipAllButtonPage.classList.add("active");
-        setTimeout(() => {
-          if (flipAllButtonPage) { 
-            flipAllButtonPage.classList.remove("active");
           }
-        }, 300);
-      });
-    } else {
-      console.warn("Page's Flip All button for colours not found.");
-    }
-
-    // Script for individual card interactions (mousemove and flip button)
-    const cardsForMouseInteraction = document.querySelectorAll(".colours-grid .card"); 
-    cardsForMouseInteraction.forEach((cardElement) => { 
-      cardElement.addEventListener("mousemove", (e: Event) => {
-        const htmlCardElement = cardElement as HTMLElement; 
-        const rect = htmlCardElement.getBoundingClientRect();
-        const event = e as MouseEvent;
-        const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
-        const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
-        htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
-        htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
-      });
-    });
-
-    const individualFlipCards = document.querySelectorAll(".colours-grid .flip__card"); 
-    individualFlipCards.forEach((card) => { // card is .flip__card
-      const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>; // Gets buttons on front and back of this card
-
-      flipButtonsOnThisCard.forEach((button) => { 
-        button.addEventListener("click", (event) => {
-          event.stopPropagation(); 
-          card.classList.toggle("flipped"); // Toggle the card's class
-
-          const isFlipped = card.classList.contains("flipped");
-          
-          // Update text/icons for all buttons on this card
-          flipButtonsOnThisCard.forEach(btnInstance => {
-            const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
-            const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
-            if (textLabel && symbolLabel) {
-              if (isFlipped) {
-                textLabel.classList.add("is-hidden");
-                symbolLabel.classList.remove("is-hidden");
-              } else {
-                textLabel.classList.remove("is-hidden");
-                symbolLabel.classList.add("is-hidden");
-              }
-            }
-          });
         });
       });
+      flipAllButtonPage.textContent = allFlippedStatus ? "Reset All Cards" : "Flip All Cards";
+      flipAllButtonPage.classList.add("active");
+      setTimeout(() => {
+        if (flipAllButtonPage) {
+          flipAllButtonPage.classList.remove("active");
+        }
+      }, 300);
     });
-  </script>
+  } else {
+    console.warn("Page's Flip All button for colours not found.");
+  }
+
+  // Script for individual card interactions (mousemove and flip button)
+  const cardsForMouseInteraction = document.querySelectorAll(".colours-grid .card");
+  cardsForMouseInteraction.forEach((cardElement) => {
+    cardElement.addEventListener("mousemove", (e: Event) => {
+      const htmlCardElement = cardElement as HTMLElement;
+      const rect = htmlCardElement.getBoundingClientRect();
+      const event = e as MouseEvent;
+      const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
+      const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
+      htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
+      htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
+    });
+  });
+
+  const individualFlipCards = document.querySelectorAll(".colours-grid .flip__card");
+  individualFlipCards.forEach((card) => {
+    // card is .flip__card
+    const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>; // Gets buttons on front and back of this card
+
+    flipButtonsOnThisCard.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        card.classList.toggle("flipped"); // Toggle the card's class
+
+        const isFlipped = card.classList.contains("flipped");
+
+        // Update text/icons for all buttons on this card
+        flipButtonsOnThisCard.forEach((btnInstance) => {
+          const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+          const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+          if (textLabel && symbolLabel) {
+            if (isFlipped) {
+              textLabel.classList.add("is-hidden");
+              symbolLabel.classList.remove("is-hidden");
+            } else {
+              textLabel.classList.remove("is-hidden");
+              symbolLabel.classList.add("is-hidden");
+            }
+          }
+        });
+      });
+    });
+  });
+</script>

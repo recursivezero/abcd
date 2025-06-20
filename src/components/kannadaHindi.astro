@@ -1,55 +1,66 @@
 ---
-import { englishVowels, englishConsonants, allAlphabet, letterPairs, languages, languages2, selectedLanguage1,selectedLanguage2, getLetterForLanguage } from "@/utils/languageLetters.ts";
+import {
+  englishVowels,
+  englishConsonants,
+  allAlphabet,
+  letterPairs,
+  languages,
+  languages2,
+  selectedLanguage1,
+  selectedLanguage2,
+  getLetterForLanguage
+} from "@/utils/languageLetters.ts";
 import BackIcon from "@/components/Back.astro";
 import "@/assets/styles/kannada.css";
 ---
-<div class="language-letters-container">
-  <div class="main-header"> 
-  <a href="/" class="back"><BackIcon class="bck"/></a> 
-  <div class="toggle-container">
-    <div class="dropdown-wrapper">
-      <label id="lang1Label" class="dropdown-label language-label active"> PRIMARY LANGUAGE </label>
-      <select id="languageDropdown1">
-        {
-          languages.map((lang) => (
-            <option
-              class="opt"
-              value={lang.code}
-              selected={lang.code === selectedLanguage1}
-              disabled={lang.disabled ? "disabled" : null}
-            >
-              {lang.name}
-            </option>
-          ))
-        }
-      </select>
-    </div>
-    <button id="toggleButton" class="toggle-button" aria-label="Swap languages" title="Swap languges">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M17 14 9 14 9 16 17 16 17 19 22 15 17 11 17 14z"></path><path
-          d="M15 10 15 8 7 7 7 5 2 9 7 13 7 10 15 10z"></path>
-      </svg>
-    </button>
 
-    <div class="dropdown-wrapper">
-      <label id="lang2Label" class="dropdown-label language-label"> SECONDARY LANGUAGE </label>
-      <select id="languageDropdown2">
-        {
-          languages2.map((lang) => (
-            <option
-              class="opt"
-              value={lang.code}
-              selected={lang.code === selectedLanguage2}
-              disabled={lang.disabled ? "disabled" : null}
-            >
-              {lang.name}
-            </option>
-          ))
-        }
-      </select>
+<div class="language-letters-container">
+  <div class="main-header">
+    <a href="/" class="back"><BackIcon class="bck" /></a>
+    <div class="toggle-container">
+      <div class="dropdown-wrapper">
+        <label id="lang1Label" class="dropdown-label language-label active"> PRIMARY LANGUAGE </label>
+        <select id="languageDropdown1">
+          {
+            languages.map((lang) => (
+              <option
+                class="opt"
+                value={lang.code}
+                selected={lang.code === selectedLanguage1}
+                disabled={lang.disabled ? "disabled" : null}
+              >
+                {lang.name}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+      <button id="toggleButton" class="toggle-button" aria-label="Swap languages" title="Swap languges">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17 14 9 14 9 16 17 16 17 19 22 15 17 11 17 14z"></path><path
+            d="M15 10 15 8 7 7 7 5 2 9 7 13 7 10 15 10z"></path>
+        </svg>
+      </button>
+
+      <div class="dropdown-wrapper">
+        <label id="lang2Label" class="dropdown-label language-label"> SECONDARY LANGUAGE </label>
+        <select id="languageDropdown2">
+          {
+            languages2.map((lang) => (
+              <option
+                class="opt"
+                value={lang.code}
+                selected={lang.code === selectedLanguage2}
+                disabled={lang.disabled ? "disabled" : null}
+              >
+                {lang.name}
+              </option>
+            ))
+          }
+        </select>
+      </div>
     </div>
   </div>
-</div>
   <!-- Letters Grid Section -->
   <div class="language-letters-grid">
     <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS</h2>
@@ -66,7 +77,6 @@ import "@/assets/styles/kannada.css";
 
     <div class="language-letters-separator" style="grid-column: 1 / -1;"></div>
 
-
     <h2 class="group-heading" style="grid-column: 1 / -1;">CONSONANTS</h2>
     {
       letterPairs
@@ -80,22 +90,21 @@ import "@/assets/styles/kannada.css";
     }
   </div>
   <!-- OM -->
-<div id="letterPopup" class="letter-popup">
-  <div class="outer">
-    <button id="closePopup" class="close-button">×</button>
-    <div class="middle">
-    <div class="popup-content">
-    <div class="popup-letter"> ॐ</div>
-  </div>
+  <div id="letterPopup" class="letter-popup">
+    <div class="outer">
+      <button id="closePopup" class="close-button">×</button>
+      <div class="middle">
+        <div class="popup-content">
+          <div class="popup-letter">ॐ</div>
+        </div>
+      </div>
     </div>
-</div>
-</div>
   </div>
-<script   define:vars={{ englishVowels, englishConsonants, allAlphabet, languages,}} is:inline>
-  
+</div>
+<script define:vars={{ englishVowels, englishConsonants, allAlphabet, languages }} is:inline>
   let selectedLanguage1 = "hi";
   let selectedLanguage2 = "kn";
-  
+
   function getLetter(langCode, type, index) {
     // Find the language object from the `languages` array
     const langObj = languages.find((lang) => lang.code === langCode);
@@ -194,7 +203,7 @@ import "@/assets/styles/kannada.css";
     const closeButton = document.getElementById("closePopup");
     const mainHeader = document.querySelector(".main-header");
     const scrollThreshold = 50; // Pixels to scroll before the header shrinks
-        function handleScroll() {
+    function handleScroll() {
       if (window.scrollY > scrollThreshold) {
         mainHeader.classList.add("scrolled-header");
       } else {
@@ -220,9 +229,9 @@ import "@/assets/styles/kannada.css";
     // Add click handler for swap button
     toggleButton.addEventListener("click", swapLanguages);
     updateGrid();
-        // Add click event to all letter cards
+    // Add click event to all letter cards
     const letterCards = document.querySelectorAll(".language-letter-card");
-    letterCards.forEach(card => {
+    letterCards.forEach((card) => {
       card.addEventListener("click", () => {
         popup.style.display = "flex";
       });
@@ -231,6 +240,5 @@ import "@/assets/styles/kannada.css";
     closeButton.addEventListener("click", () => {
       popup.style.display = "none";
     });
-
   });
 </script>

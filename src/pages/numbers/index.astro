@@ -1,6 +1,6 @@
 ---
 import BackIcon from "@/assets/icons/back.svg";
-import BaseLayout from "../../layouts/Base.astro"; 
+import BaseLayout from "../../layouts/Base.astro";
 import "@/assets/styles/alphabets/index.css"; // Global styles from alphabets index
 import allAlphabetsData from "../../data/alphabets.json"; // Import the JSON data
 
@@ -13,7 +13,7 @@ interface NumeralCategory {
   description?: string;
   icon?: string;
   data?: NumeralItem[];
-  title?: string; 
+  title?: string;
 }
 
 interface HindiLetter {
@@ -59,7 +59,6 @@ const typedAlphabetData = allAlphabetsData as AlphabetsData;
 
 const pageTitle = "Learn Numbers";
 
-
 // Get specific data from alphabets.json
 const hindiNumbersCategory = typedAlphabetData["Hindi Numbers"];
 const romanNumeralsCategory = typedAlphabetData["Roman Numerals"];
@@ -70,24 +69,24 @@ const numberSections = [
     title: "English Numbers", // Display title for the card
     categoryKey: "English Numbers", // For consistency, though not directly from JSON for this one
     description: "Learn about numbers in English (e.g., 1, 2, 3, One, Two, Three).",
-    href: "/numbers/english", 
-    icon: "🔢", 
+    href: "/numbers/english",
+    icon: "🔢"
   },
   {
     id: "hindi-numbers",
-    title: "Hindi Numbers", 
+    title: "Hindi Numbers",
     categoryKey: "Hindi Numbers",
     description: hindiNumbersCategory?.description || "Learn Devanagari numerals.",
-    href: "/numbers/hindi", 
-    icon: hindiNumbersCategory?.icon || "🔢", 
+    href: "/numbers/hindi",
+    icon: hindiNumbersCategory?.icon || "🔢"
   },
   {
     id: "roman-numerals",
     title: "Roman Numerals",
     categoryKey: "Roman Numerals",
     description: romanNumeralsCategory?.description || "Learn to read and write Roman numerals.",
-    href: "/numbers/roman", 
-    icon: romanNumeralsCategory?.icon || "🏛️",
+    href: "/numbers/roman",
+    icon: romanNumeralsCategory?.icon || "🏛️"
   },
   {
     id: "Morse Code Numbers",
@@ -95,25 +94,26 @@ const numberSections = [
     categoryKey: "Morse Code Numbers",
     description: "Learn to read and write Morse code for numbers.",
     href: "/numbers/morse",
-    icon: "📡",
-  },
+    icon: "📡"
+  }
 ];
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
   <section class="container__alphabets">
     <a href="/" class="back">
-      <BackIcon class="bck"/>
+      <BackIcon class="bck" />
     </a>
     <div class="alphabets__header">
       <h1>{pageTitle}</h1>
-      
     </div>
     <ul class="list__alphabets">
       {
         numberSections.map((section, index) => (
           <li class="card" style={`animation-delay: ${index * 50}ms`}>
-            <div class="card__inner"> {/* Replicating structure from alphabets/index.astro */}
+            <div class="card__inner">
+              {" "}
+              {/* Replicating structure from alphabets/index.astro */}
               <div class="card__content">
                 {section.icon && <div class="category__icon">{section.icon}</div>}
                 <h2 class="category__title">{section.title}</h2>
@@ -137,26 +137,25 @@ const numberSections = [
 
 {/* Styles copied directly from src/pages/alphabets/index.astro for exact appearance */}
 <style>
-
   .back {
-  left:0;
-  top: 1rem;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  text-decoration: none;
-  color: light-dark(black, white);
-  font-weight: 500;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-}
+    left: 0;
+    top: 1rem;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    text-decoration: none;
+    color: light-dark(black, white);
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
 
-.back svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-}
+  .back svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+  }
   .card__inner {
     background: var(--background);
     border: 2px solid var(--border);
@@ -185,7 +184,7 @@ const numberSections = [
     font-size: clamp(0.9rem, 2vw, 0.95rem);
     line-height: 1.6;
     /* Ensure description takes available space if card content is flex column */
-    flex-grow: 1; 
+    flex-grow: 1;
   }
 
   .btn {
@@ -211,8 +210,8 @@ const numberSections = [
 
   @media (max-width: 768px) {
     /* .card__actions { */ /* No longer need to change direction for a single button */
-      /* flex-direction: column; */
-      /* gap: 0.75rem; */
+    /* flex-direction: column; */
+    /* gap: 0.75rem; */
     /* } */
 
     .btn {
@@ -221,7 +220,8 @@ const numberSections = [
   }
 
   /* Styling for buttons to match playground/board appearance */
-  .btn-playground { /* For "Learn" button */
+  .btn-playground {
+    /* For "Learn" button */
     background: var(--primary);
     color: var(--background); /* Assuming --background is light for dark primary */
   }
@@ -254,7 +254,8 @@ const numberSections = [
   }
   */
 
-  .icon { /* General icon styling within buttons */
+  .icon {
+    /* General icon styling within buttons */
     font-size: 1.2em;
     margin-right: 0.5em; /* Space between icon and text in button */
   }

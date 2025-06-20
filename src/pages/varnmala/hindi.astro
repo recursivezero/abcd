@@ -10,20 +10,19 @@ import BackButton from "@/components/ui/backButton.astro";
 import { varnmala_hindi, hindiVowelList } from "@/utils/characters";
 
 // Vowels to be excluded
-const vowelsToRemove = ['ऌ', 'ऎ', 'ऒ'];
+const vowelsToRemove = ["ऌ", "ऎ", "ऒ"];
 
 // Prepare the vowel data for the AlphabetComponent, filtering out the unwanted vowels
 const formattedVowelList = hindiVowelList
-  .filter(vowel => !vowelsToRemove.includes(vowel.value))
+  .filter((vowel) => !vowelsToRemove.includes(vowel.value))
   .map((vowel) => ({
     letter: vowel.value, // Using the 'value' property which holds the character
-    code: vowel.key,     // Using the 'key' property for the 'code' 
+    code: vowel.key // Using the 'key' property for the 'code'
   }));
 ---
 
 <BaseLayout meta={{ title: "Hindi" }}>
   <Fragment slot="header-right">
-
     <Help
       title="Hindi"
       description="It is a collection of alphabets in Hindi. It is used to teach kids the basics of language."
@@ -33,12 +32,14 @@ const formattedVowelList = hindiVowelList
 
   <article class="container__alphabets">
     {/* Section for Hindi Vowels */}
-    <section id="hindi_vowels"> {}
+    <section id="hindi_vowels">
+      {}
       <AlphabetComponent list={formattedVowelList} title="Hindi Vowels (स्वर)" />
     </section>
 
     {/* Section for Hindi Consonants */}
-    <section id="hindi_consonants"> {}
+    <section id="hindi_consonants">
+      {}
       <AlphabetComponent list={varnmala_hindi} title="Hindi Consonants (व्यंजन)" />
     </section>
   </article>
@@ -56,7 +57,6 @@ const formattedVowelList = hindiVowelList
         // Scroll to target section with offset
         const targetId = tab.getAttribute("data-target");
         if (targetId) {
-          
           const targetSection = document.getElementById(targetId) || document.getElementById(`hindi_${targetId}`);
           if (targetSection) {
             targetSection.scrollIntoView({ behavior: "smooth" });

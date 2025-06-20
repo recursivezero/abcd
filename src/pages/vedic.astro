@@ -6,50 +6,51 @@ import vedicData from "@/assets/json/vedic.json";
 
 const timeUnits = vedicData.time_units;
 ---
+
 <BaseLayout meta={{ title: "Vedic Time" }}>
   <div class="container__vedic">
-        <a href="/" class="back">
-      <BackIcon class="bck"/>
+    <a href="/" class="back">
+      <BackIcon class="bck" />
     </a>
     <script type="text/javascript" async>
-    const fullEnglish = {
-      weekday: 'long',
-      dayPeriod: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: 'numeric',
-      calendar: 'iso8601',
-      timeZone: 'Asia/Kolkata',
-      timeZoneName: 'short',
-      formatMatcher: 'basic',
-      hourCycle: 'h12',
-    };
+      const fullEnglish = {
+        weekday: "long",
+        dayPeriod: "long",
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "numeric",
+        calendar: "iso8601",
+        timeZone: "Asia/Kolkata",
+        timeZoneName: "short",
+        formatMatcher: "basic",
+        hourCycle: "h12"
+      };
 
-    const fullHindi = {
-      weekday: 'long',
-      dayPeriod: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: 'numeric',
-      calendar: 'indian',
-      timeZone: 'Asia/Kolkata',
-      numberingSystem: 'deva',
-      formatMatcher: 'basic',
-      hourCycle: 'h12',
-    };
+      const fullHindi = {
+        weekday: "long",
+        dayPeriod: "long",
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "numeric",
+        calendar: "indian",
+        timeZone: "Asia/Kolkata",
+        numberingSystem: "deva",
+        formatMatcher: "basic",
+        hourCycle: "h12"
+      };
 
       const styleOption = {
-        dateStyle: 'full',
-        timeStyle: 'long',
-        calendar: 'iso8601', // 'indian',
+        dateStyle: "full",
+        timeStyle: "long",
+        calendar: "iso8601", // 'indian',
         /* numberingSystem: 'deva', */
-        timeZone: 'Asia/Kolkata',
+        timeZone: "Asia/Kolkata",
         hour12: false,
         useGrouping: true,
         minimumIntegerDigits: 1
@@ -57,8 +58,7 @@ const timeUnits = vedicData.time_units;
 
       const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
       const samay = new Intl.DateTimeFormat("hi", fullHindi);
-      const dateInHindi = new Intl.DateTimeFormat('hi', styleOption);
-
+      const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);
     </script>
 
     <div class="tab-buttons">
@@ -73,18 +73,23 @@ const timeUnits = vedicData.time_units;
           <h1 class="tithi-title">Tithi</h1>
         </div>
         <time id="today" class="date-display">
-            <p data-id="hindu" class="date-format"></p>
-            <p data-id="hindi" class="date-format"></p>
-            <p data-id="english" class="date-format"></p>
+          <p data-id="hindu" class="date-format"></p>
+          <p data-id="hindi" class="date-format"></p>
+          <p data-id="english" class="date-format"></p>
         </time>
         <div class="disclaimer">
-          <p><strong>Note:</strong> The tithi (lunar day) and paksha (lunar phase) displayed here are calculated based on a numeric logic following the Gregorian calendar. Due to technical limitations, this may not always match the exact tithi according to traditional Hindu calendar calculations which consider actual astronomical positions of the sun and moon. For precise religious observances, please consult authoritative panchang sources.</p>
+          <p>
+            <strong>Note:</strong> The tithi (lunar day) and paksha (lunar phase) displayed here are calculated based on
+            a numeric logic following the Gregorian calendar. Due to technical limitations, this may not always match the
+            exact tithi according to traditional Hindu calendar calculations which consider actual astronomical positions
+            of the sun and moon. For precise religious observances, please consult authoritative panchang sources.
+          </p>
         </div>
       </div>
     </div>
 
     <div id="converter-tab-content" class="tab-content">
-      <h2 class="converter__title">Vedic Unit Converter</h2> 
+      <h2 class="converter__title">Vedic Unit Converter</h2>
       <div class="converter__horizontal">
         <div class="form__group">
           <label for="input__value">Enter a number</label>
@@ -94,95 +99,85 @@ const timeUnits = vedicData.time_units;
         <div class="form__group">
           <label for="from__unit">From</label>
           <select id="from__unit">
-            {timeUnits.map((unit) => (
-            <option value={unit.name}>{unit.name}</option>
-            ))}
+            {timeUnits.map((unit) => <option value={unit.name}>{unit.name}</option>)}
           </select>
         </div>
 
         <button id="swapButton" class="swap-button" aria-label="Swap units">
           <svg class="swap-icon" viewBox="0 0 24 24">
-            <path fill="currentColor"
-              d="M9 3L5 7H8V14H10V7H13M16 17V10H14V17H11L15 21L19 17H16Z" />
+            <path fill="currentColor" d="M9 3L5 7H8V14H10V7H13M16 17V10H14V17H11L15 21L19 17H16Z"></path>
           </svg>
         </button>
 
         <div class="form__group">
           <label for="to__unit">To</label>
           <select id="to__unit">
-            {timeUnits.map((unit) => (
-            <option value={unit.name}>{unit.name}</option>
-            ))}
+            {timeUnits.map((unit) => <option value={unit.name}>{unit.name}</option>)}
           </select>
         </div>
       </div>
       <div id="ani_result" class="animated__result">
-        <div id="result" class="result__display in">
-        </div>
-    </div>
-    </div>
-<div id="units-tab-content" class="tab-content">  
-  <div class="units__timeline-container">
-    <!-- Parallax starfield layers -->
-    <div class="units__parallax-layer units__parallax-layer--back">
-      <div class="units__starfield">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <div id="result" class="result__display in"></div>
       </div>
     </div>
-    <div class="units__parallax-layer units__parallax-layer--back2">
-      <div class="units__starfield">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-    <div class="units__parallax-layer units__parallax-layer--back3">
-      <div class="units__starfield">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-    <div class="units__parallax-layer units__parallax-layer--base">
-      <div class="units__starfield">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-    
-    <!-- Original content with timeline -->
-    <h2 class="units__title">Vedic Time Journey</h2>  
-    <div class="timeline-wrapper">
-      {timeUnits.map((unit, index) => (
-      <div class="timeline-node">
-        <div class="timeline-card">
-          <div class="unit__header">
-            <h3>{unit.name}</h3>
-          </div>
-          <div class="unit__details">
-            <div class="unit__value">
-              {unit.firstEquivalent.toLocaleString()} 
-            </div>
-            <div class="unit__value">
-              {unit.secondEquivalent.toLocaleString()} 
-            </div>
-            <div class="unit__value">
-              {unit.thirdEquivalent.toLocaleString()} 
-            </div>
+    <div id="units-tab-content" class="tab-content">
+      <div class="units__timeline-container">
+        <!-- Parallax starfield layers -->
+        <div class="units__parallax-layer units__parallax-layer--back">
+          <div class="units__starfield">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
+        <div class="units__parallax-layer units__parallax-layer--back2">
+          <div class="units__starfield">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="units__parallax-layer units__parallax-layer--back3">
+          <div class="units__starfield">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="units__parallax-layer units__parallax-layer--base">
+          <div class="units__starfield">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Original content with timeline -->
+        <h2 class="units__title">Vedic Time Journey</h2>
+        <div class="timeline-wrapper">
+          {
+            timeUnits.map((unit, index) => (
+              <div class="timeline-node">
+                <div class="timeline-card">
+                  <div class="unit__header">
+                    <h3>{unit.name}</h3>
+                  </div>
+                  <div class="unit__details">
+                    <div class="unit__value">{unit.firstEquivalent.toLocaleString()}</div>
+                    <div class="unit__value">{unit.secondEquivalent.toLocaleString()}</div>
+                    <div class="unit__value">{unit.thirdEquivalent.toLocaleString()}</div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
-      ))}
     </div>
-  </div>
-</div>
   </div>
 
   <script is:inline define:vars={{ timeUnits }}>
@@ -215,7 +210,7 @@ const timeUnits = vedicData.time_units;
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
       // Setup event listeners for converter
       const inputValue = document.getElementById("input__value");
       const fromUnit = document.getElementById("from__unit");
@@ -240,24 +235,24 @@ const timeUnits = vedicData.time_units;
       }
 
       // Tab functionality
-      const tabButtons = document.querySelectorAll('.tab-button');
-      const tabContents = document.querySelectorAll('.tab-content');
+      const tabButtons = document.querySelectorAll(".tab-button");
+      const tabContents = document.querySelectorAll(".tab-content");
 
-      tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
           // Remove active class from all buttons and contents
-          tabButtons.forEach(btn => btn.classList.remove('active'));
-          tabContents.forEach(content => content.classList.remove('active'));
+          tabButtons.forEach((btn) => btn.classList.remove("active"));
+          tabContents.forEach((content) => content.classList.remove("active"));
 
           // Add active class to clicked button
-          button.classList.add('active');
+          button.classList.add("active");
 
           // Show corresponding tab content
           const targetTab = button.dataset.tab;
-          document.getElementById(`${targetTab}-tab-content`).classList.add('active');
+          document.getElementById(`${targetTab}-tab-content`).classList.add("active");
 
           // Call updateResult if switching to converter tab to ensure result is shown if inputs have values
-          if (targetTab === 'converter') {
+          if (targetTab === "converter") {
             updateResult();
           }
         });
@@ -267,78 +262,89 @@ const timeUnits = vedicData.time_units;
       document.querySelector('.tab-button[data-tab="tithi"]').click(); // Simulate click to activate default tab
 
       // Tithi date display functionality
-    const tithiNames = [
-      "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी", "षष्ठी",
-      "सप्तमी", "अष्टमी", "नवमी", "दशमी", "एकादशी", "द्वादशी",
-      "त्रयोदशी", "चतुर्दशी", "पूर्णिमा", "अमावस्या"
-    ];
+      const tithiNames = [
+        "प्रतिपदा",
+        "द्वितीया",
+        "तृतीया",
+        "चतुर्थी",
+        "पंचमी",
+        "षष्ठी",
+        "सप्तमी",
+        "अष्टमी",
+        "नवमी",
+        "दशमी",
+        "एकादशी",
+        "द्वादशी",
+        "त्रयोदशी",
+        "चतुर्दशी",
+        "पूर्णिमा",
+        "अमावस्या"
+      ];
 
-    const getLunarDate = (gregorianDate) => {
-      const day = gregorianDate.getDate();
-      const lunarDay = (day - 1) % 15 + 1;
-      const paksha = day <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
-      const tithi = tithiNames[lunarDay - 1];
-      return { paksha, tithi };
-    };
+      const getLunarDate = (gregorianDate) => {
+        const day = gregorianDate.getDate();
+        const lunarDay = ((day - 1) % 15) + 1;
+        const paksha = day <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+        const tithi = tithiNames[lunarDay - 1];
+        return { paksha, tithi };
+      };
 
-    const hindu = document.querySelector('[data-id="hindu"]');
-    const hindi = document.querySelector('[data-id="hindi"]');
-    const english = document.querySelector('[data-id="english"]');
-    const timeElem = document.querySelector('time');
+      const hindu = document.querySelector('[data-id="hindu"]');
+      const hindi = document.querySelector('[data-id="hindi"]');
+      const english = document.querySelector('[data-id="english"]');
+      const timeElem = document.querySelector("time");
 
-        const modifyHinduDateString = (dateString, { tithi, paksha }) => {
-      // Split the formatted date string into parts
-      const parts = samay.formatToParts(new Date());
-      
-      // Reconstruct the string with modifications
-      let result = '';
-      let monthFound = false;
-      
-      for (const part of parts) {
-        if (part.type === 'day') {
-          // Replace numeric day with tithi
-          result += tithi;
-        } 
-        else if (part.type === 'month' && !monthFound) {
-          // Add month then paksha
-          result += part.value + ' ' + paksha;
-          monthFound = true;
+      const modifyHinduDateString = (dateString, { tithi, paksha }) => {
+        // Split the formatted date string into parts
+        const parts = samay.formatToParts(new Date());
+
+        // Reconstruct the string with modifications
+        let result = "";
+        let monthFound = false;
+
+        for (const part of parts) {
+          if (part.type === "day") {
+            // Replace numeric day with tithi
+            result += tithi;
+          } else if (part.type === "month" && !monthFound) {
+            // Add month then paksha
+            result += part.value + " " + paksha;
+            monthFound = true;
+          } else {
+            // Keep all other parts as-is
+            result += part.value;
+          }
         }
-        else {
-          // Keep all other parts as-is
-          result += part.value;
-        }
-      }
-      
-      return result;
-    };
 
-    const renderClock = () => {
-      const today = new Date();
-      const { paksha, tithi } = getLunarDate(today);
+        return result;
+      };
 
-      // Format dates
-      const eng = dateInEnglish.format(today);
-      const hi = dateInHindi.format(today);
-      const hinduDateStr = modifyHinduDateString(hi, { tithi, paksha }); 
+      const renderClock = () => {
+        const today = new Date();
+        const { paksha, tithi } = getLunarDate(today);
 
-      // Update displays      
-      hindi.innerHTML = hi;
-      hindu.innerHTML =  hinduDateStr;
-      english.innerHTML = eng;
-    };
-    renderClock();
-    setInterval(renderClock, 1000);
+        // Format dates
+        const eng = dateInEnglish.format(today);
+        const hi = dateInHindi.format(today);
+        const hinduDateStr = modifyHinduDateString(hi, { tithi, paksha });
+
+        // Update displays
+        hindi.innerHTML = hi;
+        hindu.innerHTML = hinduDateStr;
+        english.innerHTML = eng;
+      };
+      renderClock();
+      setInterval(renderClock, 1000);
       // Add scroll effect to title for timeline
-      const timelineContainer = document.querySelector('.units__timeline-container');
-      const title = document.querySelector('.units__title');
+      const timelineContainer = document.querySelector(".units__timeline-container");
+      const title = document.querySelector(".units__title");
 
       if (timelineContainer && title) {
-        timelineContainer.addEventListener('scroll', () => {
+        timelineContainer.addEventListener("scroll", () => {
           if (timelineContainer.scrollTop > 10) {
-            title.classList.add('scrolled');
+            title.classList.add("scrolled");
           } else {
-            title.classList.remove('scrolled');
+            title.classList.remove("scrolled");
           }
         });
       }

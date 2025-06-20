@@ -5,31 +5,20 @@ import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/common.css";
 import SettingIcon from "@/assets/icons/settings.svg";
 import BackIcon from "@/assets/icons/back.svg";
-
 ---
 
 <BaseLayout meta={{ title: "Panel" }}>
   <Fragment slot="header-right">
     <div class="right-header-buttons">
       <div class="settings-button-container">
-        <button
-          id="settingsButton"
-          class="settings-button"
-          aria-label="Open panel settings"
-        >
+        <button id="settingsButton" class="settings-button" aria-label="Open panel settings">
           <SettingIcon class="settings-icon" />
         </button>
-        <div
-          id="panelToolsPopover"
-          class="panel-tools-popover"
-          aria-hidden="true"
-        >
+        <div id="panelToolsPopover" class="panel-tools-popover" aria-hidden="true">
           <h2 class="gradient-text">Panel Tools</h2>
           <section id="option-box" class="panel__options">
             <div class="controls" role="radiogroup" aria-labelledby="orientation-label">
-              <span id="orientation-label" class="sr-only"
-                >Panel Orientation</span
-              >
+              <span id="orientation-label" class="sr-only">Panel Orientation</span>
 
               <label class="vertical" for="vertical">
                 <input
@@ -59,9 +48,7 @@ import BackIcon from "@/assets/icons/back.svg";
             </div>
 
             <div class="controls" role="radiogroup" aria-labelledby="content-type-label">
-              <span id="content-type-label" class="sr-only"
-                >Panel Content Type</span
-              >
+              <span id="content-type-label" class="sr-only">Panel Content Type</span>
 
               <label class="alphabet" for="alphabet">
                 <input
@@ -116,9 +103,9 @@ import BackIcon from "@/assets/icons/back.svg";
   </Fragment>
 
   <div class="header-content">
-      <a href="/" class="back">
-        <BackIcon />
-      </a>
+    <a href="/" class="back">
+      <BackIcon />
+    </a>
   </div>
 
   <article class="tv container__panel">
@@ -134,12 +121,12 @@ import BackIcon from "@/assets/icons/back.svg";
       LEFT = 37,
       UP = 38,
       RIGHT = 39,
-      DOWN = 40,
+      DOWN = 40
     }
 
     enum ContentType {
       ALPHABET = "alphabet",
-      NUMBERS = "numbers",
+      NUMBERS = "numbers"
     }
 
     // Define the behaviour for our new type of HTML element.

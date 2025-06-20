@@ -31,17 +31,17 @@
       }*/
     }
 
-        @media (max-width: 480px) {
-          .setting__trigger {
-            font-size: 0.6rem;
-            /* Adjust font size for smaller screens */
-            width: 2.5rem;
-            /* Adjust width for smaller screens */
-            height: 2.5rem;
-            /* Adjust height for smaller screens */
-            margin-top: 12px;
-          }
-        }
+    @media (max-width: 480px) {
+      .setting__trigger {
+        font-size: 0.6rem;
+        /* Adjust font size for smaller screens */
+        width: 2.5rem;
+        /* Adjust width for smaller screens */
+        height: 2.5rem;
+        /* Adjust height for smaller screens */
+        margin-top: 12px;
+      }
+    }
 
     .setting__panel {
       position: fixed;
@@ -87,7 +87,7 @@
         letter-spacing: 0.01em;
         touch-action: pinch-zoom;
         border-radius: 9px;
-               
+
         &:hover:not(.close) {
           background-color: color(xyz 0.02 0.01 0.02);
           transform: translateY(-3px);
@@ -156,7 +156,6 @@
       .setting__trigger {
         background-color: rgb(106, 202, 119);
         transform: scale(1.05) rotate(45deg);
-
       }
     }
   }

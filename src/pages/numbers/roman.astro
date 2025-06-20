@@ -1,21 +1,21 @@
 ---
-import BaseLayout from "../../layouts/Base.astro"; 
-import LetterCard from "../../components/LetterCard.astro"; 
-import BackButton from "../../components/ui/backButton.astro";     
+import BaseLayout from "../../layouts/Base.astro";
+import LetterCard from "../../components/LetterCard.astro";
+import BackButton from "../../components/ui/backButton.astro";
 import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
 
 // Define the type for our Roman numeral data entries
 export interface RomanNumeralEntry {
   id: number;
   letter: string; // The Roman numeral itself (e.g., "I", "V")
-  text?: string;   // The numeric value (e.g., "1", "5")
+  text?: string; // The numeric value (e.g., "1", "5")
   description?: string; // The word for the number (e.g., "One", "Five")
-  code?: number;   // Corresponds to the numeric value for simplicity
-  emoji?: string;  // Associated Braille emoji (can be empty if not applicable/available)
+  code?: number; // Corresponds to the numeric value for simplicity
+  emoji?: string; // Associated Braille emoji (can be empty if not applicable/available)
 }
 
 const pageTitle = "Roman Numerals";
-const category = "roman-numerals"; 
+const category = "roman-numerals";
 
 const romanNumeralsData: RomanNumeralEntry[] = [
   { id: 0, letter: "N", text: "0", description: "Null (Zero)", code: 0, emoji: "" },
@@ -65,15 +65,15 @@ const romanNumeralsData: RomanNumeralEntry[] = [
         romanNumeralsData.map((entry) => {
           const letterCardItem = {
             ...entry,
-            text: entry.text || "", 
+            text: entry.text || "",
             description: entry.description || "",
             // This ensures the numeric value (entry.text) is used for the back of the card
             // if LetterCard.astro uses item.emoji for the back content.
-            emoji: entry.text || "" 
+            emoji: entry.text || ""
           };
           return <LetterCard item={letterCardItem} category={category} />;
         })
       }
     </div>
   </article>
-  </BaseLayout>
+</BaseLayout>

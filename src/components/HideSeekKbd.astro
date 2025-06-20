@@ -61,7 +61,7 @@ const letterRows = [
     transition: all 0.2s ease;
     font-weight: bold;
     user-select: none;
-    font-size: 1.7rem
+    font-size: 1.7rem;
   }
 
   .keyboard-item:hover {
@@ -77,23 +77,23 @@ const letterRows = [
     background-color: light-dark(grey, #0b1f54);
   }
 
-@media (max-width: 640px) {
-  .container__keyboard {
-    gap: 0.8rem;
-    padding: 1.5rem;
-  }
+  @media (max-width: 640px) {
+    .container__keyboard {
+      gap: 0.8rem;
+      padding: 1.5rem;
+    }
 
-  .keyboard-row {
-    gap: 0.8rem;
-  }
+    .keyboard-row {
+      gap: 0.8rem;
+    }
 
-  .letter-box,
-  .keyboard-item {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1rem;
+    .letter-box,
+    .keyboard-item {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1rem;
+    }
   }
-}
 </style>
 
 <script>

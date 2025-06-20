@@ -1,8 +1,7 @@
 ---
-
-import BaseLayout from "../../layouts/Base.astro"; 
-import LetterCard from "../../components/LetterCard.astro"; 
-import BackButton from "../../components/ui/backButton.astro";     
+import BaseLayout from "../../layouts/Base.astro";
+import LetterCard from "../../components/LetterCard.astro";
+import BackButton from "../../components/ui/backButton.astro";
 import "../../assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
 import glossaryData from "../../data/glossary.json";
 
@@ -10,11 +9,11 @@ import glossaryData from "../../data/glossary.json";
 export interface SeasonEntry {
   id: string;
   letter: string; // First letter of the season or a representative emoji
-  fullName: string;  
+  fullName: string;
 }
 
 const pageTitle = glossaryData.seasons.title;
-const category = "seasons"; 
+const category = "seasons";
 const seasonsData: SeasonEntry[] = glossaryData.seasons.data;
 
 // Helper function to parse English and Hindi names
@@ -48,13 +47,13 @@ function parseNames(fullName: string): { english: string; hindi: string } {
           const names = parseNames(entry.fullName);
           const letterCardItem = {
             id: entry.id,
-            letter: entry.letter, 
-            text: names.english,    // English name for the front
-            description: names.hindi, // Hindi name for the back
+            letter: entry.letter,
+            text: names.english, // English name for the front
+            description: names.hindi // Hindi name for the back
           };
           return <LetterCard item={letterCardItem} category={category} />;
         })
       }
     </div>
   </article>
-  </BaseLayout>
+</BaseLayout>

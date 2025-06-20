@@ -5,13 +5,13 @@
 }
 
 @property --p {
-  syntax: '<number>';
+  syntax: "<number>";
   initial-value: 0;
   inherits: true;
 }
 
 @property --v {
-  syntax: '<number>';
+  syntax: "<number>";
   initial-value: 0;
   inherits: true;
 }
@@ -48,18 +48,22 @@
   justify-content: center;
   gap: 2rem;
   color: #f1f5f9;
-  font: 1em poppins, sans-serif;
+  font:
+    1em poppins,
+    sans-serif;
   counter-reset: k calc(1 + var(--k)) n var(--n);
-  
+
   --p: var(--k);
   --abs-p: abs(var(--k) - var(--p));
   --end: clamp(0, var(--abs-p) - 1, 1);
-  --dir: calc((1 - 2*var(--end))*sign(var(--k) - var(--p)));
-  --fwd: calc(.5*(1 + var(--dir)));
+  --dir: calc((1 - 2 * var(--end)) * sign(var(--k) - var(--p)));
+  --fwd: calc(0.5 * (1 + var(--dir)));
   --v: var(--k);
   --abs-v: abs(var(--v) - var(--p));
-  --prg: calc(var(--abs-v)/(1 - var(--end) + var(--end)*(var(--n) - 1)));
-  transition: --p 0s var(--t), --v var(--t);
+  --prg: calc(var(--abs-v) / (1 - var(--end) + var(--end) * (var(--n) - 1)));
+  transition:
+    --p 0s var(--t),
+    --v var(--t);
 }
 
 .alphabet-header {
@@ -106,25 +110,25 @@
   --abs-top: abs(var(--k) - var(--i));
   --not-top: min(1, var(--abs-top));
   --top: calc(1 - var(--not-top));
-  --val-mov: ((1 - var(--fwd))*var(--p) + var(--fwd)*var(--k) - var(--i));
+  --val-mov: ((1 - var(--fwd)) * var(--p) + var(--fwd) * var(--k) - var(--i));
   --abs-mov: abs(var(--val-mov));
   --not-mov: min(1, var(--abs-mov));
   --mov: calc(1 - var(--not-mov));
-  --sin: sin(var(--prg)*.5turn);
-  
+  --sin: sin(var(--prg) * 0.5turn);
+
   position: absolute;
-  top: 50%; 
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   gap: 1rem;
   z-index: mod(calc(var(--n) - 1 + var(--i) - var(--k)), var(--n));
-  transition: z-index var(--t) cubic-bezier(1, -.9, 0, 1.9);
+  transition: z-index var(--t) cubic-bezier(1, -0.9, 0, 1.9);
 }
 
 .alphabet-item:not(.active) .text-content {
@@ -137,7 +141,7 @@
   object-fit: cover;
   object-position: center;
   border-radius: 1rem;
-  border: 2px solid light-dark(transparent,rgba(129, 140, 248, 0.4));
+  border: 2px solid light-dark(transparent, rgba(129, 140, 248, 0.4));
   backdrop-filter: blur(10px);
   translate: calc(-100% * var(--mov) * sqrt(var(--sin)));
   rotate: calc((1 - var(--sin)) * var(--a));
@@ -154,9 +158,9 @@
   max-width: 400px;
   translate: 0 0;
   opacity: var(--top);
-  transition: opacity calc(.5*var(--t)) calc(var(--top)*.5*var(--t));
+  transition: opacity calc(0.5 * var(--t)) calc(var(--top) * 0.5 * var(--t));
   position: absolute;
-  bottom: -120px; 
+  bottom: -120px;
 }
 
 .letter {
@@ -174,7 +178,7 @@
 .item-desc {
   font-size: 1.5rem;
   text-transform: uppercase;
-  color: light-dark(#000000,#ffffff);
+  color: light-dark(#000000, #ffffff);
   font-weight: 600;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   line-height: 1.2;
@@ -248,7 +252,7 @@
   bottom: -2.5rem;
   left: 50%;
   transform: translateX(-50%);
-  color: light-dark(#000000,#ffffff);
+  color: light-dark(#000000, #ffffff);
   font-size: 0.875rem;
   text-align: center;
   z-index: 1000;
@@ -277,16 +281,16 @@
     --abs-p: max(var(--k) - var(--p), var(--p) - var(--k));
     --abs-v: max(var(--v) - var(--p), var(--p) - var(--v));
   }
-  
+
   .alphabet-item {
     --abs-top: max(var(--k) - var(--i), var(--i) - var(--k));
-    --abs-mov: max(var(--val-mov), -1*var(--val-mov));
+    --abs-mov: max(var(--val-mov), -1 * var(--val-mov));
   }
 }
 
 @supports not (scale: Sign(-2)) {
   .alphabet-container {
-    --dir: clamp(-1, (var(--k) - var(--p))*100000, 1);
+    --dir: clamp(-1, (var(--k) - var(--p)) * 100000, 1);
   }
 }
 
@@ -296,30 +300,30 @@
     padding: 10rem 1rem;
     justify-content: flex-start;
   }
-  
+
   .alphabet-title {
     font-size: 2rem;
   }
-  
+
   .image-container {
     width: 400px;
     height: 380px;
   }
-  
+
   .item-image {
     width: 360px;
     height: 260px;
   }
-  
+
   .text-content {
     bottom: -60px;
   }
-  
+
   .nav-buttons {
     gap: 3rem;
     margin-top: 1.5rem;
   }
-  
+
   .nav-button {
     width: 3rem;
     height: 3rem;
@@ -332,25 +336,25 @@
     margin-top: 10rem;
     justify-content: flex-start;
   }
-  
+
   .alphabet-title {
     font-size: 1.75rem;
   }
-  
+
   .image-container {
     width: 300px;
     height: 360px;
   }
-  
+
   .item-image {
     width: 260px;
     height: 240px;
   }
-  
+
   .letter {
     font-size: 2.5rem;
   }
-  
+
   .item-desc {
     font-size: 1.25rem;
   }
@@ -388,25 +392,25 @@
     padding: 1rem 0.5rem;
     justify-content: flex-start;
   }
-  
+
   .alphabet-title {
     font-size: 1.5rem;
   }
-  
+
   .image-container {
     width: 280px;
     height: 340px;
   }
-  
+
   .item-image {
     width: 240px;
     height: 200px;
   }
-  
+
   .letter {
     font-size: 2rem;
   }
-  
+
   .item-desc {
     font-size: 1.1rem;
   }

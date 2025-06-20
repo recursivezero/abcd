@@ -7,6 +7,7 @@ applyTo: "**/*.astro"
 Apply the [general coding guidelines](./general-coding.instructions.md) to all code.
 
 ## Astro Guidelines
+
 - Use Astro components for reusable UI elements
 - Prefer using Astro's built-in components and features
 - Use TypeScript for Astro components when possible

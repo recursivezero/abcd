@@ -21,7 +21,7 @@ export interface StateData {
   state_color?: string;
   state_animal?: string;
   state_flower?: string;
-  surface_area?: number;  // in square kilometers
+  surface_area?: number; // in square kilometers
   districts_count?: number;
   largest_city?: string;
   capital?: string;

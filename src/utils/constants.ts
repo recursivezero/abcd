@@ -53,7 +53,22 @@ const numberBox: Record<number, string> = {
   9: "nine"
 };
 
-const fontBox = ["Times New Roman", "Arial" , "Verdana" , "Trebuchet MS" , "Georgia","Courier New","Comic Sans MS","Impact","boisuStroke", "BungeeSpice", "atkinson", "sportrop", "MudraMohta", "Roboto"];
+const fontBox = [
+  "Times New Roman",
+  "Arial",
+  "Verdana",
+  "Trebuchet MS",
+  "Georgia",
+  "Courier New",
+  "Comic Sans MS",
+  "Impact",
+  "boisuStroke",
+  "BungeeSpice",
+  "atkinson",
+  "sportrop",
+  "MudraMohta",
+  "Roboto"
+];
 
 export const NavbarLinks: LinkProps[] = [
   {
@@ -161,17 +176,17 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Numbers", 
-    title: "Numbers", 
-    path: "/numbers", 
+    name: "Numbers",
+    title: "Numbers",
+    path: "/numbers",
     isActive: true
   },
   {
-    name: "Glossary", 
-    title: "Glossary", 
-    path: "/glossary", 
+    name: "Glossary",
+    title: "Glossary",
+    path: "/glossary",
     isActive: true
-  },
+  }
   // {
   //   name: "Sunsigns",
   //   title: "Sunsigns",

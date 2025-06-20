@@ -1,6 +1,6 @@
 ---
 const { state } = Astro.props;
-import '@/assets/styles/map/district.css'
+import "@/assets/styles/map/district.css";
 ---
 
 <div class="map-container">
@@ -86,7 +86,7 @@ import '@/assets/styles/map/district.css'
           case "map":
             paths.forEach((path) => {
               path.style.stroke = "none";
-              path.style.fill="pink"
+              path.style.fill = "pink";
             });
             texts.forEach((text) => {
               text.style.display = "none";
@@ -108,7 +108,7 @@ import '@/assets/styles/map/district.css'
             });
             texts.forEach((text) => {
               text.style.display = "block";
-              text.style.fill = getComputedStyle(document.documentElement).getPropertyValue('--text');
+              text.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--text");
             });
             break;
         }
@@ -122,11 +122,11 @@ import '@/assets/styles/map/district.css'
   function setupZoomControls() {
     const zoomButtons = document.querySelectorAll(".zoom-button");
 
-    zoomButtons.forEach(button => {
+    zoomButtons.forEach((button) => {
       button.addEventListener("click", () => {
         const action = button.dataset.zoom;
-        
-        switch(action) {
+
+        switch (action) {
           case "in":
             if (currentScale < MAX_ZOOM) {
               currentScale += ZOOM_FACTOR;
@@ -163,15 +163,15 @@ import '@/assets/styles/map/district.css'
 
     document.addEventListener("mousemove", (e) => {
       if (!isDragging) return;
-      
+
       currentX = e.clientX - startX;
       currentY = e.clientY - startY;
-      
+
       // Limit panning to prevent map from going too far
       const maxPan = (currentScale - 1) * 100;
       currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
       currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
-      
+
       updateTransform();
     });
 
@@ -192,15 +192,15 @@ import '@/assets/styles/map/district.css'
 
     document.addEventListener("touchmove", (e) => {
       if (!isDragging) return;
-      
+
       currentX = e.touches[0].clientX - startX;
       currentY = e.touches[0].clientY - startY;
-      
+
       // Limit panning to prevent map from going too far
       const maxPan = (currentScale - 1) * 100;
       currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
       currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
-      
+
       updateTransform();
     });
 

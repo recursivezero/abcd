@@ -1,43 +1,43 @@
 :root {
-    --unit-bg-1: #1B2735;
-    --unit-bg-2: #090A0F;
-    --unit-st1:#9d00ff;
-    --unit-st2:#00f5d0;
-    --unit-st3:#fee440;
-    --unit-st4:#f15bb5;
-    --unit-st5:#00bbf9;
-    --unit-title-shadow-1:rgba(179, 73, 138, 0.8);
-    --unit-title-card-shadow-2:rgba(142, 36, 170, 0.6);
-    --unit-card-h3:rgba(142, 36, 170, 0.6);
-    --unit-card-details: white;
+  --unit-bg-1: #1b2735;
+  --unit-bg-2: #090a0f;
+  --unit-st1: #9d00ff;
+  --unit-st2: #00f5d0;
+  --unit-st3: #fee440;
+  --unit-st4: #f15bb5;
+  --unit-st5: #00bbf9;
+  --unit-title-shadow-1: rgba(179, 73, 138, 0.8);
+  --unit-title-card-shadow-2: rgba(142, 36, 170, 0.6);
+  --unit-card-h3: rgba(142, 36, 170, 0.6);
+  --unit-card-details: white;
 }
 
-  [data-theme="dark"] {
-    --unit-bg-1: #1B2735;
-    --unit-bg-2: #090A0F;
-    --unit-st1:#9d00ff;
-    --unit-st2:#00f5d0;
-    --unit-st3:#fee440;
-    --unit-st4:#f15bb5;
-    --unit-st5:#00bbf9;
-    --unit-title-shadow-1:rgba(179, 73, 138, 0.8);
-    --unit-title-card-shadow-2:rgba(142, 36, 170, 0.6);
-    --unit-card-h3:rgba(142, 36, 170, 0.6);
-    --unit-card-details: white;
-  }
+[data-theme="dark"] {
+  --unit-bg-1: #1b2735;
+  --unit-bg-2: #090a0f;
+  --unit-st1: #9d00ff;
+  --unit-st2: #00f5d0;
+  --unit-st3: #fee440;
+  --unit-st4: #f15bb5;
+  --unit-st5: #00bbf9;
+  --unit-title-shadow-1: rgba(179, 73, 138, 0.8);
+  --unit-title-card-shadow-2: rgba(142, 36, 170, 0.6);
+  --unit-card-h3: rgba(142, 36, 170, 0.6);
+  --unit-card-details: white;
+}
 
-  [data-theme="light"] {
-  --unit-bg-1: #E0F7FA;
-  --unit-bg-2: #B2EBF2;
-  --unit-st1: #FF7043;
-  --unit-st2: #66BB6A;
-  --unit-st3: #FFEE58;
-  --unit-st4: #5C6BC0;
-  --unit-st5: #EC407A;
-  --unit-title-shadow-1: #1A237E;
+[data-theme="light"] {
+  --unit-bg-1: #e0f7fa;
+  --unit-bg-2: #b2ebf2;
+  --unit-st1: #ff7043;
+  --unit-st2: #66bb6a;
+  --unit-st3: #ffee58;
+  --unit-st4: #5c6bc0;
+  --unit-st5: #ec407a;
+  --unit-title-shadow-1: #1a237e;
   --unit-title-card-shadow-2: rgba(92, 107, 192, 0.4);
-  --unit-card-h3:#1A237E;
-  --unit-card-details: #37474F;
+  --unit-card-h3: #1a237e;
+  --unit-card-details: #37474f;
 }
 .container__vedic {
   min-height: 100vh;
@@ -81,7 +81,7 @@
 }
 
 .tab-button.active {
-  background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background: linear-gradient(-45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
   background-size: 400% 400%;
   animation: gradient 10s infinite;
   color: var(--background);
@@ -272,7 +272,7 @@ select:focus {
 }
 
 .swap-button.active {
-  background: linear-gradient(45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+  background: linear-gradient(45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
   background-size: 400% 400%;
   animation: gradient 10s infinite;
 }
@@ -293,7 +293,7 @@ select:focus {
   width: 100%;
   padding: 1.5rem;
   border-radius: 0.75rem;
-  background: conic-gradient(from 0deg at 50% 50%, #000080, #00BFFF, #4682B4, #000080);
+  background: conic-gradient(from 0deg at 50% 50%, #000080, #00bfff, #4682b4, #000080);
 }
 
 .result__display {
@@ -361,12 +361,11 @@ select:focus {
   height: 500%;
   width: 100%;
   background-size: 200px 200px;
-  background-image: 
-    radial-gradient(2px 2px at 40px 60px, var(--unit-st1) , rgba(0, 0, 0, 0)),
+  background-image: radial-gradient(2px 2px at 40px 60px, var(--unit-st1), rgba(0, 0, 0, 0)),
     radial-gradient(2px 2px at 20px 50px, var(--unit-st2), rgba(0, 0, 0, 0)),
     radial-gradient(2px 2px at 30px 100px, var(--unit-st3), rgba(0, 0, 0, 0)),
     radial-gradient(2px 2px at 110px 90px, var(--unit-st4), rgba(0, 0, 0, 0)),
-    radial-gradient(2px 2px at 190px 150px, var(--unit-st5) , rgba(0, 0, 0, 0));
+    radial-gradient(2px 2px at 190px 150px, var(--unit-st5), rgba(0, 0, 0, 0));
   background-repeat: repeat;
 }
 
@@ -391,20 +390,23 @@ select:focus {
   margin-top: 11rem;
   position: relative;
   z-index: 10;
-  text-shadow: 0 0 20px var(--unit-title-shadow-1), 0 0 40px var(--unit-title-card-shadow-2);
-  filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+  text-shadow:
+    0 0 20px var(--unit-title-shadow-1),
+    0 0 40px var(--unit-title-card-shadow-2);
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
   color: white;
-  font-size:clamp(3rem, 7.5vw, 9rem);
+  font-size: clamp(3rem, 7.5vw, 9rem);
   font-weight: 600;
   margin-bottom: 10rem;
-  text-align: center;    animation: fadeInScale 2s ease-out forwards;
-    transform: scale(0.8);
+  text-align: center;
+  animation: fadeInScale 2s ease-out forwards;
+  transform: scale(0.8);
 }
 @keyframes fadeInScale {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 .timeline-wrapper {
   display: flex;
@@ -446,7 +448,10 @@ select:focus {
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out,
+    background-color 0.3s ease;
   position: relative;
 }
 
@@ -589,16 +594,16 @@ select:focus {
   }
 }
 @media (max-width: 480px) {
-    .date-format {
-      font-size: 1.2rem;
-    }
-
-    .units__title {
-      margin-top: 5rem ;
-      margin-bottom: 5rem;
-      font-size: 3rem;
+  .date-format {
+    font-size: 1.2rem;
   }
-    .unit__header h3 {
+
+  .units__title {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    font-size: 3rem;
+  }
+  .unit__header h3 {
     font-size: 1.5rem;
   }
 

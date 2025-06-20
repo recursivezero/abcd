@@ -42,7 +42,7 @@
 .selection-title {
   font-size: 2.8rem;
   font-weight: 700;
-  color: light-dark(black, white);;
+  color: light-dark(black, white);
   margin-bottom: 3rem;
   text-align: center;
   letter-spacing: 0.05em;
@@ -125,7 +125,7 @@
 
 /* Game Card Styles */
 .game-card {
-  background-color: var(--card-bg, light-dark(#ffffff,#2b2b40));
+  background-color: var(--card-bg, light-dark(#ffffff, #2b2b40));
   border-radius: 10px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -134,7 +134,7 @@
     border-color 0.3s ease;
   cursor: pointer;
   text-decoration: none;
-  color: light-dark(black, white);;
+  color: light-dark(black, white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -146,7 +146,7 @@
 
 .game-card:hover {
   transform: translateY(-4px);
-  background-color: var(--card-hover-bg, light-dark(#ffffff,#3c3c5a));
+  background-color: var(--card-hover-bg, light-dark(#ffffff, #3c3c5a));
   border-color: var(--card-border-hover);
 }
 
@@ -177,7 +177,7 @@
 .game-card-title {
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
-  color: light-dark(black, white);;
+  color: light-dark(black, white);
 }
 
 .game-card-description {
