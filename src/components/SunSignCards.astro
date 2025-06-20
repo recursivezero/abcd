@@ -346,4 +346,57 @@ const category = "sunsigns";
   }
 </style>
 
+<script>
+  // existing script for flip all
+  const flipAllButton = document.getElementById('flip-all-sunsigns-button');
+  let allCardsFlipped = false;
 
+  if (flipAllButton) {
+    flipAllButton.addEventListener('click', () => {
+      allCardsFlipped = !allCardsFlipped;
+      
+      const cardsToFlip = document.querySelectorAll('.sun-signs-grid .flip__card.sun-sign-card');
+
+      cardsToFlip.forEach(card => {
+        if (allCardsFlipped) {
+          card.classList.add('flipped');
+        } else {
+          card.classList.remove('flipped');
+        }
+      });
+
+      flipAllButton.textContent = allCardsFlipped ? "Reset All Cards" : "Flip All Cards";
+      
+      
+      flipAllButton.classList.add('active'); 
+      setTimeout(() => {
+        flipAllButton.classList.remove('active');
+      }, 300);
+    });
+  }
+
+  // existing script for mousemove and individual card flip
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((letter) => {
+    letter.addEventListener("mousemove", (e: Event) => {
+      const htmlLetter = letter as HTMLElement;
+      const rect = htmlLetter.getBoundingClientRect();
+      const event = e as MouseEvent;
+      const x = ((event.clientX - rect.left) / htmlLetter.clientWidth) * 100;
+      const y = ((event.clientY - rect.top) / htmlLetter.clientHeight) * 100;
+      htmlLetter.style.setProperty("--mouse-x", `${x}%`);
+      htmlLetter.style.setProperty("--mouse-y", `${y}%`);
+    });
+  });
+
+  const flipCards = document.querySelectorAll(".flip__card");
+  flipCards.forEach((card) => {
+    const flipButtons = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+    flipButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        card.classList.toggle("flipped");
+      });
+    });
+  });
+</script>

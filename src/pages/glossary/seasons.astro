@@ -89,35 +89,3 @@ function parseNames(fullName: string): { english: string; hindi: string } {
     </div>
   </article>
   </BaseLayout>
-
-  <script>
-    // Script identical for "Flip All Cards"
-    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
-    const flipCards = document.querySelectorAll(".flip__card");
-    let allFlipped = false;
-
-    if (flipAllButton) {
-      flipAllButton.addEventListener("click", () => {
-        allFlipped = !allFlipped;
-
-        flipCards.forEach((card) => {
-          if (allFlipped) {
-            card.classList.add("flipped");
-          } else {
-            card.classList.remove("flipped");
-          }
-        });
-
-        flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
-        
-        flipAllButton.classList.add("active");
-        setTimeout(() => {
-          if (flipAllButton) { 
-            flipAllButton.classList.remove("active");
-          }
-        }, 300);
-      });
-    } else {
-      console.warn("Flip All button with ID 'flip-all-button' not found.");
-    }
-  </script>

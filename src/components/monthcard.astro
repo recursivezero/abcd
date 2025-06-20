@@ -452,51 +452,102 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
 
 </style>
 
-<script>
-  
-  try {
-    const scriptTag = Astro.self as unknown as HTMLElement; 
-    let cardElement: HTMLElement | null = null;
-    const elementImmediatelyBeforeScript = scriptTag.previousElementSibling;
+ <script>
+    // Script for tab switching
+    const englishBtn = document.getElementById('englishMonthsBtn');
+    const hindiBtn = document.getElementById('hindiMonthsBtn');
+    const englishMonthsPane = document.getElementById('english-months-pane');
+    const indianMonthsPane = document.getElementById('indian-months-pane');
+    
+    const monthTabs = [
+        { btn: englishBtn, pane: englishMonthsPane, name: 'english' },
+        { btn: hindiBtn, pane: indianMonthsPane, name: 'hindi' }
+    ];
 
-    if (elementImmediatelyBeforeScript) {
-      if (elementImmediatelyBeforeScript.classList.contains('flip__card') && elementImmediatelyBeforeScript instanceof HTMLElement) {
-        cardElement = elementImmediatelyBeforeScript;
-      } else if (
-        elementImmediatelyBeforeScript.tagName === 'STYLE' &&
-        elementImmediatelyBeforeScript.previousElementSibling &&
-        elementImmediatelyBeforeScript.previousElementSibling.classList.contains('flip__card') &&
-        elementImmediatelyBeforeScript.previousElementSibling instanceof HTMLElement
-      ) {
-        cardElement = elementImmediatelyBeforeScript.previousElementSibling as HTMLElement;
-      }
+    function showMonthTab(tabName: 'english' | 'hindi') {
+      monthTabs.forEach(tab => {
+        if (!tab.btn || !tab.pane) return;
+        if (tab.name === tabName) {
+          tab.pane.classList.add('active');
+          tab.btn.classList.add('active');
+          tab.btn.setAttribute('aria-selected', 'true');
+        } else {
+          tab.pane.classList.remove('active');
+          tab.btn.classList.remove('active');
+          tab.btn.setAttribute('aria-selected', 'false');
+        }
+      });
     }
 
-    if (cardElement) {
-      const flipButtons = cardElement.querySelectorAll<HTMLElement>(".flip__button");
-      flipButtons.forEach((button) => {
-        button.addEventListener("click", (event: MouseEvent) => {
-          event.stopPropagation();
-          if (cardElement) cardElement.classList.toggle("flipped");
-        });
-      });
+    if (englishBtn) englishBtn.addEventListener('click', () => showMonthTab('english'));
+    if (hindiBtn) hindiBtn.addEventListener('click', () => showMonthTab('hindi'));
+    
+    showMonthTab('english'); // Show English months by default
 
-      const cardInnerElements = cardElement.querySelectorAll<HTMLElement>(".card");
-      cardInnerElements.forEach((cardInner) => {
-        cardInner.addEventListener("mousemove", (event: MouseEvent) => {
-          const rect = cardInner.getBoundingClientRect();
-          if (cardInner.clientWidth > 0 && cardInner.clientHeight > 0) {
-            const x = ((event.clientX - rect.left) / cardInner.clientWidth) * 100;
-            const y = ((event.clientY - rect.top) / cardInner.clientHeight) * 100;
-            cardInner.style.setProperty("--mouse-x", `${x}%`);
-            cardInner.style.setProperty("--mouse-y", `${y}%`);
+    // Script for Flip All Button
+    const flipAllMonthsButton = document.getElementById('flip-all-months-button');
+    let allMonthCardsFlipped = false;
+
+    if (flipAllMonthsButton) {
+      flipAllMonthsButton.addEventListener('click', () => {
+        allMonthCardsFlipped = !allMonthCardsFlipped;
+        const activePane = document.querySelector('.months-content-pane.active');
+        if (activePane) {
+            const cardsToFlip = activePane.querySelectorAll('.flip__card.month-card'); // Ensure MonthCard has these classes
+            cardsToFlip.forEach(card => {
+                if (allMonthCardsFlipped) {
+                card.classList.add('flipped');
+                } else {
+                card.classList.remove('flipped');
+                }
+            });
+        }
+        flipAllMonthsButton.textContent = allMonthCardsFlipped ? "Reset All Cards" : "Flip All Cards";
+        
+        flipAllMonthsButton.classList.add('active'); 
+        setTimeout(() => {
+          if (flipAllMonthsButton) { // Check if button still exists
+            flipAllMonthsButton.classList.remove('active');
           }
-        });
+        }, 300);
       });
-    } else {
-      console.error("MonthCard: Could not find .flip__card element.");
     }
-  } catch (error) {
-    console.error("MonthCard script error:", error);
-  }
+  </script>
+
+  <script>
+  // Mouse move effect for cards (ensure .card is the correct selector for MonthCard's outer element)
+  const cards = document.querySelectorAll(".months-grid .card"); // Scoped to months-grid
+  cards.forEach((letter) => {
+    letter.addEventListener("mousemove", (e: Event) => {
+      const htmlLetter = letter as HTMLElement;
+      const rect = htmlLetter.getBoundingClientRect();
+      const event = e as MouseEvent;
+      const x = ((event.clientX - rect.left) / htmlLetter.clientWidth) * 100;
+      const y = ((event.clientY - rect.top) / htmlLetter.clientHeight) * 100;
+      htmlLetter.style.setProperty("--mouse-x", `${x}%`);
+      htmlLetter.style.setProperty("--mouse-y", `${y}%`);
+    });
+    // Add mouseleave to reset properties
+    letter.addEventListener("mouseleave", () => {
+        const htmlLetter = letter as HTMLElement;
+        htmlLetter.style.removeProperty("--mouse-x");
+        htmlLetter.style.removeProperty("--mouse-y");
+    });
+  });
+
+  // Individual card flip (ensure .flip__card and .flip__button are correct for MonthCard)
+  const flipCards = document.querySelectorAll(".months-grid .flip__card"); // Scoped to months-grid
+  flipCards.forEach((card) => {
+    const flipButtons = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+
+    flipButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent card click if button is inside clickable area
+        const parentCard = button.closest('.flip__card');
+        if (parentCard) {
+            parentCard.classList.toggle("flipped");
+        }
+      });
+    });
+  });
 </script>
