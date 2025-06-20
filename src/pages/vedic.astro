@@ -1,5 +1,5 @@
 ---
-import BackIcon from "@/assets/icons/back.svg";
+import BackIcon from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/vedic.css";
 import vedicData from "@/assets/json/vedic.json";
@@ -69,7 +69,6 @@ const timeUnits = vedicData.time_units;
 
       const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
       const samay = new Intl.DateTimeFormat("hi", fullHindi);
-      console.log(samay);
       const dateInHindi = new Intl.DateTimeFormat('hi', styleOption);
 
 
@@ -286,7 +285,7 @@ const timeUnits = vedicData.time_units;
       // Calculate the lunar day (1-30) based on the gregorian day
       const lunarDay = (gregorianDay - 1); // Ensure it wraps correctly (1-15)
 
-      const paksha = gregorianDay <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+      const paksha = gregorianDay <= 15 ? "कृष्ण पक्ष":"शुक्ल पक्ष";
       // Calculate the paksha
 
       // Determine tithi
