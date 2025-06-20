@@ -6,8 +6,8 @@ import Keyboard from "@/components/keyboard.astro";
 
 <div class="container">
   <div class="header-container">
-      <header class="header">
-        <h1 class="info" aria-live="polite">Press any key</h1>
+    <header class="header">
+      <h1 class="info" aria-live="polite">Press any key</h1>
     </header>
     <div class="continue-message" id="continueMessage" style="display: none;">Press any key to continue</div>
   </div>
@@ -444,7 +444,7 @@ import Keyboard from "@/components/keyboard.astro";
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
 
-  document.addEventListener("keyboardReset", (e) => {
+  document.addEventListener("keyboardReset", () => {
     currentFontIndex = 0;
     currentFontColorIndex = 0;
     isUpperCase = true;

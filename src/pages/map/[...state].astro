@@ -42,74 +42,68 @@ const major_rivers = stateInfo.major_rivers || [];
       <div id="state-svg-container">
         <District state={name} />
         <h2>- {stateInfo.famous_quote}</h2>
-           
-          <!-- New Statistics Section -->
-          <div class="statistics-section">
-            <h3>State Statistics</h3>
-            <div class="stats-grid">
-              <div class="stat-card">
-                <div class="stat-icon">🏛️</div>
-                <div class="stat-info">
-                  <h4>Capital</h4>
-                  <p>{capital}</p>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">🌆</div>
-                <div class="stat-info">
-                  <h4>Largest City</h4>
-                  <p>{largest_city}</p>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">📏</div>
-                <div class="stat-info">
-                  <h4>Area</h4>
-                  <p>{surface_area.toLocaleString()} km²</p>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">👥</div>
-                <div class="stat-info">
-                  <h4>Population</h4>
-                  <p>{population.toLocaleString()}</p>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">🎓</div>
-                <div class="stat-info">
-                  <h4>Literacy Rate</h4>
-                  <p>{literacy_rate}%</p>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">📍</div>
-                <div class="stat-info">
-                  <h4>Districts</h4>
-                  <p>{districts_count}</p>
-                </div>
+        <!-- New Statistics Section -->
+        <div class="statistics-section">
+          <h3>State Statistics</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">🏛️</div>
+              <div class="stat-info">
+                <h4>Capital</h4>
+                <p>{capital}</p>
               </div>
             </div>
-            <div class="additional-info">
-              <div class="info-section">
-                <h4>Languages</h4>
-                <div class="tag-container">
-                  {languages.map(lang => (
-                    <span class="tag">{lang}</span>
-                  ))}
-                </div>
+            <div class="stat-card">
+              <div class="stat-icon">🌆</div>
+              <div class="stat-info">
+                <h4>Largest City</h4>
+                <p>{largest_city}</p>
               </div>
-              <div class="info-section">
-                <h4>Major Rivers</h4>
-                <div class="tag-container">
-                  {major_rivers.map(river => (
-                    <span class="tag">{river}</span>
-                  ))}
-                </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📏</div>
+              <div class="stat-info">
+                <h4>Area</h4>
+                <p>{surface_area.toLocaleString()} km²</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-info">
+                <h4>Population</h4>
+                <p>{population.toLocaleString()}</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🎓</div>
+              <div class="stat-info">
+                <h4>Literacy Rate</h4>
+                <p>{literacy_rate}%</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📍</div>
+              <div class="stat-info">
+                <h4>Districts</h4>
+                <p>{districts_count}</p>
               </div>
             </div>
           </div>
-
+          <div class="additional-info">
+            <div class="info-section">
+              <h4>Languages</h4>
+              <div class="tag-container">
+                {languages.map((lang) => <span class="tag">{lang}</span>)}
+              </div>
+            </div>
+            <div class="info-section">
+              <h4>Major Rivers</h4>
+              <div class="tag-container">
+                {major_rivers.map((river) => <span class="tag">{river}</span>)}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="right-content">
         <div class="state-image-container">
@@ -158,10 +152,16 @@ const major_rivers = stateInfo.major_rivers || [];
             <h4>Quick facts about {name}</h4>
             <div class="facts-content">
               <p class="description" id="description">
-                <span id="descriptionText">{description.length > 150 ? description.slice(0, 150) + "..." : description}</span>
-                {description.length > 150 && (
-                  <button class="read-more" id="readMoreBtn">Read More</button>
-                )}
+                <span id="descriptionText"
+                  >{description.length > 150 ? description.slice(0, 150) + "..." : description}</span
+                >
+                {
+                  description.length > 150 && (
+                    <button class="read-more" id="readMoreBtn">
+                      Read More
+                    </button>
+                  )
+                }
               </p>
               <div class="links">
                 {
@@ -181,18 +181,18 @@ const major_rivers = stateInfo.major_rivers || [];
   </section>
 </BaseLayout>
 
-<script define:vars={{ description, literacy_rate, districts_count }}>
+<script define:vars={{ description, literacy_rate, districts_count }} is:inline>
   // Read More button functionality
-  const readMoreBtn = document.getElementById('readMoreBtn');
-  const descriptionText = document.getElementById('descriptionText');
+  const readMoreBtn = document.getElementById("readMoreBtn");
+  const descriptionText = document.getElementById("descriptionText");
   if (readMoreBtn && descriptionText) {
-    readMoreBtn.addEventListener('click', () => {
-      if (descriptionText.textContent?.includes('...')) {
+    readMoreBtn.addEventListener("click", () => {
+      if (descriptionText.textContent?.includes("...")) {
         descriptionText.textContent = description;
-        readMoreBtn.textContent = 'Show Less';
+        readMoreBtn.textContent = "Show Less";
       } else {
-        descriptionText.textContent = description.slice(0, 150) + '...';
-        readMoreBtn.textContent = 'Read More';
+        descriptionText.textContent = description.slice(0, 150) + "...";
+        readMoreBtn.textContent = "Read More";
       }
     });
   }
