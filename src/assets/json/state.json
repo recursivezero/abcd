@@ -11,7 +11,34 @@
     "wikiLink": "https://en.wikipedia.org/wiki/Andhra_Pradesh",
     "official_website": "https://www.ap.gov.in",
     "isActive": true,
-    "alternate_dance": "Kuchipudi Dance"
+    "alternate_dance": "Kuchipudi Dance",
+    "famous_quote": "Sankranti Subhakankshalu",
+    "famous_person": "Potti Sreeramulu",
+    "famous_food": "Pulihora",
+    "famous_place": "Tirupati",
+    "famous_dress": "Dhoti and Saree",
+    "famous_language": "Telugu",
+    "famous_sport": "Kabaddi",
+    "state_color": "Blue",
+    "state_animal": "Blackbuck",
+    "state_flower": "Jasmine",
+    "surface_area": 162968,
+    "districts_count": 26,
+    "largest_city": "Visakhapatnam",
+    "capital": "Amaravati",
+    "population": 53903393,
+    "literacy_rate": 67.35,
+    "languages": [
+      "Telugu",
+      "Urdu",
+      "Hindi"
+    ],
+    "major_rivers": [
+      "Krishna",
+      "Godavari",
+      "Penna",
+      "Vamsadhara"
+    ]
   },
   {
     "id": "assam",
