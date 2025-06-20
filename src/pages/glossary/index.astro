@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/Base.astro";
 // Assuming global styles or styles from alphabets/index.css are desired for consistency
 
 import "@/assets/styles/alphabets/index.css";
+import "@/assets/styles/glossary/index.css"; 
 
 const pageTitle = "Glossary";
 
@@ -106,105 +107,3 @@ const glossarySections: GlossarySection[] = [
     </ul>
   </section>
 </BaseLayout>
-
-{/* Styles copied directly from src/pages/numbers/index.astro  */}
-<style>
-
-   .back {
-  left:0;
-  top: 1rem;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  text-decoration: none;
-  color: light-dark(black, white);
-  font-weight: 500;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-}
-
-.back svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-}
-
-  .card__inner {
-    background: var(--background);
-    border: 2px solid var(--border);
-    border-radius: 1rem;
-    padding: clamp(1rem, 3vw, 1.25rem);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: clamp(0.75rem, 2vw, 1rem);
-    transition: all 0.2s ease;
-  }
-
-  .category__icon {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: clamp(0.25rem, 2vw, 0.5rem);
-    line-height: 1; 
-  }
-
-  .category__title {
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    margin-bottom: 0.75rem;
-  }
-
-  .category__description {
-    font-size: clamp(0.9rem, 2vw, 0.95rem);
-    line-height: 1.6;
-    flex-grow: 1; 
-  }
-
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.75rem, 2vw, 2rem);
-    border-radius: 0.75rem;
-    font-weight: 600;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    transition: all 0.2s ease;
-    text-decoration: none;
-    flex: 1; 
-    min-width: 119px; 
-  }
-
-  .card__actions {
-    display: flex;
-    margin-top: auto; 
-  }
-
-  @media (max-width: 768px) {
-    .btn {
-      width: 100%; 
-    }
-  }
-
-  .btn-playground { 
-    background: var(--primary);
-    color: var(--background); 
-  }
-
-  .card:hover .card__inner {
-    transform: translateY(-3px);
-    border-color: var(--primary);
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .btn-playground:hover {
-    background: var(--primary-light); 
-  }
-
-  .icon { 
-    font-size: 1.2em;
-    margin-right: 0.5em; 
-  }
-</style>
