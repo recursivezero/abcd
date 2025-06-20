@@ -1,20 +1,18 @@
 ---
-import BackIcon from "@/assets/icons/back.svg";
+import BackIcon from "@/components/Back.astro";
 import Stack from "@/assets/icons/stack.svg";
 import Queue from "@/assets/icons/queue.svg";
 import BaseLayout from "@/layouts/Base";
 
 const meta = {
-  title: "Explore Display Modes",
+  title: "Alphabet Explorer: Learn with Motion",
   description: "Choose your display mode to explore the world of cards",
 };
 ---
 
 <BaseLayout {meta}>
+  <a href="/" class="back"><BackIcon class="bck"/></a>
   <div class="selection-container">
-    <a href="/" class="back">
-      <BackIcon class="bck"/>
-    </a>
     <h1 class="selection-title">Explore Display Modes</h1>
     <div class="selection-buttons-grid">
       <a href="/cards/stack" class="selection-card">
@@ -53,25 +51,6 @@ const meta = {
       padding-right: 2rem;
       color: var(--text, #e0e0e0);
       font-family: "Roboto", sans-serif;
-    }
-
-    .back {
-      position: absolute;
-      left: 14rem;
-      top: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.1rem;
-      text-decoration: none;
-      color: light-dark(black, white);
-      font-weight: 500;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
-    }
-
-    .back svg {
-      width: 24px;
-      height: 24px;
     }
 
     .selection-title {
