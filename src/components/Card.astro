@@ -98,7 +98,7 @@ const processedData = initialData.map((branch, index) => ({
   )}
 </div>
 
-<script>
+<script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     // Card expansion logic
     const cards = document.querySelectorAll(".card");
@@ -110,8 +110,8 @@ const processedData = initialData.map((branch, index) => ({
       toggleBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
         const isExpanded = card.classList.toggle("expanded");
-        toggleBtn.setAttribute("aria-expanded", isExpanded.toString());
-        cardBody.setAttribute("aria-hidden", (!isExpanded).toString());
+        if (toggleBtn) toggleBtn.setAttribute("aria-expanded", isExpanded.toString());
+        if (cardBody) cardBody.setAttribute("aria-hidden", (!isExpanded).toString());
       });
     });
 
@@ -122,8 +122,8 @@ const processedData = initialData.map((branch, index) => ({
           card.classList.remove("expanded");
           const toggleBtn = card.querySelector(".surname-count");
           const cardBody = card.querySelector(".card-body");
-          toggleBtn?.setAttribute("aria-expanded", "false");
-          cardBody?.setAttribute("aria-hidden", "true");
+          if (toggleBtn) toggleBtn.setAttribute("aria-expanded", "false");
+          if (cardBody) cardBody.setAttribute("aria-hidden", "true");
         });
       }
     });
@@ -133,11 +133,11 @@ const processedData = initialData.map((branch, index) => ({
       btn.addEventListener("click", (e) => {
         e.stopPropagation();
         const card = btn.closest(".card");
-        const gotra = card.querySelector(".info-group:nth-child(1) .value")?.textContent;
-        const deity = card.querySelector(".info-group:nth-child(2) .value")?.textContent;
-        const caste = card.querySelector(".info-group:nth-child(3) .value")?.textContent;
+        const gotra = card?.querySelector(".info-group:nth-child(1) .value")?.textContent;
+        const deity = card?.querySelector(".info-group:nth-child(2) .value")?.textContent;
+        const caste = card?.querySelector(".info-group:nth-child(3) .value")?.textContent;
         
-        const surnames = Array.from(card.querySelectorAll(".surname-card p"))
+        const surnames = Array.from(card?.querySelectorAll(".surname-card p") || [])
           .map(el => el.textContent?.trim() || "");
         
         const data = { gotra, deity, caste, surnames };
@@ -154,7 +154,8 @@ const processedData = initialData.map((branch, index) => ({
             tooltip.textContent = "Copied!";
             btn.appendChild(tooltip);
             setTimeout(() => tooltip.remove(), 1500);
-          });
+          })
+          .catch(err => console.error("Failed to copy:", err));
       });
     });
   });
