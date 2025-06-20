@@ -440,7 +440,9 @@ const pageMeta = {
         if (!preview || !quoteData || !quoteTextEl || !authorNameEl) return;
         quoteTextEl.textContent = quoteData.quote || "";
         authorNameEl.textContent = quoteData.author ? `- ${quoteData.author}` : "";
-        preview.style.color = controls.textColor?.value || "#ffffff";
+        const selectedTextColor = controls.textColor?.value || "#ffffff";
+        quoteTextEl.style.color = selectedTextColor;
+        authorNameEl.style.color = selectedTextColor;
         preview.style.fontFamily = controls.fontFamily?.value || "'Space Mono', monospace";
         preview.style.fontSize = `${controls.fontSize?.value || 24}px`;
         preview.style.textAlign = currentAlignment;
