@@ -8,59 +8,8 @@ const timeUnits = vedicData.time_units;
 ---
 
 <BaseLayout meta={{ title: "Vedic Time" }}>
+  <BackIcon/>
   <div class="container__vedic">
-    <a href="/" class="back">
-      <BackIcon class="bck" />
-    </a>
-    <script type="text/javascript" async>
-      const fullEnglish = {
-        weekday: "long",
-        dayPeriod: "long",
-        year: "numeric",
-        month: "long",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "numeric",
-        calendar: "iso8601",
-        timeZone: "Asia/Kolkata",
-        timeZoneName: "short",
-        formatMatcher: "basic",
-        hourCycle: "h12"
-      };
-
-      const fullHindi = {
-        weekday: "long",
-        dayPeriod: "long",
-        year: "numeric",
-        month: "long",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "numeric",
-        calendar: "indian",
-        timeZone: "Asia/Kolkata",
-        numberingSystem: "deva",
-        formatMatcher: "basic",
-        hourCycle: "h12"
-      };
-
-      const styleOption = {
-        dateStyle: "full",
-        timeStyle: "long",
-        calendar: "iso8601", // 'indian',
-        /* numberingSystem: 'deva', */
-        timeZone: "Asia/Kolkata",
-        hour12: false,
-        useGrouping: true,
-        minimumIntegerDigits: 1
-      };
-
-      const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
-      const samay = new Intl.DateTimeFormat("hi", fullHindi);
-      const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);
-    </script>
-
     <div class="tab-buttons">
       <button class="tab-button active" data-tab="tithi">Tithi</button>
       <button class="tab-button" data-tab="converter">Converter</button>
@@ -160,7 +109,7 @@ const timeUnits = vedicData.time_units;
         <h2 class="units__title">Vedic Time Journey</h2>
         <div class="timeline-wrapper">
           {
-            timeUnits.map((unit, index) => (
+            timeUnits.map((unit) => (
               <div class="timeline-node">
                 <div class="timeline-card">
                   <div class="unit__header">
@@ -181,6 +130,53 @@ const timeUnits = vedicData.time_units;
   </div>
 
   <script is:inline define:vars={{ timeUnits }}>
+    const fullEnglish = {
+      weekday: 'long',
+      dayPeriod: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: 'numeric',
+      calendar: 'iso8601',
+      timeZone: 'Asia/Kolkata',
+      timeZoneName: 'short',
+      formatMatcher: 'basic',
+      hourCycle: 'h12',
+    };
+
+    const fullHindi = {
+      weekday: 'long',
+      dayPeriod: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: 'numeric',
+      calendar: 'indian',
+      timeZone: 'Asia/Kolkata',
+      numberingSystem: 'deva',
+      formatMatcher: 'basic',
+      hourCycle: 'h12',
+    };
+
+      const styleOption = {
+        dateStyle: 'full',
+        timeStyle: 'long',
+        calendar: 'iso8601', // 'indian',
+        /* numberingSystem: 'deva', */
+        timeZone: 'Asia/Kolkata',
+        hour12: false,
+        useGrouping: true,
+        minimumIntegerDigits: 1
+      };
+
+    const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
+    const samay = new Intl.DateTimeFormat("hi", fullHindi);
+    const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);
+
     function convert(value, fromUnit, toUnit) {
       const from = timeUnits.find((u) => u.name === fromUnit);
       const to = timeUnits.find((u) => u.name === toUnit);
@@ -292,9 +288,8 @@ const timeUnits = vedicData.time_units;
       const hindu = document.querySelector('[data-id="hindu"]');
       const hindi = document.querySelector('[data-id="hindi"]');
       const english = document.querySelector('[data-id="english"]');
-      const timeElem = document.querySelector("time");
 
-      const modifyHinduDateString = (dateString, { tithi, paksha }) => {
+      const modifyHinduDateString = ({ tithi, paksha }) => {
         // Split the formatted date string into parts
         const parts = samay.formatToParts(new Date());
 
@@ -326,7 +321,7 @@ const timeUnits = vedicData.time_units;
         // Format dates
         const eng = dateInEnglish.format(today);
         const hi = dateInHindi.format(today);
-        const hinduDateStr = modifyHinduDateString(hi, { tithi, paksha });
+        const hinduDateStr = modifyHinduDateString( { tithi, paksha });
 
         // Update displays
         hindi.innerHTML = hi;

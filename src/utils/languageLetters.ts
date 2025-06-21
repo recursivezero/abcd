@@ -15,6 +15,46 @@ interface LetterPair {
   english: string;
   type: "vowel" | "consonant" | "separator";
 }
+const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "಍" , "಍" , "಍", "಍", "e", "ai" , "಍", "಍", "o", "au"];
+const englishConsonants = [
+  "ka",
+  "kha",
+  "ga",
+  "gha",
+  "ṅa",
+  "ca",
+  "cha",
+  "ja",
+  "jha",
+  "ña",
+  "ṭa",
+  "ṭha",
+  "ḍa",
+  "ḍha",
+  "ṇa",
+  "ta",
+  "tha",
+  "da",
+  "dha",
+  "na",
+  "಍" ,
+  "pa",
+  "pha",
+  "ba",
+  "bha",
+  "ma",
+  "ya",
+  "ra",
+  "಍",
+  "la",
+  "಍",
+  "಍",
+  "va",
+  "śa",
+  "ṣa",
+  "sa",
+  "ha"
+];
 
 // Generate unicode characters for languages
 type GenerateAlphabetParams = {
@@ -77,45 +117,6 @@ const generateAlphabets = (params: GenerateAlphabetParams): string[] => {
   }
   return result;
 };
-
-// Updated English equivalents with more accurate transliterations
-const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "e", "ai", "o", "au", "aṃ", "aḥ"];
-const englishConsonants = [
-  "ka",
-  "kha",
-  "ga",
-  "gha",
-  "ṅa",
-  "ca",
-  "cha",
-  "ja",
-  "jha",
-  "ña",
-  "ṭa",
-  "ṭha",
-  "ḍa",
-  "ḍha",
-  "ṇa",
-  "ta",
-  "tha",
-  "da",
-  "dha",
-  "na",
-  "pa",
-  "pha",
-  "ba",
-  "bha",
-  "ma",
-  "ya",
-  "ra",
-  "la",
-  "va",
-  "śa",
-  "ṣa",
-  "sa",
-  "ha",
-  "ḷa"
-];
 
 // Define allAlphabets structure
 const allAlphabet = {
@@ -274,7 +275,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   }
 };
 
-export {
+export {  
   englishVowels,
   englishConsonants,
   allAlphabet,
