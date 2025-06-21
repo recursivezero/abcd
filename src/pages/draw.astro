@@ -4,11 +4,11 @@ import Keyboard from "@/components/DrawKeyboard.astro";
 import Help from "@/components/Help.astro";
 import ImageIcon from "@/assets/icons/image.svg";
 import "@/assets/styles/DrawPage.css";
-import BackIcon from "@/components/Back.astro";
+import Back from "@/components/Back.astro";
 ---
 
 <Layout meta={{ title: "Draw by Keyboard" }}>
-  <a href="/" class="back"><BackIcon class="bck" /></a>
+  <Back/>
   <Fragment slot="header-right">
     <div class="controls-container">
       <div class="controls">

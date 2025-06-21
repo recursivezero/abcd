@@ -3,6 +3,7 @@ import "@/assets/styles/societree.css";
 import Card from "@/components/Card.astro";
 import BaseLayout from "@/layouts/Base";
 import clanJson from "public/assets/json/family.json";
+import Back from "@/components/Back.astro";
 
 interface Surname {
   hi: string;
@@ -55,6 +56,7 @@ const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
 ---
 
 <BaseLayout meta={{ title: "Clan Explorer" }}>
+  <Back/>
   <article class="container__clan">
     <div class="clan__header">
       <h1 class="clan__title">Discover Your Heritage and Family Connections</h1>
