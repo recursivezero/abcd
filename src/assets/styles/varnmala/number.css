@@ -1,3 +1,11 @@
+.page-header .page-main-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--text-heading, var(--text, #333));
+  font-weight: 700;
+  flex-grow: 1;
+  text-align: center;
+}
 .container__numbers {
   padding: 1rem;
   height: calc(100vh - 5rem);
