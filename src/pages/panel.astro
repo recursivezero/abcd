@@ -209,7 +209,7 @@ import BackIcon from "@/assets/icons/back.svg";
           this.buildPanel();
           this.changePanel();
         });
-        this.#cellRange.addEventListener("change", (e) => {
+        this.#cellRange.addEventListener("change", () => {
           // Add change event for final blur
           this.#cellRange.blur();
         });

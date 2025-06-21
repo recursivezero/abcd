@@ -7,7 +7,7 @@ import BaseLayout from "@/layouts/Base";
 import categoryData from "@/data/categories.json";
 
 export async function getStaticPaths() {
-  return Object.entries(categoryData.categories).map(([key, value]) => ({
+  return Object.values(categoryData.categories).map((value) => ({
     params: { category: value.route }
   }));
 }

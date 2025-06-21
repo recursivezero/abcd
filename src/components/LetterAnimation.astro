@@ -181,7 +181,7 @@ const letterData = letterMap[currentLetter];
   <div class="letter-display">
     <svg class="letter-svg" viewBox="0 0 200 200">
       {
-        letterData.paths.map((path, idx) => (
+        letterData.paths.map((path) => (
           <path class="letter-path animate-letter" d={path.d} style={`animation-delay: ${path.animationDelay}`} />
         ))
       }
@@ -211,7 +211,7 @@ const letterData = letterMap[currentLetter];
   <div class="instructions">
     <h2>How to Write the Letter '{currentLetter}'</h2>
     <ol>
-      {letterData.instructions.map((ins, i) => <li>{ins}</li>)}
+      {letterData.instructions.map((ins) => <li>{ins}</li>)}
     </ol>
   </div>
 </div>

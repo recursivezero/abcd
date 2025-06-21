@@ -1,5 +1,3 @@
-import type Letter from "@/components/Letter.astro";
-
 export type LetterEntity = {
   letter: string;
   code: string | number;
