@@ -72,26 +72,6 @@
 }
 
 /* Navigation */
-.back {
-  position: absolute;
-  left: 14rem;
-  top: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  text-decoration: none;
-  color: light-dark(black, white);
-  font-weight: 500;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-}
-
-.back svg {
-  width: 24px;
-  height: 24px;
-  stroke: currentColor;
-}
-
 .game-wrapper {
   flex-direction: row;
   display: flex;
@@ -246,10 +226,6 @@
     text-align: left;
     margin-top: 1rem;
     flex-grow: unset;
-  }
-
-  .back {
-    margin-right: 0;
   }
 }
 

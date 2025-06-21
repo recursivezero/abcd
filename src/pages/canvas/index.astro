@@ -1,5 +1,5 @@
 ---
-import BackIcon from "@/assets/icons/back.svg";
+import Back from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
 import CanvasIcon from "@/assets/icons/canvas-icon.svg";
 import QuoteIcon from "@/assets/icons/quote-icon.svg";
@@ -12,10 +12,8 @@ const meta = {
 ---
 
 <BaseLayout {meta}>
+  <Back/>
   <div class="selection-container">
-    <a href="/" class="back">
-      <BackIcon />
-    </a>
     <h1 class="selection-title">Select a creative mode</h1>
     <div class="selection-buttons-grid">
       <a href="/canvas/text" class="selection-card">
