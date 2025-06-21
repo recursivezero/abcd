@@ -1,5 +1,5 @@
 ---
-import BackIcon from "@/assets/icons/back.svg";
+import Back from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base"; 
 import "@/assets/styles/alphabets/index.css"; // Global styles from alphabets index
 import allAlphabetsData from "../../data/alphabets.json"; // Import the JSON data
@@ -94,9 +94,7 @@ const numberSections = [
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
-  <a href="/" class="back">
-      <BackIcon class="bck"/>
-    </a>
+  <Back/>
   <section class="container__alphabets">
     <div class="alphabets__header">
       <h1>{pageTitle}</h1>
