@@ -221,6 +221,90 @@ export const colors = [
   "linear-gradient(135deg, #34d399 0%, #10b981 100%)" // Emerald
 ];
 
+    const fullEnglish = {
+      weekday: 'long',
+      dayPeriod: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: 'numeric',
+      calendar: 'iso8601',
+      timeZone: 'Asia/Kolkata',
+      timeZoneName: 'short',
+      formatMatcher: 'basic',
+      hourCycle: 'h12',
+    };
+
+    const fullHindi = {
+      weekday: 'long',
+      dayPeriod: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: 'numeric',
+      calendar: 'indian',
+      timeZone: 'Asia/Kolkata',
+      numberingSystem: 'deva',
+      formatMatcher: 'basic',
+      hourCycle: 'h12',
+    };
+
+      const styleOption = {
+        dateStyle: 'full',
+        timeStyle: 'long',
+        calendar: 'iso8601', // 'indian',
+        /* numberingSystem: 'deva', */
+        timeZone: 'Asia/Kolkata',
+        hour12: false,
+        useGrouping: true,
+        minimumIntegerDigits: 1
+      };
+const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "಍" , "಍" , "಍", "಍", "e", "ai" , "಍", "಍", "o", "au"];
+const englishConsonants = [
+  "ka",
+  "kha",
+  "ga",
+  "gha",
+  "ṅa",
+  "ca",
+  "cha",
+  "ja",
+  "jha",
+  "ña",
+  "ṭa",
+  "ṭha",
+  "ḍa",
+  "ḍha",
+  "ṇa",
+  "ta",
+  "tha",
+  "da",
+  "dha",
+  "na",
+  "಍" ,
+  "pa",
+  "pha",
+  "ba",
+  "bha",
+  "ma",
+  "ya",
+  "ra",
+  "಍",
+  "la",
+  "಍",
+  "಍",
+  "va",
+  "śa",
+  "ṣa",
+  "sa",
+  "ha"
+];
+export {englishVowels, englishConsonants}
+export { fullEnglish, fullHindi, styleOption }
 export { BASE_URL, IMAGE_DIR };
 
 export { colorBox, fontBox, fontColor, numberBox };

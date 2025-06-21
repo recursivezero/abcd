@@ -1,4 +1,6 @@
 ---
+import { fullEnglish, fullHindi, styleOption
+} from "@/utils/constants.ts";
 import BackIcon from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/vedic.css";
@@ -129,50 +131,7 @@ const timeUnits = vedicData.time_units;
     </div>
   </div>
 
-  <script is:inline define:vars={{ timeUnits }}>
-    const fullEnglish = {
-      weekday: 'long',
-      dayPeriod: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: 'numeric',
-      calendar: 'iso8601',
-      timeZone: 'Asia/Kolkata',
-      timeZoneName: 'short',
-      formatMatcher: 'basic',
-      hourCycle: 'h12',
-    };
-
-    const fullHindi = {
-      weekday: 'long',
-      dayPeriod: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: 'numeric',
-      calendar: 'indian',
-      timeZone: 'Asia/Kolkata',
-      numberingSystem: 'deva',
-      formatMatcher: 'basic',
-      hourCycle: 'h12',
-    };
-
-      const styleOption = {
-        dateStyle: 'full',
-        timeStyle: 'long',
-        calendar: 'iso8601', // 'indian',
-        /* numberingSystem: 'deva', */
-        timeZone: 'Asia/Kolkata',
-        hour12: false,
-        useGrouping: true,
-        minimumIntegerDigits: 1
-      };
-
+  <script is:inline define:vars={{ timeUnits , fullEnglish, fullHindi, styleOption}}>
     const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
     const samay = new Intl.DateTimeFormat("hi", fullHindi);
     const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);

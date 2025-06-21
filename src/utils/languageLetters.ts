@@ -1,3 +1,6 @@
+import { englishVowels,englishConsonants
+} from "@/utils/constants.ts";
+
 interface LetterPair {
   hindi: string;
   kannada: string;
@@ -15,46 +18,6 @@ interface LetterPair {
   english: string;
   type: "vowel" | "consonant" | "separator";
 }
-const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "಍" , "಍" , "಍", "಍", "e", "ai" , "಍", "಍", "o", "au"];
-const englishConsonants = [
-  "ka",
-  "kha",
-  "ga",
-  "gha",
-  "ṅa",
-  "ca",
-  "cha",
-  "ja",
-  "jha",
-  "ña",
-  "ṭa",
-  "ṭha",
-  "ḍa",
-  "ḍha",
-  "ṇa",
-  "ta",
-  "tha",
-  "da",
-  "dha",
-  "na",
-  "಍" ,
-  "pa",
-  "pha",
-  "ba",
-  "bha",
-  "ma",
-  "ya",
-  "ra",
-  "಍",
-  "la",
-  "಍",
-  "಍",
-  "va",
-  "śa",
-  "ṣa",
-  "sa",
-  "ha"
-];
 
 // Generate unicode characters for languages
 type GenerateAlphabetParams = {
