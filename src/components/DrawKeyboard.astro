@@ -135,7 +135,10 @@ import Keyboard from "@/components/keyboard.astro";
   function setBackgroundImage(imagePath) {
     clearAllBackgrounds();
     if (boardDiv) {
-      boardDiv.style.backgroundImage = `url(${imagePath})`;
+      // Check network status
+      const basePath = navigator.onLine ? IMAGE_DIR : "/assets/images/background";
+      const fullPath = `${basePath}/${imagePath.split("/").pop()}`;
+      boardDiv.style.backgroundImage = `url(${fullPath})`;
       boardDiv.style.backgroundSize = "cover";
       boardDiv.style.backgroundPosition = "center";
       boardDiv.style.backgroundRepeat = "no-repeat";
@@ -260,7 +263,7 @@ import Keyboard from "@/components/keyboard.astro";
       updateFontColor();
 
       if (showImages && backgroundMode !== "color") {
-        setBackgroundImage(`${IMAGE_DIR}/${found.value}.jpg`);
+        setBackgroundImage(`${found.value}.jpg`); 
         charDiv.style.fontSize = "40vh";
       } else if (backgroundMode === "color") {
         const randomColor = getRandomValue(colorBox);
@@ -345,7 +348,7 @@ import Keyboard from "@/components/keyboard.astro";
           if (!/\d/.test(currentChar)) {
             const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === currentChar.toUpperCase());
             if (found) {
-              setBackgroundImage(`${IMAGE_DIR}/${found.value}.jpg`);
+              setBackgroundImage(`${found.value}.jpg`);
               charDiv.style.fontSize = "40vh";
               updateFontColor();
             }
