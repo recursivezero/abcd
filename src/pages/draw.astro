@@ -3,6 +3,7 @@ import Layout from "@/layouts/Base";
 import Keyboard from "@/components/DrawKeyboard.astro";
 import Help from "@/components/Help.astro";
 import ImageIcon from "@/assets/icons/image.svg";
+import "@/assets/styles/DrawPage.css";
 import BackIcon from "@/components/Back.astro";
 ---
 
@@ -11,77 +12,38 @@ import BackIcon from "@/components/Back.astro";
   <Fragment slot="header-right">
     <div class="controls-container">
       <div class="controls">
-        <label for="toggleCase" class="control-item" data-tooltip="Toggle case"
-          ><input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
-          <span
-            id="text"
-            class="control-button case-toggle"
-            role="switch"
-            aria-checked="false"
-            tabindex="0"
-            aria-label="Toggle case"
-          >
-            Aa
-          </span>
+        <label for="toggleCase" class="control-item" data-tooltip="Toggle case">
+          <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
+          <span id="text" class="control-button case-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle case">Aa</span>
         </label>
 
         <label for="toggleFont" class="control-item" data-tooltip="Toggle font">
           <input type="checkbox" name="toggle_font" id="toggleFont" class="visually-hidden hidden" />
-          <span
-            id="font"
-            class="control-button font-toggle"
-            role="switch"
-            aria-checked="false"
-            tabindex="0"
-            aria-label="Toggle font"
-          >
+          <span id="font" class="control-button font-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle font">
             <span class="font-icon">F</span>
-            <span class="font-icon-alt">F</span>
           </span>
         </label>
 
         <div class="control-group">
           <label for="toggleImg" class="control-item" data-tooltip="Toggle Image">
             <input type="checkbox" name="toggle_img" id="toggleImg" class="visually-hidden hidden" />
-            <span
-              id="img"
-              class="control-button img-toggle"
-              role="switch"
-              aria-checked="false"
-              tabindex="0"
-              aria-label="Toggle Image"
-            >
+            <span id="img" class="control-button img-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle Image">
               <ImageIcon class="img-icon" />
-              <ImageIcon class="img-icon-alt" />
             </span>
           </label>
 
           <label for="toggleColor" class="control-item" data-tooltip="Toggle Font Color">
             <input type="checkbox" name="toggle_color" id="toggleColor" class="visually-hidden hidden" />
-            <span
-              class="control-button color-toggle"
-              role="switch"
-              aria-checked="false"
-              tabindex="0"
-              aria-label="Toggle Font Color"
-            >
+            <span class="control-button color-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle Font Color" >
               <span class="color-icon">T</span>
-              <span class="color-icon-alt">T</span>
             </span>
           </label>
         </div>
 
         <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
           <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
-          <span
-            class="control-button bg-toggle"
-            role="switch"
-            aria-checked="false"
-            tabindex="0"
-            aria-label="Toggle background"
-          >
+          <span class="control-button bg-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle background">
             <span class="bg-icon">🎨</span>
-            <span class="bg-icon-alt">🎨</span>
           </span>
         </label>
 
@@ -98,384 +60,6 @@ import BackIcon from "@/components/Back.astro";
   </Fragment>
   <Keyboard />
 </Layout>
-
-<style>
-  :root {
-    --keyboard-bg: white;
-    --keyboard-alt-bg: #f0f0f0;
-    --font-normal: "Arial", sans-serif;
-    --font-fancy: "Brush Script MT", cursive;
-  }
-
-  .controls-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .controls {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .control-group {
-    display: flex;
-    gap: 0.25rem;
-  }
-
-  .control-item {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .control-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 3.2rem;
-    height: 3.2rem;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 1px solid #3b82f6;
-    transition: all 0.2s var(--ease);
-    box-shadow: 0 1px 3px var(--shadow-sm);
-    font-size: 1.25rem;
-    color: #3b82f6;
-    font-weight: 600;
-    background-color: transparent;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .control-button:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 12px var(--shadow-lg);
-    border-color: #2563eb;
-  }
-
-  .control-button.active {
-    background-color: #3b82f6;
-    color: white;
-  }
-
-  .control-button.active:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
-    background-color: #2563eb;
-  }
-
-  .control-button:focus {
-    outline: none;
-  }
-
-  .control-button.keyboard-focus {
-    outline: 2px solid white;
-    outline-offset: 2px;
-    border-radius: 50px;
-  }
-
-  .reset-button {
-    margin-left: 0;
-  }
-
-  .reset-button:hover {
-    transition: all 0.3s ease;
-  }
-
-  .font-icon,
-  .font-icon-alt {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.2s ease;
-    font-size: 1.25rem;
-  }
-
-  .font-icon {
-    opacity: 1;
-    font-family: Arial, sans-serif;
-  }
-
-  .font-icon-alt {
-    opacity: 0;
-    font-family: "Brush Script MT", cursive;
-  }
-
-  .font-toggle.active .font-icon {
-    opacity: 0;
-  }
-
-  .font-toggle.active .font-icon-alt {
-    opacity: 1;
-  }
-
-  .img-icon,
-  .img-icon-alt {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.2s ease;
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .img-icon {
-    opacity: 1;
-  }
-
-  .img-icon-alt {
-    opacity: 0;
-  }
-
-  .img-toggle.active .img-icon {
-    opacity: 0;
-  }
-
-  .img-toggle.active .img-icon-alt {
-    opacity: 1;
-  }
-
-  .color-icon,
-  .color-icon-alt {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.2s ease;
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  .color-icon {
-    opacity: 1;
-  }
-
-  .color-icon-alt {
-    opacity: 0;
-  }
-
-  .color-toggle.active .color-icon {
-    opacity: 0;
-  }
-
-  .color-toggle.active .color-icon-alt {
-    opacity: 1;
-  }
-
-  .bg-icon,
-  .bg-icon-alt {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.2s ease;
-    font-size: 1.25rem;
-  }
-
-  .bg-icon {
-    opacity: 1;
-  }
-
-  .bg-icon-alt {
-    opacity: 0;
-  }
-
-  .bg-toggle.active .bg-icon {
-    opacity: 0;
-  }
-
-  .bg-toggle.active .bg-icon-alt {
-    opacity: 1;
-  }
-
-  .control-item::after,
-  .reset-button::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: -2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: transparent;
-    color: light-dark(black, white);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    opacity: 0;
-    transition: all 0.2s var(--ease);
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  .control-item:hover::after,
-  .reset-button:hover::after {
-    opacity: 1;
-    bottom: -2rem;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  @media (max-width: 1024px) {
-    .controls {
-      position: absolute;
-      right: 0.6rem !important;
-      top: 0;
-      margin-top: 11rem !important;
-      flex-direction: column;
-      gap: 0.5rem;
-      padding: 0.5rem 0;
-      z-index: 100;
-      background: transparent;
-      align-items: flex-end;
-    }
-
-    .control-group {
-      flex-direction: column;
-      gap: 0.25rem;
-      align-items: flex-end;
-    }
-
-    .control-button {
-      width: 2.8rem;
-      height: 2.8rem;
-      font-size: 1.1rem;
-    }
-
-    .img-icon,
-    .img-icon-alt {
-      width: 1.1rem;
-      height: 1.1rem;
-    }
-
-    .font-icon,
-    .font-icon-alt,
-    .color-icon,
-    .color-icon-alt,
-    .bg-icon,
-    .bg-icon-alt {
-      font-size: 1.1rem;
-    }
-
-    .control-item::after,
-    .reset-button::after {
-      display: none;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .controls {
-      right: 0;
-      padding: 0.4rem;
-      gap: 0.4rem;
-    }
-
-    .control-button {
-      width: 2.5rem;
-      height: 2.5rem;
-      font-size: 1rem;
-    }
-
-    .img-icon,
-    .img-icon-alt {
-      width: 1rem;
-      height: 1rem;
-    }
-
-    .font-icon,
-    .font-icon-alt,
-    .color-icon,
-    .color-icon-alt,
-    .bg-icon,
-    .bg-icon-alt {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 690px) {
-    .controls {
-      right: 0;
-      padding: 0.3rem;
-      gap: 0.3rem;
-    }
-
-    .control-button {
-      width: 2.2rem;
-      height: 2.2rem;
-      font-size: 0.9rem;
-    }
-
-    .img-icon,
-    .img-icon-alt {
-      width: 0.9rem;
-      height: 0.9rem;
-    }
-
-    .font-icon,
-    .font-icon-alt,
-    .color-icon,
-    .color-icon-alt,
-    .bg-icon,
-    .bg-icon-alt {
-      font-size: 0.9rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .controls {
-      right: 0;
-      padding: 0.25rem;
-      gap: 0.25rem;
-    }
-
-    .control-button {
-      width: 2rem;
-      height: 2rem;
-      font-size: 0.8rem;
-    }
-
-    .img-icon,
-    .img-icon-alt {
-      width: 0.8rem;
-      height: 0.8rem;
-    }
-
-    .font-icon,
-    .font-icon-alt,
-    .color-icon,
-    .color-icon-alt,
-    .bg-icon,
-    .bg-icon-alt {
-      font-size: 0.8rem;
-    }
-  }
-
-  .controls {
-    z-index: 100;
-  }
-
-  *:focus {
-    outline: none;
-    box-shadow: none;
-  }
-</style>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -532,7 +116,7 @@ import BackIcon from "@/components/Back.astro";
       }
     });
 
-    // Modified toggle for font button - stays active until reset
+    // Modified toggle for font button 
     fontToggle.addEventListener("click", () => {
       const isActive = fontToggle.classList.contains("active");
       if (!isActive) {
@@ -544,7 +128,7 @@ import BackIcon from "@/components/Back.astro";
       }
     });
 
-    // Modified toggle for image button - stays active until reset
+    // Modified toggle for image button
     imgToggle.addEventListener("click", () => {
       const isActive = imgToggle.classList.contains("active");
       if (!isActive) {
@@ -566,7 +150,7 @@ import BackIcon from "@/components/Back.astro";
       }
     });
 
-    // Modified toggle for color button - stays active until reset
+    // Modified toggle for color button
     colorToggle.addEventListener("click", () => {
       const isActive = colorToggle.classList.contains("active");
       if (!isActive) {
@@ -580,7 +164,7 @@ import BackIcon from "@/components/Back.astro";
       }
     });
 
-    // Modified toggle for background button - resets image when clicked
+    // Modified toggle for background button
     bgToggle.addEventListener("click", () => {
       const isActive = bgToggle.classList.contains("active");
       if (!isActive) {

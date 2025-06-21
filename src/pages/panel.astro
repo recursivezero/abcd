@@ -4,10 +4,11 @@ import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/common.css";
 import SettingIcon from "@/assets/icons/settings.svg";
-import BackIcon from "@/assets/icons/back.svg";
+import Back from "@/components/Back.astro";
 ---
 
 <BaseLayout meta={{ title: "Panel" }}>
+  <Back/>
   <Fragment slot="header-right">
     <div class="right-header-buttons">
       <div class="settings-button-container">
@@ -101,12 +102,6 @@ import BackIcon from "@/assets/icons/back.svg";
       description="Use arrow keys to navigate through letters/numbers. Up/down for vertical orientation, left/right for horizontal. Type any letter or number to jump to it. Adjust panel size with the slider."
     />
   </Fragment>
-
-  <div class="header-content">
-    <a href="/" class="back">
-      <BackIcon />
-    </a>
-  </div>
 
   <article class="tv container__panel">
     <section class="scene">
@@ -209,7 +204,7 @@ import BackIcon from "@/assets/icons/back.svg";
           this.buildPanel();
           this.changePanel();
         });
-        this.#cellRange.addEventListener("change", (e) => {
+        this.#cellRange.addEventListener("change", () => {
           // Add change event for final blur
           this.#cellRange.blur();
         });
