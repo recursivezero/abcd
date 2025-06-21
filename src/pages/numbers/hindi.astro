@@ -2,127 +2,32 @@
 import BaseLayout from "@/layouts/Base";
 import LetterCard from "@/components/LetterCard.astro";
 import BackButton from "@/components/ui/backButton.astro";
-import "@/assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+import "@/assets/styles/varnmala/greek-alphabet.css";
+import numbersData from "../../data/numbers.json";
 
-// Define the type for our Hindi number data entries
 export interface HindiNumberEntry {
   id: number;
-  letter: string; // The Hindi numeral itself (e.g., "०", "१")
-  text?: string; // The Hindi word for the number (e.g., "शून्य", "एक")
-  description?: string; // The English word for the number (e.g., "Zero", "One")
-  code?: number; // Unicode or other code if applicable
-  emoji?: string; // Associated emoji (e.g., Braille)
+  letter: string;
+  text?: string;
+  description?: string;
+  code?: number;
+  emoji?: string;
 }
 
-const pageTitle = "Hindi Numbers";
+const pageTitle = numbersData.hindi.title;
 const category = "hindi-numbers";
-
-const hindiNumbersData: HindiNumberEntry[] = [
-  {
-    id: 0,
-    letter: "०",
-    code: 48,
-    emoji: " ",
-    text: "शून्य",
-    description: "Zero"
-  },
-  {
-    id: 1,
-    letter: "१",
-    code: 49,
-    emoji: "⠁",
-    text: "एक",
-    description: "One"
-  },
-  {
-    id: 2,
-    letter: "२",
-    code: 50,
-    emoji: "⠃",
-    text: "दो",
-    description: "Two"
-  },
-  {
-    id: 3,
-    letter: "३",
-    code: 51,
-    emoji: "⠇",
-    text: "तीन",
-    description: "Three"
-  },
-  {
-    id: 4,
-    letter: "४",
-    code: 52,
-    emoji: "⠏",
-    text: "चार",
-    description: "Four"
-  },
-  {
-    id: 5,
-    letter: "५",
-    code: 53,
-    emoji: "⠟",
-    text: "पांच",
-    description: "Five"
-  },
-  {
-    id: 6,
-    letter: "६",
-    code: 54,
-    emoji: "⠿",
-    text: "छह",
-    description: "Six"
-  },
-  {
-    id: 7,
-    letter: "७",
-    code: 55,
-    emoji: "⡿ ",
-    text: "सात",
-    description: "Seven"
-  },
-  {
-    id: 8,
-    letter: "८",
-    code: 56,
-    emoji: "⣿",
-    text: "आठ",
-    description: "Eight"
-  },
-  {
-    id: 9,
-    letter: "९",
-    code: 57,
-    emoji: "⣿⠁",
-    text: "नौ",
-    description: "Nine"
-  },
-  {
-    id: 10,
-    letter: "१०",
-    code: 58,
-    emoji: "⣿⠃",
-    text: "दस",
-    description: "Ten"
-  }
-];
+const hindiNumbersData: HindiNumberEntry[] = numbersData.hindi.data;
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
   <BackButton href="/numbers" />
   <article class="container__page alphabet-page-container">
-    {}
     <div class="page-header">
-      {}
       <h1 class="page-main-title">{pageTitle}</h1>
-      {}
       <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
-      {}
     </div>
 
     <div class="grid-container alphabet-grid">
-      {}
       {
         hindiNumbersData.map((entry) => {
           const letterCardItem = {

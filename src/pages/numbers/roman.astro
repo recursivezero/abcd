@@ -2,54 +2,22 @@
 import BaseLayout from "@/layouts/Base";
 import LetterCard from "@/components/LetterCard.astro";
 import BackButton from "@/components/ui/backButton.astro";
-import "@/assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+import "@/assets/styles/varnmala/greek-alphabet.css"; 
+import numbersData from "../../data/numbers.json";
 
 // Define the type for our Roman numeral data entries
 export interface RomanNumeralEntry {
   id: number;
-  letter: string; // The Roman numeral itself (e.g., "I", "V")
-  text?: string; // The numeric value (e.g., "1", "5")
-  description?: string; // The word for the number (e.g., "One", "Five")
-  code?: number; // Corresponds to the numeric value for simplicity
-  emoji?: string; // Associated Braille emoji (can be empty if not applicable/available)
+  letter: string; 
+  text?: string; 
+  description?: string; 
+  code?: number;
+  emoji?: string; 
 }
 
-const pageTitle = "Roman Numerals";
+const pageTitle = numbersData.roman.title;
 const category = "roman-numerals";
-
-const romanNumeralsData: RomanNumeralEntry[] = [
-  { id: 0, letter: "N", text: "0", description: "Null (Zero)", code: 0, emoji: "" },
-  { id: 1, letter: "I", text: "1", description: "One", code: 1, emoji: "⠁" },
-  { id: 2, letter: "II", text: "2", description: "Two", code: 2, emoji: "⠃" },
-  { id: 3, letter: "III", text: "3", description: "Three", code: 3, emoji: "⠉" },
-  { id: 4, letter: "IV", text: "4", description: "Four", code: 4, emoji: "⠙" },
-  { id: 5, letter: "V", text: "5", description: "Five", code: 5, emoji: "⠑" },
-  { id: 6, letter: "VI", text: "6", description: "Six", code: 6, emoji: "⠋" },
-  { id: 7, letter: "VII", text: "7", description: "Seven", code: 7, emoji: "⠛" },
-  { id: 8, letter: "VIII", text: "8", description: "Eight", code: 8, emoji: "⠓" },
-  { id: 9, letter: "IX", text: "9", description: "Nine", code: 9, emoji: "⠊" },
-  { id: 10, letter: "X", text: "10", description: "Ten", code: 10, emoji: "⠚" },
-  { id: 11, letter: "XI", text: "11", description: "Eleven", code: 11, emoji: "⠁⠁" },
-  { id: 20, letter: "XX", text: "20", description: "Twenty", code: 20, emoji: "⠃⠚" },
-  { id: 30, letter: "XXX", text: "30", description: "Thirty", code: 30, emoji: "⠉⠚" },
-  { id: 40, letter: "XL", text: "40", description: "Forty", code: 40, emoji: "" },
-  { id: 50, letter: "L", text: "50", description: "Fifty", code: 50, emoji: "⠇" },
-  { id: 60, letter: "LX", text: "60", description: "Sixty", code: 60, emoji: "" },
-  { id: 70, letter: "LXX", text: "70", description: "Seventy", code: 70, emoji: "" },
-  { id: 80, letter: "LXXX", text: "80", description: "Eighty", code: 80, emoji: "" },
-  { id: 90, letter: "XC", text: "90", description: "Ninety", code: 90, emoji: "" },
-  { id: 100, letter: "C", text: "100", description: "One Hundred", code: 100, emoji: "⠋" },
-  { id: 200, letter: "CC", text: "200", description: "Two Hundred", code: 200, emoji: "" },
-  { id: 300, letter: "CCC", text: "300", description: "Three Hundred", code: 300, emoji: "" },
-  { id: 400, letter: "CD", text: "400", description: "Four Hundred", code: 400, emoji: "" },
-  { id: 500, letter: "D", text: "500", description: "Five Hundred", code: 500, emoji: "⠙" },
-  { id: 600, letter: "DC", text: "600", description: "Six Hundred", code: 600, emoji: "" },
-  { id: 700, letter: "DCC", text: "700", description: "Seven Hundred", code: 700, emoji: "" },
-  { id: 800, letter: "DCCC", text: "800", description: "Eight Hundred", code: 800, emoji: "" },
-  { id: 900, letter: "CM", text: "900", description: "Nine Hundred", code: 900, emoji: "" },
-  { id: 1000, letter: "M", text: "1000", description: "One Thousand", code: 1000, emoji: "⠍" },
-  { id: 1001, letter: "MI", text: "1001", description: "One Thousand One", code: 1001, emoji: "" }
-];
+const romanNumeralsData: RomanNumeralEntry[] = numbersData.roman.data;
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
