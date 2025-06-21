@@ -1,0 +1,329 @@
+{
+  "flags": {
+    "title": "Country Flags",
+    "data": [
+      { "id": "usa", "countryCode": "US", "text": "United States", "description": "Capital: Washington, D.C." },
+      { "id": "canada", "countryCode": "CA", "text": "Canada", "description": "Capital: Ottawa" },
+      { "id": "india", "countryCode": "IN", "text": "India", "description": "Capital: New Delhi" },
+      { "id": "japan", "countryCode": "JP", "text": "Japan", "description": "Capital: Tokyo" },
+      { "id": "brazil", "countryCode": "BR", "text": "Brazil", "description": "Capital: Brasília" },
+      { "id": "australia", "countryCode": "AU", "text": "Australia", "description": "Capital: Canberra" },
+      { "id": "germany", "countryCode": "DE", "text": "Germany", "description": "Capital: Berlin" },
+      {
+        "id": "southafrica",
+        "countryCode": "ZA",
+        "text": "South Africa",
+        "description": "Capitals: Pretoria, Cape Town, Bloemfontein"
+      },
+      { "id": "france", "countryCode": "FR", "text": "France", "description": "Capital: Paris" },
+      { "id": "unitedkingdom", "countryCode": "GB", "text": "United Kingdom", "description": "Capital: London" },
+      { "id": "china", "countryCode": "CN", "text": "China", "description": "Capital: Beijing" },
+      { "id": "italy", "countryCode": "IT", "text": "Italy", "description": "Capital: Rome" }
+    ]
+  },
+  "colours": {
+    "title": "Colours",
+    "data": [
+      { "id": "black", "letter": "⬛", "fullName": "Black (काला)", "cssColor": "black" },
+      { "id": "white", "letter": "⬜", "fullName": "White (सफ़ेद)", "cssColor": "white" },
+      { "id": "red", "letter": "🟥", "fullName": "Red (लाल)", "cssColor": "red" },
+      { "id": "green", "letter": "🟩", "fullName": "Green (हरा)", "cssColor": "green" },
+      { "id": "yellow", "letter": "🟨", "fullName": "Yellow (पीला)", "cssColor": "yellow" },
+      { "id": "blue", "letter": "🟦", "fullName": "Blue (नीला)", "cssColor": "blue" },
+      { "id": "brown", "letter": "🟫", "fullName": "Brown (भूरा)", "cssColor": "brown" },
+      { "id": "orange", "letter": "🟧", "fullName": "Orange (नारंगी)", "cssColor": "orange" },
+      { "id": "pink", "letter": "💖", "fullName": "Pink (गुलाबी)", "cssColor": "pink" },
+      { "id": "purple", "letter": "🟪", "fullName": "Purple (बैंगनी)", "cssColor": "purple" },
+      { "id": "gray", "letter": "🩶", "fullName": "Gray (स्लेटी)", "cssColor": "gray" }
+    ]
+  },
+  "days": {
+    "title": "Days of the Week",
+    "data": [
+      { "id": "sunday", "letter": "Sun", "fullName": "Sunday (रविवार)" },
+      { "id": "monday", "letter": "Mon", "fullName": "Monday (सोमवार)" },
+      { "id": "tuesday", "letter": "Tue", "fullName": "Tuesday (मंगलवार)" },
+      { "id": "wednesday", "letter": "Wed", "fullName": "Wednesday (बुधवार)" },
+      { "id": "thursday", "letter": "Thu", "fullName": "Thursday (गुरुवार)" },
+      { "id": "friday", "letter": "Fri", "fullName": "Friday (शुक्रवार)" },
+      { "id": "saturday", "letter": "Sat", "fullName": "Saturday (शनिवार)" }
+    ]
+  },
+  "months": {
+    "title": "Months",
+    "indian": [
+      {
+        "type": "indian",
+        "name": "चैत्र ",
+        "dates": "March 21 - April 20",
+        "monthIndex": 2,
+        "displayName": "Chaitra",
+        "hinduOrdinalText": "First Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "वैशाख ",
+        "dates": "April 21 - May 21",
+        "monthIndex": 3,
+        "displayName": "Vaishakha",
+        "hinduOrdinalText": "Second Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "ज्येष्ठ ",
+        "dates": "May 22 - June 21",
+        "monthIndex": 4,
+        "displayName": "Jyeshtha",
+        "hinduOrdinalText": "Third Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "आषाढ़ ",
+        "dates": "June 22 - July 22",
+        "monthIndex": 5,
+        "displayName": "Ashadha",
+        "hinduOrdinalText": "Fourth Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "श्रावण ",
+        "dates": "July 23 - August 22",
+        "monthIndex": 6,
+        "displayName": "Shravana",
+        "hinduOrdinalText": "Fifth Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "भाद्रपद ",
+        "dates": "August 23 - September 22",
+        "monthIndex": 7,
+        "displayName": "Bhadrapada",
+        "hinduOrdinalText": "Sixth Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "आश्विन ",
+        "dates": "September 23 - October 22",
+        "monthIndex": 8,
+        "displayName": "Ashvina",
+        "hinduOrdinalText": "Seventh Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "कार्तिक ",
+        "dates": "October 23 - November 21",
+        "monthIndex": 9,
+        "displayName": "Kartika",
+        "hinduOrdinalText": "Eighth Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "मार्गशीर्ष ",
+        "dates": "November 22 - December 21",
+        "monthIndex": 10,
+        "displayName": "Margashirsha",
+        "hinduOrdinalText": "Ninth Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "पौष",
+        "dates": "December 22 - January 20",
+        "monthIndex": 11,
+        "displayName": "Pausha",
+        "hinduOrdinalText": "Tenth Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "माघ ",
+        "dates": "January 21 - February 19",
+        "monthIndex": 0,
+        "displayName": "Magha",
+        "hinduOrdinalText": "Eleventh Hindu Month"
+      },
+      {
+        "type": "indian",
+        "name": "फाल्गुन ",
+        "dates": "February 20 - March 20",
+        "monthIndex": 1,
+        "displayName": "Phalguna",
+        "hinduOrdinalText": "Twelfth Hindu Month"
+      }
+    ],
+    "holidays": [
+      { "day": 1, "month": 0, "year": 2025, "name": "New Year's Day" },
+      { "day": 26, "month": 0, "year": 2025, "name": "Republic Day" },
+      { "day": 18, "month": 3, "year": 2025, "name": "Good Friday" },
+      { "day": 1, "month": 4, "year": 2025, "name": "May Day / Labour Day" },
+      { "day": 15, "month": 7, "year": 2025, "name": "Independence Day" },
+      { "day": 2, "month": 10, "year": 2025, "name": "Mahatma Gandhi Jayanti" },
+      { "day": 14, "month": 11, "year": 2025, "name": "Children's Day" },
+      { "day": 25, "month": 11, "year": 2025, "name": "Christmas Day" }
+    ]
+  },
+  "shapes": {
+    "title": "Geometric Shapes",
+    "data": [
+      {
+        "id": "circle",
+        "letter": "●",
+        "text": "Circle",
+        "description": "A perfectly round shape with no corners or edges. All points on the edge are equidistant from the center."
+      },
+      {
+        "id": "square",
+        "letter": "■",
+        "text": "Square",
+        "description": "A quadrilateral with 4 equal sides and 4 right (90-degree) angles."
+      },
+      {
+        "id": "triangle",
+        "letter": "▲",
+        "text": "Triangle",
+        "description": "A polygon with 3 sides and 3 angles (vertices)."
+      },
+      {
+        "id": "rectangle",
+        "letter": "▭",
+        "text": "Rectangle",
+        "description": "A quadrilateral with 4 right angles. Opposite sides are equal in length and parallel."
+      },
+      { "id": "pentagon", "letter": "⬠", "text": "Pentagon", "description": "A polygon with 5 sides and 5 angles." },
+      { "id": "hexagon", "letter": "⬢", "text": "Hexagon", "description": "A polygon with 6 sides and 6 angles." },
+      {
+        "id": "oval",
+        "letter": "⬬",
+        "text": "Oval",
+        "description": "An elongated circle, like an egg shape. A regular oval is an ellipse."
+      },
+      {
+        "id": "star",
+        "letter": "★",
+        "text": "Star",
+        "description": "A pointed shape, typically with 5 or 6 points, formed by connecting vertices of a polygon."
+      },
+      {
+        "id": "rhombus",
+        "letter": "◆",
+        "text": "Rhombus",
+        "description": "A quadrilateral with all 4 sides of equal length. Opposite angles are equal."
+      }
+    ]
+  },
+  "waqt": {
+    "title": "Waqt (Times of Day)",
+    "data": [
+      {
+        "id": "dawn",
+        "englishTerm": "Dawn",
+        "hindiTranslation": "भोर (Bhor), सुबह (Subah)",
+        "description": "The first light of day before sunrise; early morning twilight.",
+        "icon": "🌄"
+      },
+      {
+        "id": "sunrise",
+        "englishTerm": "Sunrise",
+        "hindiTranslation": "सूर्योदय (Sooryoday), भोर (Bhor)",
+        "description": "The moment the sun appears above the horizon.",
+        "icon": "🌅"
+      },
+      {
+        "id": "morning",
+        "englishTerm": "Morning",
+        "hindiTranslation": "सुबह (Subah), प्रातः (Praatah)",
+        "description": "The early part of the day, from dawn until around noon.",
+        "icon": "🌅"
+      },
+      {
+        "id": "noon",
+        "englishTerm": "Noon",
+        "hindiTranslation": "दोपहर (Dopehar)",
+        "description": "Midday, exactly 12:00 PM, or broadly the middle of the day.",
+        "icon": "🕛"
+      },
+      {
+        "id": "afternoon",
+        "englishTerm": "Afternoon",
+        "hindiTranslation": "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)",
+        "description": "The time after noon until late afternoon/early evening.",
+        "icon": "☀️"
+      },
+      {
+        "id": "evening",
+        "englishTerm": "Evening",
+        "hindiTranslation": "शाम (Shaam)",
+        "description": "The period from late afternoon until nightfall/dusk.",
+        "icon": "🌇"
+      },
+      {
+        "id": "twilight",
+        "englishTerm": "Twilight",
+        "hindiTranslation": "सांझ (Saanjh), गोधूलि बेला (Godhuli Bela)",
+        "description": "Dim light period either just before sunrise or just after sunset.",
+        "icon": "🌥️"
+      },
+      {
+        "id": "dusk",
+        "englishTerm": "Dusk",
+        "hindiTranslation": "गोधूलि (Godhuli), शाम (Shaam)",
+        "description": "The darker stage of twilight immediately after sunset.",
+        "icon": "🌆"
+      },
+      {
+        "id": "sunset",
+        "englishTerm": "Sunset",
+        "hindiTranslation": "सूर्यास्त (Sooryaast), शाम (Shaam)",
+        "description": "The moment the sun disappears below the horizon.",
+        "icon": "🌇"
+      },
+      {
+        "id": "night",
+        "englishTerm": "Night",
+        "hindiTranslation": "रात (Raat), रात्रि (Raatri)",
+        "description": "The period of darkness from sunset to sunrise.",
+        "icon": "🌙"
+      },
+      {
+        "id": "midnight",
+        "englishTerm": "Midnight",
+        "hindiTranslation": "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)",
+        "description": "Exactly 12:00 AM, the middle of the night.",
+        "icon": "🌃"
+      },
+      {
+        "id": "late-night",
+        "englishTerm": "Late Night",
+        "hindiTranslation": "रात गहराना (Raat Gahraana), देर रात (Der Raat)",
+        "description": "The deep part of the night, usually well after midnight.",
+        "icon": "🌌"
+      }
+    ]
+  },
+  "seasons": {
+    "title": "Seasons",
+    "data": [
+      { "id": "spring", "letter": "🌸", "fullName": "Spring (वसन्त)" },
+      { "id": "summer", "letter": "☀️", "fullName": "Summer (ग्रीष्म)" },
+      { "id": "monsoon", "letter": "🌧️", "fullName": "Monsoon (वर्षा)" },
+      { "id": "autumn", "letter": "🍂", "fullName": "Autumn (शरद)" },
+      { "id": "pre_winter", "letter": "🌬️", "fullName": "Pre-Winter (हेमन्त)" },
+      { "id": "winter", "letter": "❄️", "fullName": "Winter (शिशिर/शीत)" }
+    ]
+  },
+  "sunsign": {
+    "title": "Sun Signs",
+    "data": [
+      { "id": "aries", "name": "Aries (मेष)", "symbol": "♈︎", "dates": "March 21 - April 19", "firstLetters": "A (अ), L (ल), E (ए), I (इ)" },
+      { "id": "taurus", "name": "Taurus (वृषभ)", "symbol": "♉︎", "dates": "April 20 - May 20", "firstLetters": "B (ब), V (व), U (उ), Va (वा), Vi (वी), Vo (वो)" },
+      { "id": "gemini", "name": "Gemini (मिथुन)", "symbol": "♊︎", "dates": "May 21 - June 20", "firstLetters": "K (क), Chh (छ), Gh (घ), Ka (का), Ki (की), Ku (कु)" },
+      { "id": "cancer", "name": "Cancer (कर्क)", "symbol": "♋︎", "dates": "June 21 - July 22", "firstLetters": "D (ड), H (ह), Da (डा), De (डे), Do (डो)" },
+      { "id": "leo", "name": "Leo (सिंह)", "symbol": "♌︎", "dates": "July 23 - August 22", "firstLetters": "M (म), T (ट), Ma (मा), Me (मे), Mu (मु)" },
+      { "id": "virgo", "name": "Virgo (कन्या)", "symbol": "♍︎", "dates": "August 23 - September 22", "firstLetters": "P (प), Th (ठ), N (ण), Pa (पा), Pi (पी), Pu (पु)" },
+      { "id": "libra", "name": "Libra (तुला)", "symbol": "♎︎", "dates": "September 23 - October 22", "firstLetters": "R (र), T (त), Ra (रा), Ri (री), Ru (रु)" },
+      { "id": "scorpio", "name": "Scorpio (वृश्चिक)", "symbol": "♏︎", "dates": "October 23 - November 21", "firstLetters": "N (न), Y (य), Na (ना), Ni (नी), Nu (नू), Ne (ने)" },
+      { "id": "sagittarius", "name": "Sagittarius (धनु)", "symbol": "♐︎", "dates": "November 22 - December 21", "firstLetters": "Bh (भ), Dh (ध), Ph (फ), F (फ), Ye (ये), Yo (यो)" },
+      { "id": "capricorn", "name": "Capricorn (मकर)", "symbol": "♑︎", "dates": "December 22 - January 19", "firstLetters": "Kh (ख), J (ज), Bho (भो), Ja (जा), Ji (जी)" },
+      { "id": "aquarius", "name": "Aquarius (कुंभ)", "symbol": "♒︎", "dates": "January 20 - February 18", "firstLetters": "G (ग), S (स), Sh (श), Go (गो), Sa (सा), Si (सी), Su (सू)" },
+      { "id": "pisces", "name": "Pisces (मीन)", "symbol": "♓︎", "dates": "February 19 - March 20", "firstLetters": "D (द), Ch (च), Z (ज़), Th (थ), De (दे), Do (दो), Cha (चा), Chi (ची)" }
+    ]
+  }
+}

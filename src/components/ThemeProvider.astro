@@ -1,41 +1,46 @@
 <script is:inline>
-  const getThemePreference = () => {
-    const storedTheme = typeof localStorage !== "undefined" && localStorage.getItem("theme");
-    return storedTheme || window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  const getSystemPreference = () => {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   };
 
-  function setTheme(newTheme) {
-    if (!newTheme || (newTheme !== "light" && newTheme !== "dark")) {
-      return console.warn(`Incorrect theme value received. Expected 'light' or 'dark', received ${newTheme}`);
-    }
-
-    const root = document.documentElement;
-
-    // class already set to newTheme, exit early
-    if (
-      (newTheme === "dark" && root.classList.contains("dark")) ||
-      (newTheme === "light" && !root.classList.contains("dark"))
-    ) {
-      return;
-    }
-
-    const colorThemeMetaTag = document.querySelector("meta[name='theme-color']");
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-    const bgColor = getComputedStyle(document.body).getPropertyValue("--theme-bg");
-
-    colorThemeMetaTag.setAttribute("content", `hsl(${bgColor})`);
+  const getThemePreference = () => {
     if (typeof localStorage !== "undefined") {
-      localStorage.setItem("theme", newTheme);
+      const stored = localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light" || stored === "system") return stored;
     }
+    return "system";
+  };
+
+  function setTheme(theme) {
+    if (!["light", "dark", "system"].includes(theme)) return;
+
+    document.documentElement.dataset.theme = theme;
+
+    // Apply the actual theme
+    const actualTheme = theme === "system" ? getSystemPreference() : theme;
+    document.documentElement.classList.toggle("dark", actualTheme === "dark");
+
+    const meta = document.querySelector("meta[name='theme-color']");
+    const bg = getComputedStyle(document.body).getPropertyValue("--theme-bg");
+    meta?.setAttribute("content", `hsl(${bg || "0, 0%, 100%"})`);
+
+    localStorage.setItem("theme", theme);
   }
 
-  // initial setup
+  // Initial load
   setTheme(getThemePreference());
 
-  // View Transitions hook to restore theme
-  document.addEventListener("astro:after-swap", () => setTheme(getThemePreference()));
+  // Listen to global theme-change events
   document.addEventListener("theme-change", (e) => {
-    console.log("caught `theme-change` event with new value as", e.detail.theme);
+    console.log("Theme changed to:", e.detail.theme);
     setTheme(e.detail.theme);
+  });
+
+  // Listen for system theme changes
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    const currentTheme = getThemePreference();
+    if (currentTheme === "system") {
+      setTheme("system");
+    }
   });
 </script>

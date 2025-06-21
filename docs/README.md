@@ -1,45 +1,115 @@
-# Docs
+# ABCD KBD
 
-This is alternative location to save your document for a repository.
+A Interactive game for kids ; building in Astro
 
-## Files Structure
+main codebase for [abcdkbd.com](https://www.abcdkbd.com)
 
-below are files and folder information in this template repository, you can remove files/folder as per your need.
+## The tech Stacks
 
-### inside .vscode folder
+- Astro js
+- Shadcn for component
+- tailwind for styling
+- Zustand for state management
+- TypeScript for type safety
+- Zod for form type safe form validation
 
-- `extensions.json` --> recommended vs code extensions.
-- `cspell.json` --> used by code spell checker extension.
-- `dictionaries/` ---> project specific words can be stored under the files, it is used by code spell checker.
-- `javascriptreact.json` --> custom react snippets with keyboard shortcuts for useState `us` and basic component file structure `rfc`
-- `pkg.json` --> just a javascript snippet which generate package.json code in any js file and you can use to generate _package.json_
-- `settings.json` --> basic vs code settings; you can use it in your user settings
+### How To Start
 
-### inside .github folder
+### pre-requisite
 
-having basic health files and
+- Node v 18 or higher
+- open vscode and open startup.vscode-workspace file
 
-- `workflows/` --> folder have one GitHub Action which validate markdown files on push
+## 🚀 Project Structure
 
-Apart from that there are few files on project root
+Inside of your Astro project, you'll see the following folders and files:
 
-- `package.json` --> a sample package.json which need to modify as per your project requirement
-
-- `.markdownlint.json` --> file require for markdownlint extension
-
-- `.template-code-workspace` --> file have few basic and useful vs code settings; you can change as per your project requirement.
-- `.editorconfig` --> config regarding files to use tab/space or end of file etc.
-- `.prettierrc` --> required config for vscode-prettier extension
-
-### How to run
-
-although this is just a template repository but added package.json and one file just for fun.
-
-run below command in terminal
-
-```bash
-> npm install
-> npm run start
+```text
+.
+├── astro.config.mjs
+├── astro-i18next.config.mjs
+├── CHANGELOG.MD
+├── components.json
+├── docs
+│   ├── README.md
+│   └── pages.md        # Documentation for all pages and their functionality
+├── jsconfig.json
+├── LICENSE
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── public
+│   ├── 192x192.png
+│   ├── 512x512.png
+│   ├── android-chrome-192x192.png
+│   ├── android-chrome-512x512.png
+│   ├── apple-touch-icon.png
+│   ├── favicon.svg
+│   ├── logo-white.svg
+│   ├── manifest.webmanifest
+│   ├── profile-placeholder.jpg
+│   ├── robots.txt
+│   ├── sitemap-index.html
+├── README.md
+├── src
+│   ├── assets
+│   ├── components
+│   ├── content
+│   ├── env.d.ts
+│   ├── hooks
+│   ├── icons
+│   ├── layouts
+│   ├── libs
+│   ├── locales
+│   ├── mocks
+│   ├── models
+│   ├── pages
+│   ├── postcss.config.cjs
+│   ├── site.config.ts
+│   ├── types.ts
+│   └── utils
+├── tailwind.config.ts
+├── todo.md
+├── tsconfig.eslint.json
+├── tsconfig.json
+└── <project>.code-workspace
 ```
 
-and see the output in terminal.
+and src
+
+## Installation
+
+```bash
+npm install
+```
+
+### Development
+
+To start the development server, run:
+
+```bash
+npm run dev
+```
+
+### test and lint
+
+run
+
+```sh
+npm run lint
+```
+
+### Deployment
+
+run in local
+
+```sh
+npm run lint
+npm run build
+```
+
+and then check with
+
+```sh
+npm run preview
+```

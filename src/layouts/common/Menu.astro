@@ -11,30 +11,20 @@ import { NavbarLinks } from "@/utils/constants";
 <button class="menu-button" popovertarget="nav" popovertargetaction="toggle">
   <HamIcon width={24} height={24} />
 </button>
+
 <div class="layout">
   <aside popover="auto" id="nav">
-    <button
-      class="menu-button hider"
-      popovertarget="nav"
-      popovertargetaction="hide"
-      class="hider"
-      aria-label="Close drawer"
-    >
+    <button class="menu-button hider" popovertarget="nav" aria-label="Close drawer">
       <span class="sr-only">Close drawer</span>
     </button>
+
     <Navigation pages={NavbarLinks} />
+
     <div class="actions">
-      <button class="menu-button minimize-toggle" aria-label="Toggle menu size" title="Close sidebar">
-        <ArrowIcon
-          width={24}
-          height={24}
-          style={{
-            transform: "rotate(-135deg)"
-          }}
-          title="Toggle sidebar"
-        />
+      <button class="menu-button minimize-toggle" aria-label="Toggle menu size">
+        <ArrowIcon width={24} height={24} style={{ transform: "rotate(-135deg)" }} />
       </button>
-      <button class="menu-button theme-toggle">
+      <button class="menu-button theme-toggle" aria-label="Toggle theme">
         <ToggleIcon width={24} height={24} />
       </button>
       <button class="menu-button placement-toggle">
@@ -45,73 +35,55 @@ import { NavbarLinks } from "@/utils/constants";
 </div>
 
 <script>
-  // codepen: https://codepen.io/xkeshav/pen/GgKKBWm
-  const popover = document.querySelector("#nav") as HTMLElement;
-  const themer = document.querySelector(".theme-toggle") as HTMLElement;
-  const placer = document.querySelector(".placement-toggle") as HTMLElement;
+  const popover = document.querySelector("#nav") as HTMLElement & { hidePopover: () => void };
+  const themeBtn = document.querySelector(".theme-toggle") as HTMLButtonElement;
+  const placer = document.querySelector(".placement-toggle") as HTMLButtonElement;
   const hider = document.querySelector(".hider") as HTMLElement;
-  const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLElement;
+  const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLButtonElement;
 
-  const config = {
-    theme: "system"
-  };
-  const themeOptions = ["system", "light", "dark"];
-
-  let debounce: any;
+  let debounce: number | undefined;
   document.documentElement.dataset.resizing = String(false);
-  document.documentElement.dataset.theme = "system";
   document.documentElement.dataset.placement = "top";
 
+  themeBtn?.addEventListener("click", () => {
+    const current = document.documentElement.dataset.theme || "system";
+    const themes = ["system", "light", "dark"];
+    const currentIndex = themes.indexOf(current);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    const next = themes[nextIndex];
+    document.dispatchEvent(new CustomEvent("theme-change", { detail: { theme: next } }));
+  });
+
   window.addEventListener("resize", () => {
-    if (popover.matches(":popover-open")) popover.hidePopover();
+    if (popover?.matches(":popover-open")) {
+      popover.hidePopover();
+    }
     document.documentElement.dataset.resizing = String(true);
     if (debounce) clearTimeout(debounce);
-    debounce = setTimeout(() => {
+    debounce = window.setTimeout(() => {
       document.documentElement.dataset.resizing = String(false);
     }, 200);
   });
 
-  const switchPlace = () => {
+  placer?.addEventListener("click", () => {
     document.documentElement.dataset.placement =
       document.documentElement.dataset.placement === "top" ? "bottom" : "top";
-  };
-  placer.addEventListener("click", switchPlace);
+  });
 
-  let themeIndex = 0;
-  const switchTheme = () => {
-    themeIndex += 1;
-    config.theme = themeOptions[themeIndex % 3];
-    sync();
-  };
+  hider?.removeAttribute("popovertargetaction");
 
-  themer.addEventListener("click", switchTheme);
-
-  const update = () => {
-    document.documentElement.dataset.theme = config.theme;
-  };
-
-  const sync = () => {
-    if (!document.startViewTransition) return update();
-    document.startViewTransition(() => update());
-  };
-
-  update();
-  hider.removeAttribute("popovertargetaction");
-  const reset = () => {
+  popover?.addEventListener("toggle", () => {
     document.documentElement.dataset.complete = String(false);
     document.documentElement.style.setProperty("--complete", "0");
     popover.style.setProperty("--ty", "0");
-  };
+  });
 
-  popover.addEventListener("toggle", reset);
-
-  const toggleMinimize = () => {
-    const nav = document.querySelector("#nav");
-    const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLButtonElement;
-    nav?.classList.toggle("minimized");
-    minimizeBtn?.classList.toggle("rotated");
-    minimizeBtn.title = nav?.classList.contains("minimized") ? "Open sidebar" : "Close sidebar";
-  };
-
-  minimizeBtn?.addEventListener("click", toggleMinimize);
+  minimizeBtn?.addEventListener("click", () => {
+    const nav = document.querySelector("#nav") as HTMLElement;
+    if (nav && minimizeBtn) {
+      nav.classList.toggle("minimized");
+      minimizeBtn.classList.toggle("rotated");
+      minimizeBtn.setAttribute("title", nav.classList.contains("minimized") ? "Open sidebar" : "Close sidebar");
+    }
+  });
 </script>
