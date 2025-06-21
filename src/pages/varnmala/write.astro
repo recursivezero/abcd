@@ -1,7 +1,7 @@
 ---
-import BaseLayout from "../../layouts/Base.astro";
-import LetterAnimation from "../../components/LetterAnimation.astro";
-import BackButton from "../../components/ui/backButton.astro";
+import BaseLayout from "@/layouts/Base";
+import LetterAnimation from "@/components/LetterAnimation.astro";
+import BackButton from "@/components/ui/backButton.astro";
 
 const url = new URL(Astro.request.url);
 const letterParam = url.searchParams.get("letter")?.toUpperCase() ?? "A";
@@ -18,12 +18,6 @@ const letterParam = url.searchParams.get("letter")?.toUpperCase() ?? "A";
 </BaseLayout>
 
 <style>
-  /* body {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-    min-height: 100vh;
-    color: #333;
-  } */
   .writing-panel-main {
     display: flex;
     justify-content: center;

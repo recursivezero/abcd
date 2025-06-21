@@ -37,17 +37,6 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 <script>
   document.querySelectorAll(".quick-view-btn").forEach((button) => {
     button.addEventListener("click", (e) => {
-      //// Close all other open popovers
-
-      //document.querySelectorAll('.number__card[data-active="true"]').forEach((card) => {
-      //  if (card !== (e.currentTarget as HTMLElement).closest(".number__card")) {
-      //    // Don't reset current card
-      //    const btn = card.querySelector(".quick-view-btn") as HTMLElement;
-      //    card.setAttribute("data-active", "false");
-      //    btn.textContent = "🔍";
-      //  }
-      //});
-
       // Toggle current popover
       const card = (e.currentTarget as HTMLElement).closest(".number__card") as HTMLElement;
       const isActive = card.getAttribute("data-active") === "true";

@@ -1,8 +1,6 @@
 ---
 import Back from "@/components/Back.astro";
-import BaseLayout from "../../layouts/Base.astro";
-// Assuming global styles or styles from alphabets/index.css are desired for consistency
-
+import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/alphabets/index.css";
 import "@/assets/styles/glossary/index.css"; 
 
@@ -66,7 +64,7 @@ const glossarySections: GlossarySection[] = [
     href: "/glossary/colours",
     icon: "🎨"
   },
-  { // New entry for Waqt
+  {
     id: "waqt",
     title: "Waqt (Times of Day)",
     description: "Learn about different times of the day and their Hindi names.",

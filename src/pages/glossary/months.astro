@@ -1,139 +1,37 @@
 ---
 import BaseLayout from "@/layouts/Base";
-import MonthCard, { type MonthEntry } from "@/components/monthcard.astro";
+import MonthCard, { type MonthEntry } from "@/components/MonthCard.astro";
 import "@/assets/styles/varnmala/months.css";
 import BackButton from "@/components/ui/backButton.astro";
+import glossaryData from "../../data/glossary.json";
 
-const pageTitle = "Months";
-const currentYear = 2025;
-const today = new Date(currentYear, 5, 11);
+const pageTitle = glossaryData.months.title;
+const today = new Date();
+const currentYear = today.getFullYear(); 
 
-const englishMonthsData: MonthEntry[] = [
-  { type: "english", name: "January", hindi: "जनवरी", monthIndex: 0 },
-  { type: "english", name: "February", hindi: "फ़रवरी", monthIndex: 1 },
-  { type: "english", name: "March", hindi: "मार्च", monthIndex: 2 },
-  { type: "english", name: "April", hindi: "अप्रैल", monthIndex: 3 },
-  { type: "english", name: "May", hindi: "मई", monthIndex: 4 },
-  { type: "english", name: "June", hindi: "जून", monthIndex: 5 },
-  { type: "english", name: "July", hindi: "जुलाई", monthIndex: 6 },
-  { type: "english", name: "August", hindi: "अगस्त", monthIndex: 7 },
-  { type: "english", name: "September", hindi: "सितम्बर", monthIndex: 8 },
-  { type: "english", name: "October", hindi: "अक्टूबर", monthIndex: 9 },
-  { type: "english", name: "November", hindi: " नवम्बर", monthIndex: 10 },
-  { type: "english", name: "December", hindi: "दिसम्बर", monthIndex: 11 }
-];
+// Function to dynamically generate month names
+const getMonths = (language: string) => {
+  const monthIndexes = [...Array(12).keys()];
+  const options = {
+    month: 'long',
+    timeZone: 'UTC',
+  } as const;
+  const applyFormat = new Intl.DateTimeFormat(language, options).format;
+  return monthIndexes.map((m) => applyFormat(new Date(Date.UTC(2000, m))));
+};
 
-const indianMonthsData: MonthEntry[] = [
-  {
-    type: "indian",
-    name: "चैत्र ",
-    dates: "March 21 - April 20",
-    monthIndex: 2,
-    displayName: "Chaitra",
-    hinduOrdinalText: "First Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "वैशाख ",
-    dates: "April 21 - May 21",
-    monthIndex: 3,
-    displayName: "Vaishakha",
-    hinduOrdinalText: "Second Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "ज्येष्ठ ",
-    dates: "May 22 - June 21",
-    monthIndex: 4,
-    displayName: "Jyeshtha",
-    hinduOrdinalText: "Third Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "आषाढ़ ",
-    dates: "June 22 - July 22",
-    monthIndex: 5,
-    displayName: "Ashadha",
-    hinduOrdinalText: "Fourth Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "श्रावण ",
-    dates: "July 23 - August 22",
-    monthIndex: 6,
-    displayName: "Shravana",
-    hinduOrdinalText: "Fifth Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "भाद्रपद ",
-    dates: "August 23 - September 22",
-    monthIndex: 7,
-    displayName: "Bhadrapada",
-    hinduOrdinalText: "Sixth Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "आश्विन ",
-    dates: "September 23 - October 22",
-    monthIndex: 8,
-    displayName: "Ashvina",
-    hinduOrdinalText: "Seventh Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "कार्तिक ",
-    dates: "October 23 - November 21",
-    monthIndex: 9,
-    displayName: "Kartika",
-    hinduOrdinalText: "Eighth Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "मार्गशीर्ष ",
-    dates: "November 22 - December 21",
-    monthIndex: 10,
-    displayName: "Margashirsha",
-    hinduOrdinalText: "Ninth Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "पौष",
-    dates: "December 22 - January 20",
-    monthIndex: 11,
-    displayName: "Pausha",
-    hinduOrdinalText: "Tenth Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "माघ ",
-    dates: "January 21 - February 19",
-    monthIndex: 0,
-    displayName: "Magha",
-    hinduOrdinalText: "Eleventh Hindu Month"
-  },
-  {
-    type: "indian",
-    name: "फाल्गुन ",
-    dates: "February 20 - March 20",
-    monthIndex: 1,
-    displayName: "Phalguna",
-    hinduOrdinalText: "Twelfth Hindu Month"
-  }
-];
+const englishMonthNames = getMonths('en');
+const hindiMonthNames = getMonths('hi');
 
-const nationalHolidaysData = [
-  { day: 1, month: 0, year: 2025, name: "New Year's Day" },
-  { day: 26, month: 0, year: 2025, name: "Republic Day" },
-  { day: 14, month: 2, year: 2025, name: "Holi (Second Day)" }, // Holi can vary, this is an example
-  { day: 18, month: 3, year: 2025, name: "Good Friday" }, // Good Friday varies
-  { day: 1, month: 4, year: 2025, name: "May Day / Labour Day" },
-  { day: 15, month: 7, year: 2025, name: "Independence Day" },
-  { day: 2, month: 9, year: 2025, name: "Gandhi Jayanti" },
-  { day: 21, month: 9, year: 2025, name: "Dussehra (Vijayadashami)" }, // Dussehra varies
-  { day: 10, month: 10, year: 2025, name: "Diwali (Deepavali)" }, // Diwali varies
-  { day: 25, month: 11, year: 2025, name: "Christmas Day" }
-];
+const englishMonthsData: MonthEntry[] = englishMonthNames.map((name, index) => ({
+  type: "english",
+  name: name,
+  hindi: hindiMonthNames[index],
+  monthIndex: index
+}));
+
+const indianMonthsData = glossaryData.months.indian as MonthEntry[];
+const nationalHolidaysData = glossaryData.months.holidays;
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>

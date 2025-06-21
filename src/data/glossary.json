@@ -51,20 +51,6 @@
   },
   "months": {
     "title": "Months",
-    "english": [
-      { "type": "english", "name": "January", "hindi": "जनवरी", "monthIndex": 0 },
-      { "type": "english", "name": "February", "hindi": "फ़रवरी", "monthIndex": 1 },
-      { "type": "english", "name": "March", "hindi": "मार्च", "monthIndex": 2 },
-      { "type": "english", "name": "April", "hindi": "अप्रैल", "monthIndex": 3 },
-      { "type": "english", "name": "May", "hindi": "मई", "monthIndex": 4 },
-      { "type": "english", "name": "June", "hindi": "जून", "monthIndex": 5 },
-      { "type": "english", "name": "July", "hindi": "जुलाई", "monthIndex": 6 },
-      { "type": "english", "name": "August", "hindi": "अगस्त", "monthIndex": 7 },
-      { "type": "english", "name": "September", "hindi": "सितम्बर", "monthIndex": 8 },
-      { "type": "english", "name": "October", "hindi": "अक्टूबर", "monthIndex": 9 },
-      { "type": "english", "name": "November", "hindi": " नवम्बर", "monthIndex": 10 },
-      { "type": "english", "name": "December", "hindi": "दिसम्बर", "monthIndex": 11 }
-    ],
     "indian": [
       {
         "type": "indian",
@@ -166,13 +152,11 @@
     "holidays": [
       { "day": 1, "month": 0, "year": 2025, "name": "New Year's Day" },
       { "day": 26, "month": 0, "year": 2025, "name": "Republic Day" },
-      { "day": 14, "month": 2, "year": 2025, "name": "Holi (Second Day)" },
       { "day": 18, "month": 3, "year": 2025, "name": "Good Friday" },
       { "day": 1, "month": 4, "year": 2025, "name": "May Day / Labour Day" },
       { "day": 15, "month": 7, "year": 2025, "name": "Independence Day" },
-      { "day": 2, "month": 9, "year": 2025, "name": "Gandhi Jayanti" },
-      { "day": 21, "month": 9, "year": 2025, "name": "Dussehra (Vijayadashami)" },
-      { "day": 10, "month": 10, "year": 2025, "name": "Diwali (Deepavali)" },
+      { "day": 2, "month": 10, "year": 2025, "name": "Mahatma Gandhi Jayanti" },
+      { "day": 14, "month": 11, "year": 2025, "name": "Children's Day" },
       { "day": 25, "month": 11, "year": 2025, "name": "Christmas Day" }
     ]
   },

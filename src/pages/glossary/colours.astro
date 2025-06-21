@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "../../layouts/Base.astro";
-import BackButton from "../../components/ui/backButton.astro";
-import "../../assets/styles/varnmala/greek-alphabet.css"; // General styles
-import "../../assets/styles/glossary/colour.css"; // Import the specific styles for this page
-import glossaryData from "../../data/glossary.json";
+import BaseLayout from "@/layouts/Base";
+import BackButton from "@/components/ui/backButton.astro";
+import "@/assets/styles/varnmala/greek-alphabet.css"; // General styles
+import "@/assets/styles/glossary/colour.css"; // Import the specific styles for this page
+import glossaryData from "@/data/glossary.json";
 
 const pageTitle = glossaryData.colours.title;
 const coloursData = glossaryData.colours.data;

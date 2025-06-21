@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "../../layouts/Base.astro";
-import LetterCard from "../../components/LetterCard.astro";
-import BackButton from "../../components/ui/backButton.astro";
-import "../../assets/styles/varnmala/greek-alphabet.css"; // Imported the CSS styles
-import glossaryData from "../../data/glossary.json";
+import BaseLayout from "@/layouts/Base";
+import LetterCard from "@/components/LetterCard.astro";
+import BackButton from "@/components/ui/backButton.astro";
+import "@/assets/styles/varnmala/greek-alphabet.css"; // Imported the CSS styles
+import glossaryData from "@/data/glossary.json";
 
 const pageTitle = glossaryData.shapes.title;
 const category = "shapes";
