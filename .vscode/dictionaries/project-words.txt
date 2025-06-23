@@ -47,6 +47,7 @@ nameform
 nodownload
 Organja
 orgenja
+parixan
 Pausha
 Peina
 Phalguna
