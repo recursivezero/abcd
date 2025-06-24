@@ -256,10 +256,6 @@ textarea.metallic-textarea {
   padding-top: 0rem;
 }
 
-.controls-panel {
-  display: none;
-}
-
 .preview-panel {
   display: flex;
   justify-content: center;
@@ -761,12 +757,6 @@ textarea.metallic-textarea {
     grid-template-columns: 1fr;
     padding: 1rem;
     gap: 1rem;
-  }
-
-  .controls-panel {
-    height: auto;
-    max-height: 60vh;
-    order: 2;
   }
 
   .preview-panel {

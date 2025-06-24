@@ -387,20 +387,6 @@
     gap: 0.5rem;
   }
 
-  /* Settings button size for mobile */
-  .settings-button {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    font-size: 14px;
-  }
-
-  /* Settings SVG icon size for mobile */
-  .settings-button .settings-icon {
-    width: 1.2em;
-    height: 1.2em;
-  }
-
   /* Popover positioning for smaller screens */
   .panel-tools-popover {
     right: 1rem;

@@ -19,12 +19,12 @@ const consonants = [
 ---
 
 <BaseLayout meta={{ title: "Barahkhadi" }}>
+  <BackButton/>
   <Fragment slot="header-left">
     <Help title="Barahkhadi" description="This page displays the Hindi consonants and their variations." />
   </Fragment>
 
   <div class="container__barahkhadi">
-    <BackButton />
     {
       consonants.map((row) => (
         <div class="group__row">

@@ -4,6 +4,7 @@ export interface Props {
   utList: any[];
 }
 import "@/assets/styles/capital.css";
+import Back from "@/components/Back.astro";
 const { stateList, utList } = Astro.props;
 
 function getColorClass(index: number) {
@@ -23,6 +24,7 @@ function getColorClass(index: number) {
 
 <div class="geographical-mosaic">
   <nav class="head">
+    <Back/>
     <h1>India's Geographical Mosaic</h1>
   </nav>
 

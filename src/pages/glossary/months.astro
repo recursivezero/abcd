@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/Base";
-import MonthCard, { type MonthEntry } from "@/components/MonthCard.astro";
+import MonthCard, { type MonthEntry } from "@/components/monthcard.astro";
 import "@/assets/styles/varnmala/months.css";
 import BackButton from "@/components/ui/backButton.astro";
 import glossaryData from "@/data/glossary.json";
@@ -35,9 +35,9 @@ const nationalHolidaysData = glossaryData.months.holidays;
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
+  <BackButton/>
   <div class="container__page months-page-container">
     <div class="page-header">
-      <BackButton href="/Glossary" />
       {}
       <h1 class="page-main-title">{pageTitle}</h1>
       <button id="flip-all-months-button" class="flip__all__button">Flip All Cards</button>
