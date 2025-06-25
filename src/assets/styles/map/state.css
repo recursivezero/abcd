@@ -51,7 +51,7 @@
   flex: 0.8;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   color: var(--text);
   font-family: "Comic Sans MS", cursive, sans-serif;
   font-size: 1.5rem;
@@ -316,6 +316,7 @@
 }
 
 .statistics-section {
+  width: 100%;
   background: var(--card-bg);
   padding: 20px;
   border-radius: 15px;

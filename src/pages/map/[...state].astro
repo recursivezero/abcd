@@ -39,8 +39,7 @@ const major_rivers = stateInfo.major_rivers || [];
     </div>
     <div class="main-container">
       <div id="state-svg-container">
-        <District state={name} />
-        <h2>- {stateInfo.famous_quote}</h2>
+        <District state={name} quote={stateInfo.famous_quote}/>
         <!-- New Statistics Section -->
         <div class="statistics-section">
           <h3>State Statistics</h3>
