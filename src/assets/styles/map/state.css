@@ -41,7 +41,7 @@
 }
 
 .state-page {
-  padding: 20px;
+  padding: 10px;
   margin: 0 auto;
   background-color: var(--background);
   color: var(--text);
@@ -405,7 +405,7 @@
 /* Responsive styles */
 @media (max-width: 1200px) {
   .state-page {
-    padding: 15px;
+    /* padding: 15px; */
   }
   .main-container {
     gap: 20px;
@@ -459,8 +459,8 @@
 }
 
 @media (max-width: 480px) {
-  .state-page {
-    padding: 10px;
+  .main-container{
+    padding: 0.4rem;
   }
   .info-grid {
     grid-template-columns: 1fr;
