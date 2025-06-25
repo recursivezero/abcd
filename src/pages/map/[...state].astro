@@ -3,12 +3,11 @@ import BaseLayout from "@/layouts/Base";
 import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
 import BackButton from "@/components/ui/backButton.astro";
-import type { StateData } from "@/types/state";
 import District from "@/components/map/District.astro";
 
 export const prerender = true;
 export function getStaticPaths() {
-  return stateData.map((state: StateData) => ({
+  return stateData.map((state) => ({
     params: { state: state.id },
     props: { stateInfo: state }
   }));
