@@ -11,6 +11,12 @@ interface LetterMap {
   [letter: string]: LetterData;
 }
 
+export interface Props {
+  currentLetter?: string;
+}
+
+const { currentLetter: propLetter = "A" } = Astro.props;
+
 const letterMap: LetterMap = {
   A: {
     paths: [
@@ -171,20 +177,19 @@ const letterMap: LetterMap = {
 };
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-const { letter: propLetter = "A" } = Astro.props;
-let currentLetter = propLetter.toUpperCase();
-if (!letterMap[currentLetter]) currentLetter = "A";
+let validatedLetter = propLetter.toUpperCase();
+if (!letterMap[validatedLetter]) validatedLetter = "A";
+const currentLetter = validatedLetter;
 const letterData = letterMap[currentLetter];
 ---
 
 <div class="letter-container">
+  
   <div class="letter-display">
-    <svg class="letter-svg" viewBox="0 0 200 200">
-      {
-        letterData.paths.map((path) => (
-          <path class="letter-path animate-letter" d={path.d} style={`animation-delay: ${path.animationDelay}`} />
-        ))
-      }
+    <svg class="letter-svg" viewBox="0 0 200 200" id="letter-svg">
+      {letterData.paths.map((path) => (
+        <path class="letter-path" d={path.d} style={`animation-delay: ${path.animationDelay}`} />
+      ))}
     </svg>
   </div>
 
@@ -195,97 +200,180 @@ const letterData = letterMap[currentLetter];
   </div>
 
   <div class="alphabet-nav" id="alphabet-nav">
-    {
-      alphabet.map((l) => (
-        <button
-          class={`letter-btn${l === currentLetter ? "current-letter" : ""}`}
-          data-letter={l}
-          aria-label={`Show letter ${l}`}
-        >
-          {l}
-        </button>
-      ))
-    }
+    {alphabet.map((l) => (
+      <button
+        class="letter-btn"
+        data-letter={l}
+        aria-label={`Show letter ${l}`}
+      >
+        {l}
+      </button>
+    ))}
   </div>
 
   <div class="instructions">
-    <h2>How to Write the Letter '{currentLetter}'</h2>
-    <ol>
-      {letterData.instructions.map((ins) => <li>{ins}</li>)}
-    </ol>
+    <h2 id="instructions-title"></h2>
+    <ol id="instructions-list"></ol>
   </div>
 </div>
 
-<script>
+<!-- Pass data to client script -->
+<script define:vars={{ currentLetter, letterMap }}>
   document.addEventListener("DOMContentLoaded", function () {
-    let current = "{currentLetter}";
+    console.log("LetterAnimation loaded. Current letter:", currentLetter);
+    console.log("Available letters in map:", Object.keys(letterMap));
+    
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-    const letterNav = document.getElementById("alphabet-nav") as HTMLElement | null;
-    const prevBtn = document.getElementById("prev-btn") as HTMLButtonElement | null;
-    const nextBtn = document.getElementById("next-btn") as HTMLButtonElement | null;
-    const restartBtn = document.getElementById("restart-btn") as HTMLButtonElement | null;
+    let current = currentLetter;
+    const svg = document.getElementById("letter-svg");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const restartBtn = document.getElementById("restart-btn");
+    const instructionsTitle = document.getElementById("instructions-title");
+    const instructionsList = document.getElementById("instructions-list");
+    const letterNav = document.getElementById("alphabet-nav");
 
-    function setURL(letter: string) {
+    function updateURL(letter) {
       const params = new URLSearchParams(window.location.search);
       params.set("letter", letter);
-      window.history.replaceState({}, "", `${window.location.pathname}?${params}`);
+      window.history.replaceState({}, '', window.location.pathname + '?' + params);
     }
 
-    function reload(letter: string) {
-      setURL(letter);
-      window.location.reload();
-    }
-
-    prevBtn?.addEventListener("click", () => {
-      let idx = alphabet.indexOf(current);
-      if (idx > 0) reload(alphabet[idx - 1]);
-      else reload(alphabet[alphabet.length - 1]);
-    });
-    nextBtn?.addEventListener("click", () => {
-      let idx = alphabet.indexOf(current);
-      if (idx < alphabet.length - 1) reload(alphabet[idx + 1]);
-      else reload(alphabet[0]);
-    });
-
-    letterNav?.querySelectorAll(".letter-btn").forEach((btn) => {
-      const htmlBtn = btn as HTMLButtonElement;
-      htmlBtn.addEventListener("click", () => reload(htmlBtn.dataset.letter as string));
-    });
-
-    restartBtn?.addEventListener("click", function () {
-      document.querySelectorAll(".letter-path").forEach((path) => {
-        const htmlPath = path as HTMLElement;
-        htmlPath.classList.remove("animate-letter");
-        void htmlPath.offsetWidth;
-        htmlPath.classList.add("animate-letter");
+    function updateActiveButton() {
+      if (!letterNav) return;
+      letterNav.querySelectorAll('.letter-btn').forEach(btn => {
+        if (btn.getAttribute('data-letter') === current) {
+          btn.classList.add('current-letter');
+        } else {
+          btn.classList.remove('current-letter');
+        }
       });
-    });
+    }
+
+    function render() {
+      if (!letterMap[current]) return;
+      const letterData = letterMap[current];
+
+      // SVG paths
+      if (svg) {
+        svg.innerHTML = "";
+        letterData.paths.forEach((path) => {
+          const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          p.setAttribute("d", path.d);
+          p.setAttribute("class", "letter-path");
+          p.setAttribute("style", "animation-delay: " + path.animationDelay);
+          svg.appendChild(p);
+        });
+        // Remove animation class, force reflow, then add to trigger animation
+        const paths = svg.querySelectorAll(".letter-path");
+        paths.forEach((p) => p.classList.remove("animate-letter"));
+        void svg.offsetWidth;
+        void svg.offsetHeight;
+        setTimeout(() => {
+          paths.forEach((p) => p.classList.add("animate-letter"));
+        }, 0);
+      }
+
+      // Instructions
+      if (instructionsTitle) {
+        instructionsTitle.textContent = "How to Write the Letter '" + current + "'";
+      }
+      if (instructionsList) {
+        instructionsList.innerHTML = "";
+        letterData.instructions.forEach((ins) => {
+          const li = document.createElement("li");
+          li.textContent = ins;
+          instructionsList.appendChild(li);
+        });
+      }
+      updateActiveButton();
+    }
+
+    // Attach click handlers to alphabet buttons
+    if (letterNav) {
+      letterNav.querySelectorAll('.letter-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const l = btn.getAttribute('data-letter');
+          if (l && l !== current && letterMap[l]) {
+            current = l;
+            updateURL(l);
+            render();
+          }
+        });
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.onclick = () => {
+        let idx = alphabet.indexOf(current);
+        current = alphabet[(idx - 1 + alphabet.length) % alphabet.length];
+        if (letterMap[current]) {
+          updateURL(current);
+          render();
+        }
+      };
+    }
+    
+    if (nextBtn) {
+      nextBtn.onclick = () => {
+        let idx = alphabet.indexOf(current);
+        current = alphabet[(idx + 1) % alphabet.length];
+        if (letterMap[current]) {
+          updateURL(current);
+          render();
+        }
+      };
+    }
+    
+    if (restartBtn) {
+      restartBtn.onclick = () => {
+        if (svg) {
+          svg.querySelectorAll(".letter-path").forEach((p) => {
+            p.classList.remove("animate-letter");
+          });
+          void svg.offsetWidth;
+          svg.querySelectorAll(".letter-path").forEach((p) => {
+            p.classList.add("animate-letter");
+          });
+        }
+      };
+    }
+
+    // Initialize with proper active state and render all UI client-side
+    render();
+    // Trigger animation for initial letter after DOM is painted
+    setTimeout(() => render(), 0);
   });
 </script>
 
 <style>
   .letter-container {
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    padding: 30px;
+    background-color: #cfe2f2;
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+    padding: 35px;
     width: 95%;
-    max-width: 700px;
-    margin-bottom: 30px;
+    max-width: 1050px;
+    margin: 35px auto;
     text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  .letter-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
   }
   .letter-display {
-    height: 340px;
+    height: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px 0;
   }
   .letter-svg {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
   }
-  .letter-path {
+  :global(.letter-path) {
     fill: none;
     stroke: #ff6b6b;
     stroke-width: 8;
@@ -293,14 +381,14 @@ const letterData = letterMap[currentLetter];
     stroke-linejoin: round;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
+    animation: none;
   }
-  .animate-letter {
+  :global(.animate-letter) {
     animation: draw 1.5s linear forwards;
   }
   @keyframes draw {
-    to {
-      stroke-dashoffset: 0;
-    }
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
   }
   .controls {
     display: flex;
@@ -310,49 +398,57 @@ const letterData = letterMap[currentLetter];
     flex-wrap: wrap;
   }
   button {
-    background: #ff6b6b;
+    background: #2979ff;
     color: white;
     border: none;
-    padding: 12px 22px;
-    font-size: 1.05rem;
-    border-radius: 50px;
+    padding: 14px 26px;
+    font-size: 1.1rem;
+    border-radius: 55px;
     cursor: pointer;
     font-family: inherit;
-    font-weight: bold;
+    font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.16);
+    box-shadow: 0 5px 12px rgba(41, 121, 255, 0.25);
   }
+
   button:hover {
-    background: #ff5252;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(255, 107, 107, 0.28);
+    background: #1e60c9;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px rgba(41, 121, 255, 0.35);
   }
+
   button:active {
     transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(41, 121, 255, 0.25);
   }
+
   .alphabet-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 6px;
-    margin-top: 15px;
-    margin-bottom: 8px;
-    max-width: 900px;
+    gap: 8px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    max-width: 950px;
   }
+
   .letter-btn {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #06d6a0;
+    background: #64b5f6;
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
+  }.letter-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #06d6a0aa;
   }
   .letter-btn.current-letter {
     background: #ffd166;
@@ -360,35 +456,45 @@ const letterData = letterMap[currentLetter];
     transform: scale(1.11);
     font-weight: 900;
     box-shadow: 0 0 0 2px #ffd16655;
+    outline: none;
+  }
+  .letter-btn.current-letter:focus {
+    box-shadow: 0 0 0 2px #ffd16655, 0 0 0 4px #ffd16633;
   }
   .letter-btn:hover {
     background: #05b888;
     transform: scale(1.08);
   }
-  .instructions {
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
+.instructions {
+    background: #e3f2fd;
+    border-radius: 22px;
+    padding: 25px;
     width: 95%;
-    max-width: 700px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    margin: 0 auto 8px;
+    max-width: 750px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.09);
+    margin: 0 auto 12px;
   }
+
   .instructions h2 {
-    color: #118ab2;
-    margin-bottom: 13px;
+    color: #1565c0;
+    margin-bottom: 15px;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
+
   .instructions ol {
-    padding-left: 25px;
-    font-size: 1.04rem;
-    line-height: 1.5;
+    padding-left: 30px;
+    font-size: 1.1rem;
+    line-height: 1.6;
     text-align: left;
+    color: #333;
   }
+
   .instructions li {
-    margin-bottom: 7px;
+    margin-bottom: 8px;
   }
+
+
   @media (max-width: 600px) {
     .letter-svg {
       width: 180px;
