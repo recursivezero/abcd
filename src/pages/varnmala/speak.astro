@@ -69,6 +69,8 @@ import BackButton from "@/components/ui/backButton.astro";
   const speakBtn = document.getElementById("speakBtn") as HTMLButtonElement;
 
   const synth = window.speechSynthesis;
+  let lastKey: string | null = null; // Store the last key pressed
+  let doublePress = false; // Flag for double press
 
   function isAlphabet(keyCode: number): boolean {
     return keyCode >= 65 && keyCode <= 90;
@@ -76,7 +78,7 @@ import BackButton from "@/components/ui/backButton.astro";
 
   function speak(text: string) {
     if (synth.speaking) {
-      synth.cancel(); // Stop any currently playing speech
+      synth.cancel();
     }
     if (!text) {
       return;
@@ -97,23 +99,20 @@ import BackButton from "@/components/ui/backButton.astro";
     synth.speak(utterThis);
   }
 
-  function drawLetter(letter: string, color = "pink") {
+  function drawLetter(letter: string, isDoublePress: boolean) {
     letterDiv.innerHTML = letter;
-    letterDiv.style.color = color;
+    letterDiv.style.color = isDoublePress ? "yellow" : "white";
     letterDiv.style.animation = "letterPop 0.3s ease-out";
     setTimeout(() => {
       letterDiv.style.animation = "";
     }, 300);
-    // Speech is no longer called automatically here.
   }
 
-  // Event Listeners
   bgSelector?.addEventListener("change", updateBackground);
   fontSelector?.addEventListener("change", updateFont);
   colorPicker?.addEventListener("change", updateColor);
   toggleBg?.addEventListener("click", toggleBackground);
 
-  // When the "Speak" button is clicked, speak the current letter.
   speakBtn?.addEventListener("click", () => {
     const textToSpeak = letterDiv.textContent;
     if (textToSpeak) {
@@ -126,8 +125,23 @@ import BackButton from "@/components/ui/backButton.astro";
     (e) => {
       e.preventDefault();
       const { key, keyCode } = e;
+
       if (isAlphabet(keyCode)) {
-        drawLetter(key.toUpperCase(), colorPicker.value);
+        const upperKey = key.toUpperCase();
+        let isDouble = false;
+
+        if (lastKey === upperKey) {
+          // Double press detected
+          isDouble = true;
+          doublePress = true;
+        } else {
+          doublePress = false;
+        }
+
+        drawLetter(upperKey, isDouble);
+        lastKey = upperKey; // Update last key
+      } else {
+        lastKey = null; // Reset last key if not alphabet
       }
     },
     false
@@ -161,7 +175,6 @@ import BackButton from "@/components/ui/backButton.astro";
 
   observer.observe(controls);
 
-  // A common workaround to ensure voices are loaded on some browsers.
   window.addEventListener("load", () => {
     if (synth.getVoices().length === 0) {
       synth.speak(new SpeechSynthesisUtterance(""));
