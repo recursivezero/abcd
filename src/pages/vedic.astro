@@ -1,5 +1,5 @@
 ---
-import { fullEnglish, fullHindi, styleOption
+import { fullEnglish, fullHindi, styleOption,tithiNames
 } from "@/utils/constants.ts";
 import BackIcon from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
@@ -131,7 +131,7 @@ const timeUnits = vedicData.time_units;
     </div>
   </div>
 
-  <script is:inline define:vars={{ timeUnits , fullEnglish, fullHindi, styleOption}}>
+  <script is:inline define:vars={{ timeUnits , fullEnglish, fullHindi, styleOption,tithiNames}}>
     const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
     const samay = new Intl.DateTimeFormat("hi", fullHindi);
     const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);
@@ -140,7 +140,6 @@ const timeUnits = vedicData.time_units;
       const from = timeUnits.find((u) => u.name === fromUnit);
       const to = timeUnits.find((u) => u.name === toUnit);
       if (!from || !to) return null;
-
       const seconds = value * from.seconds;
       return seconds / to.seconds;
     }
@@ -182,30 +181,23 @@ const timeUnits = vedicData.time_units;
           const temp = fromUnit.value;
           fromUnit.value = toUnit.value;
           toUnit.value = temp;
-
           swapButton.classList.toggle("active");
-
           updateResult();
         });
       }
-
       // Tab functionality
       const tabButtons = document.querySelectorAll(".tab-button");
       const tabContents = document.querySelectorAll(".tab-content");
-
       tabButtons.forEach((button) => {
         button.addEventListener("click", () => {
           // Remove active class from all buttons and contents
           tabButtons.forEach((btn) => btn.classList.remove("active"));
           tabContents.forEach((content) => content.classList.remove("active"));
-
           // Add active class to clicked button
           button.classList.add("active");
-
           // Show corresponding tab content
           const targetTab = button.dataset.tab;
           document.getElementById(`${targetTab}-tab-content`).classList.add("active");
-
           // Call updateResult if switching to converter tab to ensure result is shown if inputs have values
           if (targetTab === "converter") {
             updateResult();
@@ -217,25 +209,6 @@ const timeUnits = vedicData.time_units;
       document.querySelector('.tab-button[data-tab="tithi"]').click(); // Simulate click to activate default tab
 
       // Tithi date display functionality
-      const tithiNames = [
-        "प्रतिपदा",
-        "द्वितीया",
-        "तृतीया",
-        "चतुर्थी",
-        "पंचमी",
-        "षष्ठी",
-        "सप्तमी",
-        "अष्टमी",
-        "नवमी",
-        "दशमी",
-        "एकादशी",
-        "द्वादशी",
-        "त्रयोदशी",
-        "चतुर्दशी",
-        "पूर्णिमा",
-        "अमावस्या"
-      ];
-
       const getLunarDate = (gregorianDate) => {
         const day = gregorianDate.getDate();
         const lunarDay = ((day - 1) % 15) + 1;

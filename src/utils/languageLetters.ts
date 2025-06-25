@@ -1,7 +1,7 @@
 import { englishVowels,englishConsonants
 } from "@/utils/constants.ts";
 
-interface LetterPair {
+type LetterPair = {
   hindi: string;
   kannada: string;
   marathi: string;

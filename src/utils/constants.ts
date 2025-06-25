@@ -303,6 +303,26 @@ const englishConsonants = [
   "sa",
   "ha"
 ];
+const tithiNames = [
+        "प्रतिपदा",
+        "द्वितीया",
+        "तृतीया",
+        "चतुर्थी",
+        "पंचमी",
+        "षष्ठी",
+        "सप्तमी",
+        "अष्टमी",
+        "नवमी",
+        "दशमी",
+        "एकादशी",
+        "द्वादशी",
+        "त्रयोदशी",
+        "चतुर्दशी",
+        "पूर्णिमा",
+        "अमावस्या"
+      ];
+
+export {tithiNames}
 export {englishVowels, englishConsonants}
 export { fullEnglish, fullHindi, styleOption }
 export { BASE_URL, IMAGE_DIR };
