@@ -134,8 +134,12 @@ const letterMap: LetterMap = {
     instructions: ["Draw a straight line up.", "Curve from top to middle.", "Draw a diagonal down."]
   },
   S: {
-    paths: [{ d: "M140,50 Q70,30 70,100 Q70,170 140,150", animationDelay: "0s" }],
-    instructions: ["Curve from top right to bottom left."]
+    paths: [
+      { d: "M140,50 C140,30 60,30 60,70", animationDelay: "0s" },
+      { d: "M60,70 C60,110 140,110 140,150", animationDelay: "1s" },
+      { d: "M140,150 C140,170 60,170 60,130", animationDelay: "2s" }
+    ],
+    instructions: ["Start at the top right, curve to the left.", "Curve to the right.", "Curve to the left to finish."]
   },
   T: {
     paths: [

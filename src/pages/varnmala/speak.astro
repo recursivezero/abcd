@@ -40,14 +40,10 @@ import BackButton from "@/components/ui/backButton.astro";
         <label>Font Colour:</label>
         <input type="color" id="colorPicker" value="#000000" />
       </div>
-
-      <div class="control-group">
-        <button id="speakBtn" title="Speak Letter">Speak</button>
-      </div>
     </div>
     <Help
       title="English Playground"
-      description="Press any letter from the keyboard to display it. Use the controls to customize the background, font, and color. Click 'Speak' to hear the letter."
+      description="Press any letter from the keyboard to display it. Use the controls to customize the background, font, and color."
     />
   </Fragment>
   <BackButton />
@@ -66,7 +62,6 @@ import BackButton from "@/components/ui/backButton.astro";
   const fontSelector = document.getElementById("fontSelector") as HTMLSelectElement;
   const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
   const toggleBg = document.getElementById("toggleBg") as HTMLButtonElement;
-  const speakBtn = document.getElementById("speakBtn") as HTMLButtonElement;
 
   const synth = window.speechSynthesis;
   let lastKey: string | null = null; // Store the last key pressed
@@ -106,19 +101,13 @@ import BackButton from "@/components/ui/backButton.astro";
     setTimeout(() => {
       letterDiv.style.animation = "";
     }, 300);
+    speak(letter); // Speak the letter immediately after drawing
   }
 
   bgSelector?.addEventListener("change", updateBackground);
   fontSelector?.addEventListener("change", updateFont);
   colorPicker?.addEventListener("change", updateColor);
   toggleBg?.addEventListener("click", toggleBackground);
-
-  speakBtn?.addEventListener("click", () => {
-    const textToSpeak = letterDiv.textContent;
-    if (textToSpeak) {
-      speak(textToSpeak);
-    }
-  });
 
   document.addEventListener(
     "keydown",
