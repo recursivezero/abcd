@@ -38,6 +38,8 @@
 }
 
 .explore-card {
+  width: 17rem;
+  height: auto;
   display: block;
   text-decoration: none;
   color: #ffffff;
@@ -45,8 +47,9 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition:
-    transform 0.2s ease,
     box-shadow 0.2s ease;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
 }
 
 .explore-card:hover {

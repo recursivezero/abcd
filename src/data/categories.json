@@ -7,46 +7,7 @@
       "route": "dance",
       "image": "https://static.vecteezy.com/system/resources/thumbnails/041/053/132/small/ai-generated-beautiful-ballerina-in-long-dress-dancing-ai-generative-free-photo.jpeg",
       "color": "#3B82F6"
-    },
-    "birds": {
-      "id": "birds",
-      "title": "Explore Birds",
-      "description": "Learn about different species of birds and their habitats",
-      "route": "birds",
-      "image": "https://www.shutterstock.com/image-photo/bird-dance-crane-sunset-love-260nw-2515802735.jpg",
-      "color": "#22C55E"
-    },
-    "animals": {
-      "id": "animals",
-      "title": "Explore Animals",
-      "description": "Get to know wild and domestic animals and their characteristics",
-      "route": "animals",
-      "image": "https://i.natgeofe.com/n/87b90de2-1ee8-4796-b5c4-68fae52976a7/india-national-parks-bengal-tiger_3x2.jpg",
-      "color": "#EF4444"
-    },
-    "festivals": {
-      "id": "festivals",
-      "title": "Festivals of India",
-      "description": "Explore the colors and joy of various Indian festivals",
-      "route": "festivals",
-      "image": "https://static.toiimg.com/photo/msid-94322394,width-96,height-65.cms",
-      "color": "#F59E0B"
-    },
-    "instruments": {
-      "id": "instruments",
-      "title": "Musical Instruments",
-      "description": "Learn about traditional and modern musical instruments",
-      "route": "instruments",
-      "image": "https://img.freepik.com/free-vector/indian-musical-instrument-illustration_96037-403.jpg?semt=ais_hybrid&w=740",
-      "color": "#10B981"
-    },
-    "monuments": {
-      "id": "monuments",
-      "title": "Famous Indian Monuments",
-      "description": "Know the history and architecture of Indian monuments",
-      "route": "monuments",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSgOpqFhuGi8qt4_kETCQTQm2dRAkIcrQ1uw&s",
-      "color": "#F472B6"
     }
   }
 }
+
