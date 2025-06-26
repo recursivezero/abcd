@@ -1,0 +1,12 @@
+{
+  "categories": {
+    "dance": {
+      "id": "dance",
+      "title": "Explore Dances of India",
+      "description": "Discover the rich cultural heritage of Indian classical and folk dances",
+      "route": "dance",
+      "image": "https://static.vecteezy.com/system/resources/thumbnails/041/053/132/small/ai-generated-beautiful-ballerina-in-long-dress-dancing-ai-generative-free-photo.jpeg",
+      "color": "#3B82F6"
+    }
+  }
+}

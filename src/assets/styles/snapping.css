@@ -1,0 +1,47 @@
+.container__snapping {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  font-family: monospace;
+
+  section {
+    display: flex;
+    margin: 1em auto;
+    outline: 1px dashed lightgray;
+    flex: none;
+    overflow: auto;
+
+    &.mandatory-scroll-snapping {
+      scroll-snap-type: x mandatory;
+    }
+
+    &.proximity-scroll-snapping {
+      scroll-snap-type: x proximity;
+    }
+
+    &.x {
+      width: 50%;
+      height: 128px;
+      flex-flow: row nowrap;
+      overflow-y: hidden;
+
+      div {
+        font-size: 64px;
+        width: 100%;
+        height: 128px;
+        text-align: center;
+        scroll-snap-align: center;
+        flex: none;
+
+        &:nth-child(even) {
+          background-color: #d942c7;
+        }
+
+        &:nth-child(odd) {
+          background-color: #abbb55;
+        }
+      }
+    }
+  }
+}

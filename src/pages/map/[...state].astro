@@ -2,6 +2,9 @@
 import BaseLayout from "@/layouts/Base";
 import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
+import BackButton from "@/components/BackButton.astro";
+import District from "@/components/map/District.astro";
+
 export const prerender = true;
 export function getStaticPaths() {
   return stateData.map((state) => ({
@@ -10,87 +13,185 @@ export function getStaticPaths() {
   }));
 }
 const { stateInfo } = Astro.props;
-const { name, dance, festival, image, svg, wikiLink, description } = stateInfo;
+const { name, dance, festival, image, wikiLink, description } = stateInfo;
+// Optional properties with type checking
+const famous_quote = stateInfo.famous_quote || "Coming soon";
+const famous_person = stateInfo.famous_person || "Coming soon";
+const famous_food = stateInfo.famous_food || "Coming soon";
+const famous_place = stateInfo.famous_place || "Coming soon";
+const famous_dress = stateInfo.famous_dress || "Coming soon";
+const famous_language = stateInfo.famous_language || "Coming soon";
+const famous_sport = stateInfo.famous_sport || "Coming soon";
+const surface_area = stateInfo.surface_area || 0;
+const districts_count = stateInfo.districts_count || 0;
+const largest_city = stateInfo.largest_city || "Not available";
+const capital = stateInfo.capital || "Not available";
+const population = stateInfo.population || 0;
+const literacy_rate = stateInfo.literacy_rate || 0;
+const languages = stateInfo.languages || [];
+const major_rivers = stateInfo.major_rivers || [];
 ---
 
 <BaseLayout meta={{ title: `${name} - ${dance}` }}>
-  <section>
-    <div class="back-button-container">
-      <button onclick="window.history.back()" class="back-button"> ← Back to Previous Page </button>
+  <section class="state-page">
+    <div class="back-button-container" set:html>
+      <BackButton />
     </div>
     <div class="main-container">
       <div id="state-svg-container">
-        <h3>{name}</h3>
-        <div id="state-svg" data-svg-path={`/map/svg/${svg}`}></div>
+        <District state={name} quote={stateInfo.famous_quote} />
+        <!-- New Statistics Section -->
+        <div class="statistics-section">
+          <h3>State Statistics</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">🏛️</div>
+              <div class="stat-info">
+                <h4>Capital</h4>
+                <p>{capital}</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🌆</div>
+              <div class="stat-info">
+                <h4>Largest City</h4>
+                <p>{largest_city}</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📏</div>
+              <div class="stat-info">
+                <h4>Area</h4>
+                <p>{surface_area.toLocaleString()} km²</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-info">
+                <h4>Population</h4>
+                <p>{population.toLocaleString()}</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🎓</div>
+              <div class="stat-info">
+                <h4>Literacy Rate</h4>
+                <p>{literacy_rate}%</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📍</div>
+              <div class="stat-info">
+                <h4>Districts</h4>
+                <p>{districts_count}</p>
+              </div>
+            </div>
+          </div>
+          <div class="additional-info">
+            <div class="info-section">
+              <h4>Languages</h4>
+              <div class="tag-container">
+                {languages.map((lang) => <span class="tag">{lang}</span>)}
+              </div>
+            </div>
+            <div class="info-section">
+              <h4>Major Rivers</h4>
+              <div class="tag-container">
+                {major_rivers.map((river) => <span class="tag">{river}</span>)}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="right-content">
-        <img src={`/map/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
+        <div class="state-image-container">
+          <img src={`/map/images/${image}`} alt={`${dance} from ${name}`} loading="eager" />
+        </div>
         <div class="content-text">
-          <table class="info-table">
-            <tr>
-              <th colspan="2">
-                Quick Facts
+          <div class="info-grid">
+            <div class="info-card">
+              <h4>Quote</h4>
+              <p>{famous_quote}</p>
+            </div>
+            <div class="info-card">
+              <h4>Dance</h4>
+              <p>{dance}</p>
+            </div>
+            <div class="info-card">
+              <h4>Famous Person</h4>
+              <p>{famous_person}</p>
+            </div>
+            <div class="info-card">
+              <h4>Festival</h4>
+              <p>{festival}</p>
+            </div>
+            <div class="info-card">
+              <h4>Food</h4>
+              <p>{famous_food}</p>
+            </div>
+            <div class="info-card">
+              <h4>Place</h4>
+              <p>{famous_place}</p>
+            </div>
+            <div class="info-card">
+              <h4>Dress</h4>
+              <p>{famous_dress}</p>
+            </div>
+            <div class="info-card">
+              <h4>Language</h4>
+              <p>{famous_language}</p>
+            </div>
+            <div class="info-card">
+              <h4>Sport</h4>
+              <p>{famous_sport}</p>
+            </div>
+          </div>
+          <div class="quick-facts">
+            <h4>Quick facts about {name}</h4>
+            <div class="facts-content">
+              <p class="description" id="description">
+                <span id="descriptionText"
+                  >{description.length > 150 ? description.slice(0, 150) + "..." : description}</span
+                >
                 {
-                  stateInfo.official_website && (
-                    <>
-                      <br />
-                      <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer">
-                        Visit the official website of {name}
-                      </a>
-                    </>
+                  description.length > 150 && (
+                    <button class="read-more" id="readMoreBtn">
+                      Read More
+                    </button>
                   )
                 }
-              </th>
-            </tr>
-            <tr><td>Dance Form</td><td>{dance}</td></tr>
-            <tr><td>Origin</td><td>{name}, India</td></tr>
-            <tr><td>Festival</td><td>{festival}</td></tr>
-            <tr>
-              <td>Description</td>
-              <td>
-                <p>{description}</p>
-                <a href={wikiLink} target="_blank" rel="noopener noreferrer">
-                  Read more about {dance} on Wikipedia
-                </a>
-              </td>
-            </tr>
-          </table>
+              </p>
+              <div class="links">
+                {
+                  stateInfo.official_website && (
+                    <a href={stateInfo.official_website} target="_blank" rel="noopener noreferrer" class="link-button">
+                      Official website
+                    </a>
+                  )
+                }
+                <a href={wikiLink} target="_blank" rel="noopener noreferrer" class="link-button"> Wikipedia </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
-<style>
-  .back-button-container {
-    margin-bottom: 20px;
+
+<script define:vars={{ description, literacy_rate, districts_count }} is:inline>
+  // Read More button functionality
+  const readMoreBtn = document.getElementById("readMoreBtn");
+  const descriptionText = document.getElementById("descriptionText");
+  if (readMoreBtn && descriptionText) {
+    readMoreBtn.addEventListener("click", () => {
+      if (descriptionText.textContent?.includes("...")) {
+        descriptionText.textContent = description;
+        readMoreBtn.textContent = "Show Less";
+      } else {
+        descriptionText.textContent = description.slice(0, 150) + "...";
+        readMoreBtn.textContent = "Read More";
+      }
+    });
   }
-  .back-button {
-    background-color: #123085;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .back-button:hover {
-    background-color: #e0e0e0;
-  }
-</style>
-<script>
-  // Load SVG when the page loads
-  document.addEventListener("DOMContentLoaded", async () => {
-    const svgContainer = document.getElementById("state-svg");
-    if (!svgContainer) return;
-    const svgPath = svgContainer.dataset.svgPath;
-    if (!svgPath) return;
-    try {
-      const response = await fetch(svgPath);
-      if (!response.ok) throw new Error("Failed to load SVG");
-      const svgContent = await response.text();
-      svgContainer.innerHTML = svgContent;
-    } catch (error) {
-      console.error("Error loading SVG:", error);
-      svgContainer.innerHTML = '<p class="error">Failed to load state map</p>';
-    }
-  });
 </script>

@@ -7,7 +7,7 @@ import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
 import { type AlphabetsData } from "@/types/alphabet.ts";
 
-import BackButton from "@/components/ui/backButton.astro";
+import BackButton from "@/components/BackButton.astro";
 
 const alphabetData = rawAlphabetData as AlphabetsData;
 
@@ -44,29 +44,29 @@ const data = alphabetData[alphabet as keyof AlphabetsData].data;
       </div>
     </div>
   </article>
-
-  <script>
-    const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement;
-    const flipCards = document.querySelectorAll(".flip__card");
-    let allFlipped = false;
-
-    flipAllButton.addEventListener("click", () => {
-      allFlipped = !allFlipped;
-
-      flipCards.forEach((card) => {
-        if (allFlipped) {
-          card.classList.add("flipped");
-        } else {
-          card.classList.remove("flipped");
-        }
-      });
-
-      flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
-
-      flipAllButton.classList.add("active");
-      setTimeout(() => {
-        flipAllButton.classList.remove("active");
-      }, 300);
-    });
-  </script>
 </BaseLayout>
+
+<script>
+  const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement;
+  const flipCards = document.querySelectorAll(".flip__card");
+  let allFlipped = false;
+
+  flipAllButton.addEventListener("click", () => {
+    allFlipped = !allFlipped;
+
+    flipCards.forEach((card) => {
+      if (allFlipped) {
+        card.classList.add("flipped");
+      } else {
+        card.classList.remove("flipped");
+      }
+    });
+
+    flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+
+    flipAllButton.classList.add("active");
+    setTimeout(() => {
+      flipAllButton.classList.remove("active");
+    }, 300);
+  });
+</script>

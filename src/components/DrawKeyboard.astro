@@ -1,22 +1,35 @@
 ---
 import { alphabetMapper } from "@/mappers/alphabet";
-import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
+import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/constants";
+import Keyboard from "@/components/Keyboard.astro";
 ---
 
 <div class="container">
-  <header class="header">
-    <div class="action">
-      <!--<a href="/" class="back-button" aria-label="Go back" title="Go back">← Back</a>-->
-    </div>
-    <!-- The caption div is removed; the heading now appears directly in the header -->
-    <h1 class="info" aria-live="polite">Press any key</h1>
-  </header>
+  <div class="header-container">
+    <header class="header">
+      <h1 class="info" aria-live="polite">Press any key</h1>
+    </header>
+    <div class="continue-message" id="continueMessage" style="display: none;">Press any key to continue</div>
+  </div>
 
   <main class="main">
     <section class="board" id="board" aria-live="polite">
-      <div class="char" id="char"></div>
+      <div class="content-wrapper">
+        <div class="char" id="char"></div>
+        <div class="instruction" id="instruction"></div>
+      </div>
     </section>
   </main>
+  <Keyboard />
+</div>
+
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <div class="popup-icon">⚠️</div>
+    <p class="popup-line">You pressed: <span id="pressedKey" class="pressed-key"></span></p>
+    <p class="popup-line">Press A-Z, a-z or 0-9 keys</p>
+    <button class="popup-close" id="popupClose">Got it!</button>
+  </div>
 </div>
 
 <script
@@ -25,95 +38,439 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     fontBox,
     numberBox,
     alphabetMapper,
-    IMAGE_DIR
+    IMAGE_DIR,
+    fontColor
   }}
   is:inline
 >
   // Initialize state
   let currentFontIndex = 0;
+  let currentFontColorIndex = 0;
   let isUpperCase = true;
+  let hasKeyBeenPressed = false;
+  let showImages = true;
+  let isNumberPressed = false;
+  let backgroundMode = "none";
+  let currentDisplayedKey = "";
 
   // DOM elements
   const mainEl = document.querySelector("main");
   const boardDiv = document.getElementById("board");
   const charDiv = document.getElementById("char");
+  const instructionDiv = document.getElementById("instruction");
   const toggleCaseSwitch = document.getElementById("toggleCase");
   const toggleFontSwitch = document.getElementById("toggleFont");
+  const toggleImgSwitch = document.getElementById("toggleImg");
   const toggleBackgroundSwitch = document.getElementById("toggleBg");
+  const toggleColorSwitch = document.getElementById("toggleColor");
   const info = document.querySelector(".info");
-  const textSpan = document.getElementById("text");
+  const popupOverlay = document.getElementById("popupOverlay");
+  const pressedKeySpan = document.getElementById("pressedKey");
+  const popupClose = document.getElementById("popupClose");
+  const imgToggle = document.querySelector(".img-toggle");
+  const bgToggle = document.querySelector(".bg-toggle");
+  const colorToggle = document.querySelector(".color-toggle");
+
+  function showContinueMessage() {
+    const continueMsg = document.getElementById("continueMessage");
+    if (continueMsg) {
+      continueMsg.style.display = "block";
+    }
+  }
+
+  function initializeDisplay() {
+    charDiv.textContent = "";
+    instructionDiv.textContent = "";
+    clearAllBackgrounds();
+    info.textContent = "Press any key";
+    isNumberPressed = false;
+    backgroundMode = "none";
+    showImages = true;
+    currentDisplayedKey = "";
+    currentFontColorIndex = 0;
+    updateFontColor();
+
+    const continueMsg = document.getElementById("continueMessage");
+    if (continueMsg) {
+      continueMsg.style.display = "none";
+    }
+
+    forceUpdateToggleButtons();
+
+    if (imgToggle) {
+      imgToggle.style.pointerEvents = "";
+      imgToggle.style.opacity = "";
+    }
+  }
 
   function getRandomValue(arr) {
+    if (!arr || arr.length === 0) return "#ffffff";
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
+  function showPopup(key) {
+    pressedKeySpan.textContent = key;
+    popupOverlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+  }
+
+  function hidePopup() {
+    popupOverlay.style.display = "none";
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+  }
+
+  function clearAllBackgrounds() {
+    if (boardDiv) {
+      boardDiv.style.backgroundImage = "";
+      boardDiv.style.backgroundColor = "";
+      boardDiv.style.background = "";
+      boardDiv.removeAttribute("style");
+      boardDiv.setAttribute("style", "");
+    }
+    backgroundMode = "none";
+  }
+
+  function setBackgroundImage(imagePath) {
+    clearAllBackgrounds();
+    if (boardDiv) {
+      // Check network status
+      const basePath = navigator.onLine ? IMAGE_DIR : "/assets/images/background";
+      const fullPath = `${basePath}/${imagePath.split("/").pop()}`;
+      boardDiv.style.backgroundImage = `url(${fullPath})`;
+      boardDiv.style.backgroundSize = "cover";
+      boardDiv.style.backgroundPosition = "center";
+      boardDiv.style.backgroundRepeat = "no-repeat";
+    }
+    backgroundMode = "image";
+  }
+
+  function setBackgroundColor(color) {
+    clearAllBackgrounds();
+    if (boardDiv) {
+      boardDiv.style.backgroundColor = color;
+    }
+    backgroundMode = "color";
+  }
+
+  function updateFontColor() {
+    const currentColor = fontColor[currentFontColorIndex];
+    if (charDiv) {
+      charDiv.style.color = currentColor;
+    }
+    if (instructionDiv) {
+      instructionDiv.style.color = currentColor;
+    }
+  }
+
+  function forceUpdateToggleButtons() {
+    if (imgToggle) {
+      imgToggle.classList.remove("active");
+      imgToggle.style.backgroundColor = "";
+      imgToggle.style.color = "";
+    }
+    if (bgToggle) {
+      bgToggle.classList.remove("active");
+      bgToggle.style.backgroundColor = "";
+      bgToggle.style.color = "";
+    }
+    if (colorToggle) {
+      colorToggle.classList.remove("active");
+      colorToggle.style.backgroundColor = "";
+      colorToggle.style.color = "";
+    }
+
+    updateToggleButtons();
+  }
+
+  function updateToggleButtons() {
+    if (!imgToggle || !bgToggle || !colorToggle) return;
+
+    if (backgroundMode === "image") {
+      imgToggle.classList.add("active");
+      imgToggle.style.backgroundColor = "#007bff";
+      imgToggle.style.color = "white";
+      bgToggle.classList.remove("active");
+      bgToggle.style.backgroundColor = "";
+      bgToggle.style.color = "";
+    } else if (backgroundMode === "color") {
+      bgToggle.classList.add("active");
+      bgToggle.style.backgroundColor = "#007bff";
+      bgToggle.style.color = "white";
+      imgToggle.classList.remove("active");
+      imgToggle.style.backgroundColor = "";
+      imgToggle.style.color = "";
+    } else {
+      imgToggle.classList.remove("active");
+      imgToggle.style.backgroundColor = "";
+      imgToggle.style.color = "";
+      bgToggle.classList.remove("active");
+      bgToggle.style.backgroundColor = "";
+      bgToggle.style.color = "";
+    }
+
+    if (toggleImgSwitch) {
+      toggleImgSwitch.checked = backgroundMode === "image";
+    }
+    if (toggleBackgroundSwitch) {
+      toggleBackgroundSwitch.checked = backgroundMode === "color";
+    }
+
+    if (imgToggle) {
+      if (isNumberPressed) {
+        imgToggle.style.pointerEvents = "none";
+        imgToggle.style.opacity = "0.5";
+      } else {
+        imgToggle.style.pointerEvents = "";
+        imgToggle.style.opacity = "";
+      }
+    }
+  }
+
   function updateDisplay(key) {
-    try {
-      const audio = new Audio("data:audio/wav;base64,UklGRggAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhBAAAAAEA");
-      audio.volume = 0.1;
-      audio.play().catch(() => {});
-    } catch (error) {
-      console.log("Audio feedback unavailable");
+    hasKeyBeenPressed = true;
+    instructionDiv.textContent = "";
+    const isDifferentKey = currentDisplayedKey !== key.toUpperCase();
+
+    if (isDifferentKey) {
+      currentFontColorIndex = 0;
     }
 
     if (!isNaN(Number(key))) {
-      boardDiv.style.backgroundColor = getRandomValue(colorBox);
-      boardDiv.style.backgroundImage = "";
+      isNumberPressed = true;
+      const randomColor = getRandomValue(colorBox);
+      setBackgroundColor(randomColor);
       charDiv.textContent = key;
       info.textContent = numberBox[key] || "Unknown";
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+      charDiv.style.fontSize = "";
+      currentDisplayedKey = key;
+      updateFontColor();
+      showContinueMessage();
+      updateToggleButtons();
       return;
     }
 
+    isNumberPressed = false;
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
+
     if (found) {
       info.textContent = found.value;
-      if (!toggleBackgroundSwitch.checked) {
-        boardDiv.style.backgroundImage = `url(${IMAGE_DIR}/${found.value}.jpg)`;
-        boardDiv.style.backgroundColor = "";
-      }
-    } else {
-      boardDiv.style.backgroundImage = "";
-    }
+      charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+      currentDisplayedKey = key.toUpperCase();
+      updateFontColor();
 
-    charDiv.textContent = isUpperCase ? key.toUpperCase() : key.toLowerCase();
+      if (showImages && backgroundMode !== "color") {
+        setBackgroundImage(`${found.value}.jpg`);
+        charDiv.style.fontSize = "40vh";
+      } else if (backgroundMode === "color") {
+        const randomColor = getRandomValue(colorBox);
+        setBackgroundColor(randomColor);
+        charDiv.style.fontSize = "";
+      } else {
+        clearAllBackgrounds();
+        charDiv.style.fontSize = "";
+      }
+
+      updateToggleButtons();
+    } else {
+      showPopup(key);
+    }
+    showContinueMessage();
   }
 
   function handleKeyPress(e) {
     const key = e.key;
+
+    if (popupOverlay.style.display === "flex") {
+      if (key === "Escape") {
+        hidePopup();
+      }
+      return;
+    }
+
     if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
       updateDisplay(key);
+    } else if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
+      showPopup(key);
     }
   }
 
-  toggleCaseSwitch?.addEventListener("change", (e) => {
-    isUpperCase = !e.target.checked;
-    const currentText = charDiv.textContent;
-    charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
-    textSpan.setAttribute("aria-checked", !e.target.checked);
-  });
+  initializeDisplay();
 
-  toggleFontSwitch?.addEventListener("change", () => {
-    currentFontIndex = (currentFontIndex + 1) % fontBox.length;
-    charDiv.style.fontFamily = fontBox[currentFontIndex];
-  });
-
-  toggleBackgroundSwitch?.addEventListener("change", (e) => {
-    if (e.target.checked) {
-      mainEl.style.backgroundBlendMode = "soft-light";
-      mainEl.style.filter = "brightness(0.9)";
-      boardDiv.style.backgroundImage = "none";
-      boardDiv.style.backgroundColor =
-        getRandomValue(colorBox) || getComputedStyle(document.documentElement).getPropertyValue("--solid-bg");
-    } else {
-      mainEl.style.backgroundBlendMode = "normal";
-      mainEl.style.filter = "brightness(1)";
-      boardDiv.style.backgroundColor = "";
-    }
+  // Add virtual keyboard event listener
+  document.addEventListener("virtualKeyPress", (e) => {
+    if (popupOverlay.style.display === "flex") return;
+    updateDisplay(e.detail.key);
   });
 
   document.addEventListener("keydown", handleKeyPress);
+  if (popupClose) popupClose.addEventListener("click", hidePopup);
+
+  if (popupOverlay) {
+    popupOverlay.addEventListener("click", (e) => {
+      if (e.target === popupOverlay) {
+        hidePopup();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      hidePopup();
+    }
+  });
+
+  if (imgToggle) {
+    imgToggle.addEventListener("click", () => {
+      if (isNumberPressed) return;
+      if (backgroundMode === "color") {
+        bgToggle.classList.remove("active");
+        bgToggle.style.backgroundColor = "";
+        bgToggle.style.color = "";
+      }
+
+      if (backgroundMode === "image") {
+        clearAllBackgrounds();
+        backgroundMode = "none";
+        showImages = false;
+        imgToggle.classList.remove("active");
+        imgToggle.style.backgroundColor = "";
+        imgToggle.style.color = "";
+        charDiv.style.fontSize = "";
+      } else {
+        backgroundMode = "image";
+        showImages = true;
+        if (hasKeyBeenPressed && charDiv.textContent) {
+          const currentChar = charDiv.textContent;
+          if (!/\d/.test(currentChar)) {
+            const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === currentChar.toUpperCase());
+            if (found) {
+              setBackgroundImage(`${found.value}.jpg`);
+              charDiv.style.fontSize = "40vh";
+              updateFontColor();
+            }
+          }
+        }
+        imgToggle.classList.add("active");
+        imgToggle.style.backgroundColor = "#007bff";
+        imgToggle.style.color = "white";
+      }
+
+      setTimeout(() => {
+        updateToggleButtons();
+      }, 10);
+    });
+  }
+
+  if (bgToggle) {
+    bgToggle.addEventListener("click", () => {
+      if (backgroundMode === "image") {
+        imgToggle.classList.remove("active");
+        imgToggle.style.backgroundColor = "";
+        imgToggle.style.color = "";
+      }
+
+      if (backgroundMode === "color") {
+        clearAllBackgrounds();
+        backgroundMode = "none";
+        showImages = false;
+        bgToggle.classList.remove("active");
+        bgToggle.style.backgroundColor = "";
+        bgToggle.style.color = "";
+      } else {
+        backgroundMode = "color";
+        showImages = false;
+
+        if (hasKeyBeenPressed && charDiv.textContent) {
+          const randomColor = getRandomValue(colorBox);
+          setBackgroundColor(randomColor);
+          charDiv.style.fontSize = "";
+          updateFontColor();
+        } else {
+          const randomColor = getRandomValue(colorBox);
+          setBackgroundColor(randomColor);
+        }
+
+        bgToggle.classList.add("active");
+        bgToggle.style.backgroundColor = "#007bff";
+        bgToggle.style.color = "white";
+      }
+    });
+  }
+
+  if (colorToggle) {
+    colorToggle.addEventListener("click", () => {
+      currentFontColorIndex = (currentFontColorIndex + 1) % fontColor.length;
+      updateFontColor();
+
+      colorToggle.classList.add("active");
+      colorToggle.style.backgroundColor = "#007bff";
+      colorToggle.style.color = "white";
+
+      if (toggleColorSwitch) {
+        toggleColorSwitch.checked = true;
+      }
+    });
+  }
+
+  if (toggleCaseSwitch) {
+    toggleCaseSwitch.addEventListener("change", (e) => {
+      isUpperCase = !e.target.checked;
+      const currentText = charDiv.textContent;
+      if (currentText && /[a-zA-Z]/.test(currentText)) {
+        charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
+      }
+    });
+  }
+
+  if (toggleFontSwitch) {
+    toggleFontSwitch.addEventListener("change", () => {
+      currentFontIndex = (currentFontIndex + 1) % fontBox.length;
+      const currentFont = fontBox[currentFontIndex];
+
+      document.fonts
+        .load(`1em "${currentFont}"`)
+        .then(() => {
+          if (charDiv) charDiv.style.fontFamily = `"${currentFont}"`;
+          if (instructionDiv) instructionDiv.style.fontFamily = `"${currentFont}"`;
+        })
+        .catch(() => {
+          console.warn(`Font "${currentFont}" failed to load.`);
+          if (charDiv) charDiv.style.fontFamily = `"${currentFont}"`;
+          if (instructionDiv) instructionDiv.style.fontFamily = `"${currentFont}"`;
+        });
+    });
+  }
 
   console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
+
+  document.addEventListener("keyboardReset", () => {
+    currentFontIndex = 0;
+    currentFontColorIndex = 0;
+    isUpperCase = true;
+    hasKeyBeenPressed = false;
+    showImages = true;
+    isNumberPressed = false;
+    backgroundMode = "none";
+    currentDisplayedKey = "";
+    initializeDisplay();
+
+    if (mainEl) {
+      mainEl.style.backgroundBlendMode = "normal";
+      mainEl.style.filter = "brightness(1)";
+    }
+
+    if (toggleCaseSwitch) toggleCaseSwitch.checked = false;
+    if (toggleFontSwitch) toggleFontSwitch.checked = false;
+    if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
+    if (toggleImgSwitch) toggleImgSwitch.checked = true;
+    if (toggleColorSwitch) toggleColorSwitch.checked = false;
+
+    hidePopup();
+  });
 </script>
 
 <style>
@@ -144,97 +501,76 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     font-family: "Inter", system-ui, sans-serif;
     text-align: center;
     padding: 1rem;
-    /*background: var(--primary-bg);*/
+    position: relative;
+    padding-bottom: 15rem;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 1500px;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
   }
 
   .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
-    padding: 1.5rem 2rem;
+    justify-content: center;
+    width: 75%;
+    height: 60px;
+    padding: 1rem 0.6rem;
     gap: 1rem;
-    position: sticky; /* Make the header sticky */
-    top: 0; /* Stick to the top of the viewport */
-    z-index: 100; /* Ensure it stays above other content */
-    background: rgb(224, 222, 222);
-    border: 1px solid var(--light-border);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    margin-bottom: 0.5rem;
-    border-color: #4338ca;
-    border-width: 4px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow:
+      0 8px 32px rgba(31, 38, 135, 0.37),
+      0 4px 16px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
   }
 
-  .action {
-    width: 100%;
-  }
-
-  /* The caption div is removed so the heading appears directly in the header */
   .info {
-    margin-top: -25px;
-    color: rgb(29, 25, 25); /* Text is now black */
-    font-weight: 500;
+    color: #ffffff;
+    font-weight: 600;
     text-align: center;
     text-transform: uppercase;
     font-size: 2rem;
-  }
-
-  .controls {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .control-item {
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.1em;
   }
 
-  .control-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 4.5rem;
-    height: 4.5rem;
-    background: var(--control-bg);
-    border-radius: 0.75rem;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid rgba(67, 56, 202, 0.2);
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-    font-size: 2rem;
-    color: black;
+  .continue-message {
+    color: light-dark(black, white);
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
   }
-
-  .control-button::before {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--accent-color);
-    transform: scaleX(0);
-    transform-origin: 0 50%;
-    transition: transform 0.3s ease-out;
-    opacity: 0.1;
-  }
-
-  .control-button:hover::before {
-    transform: scaleX(1);
-  }
-
-  .control-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .main {
@@ -245,7 +581,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     height: calc(100vh - 120px);
     overflow: hidden;
     transition: var(--transition);
-    margin-top: 1rem;
   }
 
   .board {
@@ -265,20 +600,38 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     border-radius: 1rem;
   }
 
-  .char {
-    position: relative;
-    z-index: 2;
-    text-align: center;
+  .content-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    font-size: clamp(10rem, 30vw, 25rem);
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 4rem;
+  }
+
+  .char {
+    text-align: center;
+    font-size: 60vh;
     font-weight: 800;
     color: white;
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transition: var(--transition);
     animation: charReveal 0.4s ease-out;
     will-change: transform, opacity;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .instruction {
+    color: white;
+    font-size: 1.75rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
   }
 
   @keyframes charReveal {
@@ -292,41 +645,142 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox } from "@/utils/constants";
     }
   }
 
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
   }
 
-  @media (max-width: 640px) {
+  .popup {
+    background: white;
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 350px;
+    width: 50%;
+    animation: popupSlideIn 0.3s ease-out;
+    border: 5px solid #ff0000;
+  }
+
+  @keyframes popupSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .popup-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .popup h3 {
+    color: #2563eb;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .popup p {
+    color: #374151;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .pressed-key {
+    color: #2563eb;
+    background: transparent;
+    padding: 0.1rem 0.1rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+  }
+
+  .valid-keys {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .key-group {
+    background: rgb(201, 203, 205);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #374151;
+  }
+
+  .popup-close {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+  }
+
+  .popup-close:hover {
+    background: rgba(15, 23, 42, 0.7);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1024px) {
+    .header-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     .header {
+      width: 90%;
       padding: 1rem;
+      height: auto;
     }
 
     .info {
       font-size: 1.25rem;
     }
 
+    .continue-message {
+      width: 90%;
+      height: auto;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .main {
+      height: calc(100vh - 200px);
+    }
+
     .char {
-      font-size: clamp(4rem, 25vw, 15rem);
+      margin-top: 10%;
+      font-size: clamp(20rem, 50vw, 40rem);
     }
 
-    .control-button {
-      width: 3rem;
-      height: 3rem;
-      font-size: 1.5rem;
+    .instruction {
+      font-size: 1.25rem;
     }
 
-    .controls {
-      position: static;
-      justify-content: center;
-      width: 100%;
+    .board {
+      width: 95% !important;
+      height: calc(85vh - 200px) !important;
+      margin-top: 1px;
     }
   }
 </style>

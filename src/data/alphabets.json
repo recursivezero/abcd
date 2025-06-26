@@ -213,6 +213,213 @@
       }
     ]
   },
+
+  "greek": {
+    "icon": "🔤",
+    "description": "Explore the letters of the ancient and modern Greek alphabet.",
+    "data": [
+      {
+        "letter": "A",
+        "text": "Alpha (Α α)",
+        "description": "First letter of the Greek alphabet. Sound: 'a' as in father.",
+        "code": 913,
+        "emoji": "Α"
+      },
+      {
+        "letter": "B",
+        "text": "Beta (Β β)",
+        "description": "Second letter of the Greek alphabet. Sound: 'v' as in vase (Modern Greek).",
+        "code": 914,
+        "emoji": "Β"
+      },
+      {
+        "letter": "G",
+        "text": "Gamma (Γ γ)",
+        "description": "Third letter of the Greek alphabet. Sound: 'g' as in go, or 'y' as in yes.",
+        "code": 915,
+        "emoji": "Γ"
+      },
+      {
+        "letter": "D",
+        "text": "Delta (Δ δ)",
+        "description": "Fourth letter of the Greek alphabet. Sound: 'th' as in then (Modern Greek).",
+        "code": 916,
+        "emoji": "Δ"
+      },
+      {
+        "letter": "E",
+        "text": "Epsilon (Ε ε)",
+        "description": "Fifth letter of the Greek alphabet. Sound: 'e' as in met.",
+        "code": 917,
+        "emoji": "Ε"
+      },
+      {
+        "letter": "Z",
+        "text": "Zeta (Ζ ζ)",
+        "description": "Sixth letter of the Greek alphabet. Sound: 'z' as in zoo.",
+        "code": 918,
+        "emoji": "Ζ"
+      },
+      {
+        "letter": "H",
+        "text": "Eta (Η η)",
+        "description": "Seventh letter of the Greek alphabet. Sound: 'i' as in machine.",
+        "code": 919,
+        "emoji": "Η"
+      },
+      {
+        "letter": "Q",
+        "text": "Theta (Θ θ)",
+        "description": "Eighth letter of the Greek alphabet. Sound: 'th' as in thin.",
+        "code": 920,
+        "emoji": "Θ"
+      },
+      {
+        "letter": "I",
+        "text": "Iota (Ι ι)",
+        "description": "Ninth letter of the Greek alphabet. Sound: 'i' as in machine.",
+        "code": 921,
+        "emoji": "Ι"
+      },
+      {
+        "letter": "K",
+        "text": "Kappa (Κ κ)",
+        "description": "Tenth letter of the Greek alphabet. Sound: 'k' as in kite.",
+        "code": 922,
+        "emoji": "Κ"
+      },
+      {
+        "letter": "L",
+        "text": "Lambda (Λ λ)",
+        "description": "Eleventh letter of the Greek alphabet. Sound: 'l' as in lamp.",
+        "code": 923,
+        "emoji": "Λ"
+      },
+      {
+        "letter": "M",
+        "text": "Mu (Μ μ)",
+        "description": "Twelfth letter of the Greek alphabet. Sound: 'm' as in map.",
+        "code": 924,
+        "emoji": "Μ"
+      },
+      {
+        "letter": "N",
+        "text": "Nu (Ν ν)",
+        "description": "Thirteenth letter of the Greek alphabet. Sound: 'n' as in net.",
+        "code": 925,
+        "emoji": "Ν"
+      },
+      {
+        "letter": "X",
+        "text": "Xi (Ξ ξ)",
+        "description": "Fourteenth letter of the Greek alphabet. Sound: 'x' as in axe.",
+        "code": 926,
+        "emoji": "Ξ"
+      },
+      {
+        "letter": "O",
+        "text": "Omicron (Ο ο)",
+        "description": "Fifteenth letter of the Greek alphabet. Sound: 'o' as in pot.",
+        "code": 927,
+        "emoji": "Ο"
+      },
+      {
+        "letter": "P",
+        "text": "Pi (Π π)",
+        "description": "Sixteenth letter of the Greek alphabet. Sound: 'p' as in pen.",
+        "code": 928,
+        "emoji": "Π"
+      },
+      {
+        "letter": "R",
+        "text": "Rho (Ρ ρ)",
+        "description": "Seventeenth letter of the Greek alphabet. Sound: 'r' as in run (often rolled).",
+        "code": 929,
+        "emoji": "Ρ"
+      },
+      {
+        "letter": "S",
+        "text": "Sigma (Σ σ/ς)",
+        "description": "Eighteenth letter of the Greek alphabet. Sound: 's' as in sun.",
+        "code": 931,
+        "emoji": "Σ"
+      },
+      {
+        "letter": "T",
+        "text": "Tau (Τ τ)",
+        "description": "Nineteenth letter of the Greek alphabet. Sound: 't' as in tap.",
+        "code": 932,
+        "emoji": "Τ"
+      },
+      {
+        "letter": "U",
+        "text": "Upsilon (Υ υ)",
+        "description": "Twentieth letter of the Greek alphabet. Sound: 'i' as in machine (Modern Greek).",
+        "code": 933,
+        "emoji": "Υ"
+      },
+      {
+        "letter": "F",
+        "text": "Phi (Φ φ)",
+        "description": "Twenty-first letter of the Greek alphabet. Sound: 'f' as in fan.",
+        "code": 934,
+        "emoji": "Φ"
+      },
+      {
+        "letter": "C",
+        "text": "Chi (Χ χ)",
+        "description": "Twenty-second letter of the Greek alphabet. Sound: 'ch' as in Scottish loch, or 'h' as in huge.",
+        "code": 935,
+        "emoji": "Χ"
+      },
+      {
+        "letter": "Y",
+        "text": "Psi (Ψ ψ)",
+        "description": "Twenty-third letter of the Greek alphabet. Sound: 'ps' as in psychology.",
+        "code": 936,
+        "emoji": "Ψ"
+      },
+      {
+        "letter": "W",
+        "text": "Omega (Ω ω)",
+        "description": "Twenty-fourth letter of the Greek alphabet. Sound: 'o' as in go.",
+        "code": 937,
+        "emoji": "Ω"
+      }
+    ]
+  },
+  "geek": {
+    "icon": "🔤",
+    "description": "Discover common 'leet speak' and other geeky character representations.",
+    "data": [
+      { "letter": "A", "text": "4, @, /-\\", "description": "Common representations for A." },
+      { "letter": "B", "text": "8, |3, ß", "description": "Common representations for B." },
+      { "letter": "C", "text": "(, <, [, {", "description": "Common representations for C." },
+      { "letter": "D", "text": "|), |>, Ð, ð", "description": "Common representations for D." },
+      { "letter": "E", "text": "3, £, €", "description": "Common representations for E." },
+      { "letter": "F", "text": "|=, ph, ƒ", "description": "Common representations for F." },
+      { "letter": "G", "text": "6, 9, (_+", "description": "Common representations for G." },
+      { "letter": "H", "text": "#, |-|, H", "description": "Common representations for H." },
+      { "letter": "I", "text": "1, !, |, ][", "description": "Common representations for I." },
+      { "letter": "J", "text": "_|, ;|, _/", "description": "Common representations for J." },
+      { "letter": "K", "text": "|<, /<, |{", "description": "Common representations for K." },
+      { "letter": "L", "text": "1, |_, £, |", "description": "Common representations for L." },
+      { "letter": "M", "text": "|\\/|, /\\/\\, (V)", "description": "Common representations for M." },
+      { "letter": "N", "text": "|\\|, /\\/, |V", "description": "Common representations for N." },
+      { "letter": "O", "text": "0, (), <>", "description": "Common representations for O." },
+      { "letter": "P", "text": "|*, |D, |>", "description": "Common representations for P." },
+      { "letter": "Q", "text": "(_,)", "description": "Common representations for Q." },
+      { "letter": "R", "text": "|2, |?, ®", "description": "Common representations for R." },
+      { "letter": "S", "text": "5, $, §", "description": "Common representations for S." },
+      { "letter": "T", "text": "7, +, ']['", "description": "Common representations for T." },
+      { "letter": "U", "text": "|_|, (_), V", "description": "Common representations for U." },
+      { "letter": "V", "text": "\\/, |/", "description": "Common representations for V." },
+      { "letter": "W", "text": "\\/\\/, VV, \\^/", "description": "Common representations for W." },
+      { "letter": "X", "text": "><, %", "description": "Common representations for X." },
+      { "letter": "Y", "text": "j, `/, ¥", "description": "Common representations for Y." },
+      { "letter": "Z", "text": "2, 7_, >_", "description": "Common representations for Z." }
+    ]
+  },
   "nato": {
     "description": "NATO phonetic alphabet",
     "icon": "🎖️",
@@ -1341,183 +1548,484 @@
       }
     ]
   },
-  "Hindi Numbers": {
-    "description": "Hindi numbers from 1 to 10",
-    "icon": "🔢",
+  "hindi": {
+    "icon": "🕉️",
+    "description": "Learn the Hindi alphabet, including Swar (vowels) and Vyanjan (consonants).",
+    "data": {
+      "vowels": [
+        { "letter": "अ", "code": "0905", "meaning": "अदरक (Ginger)", "emoji": "🫚", "unicode": "U+1F95D" },
+        { "letter": "आ", "code": "0906", "meaning": "आम (Mango)", "emoji": "🥭", "unicode": "U+1F96D" },
+        { "letter": "इ", "code": "0907", "meaning": "इमली (Tamarind)", "emoji": "🥔", "unicode": "U+1F330" },
+        { "letter": "ई", "code": "0908", "meaning": "ईख (Sugarcane)", "emoji": "🎋", "unicode": "U+1F36C" },
+        { "letter": "उ", "code": "0909", "meaning": "उल्लू (Owl)", "emoji": "🦉", "unicode": "U+1F989" },
+        { "letter": "ऊ", "code": "090A", "meaning": "ऊँट (Camel)", "emoji": "🐫", "unicode": "U+1F42B" },
+        { "letter": "ऋ", "code": "090B", "meaning": "ऋषि (Sage)", "emoji": "🧘‍♂️", "unicode": "U+1F9D8" },
+        { "letter": "ए", "code": "090F", "meaning": "एड़ी (Heel)", "emoji": "🦶", "unicode": "U+1F9B6" },
+        { "letter": "ऐ", "code": "0910", "meaning": "ऐनक (Glasses)", "emoji": "👓", "unicode": "U+1F453" },
+        { "letter": "ओ", "code": "0913", "meaning": "ओखली (Mortar)", "emoji": "🪨", "unicode": "U+1FAA8" },
+        { "letter": "औ", "code": "0914", "meaning": "औरत (Woman)", "emoji": "👩", "unicode": "U+1F469" }
+      ],
+      "consonants": [
+        { "letter": "क", "code": "0915", "meaning": "कबूतर (pigeon)", "emoji": "🐦", "unicode": "U+1F426" },
+        { "letter": "ख", "code": "0916", "meaning": "खरगोश (rabbit)", "emoji": "🐇", "unicode": "U+1F407" },
+        { "letter": "ग", "code": "0917", "meaning": "गमला (flower pot)", "emoji": "🪴", "unicode": "U+1F33C" },
+        { "letter": "घ", "code": "0918", "meaning": "घोड़ा (horse)", "emoji": "🐎", "unicode": "U+1F40E" },
+        { "letter": "च", "code": "091A", "meaning": "चम्मच (spoon)", "emoji": "🥄", "unicode": "U+1F944" },
+        { "letter": "छ", "code": "091B", "meaning": "छतरी (umbrella)", "emoji": "☂️", "unicode": "U+2602" },
+        { "letter": "ज", "code": "091C", "meaning": "जहाज़ (ship)", "emoji": "🚢", "unicode": "U+1F6A2" },
+        { "letter": "झ", "code": "091D", "meaning": "झंडा (flag)", "emoji": "🏁", "unicode": "U+1F3C1" },
+        { "letter": "ट", "code": "091F", "meaning": "टमाटर (tomato)", "emoji": "🍅", "unicode": "U+1F345" },
+        { "letter": "ठ", "code": "0920", "meaning":"ठठेरा (brass smith)", "emoji": "🔨", "unicode": "U+1F44F" },
+        { "letter": "ड", "code": "0921", "meaning": "डमरू (Shiva's drum)", "emoji": "🥁", "unicode": "U+1F941" },
+        { "letter": "ढ", "code": "0922", "meaning": "ढोलक (drum)", "emoji": "🪘", "unicode": "U+1FA98" },
+        { "letter": "ण", "code": "0923", "meaning": "ण (none)", "emoji": "♨️", "unicode": "U+2668" },
+        { "letter": "त", "code": "0924", "meaning": "तरबूज (watermelon)", "emoji": "🍉", "unicode": "U+1F349" },
+        { "letter": "थ", "code": "0925", "meaning": "थाली (plate)", "emoji": "🍽️", "unicode": "U+1F37D" },
+        { "letter": "द", "code": "0926", "meaning": "दिवा (lamp)", "emoji": "🪔", "unicode": "U+1FA94" },
+        { "letter": "ध", "code": "0927", "meaning": "धनुष (bow)", "emoji": "🏹", "unicode": "U+1F3F9" },
+        { "letter": "न", "code": "0928", "meaning": "नाग (snake)", "emoji": "🐍", "unicode": "U+1F40D" },
+        { "letter": "प", "code": "092A", "meaning": "पतंग (kite)", "emoji": "🪁", "unicode": "U+1FA81" },
+        { "letter": "फ", "code": "092B", "meaning": "फल (fruit)", "emoji": "🍎", "unicode": "U+1F34E" },
+        { "letter": "ब", "code": "092C", "meaning": "बकरी (goat)", "emoji": "🐐", "unicode": "U+1F410" },
+        { "letter": "भ", "code": "092D", "meaning": "भैंस (buffalo)", "emoji": "🐃", "unicode": "U+1F403" },
+        { "letter": "म", "code": "092E", "meaning": "मक्खी (fly)", "emoji": "🪰", "unicode": "U+1FAB0" },
+        { "letter": "य", "code": "092F", "meaning": "यज्ञ (fire ritual)", "emoji": "🔥", "unicode": "U+1F525" },
+        { "letter": "र", "code": "0930", "meaning": "रंग (color)", "emoji": "🎨", "unicode": "U+1F3A8" },
+        { "letter": "ल", "code": "0932", "meaning": "लट्टू (top)", "emoji": "🪀", "unicode": "U+1FA80" },
+        { "letter": "व", "code": "0935", "meaning": "वृक्ष (tree)", "emoji": "🌳", "unicode": "U+1F333" },
+        { "letter": "श", "code": "0936", "meaning": "शंख (conch)", "emoji": "🐚", "unicode": "U+1F41A" },
+        { "letter": "ष", "code": "0937", "meaning": "षट्कोण (hexagon)", "emoji": "⬡", "unicode": "U+1F981" },
+        { "letter": "स", "code": "0938", "meaning": "सांप (snake)", "emoji": "🐍", "unicode": "U+1F40D" },
+        { "letter": "ह", "code": "0939", "meaning": "हाथी (elephant)", "emoji": "🐘", "unicode": "U+1F418" },
+        {
+          "letter": "क्ष",
+          "code": "0915+094D+0937",
+          "meaning": "क्षत्रिय (warrior)",
+          "emoji": "⚔️",
+          "unicode": "U+2694"
+        },
+        {
+          "letter": "त्र",
+          "code": "0924+094D+0930",
+          "meaning": "त्रिशूल (trident)",
+          "emoji": "🔱",
+          "unicode": "U+1F531"
+        },
+        {
+          "letter": "ज्ञ",
+          "code": "091C+094D+091E",
+          "meaning": "ज्ञान (knowledge)",
+          "emoji": "📚",
+          "unicode": "U+1F4DA"
+        }
+      ]
+    }
+  },
+  "morse-alphabet": {
+    "icon": "⚫➖",
+    "description": "Learn the International Morse Code for the English alphabet.",
+    "data": [
+      { "id": 1, "letter": "A", "emoji": "•−", "text": "Morse for A" },
+      { "id": 2, "letter": "B", "emoji": "−•••", "text": "Morse for B" },
+      { "id": 3, "letter": "C", "emoji": "−•−•", "text": "Morse for C" },
+      { "id": 4, "letter": "D", "emoji": "−••", "text": "Morse for D" },
+      { "id": 5, "letter": "E", "emoji": "•", "text": "Morse for E" },
+      { "id": 6, "letter": "F", "emoji": "••−•", "text": "Morse for F" },
+      { "id": 7, "letter": "G", "emoji": "−−•", "text": "Morse for G" },
+      { "id": 8, "letter": "H", "emoji": "••••", "text": "Morse for H" },
+      { "id": 9, "letter": "I", "emoji": "••", "text": "Morse for I" },
+      { "id": 10, "letter": "J", "emoji": "•−−−", "text": "Morse for J" },
+      { "id": 11, "letter": "K", "emoji": "−•−", "text": "Morse for K" },
+      { "id": 12, "letter": "L", "emoji": "•−••", "text": "Morse for L" },
+      { "id": 13, "letter": "M", "emoji": "−−", "text": "Morse for M" },
+      { "id": 14, "letter": "N", "emoji": "−•", "text": "Morse for N" },
+      { "id": 15, "letter": "O", "emoji": "−−−", "text": "Morse for O" },
+      { "id": 16, "letter": "P", "emoji": "•−−•", "text": "Morse for P" },
+      { "id": 17, "letter": "Q", "emoji": "−−•−", "text": "Morse for Q" },
+      { "id": 18, "letter": "R", "emoji": "•−•", "text": "Morse for R" },
+      { "id": 19, "letter": "S", "emoji": "•••", "text": "Morse for S" },
+      { "id": 20, "letter": "T", "emoji": "−", "text": "Morse for T" },
+      { "id": 21, "letter": "U", "emoji": "••−", "text": "Morse for U" },
+      { "id": 22, "letter": "V", "emoji": "•••−", "text": "Morse for V" },
+      { "id": 23, "letter": "W", "emoji": "•−−", "text": "Morse for W" },
+      { "id": 24, "letter": "X", "emoji": "−••−", "text": "Morse for X" },
+      { "id": 25, "letter": "Y", "emoji": "−•−−", "text": "Morse for Y" },
+      { "id": 26, "letter": "Z", "emoji": "−−••", "text": "Morse for Z" }
+    ]
+  },
+  "colors": {
+    "description": "Colors of the English alphabet with their hex codes.",
+    "icon": "🎨",
     "data": [
       {
-        "id": 0,
-        "letter": "०",
-        "code": 48,
-        "emoji": " ",
-        "text": "शून्य",
-        "description": "Zero"
-      },
-      {
         "id": 1,
-        "letter": "१",
-        "code": 49,
-        "emoji": "⠁",
-        "text": "एक",
-        "description": "One"
+        "letter": "A",
+        "code": 65,
+        "text": "Amber",
+        "description": "A honey-yellow color.",
+        "colorCode": "#FFBF00"
       },
       {
         "id": 2,
-        "letter": "२",
-        "code": 50,
-        "emoji": "⠃",
-        "text": "दो",
-        "description": "Two"
+        "letter": "B",
+        "code": 66,
+        "text": "Blue",
+        "description": "The color of the sky and sea.",
+        "colorCode": "#0000FF"
       },
       {
         "id": 3,
-        "letter": "३",
-        "code": 51,
-        "emoji": "⠇",
-        "text": "तीन",
-        "description": "Three"
+        "letter": "C",
+        "code": 67,
+        "text": "Cyan",
+        "description": "A greenish-blue color.",
+        "colorCode": "#00FFFF"
       },
       {
         "id": 4,
-        "letter": "४",
-        "code": 52,
-        "emoji": "⠏",
-        "text": "चार",
-        "description": "Four"
+        "letter": "D",
+        "code": 68,
+        "text": "Denim",
+        "description": "A sturdy cotton twill fabric, typically blue.",
+        "colorCode": "#1560BD"
       },
       {
         "id": 5,
-        "letter": "५",
-        "code": 53,
-        "emoji": "⠟",
-        "text": "पांच",
-        "description": "Five"
+        "letter": "E",
+        "code": 69,
+        "text": "Emerald",
+        "description": "A bright green color.",
+        "colorCode": "#50C878"
       },
       {
         "id": 6,
-        "letter": "६",
-        "code": 54,
-        "emoji": "⠿",
-        "text": "छह",
-        "description": "Six"
+        "letter": "F",
+        "code": 70,
+        "text": "Fuchsia",
+        "description": "A vivid purplish-red color.",
+        "colorCode": "#FF00FF"
       },
       {
         "id": 7,
-        "letter": "७",
-        "code": 55,
-        "emoji": "⡿ ",
-        "text": "सात",
-        "description": "Seven"
+        "letter": "G",
+        "code": 71,
+        "text": "Green",
+        "description": "The color of living grass and leaves.",
+        "colorCode": "#008000"
       },
       {
         "id": 8,
-        "letter": "८",
-        "code": 56,
-        "emoji": "⣿",
-        "text": "आठ",
-        "description": "Eight"
+        "letter": "H",
+        "code": 72,
+        "text": "Heliotrope",
+        "description": "A pink-purple tint.",
+        "colorCode": "#DF73FF"
       },
       {
         "id": 9,
-        "letter": "९",
-        "code": 57,
-        "emoji": "⣿⠁",
-        "text": "नौ",
-        "description": "Nine"
+        "letter": "I",
+        "code": 73,
+        "text": "Indigo",
+        "description": "A deep and rich color close to the color wheel blue.",
+        "colorCode": "#4B0082"
       },
       {
         "id": 10,
-        "letter": "१०",
-        "code": 58,
-        "emoji": "⣿⠃",
-        "text": "दस",
-        "description": "Ten"
+        "letter": "J",
+        "code": 74,
+        "text": "Jade",
+        "description": "A light green color.",
+        "colorCode": "#00A86B"
+      },
+      {
+        "id": 11,
+        "letter": "K",
+        "code": 75,
+        "text": "Khaki",
+        "description": "A light brownish-yellow color.",
+        "colorCode": "#C3B091"
+      },
+      {
+        "id": 12,
+        "letter": "L",
+        "code": 76,
+        "text": "Lavender",
+        "description": "A light purple color.",
+        "colorCode": "#E6E6FA"
+      },
+      {
+        "id": 13,
+        "letter": "M",
+        "code": 77,
+        "text": "Magenta",
+        "description": "A purplish-pink color.",
+        "colorCode": "#FF00FF"
+      },
+      {
+        "id": 14,
+        "letter": "N",
+        "code": 78,
+        "text": "Navy",
+        "description": "A very dark blue color.",
+        "colorCode": "#000080"
+      },
+      {
+        "id": 15,
+        "letter": "O",
+        "code": 79,
+        "text": "Orange",
+        "description": "A bright, warm color.",
+        "colorCode": "#FFA500"
+      },
+      {
+        "id": 16,
+        "letter": "P",
+        "code": 80,
+        "text": "Purple",
+        "description": "A color intermediate between blue and red.",
+        "colorCode": "#800080"
+      },
+      {
+        "id": 17,
+        "letter": "Q",
+        "code": 81,
+        "text": "Quartz",
+        "description": "A greyish-white color.",
+        "colorCode": "#51484F"
+      },
+      {
+        "id": 18,
+        "letter": "R",
+        "code": 82,
+        "text": "Red",
+        "description": "The color of blood, or a ruby.",
+        "colorCode": "#FF0000"
+      },
+      {
+        "id": 19,
+        "letter": "S",
+        "code": 83,
+        "text": "Silver",
+        "description": "A precious shiny grayish-white color.",
+        "colorCode": "#C0C0C0"
+      },
+      {
+        "id": 20,
+        "letter": "T",
+        "code": 84,
+        "text": "Teal",
+        "description": "A medium to dark greenish-blue color.",
+        "colorCode": "#008080"
+      },
+      {
+        "id": 21,
+        "letter": "U",
+        "code": 85,
+        "text": "Ultramarine",
+        "description": "A deep blue color pigment.",
+        "colorCode": "#120A8F"
+      },
+      {
+        "id": 22,
+        "letter": "V",
+        "code": 86,
+        "text": "Violet",
+        "description": "A bluish-purple color.",
+        "colorCode": "#EE82EE"
+      },
+      {
+        "id": 23,
+        "letter": "W",
+        "code": 87,
+        "text": "White",
+        "description": "The color of milk or fresh snow.",
+        "colorCode": "#FFFFFF"
+      },
+      {
+        "id": 24,
+        "letter": "X",
+        "code": 88,
+        "text": "Xanadu",
+        "description": "A grayish-green color.",
+        "colorCode": "#738678"
+      },
+      {
+        "id": 25,
+        "letter": "Y",
+        "code": 89,
+        "text": "Yellow",
+        "description": "The color of ripe lemons or egg yolks.",
+        "colorCode": "#FFFF00"
+      },
+      {
+        "id": 26,
+        "letter": "Z",
+        "code": 90,
+        "text": "Zaffre",
+        "description": "A deep blue pigment.",
+        "colorCode": "#0014A8"
       }
     ]
   },
-  "Roman Numerals": {
-    "description": "Roman numerals from 1 to 10",
-    "icon": "Ⅰ",
+  "birds": {
+    "description": "A list of birds from A to Z.",
+    "icon": "🐦",
     "data": [
       {
         "id": 1,
-        "letter": "I",
-        "code": 49,
-        "emoji": "⠁",
-        "text": "1",
-        "description": "One"
+        "letter": "A",
+        "text": "Albatross",
+        "description": "A large seabird known for its long wingspan."
       },
       {
         "id": 2,
-        "letter": "II",
-        "code": 50,
-        "emoji": "⠃",
-        "text": "2",
-        "description": "Two"
+        "letter": "B",
+        "text": "Bluebird",
+        "description": "A small thrush known for its bright blue plumage."
       },
       {
         "id": 3,
-        "letter": "III",
-        "code": 51,
-        "emoji": "⠇",
-        "text": "3",
-        "description": "Three"
+        "letter": "C",
+        "text": "Crow",
+        "description": "A small songbird in the finch family, often kept as a pet."
       },
       {
         "id": 4,
-        "letter": "IV",
-        "code": 52,
-        "emoji": "⠏",
-        "text": "4",
-        "description": "Four"
+        "letter": "D",
+        "text": "Dove",
+        "description": "A stocky bird with a short neck and legs, related to pigeons."
       },
       {
         "id": 5,
-        "letter": "V",
-        "code": 53,
-        "emoji": "⠟",
-        "text": "5",
-        "description": "Five"
+        "letter": "E",
+        "text": "Eagle",
+        "description": "A large bird of prey with a heavy head and beak."
       },
       {
         "id": 6,
-        "letter": "VI",
-        "code": 54,
-        "emoji": "⠿",
-        "text": "6",
-        "description": "Six"
+        "letter": "F",
+        "text": "Flamingo",
+        "description": "A large wading bird known for its pink feathers and long legs."
       },
       {
         "id": 7,
-        "letter": "VII",
-        "code": 55,
-        "emoji": "⡿ ",
-        "text": "7",
-        "description": "Seven"
+        "letter": "G",
+        "text": "Goose",
+        "description": "A large waterbird with a long neck and webbed feet."
       },
       {
         "id": 8,
-        "letter": "VIII",
-        "code": 56,
-        "emoji": "⣿",
-        "text": "8",
-        "description": "Eight"
+        "letter": "H",
+        "text": "Hummingbird",
+        "description": "A small bird capable of hovering in mid-air by rapidly flapping its wings."
       },
       {
         "id": 9,
-        "letter": "IX",
-        "code": 57,
-        "emoji": "⣿⠁",
-        "text": "9",
-        "description": "Nine"
+        "letter": "I",
+        "text": "Ibis",
+        "description": "A long-legged wading bird with a long, down-curved bill."
       },
       {
         "id": 10,
+        "letter": "J",
+        "text": "Jay",
+        "description": "A noisy, brightly colored bird of the crow family."
+      },
+      {
+        "id": 11,
+        "letter": "K",
+        "text": "Kiwi",
+        "description": "A flightless bird native to New Zealand."
+      },
+      {
+        "id": 12,
+        "letter": "L",
+        "text": "Lark",
+        "description": "A small ground-dwelling bird, known for its melodious song."
+      },
+      {
+        "id": 13,
+        "letter": "M",
+        "text": "Macaw",
+        "description": "A large, long-tailed parrot with brightly colored plumage."
+      },
+      {
+        "id": 14,
+        "letter": "N",
+        "text": "Nightingale",
+        "description": "A small thrush famous for its powerful and beautiful song."
+      },
+      {
+        "id": 15,
+        "letter": "O",
+        "text": "Ostrich",
+        "description": "A large flightless bird native to Africa."
+      },
+      {
+        "id": 16,
+        "letter": "P",
+        "text": "Penguin",
+        "description": "A flightless aquatic bird found in the Southern Hemisphere."
+      },
+      {
+        "id": 17,
+        "letter": "Q",
+        "text": "Quail",
+        "description": "A small, short-tailed game bird."
+      },
+      {
+        "id": 18,
+        "letter": "R",
+        "text": "Robin",
+        "description": "A small insectivorous songbird with a reddish-orange breast."
+      },
+      {
+        "id": 19,
+        "letter": "S",
+        "text": "Sparrow",
+        "description": "A small bird with a stout bill, typically with brown and grey plumage."
+      },
+      {
+        "id": 20,
+        "letter": "T",
+        "text": "Toucan",
+        "description": "A tropical bird known for its large, colorful bill."
+      },
+      {
+        "id": 21,
+        "letter": "U",
+        "text": "Umbrella bird",
+        "description": "A tropical bird with a large crest on its head."
+      },
+      {
+        "id": 22,
+        "letter": "V",
+        "text": "Vulture",
+        "description": "A large bird of prey that scavenges on carrion."
+      },
+      {
+        "id": 23,
+        "letter": "W",
+        "text": "Woodpecker",
+        "description": "A bird that pecks at tree trunks to find insects."
+      },
+      {
+        "id": 24,
         "letter": "X",
-        "code": 58,
-        "emoji": "⣿⠃",
-        "text": "10",
-        "description": "Ten"
+        "text": "Xenops",
+        "description": "A small rainforest bird in the ovenbird family."
+      },
+      {
+        "id": 25,
+        "letter": "Y",
+        "text": "Yellow hammer",
+        "description": "A passerine bird in the bunting family."
+      },
+      {
+        "id": 26,
+        "letter": "Z",
+        "text": "Zebra Finch",
+        "description": "A common finch of Central Australia."
       }
     ]
   }

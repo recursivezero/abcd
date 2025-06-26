@@ -1,0 +1,244 @@
+---
+import {
+  englishVowels,
+  englishConsonants,
+  allAlphabet,
+  letterPairs,
+  languages,
+  languages2,
+  selectedLanguage1,
+  selectedLanguage2,
+  getLetterForLanguage
+} from "@/utils/languageLetters.ts";
+import BackIcon from "@/components/Back.astro";
+import "@/assets/styles/indic.css";
+---
+
+<div class="language-letters-container">
+  <div class="main-header">
+    <BackIcon />
+    <div class="toggle-container">
+      <div class="dropdown-wrapper">
+        <label id="lang1Label" class="dropdown-label language-label active"> PRIMARY LANGUAGE </label>
+        <select id="languageDropdown1">
+          {
+            languages.map((lang) => (
+              <option
+                class="opt"
+                value={lang.code}
+                selected={lang.code === selectedLanguage1}
+                disabled={lang.disabled ? "disabled" : null}
+              >
+                {lang.name}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+      <button id="toggleButton" class="toggle-button" aria-label="Swap languages" title="Swap languges">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17 14 9 14 9 16 17 16 17 19 22 15 17 11 17 14z"></path><path
+            d="M15 10 15 8 7 7 7 5 2 9 7 13 7 10 15 10z"></path>
+        </svg>
+      </button>
+
+      <div class="dropdown-wrapper">
+        <label id="lang2Label" class="dropdown-label language-label"> SECONDARY LANGUAGE </label>
+        <select id="languageDropdown2">
+          {
+            languages2.map((lang) => (
+              <option
+                class="opt"
+                value={lang.code}
+                selected={lang.code === selectedLanguage2}
+                disabled={lang.disabled ? "disabled" : null}
+              >
+                {lang.name}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+  <!-- Letters Grid Section -->
+  <div class="language-letters-grid">
+    <h2 class="group-heading" style="grid-column: 1 / -1;">VOWELS</h2>
+    {
+      letterPairs
+        .filter((pair) => pair.type === "vowel")
+        .map((pair, index) => (
+          <div data-key={`vowel-${index}`} class="language-letter-card language-letter-card-vowel">
+            <div class="language-letter-top">{getLetterForLanguage(pair, selectedLanguage1)}</div>
+            <div class="language-letter-bottom">{getLetterForLanguage(pair, selectedLanguage2)}</div>
+          </div>
+        ))
+    }
+
+    <div class="language-letters-separator" style="grid-column: 1 / -1;"></div>
+
+    <h2 class="group-heading" style="grid-column: 1 / -1;">CONSONANTS</h2>
+    {
+      letterPairs
+        .filter((pair) => pair.type === "consonant")
+        .map((pair, index) => (
+          <div data-key={`consonant-${index}`} class="language-letter-card language-letter-card-consonant">
+            <div class="language-letter-top">{getLetterForLanguage(pair, selectedLanguage1)}</div>
+            <div class="language-letter-bottom">{getLetterForLanguage(pair, selectedLanguage2)}</div>
+          </div>
+        ))
+    }
+  </div>
+  <!-- OM -->
+  <div id="letterPopup" class="letter-popup">
+    <div class="outer">
+      <button id="closePopup" class="close-button">×</button>
+      <div class="middle">
+        <div class="popup-content">
+          <div class="popup-letter">ॐ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script define:vars={{ englishVowels, englishConsonants, allAlphabet, languages }} is:inline>
+  let selectedLanguage1 = "hi";
+  let selectedLanguage2 = "kn";
+
+  function getLetter(langCode, type, index) {
+    // Find the language object from the `languages` array
+    const langObj = languages.find((lang) => lang.code === langCode);
+
+    // If language object is not found, return an empty string
+    if (!langObj) {
+      return "";
+    }
+
+    const languageName = langObj.name; // Get the full language name (e.g., "hindi", "kannada")
+
+    if (type === "vowel") {
+      // Handle Marathi separately as it shares Hindi vowels
+      if (langCode === "mr") {
+        return allAlphabet.vowels.hindi[index] || "";
+      }
+      // Use the languageName to access the correct array in allAlphabets.vowels
+      return allAlphabet.vowels[languageName]?.[index] || "";
+    } else if (type === "consonant") {
+      // Handle Marathi separately as it shares Hindi consonants
+      if (langCode === "mr") {
+        return allAlphabet.consonants.hindi[index] || "";
+      }
+      // Use the languageName to access the correct array in allAlphabets.consonants
+      return allAlphabet.consonants[languageName]?.[index] || "";
+    }
+    return "";
+  }
+
+  // Main function to swap languages
+  function swapLanguages() {
+    // Swap the language variables
+    [selectedLanguage1, selectedLanguage2] = [selectedLanguage2, selectedLanguage1];
+
+    // Update the dropdown values
+    document.getElementById("languageDropdown1").value = selectedLanguage1;
+    document.getElementById("languageDropdown2").value = selectedLanguage2;
+    // Refresh the grid
+    updateGrid();
+    // Toggle persistent state
+    const button = document.getElementById("toggleButton");
+    button.classList.toggle("toggled");
+    // Keep the animation
+    button.classList.add("swapping");
+    setTimeout(() => button.classList.remove("swapping"), 300);
+    // Add visual feedback
+    const toggleButton = document.getElementById("toggleButton");
+    toggleButton.classList.add("swapping");
+    setTimeout(() => {
+      toggleButton.classList.remove("swapping");
+    }, 300);
+  }
+  // Helper function to update language labels
+  function updateGrid() {
+    // Update all letter cards
+    const vowelCards = document.querySelectorAll(".language-letter-card-vowel");
+    const consonantCards = document.querySelectorAll(".language-letter-card-consonant");
+    // Update vowels
+    vowelCards.forEach((card, index) => {
+      const topElement = card.querySelector(".language-letter-top");
+      const bottomElement = card.querySelector(".language-letter-bottom");
+      if (topElement && bottomElement) {
+        topElement.textContent = getLetter(selectedLanguage1, "vowel", index);
+        bottomElement.textContent = getLetter(selectedLanguage2, "vowel", index);
+        // Add special styling for English text
+        topElement.classList.toggle("english-text", selectedLanguage1 === "en");
+        bottomElement.classList.toggle("english-text", selectedLanguage2 === "en");
+        // Add transliteration class for proper display of diacritical marks
+        topElement.classList.toggle("transliteration", selectedLanguage1 === "en");
+        bottomElement.classList.toggle("transliteration", selectedLanguage2 === "en");
+      }
+    });
+    // Update consonants
+    consonantCards.forEach((card, index) => {
+      const topElement = card.querySelector(".language-letter-top");
+      const bottomElement = card.querySelector(".language-letter-bottom");
+      if (topElement && bottomElement) {
+        topElement.textContent = getLetter(selectedLanguage1, "consonant", index);
+        bottomElement.textContent = getLetter(selectedLanguage2, "consonant", index);
+        // Add special styling for English text
+        topElement.classList.toggle("english-text", selectedLanguage1 === "en");
+        bottomElement.classList.toggle("english-text", selectedLanguage2 === "en");
+        // Add transliteration class for proper display of diacritical marks
+        topElement.classList.toggle("transliteration", selectedLanguage1 === "en");
+        bottomElement.classList.toggle("transliteration", selectedLanguage2 === "en");
+      }
+    });
+  }
+  // Set up event listeners
+  document.addEventListener("DOMContentLoaded", () => {
+    const dropdown1 = document.getElementById("languageDropdown1");
+    const dropdown2 = document.getElementById("languageDropdown2");
+    const toggleButton = document.getElementById("toggleButton");
+    // Get the popup elements
+    const popup = document.getElementById("letterPopup");
+    const closeButton = document.getElementById("closePopup");
+    const mainHeader = document.querySelector(".main-header");
+    const scrollThreshold = 50; // Pixels to scroll before the header shrinks
+    function handleScroll() {
+      if (window.scrollY > scrollThreshold) {
+        mainHeader.classList.add("scrolled-header");
+      } else {
+        mainHeader.classList.remove("scrolled-header");
+      }
+    }
+
+    // Initial check in case the page is loaded with a scroll position
+    handleScroll();
+
+    // Listen for scroll events
+    window.addEventListener("scroll", handleScroll);
+
+    // Event listeners
+    dropdown1.addEventListener("change", (e) => {
+      selectedLanguage1 = e.target.value;
+      updateGrid();
+    });
+    dropdown2.addEventListener("change", (e) => {
+      selectedLanguage2 = e.target.value;
+      updateGrid();
+    });
+    // Add click handler for swap button
+    toggleButton.addEventListener("click", swapLanguages);
+    updateGrid();
+    // Add click event to all letter cards
+    const letterCards = document.querySelectorAll(".language-letter-card");
+    letterCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        popup.style.display = "flex";
+      });
+    });
+    // Close popup when close button is clicked
+    closeButton.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+  });
+</script>

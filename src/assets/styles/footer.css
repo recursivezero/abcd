@@ -12,3 +12,9 @@
 .footer__nav--item {
   @apply underline underline-offset-2 hover:text-blue-500 dark:hover:text-blue-400;
 }
+
+@media (max-width: 768px) {
+  .container__footer {
+    display: none;
+  }
+}

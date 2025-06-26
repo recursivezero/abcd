@@ -1,0 +1,185 @@
+---
+import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/varnmala/speak.css";
+import Help from "@/components/Help.astro";
+import BackButton from "@/components/BackButton.astro";
+---
+
+<BaseLayout meta={{ title: "Draw and Speak" }}>
+  <Fragment slot="header-right">
+    <div class="controls" id="controls">
+      <div class="control-group">
+        <label>Bg:</label>
+        <select id="bgSelector">
+          <option value="none">None</option>
+          <option value="gradient1">G1</option>
+          <option value="gradient2">G2</option>
+          <option value="gradient3">G3</option>
+          <option value="gradient4">G4</option>
+          <option value="gradient5">G5</option>
+          <option value="pattern1">P1</option>
+          <option value="pattern2">P2</option>
+          <option value="pattern3">P3</option>
+        </select>
+        <button id="toggleBg">Toggle</button>
+      </div>
+
+      <div class="control-group">
+        <label>Font:</label>
+        <select id="fontSelector">
+          <option value="Arial">Arial</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Times New Roman">Times</option>
+          <option value="Roboto, sans-serif">Roboto</option>
+          <option value="Verdana, sans-serif">Verdana</option>
+          <option value="'Courier New', monospace">Courier</option>
+          <option value="'Lucida Console', monospace">Lucida</option>
+          <option value="Impact, sans-serif">Impact</option>
+          <option value="'Comic Sans MS', cursive">Comic</option>
+        </select>
+        <label>Font Colour:</label>
+        <input type="color" id="colorPicker" value="#000000" />
+      </div>
+      <div class="action">
+        <button type="button" title="click audio" id="muteBtn" class="mute-button mute-button-audio"></button>
+      </div>
+    </div>
+    <Help
+      title="English Playground"
+      description="Press any letter from the keyboard to display it. Use the controls to customize the background, font, and color."
+    />
+  </Fragment>
+  <BackButton />
+  <article class="container__english">
+    <article class="container__hindi" id="letterContainer">
+      <div class="letter">A</div>
+    </article>
+  </article>
+</BaseLayout>
+
+<script>
+  const letterDiv = document.querySelector(".letter") as HTMLDivElement;
+  const controls = document.getElementById("controls") as HTMLElement;
+  const letterContainer = document.getElementById("letterContainer") as HTMLElement;
+  const bgSelector = document.getElementById("bgSelector") as HTMLSelectElement;
+  const fontSelector = document.getElementById("fontSelector") as HTMLSelectElement;
+  const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
+  const toggleBg = document.getElementById("toggleBg") as HTMLButtonElement;
+  const muteBtn = document.getElementById("muteBtn") as HTMLButtonElement; // Added mute button
+
+  const synth = window.speechSynthesis;
+  let lastKey: string | null = null; // Store the last key pressed
+  let doublePress = false; // Flag for double press
+  let isMuted = false; // Flag to track mute state
+
+  function isAlphabet(keyCode: number): boolean {
+    return keyCode >= 65 && keyCode <= 90;
+  }
+
+  function speak(text: string) {
+    if (isMuted) return; // Do not speak if muted
+
+    if (synth.speaking) {
+      synth.cancel();
+    }
+    if (!text) {
+      return;
+    }
+
+    const utterThis = new SpeechSynthesisUtterance(text);
+    utterThis.onerror = (event) => {
+      console.error("SpeechSynthesisUtterance.onerror", event);
+    };
+
+    const voices = synth.getVoices().filter((voice) => voice.lang.startsWith("en"));
+    if (voices.length > 0) {
+      utterThis.voice = voices[0];
+    } else {
+      console.warn("No English voice found, using browser default.");
+    }
+
+    synth.speak(utterThis);
+  }
+
+  function drawLetter(letter: string, isDoublePress: boolean) {
+    letterDiv.innerHTML = letter;
+    letterDiv.style.color = isDoublePress ? "yellow" : "white";
+    letterDiv.style.animation = "letterPop 0.3s ease-out";
+    setTimeout(() => {
+      letterDiv.style.animation = "";
+    }, 300);
+    speak(letter); // Speak the letter immediately after drawing
+  }
+
+  bgSelector?.addEventListener("change", updateBackground);
+  fontSelector?.addEventListener("change", updateFont);
+  colorPicker?.addEventListener("change", updateColor);
+  toggleBg?.addEventListener("click", toggleBackground);
+
+  muteBtn?.addEventListener("click", (e: MouseEvent) => {
+    isMuted = !isMuted;
+    const target = e.target as HTMLButtonElement;
+    target.classList.toggle("mute");
+  });
+
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      e.preventDefault();
+      const { key, keyCode } = e;
+
+      if (isAlphabet(keyCode)) {
+        const upperKey = key.toUpperCase();
+        let isDouble = false;
+
+        if (lastKey === upperKey) {
+          // Double press detected
+          isDouble = true;
+          doublePress = true;
+        } else {
+          doublePress = false;
+        }
+
+        drawLetter(upperKey, isDouble);
+        lastKey = upperKey; // Update last key
+      } else {
+        lastKey = null; // Reset last key if not alphabet
+      }
+    },
+    false
+  );
+
+  function updateBackground() {
+    letterContainer.className = "container__hindi";
+    if (bgSelector.value !== "none") {
+      letterContainer.classList.add(`bg-${bgSelector.value}`);
+    }
+  }
+
+  function updateFont() {
+    letterDiv.style.fontFamily = fontSelector.value;
+  }
+
+  function updateColor() {
+    letterDiv.style.color = colorPicker.value;
+  }
+
+  function toggleBackground() {
+    letterContainer.classList.toggle("no-background");
+  }
+
+  const observer = new IntersectionObserver(
+    ([e]) => {
+      controls.classList.toggle("sticky", e.intersectionRatio < 1);
+    },
+    { threshold: [1] }
+  );
+
+  observer.observe(controls);
+
+  window.addEventListener("load", () => {
+    if (synth.getVoices().length === 0) {
+      synth.speak(new SpeechSynthesisUtterance(""));
+    }
+  });
+</script>

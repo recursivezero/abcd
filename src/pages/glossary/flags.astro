@@ -1,0 +1,160 @@
+---
+import BaseLayout from "@/layouts/Base";
+import BackButton from "@/components/BackButton.astro";
+import "@/assets/styles/varnmala/greek-alphabet.css";
+import "@/assets/styles/glossary/flags.css";
+import glossaryData from "@/data/glossary.json";
+
+const pageTitle = glossaryData.flags.title;
+const flagsData = glossaryData.flags.data;
+
+const getFlagEmoji = (countryCode: string = "IN") => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split("")
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <BackButton href="/Glossary" />
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button-page" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid flags-grid">
+      {
+        flagsData.map((entry) => {
+          const flagEmoji = getFlagEmoji(entry.countryCode);
+          return (
+            <div class="flip__card" data-id={entry.id}>
+              <div class="flip__card__inner">
+                <div class="card card__front">
+                  <div class="flip__button">
+                    <span class="flip__button__text flip-text-label" title="Flip Card">
+                      Flip Card
+                    </span>
+                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">
+                      &#x21bb;
+                    </span>
+                  </div>
+                  <div class="letter__header">
+                    <p class="character">{flagEmoji}</p>
+                  </div>
+                  <div class="letter__content">
+                    <h2 class="text">{entry.text}</h2>
+                    <p class="description">{entry.description}</p>
+                  </div>
+                  <div class="card__glow" />
+                </div>
+                <div class="card card__back">
+                  <div class="flip__button">
+                    <span class="flip__button__text flip-text-label" title="Flip Card">
+                      Flip Card
+                    </span>
+                    <span class="flip__button__text rotate-symbol-label is-hidden" title="Reset Card">
+                      &#x21bb;
+                    </span>
+                  </div>
+                  <p class="character">{flagEmoji}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  // Script for "Flip All Cards" button on the page
+  const flipAllButtonPage = document.getElementById("flip-all-button-page") as HTMLButtonElement;
+  const pageFlipCards = document.querySelectorAll(".flags-grid .flip__card");
+  let allFlippedStatus = false;
+
+  if (flipAllButtonPage) {
+    flipAllButtonPage.addEventListener("click", () => {
+      allFlippedStatus = !allFlippedStatus;
+      pageFlipCards.forEach((card) => {
+        const flipCardElement = card as HTMLElement;
+        if (allFlippedStatus) {
+          flipCardElement.classList.add("flipped");
+        } else {
+          flipCardElement.classList.remove("flipped");
+        }
+        // Update text/icons for all buttons on this card based on new status
+        const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
+        allButtonsOnThisCard.forEach((btn) => {
+          const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
+          const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
+          if (textLabel && symbolLabel) {
+            if (allFlippedStatus) {
+              textLabel.classList.add("is-hidden");
+              symbolLabel.classList.remove("is-hidden");
+            } else {
+              textLabel.classList.remove("is-hidden");
+              symbolLabel.classList.add("is-hidden");
+            }
+          }
+        });
+      });
+      flipAllButtonPage.textContent = allFlippedStatus ? "Reset All Cards" : "Flip All Cards";
+      flipAllButtonPage.classList.add("active");
+      setTimeout(() => {
+        if (flipAllButtonPage) {
+          flipAllButtonPage.classList.remove("active");
+        }
+      }, 300);
+    });
+  } else {
+    console.warn("Page's Flip All button not found.");
+  }
+
+  // Script for individual card interactions (mousemove and flip button)
+  const cardsForMouseInteraction = document.querySelectorAll(".flags-grid .card");
+  cardsForMouseInteraction.forEach((cardElement) => {
+    cardElement.addEventListener("mousemove", (e: Event) => {
+      const htmlCardElement = cardElement as HTMLElement;
+      const rect = htmlCardElement.getBoundingClientRect();
+      const event = e as MouseEvent;
+      const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
+      const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
+      htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
+      htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
+    });
+  });
+
+  const individualFlipCards = document.querySelectorAll(".flags-grid .flip__card");
+  individualFlipCards.forEach((card) => {
+    // card is .flip__card
+    const flipButtonsOnThisCard = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>; // Gets buttons on front and back of this card
+
+    flipButtonsOnThisCard.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        card.classList.toggle("flipped"); // Toggle the card's class
+
+        const isFlipped = card.classList.contains("flipped");
+
+        // Update text/icons for all buttons on this card
+        flipButtonsOnThisCard.forEach((btnInstance) => {
+          const textLabel = btnInstance.querySelector(".flip-text-label") as HTMLElement | null;
+          const symbolLabel = btnInstance.querySelector(".rotate-symbol-label") as HTMLElement | null;
+          if (textLabel && symbolLabel) {
+            if (isFlipped) {
+              textLabel.classList.add("is-hidden");
+              symbolLabel.classList.remove("is-hidden");
+            } else {
+              textLabel.classList.remove("is-hidden");
+              symbolLabel.classList.add("is-hidden");
+            }
+          }
+        });
+      });
+    });
+  });
+</script>

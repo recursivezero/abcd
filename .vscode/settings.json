@@ -46,5 +46,26 @@
   "css.lint.unknownAtRules": "ignore",
   "css.lint.unknownProperties": "ignore",
   "css.hover.documentation": true,
-  "css.hover.references": true
+  "css.hover.references": true,
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#e98cf9",
+    "activityBar.background": "#e98cf9",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#fdf9e1",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#e98cf9",
+    "statusBar.background": "#e05bf7",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#d72af5",
+    "statusBarItem.remoteBackground": "#e05bf7",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#e05bf7",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#e05bf799",
+    "titleBar.inactiveForeground": "#15202b99",
+    "sideBar.border": "#e98cf9",
+    "tab.activeBorder": "#e98cf9"
+  }
 }

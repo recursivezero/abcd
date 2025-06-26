@@ -1,6 +1,7 @@
 ---
-import GridGameIcon from "@/assets/icons/game.svg";
-import KeyboardGameIcon from "@/assets/icons/keyboard.svg";
+import Back from "@/components/Back.astro";
+import GridGameIcon from "@/assets/icons/grid-game-icon.svg";
+import KeyboardGameIcon from "@/assets/icons/keyboard-game-icon.svg";
 import "@/assets/styles/games.css";
 import GameCard from "@/components/GameCard.astro";
 import BaseLayout from "@/layouts/Base";
@@ -28,7 +29,11 @@ const games = {
 ---
 
 <BaseLayout meta={meta}>
-  <div class="game-page-container">
+  <Back />
+  <div class="selection-container">
+    <div class="header-content">
+      <h1 class="game-page-title">Select a creative mode</h1>
+    </div>
     <div class="game-selection-container">
       <div class="game-cards">
         {
@@ -39,7 +44,8 @@ const games = {
               description={game.description}
               href={game.href}
             >
-              <game.icon slot={route === "grid" ? "grid-icon" : "keyboard-icon"} />
+              {route === "grid" && <GridGameIcon slot="grid-icon" />}
+              {route === "kbd" && <KeyboardGameIcon slot="keyboard-icon" />}
             </GameCard>
           ))
         }

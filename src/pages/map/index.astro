@@ -1,12 +1,43 @@
 ---
-import "@/assets/styles/map/popup.css";
-import IndiaMap from "@/components/IndiaMap.astro";
-import Popup from "@/components/Popup.astro";
-import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/map/map.css";
+import BaseLayout from "@/layouts/Base";
+import { Image } from "astro:assets";
+import categoryData from "@/data/categories.json";
+import Back from "@/components/Back.astro";
+type Category = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  color: string;
+};
+
+const categories: Category[] = Object.values(categoryData.categories);
 ---
 
-<BaseLayout meta={{ title: "Explore Dances of India" }}>
-  <IndiaMap />
-  <Popup />
+<BaseLayout meta={{ title: "Explore India" }}>
+  <Back />
+  <main class="explore-container">
+    <div class="explore-header">
+      <h1>Explore India</h1>
+    </div>
+    <div class="explore-grid">
+      {
+        categories.map((category: Category) => (
+          <a href={`/map/${category.id}`} class="explore-card">
+            <div class="card-image">
+              <Image src={category.image} alt={category.title} width={400} height={225} />
+            </div>
+            <div class="card-content">
+              <div class="card-header">
+                <span class="category-dot" style={`background-color: ${category.color}`} />
+                <h2>{category.title}</h2>
+              </div>
+              <p>{category.description}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </main>
 </BaseLayout>

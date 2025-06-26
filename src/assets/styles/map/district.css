@@ -1,0 +1,274 @@
+.map-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.view-controls {
+  position: absolute;
+  top: 0px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+.zoom-controls {
+  position: absolute;
+  right: -7px;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+}
+
+.zoom-button {
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 2px solid var(--primary-light);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.zoom-button:hover {
+  transform: scale(1.1);
+  background-color: #cfe3fde7;
+}
+
+.view-button {
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 3px solid var(--primary-light);
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+}
+
+.view-button:hover {
+  transform: scale(1.05);
+  opacity: 90%;
+  background-color: #cfe3fde7;
+}
+
+.view-button.active {
+  background-color: var(--primary-light);
+}
+
+.district {
+  position: relative;
+  width: 30rem;
+  height: 0;
+  padding-bottom: 75%; /* 4:3 Aspect Ratio */
+  margin-top: 4rem;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.district.grabbing {
+  cursor: grabbing;
+}
+
+.district svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center;
+  transition: transform 0.1s ease;
+  user-select: none;
+}
+
+.district path {
+  transition: fill 0.3s ease;
+  fill: #e0f2f1;
+}
+
+.district path:hover {
+  fill: orange;
+  stroke: #333;
+  stroke-width: 1px;
+}
+
+.district text {
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.district-tooltip {
+  position: absolute;
+  background-color: var(--card-bg);
+  color: var(--text);
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid var(--primary-light);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  max-width: 200px;
+  text-align: center;
+  transform: scale(0.95);
+  transform-origin: bottom center;
+}
+
+.district-tooltip.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Add a little arrow for tooltip */
+.district-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: var(--card-bg) transparent transparent;
+}
+
+.district-tooltip.visible {
+  opacity: 1;
+}
+
+@media (min-width: 1450px) {
+  .district {
+    width: 50rem;
+  }
+}
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .map-container {
+    padding: 25px;
+  }
+  .district {
+    padding-bottom: 70%;
+    margin-top: 5rem;
+    width: 22rem;
+  }
+  .zoom-controls {
+    right: -15px;
+    top: 100px;
+  }
+  .view-button {
+    font-size: 15px;
+  }
+}
+
+.title {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 992px) {
+  .map-container {
+    padding: 20px;
+  }
+  .district {
+    padding-bottom: 65%;
+    margin-top: 5rem;
+    width: 18rem;
+  }
+  .view-controls {
+    top: 15px;
+  }
+  .zoom-controls {
+    right: -15px;
+    top: 95px;
+  }
+  .view-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .zoom-button {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    padding: 15px;
+  }
+  .district {
+    padding-bottom: 60%;
+    margin-top: 3.5rem;
+    width: 20rem;
+  }
+  .view-controls {
+    top: 10px;
+    flex-direction: row;
+    gap: 5px;
+  }
+  .zoom-controls {
+    right: -15px;
+    top: 70px;
+  }
+  .view-button {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  .zoom-button {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container {
+    padding: 10px;
+  }
+  .district {
+    padding-bottom: 55%;
+    margin-top: 4rem;
+    width: 15rem;
+  }
+  .view-controls {
+    top: 5px;
+    gap: 3px;
+  }
+  .zoom-controls {
+    right: 20px;
+    top: 80px;
+  }
+  .view-button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  .zoom-button {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+}
+
+.district path {
+  stroke: transparent;
+  stroke-width: 1px;
+  transition: all 0.3s ease;
+}

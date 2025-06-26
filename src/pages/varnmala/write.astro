@@ -1,0 +1,63 @@
+---
+import BackButton from "@/components/BackButton.astro";
+import LetterAnimation from "@/components/LetterAnimation.astro";
+import BaseLayout from "@/layouts/Base";
+
+const url = new URL(Astro.request.url);
+const letterParam = url.searchParams.get("letter")?.toUpperCase() ?? "A";
+---
+
+<BaseLayout meta={{ title: "Alphabet Writing Animation" }}>
+  <BackButton href="/varnmala" />
+  <main class="writing-panel-main">
+    <section class="writing-panel-section">
+      <h1 class="writing-panel-title">✏️ Alphabet Writing Animation ✏️</h1>
+      <LetterAnimation currentLetter={letterParam} />
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .writing-panel-main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .writing-panel-section {
+    background: rgb(62, 77, 104);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    padding: 32px 48px;
+    width: 100%;
+    max-width: 1100px;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  .writing-panel-title {
+    font-size: 2.2rem;
+    color: #ff6b6b;
+    text-shadow: 2px 2px 0 #ffd166;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  @media (max-width: 1200px) {
+    .writing-panel-section {
+      max-width: 98vw;
+      padding: 16px 6vw;
+      min-width: 0;
+    }
+  }
+  @media (max-width: 600px) {
+    .writing-panel-section {
+      padding: 8px 2vw;
+    }
+    .writing-panel-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+  }
+</style>

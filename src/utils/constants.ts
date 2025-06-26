@@ -4,8 +4,8 @@ import type { LinkProps } from "@/types/index.ts";
 
 export const APP_NAME = "Template";
 
-let BASE_URL = "http://localhost:4321/draw";
-let IMAGE_DIR = "/images/background";
+let BASE_URL = "http://localhost:4321";
+let IMAGE_DIR = "/assets/images/background";
 
 if (import.meta.env.PROD) {
   BASE_URL = "https://bnm1w7hj00.execute-api.us-east-1.amazonaws.com/master/canvas";
@@ -25,6 +25,21 @@ const colorBox = [
   "#d4d4d4"
 ];
 
+const fontColor = [
+  "#FFFFFF",
+  "#1A1A1A",
+  "#0D47A1",
+  "#F44336",
+  "#4CAF50",
+  "#FFEB3B",
+  "#9C27B0",
+  "#795548",
+  "#00BCD4",
+  "#FF9800",
+  "#607D8B",
+  "#E0E0E0"
+];
+
 const numberBox: Record<number, string> = {
   0: "zero",
   1: "one",
@@ -38,7 +53,22 @@ const numberBox: Record<number, string> = {
   9: "nine"
 };
 
-const fontBox = ["boisuStroke", "BungeeSpice", "atkinson", "sportrop", "MudraMohta", "Roboto"];
+const fontBox = [
+  "Times New Roman",
+  "Arial",
+  "Verdana",
+  "Trebuchet MS",
+  "Georgia",
+  "Courier New",
+  "Comic Sans MS",
+  "Impact",
+  "boisuStroke",
+  "BungeeSpice",
+  "atkinson",
+  "sportrop",
+  "MudraMohta",
+  "Roboto"
+];
 
 export const NavbarLinks: LinkProps[] = [
   {
@@ -106,7 +136,7 @@ export const NavbarLinks: LinkProps[] = [
   {
     name: "Capital",
     title: "Capital",
-    path: "/capitals",
+    path: "/capital",
     isActive: true
   },
   {
@@ -128,9 +158,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Kannada",
-    title: "Kannada",
-    path: "/kannada",
+    name: "Indic",
+    title: "Indic",
+    path: "/indic",
     isActive: true
   },
   {
@@ -138,7 +168,31 @@ export const NavbarLinks: LinkProps[] = [
     title: "Draw",
     path: "/draw",
     isActive: true
+  },
+  {
+    name: "Cards",
+    title: "Cards",
+    path: "/cards",
+    isActive: true
+  },
+  {
+    name: "Numbers",
+    title: "Numbers",
+    path: "/numbers",
+    isActive: true
+  },
+  {
+    name: "Glossary",
+    title: "Glossary",
+    path: "/glossary",
+    isActive: true
   }
+  // {
+  //   name: "Sunsigns",
+  //   title: "Sunsigns",
+  //   path: "/sunsigns",
+  //   isActive: true
+  // },
 ];
 
 export const FooterLinks: LinkProps[] = [
@@ -167,6 +221,110 @@ export const colors = [
   "linear-gradient(135deg, #34d399 0%, #10b981 100%)" // Emerald
 ];
 
+const fullEnglish = {
+  weekday: "long",
+  dayPeriod: "long",
+  year: "numeric",
+  month: "long",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "numeric",
+  calendar: "iso8601",
+  timeZone: "Asia/Kolkata",
+  timeZoneName: "short",
+  formatMatcher: "basic",
+  hourCycle: "h12"
+};
+
+const fullHindi = {
+  weekday: "long",
+  dayPeriod: "long",
+  year: "numeric",
+  month: "long",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "numeric",
+  calendar: "indian",
+  timeZone: "Asia/Kolkata",
+  numberingSystem: "deva",
+  formatMatcher: "basic",
+  hourCycle: "h12"
+};
+
+const styleOption = {
+  dateStyle: "full",
+  timeStyle: "long",
+  calendar: "iso8601", // 'indian',
+  /* numberingSystem: 'deva', */
+  timeZone: "Asia/Kolkata",
+  hour12: false,
+  useGrouping: true,
+  minimumIntegerDigits: 1
+};
+const englishVowels = ["a", "ā", "i", "ī", "u", "ū", "಍", "಍", "಍", "಍", "e", "ai", "಍", "಍", "o", "au"];
+const englishConsonants = [
+  "ka",
+  "kha",
+  "ga",
+  "gha",
+  "ṅa",
+  "ca",
+  "cha",
+  "ja",
+  "jha",
+  "ña",
+  "ṭa",
+  "ṭha",
+  "ḍa",
+  "ḍha",
+  "ṇa",
+  "ta",
+  "tha",
+  "da",
+  "dha",
+  "na",
+  "಍",
+  "pa",
+  "pha",
+  "ba",
+  "bha",
+  "ma",
+  "ya",
+  "ra",
+  "಍",
+  "la",
+  "಍",
+  "಍",
+  "va",
+  "śa",
+  "ṣa",
+  "sa",
+  "ha"
+];
+const tithiNames = [
+  "प्रतिपदा",
+  "द्वितीया",
+  "तृतीया",
+  "चतुर्थी",
+  "पंचमी",
+  "षष्ठी",
+  "सप्तमी",
+  "अष्टमी",
+  "नवमी",
+  "दशमी",
+  "एकादशी",
+  "द्वादशी",
+  "त्रयोदशी",
+  "चतुर्दशी",
+  "पूर्णिमा",
+  "अमावस्या"
+];
+
+export { tithiNames };
+export { englishVowels, englishConsonants };
+export { fullEnglish, fullHindi, styleOption };
 export { BASE_URL, IMAGE_DIR };
 
-export { colorBox, fontBox, numberBox };
+export { colorBox, fontBox, fontColor, numberBox };

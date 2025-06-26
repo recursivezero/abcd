@@ -27,6 +27,12 @@
   --stats-button-text: #334155;
   --stats-button-border: #cbd5e1;
   --stats-button-hover: #818cf8;
+
+  /* Custom Word and Button Colors */
+  --word-font-color: #0f172a;
+  --word-found-color: #9ca3af;
+  --stats-button-clicked: #4ade80;
+  --stats-button-found: #facc15;
 }
 
 /* Main Layout */
@@ -87,6 +93,9 @@
   transform: translateY(-3px);
   background: #eef2ff;
   border-color: var(--primary-color);
+  box-shadow:
+    0 0 16px 4px var(--primary-color),
+    0 8px 20px rgba(99, 102, 241, 0.15);
 }
 
 .grid__puzzle .cell.selected {
@@ -139,12 +148,10 @@
 details {
   width: 100%;
   border-radius: var(--border-radius);
-  background-color: rgba(99, 102, 241, 0.08);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  margin: 20px 0;
-  border-left: 4px solid var(--primary-color);
   background-color: rgba(99, 102, 241, 0.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin: 20px 0;
+  border-left: 4px solid var(--primary-color);
 }
 
 details summary {
@@ -157,28 +164,24 @@ details summary {
   position: relative;
   border-bottom: 2px solid rgba(99, 102, 241, 0.1);
   margin-bottom: 12px;
+  font-size: 2.5vw;
 }
 
 details summary::after {
   content: "";
   position: absolute;
   right: 24px;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
   transition: var(--transition);
-  transform: rotate(180deg);
+  transform: rotate(360deg);
 }
 
 details summary::-webkit-details-marker {
   display: none;
-}
-
-details:not([open]) {
-  background-color: rgba(99, 102, 241, 0.08);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 details:not([open]) summary {
@@ -202,10 +205,10 @@ details:not([open]) summary::after {
   padding: 8px 16px;
   border-radius: 25px;
   font-weight: 600;
-  color: white;
+  color: rgb(255, 255, 255);
+  background-color: rgb(62, 24, 255);
   transition: var(--transition);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  background-color: var(--accent6-color);
 }
 
 .word-list .word.found {
@@ -217,7 +220,7 @@ details:not([open]) summary::after {
 /* Stats Components */
 .stats-container {
   display: flex;
-  gap: 24px;
+  gap: 14px;
   margin: 32px 0;
   justify-content: center;
   flex-wrap: wrap;
@@ -245,10 +248,11 @@ details:not([open]) summary::after {
 
 .stats-button:nth-child(1) {
   background: var(--accent4-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--accent6-color));
 }
 
 .stats-button:nth-child(2) {
-  background: var(--secondary-color);
+  background: linear-gradient(135deg, var(--accent1-color), var(--accent7-color));
 }
 
 .stats-button:nth-child(3) {
@@ -259,9 +263,18 @@ details:not([open]) summary::after {
   background: linear-gradient(135deg, var(--accent2-color), var(--accent8-color));
 }
 
-/* Responsive Styles */
+/* New States */
+.stats-button.clicked {
+  background-color: var(--stats-button-clicked);
+  color: white;
+}
 
-/* Tablet */
+.stats-button.found {
+  background-color: var(--stats-button-found);
+  color: #1f2937;
+}
+
+/* Responsive Styles */
 @media (max-width: 1024px) {
   .grid__puzzle {
     gap: 6px;
@@ -277,23 +290,23 @@ details:not([open]) summary::after {
   }
 
   .stats-button {
-    font-size: 0.85rem;
+    font-size: 3vh;
     padding: 11px 18px;
     min-width: 70px;
   }
 
   .word-list {
     gap: 10px;
-    padding: 14px;
+    padding: 10px 14px;
+    margin-top: 5px;
   }
 
   .word-list .word {
     font-size: 0.9rem;
-    padding: 7px 14px;
+    padding: 5px 14px;
   }
 }
 
-/* Small tablets & large phones */
 @media (max-width: 768px) {
   .grid__puzzle {
     gap: 4px;
@@ -309,31 +322,68 @@ details:not([open]) summary::after {
   }
 
   .stats-button {
-    font-size: 0.8rem;
+    font-size: 3vh;
     padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 }
 
-/* Mobile phones */
 @media (max-width: 480px) {
   .grid__puzzle {
-    gap: 4px;
-    padding: 10px;
+    gap: 3px;
+    padding: 3px;
     grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
   }
 
   .grid__puzzle .cell {
     font-size: 6vw;
-    border-width: 1px;
-    border-radius: none;
-    min-width: 20px;
-    min-height: 20px;
+    border-width: 2px;
+    min-width: 25px;
+    min-height: 25px;
+  }
+
+  .stats-container {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
   }
 
   .stats-button {
-    font-size: 0.75rem;
+    font-size: 4vw;
     padding: 8px 14px;
-    min-width: 60px;
+    min-width: 80px;
+    color: black;
+    color: rgb(255, 255, 255);
+    background: var(--accent2-color);
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
+  #solutionBtn {
+    background: none;
+    border: none;
+    max-width: 45px;
+    max-height: 45px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .stats-button .bulb-icon,
+  .stats-button svg {
+    max-width: 22px !important;
+    max-height: 22px !important;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  details summary {
+    font-size: 6vw;
+    padding: 12px 16px;
+  }
 }

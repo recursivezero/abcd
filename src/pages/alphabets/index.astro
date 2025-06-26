@@ -1,4 +1,5 @@
 ---
+import Back from "@/components/Back.astro";
 import "@/assets/styles/alphabets/index.css";
 import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
@@ -11,6 +12,7 @@ const getCategoryDescription = (category: string) => alphabetData[category as ke
 ---
 
 <BaseLayout meta={{ title: "Alphabets Explorer" }}>
+  <Back />
   <section class="container__alphabets">
     <div class="alphabets__header">
       <h1>Alphabet Categories</h1>
@@ -49,31 +51,59 @@ const getCategoryDescription = (category: string) => alphabetData[category as ke
     background: var(--background);
     border: 2px solid var(--border);
     border-radius: 1rem;
-    padding: 1.25rem;
+    padding: clamp(1rem, 3vw, 1.25rem);
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
+    gap: clamp(0.75rem, 2vw, 1rem);
     transition: all 0.2s ease;
   }
 
   .category__icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: clamp(0.25rem, 2vw, 0.5rem);
+  }
+
+  .category__title {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .category__description {
+    font-size: clamp(0.9rem, 2vw, 0.95rem);
+    line-height: 1.6;
   }
 
   .btn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.75rem, 2vw, 2rem);
     border-radius: 0.75rem;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     transition: all 0.2s ease;
     text-decoration: none;
+    flex: 1;
+    min-width: 119px;
+  }
+
+  .card__actions {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .card__actions {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      width: 100%;
+    }
   }
 
   .btn-playground {

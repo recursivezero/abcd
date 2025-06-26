@@ -11,7 +11,7 @@
       justify-items: end;
       justify-content: center;
       top: 4rem;
-      right: 1rem;
+      right: 1.5rem;
       width: max-content;
       height: 3.5rem;
       border-radius: 10%;
@@ -29,6 +29,18 @@
       /*&:hover {
         transform: scale(1.05) rotate(45deg);
       }*/
+    }
+
+    @media (max-width: 480px) {
+      .setting__trigger {
+        font-size: 0.6rem;
+        /* Adjust font size for smaller screens */
+        width: 2.5rem;
+        /* Adjust width for smaller screens */
+        height: 2.5rem;
+        /* Adjust height for smaller screens */
+        margin-top: 12px;
+      }
     }
 
     .setting__panel {
@@ -74,6 +86,7 @@
         font-size: 1.5rem;
         letter-spacing: 0.01em;
         touch-action: pinch-zoom;
+        border-radius: 9px;
 
         &:hover:not(.close) {
           background-color: color(xyz 0.02 0.01 0.02);
@@ -83,8 +96,8 @@
         &.close {
           width: 2rem;
           height: 3rem;
-          outline: 1px dashed green;
           justify-self: end;
+          border-radius: 6px;
 
           &:hover {
             font-size: 30px;
@@ -126,8 +139,9 @@
           justify-content: center;
 
           :where(button, select) {
-            background-color: rgb(211, 89, 222);
+            background: linear-gradient(90deg, rgb(17, 255, 247) 0%, rgb(39, 96, 241) 100%);
             transform: scaleZ(1) rotate(5deg);
+            border-radius: 7px;
           }
         }
 

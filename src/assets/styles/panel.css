@@ -5,8 +5,8 @@
   --text: #f8fafc;
   --primary: #3b82f6;
   --shadow: rgba(0, 0, 0, 0.2);
-  --panel-width: 15rem;
-  --panel-height: 10rem;
+  --panel-width: 20rem;
+  --panel-height: 15rem;
   --color-1: linear-gradient(135deg, #3b82f6, #2563eb);
   --color-2: linear-gradient(135deg, #8b5cf6, #6d28d9);
   --color-3: linear-gradient(135deg, #ec4899, #db2777);
@@ -17,6 +17,14 @@
   --color-8: linear-gradient(135deg, #6366f1, #4f46e5);
   --color-9: linear-gradient(135deg, #0ea5e9, #0284c7);
   --color-10: linear-gradient(135deg, #14b8a6, #0d9488);
+  --metal-2: linear-gradient(145deg, #f5f5dc 0%, #f5f5dc 50%, #f5f5dc 100%);
+  --text-light: #e0e0e0;
+  --text-dark: #1a1a1a;
+  --accent-color: #f5f5dc;
+  --purple-accent: #444460;
+  --border-radius: 8px;
+  --popover-bg-dark: rgba(25, 25, 30, 0.98);
+  --transition-speed: 0.3s;
 }
 
 [data-theme="light"] {
@@ -88,7 +96,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: var(--text);
+    color: #ffffff;
   }
 
   & input[type="range"] {
@@ -111,6 +119,7 @@
 }
 
 .container__panel {
+  margin-top: 2rem;
   background: var(--bg);
   padding: 0 2rem 2rem;
   min-height: calc(100vh - 10rem);
@@ -119,6 +128,7 @@
   gap: 2rem;
   overflow: hidden;
   position: relative;
+  padding-top: 10rem;
 
   & .scene {
     width: var(--panel-width);
@@ -151,7 +161,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 7rem;
     color: white;
     background: var(--surface);
     border-radius: 0.5rem;
@@ -204,7 +214,7 @@
   }
 
   & .panel__cell.front {
-    font-size: 10rem;
+    font-size: 12rem;
     background-color: black;
     transition:
       transform 0.6s,
@@ -250,5 +260,139 @@
 
   & .panel__cell:nth-child(10) {
     --ry: 360deg;
+  }
+}
+
+/* Styles for the header-right section and the settings button/popover */
+.settings-button-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-button {
+  background: light-dark(#ffffff, #0f172a);
+  border: 1px solid #3b82f6;
+  color: var(--text-light);
+  padding: 0.6rem;
+  width: 50px;
+  height: 50px;
+  min-width: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition-speed) ease;
+  cursor: pointer;
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.settings-button:hover {
+  transform: scale(1.05);
+  color: var(--text-dark);
+}
+
+.settings-button:active {
+  transform: scale(0.98);
+}
+
+.settings-button .settings-icon {
+  width: 1.4em;
+  height: 1.4em;
+  color: #3b82f6;
+  fill: currentColor;
+  transition: fill var(--transition-speed) ease;
+  flex-shrink: 0;
+}
+
+.panel-tools-popover {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: light-dark(#000000, #444460);
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  padding: 1.5rem;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity var(--transition-speed) ease,
+    transform var(--transition-speed) ease,
+    visibility var(--transition-speed) ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.panel-tools-popover.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.gradient-text {
+  background: var(--metal-2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+/* Adjustments for panel__options inside the popover */
+.panel-tools-popover .panel__options {
+  background: transparent;
+  box-shadow: none;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-left: 0;
+  padding: 0;
+  align-items: flex-start;
+}
+
+.panel-tools-popover .panel__options .controls {
+  flex-direction: column;
+  width: 100%;
+}
+
+.panel-tools-popover .panel__options label .icon {
+  width: 100%;
+}
+
+.panel-tools-popover .panel__options .range__option {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.panel-tools-popover .panel__options input[type="range"] {
+  flex-grow: 1;
+}
+
+/* === Responsiveness === */
+@media (max-width: 768px) {
+  /* Header-right slot for mobile */
+  [slot="header-right"] {
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  /* Popover positioning for smaller screens */
+  .panel-tools-popover {
+    right: 1rem;
+    left: auto;
+    width: calc(100vw - 2rem);
+    max-width: 350px;
+    transform: translateY(10px);
   }
 }

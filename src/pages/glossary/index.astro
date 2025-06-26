@@ -1,0 +1,105 @@
+---
+import "@/assets/styles/alphabets/index.css";
+import "@/assets/styles/glossary/index.css";
+import Back from "@/components/Back.astro";
+import BaseLayout from "@/layouts/Base";
+
+const pageTitle = "Glossary";
+
+interface GlossarySection {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+  icon: string;
+}
+
+const glossarySections: GlossarySection[] = [
+  {
+    id: "months",
+    title: "Months ",
+    description: "Learn about the twelve months, their names, and order.",
+    href: "/glossary/months",
+    icon: "📅"
+  },
+  {
+    id: "sunsigns",
+    title: "Sun Signs",
+    description: "Explore the twelve zodiac sun signs and their characteristics.",
+    href: "/glossary/sunsign",
+    icon: "☀️"
+  },
+  {
+    id: "flags",
+    title: "Country Flags",
+    description: "Discover flags from various countries around the world.",
+    href: "/glossary/flags",
+    icon: "🚩"
+  },
+  {
+    id: "shapes",
+    title: "Geometric Shapes",
+    description: "Learn to identify different common geometric shapes.",
+    href: "/glossary/shapes",
+    icon: "💠"
+  },
+  {
+    id: "days",
+    title: "Days",
+    description: "Learn about the seven days of the week, their names, and order.",
+    href: "/glossary/days",
+    icon: "📅"
+  },
+  {
+    id: "seasons",
+    title: "Seasons",
+    description: "Explore the four seasons and their characteristics.",
+    href: "/glossary/seasons",
+    icon: "🌸"
+  },
+  {
+    id: "colours",
+    title: "Colours",
+    description: "Learn about different colours and their names.",
+    href: "/glossary/colours",
+    icon: "🎨"
+  },
+  {
+    id: "waqt",
+    title: "Waqt (Times of Day)",
+    description: "Learn about different times of the day and their Hindi names.",
+    href: "/glossary/waqt",
+    icon: "🕰️"
+  }
+];
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <Back />
+  <section class="container__alphabets">
+    <div class="alphabets__header">
+      <h1>{pageTitle}</h1>
+    </div>
+    <ul class="list__alphabets">
+      {
+        glossarySections.map((section, index) => (
+          <li class="card" style={`animation-delay: ${index * 50}ms`}>
+            <div class="card__inner">
+              <div class="card__content">
+                {section.icon && <div class="category__icon">{section.icon}</div>}
+                <h2 class="category__title">{section.title}</h2>
+                <p class="category__description">{section.description}</p>
+              </div>
+              <div class="card__actions">
+                <a href={section.href} class="btn btn-playground">
+                  <span class="icon">📚</span>
+                  Explore
+                </a>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

@@ -34,9 +34,7 @@ interface Branch {
   surnames: Surname[];
 }
 
-const { placeholder = "Search...", initialData = [] } = Astro.props;
-
-// Server-side data processing
+const { initialData = [] } = Astro.props;
 const processedData = initialData.map((branch, index) => ({
   ...branch,
   color: colors[index % colors.length]
@@ -47,7 +45,13 @@ const processedData = initialData.map((branch, index) => ({
   {
     processedData.length > 0 ? (
       processedData.map((branch, index) => (
-        <div class="card" style={`--card-index: ${index}; background: ${branch.color}`}>
+        <div
+          class="card"
+          style={`--card-index: ${index}; --card-color: ${branch.color}`}
+          data-gotra={`${branch.gotra.hi}|${branch.gotra.en}`}
+          data-deity={`${branch.deity.hi}|${branch.deity.en}`}
+          data-caste={`${branch.caste.hi}|${branch.caste.en}`}
+        >
           <div class="card-header">
             <div class="card-info">
               <div class="info-group">
@@ -67,16 +71,17 @@ const processedData = initialData.map((branch, index) => ({
               </div>
             </div>
             <div class="card-actions">
-              <div class="surname-count">
+              <button class="surname-count" aria-expanded="false" aria-controls={`card-body-${index}`}>
                 <span class="icon">👥</span>
                 <span class="count">{branch.surnames.length}</span>
-              </div>
+              </button>
               <button class="copy-button" aria-label="Copy card data">
                 <span class="icon">📋</span>
               </button>
             </div>
           </div>
-          <div class="card-body">
+          <div id={`card-body-${index}`} class="card-body" aria-hidden="true">
+            <h3 class="surnames-title">Surnames</h3>
             <ul class="surname-container">
               {branch.surnames.map((surname, idx) => (
                 <li class="surname-card" style={`--surname-index: ${idx}`}>
@@ -95,244 +100,67 @@ const processedData = initialData.map((branch, index) => ({
   }
 </div>
 
-<style>
-  .card {
-    border-radius: var(--border-radius-sm);
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--card-color, #4a90e2), rgba(74, 144, 226, 0.8));
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease forwards;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-  }
-
-  .surname-count {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius-sm);
-    color: var(--text-light);
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .surname-count:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-  }
-
-  .surname-count.active {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-  }
-
-  .card-body {
-    background: var(--glass-bg);
-    padding: 1.5rem;
-    margin: 0 1.5rem 1.5rem;
-    border-radius: var(--border-radius-sm);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-  }
-
-  .card.expanded .card-body {
-    max-height: 500px;
-    opacity: 1;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  }
-
-  .card.expanded .card-body::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .card.expanded .card-body::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 3px;
-  }
-
-  .card.expanded .card-body::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-  }
-
-  .card.expanded .card-body::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-
-  .surname-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius-sm);
-    padding: 0.75rem;
-    transition: var(--transition);
-    transform: translateX(0);
-    opacity: 0;
-    animation: slideIn 0.3s ease forwards;
-    animation-delay: calc(var(--surname-index) * 0.1s);
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  .surname-card:hover {
-    transform: translateX(5px);
-    background: rgba(255, 255, 255, 0.15);
-  }
-
-  .card-actions-top {
-    position: sticky;
-    top: 1rem;
-    z-index: 100;
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .download-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius-sm);
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .download-button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    background: var(--primary-color-dark);
-  }
-
-  .download-button .icon {
-    font-size: 1.2rem;
-  }
-
-  @media print {
-    .card-actions-top {
-      display: none;
-    }
-  }
-</style>
-
-<script>
-  function copyToClipboard(text: string, button: EventTarget | null) {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        const tooltip = document.createElement("span");
-        tooltip.className = "copied-tooltip";
-        tooltip.textContent = "Copied!";
-        if (button instanceof HTMLElement) {
-          button.appendChild(tooltip);
-        }
-
-        setTimeout(() => {
-          tooltip.remove();
-        }, 1500);
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
-  }
-
+<script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll(".card") as NodeListOf<HTMLElement>;
+    // Card expansion logic
+    const cards = document.querySelectorAll(".card");
 
-    // Handle card expansion
     cards.forEach((card) => {
-      const surnameCount = card.querySelector(".surname-count") as HTMLElement;
-      const copyButton = card.querySelector(".copy-button") as HTMLElement;
+      const toggleBtn = card.querySelector(".surname-count");
+      const cardBody = card.querySelector(".card-body");
 
-      if (surnameCount) {
-        surnameCount.addEventListener("click", (e: Event) => {
-          e.stopPropagation();
-          surnameCount.classList.toggle("active");
-          card.classList.toggle("expanded");
-        });
-      }
+      toggleBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isExpanded = card.classList.toggle("expanded");
+        if (toggleBtn) toggleBtn.setAttribute("aria-expanded", isExpanded.toString());
+        if (cardBody) cardBody.setAttribute("aria-hidden", (!isExpanded).toString());
+      });
+    });
 
-      if (copyButton) {
-        copyButton.addEventListener("click", (e: Event) => {
-          e.stopPropagation();
-          const gotra = (card.querySelector(".info-group:nth-child(1) .value") as HTMLElement)?.textContent;
-          const deity = (card.querySelector(".info-group:nth-child(2) .value") as HTMLElement)?.textContent;
-          const caste = (card.querySelector(".info-group:nth-child(3) .value") as HTMLElement)?.textContent;
-
-          if (!gotra || !deity || !caste) return;
-
-          const surnameCards = card.querySelectorAll(".surname-card");
-          const surnames = Array.from(surnameCards).map((surnameCard) => {
-            const element = surnameCard.querySelector("p") as HTMLElement;
-            return element.textContent?.replace("🍀", "").trim() || "";
-          });
-
-          const jsonData = {
-            gotra: gotra,
-            deity: deity,
-            caste: caste,
-            surnames: surnames
-          };
-          const textToCopy = JSON.stringify(jsonData, null, 2);
-
-          copyToClipboard(textToCopy, copyButton);
+    // Close cards when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".card")) {
+        cards.forEach((card) => {
+          card.classList.remove("expanded");
+          const toggleBtn = card.querySelector(".surname-count");
+          const cardBody = card.querySelector(".card-body");
+          if (toggleBtn) toggleBtn.setAttribute("aria-expanded", "false");
+          if (cardBody) cardBody.setAttribute("aria-hidden", "true");
         });
       }
     });
 
-    // Handle PDF download
-    const downloadButton = document.getElementById("downloadPdf");
-    if (downloadButton) {
-      downloadButton.addEventListener("click", () => {
-        // Expand all cards before printing
-        const cards = document.querySelectorAll(".card") as NodeListOf<HTMLElement>;
-        cards.forEach((card) => {
-          card.classList.add("expanded");
-        });
+    // Copy button functionality with fixed tooltip stacking
+    document.querySelectorAll(".copy-button").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const card = btn.closest(".card");
+        const gotra = card?.querySelector(".info-group:nth-child(1) .value")?.textContent;
+        const deity = card?.querySelector(".info-group:nth-child(2) .value")?.textContent;
+        const caste = card?.querySelector(".info-group:nth-child(3) .value")?.textContent;
 
-        // Wait for animations to complete
-        setTimeout(() => {
-          window.print();
-        }, 500);
+        const surnames = Array.from(card?.querySelectorAll(".surname-card p") || []).map(
+          (el) => el.textContent?.trim() || ""
+        );
+
+        const data = { gotra, deity, caste, surnames };
+        navigator.clipboard
+          .writeText(JSON.stringify(data, null, 2))
+          .then(() => {
+            // Remove any existing tooltip first
+            const existingTooltip = btn.querySelector(".copied-tooltip");
+            if (existingTooltip) {
+              existingTooltip.remove();
+            }
+
+            const tooltip = document.createElement("span");
+            tooltip.className = "copied-tooltip";
+            tooltip.textContent = "Copied!";
+            btn.appendChild(tooltip);
+            setTimeout(() => tooltip.remove(), 1500);
+          })
+          .catch((err) => console.error("Failed to copy:", err));
       });
-    }
+    });
   });
 </script>

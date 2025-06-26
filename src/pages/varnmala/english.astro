@@ -1,112 +1,47 @@
 ---
+import "@/assets/styles/varnmala/alphabet.css";
 import BaseLayout from "@/layouts/Base";
-import "@/assets/styles/varnmala/english.css";
+import AlphabetComponent from "@/components/Alphabet.astro";
 import Help from "@/components/Help.astro";
-import BackButton from "@/components/ui/backButton.astro";
+import BackButton from "@/components/BackButton.astro";
+
+import { varnmala_english } from "@/utils/characters";
 ---
 
 <BaseLayout meta={{ title: "English" }}>
   <Fragment slot="header-right">
-    <div class="controls" id="controls">
-      <div class="control-group">
-        <label>Bg:</label>
-        <select id="bgSelector">
-          <option value="none">None</option>
-          <option value="gradient1">G1</option>
-          <option value="gradient2">G2</option>
-          <option value="pattern1">P1</option>
-        </select>
-        <button id="toggleBg">Toggle</button>
-      </div>
-
-      <div class="control-group">
-        <label>Font:</label>
-        <select id="fontSelector">
-          <option value="Arial">Arial</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Times New Roman">Times</option>
-        </select>
-        <input type="color" id="colorPicker" value="#000000" />
-      </div>
-    </div>
     <Help
-      title="Hindi Varnmala"
-      description="Just press any letter from keyboard and it display the letter and it's relative word in clear way and if you type again it will change the color"
+      title="English "
+      description="It is a collection of alphabets in English. It is used to teach kids the basics of language."
     />
   </Fragment>
   <BackButton />
-  <article class="container__english">
-    <article class="container__hindi" id="letterContainer">
-      <div class="letter">A</div>
-    </article>
-    <script>
-      import { colorBox, getRandomValue, isAlphabet } from "@/utils/index";
 
-      const letterDiv = document.querySelector(".letter") as HTMLDivElement;
-      const controls = document.getElementById("controls") as HTMLElement;
-      const letterContainer = document.getElementById("letterContainer") as HTMLElement;
-      const bgSelector = document.getElementById("bgSelector") as HTMLInputElement;
-      const fontSelector = document.getElementById("fontSelector") as HTMLInputElement;
-      const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
-      const toggleBg = document.getElementById("toggleBg") as HTMLButtonElement;
-
-      // Event Listeners
-      bgSelector?.addEventListener("change", updateBackground);
-      fontSelector?.addEventListener("change", updateFont);
-      colorPicker?.addEventListener("change", updateColor);
-      toggleBg?.addEventListener("click", toggleBackground);
-
-      document.addEventListener(
-        "keydown",
-        (e) => {
-          e.preventDefault();
-          const color = getRandomValue(colorBox);
-          const { key, keyCode } = e;
-          if (isAlphabet(keyCode)) {
-            const keyCapital = key.toUpperCase();
-            drawLetter(keyCapital, colorPicker.value || color);
-          }
-        },
-        false
-      );
-
-      const drawLetter = (letter: string, color = "pink") => {
-        letterDiv.innerHTML = letter;
-        letterDiv.style.color = color;
-        letterDiv.style.animation = "letterPop 0.3s ease-out";
-        setTimeout(() => {
-          letterDiv.style.animation = "";
-        }, 300);
-      };
-
-      function updateBackground() {
-        letterContainer.className = "container__hindi";
-        if (bgSelector.value !== "none") {
-          letterContainer.classList.add(`bg-${bgSelector.value}`);
-        }
-      }
-
-      function updateFont() {
-        letterDiv.style.fontFamily = fontSelector.value;
-      }
-
-      function updateColor() {
-        letterDiv.style.color = colorPicker.value;
-      }
-
-      function toggleBackground() {
-        letterContainer.classList.toggle("no-background");
-      }
-
-      // Intersection Observer for sticky header
-      const observer = new IntersectionObserver(
-        ([e]) => {
-          controls.classList.toggle("sticky", e.intersectionRatio < 1);
-        },
-        { threshold: [1] }
-      );
-
-      observer.observe(controls);
-    </script>
+  <article class="container__alphabets">
+    <section id="english">
+      <AlphabetComponent list={varnmala_english} title="English" />
+    </section>
   </article>
 </BaseLayout>
+<script>
+  const tabs = document.querySelectorAll(".tab");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Remove active class from all tabs
+      tabs.forEach((t) => t.classList.remove("active"));
+
+      // Add active class to clicked tab
+      tab.classList.add("active");
+
+      // Scroll to target section with offset
+      const targetId = tab.getAttribute("data-target");
+      if (targetId) {
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+  });
+</script>

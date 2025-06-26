@@ -2,6 +2,7 @@
 import { getLetterIndex } from "@/utils/index";
 
 const letterRows = [
+  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
   ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
   ["Z", "X", "C", "V", "B", "N", "M"]
@@ -26,7 +27,6 @@ const letterRows = [
   :root {
     --primary-bg: #1a1a1a;
     --default-bg: #0b1f54;
-    --accent-color: #4a90e2;
     --text-color: #ffffff;
     --modal-bg: rgba(0, 0, 0, 0.8);
   }
@@ -34,9 +34,10 @@ const letterRows = [
   .container__keyboard {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: var(--primary-bg);
+    gap: 1.2rem;
+    padding: 3rem;
+    margin-top: 3rem;
+    background: light-dark(#f8eeec, #87807c);
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
@@ -44,64 +45,120 @@ const letterRows = [
   .keyboard-row {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1.2rem;
   }
 
   .keyboard-item {
-    width: 5rem;
-    height: 5rem;
+    width: 5.5rem;
+    height: 5.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--default-bg);
-    color: var(--text-color);
+    background-color: light-dark(#ffffff, #232025);
+    color: light-dark(black, white);
     border-radius: 0.25rem;
     cursor: pointer;
     transition: all 0.2s ease;
     font-weight: bold;
     user-select: none;
+    font-size: 1.7rem;
   }
 
   .keyboard-item:hover {
-    background: var(--accent-color);
+    background: light-dark(#808080, #5f5f5f);
     transform: translateY(-2px);
   }
 
   .keyboard-item.active {
-    background: var(--accent-color);
-    transform: scale(1.1);
+    transform: scale(1.05);
+  }
+
+  .keyboard-item.active:hover {
+    background-color: light-dark(grey, #0b1f54);
   }
 
   @media (max-width: 640px) {
+    .container__keyboard {
+      gap: 0.8rem;
+      padding: 1.5rem;
+    }
+
+    .keyboard-row {
+      gap: 0.8rem;
+    }
+
     .letter-box,
     .keyboard-item {
       width: 2rem;
       height: 2rem;
-      font-size: 0.875rem;
+      font-size: 1rem;
     }
   }
 </style>
 
 <script>
-  const dialog = document.getElementById("game-instructions") as HTMLDialogElement;
-  const helpButton = document.getElementById("help-button");
-  const closeButton = document.getElementById("close-instructions");
+  // New Color Generation and Management
+  const letterColors: Record<string, string> = {};
+  let hue = 0;
 
-  helpButton?.addEventListener("click", () => {
-    dialog?.showModal();
-  });
+  // Function to generate a new distinct HSL color
+  function getUniqueColor() {
+    const saturation = 70;
+    const lightness = 50;
+    const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    hue = (hue + 45) % 360;
+    return color;
+  }
 
-  closeButton?.addEventListener("click", () => {
-    dialog?.close();
-  });
+  const allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  for (const char of allLetters) {
+    letterColors[char] = getUniqueColor();
+  }
+
+  // Unified Toggle Function
+  function toggleLetterState(character: string) {
+    const upperCaseCharacter = character.toUpperCase();
+
+    // Handle the letter box (hide/show)
+    const letterBox = document.querySelector(`.letter-box[data-letter="${upperCaseCharacter}"]`);
+    if (letterBox instanceof HTMLElement) {
+      const isVisible = letterBox.getAttribute("data-visible") === "true";
+      letterBox.setAttribute("data-visible", (!isVisible).toString());
+    }
+
+    // Handle the keyboard item (selection and color)
+    const keyboardItem = document.querySelector(`.keyboard-item[data-letter="${upperCaseCharacter}"]`);
+    if (keyboardItem instanceof HTMLElement) {
+      if (keyboardItem.classList.contains("active")) {
+        keyboardItem.classList.remove("active");
+        keyboardItem.style.removeProperty("background-color");
+        keyboardItem.style.removeProperty("--active-bg-color");
+      } else {
+        keyboardItem.classList.add("active");
+        const assignedColor = letterColors[upperCaseCharacter] || getUniqueColor();
+        keyboardItem.style.backgroundColor = assignedColor;
+        keyboardItem.style.setProperty("--active-bg-color", assignedColor);
+      }
+    }
+  }
+
+  // Event Listeners
 
   document.addEventListener("keydown", (e) => {
-    if (/^[a-zA-Z]$/.test(e.key)) {
-      const letterBox = document.querySelector(`.letter-box[data-letter="${e.key.toUpperCase()}"]`);
-      if (letterBox instanceof HTMLElement) {
-        const isVisible = letterBox.getAttribute("data-visible") === "true";
-        letterBox.setAttribute("data-visible", (!isVisible).toString());
-      }
+    let characterToToggle: string | null = null;
+
+    // Check for standard alphanumeric keys (including numbers above letters)
+    if (/^[a-zA-Z0-9]$/.test(e.key)) {
+      characterToToggle = e.key;
+    }
+    // Check for Numpad keys
+    else if (e.code.startsWith("Numpad") && e.key.match(/^\d$/)) {
+      characterToToggle = e.key;
+    }
+
+    if (characterToToggle) {
+      e.preventDefault();
+      toggleLetterState(characterToToggle);
     }
   });
 
@@ -109,13 +166,9 @@ const letterRows = [
 
   keyboardItems.forEach((item) => {
     item.addEventListener("click", () => {
-      const letter = item.getAttribute("data-letter");
-      if (letter) {
-        const letterBox = document.querySelector(`.letter-box[data-letter="${letter}"]`);
-        if (letterBox instanceof HTMLElement) {
-          const isVisible = letterBox.getAttribute("data-visible") === "true";
-          letterBox.setAttribute("data-visible", (!isVisible).toString());
-        }
+      const character = item.getAttribute("data-letter");
+      if (character) {
+        toggleLetterState(character);
       }
     });
   });

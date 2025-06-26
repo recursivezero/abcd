@@ -1,6 +1,6 @@
 ---
 import "@/assets/styles/varnmala/barahkhadi/consonant.css";
-import BackButton from "@/components/ui/backButton.astro";
+import BackButton from "@/components/BackButton.astro";
 import BaseLayout from "@/layouts/Base";
 
 import { hindiConsonants as consonants, matras } from "@/utils/characters";
@@ -16,9 +16,9 @@ const combinations = [consonant, ...Object.values(matras).map((matra) => consona
 ---
 
 <BaseLayout meta={{ title: `Barahkhadi - ${consonant}` }}>
+  <BackButton />
   <div class="container__consonant">
     <div class="consonant__header">
-      <BackButton />
       <div class="consonant">{consonant}</div>
     </div>
     <div class="combinations__grid">

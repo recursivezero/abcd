@@ -1,0 +1,160 @@
+---
+import BaseLayout from "@/layouts/Base";
+import LetterCard from "@/components/LetterCard.astro";
+import BackButton from "@/components/BackButton.astro";
+import "@/assets/styles/varnmala/greek-alphabet.css";
+
+const vowels = [
+  { letter: "अ", code: "0905", meaning: "अदरक (Ginger)", emoji: "🫚", unicode: "U+1F95D" },
+  { letter: "आ", code: "0906", meaning: "आम (Mango)", emoji: "🥭", unicode: "U+1F96D" },
+  { letter: "इ", code: "0907", meaning: "इमली (Tamarind)", emoji: "🥔", unicode: "U+1F330" },
+  { letter: "ई", code: "0908", meaning: "ईख (Sugarcane)", emoji: "🎋", unicode: "U+1F36C" },
+  { letter: "उ", code: "0909", meaning: "उल्लू (Owl)", emoji: "🦉", unicode: "U+1F989" },
+  { letter: "ऊ", code: "090A", meaning: "ऊँट (Camel)", emoji: "🐫", unicode: "U+1F42B" },
+  { letter: "ऋ", code: "090B", meaning: "ऋषि (Sage)", emoji: "🧘‍♂️", unicode: "U+1F9D8" },
+  { letter: "ए", code: "090F", meaning: "एड़ी (Heel)", emoji: "🦶", unicode: "U+1F9B6" },
+  { letter: "ऐ", code: "0910", meaning: "ऐनक (Glasses)", emoji: "👓", unicode: "U+1F453" },
+  { letter: "ओ", code: "0913", meaning: "ओखली (Mortar)", emoji: "🪨", unicode: "U+1FAA8" },
+  { letter: "औ", code: "0914", meaning: "औरत (Woman)", emoji: "👩", unicode: "U+1F469" }
+];
+const consonants = [
+  { letter: "क", code: "0915", meaning: "कबूतर (pigeon)", emoji: "🐦", unicode: "U+1F426" },
+  { letter: "ख", code: "0916", meaning: "खरगोश (rabbit)", emoji: "🐇", unicode: "U+1F407" },
+  { letter: "ग", code: "0917", meaning: "गमला (flower pot)", emoji: "🪴", unicode: "U+1F33C" },
+  { letter: "घ", code: "0918", meaning: "घोड़ा (horse)", emoji: "🐎", unicode: "U+1F40E" },
+  { letter: "च", code: "091A", meaning: "चम्मच (spoon)", emoji: "🥄", unicode: "U+1F944" },
+  { letter: "छ", code: "091B", meaning: "छतरी (umbrella)", emoji: "☂️", unicode: "U+2602" },
+  { letter: "ज", code: "091C", meaning: "जहाज़ (ship)", emoji: "🚢", unicode: "U+1F6A2" },
+  { letter: "झ", code: "091D", meaning: "झंडा (flag)", emoji: "🏁", unicode: "U+1F3C1" },
+  { letter: "ट", code: "091F", meaning: "टमाटर (tomato)", emoji: "🍅", unicode: "U+1F345" },
+  { letter: "ठ", code: "0920", meaning: "ठठेरा (brass smith)", emoji: "🔨", unicode: "U+1F44F" },
+  { letter: "ड", code: "0921", meaning: "डमरू (Shiva's drum)", emoji: "🥁", unicode: "U+1F941" },
+  { letter: "ढ", code: "0922", meaning: "ढोलक (drum)", emoji: "🪘", unicode: "U+1FA98" },
+  { letter: "ण", code: "0923", meaning: "ण (none)", emoji: "♨️", unicode: "U+2668" },
+  { letter: "त", code: "0924", meaning: "तरबूज (watermelon)", emoji: "🍉", unicode: "U+1F349" },
+  { letter: "थ", code: "0925", meaning: "थाली (plate)", emoji: "🍽️", unicode: "U+1F37D" },
+  { letter: "द", code: "0926", meaning: "दिवा (lamp)", emoji: "🪔", unicode: "U+1FA94" },
+  { letter: "ध", code: "0927", meaning: "धनुष (bow)", emoji: "🏹", unicode: "U+1F3F9" },
+  { letter: "न", code: "0928", meaning: "नाग (snake)", emoji: "🐍", unicode: "U+1F40D" },
+  { letter: "प", code: "092A", meaning: "पतंग (kite)", emoji: "🪁", unicode: "U+1FA81" },
+  { letter: "फ", code: "092B", meaning: "फल (fruit)", emoji: "🍎", unicode: "U+1F34E" },
+  { letter: "ब", code: "092C", meaning: "बकरी (goat)", emoji: "🐐", unicode: "U+1F410" },
+  { letter: "भ", code: "092D", meaning: "भैंस (buffalo)", emoji: "🐃", unicode: "U+1F403" },
+  { letter: "म", code: "092E", meaning: "मक्खी (fly)", emoji: "🪰", unicode: "U+1FAB0" },
+  { letter: "य", code: "092F", meaning: "यज्ञ (fire ritual)", emoji: "🔥", unicode: "U+1F525" },
+  { letter: "र", code: "0930", meaning: "रंग (color)", emoji: "🎨", unicode: "U+1F3A8" },
+  { letter: "ल", code: "0932", meaning: "लट्टू (top)", emoji: "🪀", unicode: "U+1FA80" },
+  { letter: "व", code: "0935", meaning: "वृक्ष (tree)", emoji: "🌳", unicode: "U+1F333" },
+  { letter: "श", code: "0936", meaning: "शंख (conch)", emoji: "🐚", unicode: "U+1F41A" },
+  { letter: "ष", code: "0937", meaning: "षट्कोण (hexagon)", emoji: "⬡", unicode: "U+1F981" },
+  { letter: "स", code: "0938", meaning: "सांप (snake)", emoji: "🐍", unicode: "U+1F40D" },
+  { letter: "ह", code: "0939", meaning: "हाथी (elephant)", emoji: "🐘", unicode: "U+1F418" },
+  { letter: "क्ष", code: "0915+094D+0937", meaning: "क्षत्रिय (warrior)", emoji: "⚔️", unicode: "U+2694" },
+  { letter: "त्र", code: "0924+094D+0930", meaning: "त्रिशूल (trident)", emoji: "🔱", unicode: "U+1F531" },
+  { letter: "ज्ञ", code: "091C+094D+091E", meaning: "ज्ञान (knowledge)", emoji: "📚", unicode: "U+1F4DA" }
+];
+
+const pageTitle = "Hindi Alphabets (हिन्दी वर्णमाला)";
+const category = "hindi";
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <BackButton href="/alphabets/" />
+  <article class="container__page alphabet-page-container hindi-alphabet-page">
+    <div class="page-header">
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="tabs-container">
+      <button id="swar-tab" class="tab-button active" data-content="swar-content">Swar (स्वर)</button>
+    </div>
+
+    <div id="swar-content" class="tab-content active-content">
+      <div class="grid-container alphabet-grid hindi-grid">
+        {
+          vowels.map((entry, idx) => (
+            <LetterCard
+              item={{
+                id: idx,
+                letter: entry.letter,
+                text: entry.meaning,
+                description: entry.emoji,
+                emoji: entry.emoji
+              }}
+              category={category}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="tabs-container">
+      <button id="vyanjan-tab" class="tab-button" data-content="vyanjan-content">Vyanjan (व्यंजन)</button>
+    </div>
+
+    <div id="vyanjan-content" class="tab-content">
+      <div class="grid-container alphabet-grid hindi-grid">
+        {
+          consonants.map((entry, idx) => (
+            <LetterCard
+              item={{
+                id: idx,
+                letter: entry.letter,
+                text: entry.meaning,
+                description: entry.emoji,
+                emoji: entry.emoji
+              }}
+              category={category}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    function setActiveTab(activeButton: HTMLButtonElement) {
+      tabButtons.forEach((button) => button.classList.remove("active"));
+      activeButton.classList.add("active");
+      const contentId = activeButton.dataset.content;
+      tabContents.forEach((content) => {
+        if (content.id === contentId) {
+          content.classList.add("active-content");
+        } else {
+          content.classList.remove("active-content");
+        }
+      });
+    }
+
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => setActiveTab(button as HTMLButtonElement));
+    });
+
+    // Initialize
+    const initialTab = document.querySelector(".tab-button.active") as HTMLButtonElement | null;
+    if (initialTab) setActiveTab(initialTab);
+
+    // Flip All Cards logic
+    const flipAllButton = document.getElementById("flip-all-button");
+    let allFlipped = false;
+    flipAllButton?.addEventListener("click", () => {
+      allFlipped = !allFlipped;
+      document.querySelectorAll(".flip__card").forEach((card) => {
+        if (allFlipped) {
+          card.classList.add("flipped");
+        } else {
+          card.classList.remove("flipped");
+        }
+      });
+      flipAllButton.textContent = allFlipped ? "Reset All Cards" : "Flip All Cards";
+      flipAllButton.classList.add("active");
+      setTimeout(() => flipAllButton.classList.remove("active"), 300);
+    });
+  });
+</script>

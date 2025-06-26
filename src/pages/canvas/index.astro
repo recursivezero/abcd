@@ -1,0 +1,35 @@
+---
+import Back from "@/components/Back.astro";
+import BaseLayout from "@/layouts/Base";
+import CanvasIcon from "@/assets/icons/canvas-icon.svg";
+import QuoteIcon from "@/assets/icons/quote-icon.svg";
+import "@/assets/styles/CardIndex.css";
+
+const meta = {
+  title: "Canvas",
+  description: "Choose between the Canvas Image Generator and the Quote Designer."
+};
+---
+
+<BaseLayout {meta}>
+  <Back />
+  <div class="selection-container">
+    <h1 class="selection-title">Select a creative mode</h1>
+    <div class="selection-buttons-grid">
+      <a href="/canvas/text" class="selection-card">
+        <div class="card-icon">
+          <CanvasIcon />
+        </div>
+        <h2 class="card-title">Text Designer</h2>
+        <p class="card-description">Create unique images with custom text and time.</p>
+      </a>
+      <a href="/canvas/quote" class="selection-card">
+        <div class="card-icon">
+          <QuoteIcon />
+        </div>
+        <h2 class="card-title">Quote Designer</h2>
+        <p class="card-description">Design beautiful and shareable quotes with ease.</p>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

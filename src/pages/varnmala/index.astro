@@ -1,17 +1,18 @@
 ---
 import "@/assets/styles/varnmala/index.css";
+import Back from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
 
 const sections = [
   {
-    title: "Alphabet",
-    description: "Learn the basic alphabet characters",
-    href: "alphabet"
+    title: "English",
+    description: "Learn the basic English alphabets",
+    href: "english"
   },
   {
-    title: "English",
-    description: "Learn English alphabets",
-    href: "english"
+    title: "Hindi",
+    description: "Learn the basic Hindi alphabets",
+    href: "hindi"
   },
   {
     title: "Reader",
@@ -19,20 +20,29 @@ const sections = [
     href: "reader"
   },
   {
+    title: "Write",
+    description: "Practice writing alphabets ",
+    href: "write"
+  },
+  {
     title: "Barahkhadi",
     description: "Learn the basic barahkhadi characters",
     href: "barahkhadi"
   },
   {
-    title: "Number",
-    description: "Learn the basic number characters",
-    href: "number"
+    title: "Speak and draw",
+    description: "Draw the basic Varnmala characters",
+    href: "speak"
   }
 ];
 ---
 
 <BaseLayout meta={{ title: "Varnmala" }}>
+  <Back />
   <div class="container__varnmala">
+    <div class="alphabets__header">
+      <h1>Varnmala</h1>
+    </div>
     <ul class="list__alphabets">
       {
         sections.map((section, index) => (
