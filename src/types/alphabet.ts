@@ -6,9 +6,9 @@ export type LetterEntity = {
 export interface AlphabetEntry {
   id: number | string;
   letter: string;
-  code?: number;
   text: string;
   description: string;
+  code?: number;
   emoji?: string;
   image?: string;
   englishSound?: string;
@@ -43,3 +43,23 @@ export interface GeekAlphabetEntry {
   name: string;
   representations: string[];
 }
+
+export type CardSectionType = {
+  icon?: string;
+  id?: string;
+  kind?: string;
+  title: string;
+  description: string;
+  href: {
+    playground: {
+      link: string;
+      icon: string;
+      text: string;
+    };
+    board?: {
+      link: string;
+      icon: string;
+      text: string;
+    };
+  };
+};
