@@ -26,232 +26,233 @@ import "@/assets/styles/map/district.css";
     </svg>
     <div class="district-tooltip" id="tooltip"></div>
   </div>
-  <h2 class="title"> - {quote}</h2>
+  <h2 class="title">- {quote}</h2>
 
-<script is:inline define:vars={{ state }}>
-  let currentScale = 1;
-  let currentX = 0;
-  let currentY = 0;
-  const ZOOM_FACTOR = 0.2;
-  const MAX_ZOOM = 3;
-  const MIN_ZOOM = 0.5;
-  let isDragging = false;
-  let startX, startY;
+  <script is:inline define:vars={{ state }}>
+    let currentScale = 1;
+    let currentX = 0;
+    let currentY = 0;
+    const ZOOM_FACTOR = 0.2;
+    const MAX_ZOOM = 3;
+    const MIN_ZOOM = 0.5;
+    let isDragging = false;
+    let startX, startY;
 
-  async function loadSVG() {
-    try {
-      const stateName = state.split(" ").join("");
-      const response = await fetch(`/public/map/svg/states/${stateName}.svg`);
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    async function loadSVG() {
+      try {
+        const stateName = state.split(" ").join("");
+        const response = await fetch(`/public/map/svg/states/${stateName}.svg`);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-      const svgText = await response.text();
-      const svgContainer = document.querySelector(".district svg");
-      if (svgContainer) {
-        svgContainer.innerHTML = svgText;
-        processPaths();
-        setupViewControls();
-        setupZoomControls();
-        setupPanControls();
+        const svgText = await response.text();
+        const svgContainer = document.querySelector(".district svg");
+        if (svgContainer) {
+          svgContainer.innerHTML = svgText;
+          processPaths();
+          setupViewControls();
+          setupZoomControls();
+          setupPanControls();
+        }
+      } catch (error) {
+        console.error("Error loading SVG:", error);
       }
-    } catch (error) {
-      console.error("Error loading SVG:", error);
     }
-  }
 
-  function setupViewControls() {
-    const buttons = document.querySelectorAll(".view-button");
-    const paths = document.querySelectorAll(".district path");
-    const texts = document.querySelectorAll(".district text");
+    function setupViewControls() {
+      const buttons = document.querySelectorAll(".view-button");
+      const paths = document.querySelectorAll(".district path");
+      const texts = document.querySelectorAll(".district text");
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        // Remove active class from all buttons
-        buttons.forEach((btn) => btn.classList.remove("active"));
-        // Add active class to clicked button
-        button.classList.add("active");
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Remove active class from all buttons
+          buttons.forEach((btn) => btn.classList.remove("active"));
+          // Add active class to clicked button
+          button.classList.add("active");
 
-        const view = button.dataset.view;
+          const view = button.dataset.view;
 
-        // Reset all elements
-        paths.forEach((path) => {
-          path.style.stroke = "transparent";
-          path.style.strokeWidth = "0px";
+          // Reset all elements
+          paths.forEach((path) => {
+            path.style.stroke = "transparent";
+            path.style.strokeWidth = "0px";
+          });
+          texts.forEach((text) => {
+            text.style.display = "block";
+          });
+
+          // Apply view-specific styles
+          switch (view) {
+            case "map":
+              paths.forEach((path) => {
+                path.style.stroke = "none";
+                path.style.fill = "pink";
+              });
+              texts.forEach((text) => {
+                text.style.display = "none";
+              });
+              break;
+            case "boundaries":
+              paths.forEach((path) => {
+                path.style.stroke = "#333";
+                path.style.strokeWidth = "1px";
+              });
+              texts.forEach((text) => {
+                text.style.display = "none";
+              });
+              break;
+            case "full":
+              paths.forEach((path) => {
+                path.style.stroke = "#333";
+                path.style.strokeWidth = "1px";
+              });
+              texts.forEach((text) => {
+                text.style.display = "block";
+                text.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--text");
+              });
+              break;
+          }
         });
-        texts.forEach((text) => {
-          text.style.display = "block";
-        });
+      });
 
-        // Apply view-specific styles
-        switch (view) {
-          case "map":
-            paths.forEach((path) => {
-              path.style.stroke = "none";
-              path.style.fill = "pink";
-            });
-            texts.forEach((text) => {
-              text.style.display = "none";
-            });
-            break;
-          case "boundaries":
-            paths.forEach((path) => {
-              path.style.stroke = "#333";
-              path.style.strokeWidth = "1px";
-            });
-            texts.forEach((text) => {
-              text.style.display = "none";
-            });
-            break;
-          case "full":
-            paths.forEach((path) => {
-              path.style.stroke = "#333";
-              path.style.strokeWidth = "1px";
-            });
-            texts.forEach((text) => {
-              text.style.display = "block";
-              text.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--text");
-            });
-            break;
+      //// Set default view
+      buttons[0].click();
+    }
+
+    function setupZoomControls() {
+      const zoomButtons = document.querySelectorAll(".zoom-button");
+
+      zoomButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const action = button.dataset.zoom;
+
+          switch (action) {
+            case "in":
+              if (currentScale < MAX_ZOOM) {
+                currentScale += ZOOM_FACTOR;
+              }
+              break;
+            case "out":
+              if (currentScale > MIN_ZOOM) {
+                currentScale -= ZOOM_FACTOR;
+              }
+              break;
+            case "reset":
+              currentScale = 1;
+              currentX = 0;
+              currentY = 0;
+              break;
+          }
+
+          updateTransform();
+        });
+      });
+    }
+
+    function setupPanControls() {
+      const district = document.querySelector(".district");
+
+      district.addEventListener("mousedown", (e) => {
+        if (currentScale > 1) {
+          isDragging = true;
+          district.classList.add("grabbing");
+          startX = e.clientX - currentX;
+          startY = e.clientY - currentY;
         }
       });
-    });
 
-    //// Set default view
-    buttons[0].click();
-  }
+      document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
 
-  function setupZoomControls() {
-    const zoomButtons = document.querySelectorAll(".zoom-button");
+        currentX = e.clientX - startX;
+        currentY = e.clientY - startY;
 
-    zoomButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const action = button.dataset.zoom;
-
-        switch (action) {
-          case "in":
-            if (currentScale < MAX_ZOOM) {
-              currentScale += ZOOM_FACTOR;
-            }
-            break;
-          case "out":
-            if (currentScale > MIN_ZOOM) {
-              currentScale -= ZOOM_FACTOR;
-            }
-            break;
-          case "reset":
-            currentScale = 1;
-            currentX = 0;
-            currentY = 0;
-            break;
-        }
+        // Limit panning to prevent map from going too far
+        const maxPan = (currentScale - 1) * 100;
+        currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
+        currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
 
         updateTransform();
       });
-    });
-  }
 
-  function setupPanControls() {
-    const district = document.querySelector(".district");
-
-    district.addEventListener("mousedown", (e) => {
-      if (currentScale > 1) {
-        isDragging = true;
-        district.classList.add("grabbing");
-        startX = e.clientX - currentX;
-        startY = e.clientY - currentY;
-      }
-    });
-
-    document.addEventListener("mousemove", (e) => {
-      if (!isDragging) return;
-
-      currentX = e.clientX - startX;
-      currentY = e.clientY - startY;
-
-      // Limit panning to prevent map from going too far
-      const maxPan = (currentScale - 1) * 100;
-      currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
-      currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
-
-      updateTransform();
-    });
-
-    document.addEventListener("mouseup", () => {
-      isDragging = false;
-      district.classList.remove("grabbing");
-    });
-
-    // Touch events for mobile
-    district.addEventListener("touchstart", (e) => {
-      if (currentScale > 1) {
-        isDragging = true;
-        district.classList.add("grabbing");
-        startX = e.touches[0].clientX - currentX;
-        startY = e.touches[0].clientY - currentY;
-      }
-    });
-
-    document.addEventListener("touchmove", (e) => {
-      if (!isDragging) return;
-
-      currentX = e.touches[0].clientX - startX;
-      currentY = e.touches[0].clientY - startY;
-
-      // Limit panning to prevent map from going too far
-      const maxPan = (currentScale - 1) * 100;
-      currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
-      currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
-
-      updateTransform();
-    });
-
-    document.addEventListener("touchend", () => {
-      isDragging = false;
-      district.classList.remove("grabbing");
-    });
-  }
-
-  function updateTransform() {
-    const svg = document.querySelector(".district svg");
-    svg.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
-  }
-
-  function processPaths() {
-    const allPaths = Array.from(document.querySelectorAll(".district path"));
-    const halfLength = Math.floor(allPaths.length / 2);
-    const paths = allPaths.slice(halfLength);
-    const tooltip = document.getElementById("tooltip");
-    const texts = document.querySelectorAll("svg text");
-    const labels = Array.from(texts)
-      .map((el) => el.textContent.trim())
-      .filter((text) => text.length > 1);
-
-    paths.forEach((path, index) => {
-      path.style.cursor = "pointer";
-      const districtName = labels[index];
-
-      path.addEventListener("mouseenter", (e) => {
-        path.style.fill = "orange";
-        if (!tooltip || !districtName) return;
-
-        tooltip.textContent = path.id === "capital" ? `${districtName}, the Capital of Rajasthan` : districtName;
-        tooltip.classList.add("visible");
-
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-
-        tooltip.style.left = `${mouseX - 250}px`;
-        tooltip.style.top = `${mouseY - 120}px`;
-        path.style.transition = "fill 0.3s ease, stroke 0.3s ease, stroke-width 0.3s ease";
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+        district.classList.remove("grabbing");
       });
 
-      path.addEventListener("mouseleave", () => {
-        path.style.fill = "pink";
-        if (tooltip) {
-          tooltip.classList.remove("visible");
+      // Touch events for mobile
+      district.addEventListener("touchstart", (e) => {
+        if (currentScale > 1) {
+          isDragging = true;
+          district.classList.add("grabbing");
+          startX = e.touches[0].clientX - currentX;
+          startY = e.touches[0].clientY - currentY;
         }
       });
-    });
-  }
 
-  document.addEventListener("DOMContentLoaded", loadSVG);
-</script>
+      document.addEventListener("touchmove", (e) => {
+        if (!isDragging) return;
+
+        currentX = e.touches[0].clientX - startX;
+        currentY = e.touches[0].clientY - startY;
+
+        // Limit panning to prevent map from going too far
+        const maxPan = (currentScale - 1) * 100;
+        currentX = Math.max(-maxPan, Math.min(maxPan, currentX));
+        currentY = Math.max(-maxPan, Math.min(maxPan, currentY));
+
+        updateTransform();
+      });
+
+      document.addEventListener("touchend", () => {
+        isDragging = false;
+        district.classList.remove("grabbing");
+      });
+    }
+
+    function updateTransform() {
+      const svg = document.querySelector(".district svg");
+      svg.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+    }
+
+    function processPaths() {
+      const allPaths = Array.from(document.querySelectorAll(".district path"));
+      const halfLength = Math.floor(allPaths.length / 2);
+      const paths = allPaths.slice(halfLength);
+      const tooltip = document.getElementById("tooltip");
+      const texts = document.querySelectorAll("svg text");
+      const labels = Array.from(texts)
+        .map((el) => el.textContent.trim())
+        .filter((text) => text.length > 1);
+
+      paths.forEach((path, index) => {
+        path.style.cursor = "pointer";
+        const districtName = labels[index];
+
+        path.addEventListener("mouseenter", (e) => {
+          path.style.fill = "orange";
+          if (!tooltip || !districtName) return;
+
+          tooltip.textContent = path.id === "capital" ? `${districtName}, the Capital of Rajasthan` : districtName;
+          tooltip.classList.add("visible");
+
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
+
+          tooltip.style.left = `${mouseX - 250}px`;
+          tooltip.style.top = `${mouseY - 120}px`;
+          path.style.transition = "fill 0.3s ease, stroke 0.3s ease, stroke-width 0.3s ease";
+        });
+
+        path.addEventListener("mouseleave", () => {
+          path.style.fill = "pink";
+          if (tooltip) {
+            tooltip.classList.remove("visible");
+          }
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadSVG);
+  </script>
+</div>

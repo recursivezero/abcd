@@ -188,12 +188,13 @@ const letterData = letterMap[currentLetter];
 ---
 
 <div class="letter-container">
-  
   <div class="letter-display">
     <svg class="letter-svg" viewBox="0 0 200 200" id="letter-svg">
-      {letterData.paths.map((path) => (
-        <path class="letter-path" d={path.d} style={`animation-delay: ${path.animationDelay}`} />
-      ))}
+      {
+        letterData.paths.map((path) => (
+          <path class="letter-path" d={path.d} style={`animation-delay: ${path.animationDelay}`} />
+        ))
+      }
     </svg>
   </div>
 
@@ -204,15 +205,13 @@ const letterData = letterMap[currentLetter];
   </div>
 
   <div class="alphabet-nav" id="alphabet-nav">
-    {alphabet.map((l) => (
-      <button
-        class="letter-btn"
-        data-letter={l}
-        aria-label={`Show letter ${l}`}
-      >
-        {l}
-      </button>
-    ))}
+    {
+      alphabet.map((l) => (
+        <button class="letter-btn" data-letter={l} aria-label={`Show letter ${l}`}>
+          {l}
+        </button>
+      ))
+    }
   </div>
 
   <div class="instructions">
@@ -222,11 +221,11 @@ const letterData = letterMap[currentLetter];
 </div>
 
 <!-- Pass data to client script -->
-<script define:vars={{ currentLetter, letterMap }}>
+<script define:vars={{ currentLetter, letterMap }} is:inline>
   document.addEventListener("DOMContentLoaded", function () {
     console.log("LetterAnimation loaded. Current letter:", currentLetter);
     console.log("Available letters in map:", Object.keys(letterMap));
-    
+
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     let current = currentLetter;
     const svg = document.getElementById("letter-svg");
@@ -240,16 +239,16 @@ const letterData = letterMap[currentLetter];
     function updateURL(letter) {
       const params = new URLSearchParams(window.location.search);
       params.set("letter", letter);
-      window.history.replaceState({}, '', window.location.pathname + '?' + params);
+      window.history.replaceState({}, "", window.location.pathname + "?" + params);
     }
 
     function updateActiveButton() {
       if (!letterNav) return;
-      letterNav.querySelectorAll('.letter-btn').forEach(btn => {
-        if (btn.getAttribute('data-letter') === current) {
-          btn.classList.add('current-letter');
+      letterNav.querySelectorAll(".letter-btn").forEach((btn) => {
+        if (btn.getAttribute("data-letter") === current) {
+          btn.classList.add("current-letter");
         } else {
-          btn.classList.remove('current-letter');
+          btn.classList.remove("current-letter");
         }
       });
     }
@@ -295,9 +294,9 @@ const letterData = letterMap[currentLetter];
 
     // Attach click handlers to alphabet buttons
     if (letterNav) {
-      letterNav.querySelectorAll('.letter-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-          const l = btn.getAttribute('data-letter');
+      letterNav.querySelectorAll(".letter-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const l = btn.getAttribute("data-letter");
           if (l && l !== current && letterMap[l]) {
             current = l;
             updateURL(l);
@@ -317,7 +316,7 @@ const letterData = letterMap[currentLetter];
         }
       };
     }
-    
+
     if (nextBtn) {
       nextBtn.onclick = () => {
         let idx = alphabet.indexOf(current);
@@ -328,7 +327,7 @@ const letterData = letterMap[currentLetter];
         }
       };
     }
-    
+
     if (restartBtn) {
       restartBtn.onclick = () => {
         if (svg) {
@@ -391,8 +390,12 @@ const letterData = letterMap[currentLetter];
     animation: draw 1.5s linear forwards;
   }
   @keyframes draw {
-    from { stroke-dashoffset: 1000; }
-    to { stroke-dashoffset: 0; }
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
   }
   .controls {
     display: flex;
@@ -450,7 +453,8 @@ const letterData = letterMap[currentLetter];
     cursor: pointer;
     transition: all 0.2s ease;
     border: none;
-  }.letter-btn:focus {
+  }
+  .letter-btn:focus {
     outline: none;
     box-shadow: 0 0 0 2px #06d6a0aa;
   }
@@ -463,13 +467,15 @@ const letterData = letterMap[currentLetter];
     outline: none;
   }
   .letter-btn.current-letter:focus {
-    box-shadow: 0 0 0 2px #ffd16655, 0 0 0 4px #ffd16633;
+    box-shadow:
+      0 0 0 2px #ffd16655,
+      0 0 0 4px #ffd16633;
   }
   .letter-btn:hover {
     background: #05b888;
     transform: scale(1.08);
   }
-.instructions {
+  .instructions {
     background: #e3f2fd;
     border-radius: 22px;
     padding: 25px;
@@ -497,7 +503,6 @@ const letterData = letterMap[currentLetter];
   .instructions li {
     margin-bottom: 8px;
   }
-
 
   @media (max-width: 600px) {
     .letter-svg {

@@ -29,8 +29,6 @@
   color: var(--text);
 }
 
-
-
 .explore-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -46,8 +44,7 @@
   background: var(--background);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition:
-    box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
   border-top-left-radius: 10%;
   border-top-right-radius: 10%;
 }

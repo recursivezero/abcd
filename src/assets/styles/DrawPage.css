@@ -81,7 +81,7 @@
   transition: all 0.3s ease;
 }
 
-.font-icon{
+.font-icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -139,7 +139,7 @@
   opacity: 1;
 }
 
-.bg-icon{
+.bg-icon {
   position: absolute;
   top: 50%;
   left: 50%;

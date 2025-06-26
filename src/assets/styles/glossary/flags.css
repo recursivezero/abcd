@@ -178,11 +178,9 @@
 .flags-grid .flip__card .card__glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    color-mix(in srgb, var(--primary) 10%, transparent) 0%,
-    transparent 60%
-  );
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      color-mix(in srgb, var(--primary) 10%, transparent) 0%,
+      transparent 60%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -192,12 +190,15 @@
   .flags-grid .flip__card .character {
     font-size: 3rem;
   }
+
   .flags-grid .flip__card .text {
     font-size: 1.1rem;
   }
+
   .flags-grid .flip__card .description {
     font-size: 0.75rem;
   }
+
   .flags-grid .flip__card .flipped__text {
     font-size: 1.2rem;
   }
@@ -220,9 +221,8 @@
   line-height: 1;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 
 .flags-grid .card__back .character {
-  font-family: 'Noto Color Emoji', sans-serif;
-  font-size: clamp(6rem, 15vw, 8rem); 
+  font-family: "Noto Color Emoji", sans-serif;
+  font-size: clamp(6rem, 15vw, 8rem);
 }

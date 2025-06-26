@@ -1,13 +1,13 @@
 ---
 import "@/assets/styles/crossword.css";
+import Back from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
 import WordSearchPuzzle from "@/components/Puzzle.astro";
 import BaseLayout from "@/layouts/Base";
-import Back from "@/components/Back.astro";
 ---
 
 <BaseLayout meta={{ title: "Crossword" }}>
-  <Back/>
+  <Back />
   <Fragment slot="header-right">
     <Help
       title="Crossword"

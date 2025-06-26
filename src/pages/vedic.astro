@@ -1,6 +1,5 @@
 ---
-import { fullEnglish, fullHindi, styleOption,tithiNames
-} from "@/utils/constants.ts";
+import { fullEnglish, fullHindi, styleOption, tithiNames } from "@/utils/constants.ts";
 import BackIcon from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/vedic.css";
@@ -10,7 +9,7 @@ const timeUnits = vedicData.time_units;
 ---
 
 <BaseLayout meta={{ title: "Vedic Time" }}>
-  <BackIcon/>
+  <BackIcon />
   <div class="container__vedic">
     <div class="tab-buttons">
       <button class="tab-button active" data-tab="tithi">Tithi</button>
@@ -130,151 +129,150 @@ const timeUnits = vedicData.time_units;
       </div>
     </div>
   </div>
-
-  <script is:inline define:vars={{ timeUnits , fullEnglish, fullHindi, styleOption,tithiNames}}>
-    const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
-    const samay = new Intl.DateTimeFormat("hi", fullHindi);
-    const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);
-
-    function convert(value, fromUnit, toUnit) {
-      const from = timeUnits.find((u) => u.name === fromUnit);
-      const to = timeUnits.find((u) => u.name === toUnit);
-      if (!from || !to) return null;
-      const seconds = value * from.seconds;
-      return seconds / to.seconds;
-    }
-
-    function updateResult() {
-      const inputValue = document.getElementById("input__value");
-      const fromUnit = document.getElementById("from__unit");
-      const toUnit = document.getElementById("to__unit");
-      const resultBox = document.getElementById("result");
-      const aniresultbox = document.getElementById("ani_result");
-      if (inputValue.value && fromUnit.value && toUnit.value) {
-        const value = parseFloat(inputValue.value);
-        const result = convert(value, fromUnit.value, toUnit.value);
-        resultBox.style.display = "block";
-        aniresultbox.style.display = "block";
-        resultBox.textContent = `${value} ${fromUnit.value} = ${result.toLocaleString(undefined, {
-          maximumFractionDigits: 4
-        })} ${toUnit.value}`;
-      } else {
-        resultBox.style.display = "none";
-        aniresultbox.style.display = "none";
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // Setup event listeners for converter
-      const inputValue = document.getElementById("input__value");
-      const fromUnit = document.getElementById("from__unit");
-      const toUnit = document.getElementById("to__unit");
-      const swapButton = document.getElementById("swapButton");
-
-      if (inputValue) inputValue.addEventListener("input", updateResult);
-      if (fromUnit) fromUnit.addEventListener("change", updateResult);
-      if (toUnit) toUnit.addEventListener("change", updateResult);
-
-      // Swap button functionality
-      if (swapButton) {
-        swapButton.addEventListener("click", () => {
-          const temp = fromUnit.value;
-          fromUnit.value = toUnit.value;
-          toUnit.value = temp;
-          swapButton.classList.toggle("active");
-          updateResult();
-        });
-      }
-      // Tab functionality
-      const tabButtons = document.querySelectorAll(".tab-button");
-      const tabContents = document.querySelectorAll(".tab-content");
-      tabButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          // Remove active class from all buttons and contents
-          tabButtons.forEach((btn) => btn.classList.remove("active"));
-          tabContents.forEach((content) => content.classList.remove("active"));
-          // Add active class to clicked button
-          button.classList.add("active");
-          // Show corresponding tab content
-          const targetTab = button.dataset.tab;
-          document.getElementById(`${targetTab}-tab-content`).classList.add("active");
-          // Call updateResult if switching to converter tab to ensure result is shown if inputs have values
-          if (targetTab === "converter") {
-            updateResult();
-          }
-        });
-      });
-
-      // Initialize with Tithi tab active
-      document.querySelector('.tab-button[data-tab="tithi"]').click(); // Simulate click to activate default tab
-
-      // Tithi date display functionality
-      const getLunarDate = (gregorianDate) => {
-        const day = gregorianDate.getDate();
-        const lunarDay = ((day - 1) % 15) + 1;
-        const paksha = day <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
-        const tithi = tithiNames[lunarDay - 1];
-        return { paksha, tithi };
-      };
-
-      const hindu = document.querySelector('[data-id="hindu"]');
-      const hindi = document.querySelector('[data-id="hindi"]');
-      const english = document.querySelector('[data-id="english"]');
-
-      const modifyHinduDateString = ({ tithi, paksha }) => {
-        // Split the formatted date string into parts
-        const parts = samay.formatToParts(new Date());
-
-        // Reconstruct the string with modifications
-        let result = "";
-        let monthFound = false;
-
-        for (const part of parts) {
-          if (part.type === "day") {
-            // Replace numeric day with tithi
-            result += tithi;
-          } else if (part.type === "month" && !monthFound) {
-            // Add month then paksha
-            result += part.value + " " + paksha;
-            monthFound = true;
-          } else {
-            // Keep all other parts as-is
-            result += part.value;
-          }
-        }
-
-        return result;
-      };
-
-      const renderClock = () => {
-        const today = new Date();
-        const { paksha, tithi } = getLunarDate(today);
-
-        // Format dates
-        const eng = dateInEnglish.format(today);
-        const hi = dateInHindi.format(today);
-        const hinduDateStr = modifyHinduDateString( { tithi, paksha });
-
-        // Update displays
-        hindi.innerHTML = hi;
-        hindu.innerHTML = hinduDateStr;
-        english.innerHTML = eng;
-      };
-      renderClock();
-      setInterval(renderClock, 1000);
-      // Add scroll effect to title for timeline
-      const timelineContainer = document.querySelector(".units__timeline-container");
-      const title = document.querySelector(".units__title");
-
-      if (timelineContainer && title) {
-        timelineContainer.addEventListener("scroll", () => {
-          if (timelineContainer.scrollTop > 10) {
-            title.classList.add("scrolled");
-          } else {
-            title.classList.remove("scrolled");
-          }
-        });
-      }
-    });
-  </script>
 </BaseLayout>
+<script is:inline define:vars={{ timeUnits, fullEnglish, fullHindi, styleOption, tithiNames }}>
+  const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
+  const samay = new Intl.DateTimeFormat("hi", fullHindi);
+  const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);
+
+  function convert(value, fromUnit, toUnit) {
+    const from = timeUnits.find((u) => u.name === fromUnit);
+    const to = timeUnits.find((u) => u.name === toUnit);
+    if (!from || !to) return null;
+    const seconds = value * from.seconds;
+    return seconds / to.seconds;
+  }
+
+  function updateResult() {
+    const inputValue = document.getElementById("input__value");
+    const fromUnit = document.getElementById("from__unit");
+    const toUnit = document.getElementById("to__unit");
+    const resultBox = document.getElementById("result");
+    const aniresultbox = document.getElementById("ani_result");
+    if (inputValue.value && fromUnit.value && toUnit.value) {
+      const value = parseFloat(inputValue.value);
+      const result = convert(value, fromUnit.value, toUnit.value);
+      resultBox.style.display = "block";
+      aniresultbox.style.display = "block";
+      resultBox.textContent = `${value} ${fromUnit.value} = ${result.toLocaleString(undefined, {
+        maximumFractionDigits: 4
+      })} ${toUnit.value}`;
+    } else {
+      resultBox.style.display = "none";
+      aniresultbox.style.display = "none";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Setup event listeners for converter
+    const inputValue = document.getElementById("input__value");
+    const fromUnit = document.getElementById("from__unit");
+    const toUnit = document.getElementById("to__unit");
+    const swapButton = document.getElementById("swapButton");
+
+    if (inputValue) inputValue.addEventListener("input", updateResult);
+    if (fromUnit) fromUnit.addEventListener("change", updateResult);
+    if (toUnit) toUnit.addEventListener("change", updateResult);
+
+    // Swap button functionality
+    if (swapButton) {
+      swapButton.addEventListener("click", () => {
+        const temp = fromUnit.value;
+        fromUnit.value = toUnit.value;
+        toUnit.value = temp;
+        swapButton.classList.toggle("active");
+        updateResult();
+      });
+    }
+    // Tab functionality
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons and contents
+        tabButtons.forEach((btn) => btn.classList.remove("active"));
+        tabContents.forEach((content) => content.classList.remove("active"));
+        // Add active class to clicked button
+        button.classList.add("active");
+        // Show corresponding tab content
+        const targetTab = button.dataset.tab;
+        document.getElementById(`${targetTab}-tab-content`).classList.add("active");
+        // Call updateResult if switching to converter tab to ensure result is shown if inputs have values
+        if (targetTab === "converter") {
+          updateResult();
+        }
+      });
+    });
+
+    // Initialize with Tithi tab active
+    document.querySelector('.tab-button[data-tab="tithi"]').click(); // Simulate click to activate default tab
+
+    // Tithi date display functionality
+    const getLunarDate = (gregorianDate) => {
+      const day = gregorianDate.getDate();
+      const lunarDay = ((day - 1) % 15) + 1;
+      const paksha = day <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+      const tithi = tithiNames[lunarDay - 1];
+      return { paksha, tithi };
+    };
+
+    const hindu = document.querySelector('[data-id="hindu"]');
+    const hindi = document.querySelector('[data-id="hindi"]');
+    const english = document.querySelector('[data-id="english"]');
+
+    const modifyHinduDateString = ({ tithi, paksha }) => {
+      // Split the formatted date string into parts
+      const parts = samay.formatToParts(new Date());
+
+      // Reconstruct the string with modifications
+      let result = "";
+      let monthFound = false;
+
+      for (const part of parts) {
+        if (part.type === "day") {
+          // Replace numeric day with tithi
+          result += tithi;
+        } else if (part.type === "month" && !monthFound) {
+          // Add month then paksha
+          result += part.value + " " + paksha;
+          monthFound = true;
+        } else {
+          // Keep all other parts as-is
+          result += part.value;
+        }
+      }
+
+      return result;
+    };
+
+    const renderClock = () => {
+      const today = new Date();
+      const { paksha, tithi } = getLunarDate(today);
+
+      // Format dates
+      const eng = dateInEnglish.format(today);
+      const hi = dateInHindi.format(today);
+      const hinduDateStr = modifyHinduDateString({ tithi, paksha });
+
+      // Update displays
+      hindi.innerHTML = hi;
+      hindu.innerHTML = hinduDateStr;
+      english.innerHTML = eng;
+    };
+    renderClock();
+    setInterval(renderClock, 1000);
+    // Add scroll effect to title for timeline
+    const timelineContainer = document.querySelector(".units__timeline-container");
+    const title = document.querySelector(".units__title");
+
+    if (timelineContainer && title) {
+      timelineContainer.addEventListener("scroll", () => {
+        if (timelineContainer.scrollTop > 10) {
+          title.classList.add("scrolled");
+        } else {
+          title.classList.remove("scrolled");
+        }
+      });
+    }
+  });
+</script>

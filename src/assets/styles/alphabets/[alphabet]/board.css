@@ -45,7 +45,7 @@
     transform: scale(0.95);
     background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
   }
-  
+
   & .container__alphabet {
     display: grid;
     gap: 2rem;

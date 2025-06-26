@@ -43,26 +43,27 @@ const formattedVowelList = hindiVowelList
       <AlphabetComponent list={varnmala_hindi} title="Hindi Consonants (व्यंजन)" />
     </section>
   </article>
-  <script>
-    const tabs = document.querySelectorAll(".tab");
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        // Remove active class from all tabs
-        tabs.forEach((t) => t.classList.remove("active"));
-
-        // Add active class to clicked tab
-        tab.classList.add("active");
-
-        // Scroll to target section with offset
-        const targetId = tab.getAttribute("data-target");
-        if (targetId) {
-          const targetSection = document.getElementById(targetId) || document.getElementById(`hindi_${targetId}`);
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: "smooth" });
-          }
-        }
-      });
-    });
-  </script>
 </BaseLayout>
+
+<script>
+  const tabs = document.querySelectorAll(".tab");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Remove active class from all tabs
+      tabs.forEach((t) => t.classList.remove("active"));
+
+      // Add active class to clicked tab
+      tab.classList.add("active");
+
+      // Scroll to target section with offset
+      const targetId = tab.getAttribute("data-target");
+      if (targetId) {
+        const targetSection = document.getElementById(targetId) || document.getElementById(`hindi_${targetId}`);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+  });
+</script>

@@ -312,18 +312,90 @@
   "sunsign": {
     "title": "Sun Signs",
     "data": [
-      { "id": "aries", "name": "Aries (मेष)", "symbol": "♈︎", "dates": "March 21 - April 19", "firstLetters": "A (अ), L (ल), E (ए), I (इ)" },
-      { "id": "taurus", "name": "Taurus (वृषभ)", "symbol": "♉︎", "dates": "April 20 - May 20", "firstLetters": "B (ब), V (व), U (उ), Va (वा), Vi (वी), Vo (वो)" },
-      { "id": "gemini", "name": "Gemini (मिथुन)", "symbol": "♊︎", "dates": "May 21 - June 20", "firstLetters": "K (क), Chh (छ), Gh (घ), Ka (का), Ki (की), Ku (कु)" },
-      { "id": "cancer", "name": "Cancer (कर्क)", "symbol": "♋︎", "dates": "June 21 - July 22", "firstLetters": "D (ड), H (ह), Da (डा), De (डे), Do (डो)" },
-      { "id": "leo", "name": "Leo (सिंह)", "symbol": "♌︎", "dates": "July 23 - August 22", "firstLetters": "M (म), T (ट), Ma (मा), Me (मे), Mu (मु)" },
-      { "id": "virgo", "name": "Virgo (कन्या)", "symbol": "♍︎", "dates": "August 23 - September 22", "firstLetters": "P (प), Th (ठ), N (ण), Pa (पा), Pi (पी), Pu (पु)" },
-      { "id": "libra", "name": "Libra (तुला)", "symbol": "♎︎", "dates": "September 23 - October 22", "firstLetters": "R (र), T (त), Ra (रा), Ri (री), Ru (रु)" },
-      { "id": "scorpio", "name": "Scorpio (वृश्चिक)", "symbol": "♏︎", "dates": "October 23 - November 21", "firstLetters": "N (न), Y (य), Na (ना), Ni (नी), Nu (नू), Ne (ने)" },
-      { "id": "sagittarius", "name": "Sagittarius (धनु)", "symbol": "♐︎", "dates": "November 22 - December 21", "firstLetters": "Bh (भ), Dh (ध), Ph (फ), F (फ), Ye (ये), Yo (यो)" },
-      { "id": "capricorn", "name": "Capricorn (मकर)", "symbol": "♑︎", "dates": "December 22 - January 19", "firstLetters": "Kh (ख), J (ज), Bho (भो), Ja (जा), Ji (जी)" },
-      { "id": "aquarius", "name": "Aquarius (कुंभ)", "symbol": "♒︎", "dates": "January 20 - February 18", "firstLetters": "G (ग), S (स), Sh (श), Go (गो), Sa (सा), Si (सी), Su (सू)" },
-      { "id": "pisces", "name": "Pisces (मीन)", "symbol": "♓︎", "dates": "February 19 - March 20", "firstLetters": "D (द), Ch (च), Z (ज़), Th (थ), De (दे), Do (दो), Cha (चा), Chi (ची)" }
+      {
+        "id": "aries",
+        "name": "Aries (मेष)",
+        "symbol": "♈︎",
+        "dates": "March 21 - April 19",
+        "firstLetters": "A (अ), L (ल), E (ए), I (इ)"
+      },
+      {
+        "id": "taurus",
+        "name": "Taurus (वृषभ)",
+        "symbol": "♉︎",
+        "dates": "April 20 - May 20",
+        "firstLetters": "B (ब), V (व), U (उ), Va (वा), Vi (वी), Vo (वो)"
+      },
+      {
+        "id": "gemini",
+        "name": "Gemini (मिथुन)",
+        "symbol": "♊︎",
+        "dates": "May 21 - June 20",
+        "firstLetters": "K (क), Chh (छ), Gh (घ), Ka (का), Ki (की), Ku (कु)"
+      },
+      {
+        "id": "cancer",
+        "name": "Cancer (कर्क)",
+        "symbol": "♋︎",
+        "dates": "June 21 - July 22",
+        "firstLetters": "D (ड), H (ह), Da (डा), De (डे), Do (डो)"
+      },
+      {
+        "id": "leo",
+        "name": "Leo (सिंह)",
+        "symbol": "♌︎",
+        "dates": "July 23 - August 22",
+        "firstLetters": "M (म), T (ट), Ma (मा), Me (मे), Mu (मु)"
+      },
+      {
+        "id": "virgo",
+        "name": "Virgo (कन्या)",
+        "symbol": "♍︎",
+        "dates": "August 23 - September 22",
+        "firstLetters": "P (प), Th (ठ), N (ण), Pa (पा), Pi (पी), Pu (पु)"
+      },
+      {
+        "id": "libra",
+        "name": "Libra (तुला)",
+        "symbol": "♎︎",
+        "dates": "September 23 - October 22",
+        "firstLetters": "R (र), T (त), Ra (रा), Ri (री), Ru (रु)"
+      },
+      {
+        "id": "scorpio",
+        "name": "Scorpio (वृश्चिक)",
+        "symbol": "♏︎",
+        "dates": "October 23 - November 21",
+        "firstLetters": "N (न), Y (य), Na (ना), Ni (नी), Nu (नू), Ne (ने)"
+      },
+      {
+        "id": "sagittarius",
+        "name": "Sagittarius (धनु)",
+        "symbol": "♐︎",
+        "dates": "November 22 - December 21",
+        "firstLetters": "Bh (भ), Dh (ध), Ph (फ), F (फ), Ye (ये), Yo (यो)"
+      },
+      {
+        "id": "capricorn",
+        "name": "Capricorn (मकर)",
+        "symbol": "♑︎",
+        "dates": "December 22 - January 19",
+        "firstLetters": "Kh (ख), J (ज), Bho (भो), Ja (जा), Ji (जी)"
+      },
+      {
+        "id": "aquarius",
+        "name": "Aquarius (कुंभ)",
+        "symbol": "♒︎",
+        "dates": "January 20 - February 18",
+        "firstLetters": "G (ग), S (स), Sh (श), Go (गो), Sa (सा), Si (सी), Su (सू)"
+      },
+      {
+        "id": "pisces",
+        "name": "Pisces (मीन)",
+        "symbol": "♓︎",
+        "dates": "February 19 - March 20",
+        "firstLetters": "D (द), Ch (च), Z (ज़), Th (थ), De (दे), Do (दो), Cha (चा), Chi (ची)"
+      }
     ]
   }
 }

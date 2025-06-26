@@ -1,5 +1,4 @@
-import { englishVowels,englishConsonants
-} from "@/utils/constants.ts";
+import { englishVowels, englishConsonants } from "@/utils/constants.ts";
 
 type LetterPair = {
   hindi: string;
@@ -17,7 +16,7 @@ type LetterPair = {
   mithilakshar: string; // Older name for Mathili , Maithili is also kmown as Tirhuti
   english: string;
   type: "vowel" | "consonant" | "separator";
-}
+};
 
 // Generate unicode characters for languages
 type GenerateAlphabetParams = {
@@ -238,7 +237,7 @@ const getLetterForLanguage = (pair: LetterPair, langCode: string): string => {
   }
 };
 
-export {  
+export {
   englishVowels,
   englishConsonants,
   allAlphabet,

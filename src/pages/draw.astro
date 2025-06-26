@@ -8,18 +8,32 @@ import Back from "@/components/Back.astro";
 ---
 
 <Layout meta={{ title: "Draw by Keyboard" }}>
-  <Back/>
+  <Back />
   <Fragment slot="header-right">
     <div class="controls-container">
       <div class="controls">
         <label for="toggleCase" class="control-item" data-tooltip="Toggle case">
           <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
-          <span id="text" class="control-button case-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle case">Aa</span>
+          <span
+            id="text"
+            class="control-button case-toggle"
+            role="switch"
+            aria-checked="false"
+            tabindex="0"
+            aria-label="Toggle case">Aa</span
+          >
         </label>
 
         <label for="toggleFont" class="control-item" data-tooltip="Toggle font">
           <input type="checkbox" name="toggle_font" id="toggleFont" class="visually-hidden hidden" />
-          <span id="font" class="control-button font-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle font">
+          <span
+            id="font"
+            class="control-button font-toggle"
+            role="switch"
+            aria-checked="false"
+            tabindex="0"
+            aria-label="Toggle font"
+          >
             <span class="font-icon">F</span>
           </span>
         </label>
@@ -27,14 +41,27 @@ import Back from "@/components/Back.astro";
         <div class="control-group">
           <label for="toggleImg" class="control-item" data-tooltip="Toggle Image">
             <input type="checkbox" name="toggle_img" id="toggleImg" class="visually-hidden hidden" />
-            <span id="img" class="control-button img-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle Image">
+            <span
+              id="img"
+              class="control-button img-toggle"
+              role="switch"
+              aria-checked="false"
+              tabindex="0"
+              aria-label="Toggle Image"
+            >
               <ImageIcon class="img-icon" />
             </span>
           </label>
 
           <label for="toggleColor" class="control-item" data-tooltip="Toggle Font Color">
             <input type="checkbox" name="toggle_color" id="toggleColor" class="visually-hidden hidden" />
-            <span class="control-button color-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle Font Color" >
+            <span
+              class="control-button color-toggle"
+              role="switch"
+              aria-checked="false"
+              tabindex="0"
+              aria-label="Toggle Font Color"
+            >
               <span class="color-icon">T</span>
             </span>
           </label>
@@ -42,7 +69,13 @@ import Back from "@/components/Back.astro";
 
         <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
           <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
-          <span class="control-button bg-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle background">
+          <span
+            class="control-button bg-toggle"
+            role="switch"
+            aria-checked="false"
+            tabindex="0"
+            aria-label="Toggle background"
+          >
             <span class="bg-icon">🎨</span>
           </span>
         </label>
@@ -116,7 +149,7 @@ import Back from "@/components/Back.astro";
       }
     });
 
-    // Modified toggle for font button 
+    // Modified toggle for font button
     fontToggle.addEventListener("click", () => {
       const isActive = fontToggle.classList.contains("active");
       if (!isActive) {

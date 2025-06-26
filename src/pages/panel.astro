@@ -8,7 +8,7 @@ import Back from "@/components/Back.astro";
 ---
 
 <BaseLayout meta={{ title: "Panel" }}>
-  <Back/>
+  <Back />
   <Fragment slot="header-right">
     <div class="right-header-buttons">
       <div class="settings-button-container">
@@ -110,283 +110,282 @@ import Back from "@/components/Back.astro";
       </letter-panel>
     </section>
   </article>
+</BaseLayout>
+<script>
+  enum ArrowKeys {
+    LEFT = 37,
+    UP = 38,
+    RIGHT = 39,
+    DOWN = 40
+  }
 
-  <script>
-    enum ArrowKeys {
-      LEFT = 37,
-      UP = 38,
-      RIGHT = 39,
-      DOWN = 40
+  enum ContentType {
+    ALPHABET = "alphabet",
+    NUMBERS = "numbers"
+  }
+
+  // Define the behaviour for our new type of HTML element.
+  class LetterPanel extends HTMLElement {
+    #panel: HTMLElement;
+    #cellRange: HTMLInputElement;
+    #minRangeValueSpan: HTMLElement;
+    #maxRangeValueSpan: HTMLElement;
+    #orientationPanel: NodeListOf<HTMLInputElement>;
+    #contentTypePanel: NodeListOf<HTMLInputElement>;
+    #orientation: "X" | "Y" = "Y";
+    #contentType: ContentType = ContentType.ALPHABET;
+    #selectedIndex = 0;
+    #radius = "0px";
+    #theta = 0;
+    #angle = "0deg";
+
+    constructor() {
+      super();
+      this.#panel = this.querySelector("#panel") as HTMLElement;
+      this.#orientationPanel = document.querySelectorAll(".orientation");
+      this.#contentTypePanel = document.querySelectorAll(".content-type");
+      this.#cellRange = document.querySelector("#range") as HTMLInputElement;
+      this.#minRangeValueSpan = document.querySelector("#min-range-value") as HTMLElement;
+      this.#maxRangeValueSpan = document.querySelector("#max-range-value") as HTMLElement;
+      this.updateRangeAttributes();
+      this.buildPanel();
+      this.#emitEvent();
     }
 
-    enum ContentType {
-      ALPHABET = "alphabet",
-      NUMBERS = "numbers"
+    connectedCallback() {
+      this.changePanel();
+      this.rotatePanel({ by: "Y" });
+      (this.#orientationPanel[1] as HTMLInputElement).checked = true;
+      (this.#contentTypePanel[0] as HTMLInputElement).checked = true;
     }
 
-    // Define the behaviour for our new type of HTML element.
-    class LetterPanel extends HTMLElement {
-      #panel: HTMLElement;
-      #cellRange: HTMLInputElement;
-      #minRangeValueSpan: HTMLElement;
-      #maxRangeValueSpan: HTMLElement;
-      #orientationPanel: NodeListOf<HTMLInputElement>;
-      #contentTypePanel: NodeListOf<HTMLInputElement>;
-      #orientation: "X" | "Y" = "Y";
-      #contentType: ContentType = ContentType.ALPHABET;
-      #selectedIndex = 0;
-      #radius = "0px";
-      #theta = 0;
-      #angle = "0deg";
+    #emitEvent() {
+      document.addEventListener("keyup", (e: KeyboardEvent) => {
+        const { charCode, code, keyCode, key } = e;
+        console.log({ charCode, code, keyCode, key });
+        this.onKeyChange(keyCode);
+      });
 
-      constructor() {
-        super();
-        this.#panel = this.querySelector("#panel") as HTMLElement;
-        this.#orientationPanel = document.querySelectorAll(".orientation");
-        this.#contentTypePanel = document.querySelectorAll(".content-type");
-        this.#cellRange = document.querySelector("#range") as HTMLInputElement;
-        this.#minRangeValueSpan = document.querySelector("#min-range-value") as HTMLElement;
-        this.#maxRangeValueSpan = document.querySelector("#max-range-value") as HTMLElement;
-        this.updateRangeAttributes();
-        this.buildPanel();
-        this.#emitEvent();
-      }
+      this.#orientationPanel.forEach((radio) => {
+        radio.addEventListener(
+          "click",
+          (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            this.#orientation = target.value as "X" | "Y";
+            this.changePanel();
+            target.blur(); //unfocus the radio button
+          },
+          false
+        );
+      });
 
-      connectedCallback() {
-        this.changePanel();
-        this.rotatePanel({ by: "Y" });
-        (this.#orientationPanel[1] as HTMLInputElement).checked = true;
-        (this.#contentTypePanel[0] as HTMLInputElement).checked = true;
-      }
+      this.#contentTypePanel.forEach((radio) => {
+        radio.addEventListener(
+          "click",
+          (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            this.#contentType = target.value as ContentType;
+            this.#selectedIndex = 0; // Reset index when content type changes
+            this.updateRangeAttributes(); // Update range limits
+            this.buildPanel(); // Rebuild panel with new content
+            this.changePanel();
+            target.blur();
+          },
+          false
+        );
+      });
 
-      #emitEvent() {
-        document.addEventListener("keyup", (e: KeyboardEvent) => {
-          const { charCode, code, keyCode, key } = e;
-          console.log({ charCode, code, keyCode, key });
-          this.onKeyChange(keyCode);
-        });
-
-        this.#orientationPanel.forEach((radio) => {
-          radio.addEventListener(
-            "click",
-            (e: Event) => {
-              const target = e.target as HTMLInputElement;
-              this.#orientation = target.value as "X" | "Y";
-              this.changePanel();
-              target.blur(); //unfocus the radio button
-            },
-            false
-          );
-        });
-
-        this.#contentTypePanel.forEach((radio) => {
-          radio.addEventListener(
-            "click",
-            (e: Event) => {
-              const target = e.target as HTMLInputElement;
-              this.#contentType = target.value as ContentType;
-              this.#selectedIndex = 0; // Reset index when content type changes
-              this.updateRangeAttributes(); // Update range limits
-              this.buildPanel(); // Rebuild panel with new content
-              this.changePanel();
-              target.blur();
-            },
-            false
-          );
-        });
-
-        this.#cellRange.addEventListener("input", (e) => {
-          const target = e.target as HTMLInputElement;
-          const rangeBullet = document.querySelector("#range-bullet");
-          if (rangeBullet) {
-            rangeBullet.textContent = target.value;
-          }
-          this.buildPanel();
-          this.changePanel();
-        });
-        this.#cellRange.addEventListener("change", () => {
-          // Add change event for final blur
-          this.#cellRange.blur();
-        });
-
-        const panelToolsPopover = document.getElementById("panelToolsPopover");
-        const settingsButton = document.getElementById("settingsButton");
-        // Panel tools logic
-        if (settingsButton && panelToolsPopover) {
-          settingsButton.addEventListener("click", (event) => {
-            event.stopPropagation();
-            const isOpen = panelToolsPopover.classList.contains("open");
-            panelToolsPopover.classList.toggle("open", !isOpen);
-            settingsButton.setAttribute("aria-expanded", String(!isOpen)); // Convert boolean to string
-            panelToolsPopover.setAttribute("aria-hidden", String(isOpen)); // Convert boolean to string
-          });
-
-          document.addEventListener("click", (event) => {
-            if (!panelToolsPopover.contains(event.target as Node) && !settingsButton.contains(event.target as Node)) {
-              if (panelToolsPopover.classList.contains("open")) {
-                settingsButton.setAttribute("aria-expanded", "false");
-                panelToolsPopover.setAttribute("aria-hidden", "true");
-                panelToolsPopover.classList.remove("open");
-              }
-            }
-          });
+      this.#cellRange.addEventListener("input", (e) => {
+        const target = e.target as HTMLInputElement;
+        const rangeBullet = document.querySelector("#range-bullet");
+        if (rangeBullet) {
+          rangeBullet.textContent = target.value;
         }
-      }
+        this.buildPanel();
+        this.changePanel();
+      });
+      this.#cellRange.addEventListener("change", () => {
+        // Add change event for final blur
+        this.#cellRange.blur();
+      });
 
-      updateRangeAttributes() {
+      const panelToolsPopover = document.getElementById("panelToolsPopover");
+      const settingsButton = document.getElementById("settingsButton");
+      // Panel tools logic
+      if (settingsButton && panelToolsPopover) {
+        settingsButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isOpen = panelToolsPopover.classList.contains("open");
+          panelToolsPopover.classList.toggle("open", !isOpen);
+          settingsButton.setAttribute("aria-expanded", String(!isOpen)); // Convert boolean to string
+          panelToolsPopover.setAttribute("aria-hidden", String(isOpen)); // Convert boolean to string
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!panelToolsPopover.contains(event.target as Node) && !settingsButton.contains(event.target as Node)) {
+            if (panelToolsPopover.classList.contains("open")) {
+              settingsButton.setAttribute("aria-expanded", "false");
+              panelToolsPopover.setAttribute("aria-hidden", "true");
+              panelToolsPopover.classList.remove("open");
+            }
+          }
+        });
+      }
+    }
+
+    updateRangeAttributes() {
+      if (this.#contentType === ContentType.ALPHABET) {
+        this.#cellRange.min = "10";
+        this.#cellRange.max = "26";
+        this.#minRangeValueSpan.textContent = "10";
+        this.#maxRangeValueSpan.textContent = "26";
+        // Ensure current value is within bounds
+        if (Number(this.#cellRange.value) < 10) this.#cellRange.value = "10";
+        if (Number(this.#cellRange.value) > 26) this.#cellRange.value = "26";
+      } else {
+        // ContentType.NUMBERS
+        this.#cellRange.min = "3";
+        this.#cellRange.max = "10";
+        this.#minRangeValueSpan.textContent = "3";
+        this.#maxRangeValueSpan.textContent = "10";
+        // Ensure current value is within bounds
+        if (Number(this.#cellRange.value) < 3) this.#cellRange.value = "3";
+        if (Number(this.#cellRange.value) > 10) this.#cellRange.value = "10";
+      }
+    }
+
+    doTheMath() {
+      const cellWidth = this.#panel.offsetWidth;
+      const cellCount = Number(this.#cellRange.value);
+      const halfCell = cellWidth / 2;
+      const divideBy = Math.tan(Math.PI / cellCount);
+      this.#radius = Math.round(halfCell / divideBy) + "px";
+      this.#theta = 360 / cellCount;
+      this.#angle = this.#theta * this.#selectedIndex + "deg";
+    }
+
+    buildPanel() {
+      const count = Number(this.#cellRange.value);
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < count; i++) {
+        const div = document.createElement("div");
+        div.classList.add("panel__cell");
+
         if (this.#contentType === ContentType.ALPHABET) {
-          this.#cellRange.min = "10";
-          this.#cellRange.max = "26";
-          this.#minRangeValueSpan.textContent = "10";
-          this.#maxRangeValueSpan.textContent = "26";
-          // Ensure current value is within bounds
-          if (Number(this.#cellRange.value) < 10) this.#cellRange.value = "10";
-          if (Number(this.#cellRange.value) > 26) this.#cellRange.value = "26";
+          div.textContent = String.fromCodePoint(65 + i); // A to Z
         } else {
           // ContentType.NUMBERS
-          this.#cellRange.min = "3";
-          this.#cellRange.max = "10";
-          this.#minRangeValueSpan.textContent = "3";
-          this.#maxRangeValueSpan.textContent = "10";
-          // Ensure current value is within bounds
-          if (Number(this.#cellRange.value) < 3) this.#cellRange.value = "3";
-          if (Number(this.#cellRange.value) > 10) this.#cellRange.value = "10";
+          div.textContent = String(i % 10); // 0-9, wraps around after 9
         }
+
+        fragment.appendChild(div);
       }
+      this.#panel.innerHTML = "";
+      this.#panel.appendChild(fragment);
+    }
 
-      doTheMath() {
-        const cellWidth = this.#panel.offsetWidth;
-        const cellCount = Number(this.#cellRange.value);
-        const halfCell = cellWidth / 2;
-        const divideBy = Math.tan(Math.PI / cellCount);
-        this.#radius = Math.round(halfCell / divideBy) + "px";
-        this.#theta = 360 / cellCount;
-        this.#angle = this.#theta * this.#selectedIndex + "deg";
-      }
+    changePanel() {
+      const cells = document.querySelectorAll(".panel__cell") as unknown as HTMLElement[];
+      this.doTheMath();
+      cells.forEach((cell, i) => {
+        const cellAngle = this.#theta * i;
+        const transformString = `rotate${this.#orientation}(${cellAngle}deg) translateZ(${this.#radius})`;
+        cell.style.transform = transformString;
+      });
+      this.rotatePanel({ by: this.#orientation });
+      this.updateFrontCell(); // update front cell styling
+    }
 
-      buildPanel() {
-        const count = Number(this.#cellRange.value);
-        const fragment = document.createDocumentFragment();
-        for (let i = 0; i < count; i++) {
-          const div = document.createElement("div");
-          div.classList.add("panel__cell");
+    updateFrontCell() {
+      const cells = this.#panel.querySelectorAll(".panel__cell") as NodeListOf<HTMLElement>;
+      if (!cells.length) return;
+      const count = cells.length;
+      const normalizedIndex = ((this.#selectedIndex % count) + count) % count;
 
+      cells.forEach((cell, index) => {
+        cell.classList.remove("front");
+        // Calculate which cell should be "front" based on rotation
+        const adjustedIndex = (index + normalizedIndex) % count;
+        if (adjustedIndex === 0) {
+          // The cell that is currently at the 0-degree position (front)
+          cell.classList.add("front");
+        }
+      });
+    }
+
+    rotatePanel({ by = "Y" }: { by?: "X" | "Y" }) {
+      this.doTheMath();
+      const transformString = `translateZ(-${this.#radius}) rotate${by}(${this.#angle})`;
+      this.#panel.style.transform = transformString;
+    }
+
+    onKeyChange(code: number) {
+      const VerticalButton = this.#orientationPanel[0] as HTMLInputElement;
+      const horizontalButton = this.#orientationPanel[1] as HTMLInputElement;
+      const currentPanelSize = Number(this.#cellRange.value);
+
+      switch (code) {
+        case ArrowKeys.RIGHT: {
+          if (this.#orientation === "Y") {
+            this.#selectedIndex--;
+          } else {
+            this.#selectedIndex++;
+          }
+          this.#orientation = "Y";
+          horizontalButton.checked = true;
+          break;
+        }
+        case ArrowKeys.LEFT: {
+          if (this.#orientation === "Y") {
+            this.#selectedIndex++;
+          } else {
+            this.#selectedIndex--;
+          }
+          this.#orientation = "Y";
+          horizontalButton.checked = true;
+          break;
+        }
+        case ArrowKeys.UP: {
+          this.#selectedIndex++;
+          this.#orientation = "X";
+          VerticalButton.checked = true;
+          break;
+        }
+        case ArrowKeys.DOWN: {
+          this.#selectedIndex--;
+          VerticalButton.checked = true;
+          this.#orientation = "X";
+          break;
+        }
+        default: {
+          // Handle character input (alphabets and numbers)
           if (this.#contentType === ContentType.ALPHABET) {
-            div.textContent = String.fromCodePoint(65 + i); // A to Z
+            if (code >= 65 && code <= 90) {
+              // A-Z (uppercase)
+              this.#selectedIndex = (65 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to A
+            } else if (code >= 97 && code <= 122) {
+              // a-z (lowercase)
+              this.#selectedIndex = (97 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to a
+            } else {
+              // If not an alphabet, just move forward
+              this.#selectedIndex++;
+            }
           } else {
             // ContentType.NUMBERS
-            div.textContent = String(i % 10); // 0-9, wraps around after 9
-          }
-
-          fragment.appendChild(div);
-        }
-        this.#panel.innerHTML = "";
-        this.#panel.appendChild(fragment);
-      }
-
-      changePanel() {
-        const cells = document.querySelectorAll(".panel__cell") as unknown as HTMLElement[];
-        this.doTheMath();
-        cells.forEach((cell, i) => {
-          const cellAngle = this.#theta * i;
-          const transformString = `rotate${this.#orientation}(${cellAngle}deg) translateZ(${this.#radius})`;
-          cell.style.transform = transformString;
-        });
-        this.rotatePanel({ by: this.#orientation });
-        this.updateFrontCell(); // update front cell styling
-      }
-
-      updateFrontCell() {
-        const cells = this.#panel.querySelectorAll(".panel__cell") as NodeListOf<HTMLElement>;
-        if (!cells.length) return;
-        const count = cells.length;
-        const normalizedIndex = ((this.#selectedIndex % count) + count) % count;
-
-        cells.forEach((cell, index) => {
-          cell.classList.remove("front");
-          // Calculate which cell should be "front" based on rotation
-          const adjustedIndex = (index + normalizedIndex) % count;
-          if (adjustedIndex === 0) {
-            // The cell that is currently at the 0-degree position (front)
-            cell.classList.add("front");
-          }
-        });
-      }
-
-      rotatePanel({ by = "Y" }: { by?: "X" | "Y" }) {
-        this.doTheMath();
-        const transformString = `translateZ(-${this.#radius}) rotate${by}(${this.#angle})`;
-        this.#panel.style.transform = transformString;
-      }
-
-      onKeyChange(code: number) {
-        const VerticalButton = this.#orientationPanel[0] as HTMLInputElement;
-        const horizontalButton = this.#orientationPanel[1] as HTMLInputElement;
-        const currentPanelSize = Number(this.#cellRange.value);
-
-        switch (code) {
-          case ArrowKeys.RIGHT: {
-            if (this.#orientation === "Y") {
-              this.#selectedIndex--;
+            if (code >= 48 && code <= 57) {
+              // 0-9
+              this.#selectedIndex = (48 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to 0
             } else {
+              // If not a number, just move forward
               this.#selectedIndex++;
-            }
-            this.#orientation = "Y";
-            horizontalButton.checked = true;
-            break;
-          }
-          case ArrowKeys.LEFT: {
-            if (this.#orientation === "Y") {
-              this.#selectedIndex++;
-            } else {
-              this.#selectedIndex--;
-            }
-            this.#orientation = "Y";
-            horizontalButton.checked = true;
-            break;
-          }
-          case ArrowKeys.UP: {
-            this.#selectedIndex++;
-            this.#orientation = "X";
-            VerticalButton.checked = true;
-            break;
-          }
-          case ArrowKeys.DOWN: {
-            this.#selectedIndex--;
-            VerticalButton.checked = true;
-            this.#orientation = "X";
-            break;
-          }
-          default: {
-            // Handle character input (alphabets and numbers)
-            if (this.#contentType === ContentType.ALPHABET) {
-              if (code >= 65 && code <= 90) {
-                // A-Z (uppercase)
-                this.#selectedIndex = (65 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to A
-              } else if (code >= 97 && code <= 122) {
-                // a-z (lowercase)
-                this.#selectedIndex = (97 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to a
-              } else {
-                // If not an alphabet, just move forward
-                this.#selectedIndex++;
-              }
-            } else {
-              // ContentType.NUMBERS
-              if (code >= 48 && code <= 57) {
-                // 0-9
-                this.#selectedIndex = (48 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to 0
-              } else {
-                // If not a number, just move forward
-                this.#selectedIndex++;
-              }
             }
           }
         }
-        this.#selectedIndex = ((this.#selectedIndex % currentPanelSize) + currentPanelSize) % currentPanelSize;
-        this.changePanel();
       }
+      this.#selectedIndex = ((this.#selectedIndex % currentPanelSize) + currentPanelSize) % currentPanelSize;
+      this.changePanel();
     }
-    // Tell the browser to use our LetterPanel class for <letter-panel> elements.
-    customElements.define("letter-panel", LetterPanel);
-  </script>
-</BaseLayout>
+  }
+  // Tell the browser to use our LetterPanel class for <letter-panel> elements.
+  customElements.define("letter-panel", LetterPanel);
+</script>

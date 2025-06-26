@@ -1,4 +1,5 @@
----// Define TypeScript interfaces for month data
+---
+// Define TypeScript interfaces for month data
 interface EnglishMonth {
   type: "english";
   name: string;
@@ -11,7 +12,7 @@ interface IndianMonth {
   name: string;
   dates: string;
   monthIndex: number;
-  displayName: string; 
+  displayName: string;
   hinduOrdinalText: string;
 }
 
@@ -35,13 +36,13 @@ const { item, currentYear, nationalHolidaysData, parsedToday } = Astro.props;
 
 // Helper function to generate calendar HTML
 function isHoliday(day: number, month: number, year: number, holidays: Holiday[]): Holiday | undefined {
-  return holidays.find(h => h.day === day && h.month === month && h.year === year);
+  return holidays.find((h) => h.day === day && h.month === month && h.year === year);
 }
 
 function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Holiday[], todayDate: Date): string {
-  let html = '';
-  const daysOfWeek = ['S', 'M', 'T', 'W', 'Th', 'F', 'S'];
-  daysOfWeek.forEach(day => {
+  let html = "";
+  const daysOfWeek = ["S", "M", "T", "W", "Th", "F", "S"];
+  daysOfWeek.forEach((day) => {
     html += `<div class="calendar-day calendar-header">${day}</div>`;
   });
 
@@ -54,50 +55,47 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
-    let dayClass = 'calendar-day';
+    let dayClass = "calendar-day";
     const holidayInfo = isHoliday(day, monthIndex, year, holidays);
 
     if (year === todayDate.getFullYear() && monthIndex === todayDate.getMonth() && day === todayDate.getDate()) {
-      dayClass += ' current-day';
+      dayClass += " current-day";
     }
     if (holidayInfo) {
-      dayClass += ' holiday-day';
+      dayClass += " holiday-day";
     }
-    
-    html += `<div class="${dayClass}" title="${holidayInfo ? holidayInfo.name : ''}">${day}</div>`;
+
+    html += `<div class="${dayClass}" title="${holidayInfo ? holidayInfo.name : ""}">${day}</div>`;
   }
   return html;
 }
 ---
 
-<div class="flip__card month-card"> {}
+<div class="flip__card month-card">
   <div class="flip__card__inner">
     <div class="card card__front">
       <div class="flip__button">
         <span class="flip__button__text" title="Flip Card">Flip Card</span>
       </div>
       <div class="letter__header">
-        {item.type === 'english' && (
-          <p class="character month-symbol">{item.name}</p>
-        )}
-        {item.type === 'indian' && (
-          <p class="character month-symbol">{item.name}</p>
-        )}
+        {item.type === "english" && <p class="character month-symbol">{item.name}</p>}
+        {item.type === "indian" && <p class="character month-symbol">{item.name}</p>}
       </div>
       <div class="letter__content">
-        {item.type === 'english' && (
-          <>
-            <h2 class="text month-name">{item.hindi}</h2>
-            
-            
-          </>
-        )}
-        {item.type === 'indian' && (
-          <>
-            <h2 class="text month-name">{item.displayName}</h2>
-            
-          </>
-        )}
+        {
+          item.type === "english" && (
+            <>
+              <h2 class="text month-name">{item.hindi}</h2>
+            </>
+          )
+        }
+        {
+          item.type === "indian" && (
+            <>
+              <h2 class="text month-name">{item.displayName}</h2>
+            </>
+          )
+        }
       </div>
       <div class="card__glow"></div>
     </div>
@@ -105,32 +103,36 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
       <div class="flip__button">
         <span class="flip__button__text" title="Flip Card">Flip Card</span>
       </div>
-      <div class="month-details-back"> {}
-        {item.type === 'english' && (
-          <>
-            {}
-            <div class="calendar-on-card-grid" set:html={generateCalendarDaysHTML(item.monthIndex, currentYear, nationalHolidaysData, parsedToday)}>
-              {}
-            </div>
-          </>
-        )}
-        {item.type === 'indian' && (
-          <>
-            <h2 class="flipped__text">{item.hinduOrdinalText}</h2>
-            {/* <p class="description hindu-ordinal-text">{item.hinduOrdinalText}</p>
+      <div class="month-details-back">
+        {}
+        {
+          item.type === "english" && (
+            <>
+              <div
+                class="calendar-on-card-grid"
+                set:html={generateCalendarDaysHTML(item.monthIndex, currentYear, nationalHolidaysData, parsedToday)}
+              />
+            </>
+          )
+        }
+        {
+          item.type === "indian" && (
+            <>
+              <h2 class="flipped__text">{item.hinduOrdinalText}</h2>
+              {/* <p class="description hindu-ordinal-text">{item.hinduOrdinalText}</p>
             <p class="description month-dates-back">{item.dates}</p> */}
-          </>
-        )}
+            </>
+          )
+        }
       </div>
       <div class="card__glow"></div>
     </div>
   </div>
 </div>
 
-<style>
-  
+<style is:inline>
   :root[data-theme="light"] {
-    --character-gradient-start: var(--primary, #6a5acd); 
+    --character-gradient-start: var(--primary, #6a5acd);
     --character-gradient-end: var(--primary-light, #9370db);
     --character-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     --card-bg-gradient-start: var(--background, #fff);
@@ -141,7 +143,7 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     --character-gradient-start: hsl(260, 100%, 75%);
     --character-gradient-end: hsl(260, 100%, 85%);
     --character-shadow: 0 0 20px hsla(260, 100%, 75%, 0.2);
-    --card-bg-gradient-start: var(--background, #1a1a2e); 
+    --card-bg-gradient-start: var(--background, #1a1a2e);
     --card-bg-gradient-end: color-mix(in srgb, var(--background, #1a1a2e) 97%, var(--text, #e0e0e0) 3%);
   }
 
@@ -165,42 +167,38 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     }
   }
 
-  .flip__card { 
+  .flip__card {
     width: 100%;
     height: 100%;
     perspective: 1000px;
-    min-height: 280px; 
+    min-height: 280px;
   }
 
-  .month-card .character, 
-  .month-card .flipped__text { 
+  .month-card .character,
+  .month-card .flipped__text {
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 00;
     margin: 0;
     line-height: 1;
-    background: linear-gradient(
-      135deg,
-      var(--character-gradient-start) 0%,
-      var(--character-gradient-end) 100%
-    );
+    background: linear-gradient(135deg, var(--character-gradient-start) 0%, var(--character-gradient-end) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     text-shadow: var(--character-shadow);
     text-align: center;
   }
-  .month-card .character { 
-    font-size: clamp(1rem, 6vw, 3.5rem); 
-    height: 100%; 
+  .month-card .character {
+    font-size: clamp(1rem, 6vw, 3.5rem);
+    height: 100%;
   }
   .month-card .letter__header {
-    min-height: 80px; 
-    flex-grow: 0; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    min-height: 80px;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .month-card .flipped__text {
@@ -211,14 +209,14 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
   .month-card .card {
     background: linear-gradient(145deg, var(--card-bg-gradient-start), var(--card-bg-gradient-end));
     border-radius: 1.25rem;
-    padding: 3.5rem; 
+    padding: 3.5rem;
     box-shadow:
       0 4px 15px rgba(0, 0, 0, 0.05),
       0 1px 2px rgba(0, 0, 0, 0.1);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; 
+    gap: 0.75rem;
     position: relative;
     overflow: hidden;
     border: 1px solid var(--border, #e0e0e0);
@@ -239,7 +237,7 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
   .month-card .flip__card__inner {
     width: 100%;
     height: 100%;
-    text-align: center; 
+    text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
   }
@@ -255,9 +253,9 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     left: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
   }
-   .month-card .card__front .letter__content {
+  .month-card .card__front .letter__content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -266,14 +264,14 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
 
   .month-card .card__back {
     transform: rotateY(180deg);
-    
+
     align-items: center;
-    padding: 1rem; 
+    padding: 1rem;
     padding-top: 45px;
-    overflow-y: auto; 
+    overflow-y: auto;
     box-sizing: border-box;
   }
-  .month-details-back { 
+  .month-details-back {
     padding: 0.5rem;
     text-align: center;
     width: 100%;
@@ -283,20 +281,19 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     justify-content: center;
     gap: 0.5rem;
   }
-  .month-details-back .description { 
-    font-size: 0.9rem; 
+  .month-details-back .description {
+    font-size: 0.9rem;
     line-height: 1.4;
     color: var(--secondary, #555);
     margin-bottom: 0.4rem;
   }
-   .month-details-back .month-dates-back {
+  .month-details-back .month-dates-back {
     font-size: 0.85rem;
   }
   .month-details-back .hindu-ordinal-text {
     font-size: 1.1rem;
     font-weight: 600;
   }
-
 
   .month-card.flipped .flip__card__inner {
     transform: rotateY(180deg);
@@ -325,29 +322,29 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
-  .month-card .letter__content { 
+  .month-card .letter__content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem; 
+    gap: 0.5rem;
     z-index: 1;
     text-align: center;
     width: 100%;
   }
   .month-card .text {
-    font-size: clamp(1.4rem, 3vw, 2rem); 
+    font-size: clamp(1.4rem, 3vw, 2rem);
     font-weight: 00;
     color: var(--text, #333);
     margin: 0;
     transition: color 0.3s ease;
   }
   .month-card .description {
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
     color: var(--secondary, #555);
     margin: 0;
     line-height: 1.4;
     opacity: 0.9;
   }
-   .month-card .month-dates { 
+  .month-card .month-dates {
     font-size: 0.85rem;
   }
 
@@ -364,30 +361,29 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     pointer-events: none;
   }
 
-  
   .calendar-on-card-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 2px; 
+    gap: 2px;
     text-align: center;
     width: 100%;
-    max-width: 280px; 
-    margin: 0.5rem auto; 
-    padding: 10px; 
-    border-radius: 10px; 
-    background-color: var(--card-bg-gradient-end); 
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+    max-width: 280px;
+    margin: 0.5rem auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--card-bg-gradient-end);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--border);
     font-size: 0.75rem;
   }
 
   .calendar-on-card-grid .calendar-day {
-    padding: 5px 2px; 
-    border-radius: 6px; 
+    padding: 5px 2px;
+    border-radius: 6px;
     background-color: var(--card-bg-gradient-start);
     color: var(--text-secondary);
-    min-height: 26px; 
-    line-height: 26px; 
+    min-height: 26px;
+    line-height: 26px;
     font-weight: 500;
     border: 1px solid var(--border);
     transition: all 0.2s ease;
@@ -401,11 +397,11 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
 
   .calendar-on-card-grid .calendar-header {
     font-weight: 600;
-    background-color: transparent; 
+    background-color: transparent;
     color: var(--primary);
-    font-size: 0.7rem; 
+    font-size: 0.7rem;
     padding: 4px 0;
-    margin-bottom: 3px; 
+    margin-bottom: 3px;
     border: none;
     box-shadow: none;
   }
@@ -417,104 +413,126 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
   }
 
   .calendar-on-card-grid .calendar-day.current-day {
-    background-color: var(--primary, #6a5acd); 
+    background-color: var(--primary, #6a5acd);
     color: var(--text-on-primary, white);
     font-weight: 700;
     border-color: var(--primary-dark, #483d8b);
-    transform: scale(1.1); 
+    transform: scale(1.1);
     box-shadow: 0 0 8px color-mix(in srgb, var(--primary) 50%, transparent);
   }
 
   .calendar-on-card-grid .calendar-day.holiday-day {
-    background-color: color-mix(in srgb, var(--accent, #0766ff) 30%, var(--card-bg-gradient-start)); /* Use an accent color */
+    background-color: color-mix(
+      in srgb,
+      var(--accent, #0766ff) 30%,
+      var(--card-bg-gradient-start)
+    ); /* Use an accent color */
     color: var(--accent-dark, #0300c7);
     font-weight: 600;
     border-style: dashed;
     border-color: var(--accent, #ffc107);
   }
-   .calendar-on-card-grid .calendar-day.holiday-day.current-day {
-     background-color: var(--primary, #6a5acd); 
-     border-style: solid;
-   }
-
+  .calendar-on-card-grid .calendar-day.holiday-day.current-day {
+    background-color: var(--primary, #6a5acd);
+    border-style: solid;
+  }
 
   @media (max-width: 768px) {
-    .month-card .character { font-size: clamp(2.5rem, 5vw, 3.5rem); }
-    .month-card .text { font-size: clamp(1.2rem, 2.5vw, 1.8rem); }
-    .month-card .description { font-size: 0.85rem; }
-    .month-card .flipped__text { font-size: clamp(1.3rem, 3vw, 2rem); }
-    .calendar-on-card-grid { max-width: 240px; gap: 3px; padding: 8px; font-size: 0.7rem;}
-    .calendar-on-card-grid .calendar-day { min-height: 18px; line-height: 18px; }
+    .month-card .character {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+    }
+    .month-card .text {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    }
+    .month-card .description {
+      font-size: 0.85rem;
+    }
+    .month-card .flipped__text {
+      font-size: clamp(1.3rem, 3vw, 2rem);
+    }
+    .calendar-on-card-grid {
+      max-width: 240px;
+      gap: 3px;
+      padding: 8px;
+      font-size: 0.7rem;
+    }
+    .calendar-on-card-grid .calendar-day {
+      min-height: 18px;
+      line-height: 18px;
+    }
   }
   @media (max-width: 480px) {
-    .calendar-on-card-grid { max-width: 100%; font-size: 0.65rem; }
+    .calendar-on-card-grid {
+      max-width: 100%;
+      font-size: 0.65rem;
+    }
   }
-
 </style>
 
- <script>
-    // Script for tab switching
-    const englishBtn = document.getElementById('englishMonthsBtn');
-    const hindiBtn = document.getElementById('hindiMonthsBtn');
-    const englishMonthsPane = document.getElementById('english-months-pane');
-    const indianMonthsPane = document.getElementById('indian-months-pane');
-    
-    const monthTabs = [
-        { btn: englishBtn, pane: englishMonthsPane, name: 'english' },
-        { btn: hindiBtn, pane: indianMonthsPane, name: 'hindi' }
-    ];
+<script>
+  // Script for tab switching
+  const englishBtn = document.getElementById("englishMonthsBtn");
+  const hindiBtn = document.getElementById("hindiMonthsBtn");
+  const englishMonthsPane = document.getElementById("english-months-pane");
+  const indianMonthsPane = document.getElementById("indian-months-pane");
 
-    function showMonthTab(tabName: 'english' | 'hindi') {
-      monthTabs.forEach(tab => {
-        if (!tab.btn || !tab.pane) return;
-        if (tab.name === tabName) {
-          tab.pane.classList.add('active');
-          tab.btn.classList.add('active');
-          tab.btn.setAttribute('aria-selected', 'true');
-        } else {
-          tab.pane.classList.remove('active');
-          tab.btn.classList.remove('active');
-          tab.btn.setAttribute('aria-selected', 'false');
-        }
-      });
-    }
+  const monthTabs = [
+    { btn: englishBtn, pane: englishMonthsPane, name: "english" },
+    { btn: hindiBtn, pane: indianMonthsPane, name: "hindi" }
+  ];
 
-    if (englishBtn) englishBtn.addEventListener('click', () => showMonthTab('english'));
-    if (hindiBtn) hindiBtn.addEventListener('click', () => showMonthTab('hindi'));
-    
-    showMonthTab('english'); // Show English months by default
+  function showMonthTab(tabName: "english" | "hindi") {
+    monthTabs.forEach((tab) => {
+      if (!tab.btn || !tab.pane) return;
+      if (tab.name === tabName) {
+        tab.pane.classList.add("active");
+        tab.btn.classList.add("active");
+        tab.btn.setAttribute("aria-selected", "true");
+      } else {
+        tab.pane.classList.remove("active");
+        tab.btn.classList.remove("active");
+        tab.btn.setAttribute("aria-selected", "false");
+      }
+    });
+  }
 
-    // Script for Flip All Button
-    const flipAllMonthsButton = document.getElementById('flip-all-months-button');
-    let allMonthCardsFlipped = false;
+  if (englishBtn) englishBtn.addEventListener("click", () => showMonthTab("english"));
+  if (hindiBtn) hindiBtn.addEventListener("click", () => showMonthTab("hindi"));
 
-    if (flipAllMonthsButton) {
-      flipAllMonthsButton.addEventListener('click', () => {
-        allMonthCardsFlipped = !allMonthCardsFlipped;
-        const activePane = document.querySelector('.months-content-pane.active');
-        if (activePane) {
-            const cardsToFlip = activePane.querySelectorAll('.flip__card.month-card'); // Ensure MonthCard has these classes
-            cardsToFlip.forEach(card => {
-                if (allMonthCardsFlipped) {
-                card.classList.add('flipped');
-                } else {
-                card.classList.remove('flipped');
-                }
-            });
-        }
-        flipAllMonthsButton.textContent = allMonthCardsFlipped ? "Reset All Cards" : "Flip All Cards";
-        
-        flipAllMonthsButton.classList.add('active'); 
-        setTimeout(() => {
-          if (flipAllMonthsButton) { // Check if button still exists
-            flipAllMonthsButton.classList.remove('active');
+  showMonthTab("english"); // Show English months by default
+
+  // Script for Flip All Button
+  const flipAllMonthsButton = document.getElementById("flip-all-months-button");
+  let allMonthCardsFlipped = false;
+
+  if (flipAllMonthsButton) {
+    flipAllMonthsButton.addEventListener("click", () => {
+      allMonthCardsFlipped = !allMonthCardsFlipped;
+      const activePane = document.querySelector(".months-content-pane.active");
+      if (activePane) {
+        const cardsToFlip = activePane.querySelectorAll(".flip__card.month-card"); // Ensure MonthCard has these classes
+        cardsToFlip.forEach((card) => {
+          if (allMonthCardsFlipped) {
+            card.classList.add("flipped");
+          } else {
+            card.classList.remove("flipped");
           }
-        }, 300);
-      });
-    }
-  </script>
+        });
+      }
+      flipAllMonthsButton.textContent = allMonthCardsFlipped ? "Reset All Cards" : "Flip All Cards";
 
-  <script>
+      flipAllMonthsButton.classList.add("active");
+      setTimeout(() => {
+        if (flipAllMonthsButton) {
+          // Check if button still exists
+          flipAllMonthsButton.classList.remove("active");
+        }
+      }, 300);
+    });
+  }
+</script>
+
+<script>
   // Mouse move effect for cards (ensure .card is the correct selector for MonthCard's outer element)
   const cards = document.querySelectorAll(".months-grid .card"); // Scoped to months-grid
   cards.forEach((letter) => {
@@ -529,9 +547,9 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     });
     // Add mouseleave to reset properties
     letter.addEventListener("mouseleave", () => {
-        const htmlLetter = letter as HTMLElement;
-        htmlLetter.style.removeProperty("--mouse-x");
-        htmlLetter.style.removeProperty("--mouse-y");
+      const htmlLetter = letter as HTMLElement;
+      htmlLetter.style.removeProperty("--mouse-x");
+      htmlLetter.style.removeProperty("--mouse-y");
     });
   });
 
@@ -543,9 +561,9 @@ function generateCalendarDaysHTML(monthIndex: number, year: number, holidays: Ho
     flipButtons.forEach((button) => {
       button.addEventListener("click", (e) => {
         e.stopPropagation(); // Prevent card click if button is inside clickable area
-        const parentCard = button.closest('.flip__card');
+        const parentCard = button.closest(".flip__card");
         if (parentCard) {
-            parentCard.classList.toggle("flipped");
+          parentCard.classList.toggle("flipped");
         }
       });
     });
