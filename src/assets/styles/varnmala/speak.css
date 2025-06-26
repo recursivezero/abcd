@@ -65,6 +65,25 @@
   transform: translateY(-1px);
 }
 
+.mute-button {
+  font-size: 1.5;
+  border: 1px solid #6767d3;
+
+  cursor: pointer;
+  width: min(3em, 15vw);
+  height: min(3em, 15vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.mute-button-audio::before {
+  content: "\1F508";
+}
+
+.mute-button-audio.mute::before {
+  content: "\1F507";
+}
 /* Container styles */
 .container__english {
   & .letter {
