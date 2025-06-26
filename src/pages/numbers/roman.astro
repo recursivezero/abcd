@@ -1,18 +1,18 @@
 ---
-import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/varnmala/greek-alphabet.css";
+import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
-import BackButton from "@/components/ui/backButton.astro";
-import "@/assets/styles/varnmala/greek-alphabet.css"; 
+import BaseLayout from "@/layouts/Base";
 import numbersData from "../../data/numbers.json";
 
 // Define the type for our Roman numeral data entries
 export interface RomanNumeralEntry {
   id: number;
-  letter: string; 
-  text?: string; 
-  description?: string; 
+  letter: string;
+  text?: string;
+  description?: string;
   code?: number;
-  emoji?: string; 
+  emoji?: string;
 }
 
 const pageTitle = numbersData.roman.title;

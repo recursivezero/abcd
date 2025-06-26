@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/Base";
 import stateData from "@/assets/json/state.json";
 import "@/assets/styles/map/state.css";
-import BackButton from "@/components/ui/backButton.astro";
+import BackButton from "@/components/BackButton.astro";
 import District from "@/components/map/District.astro";
 
 export const prerender = true;
@@ -39,7 +39,7 @@ const major_rivers = stateInfo.major_rivers || [];
     </div>
     <div class="main-container">
       <div id="state-svg-container">
-        <District state={name} quote={stateInfo.famous_quote}/>
+        <District state={name} quote={stateInfo.famous_quote} />
         <!-- New Statistics Section -->
         <div class="statistics-section">
           <h3>State Statistics</h3>

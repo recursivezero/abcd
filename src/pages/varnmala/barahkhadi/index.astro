@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/Base";
-import BackButton from "@/components/ui/backButton.astro";
+import BackButton from "@/components/BackButton.astro";
 
 import "@/assets/styles/varnmala/barahkhadi/index.css";
 import { hindiConsonants, matras } from "@/utils/characters";
@@ -19,7 +19,7 @@ const consonants = [
 ---
 
 <BaseLayout meta={{ title: "Barahkhadi" }}>
-  <BackButton/>
+  <BackButton />
   <Fragment slot="header-left">
     <Help title="Barahkhadi" description="This page displays the Hindi consonants and their variations." />
   </Fragment>

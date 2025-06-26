@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@/layouts/Base";
-import CanvasGenerator from "@/components/canvasDialogue.astro";
+import BackButton from "@/components/BackButton.astro";
+import CanvasGenerator from "@/components/CanvasGenerator.astro";
 import Help from "@/components/Help.astro";
-import BackButton from "@/components/ui/backButton.astro";
+import BaseLayout from "@/layouts/Base";
 
 const meta = {
   title: "Canvas Image Generator",
@@ -11,7 +11,7 @@ const meta = {
 ---
 
 <BaseLayout {meta}>
-  <BackButton/>
+  <BackButton />
   <Fragment slot="header-right">
     <Help
       title="Canvas Image Generator"

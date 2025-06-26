@@ -1,7 +1,7 @@
 ---
 import { alphabetMapper } from "@/mappers/alphabet";
 import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/constants";
-import Keyboard from "@/components/keyboard.astro";
+import Keyboard from "@/components/Keyboard.astro";
 ---
 
 <div class="container">
@@ -263,7 +263,7 @@ import Keyboard from "@/components/keyboard.astro";
       updateFontColor();
 
       if (showImages && backgroundMode !== "color") {
-        setBackgroundImage(`${found.value}.jpg`); 
+        setBackgroundImage(`${found.value}.jpg`);
         charDiv.style.fontSize = "40vh";
       } else if (backgroundMode === "color") {
         const randomColor = getRandomValue(colorBox);

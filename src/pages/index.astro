@@ -2,10 +2,6 @@
 import BaseLayout from "@/layouts/Base";
 
 import Help from "@/components/Help.astro";
-import NameForm from "@/components/NameForm.astro";
-import Scrolling from "@/pages/scroll.astro";
-import Snapping from "@/pages/snapping.astro";
-import Stack from "@/pages/stack.astro";
 ---
 
 <style>
@@ -27,23 +23,11 @@ import Stack from "@/pages/stack.astro";
   <h1>Welcome to parixan.xyz</h1>
   <Fragment slot="header-right">
     <Help title="Sample Dialog" description="This is sample dialog which need your details if you want to give?" />
-    <NameForm />
+    <!--<NameForm />-->
   </Fragment>
   <Fragment slot="output">
     <p>
       Previous Name: <output></output>
     </p>
   </Fragment>
-  <article class="article__scroll">
-    <h2>Scroll</h2>
-    <Scrolling />
-  </article>
-  <article class="article__snapping">
-    <h2>Horizontal Snap Scroll</h2>
-    <Snapping />
-  </article>
-  <article class="article__stack">
-    <h2>Card Stack</h2>
-    <Stack />
-  </article>
 </BaseLayout>

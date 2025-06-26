@@ -1,27 +1,27 @@
 ---
-import BaseLayout from "@/layouts/Base";
-import MonthCard, { type MonthEntry } from "@/components/monthcard.astro";
 import "@/assets/styles/varnmala/months.css";
-import BackButton from "@/components/ui/backButton.astro";
+import BackButton from "@/components/BackButton.astro";
+import MonthCard, { type MonthEntry } from "@/components/MonthCard.astro";
 import glossaryData from "@/data/glossary.json";
+import BaseLayout from "@/layouts/Base";
 
 const pageTitle = glossaryData.months.title;
 const today = new Date();
-const currentYear = today.getFullYear(); 
+const currentYear = today.getFullYear();
 
 // Function to dynamically generate month names
 const getMonths = (language: string) => {
   const monthIndexes = [...Array(12).keys()];
   const options = {
-    month: 'long',
-    timeZone: 'UTC',
+    month: "long",
+    timeZone: "UTC"
   } as const;
   const applyFormat = new Intl.DateTimeFormat(language, options).format;
   return monthIndexes.map((m) => applyFormat(new Date(Date.UTC(2000, m))));
 };
 
-const englishMonthNames = getMonths('en');
-const hindiMonthNames = getMonths('hi');
+const englishMonthNames = getMonths("en");
+const hindiMonthNames = getMonths("hi");
 
 const englishMonthsData: MonthEntry[] = englishMonthNames.map((name, index) => ({
   type: "english",
@@ -35,7 +35,7 @@ const nationalHolidaysData = glossaryData.months.holidays;
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
-  <BackButton/>
+  <BackButton />
   <div class="container__page months-page-container">
     <div class="page-header">
       {}

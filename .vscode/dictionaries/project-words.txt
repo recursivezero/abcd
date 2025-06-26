@@ -48,6 +48,8 @@ nameform
 nodownload
 Organja
 orgenja
+paksha
+panchang
 parixan
 Pausha
 Peina
@@ -69,6 +71,7 @@ sunsigns
 tailwindcss
 threadzip
 Threazip
+tithi
 Vaishakha
 varnmala
 vaul

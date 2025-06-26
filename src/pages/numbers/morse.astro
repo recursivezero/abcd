@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "@/layouts/Base";
-import LetterCard from "@/components/LetterCard.astro";
-import BackButton from "@/components/ui/backButton.astro";
 import "@/assets/styles/varnmala/greek-alphabet.css";
+import BackButton from "@/components/BackButton.astro";
+import LetterCard from "@/components/LetterCard.astro";
 import numbersData from "@/data/numbers.json";
+import BaseLayout from "@/layouts/Base";
 
 export interface MorseNumberEntry {
   id: number;
@@ -19,7 +19,7 @@ const category = "morse-numbers";
 const morseNumbersData: MorseNumberEntry[] = numbersData.morse.data;
 ---
 
-<BaseLayout meta={{ title: "Numbers"}}>
+<BaseLayout meta={{ title: "Numbers" }}>
   <BackButton href="/numbers" />
   <article class="container__page alphabet-page-container">
     <div class="page-header">

@@ -1,8 +1,8 @@
 ---
 import { alphabetMapper } from "@/mappers/alphabet";
 import { IMAGE_DIR } from "@/utils/constants";
-import Base from "@/layouts/Base";
-import BackButton from "@/components/ui/backButton.astro";
+import BaseLayout from "@/layouts/Base";
+import BackButton from "@/components/BackButton.astro";
 import Help from "@/components/Help.astro";
 import "@/assets/styles/CardQueue.css";
 
@@ -43,7 +43,7 @@ function randomAngle(max: number, min: number): number {
 let currentIndex = 0;
 ---
 
-<Base meta={pageMeta}>
+<BaseLayout meta={pageMeta}>
   <Fragment slot="header-right">
     <div class="header-tools-wrapper"></div>
     <Help
@@ -51,7 +51,7 @@ let currentIndex = 0;
       description="Swipe or press arrow keys to view the next alphabet-based quote design."
     />
   </Fragment>
-  <BackButton class="back" />
+  <BackButton />
   <div class="alphabet-main-wrapper">
     <section
       class="alphabet-container"
@@ -106,264 +106,259 @@ let currentIndex = 0;
 
     <div class="keyboard-hint" role="status" aria-live="polite">Use arrow keys or press any letter key to navigate</div>
   </div>
+</BaseLayout>
+<script is:inline>
+  (function () {
+    const container = document.querySelector(".alphabet-container");
+    const items = Array.from(document.querySelectorAll(".alphabet-item"));
+    const navButtons = Array.from(document.querySelectorAll("[data-direction]"));
+    const count = parseInt(container.dataset.total);
+    let currentIndex = parseInt(container.dataset.currentIndex) || 0;
+    let isTransitioning = false;
 
-  <script is:inline>
-    (function () {
-      const container = document.querySelector(".alphabet-container");
-      const items = Array.from(document.querySelectorAll(".alphabet-item"));
-      const navButtons = Array.from(document.querySelectorAll("[data-direction]"));
-      const count = parseInt(container.dataset.total);
-      let currentIndex = parseInt(container.dataset.currentIndex) || 0;
-      let isTransitioning = false;
+    const alphabetMap = {};
+    items.forEach((item, index) => {
+      const letter = item.dataset.letter;
+      alphabetMap[letter] = index;
+    });
 
-      const alphabetMap = {};
+    function updateItemPositions() {
       items.forEach((item, index) => {
-        const letter = item.dataset.letter;
-        alphabetMap[letter] = index;
-      });
+        item.classList.remove("active", "next", "prev", "far");
 
-      function updateItemPositions() {
-        items.forEach((item, index) => {
-          item.classList.remove("active", "next", "prev", "far");
+        const diff = index - currentIndex;
 
-          const diff = index - currentIndex;
-
-          if (diff === 0) {
-            item.classList.add("active");
-            item.setAttribute("tabindex", "0");
-            item.setAttribute("aria-current", "true");
+        if (diff === 0) {
+          item.classList.add("active");
+          item.setAttribute("tabindex", "0");
+          item.setAttribute("aria-current", "true");
+        } else {
+          // All other items
+          item.setAttribute("tabindex", "-1");
+          item.removeAttribute("aria-current");
+          if (diff === 1 || diff === -(count - 1)) {
+            item.classList.add("next");
+          } else if (diff === -1 || diff === count - 1) {
+            item.classList.add("prev");
           } else {
-            // All other items
-            item.setAttribute("tabindex", "-1");
-            item.removeAttribute("aria-current");
-            if (diff === 1 || diff === -(count - 1)) {
-              item.classList.add("next");
-            } else if (diff === -1 || diff === count - 1) {
-              item.classList.add("prev");
-            } else {
-              item.classList.add("far");
-            }
+            item.classList.add("far");
           }
-        });
-      }
+        }
+      });
+    }
 
-      function navigateToIndex(newIndex, animate = true) {
-        if (isTransitioning || newIndex === currentIndex) return;
+    function navigateToIndex(newIndex, animate = true) {
+      if (isTransitioning || newIndex === currentIndex) return;
 
-        const targetIndex = ((newIndex % count) + count) % count;
+      const targetIndex = ((newIndex % count) + count) % count;
 
-        if (animate) {
-          isTransitioning = true;
-          container.classList.add("transitioning");
+      if (animate) {
+        isTransitioning = true;
+        container.classList.add("transitioning");
 
-          const newActiveItem = items[targetIndex];
-          const previousActiveItem = items[currentIndex];
+        const newActiveItem = items[targetIndex];
+        const previousActiveItem = items[currentIndex];
 
-          if (previousActiveItem) {
-            previousActiveItem.blur();
-          }
+        if (previousActiveItem) {
+          previousActiveItem.blur();
+        }
 
-          let transitionEndCounter = 0;
-          const expectedTransitions = 3; // Active, next, prev items typically transition
+        let transitionEndCounter = 0;
+        const expectedTransitions = 3; // Active, next, prev items typically transition
 
-          const handleTransitionEnd = (event) => {
-            if (event.propertyName === "transform" || event.propertyName === "opacity") {
-              transitionEndCounter++;
-              if (transitionEndCounter >= expectedTransitions) {
-                isTransitioning = false;
-                container.classList.remove("transitioning");
-
-                if (newActiveItem && document.activeElement !== newActiveItem) {
-                  newActiveItem.focus({ preventScroll: true });
-                }
-
-                items.forEach((item) => {
-                  item.removeEventListener("transitionend", handleTransitionEnd);
-                });
-              }
-            }
-          };
-
-          items.forEach((item) => {
-            if (
-              item.classList.contains("active") ||
-              item.classList.contains("next") ||
-              item.classList.contains("prev")
-            ) {
-              item.addEventListener("transitionend", handleTransitionEnd);
-            }
-          });
-
-          setTimeout(() => {
-            if (isTransitioning) {
+        const handleTransitionEnd = (event) => {
+          if (event.propertyName === "transform" || event.propertyName === "opacity") {
+            transitionEndCounter++;
+            if (transitionEndCounter >= expectedTransitions) {
               isTransitioning = false;
               container.classList.remove("transitioning");
+
               if (newActiveItem && document.activeElement !== newActiveItem) {
                 newActiveItem.focus({ preventScroll: true });
               }
+
               items.forEach((item) => {
                 item.removeEventListener("transitionend", handleTransitionEnd);
               });
             }
-          }, 600); // Matches CSS transition duration
-        } else {
-          const activeItem = items[targetIndex];
-          if (activeItem && document.activeElement !== activeItem) {
-            activeItem.focus({ preventScroll: true });
           }
-        }
+        };
 
-        currentIndex = targetIndex;
-        container.dataset.currentIndex = currentIndex;
-        updateItemPositions();
-      }
-
-      function navigateToLetter(letter) {
-        const targetIndex = alphabetMap[letter.toUpperCase()];
-        if (targetIndex !== undefined) {
-          navigateToIndex(targetIndex);
-        }
-      }
-
-      function handleNavigation(direction) {
-        if (isTransitioning) return;
-
-        const increment = direction === "next" ? 1 : -1;
-        const newIndex = currentIndex + increment;
-        navigateToIndex(newIndex);
-      }
-
-      navButtons.forEach((button) => {
-        button.addEventListener("click", (e) => {
-          e.preventDefault();
-          const direction = button.dataset.direction;
-          handleNavigation(direction);
-        });
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
-          return;
-        }
-
-        switch (e.key) {
-          case "ArrowLeft":
-            e.preventDefault();
-            handleNavigation("prev");
-            break;
-          case "ArrowRight":
-            e.preventDefault();
-            handleNavigation("next");
-            break;
-          case "Home":
-            e.preventDefault();
-            navigateToIndex(0);
-            break;
-          case "End":
-            e.preventDefault();
-            navigateToIndex(count - 1);
-            break;
-          default:
-            if (e.key.match(/^[a-zA-Z]$/)) {
-              e.preventDefault();
-              navigateToLetter(e.key);
-            }
-            break;
-        }
-      });
-      // Touch navigation for mobile devices
-      let touchStartX = 0;
-      let touchEndX = 0;
-      const minSwipeDistance = 50;
-
-      container.addEventListener(
-        "touchstart",
-        (e) => {
-          touchStartX = e.changedTouches[0].screenX;
-        },
-        { passive: true }
-      );
-
-      container.addEventListener(
-        "touchend",
-        (e) => {
-          touchEndX = e.changedTouches[0].screenX;
-          const deltaX = touchEndX - touchStartX;
-
-          if (Math.abs(deltaX) > minSwipeDistance) {
-            if (deltaX > 0) {
-              handleNavigation("prev");
-            } else {
-              handleNavigation("next");
-            }
-          }
-        },
-        { passive: true }
-      );
-
-      let hintTimeout;
-      const keyboardHint = document.querySelector(".keyboard-hint");
-
-      function hideHintAfterDelay() {
-        clearTimeout(hintTimeout);
-        hintTimeout = setTimeout(() => {
-          if (keyboardHint) {
-            keyboardHint.style.opacity = "0";
-          }
-        }, 10);
-      }
-
-      ["keydown", "click", "touchstart"].forEach((event) => {
-        document.addEventListener(event, hideHintAfterDelay, { once: true });
-      });
-
-      function preloadImages() {
         items.forEach((item) => {
-          const img = item.querySelector(".item-image");
-          if (img && img.src) {
-            const preloadImg = new Image();
-            preloadImg.src = img.src;
+          if (item.classList.contains("active") || item.classList.contains("next") || item.classList.contains("prev")) {
+            item.addEventListener("transitionend", handleTransitionEnd);
           }
         });
+
+        setTimeout(() => {
+          if (isTransitioning) {
+            isTransitioning = false;
+            container.classList.remove("transitioning");
+            if (newActiveItem && document.activeElement !== newActiveItem) {
+              newActiveItem.focus({ preventScroll: true });
+            }
+            items.forEach((item) => {
+              item.removeEventListener("transitionend", handleTransitionEnd);
+            });
+          }
+        }, 600); // Matches CSS transition duration
+      } else {
+        const activeItem = items[targetIndex];
+        if (activeItem && document.activeElement !== activeItem) {
+          activeItem.focus({ preventScroll: true });
+        }
       }
 
+      currentIndex = targetIndex;
+      container.dataset.currentIndex = currentIndex;
+      updateItemPositions();
+    }
+
+    function navigateToLetter(letter) {
+      const targetIndex = alphabetMap[letter.toUpperCase()];
+      if (targetIndex !== undefined) {
+        navigateToIndex(targetIndex);
+      }
+    }
+
+    function handleNavigation(direction) {
+      if (isTransitioning) return;
+
+      const increment = direction === "next" ? 1 : -1;
+      const newIndex = currentIndex + increment;
+      navigateToIndex(newIndex);
+    }
+
+    navButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const direction = button.dataset.direction;
+        handleNavigation(direction);
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
+        return;
+      }
+
+      switch (e.key) {
+        case "ArrowLeft":
+          e.preventDefault();
+          handleNavigation("prev");
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          handleNavigation("next");
+          break;
+        case "Home":
+          e.preventDefault();
+          navigateToIndex(0);
+          break;
+        case "End":
+          e.preventDefault();
+          navigateToIndex(count - 1);
+          break;
+        default:
+          if (e.key.match(/^[a-zA-Z]$/)) {
+            e.preventDefault();
+            navigateToLetter(e.key);
+          }
+          break;
+      }
+    });
+    // Touch navigation for mobile devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const minSwipeDistance = 50;
+
+    container.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      },
+      { passive: true }
+    );
+
+    container.addEventListener(
+      "touchend",
+      (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const deltaX = touchEndX - touchStartX;
+
+        if (Math.abs(deltaX) > minSwipeDistance) {
+          if (deltaX > 0) {
+            handleNavigation("prev");
+          } else {
+            handleNavigation("next");
+          }
+        }
+      },
+      { passive: true }
+    );
+
+    let hintTimeout;
+    const keyboardHint = document.querySelector(".keyboard-hint");
+
+    function hideHintAfterDelay() {
+      clearTimeout(hintTimeout);
+      hintTimeout = setTimeout(() => {
+        if (keyboardHint) {
+          keyboardHint.style.opacity = "0";
+        }
+      }, 10);
+    }
+
+    ["keydown", "click", "touchstart"].forEach((event) => {
+      document.addEventListener(event, hideHintAfterDelay, { once: true });
+    });
+
+    function preloadImages() {
       items.forEach((item) => {
         const img = item.querySelector(".item-image");
-        if (img) {
-          img.addEventListener("error", () => {
-            img.style.backgroundColor = "rgba(129, 140, 248, 0.1)";
-            img.style.display = "flex";
-            img.style.alignItems = "center";
-            img.style.justifyContent = "center";
-            img.innerHTML = '<span style="color: rgba(241, 245, 249, 0.5); font-size: 2rem;">📷</span>';
-          });
+        if (img && img.src) {
+          const preloadImg = new Image();
+          preloadImg.src = img.src;
         }
       });
+    }
 
-      // Initialize component
-      function initializeAlphabet() {
+    items.forEach((item) => {
+      const img = item.querySelector(".item-image");
+      if (img) {
+        img.addEventListener("error", () => {
+          img.style.backgroundColor = "rgba(129, 140, 248, 0.1)";
+          img.style.display = "flex";
+          img.style.alignItems = "center";
+          img.style.justifyContent = "center";
+          img.innerHTML = '<span style="color: rgba(241, 245, 249, 0.5); font-size: 2rem;">📷</span>';
+        });
+      }
+    });
+
+    // Initialize component
+    function initializeAlphabet() {
+      updateItemPositions();
+      preloadImages();
+    }
+
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
         updateItemPositions();
-        preloadImages();
-      }
+      }, 250);
+    });
 
-      let resizeTimeout;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          updateItemPositions();
-        }, 250);
-      });
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initializeAlphabet);
+    } else {
+      initializeAlphabet();
+    }
 
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initializeAlphabet);
-      } else {
-        initializeAlphabet();
-      }
-
-      window.alphabetCleanup = function () {
-        clearTimeout(hintTimeout);
-        clearTimeout(resizeTimeout);
-      };
-    })();
-  </script>
-</Base>
+    window.alphabetCleanup = function () {
+      clearTimeout(hintTimeout);
+      clearTimeout(resizeTimeout);
+    };
+  })();
+</script>
