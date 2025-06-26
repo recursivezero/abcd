@@ -181,7 +181,7 @@ const pageMeta = {
         <input
           type="color"
           id="textColor"
-          value="#ffffff"
+          value="#000000"
           class="metallic-input color-input"
           aria-label="Text Color Picker"
         />
@@ -446,7 +446,7 @@ const pageMeta = {
         if (!preview || !quoteData || !quoteTextEl || !authorNameEl) return;
         quoteTextEl.textContent = quoteData.quote || "";
         authorNameEl.textContent = quoteData.author ? `- ${quoteData.author}` : "";
-        const selectedTextColor = controls.textColor?.value || "#ffffff";
+        const selectedTextColor = controls.textColor?.value || "#000000";
         quoteTextEl.style.color = selectedTextColor;
         authorNameEl.style.color = selectedTextColor;
         preview.style.fontFamily = controls.fontFamily?.value || "'Space Mono', monospace";
@@ -481,7 +481,7 @@ const pageMeta = {
         if (editWordCountEl) updateWordCountDisplay(editQuoteInput, editWordCountEl);
 
         if (controls.bgColor) controls.bgColor.value = "#000000";
-        if (controls.textColor) controls.textColor.value = "#ffffff";
+        if (controls.textColor) controls.textColor.value = "#000000";
 
         if (controls.fontFamily) controls.fontFamily.value = "'Space Mono', monospace";
         if (controls.fontSize) {
