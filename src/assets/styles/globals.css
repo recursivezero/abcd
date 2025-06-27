@@ -30,8 +30,8 @@
   }
 
   [data-theme="light"] {
-    --primary: #cfd160;
-    --primary-light: #cddc89;
+    --primary: #ba1db8;
+    --primary-light: #c975c6;
     --secondary: #64748b;
     --background: #ffffff;
     --text: #0f172a;
