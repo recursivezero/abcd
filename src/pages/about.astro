@@ -1,16 +1,639 @@
 ---
-import "@/assets/styles/about.css";
 import BaseLayout from "@/layouts/Base";
----
+import TitleLayout from "@/layouts/TitleLayout";
+import Logo from "@/assets/icons/logo.svg";
+import contributors from "@/data/contributor.json";
+import GitHub from "@/assets/icons/github.svg";
 
-<BaseLayout meta={{ title: "About us" }}>
-  <article class="container__about">
-    <section class="moto">
-      <p>This is my initial version to make interactive games for kids</p>
-      <p>
-        Inspiration behind these games are to take kids away from smartphone and close to keyboard which will help in
-        their future building also.
-      </p>
+// Constants
+const appName = "abcdkbd";
+
+// Meta data
+const meta = {
+  title: "About Us"
+};
+
+// Interfaces
+interface TeamMember {
+  name: string;
+  role: string;
+  description: string;
+  github: string;
+}
+
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+const getInitials = (name: string): string => {
+  const names = name.split(' ').filter(n => n.length > 0);
+  return names
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+};
+
+// Features data
+const features: Feature[] = [
+  {
+    title: "Alphabet Adventures",
+    description:
+      "Embark on a journey through letters with interactive games that teach English, Hindi, and Braille. Track progress and explore creative representations like fruits, animals, countries, and geeky codes!",
+    icon: "🔤",
+    color: "#3b82f6"
+  },
+  {
+    title: "Culture Explorer",
+    description:
+      "Travel through India's rich heritage with immersive maps and family tree explorations. Discover your roots through Gotra, Deity, and Caste search with downloadable clan data.",
+    icon: "🗺️",
+    color: "#10b981"
+  },
+  {
+    title: "Word Playground",
+    description:
+      "Challenge your mind with engaging puzzles and vocabulary hunts. Find words like CAT, DOG, SUN, and MOON while tracking your progress.",
+    icon: "🎲",
+    color: "#f59e0b"
+  },
+  {
+    title: "Math Quest",
+    description:
+      "Dive into numbers with fun challenges and games. Learn various number systems including English, Hindi, Roman, and Morse code formats.",
+    icon: "➕",
+    color: "#f43f5e"
+  },
+  {
+    title: "Draw & Learn",
+    description:
+      "Tap letters to display matching images, then draw over them with customizable colors and backgrounds. A fun blend of art and alphabet learning!",
+    icon: "✏️",
+    color: "#ec4899"
+  },
+  {
+    title: "Indic Varnmala",
+    description:
+      "Explore the vowels and consonants of different Indian languages. Compare scripts and sounds across regions in a simple, visual way.",
+    icon: "🅰️",
+    color: "#8b5cf6"
+  },
+  {
+    title: "Knowledge Glossary",
+    description:
+      "Learn about months, days, sun signs, country flags, seasons, colors, shapes, and times of the day in a fun and accessible format.",
+    icon: "📖",
+    color: "#6366f1"
+  },
+  {
+    title: "Tithi & Time Tools",
+    description:
+      "Explore traditional lunar calendar details alongside modern timestamps. Includes unit converters for daily use.",
+    icon: "⏳",
+    color: "#14b8a6"
+  },
+  {
+    title: "Creative Studio",
+    description:
+      "Design beautiful quotes or custom text visuals with the Text and Quote Designer tools — perfect for creative expression.",
+    icon: "🖌️",
+    color: "#ef4444"
+  },
+  {
+    title: "Display Modes",
+    description:
+      "Visualize alphabets interactively: build vertical stacks, create flowing queues, or swipe through sliders in fun display formats.",
+    icon: "🧩",
+    color: "#0ea5e9"
+  },
+  {
+    title: "Varnmala Learning Hub",
+    description:
+      "Learn and practice alphabets with tools for reading, writing, listening, and drawing — including Barahkhadi and interactive speak-to-draw modes.",
+    icon: "📖",
+    color: "#8b5cf6"
+  },
+  {
+    title: "Word Hunt",
+    description:
+      "Explore a word discovery game where you find hidden words while keeping track of clicks and progress in an interactive way.",
+    icon: "🔍",
+    color: "#f97316"
+  }
+];
+---
+<BaseLayout meta={meta}>
+  <TitleLayout title="Welcome to the World of Learning" />
+
+  <main class="about-container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <img src={Logo.src} alt={`${appName} Logo`} class="hero-logo" />
+        <h1 class="hero-title">Learning Made <span class="text-highlight">Magical!</span></h1>
+        <p class="hero-text">
+          At {appName}, we transform education into captivating adventures that ignite young minds. Our interactive
+          platform takes children on an unforgettable journey through letters, words, and diverse cultures.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://prixan.xyz" class="btn btn-primary">Let's Get Started</a>
+          <a href="https://deepwiki.com/recursivezero/abcd" class="btn btn-secondary">Read More</a>
+        </div>
+      </div>
+      <div class="hero-bubbles">
+        {["A", "B", "C", "D", "1", "2", "🎈", "📚", "🌈"].map((char, i) => (
+          <span class="bubble" style={`--i: ${i}; --size: ${Math.random() * 2 + 1}rem;`} aria-hidden="true">
+            {char}
+          </span>
+        ))}
+      </div>
     </section>
-  </article>
+
+    <!-- Features Section -->
+    <section id="features" class="section features-section">
+      <h2 class="section-title">Our <span class="text-highlight">Enchanting</span> Features</h2>
+      <p class="section-subtitle">
+        Designed to spark curiosity and foster a lifelong love for learning through innovative experiences
+      </p>
+      <div class="features-grid">
+        {features.map((feature) => (
+          <div class="feature-card" style={`--accent-color: ${feature.color}`}>
+            <div class="feature-icon" aria-label={feature.title}>
+              {feature.icon}
+            </div>
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-desc">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team-section">
+      <h2 class="section-title">Meet Our <span class="text-highlight">Passionate</span> Team</h2>
+      <p class="section-subtitle">
+        A dedicated group of educators, designers, and developers committed to making learning magical
+      </p>
+      <div class="team-grid">
+        {contributors.map((member: TeamMember) => {
+          const initials = getInitials(member.name);
+          return (
+            <div class="team-card">
+              <div class="team-image-container">
+                <div class="team-avatar" style={`background-color: ${(member.name)}`}>
+                  {initials}
+                </div>
+                <div class="team-image-border" />
+              </div>
+              <h3 class="team-name">{member.name}</h3>
+              <p class="team-role">{member.role}</p>
+              <p class="team-desc">{member.description}</p>
+              <a
+                href={`https://github.com/${member.github}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="team-github-link"
+                aria-label={`${member.name}'s GitHub profile`}
+              >
+                @{member.github} <GitHub class="github-icon" />
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Tech Section -->
+    <section class="tech-section">
+      <div class="tech-content">
+        <h2 class="section-title">Built for <span class="text-highlight">Young Minds</span> with Joy & Purpose</h2>
+        <p class="tech-text">
+          We blend educational insight with technology to help kids explore alphabets, languages, numbers, and stories
+          from India and beyond in a fun, safe, and colorful way.
+        </p>
+        <div class="tech-icons">
+          {["🔡", "🌍", "🎨", "📖", "🗣️"].map((icon, i) => (
+            <span class="tech-icon" style={`--i: ${i}`} aria-hidden="true">
+              {icon}
+            </span>
+          ))}
+        </div>
+        <a href="https://abcdkbd.com" class="btn btn-primary">Start Your Learning Adventure</a>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
+
+<style lang="css">
+  :root {
+    --bg-dark: #0f172a;
+    --bg-light: #ffffff;
+    --bg-secondary: #1e293b;
+    --primary: #3b82f6;
+    --primary-light: #60a5fa;
+    --text-main: #f8fafc;
+    --text-primary: #cbd5e1;
+    --text-secondary: #212223;
+    --accent: #f59e0b;
+  }
+
+  .about-container {
+    background-color: light-dark(var(--bg-light), var(--bg-dark));
+    color: var(--text-main);
+    min-height: 100vh;
+    font-family: "Comic Neue", cursive, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .text-highlight {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 0.5rem;
+  }
+
+  .btn-primary {
+    background-color: var(--primary);
+    color: white;
+    border: 2px solid var(--primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    text-align: center;
+    padding: 4rem 1rem;
+    margin-bottom: 4rem;
+    border-radius: 1rem;
+    background: light-dark(var(--bg-light), linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-dark) 100%));
+    box-shadow: 2px 5px 10px 3px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+  }
+
+  .hero-logo {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: light-dark(var(--text-secondary), var(--text-primary));
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-text {
+    font-size: 1.25rem;
+    color: light-dark(var(--text-secondary), var(--text-primary));
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .hero-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .bubble {
+    position: absolute;
+    background: light-dark(rgb(226, 223, 223), rgba(59, 130, 246, 0.2));
+    color: light-dark(var(--bg-dark), var(--bg-light));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(var(--size) * 0.6);
+    animation: float-up 15s linear infinite;
+    animation-delay: calc(var(--i) * 2s);
+    width: var(--size);
+    height: var(--size);
+    bottom: -10%;
+    left: calc(10% + var(--i) * 12%);
+  }
+
+  /* Sections */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: light-dark(var(--text-secondary), var(--text-primary));
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: light-dark(var(--bg-dark), var(--text-primary));
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), transparent);
+    border-radius: 2px;
+  }
+
+  /* Features Section */
+  .features-section {
+    margin-bottom: 4rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: light-dark(var(--bg-light), var(--bg-secondary));
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+  }
+
+  .feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: light-dark(var(--primary), var(--text-main));
+  }
+
+  .feature-desc {
+    color: light-dark(var(--bg-dark), var(--text-primary));
+    line-height: 1.6;
+  }
+
+  /* Team Section */
+  .team-section {
+    margin-bottom: 4rem;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .team-card {
+    background: light-dark(var(--bg-light), var(--bg-secondary));
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3);
+  }
+
+  .team-image-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .team-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    z-index: 2;
+  }
+
+  .team-image-border {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    z-index: 1;
+    animation: rotate-border 4s linear infinite;
+  }
+
+  .team-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-light);
+  }
+
+  .team-role {
+    color: light-dark(var(--bg-dark), var(--text-main));
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .team-desc {
+    color: light-dark(var(--bg-dark), var(--text-primary));
+    line-height: 1.6;
+  }
+
+  .team-github-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .team-github-link:hover {
+    color: var(--primary);
+  }
+
+  .github-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* Tech Section */
+  .tech-section {
+    background: light-dark(var(--bg-light), var(--bg-secondary));
+    box-shadow: 2px 5px 10px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .tech-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .tech-text {
+    font-size: 1.25rem;
+    color: light-dark(var(--bg-dark), var(--text-primary));
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .tech-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .tech-icon {
+    font-size: 2.5rem;
+    animation: bounce 2s ease infinite;
+    animation-delay: calc(var(--i) * 0.2s);
+  }
+
+  /* Animations */
+  @keyframes float-up {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes rotate-border {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .hero-logo {
+      max-width: 120px;
+    }
+
+    .hero-title {
+      font-size: 1.8rem;
+    }
+
+    .hero-text {
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .team-image-container {
+      width: 120px;
+      height: 120px;
+    }
+
+    .tech-section {
+      padding: 3rem 1rem;
+    }
+  }
+</style>
