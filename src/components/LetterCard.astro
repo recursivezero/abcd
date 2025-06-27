@@ -26,7 +26,10 @@ const { item, category } = Astro.props;
       </div>
       <div class="card__glow"></div>
     </div>
-    <div class="card card__back">
+    <div
+      class="card card__back"
+      style={category === "colours" && item.cssColor ? `background: ${item.cssColor}` : ""}
+    >
       <div class="flip__button">
         <span class="flip__button__text" title="Click to flip">Flip Card</span>
       </div>
