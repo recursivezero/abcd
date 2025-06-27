@@ -1,6 +1,7 @@
 {
   "flags": {
     "title": "Country Flags",
+    "category": "flags",
     "data": [
       { "id": "usa", "countryCode": "US", "text": "United States", "description": "Capital: Washington, D.C." },
       { "id": "canada", "countryCode": "CA", "text": "Canada", "description": "Capital: Ottawa" },
@@ -23,34 +24,103 @@
   },
   "colours": {
     "title": "Colours",
+    "category": "colours",
     "data": [
-      { "id": "black", "letter": "⬛", "fullName": "Black (काला)", "cssColor": "black" },
-      { "id": "white", "letter": "⬜", "fullName": "White (सफ़ेद)", "cssColor": "white" },
-      { "id": "red", "letter": "🟥", "fullName": "Red (लाल)", "cssColor": "red" },
-      { "id": "green", "letter": "🟩", "fullName": "Green (हरा)", "cssColor": "green" },
-      { "id": "yellow", "letter": "🟨", "fullName": "Yellow (पीला)", "cssColor": "yellow" },
-      { "id": "blue", "letter": "🟦", "fullName": "Blue (नीला)", "cssColor": "blue" },
-      { "id": "brown", "letter": "🟫", "fullName": "Brown (भूरा)", "cssColor": "brown" },
-      { "id": "orange", "letter": "🟧", "fullName": "Orange (नारंगी)", "cssColor": "orange" },
-      { "id": "pink", "letter": "💖", "fullName": "Pink (गुलाबी)", "cssColor": "pink" },
-      { "id": "purple", "letter": "🟪", "fullName": "Purple (बैंगनी)", "cssColor": "purple" },
-      { "id": "gray", "letter": "🩶", "fullName": "Gray (स्लेटी)", "cssColor": "gray" }
+      {
+        "id": "red",
+        "letter": "R",
+        "text": "Red",
+        "description": "लाल",
+        "cssColor": "#ff0000"
+      },
+      {
+        "id": "green",
+        "letter": "G",
+        "text": "Green",
+        "description": "हरा",
+        "cssColor": "#00ff00"
+      },
+      {
+        "id": "yellow",
+        "letter": "Y",
+        "text": "Yellow",
+        "description": "पीला",
+        "cssColor": "#ffff00"
+      },
+      {
+        "id": "blue",
+        "letter": "B",
+        "text": "Blue",
+        "description": "नीला",
+        "cssColor": "#0000ff"
+      },
+      {
+        "id": "brown",
+        "letter": "N",
+        "text": "Brown",
+        "description": "भूरा",
+        "cssColor": "#a52a2a"
+      },
+      {
+        "id": "orange",
+        "letter": "O",
+        "text": "Orange",
+        "description": "नारंगी",
+        "cssColor": "#ffa500"
+      },
+      {
+        "id": "pink",
+        "letter": "P",
+        "text": "Pink",
+        "description": "गुलाबी",
+        "cssColor": "#ffc0cb"
+      },
+      {
+        "id": "purple",
+        "letter": "V",
+        "text": "Purple",
+        "description": "बैंगनी",
+        "cssColor": "#800080"
+      },
+      {
+        "id": "gray",
+        "letter": "S",
+        "text": "Gray",
+        "description": "स्लेटी",
+        "cssColor": "#808080"
+      },
+      {
+        "id": "black",
+        "letter": "K",
+        "text": "Black",
+        "description": "काला",
+        "cssColor": "#000000"
+      },
+      {
+        "id": "white",
+        "letter": "W",
+        "text": "White",
+        "description": "सफ़ेद",
+        "cssColor": "#ffffff"
+      }
     ]
   },
   "days": {
     "title": "Days of the Week",
+    "category": "days",
     "data": [
-      { "id": "sunday", "letter": "Sun", "fullName": "Sunday (रविवार)" },
-      { "id": "monday", "letter": "Mon", "fullName": "Monday (सोमवार)" },
-      { "id": "tuesday", "letter": "Tue", "fullName": "Tuesday (मंगलवार)" },
-      { "id": "wednesday", "letter": "Wed", "fullName": "Wednesday (बुधवार)" },
-      { "id": "thursday", "letter": "Thu", "fullName": "Thursday (गुरुवार)" },
-      { "id": "friday", "letter": "Fri", "fullName": "Friday (शुक्रवार)" },
-      { "id": "saturday", "letter": "Sat", "fullName": "Saturday (शनिवार)" }
+      { "id": "sunday", "letter": "S", "text": "रविवार", "description": "Sunday" },
+      { "id": "monday", "letter": "M", "text": "सोमवार", "description": "Monday" },
+      { "id": "tuesday", "letter": "T", "text": "मंगलवार", "description": "Tuesday" },
+      { "id": "wednesday", "letter": "W", "text": "बुधवार", "description": "Wednesday" },
+      { "id": "thursday", "letter": "T", "text": "गुरुवार", "description": "Thursday" },
+      { "id": "friday", "letter": "F", "text": "शुक्रवार", "description": "Friday" },
+      { "id": "saturday", "letter": "S", "text": "शनिवार", "description": "Saturday" }
     ]
   },
   "months": {
     "title": "Months",
+    "category": "months",
     "indian": [
       {
         "type": "indian",
@@ -162,6 +232,7 @@
   },
   "shapes": {
     "title": "Geometric Shapes",
+    "category": "shapes",
     "data": [
       {
         "id": "circle",
@@ -211,6 +282,7 @@
   },
   "waqt": {
     "title": "Waqt (Times of Day)",
+    "category": "waqt",
     "data": [
       {
         "id": "dawn",
@@ -300,17 +372,19 @@
   },
   "seasons": {
     "title": "Seasons",
+    "category": "seasons",
     "data": [
-      { "id": "spring", "letter": "🌸", "fullName": "Spring (वसन्त)" },
-      { "id": "summer", "letter": "☀️", "fullName": "Summer (ग्रीष्म)" },
-      { "id": "monsoon", "letter": "🌧️", "fullName": "Monsoon (वर्षा)" },
-      { "id": "autumn", "letter": "🍂", "fullName": "Autumn (शरद)" },
-      { "id": "pre_winter", "letter": "🌬️", "fullName": "Pre-Winter (हेमन्त)" },
-      { "id": "winter", "letter": "❄️", "fullName": "Winter (शिशिर/शीत)" }
+      { "id": "spring", "letter": "🌸", "text": "spring", "description": "वसन्त" },
+      { "id": "summer", "letter": "☀️", "text": "summer", "description": "ग्रीष्म" },
+      { "id": "monsoon", "letter": "🌧️", "text": "monsoon", "description": "बरसात" },
+      { "id": "autumn", "letter": "🍂", "text": "autumn", "description": "पतझड़" },
+      { "id": "pre_winter", "letter": "🌬️", "text": "pre-winter", "description": "हेमन्त" },
+      { "id": "winter", "letter": "❄️", "text": "winter", "description": "शीत" }
     ]
   },
   "sunsign": {
     "title": "Sun Signs",
+    "category": "sunsigns",
     "data": [
       {
         "id": "aries",

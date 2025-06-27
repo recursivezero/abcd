@@ -41,6 +41,7 @@ Kartika
 kmeans
 linalg
 lucide
+LXXX
 Magha
 Margashirsha
 matras
@@ -58,6 +59,7 @@ prerender
 Reddy
 roboto
 Rushi
+samay
 sanyukat
 shadcn
 Shravana
@@ -79,6 +81,7 @@ venv
 Verdana
 Vijayadashami
 waitlist
+webring
 werkzeug
 अक्टूबर
 अगस्त
@@ -104,5 +107,6 @@ werkzeug
 वृश्चिक
 वृषभ
 वैशाख
+शून्य
 श्रावण
 सितम्बर

@@ -1,5 +1,7 @@
 ---
 import "@/assets/styles/math.css";
+
+import FloralIcon from "@/assets/icons/floral.svg";
 ---
 
 <div class="math-practice">
@@ -37,6 +39,7 @@ import "@/assets/styles/math.css";
             class="number output"
             placeholder="?"
             autofocus
+            autocomplete="off"
           />
           <div id="resultIndicator" class="result-indicator"></div>
         </div>
@@ -52,8 +55,7 @@ import "@/assets/styles/math.css";
 
   {/* ADD THIS: Fullscreen Celebration Container */}
   <div id="fullscreen-celebration" class="fullscreen-celebration">
-    {}
-    {}
+    <FloralIcon />
   </div>
 </div>
 
@@ -72,7 +74,6 @@ import "@/assets/styles/math.css";
     score: 0,
     scoreIncrement: 10,
     isAnswerCorrect: false
-    // jsDrivenOutputValue: ""
   };
 
   function initMathPractice() {
@@ -109,12 +110,6 @@ import "@/assets/styles/math.css";
     firstInput.value = first.toString();
     secondInput.value = second.toString();
     if (operatorDisplay) operatorDisplay.textContent = state.currentOperator;
-
-    // output.value = "";
-    // state.jsDrivenOutputValue = "";
-    // output.style.textAlign = 'center'; // Ensure placeholder and initial state is centered
-    // resultIndicator.innerHTML = "";
-    // resultIndicator.className = "result-indicator";
 
     output.value = "";
     resultIndicator.innerHTML = "";
@@ -225,18 +220,6 @@ import "@/assets/styles/math.css";
   }
 
   function triggerCelebration() {
-    fullscreenCelebration.innerHTML = "";
-    const emojiCount = 30;
-    const emojis = ["🎉", "⭐", "🎉", "🎈", "🥳", "✨", "🎊", "❤️", "😍", "🥳"];
-    for (let i = 0; i < emojiCount; i++) {
-      const emojiParticle = document.createElement("span");
-      emojiParticle.className = "emoji-particle";
-      emojiParticle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      emojiParticle.style.left = Math.random() * 100 + "%";
-      emojiParticle.style.top = Math.random() * 100 + "%";
-      emojiParticle.style.animationDelay = Math.random() * 0.5 + "s";
-      fullscreenCelebration.appendChild(emojiParticle);
-    }
     fullscreenCelebration.classList.add("celebration-active");
     setTimeout(() => {
       fullscreenCelebration.classList.remove("celebration-active");
@@ -247,13 +230,8 @@ import "@/assets/styles/math.css";
 </script>
 
 <style>
-  /* Default alignment for placeholder AND typed text */
-
   /* Fullscreen celebration styles */
   .fullscreen-celebration {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -261,27 +239,11 @@ import "@/assets/styles/math.css";
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
     opacity: 0;
     transition: opacity 0.5s ease;
   }
 
-  .fullscreen-celebration.celebration-active {
+  .celebration-active {
     opacity: 1;
-  }
-
-  .emoji-particle {
-    position: absolute;
-    font-size: 2rem;
-    animation: fly 2s forwards;
-  }
-
-  @keyframes fly {
-    0% {
-      transform: translateY(0) scale(1);
-    }
-    100% {
-      transform: translateY(-100vh) scale(0);
-    }
   }
 </style>

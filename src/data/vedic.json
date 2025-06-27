@@ -1,0 +1,124 @@
+{
+  "-comment": "'seconds' field is only used for unit conversion and is not displayed in Vedic Time Journey.",
+  "time_units": [
+    {
+      "name": "त्रुटि",
+      "seconds": 0.0000003086,
+      "firstEquivalent": "Base unit of measurement",
+      "secondEquivalent": "308.6 Nanoseconds",
+      "thirdEquivalent": "0.0000003086 Seconds"
+    },
+    {
+      "name": "रेणु",
+      "seconds": 0.000018516,
+      "firstEquivalent": "60 त्रुटि",
+      "secondEquivalent": "18.516 Microseconds",
+      "thirdEquivalent": "0.000018516 Seconds"
+    },
+    {
+      "name": "लव",
+      "seconds": 0.00111096,
+      "firstEquivalent": "60 रेणु",
+      "secondEquivalent": "3600 त्रुटि",
+      "thirdEquivalent": "1,110.96 MicroSeconds"
+    },
+    {
+      "name": "निमेष - Blink of an eye",
+      "seconds": 0.0889,
+      "firstEquivalent": "80.02 लव",
+      "secondEquivalent": "4,801.2 रेणु",
+      "thirdEquivalent": "88.9 Milliseconds"
+    },
+    {
+      "name": "क्षण",
+      "seconds": 1.28,
+      "firstEquivalent": "14.3982 निमेष",
+      "secondEquivalent": "1,152.14 लव",
+      "thirdEquivalent": "1.28 Seconds"
+    },
+    {
+      "name": "पल",
+      "seconds": 23.99,
+      "firstEquivalent": "18.742 क्षण",
+      "secondEquivalent": "269.70 निमेष",
+      "thirdEquivalent": "21,572 लव"
+    },
+    {
+      "name": "घटी",
+      "seconds": 1439.4,
+      "firstEquivalent": "60 पल",
+      "secondEquivalent": "1,124.52 क्षण",
+      "thirdEquivalent": "16,182 निमेष"
+    },
+    {
+      "name": "प्रहर",
+      "seconds": 10800,
+      "firstEquivalent": "7.5 घट",
+      "secondEquivalent": "450 पल",
+      "thirdEquivalent": "एक दिन का आठवां हिसा"
+    },
+    {
+      "name": "दिन",
+      "seconds": 86400,
+      "firstEquivalent": "8 प्रहर",
+      "secondEquivalent": "60 घटी",
+      "thirdEquivalent": "3600 पल"
+    },
+    {
+      "name": "तिथि",
+      "seconds": 86400,
+      "firstEquivalent": "8 प्रहर",
+      "secondEquivalent": "1 दिन (19 घंटे - 26 घंटे)",
+      "thirdEquivalent": "Time for 12° increase of longitudinal angle between Moon and Sun"
+    },
+    {
+      "name": "पक्ष",
+      "seconds": 1296000,
+      "firstEquivalent": "15 दिन",
+      "secondEquivalent": "120 प्रहर",
+      "thirdEquivalent": "900 घटी"
+    },
+    {
+      "name": "मास",
+      "seconds": 2592000,
+      "firstEquivalent": "2 पक्ष",
+      "secondEquivalent": "30 दिन / ~30 तिथि",
+      "thirdEquivalent": "240 प्रहर"
+    },
+    {
+      "name": "ऋतु",
+      "seconds": 5184000,
+      "firstEquivalent": "2 मास",
+      "secondEquivalent": "4 पक्ष",
+      "thirdEquivalent": "~60 दिन"
+    },
+    {
+      "name": "अयन",
+      "seconds": 15552000,
+      "firstEquivalent": "3 ऋतु",
+      "secondEquivalent": "6 मास",
+      "thirdEquivalent": "8 पक्ष"
+    },
+    {
+      "name": "वर्ष",
+      "seconds": 31104000,
+      "firstEquivalent": "2 अयन",
+      "secondEquivalent": "6 ऋतु",
+      "thirdEquivalent": "360 दिन / 354.36707 तिथि"
+    },
+    {
+      "name": "युग",
+      "seconds": 13436928000000,
+      "firstEquivalent": "4,32,000 मनुष्य वर्ष (कलियुग)",
+      "secondEquivalent": "8,64,000 अयन",
+      "thirdEquivalent": "4 युग-(सत्ययुग, त्रेतायुग, द्वापरयुग, कलियुग)"
+    },
+    {
+      "name": "कल्प",
+      "seconds": 134369280000000000,
+      "firstEquivalent": "10,000 कलियुग",
+      "secondEquivalent": "4,320,000,000 मनुष्य वर्ष",
+      "thirdEquivalent": "~1 प्रलय"
+    }
+  ]
+}

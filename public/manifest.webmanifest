@@ -1,20 +1,28 @@
 {
-  "name": "APP Name",
-  "id": "App Name",
-  "short_name": "App Name",
-  "description": "A virtual front store for textile industry",
+  "name": "ABCDKBD",
+  "id": "abcdkbd",
+  "short_name": "ABCDKBD",
+  "description": "A learning pad for ABCD keyboard layout enthusiasts.",
   "icons": [
     {
-      "src": "/192x192.png",
-      "sizes": "192x192",
+      "src": "/assets/images/144x144.png",
+      "sizes": "144x144",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/512x512.png",
+      "src": "/assets/images/512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/images/logo.png",
+      "sizes": "1024x768",
+      "type": "image/png",
+      "label": "ABCD"
     }
   ],
   "start_url": "/",

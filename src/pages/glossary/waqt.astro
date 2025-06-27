@@ -1,26 +1,27 @@
 ---
 import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
-import "@/assets/styles/varnmala/greek-alphabet.css"; // General styles, adjust if needed
+import "@/assets/styles/glossary/glossary.css"; // General styles, adjust if needed
 import "@/assets/styles/glossary/waqt.css";
 import glossaryData from "@/data/glossary.json";
 
-const pageTitle = glossaryData.waqt.title;
-const waqtData = glossaryData.waqt.data;
+const {
+  waqt: { title, data }
+} = glossaryData;
 ---
 
-<BaseLayout meta={{ title: pageTitle }}>
+<BaseLayout meta={{ title }}>
   <BackButton href="/Glossary" />
   <article class="container__page alphabet-page-container">
     <div class="page-header">
-      <h1 class="page-main-title">{pageTitle}</h1>
+      <h1 class="page-main-title">{title}</h1>
       <button id="flip-all-button-waqt" class="flip__all__button">Flip All Cards</button>
     </div>
 
     <div class="grid-container alphabet-grid waqt-grid">
       {/* Added waqt-grid class */}
       {
-        waqtData.map((entry) => (
+        data.map((entry) => (
           <div class="flip__card" data-id={entry.id}>
             <div class="flip__card__inner">
               <div class="card card__front">

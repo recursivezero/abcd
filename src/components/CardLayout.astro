@@ -1,0 +1,33 @@
+---
+import "@/assets/styles/card-layout.css";
+import type { CardSectionType } from "@/types/alphabet";
+const { section } = Astro.props;
+
+type Props = { section: CardSectionType };
+---
+
+<div class="card__inner">
+  <div class="card__content">
+    {section.icon && <div class="category__icon">{section.icon}</div>}
+    <h2 class="category__title">{section.title}</h2>
+    <p class="category__description">{section.description}</p>
+  </div>
+  <div class="card__actions">
+    {
+      section.href.playground && (
+        <a href={section.href.playground.link} class="btn btn-playground">
+          <span class="card_icon">{section.href.playground.icon}</span>
+          {section.href.playground.text || "Playground"}
+        </a>
+      )
+    }
+    {
+      section.href.board && (
+        <a href={section.href.board.link} class="btn btn-board">
+          <span class="card_icon">{section.href.board.icon}</span>
+          {section.href.board.text || "Board"}
+        </a>
+      )
+    }
+  </div>
+</div>

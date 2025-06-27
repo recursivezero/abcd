@@ -1,0 +1,141 @@
+---
+type Props = {
+  number: number;
+  numbers: number[];
+};
+
+const { number, numbers }: Props = Astro.props;
+---
+
+<style>
+  .number__card {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
+    border-radius: 0.5rem;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+    z-index: 1;
+
+    :hover {
+      transform: none;
+      background-color: color-mix(in srgb, var(--primary) 15%, var(--background) 85%);
+      transition: all 0.2s ease;
+      z-index: 1000;
+    }
+
+    & .number {
+      font-size: 8.5rem;
+      font-weight: bold;
+      color: var(--text);
+    }
+
+    & .quick-view-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 6px;
+      font-size: 1.2rem;
+      background: color-mix(in srgb, var(--text) 10%, var(--background) 90%);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text);
+      line-height: 1;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--text) 15%, var(--background) 85%);
+        transform: scale(1.05);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    & .multiplication__popover {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0.75rem;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px color-mix(in srgb, var(--text) 15%, transparent);
+      transition:
+        opacity 0.2s,
+        visibility 0.2s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      color: var(--text);
+      overflow: hidden;
+      z-index: 1;
+    }
+    &[data-active="true"] .multiplication__popover {
+      visibility: visible;
+      opacity: 1;
+      display: flex;
+    }
+
+    & .variations__grid {
+      display: grid;
+      gap: 0.4rem;
+      width: 100%;
+      max-height: 100%;
+      overflow-y: auto;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    & .variation {
+      font-size: 2.75rem;
+      text-align: center;
+      background: color-mix(in srgb, var(--text) 5%, var(--background) 95%);
+      border-radius: 4px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      font-family: auto;
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--text) 15%, var(--background) 85%);
+      }
+    }
+  }
+</style>
+
+<div class="number__card" data-active="false">
+  <span class="number">{number}</span>
+  <button class="quick-view-btn">🔍</button>
+  <div class="multiplication__popover">
+    <div class="variations__grid">
+      {numbers.map((multiplier) => <div class="variation">{number * multiplier}</div>)}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".quick-view-btn").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      // Toggle current popover
+      const card = (e.currentTarget as HTMLElement).closest(".number__card") as HTMLElement;
+      const isActive = card.getAttribute("data-active") === "true";
+      const newState = !isActive;
+      card.setAttribute("data-active", String(newState));
+      (e.currentTarget as HTMLElement).textContent = newState ? "✖️" : "🔍";
+    });
+  });
+</script>
