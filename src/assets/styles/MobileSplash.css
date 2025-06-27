@@ -1,37 +1,43 @@
-.container_splash {
-  container-type: inline-size;
+.mobile-splash {
   display: none;
 }
 
-@container (max-width: 768px) {
-  .container_splash {
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .mobile-splash {
     display: flex;
     position: fixed;
     inset: 0;
-    z-index: 1000;
-    background-color: light-dark(#f4f4f2, #090808);
+    z-index:1;
+    background-color: light-dark(#f4f4f2,  #090808);
     justify-content: center;
     align-items: center;
     padding: 1rem;
     transition: background-color 0.3s ease;
   }
 
-  .container_splash_card {
+  .splash-card {
     background-color: light-dark(#ffffff, #0f172a);
     padding: 2rem;
     margin-bottom: 0.5vh;
     border-radius: 1rem;
-    box-shadow: light-dark(0 10px 30px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.3));
+    box-shadow: light-dark(
+      0 10px 30px rgba(0, 0, 0, 0.1),
+      0 10px 30px rgba(0, 0, 0, 0.3)
+    );
     text-align: center;
     max-width: 400px;
     width: 100%;
     border: light-dark(none, 1px solid #404040);
-    transition:
-      background-color 0.3s ease,
-      box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .container_splash_logo {
+  .logo {
     width: 60px;
     margin-bottom: 1rem;
     margin-left: 40%;
@@ -39,27 +45,27 @@
     transition: filter 0.3s ease;
   }
 
-  .container_splash_heading {
+  h1 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
     color: light-dark(#222222, #e0e0e0);
     transition: color 0.3s ease;
   }
 
-  .container_splash_text {
+  p {
     font-size: 0.95rem;
     color: light-dark(#555555, #b0b0b0);
     margin-bottom: 1.5rem;
     transition: color 0.3s ease;
   }
 
-  .container_splash_buttons {
+  .buttons {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
   }
 
-  .container_splash_btn {
+  .btn {
     display: inline-block;
     padding: 0.75rem 1rem;
     text-decoration: none;
@@ -70,28 +76,29 @@
     transition: all 0.3s ease;
   }
 
-  .container_splash_btn_primary {
-    background-color: light-dark(#0f172a, #3b82f6);
+  .primary {
+    background-color: light-dark( #0f172a, #3b82f6);
     color: light-dark(#ffffff, #f0f0f0);
   }
 
-  .container_splash_btn_primary:hover {
-    background-color: light-dark(#0f172a, #3b82f6);
+  .primary:hover {
+    background-color: light-dark( #0f172a, #3b82f6);
     transform: translateY(-1px);
   }
 
-  .container_splash_btn_secondary {
-    border: 2px solid light-dark(#0f172a, #3b82f6);
-    color: light-dark(#0f172a, #3b82f6);
+  .secondary {
+    border: 2px solid light-dark( #0f172a, #3b82f6);
+    color: light-dark( #0f172a,  #3b82f6);
     background-color: light-dark(#ffffff, transparent);
   }
 
-  .container_splash_btn_secondary:hover {
+  .secondary:hover {
     background-color: light-dark(#f8f9f8, rgba(90, 110, 82, 0.1));
     transform: translateY(-1px);
   }
 
-  .container_splash_btn:hover {
+  .btn:hover {
     opacity: 0.9;
   }
+
 }
