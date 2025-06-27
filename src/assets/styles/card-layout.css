@@ -45,6 +45,7 @@
 .card__actions {
   display: flex;
   margin-top: auto;
+  gap: 4px;
 }
 
 @media (max-width: 768px) {
@@ -74,4 +75,10 @@
 .icon {
   font-size: 1.2em;
   margin-right: 0.5em;
+}
+
+
+.btn-board {
+  background: var(--primary);
+  color: var(--background);
 }
