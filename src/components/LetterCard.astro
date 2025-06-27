@@ -4,11 +4,14 @@ import { type AlphabetEntry } from "@/types/alphabet.ts";
 import "@/assets/styles/letter-card.css";
 
 interface Props {
+  class?: string;
   item: AlphabetEntry;
   category: string;
 }
 
-const { item, category } = Astro.props;
+const { class: className, ...rest } = Astro.props;
+
+const { item, category } = rest as Props;
 ---
 
 <div class="flip__card">
@@ -18,7 +21,7 @@ const { item, category } = Astro.props;
         <span class="flip__button__text" title="Flip Card">Flip Card</span>
       </div>
       <div class="letter__header">
-        <p class="character">{item.letter}</p>
+        <p class={`character ${className}`}>{item.letter}</p>
       </div>
       <div class="letter__content">
         <h2 class="text">{item.text}</h2>
@@ -26,10 +29,7 @@ const { item, category } = Astro.props;
       </div>
       <div class="card__glow"></div>
     </div>
-    <div
-      class="card card__back"
-      style={category === "colours" && item.cssColor ? `background: ${item.cssColor}` : ""}
-    >
+    <div class="card card__back" style={category === "colours" && item.cssColor ? `background: ${item.cssColor}` : ""}>
       <div class="flip__button">
         <span class="flip__button__text" title="Click to flip">Flip Card</span>
       </div>

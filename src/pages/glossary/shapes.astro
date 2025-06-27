@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/glossary/glossary.css"; 
+import "@/assets/styles/glossary/glossary.css";
 import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
 import glossaryData from "@/data/glossary.json";
@@ -11,7 +11,7 @@ const {
 ---
 
 <BaseLayout meta={{ title: "Glossary" }}>
-  <BackButton href="/Glossary" />
+  <BackButton href="/glossary" />
   <div class="container__page">
     <div class="page__header">
       <h1 class="page__title">{title}</h1>
@@ -20,7 +20,8 @@ const {
 
     <div class="container__glossary">
       <div class="glossary__grid">
-      {data.map((entry) => <LetterCard item={entry} category={category} />)}
+        {data.map((entry) => <LetterCard item={entry} category={category} />)}
       </div>
     </div>
+  </div>
 </BaseLayout>

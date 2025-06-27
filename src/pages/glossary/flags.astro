@@ -1,46 +1,30 @@
 ---
-import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/glossary/glossary.css";
 import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
-import "@/assets/styles/glossary/glossary.css";
 import glossaryData from "@/data/glossary.json";
+import BaseLayout from "@/layouts/Base";
+import { getFlagEmoji } from "@/utils";
 
-const pageTitle = glossaryData.flags.title;
-const flagsData = glossaryData.flags.data;
+const {
+  flags: { title, data }
+} = glossaryData;
 
-const getFlagEmoji = (countryCode: string = "IN") => {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split("")
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
-};
-
+const flagsData = data.map((entry) => ({ ...entry, letter: getFlagEmoji(entry.countryCode) }));
 ---
 
-<BaseLayout meta={{ title: pageTitle }}>
-  <BackButton href="/Glossary" />
-  <article class="container__page">
+<BaseLayout meta={{ title }}>
+  <BackButton href="/glossary" />
+  <div class="container__page">
     <div class="page__header">
-      <h1 class="page__title">{pageTitle}</h1>
-      <button id="flip-all-button-page" class="btn__flip__all">Flip All Cards</button>
+      <h1 class="page__title">{title}</h1>
+      <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
 
     <div class="container__glossary">
       <div class="glossary__grid">
-      {
-        flagsData.map((entry) => (
-          <LetterCard
-            item={{
-              ...entry,
-              letter: getFlagEmoji(entry.countryCode),
-              text: entry.text,
-              description: entry.description,
-            }}
-            category="flags"
-          />
-        ))
-      }
+        {flagsData.map((entry) => <LetterCard item={entry} category="flags" class="flag" />)}
       </div>
     </div>
+  </div>
 </BaseLayout>
