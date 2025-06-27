@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/varnmala/greek-alphabet.css";
+import "@/assets/styles/varnmala/number.css";
 import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
 import numbersData from "@/data/numbers.json";
@@ -14,31 +14,23 @@ export interface MorseNumberEntry {
   emoji?: string;
 }
 
-const pageTitle = numbersData.morse.title;
-const category = "morse-numbers";
-const morseNumbersData: MorseNumberEntry[] = numbersData.morse.data;
+const {
+  morse: { title, data, category }
+} = numbersData;
 ---
 
 <BaseLayout meta={{ title: "Numbers" }}>
   <BackButton href="/numbers" />
-  <article class="container__page alphabet-page-container">
-    <div class="page-header">
-      <h1 class="page-main-title">{pageTitle}</h1>
-      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+  <article class="container__page">
+    <div class="page__header">
+      <h1 class="page__title">{title}</h1>
+      <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
 
-    <div class="grid-container alphabet-grid">
-      {
-        morseNumbersData.map((entry) => {
-          const letterCardItem = {
-            ...entry,
-            text: "", // Show digit on front
-            description: entry.description || "",
-            emoji: entry.emoji // Morse code on back
-          };
-          return <LetterCard item={letterCardItem} category={category} />;
-        })
-      }
-    </div>
+    <article class="container__numbers">
+      <div class="numbers__grid">
+        {data.map((entry) => <LetterCard item={entry} category={category} />)}
+      </div>
+    </article>
   </article>
 </BaseLayout>

@@ -1,102 +1,91 @@
 ---
 import "@/assets/styles/alphabets/index.css";
-import "@/assets/styles/glossary/index.css";
 import Back from "@/components/Back.astro";
+import CardLayout from "@/components/CardLayout.astro";
 import BaseLayout from "@/layouts/Base";
+import type { CardSectionType } from "@/types/alphabet";
 
-const pageTitle = "Glossary";
+const title = "Glossary";
 
-interface GlossarySection {
-  id: string;
-  title: string;
-  description: string;
-  href: string;
-  icon: string;
-}
-
-const glossarySections: GlossarySection[] = [
+const glossarySections: CardSectionType[] = [
   {
-    id: "months",
-    title: "Months ",
+    kind: "months",
+    title: "Months",
     description: "Learn about the twelve months, their names, and order.",
-    href: "/glossary/months",
-    icon: "📅"
+    href: {
+      playground: { link: "/glossary/months", icon: "📅", text: "Explore" }
+    }
   },
   {
-    id: "sunsigns",
+    kind: "sunsigns",
     title: "Sun Signs",
     description: "Explore the twelve zodiac sun signs and their characteristics.",
-    href: "/glossary/sunsign",
-    icon: "☀️"
+    href: {
+      playground: { link: "/glossary/sunsign", icon: "☀️", text: "Explore" }
+    }
   },
   {
-    id: "flags",
+    kind: "flags",
     title: "Country Flags",
     description: "Discover flags from various countries around the world.",
-    href: "/glossary/flags",
-    icon: "🚩"
+    href: {
+      playground: { link: "/glossary/flags", icon: "🚩", text: "Explore" }
+    }
   },
   {
-    id: "shapes",
+    kind: "shapes",
     title: "Geometric Shapes",
     description: "Learn to identify different common geometric shapes.",
-    href: "/glossary/shapes",
-    icon: "💠"
+    href: {
+      playground: { link: "/glossary/shapes", icon: "💠", text: "Explore" }
+    }
   },
   {
-    id: "days",
+    kind: "days",
     title: "Days",
     description: "Learn about the seven days of the week, their names, and order.",
-    href: "/glossary/days",
-    icon: "📅"
+    href: {
+      playground: { link: "/glossary/days", icon: "📅", text: "Explore" }
+    }
   },
   {
-    id: "seasons",
+    kind: "seasons",
     title: "Seasons",
     description: "Explore the four seasons and their characteristics.",
-    href: "/glossary/seasons",
-    icon: "🌸"
+    href: {
+      playground: { link: "/glossary/seasons", icon: "🌸", text: "Explore" }
+    }
   },
   {
-    id: "colours",
+    kind: "colours",
     title: "Colours",
     description: "Learn about different colours and their names.",
-    href: "/glossary/colours",
-    icon: "🎨"
+    href: {
+      playground: { link: "/glossary/colours", icon: "🎨", text: "Explore" }
+    }
   },
   {
-    id: "waqt",
+    kind: "waqt",
     title: "Waqt (Times of Day)",
     description: "Learn about different times of the day and their Hindi names.",
-    href: "/glossary/waqt",
-    icon: "🕰️"
+    href: {
+      playground: { link: "/glossary/waqt", icon: "🕰️", text: "Explore" }
+    }
   }
 ];
 ---
 
-<BaseLayout meta={{ title: pageTitle }}>
+<BaseLayout meta={{ title: "Glossary" }}>
   <Back />
   <section class="container__alphabets">
     <div class="alphabets__header">
-      <h1>{pageTitle}</h1>
+      <h1>{title}</h1>
     </div>
     <ul class="list__alphabets">
       {
         glossarySections.map((section, index) => (
           <li class="card" style={`animation-delay: ${index * 50}ms`}>
-            <div class="card__inner">
-              <div class="card__content">
-                {section.icon && <div class="category__icon">{section.icon}</div>}
-                <h2 class="category__title">{section.title}</h2>
-                <p class="category__description">{section.description}</p>
-              </div>
-              <div class="card__actions">
-                <a href={section.href} class="btn btn-playground">
-                  <span class="icon">📚</span>
-                  Explore
-                </a>
-              </div>
-            </div>
+            <CardLayout section={section} />
           </li>
         ))
       }

@@ -1,14 +1,26 @@
 ---
-import Back from "@/components/Back.astro";
 import "@/assets/styles/alphabets/index.css";
+import Back from "@/components/Back.astro";
+import CardLayout from "@/components/CardLayout.astro";
 import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
-
 import type { AlphabetsData } from "@/types/alphabet";
 const alphabetData = rawAlphabetData as AlphabetsData;
 
 const categories = Object.keys(alphabetData);
-const getCategoryDescription = (category: string) => alphabetData[category as keyof AlphabetsData].description;
+
+const categoryList = categories.map((category, index) => {
+  return {
+    id: index.toString(),
+    icon: alphabetData[category as keyof AlphabetsData].icon,
+    title: category.charAt(0).toUpperCase() + category.slice(1),
+    description: alphabetData[category as keyof AlphabetsData].description,
+    href: {
+      playground: { icon: "📚", link: `/alphabets/${category}/playground/`, text: "Playground" },
+      board: { icon: "📋", link: `/alphabets/${category}/board/`, text: "Board" }
+    }
+  };
+});
 ---
 
 <BaseLayout meta={{ title: "Alphabets Explorer" }}>
@@ -20,121 +32,12 @@ const getCategoryDescription = (category: string) => alphabetData[category as ke
     </div>
     <ul class="list__alphabets">
       {
-        categories.map((category, index) => (
+        categoryList.map((category, index) => (
           <li class="card" style={`animation-delay: ${index * 50}ms`}>
-            <div class="card__inner">
-              <div class="card__content">
-                <div class="category__icon">{alphabetData[category as keyof AlphabetsData].icon}</div>
-                <h2 class="category__title">{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-                <p class="category__description">{getCategoryDescription(category)}</p>
-              </div>
-              <div class="card__actions">
-                <a href={`/alphabets/${category}/playground/`} class="btn btn-playground">
-                  <span class="icon">🎮</span>
-                  Playground
-                </a>
-                <a href={`/alphabets/${category}/board`} class="btn btn-board">
-                  <span class="icon">📋</span>
-                  Board
-                </a>
-              </div>
-            </div>
+            <CardLayout section={category} />
           </li>
         ))
       }
     </ul>
   </section>
 </BaseLayout>
-
-<style>
-  .card__inner {
-    background: var(--background);
-    border: 2px solid var(--border);
-    border-radius: 1rem;
-    padding: clamp(1rem, 3vw, 1.25rem);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: clamp(0.75rem, 2vw, 1rem);
-    transition: all 0.2s ease;
-  }
-
-  .category__icon {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: clamp(0.25rem, 2vw, 0.5rem);
-  }
-
-  .category__title {
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    margin-bottom: 0.75rem;
-  }
-
-  .category__description {
-    font-size: clamp(0.9rem, 2vw, 0.95rem);
-    line-height: 1.6;
-  }
-
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.75rem, 2vw, 2rem);
-    border-radius: 0.75rem;
-    font-weight: 600;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    transition: all 0.2s ease;
-    text-decoration: none;
-    flex: 1;
-    min-width: 119px;
-  }
-
-  .card__actions {
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-  }
-
-  @media (max-width: 768px) {
-    .card__actions {
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .btn {
-      width: 100%;
-    }
-  }
-
-  .btn-playground {
-    background: var(--primary);
-    color: var(--background);
-  }
-
-  .btn-board {
-    background: var(--background);
-    color: var(--text);
-    border: 2px solid var(--border);
-  }
-
-  .card:hover .card__inner {
-    transform: translateY(-3px);
-    border-color: var(--primary);
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .btn-playground:hover {
-    background: var(--primary-light);
-  }
-
-  .btn-board:hover {
-    background: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
-  }
-
-  .icon {
-    font-size: 1.2em;
-  }
-</style>

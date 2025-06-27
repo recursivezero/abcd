@@ -1575,7 +1575,7 @@
         { "letter": "ज", "code": "091C", "meaning": "जहाज़ (ship)", "emoji": "🚢", "unicode": "U+1F6A2" },
         { "letter": "झ", "code": "091D", "meaning": "झंडा (flag)", "emoji": "🏁", "unicode": "U+1F3C1" },
         { "letter": "ट", "code": "091F", "meaning": "टमाटर (tomato)", "emoji": "🍅", "unicode": "U+1F345" },
-        { "letter": "ठ", "code": "0920", "meaning":"ठठेरा (brass smith)", "emoji": "🔨", "unicode": "U+1F44F" },
+        { "letter": "ठ", "code": "0920", "meaning": "ठठेरा (brass smith)", "emoji": "🔨", "unicode": "U+1F44F" },
         { "letter": "ड", "code": "0921", "meaning": "डमरू (Shiva's drum)", "emoji": "🥁", "unicode": "U+1F941" },
         { "letter": "ढ", "code": "0922", "meaning": "ढोलक (drum)", "emoji": "🪘", "unicode": "U+1FA98" },
         { "letter": "ण", "code": "0923", "meaning": "ण (none)", "emoji": "♨️", "unicode": "U+2668" },

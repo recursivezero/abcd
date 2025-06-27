@@ -178,9 +178,11 @@
 .flags-grid .flip__card .card__glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      color-mix(in srgb, var(--primary) 10%, transparent) 0%,
-      transparent 60%);
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    color-mix(in srgb, var(--primary) 10%, transparent) 0%,
+    transparent 60%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -220,7 +222,6 @@
   font-size: 1.1em;
   line-height: 1;
 }
-
 
 .flags-grid .card__back .character {
   font-family: "Noto Color Emoji", sans-serif;

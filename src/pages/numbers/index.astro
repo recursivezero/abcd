@@ -1,12 +1,41 @@
 ---
-import Back from "@/components/Back.astro";
-import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/alphabets/index.css";
-import "@/assets/styles/numbers/index.css";
-import numbersData from "@/data/numbers.json";
+import Back from "@/components/Back.astro";
+import CardLayout from "@/components/CardLayout.astro";
+import BaseLayout from "@/layouts/Base";
+import type { CardSectionType } from "@/types/alphabet";
 
 const pageTitle = "Explore various number systems";
-const numberSections = numbersData.sections;
+const numberSections: CardSectionType[] = [
+  {
+    kind: "english-numbers",
+    title: "English Numbers",
+    description: "Learn about numbers in English and their multiplication tables.",
+    href: {
+      playground: { link: "/numbers/english", icon: "🔢", text: "Explore" }
+    }
+  },
+  {
+    kind: "hindi-numbers",
+    title: "Hindi Numbers",
+    description: "Learn Devanagari numerals and their names.",
+    href: {
+      playground: { link: "/numbers/hindi", icon: "🔢", text: "Explore" }
+    }
+  },
+  {
+    kind: "roman-numerals",
+    title: "Roman Numerals",
+    description: "Learn to read and write Roman numerals.",
+    href: { playground: { link: "/numbers/roman", icon: "🏛️", text: "Explore" } }
+  },
+  {
+    kind: "morse-code-numbers",
+    title: "Morse Code Numbers",
+    description: "Learn to read and write Morse code for numbers.",
+    href: { playground: { link: "/numbers/morse", icon: "📡", text: "Explore" } }
+  }
+];
 ---
 
 <BaseLayout meta={{ title: "Numbers" }}>
@@ -19,19 +48,7 @@ const numberSections = numbersData.sections;
       {
         numberSections.map((section, index) => (
           <li class="card" style={`animation-delay: ${index * 50}ms`}>
-            <div class="card__inner">
-              <div class="card__content">
-                {section.icon && <div class="category__icon">{section.icon}</div>}
-                <h2 class="category__title">{section.title}</h2>
-                <p class="category__description">{section.description}</p>
-              </div>
-              <div class="card__actions">
-                <a href={section.href} class="btn btn-playground">
-                  <span class="icon">📚</span>
-                  Explore
-                </a>
-              </div>
-            </div>
+            <CardLayout section={section} />
           </li>
         ))
       }
