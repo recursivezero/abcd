@@ -6,6 +6,7 @@ import BaseLayout from "@/layouts/Base";
 import type { CardSectionType } from "@/types/alphabet";
 
 const title = "Glossary";
+const subtitle = "Explore various categories of knowledge and information";
 
 const glossarySections: CardSectionType[] = [
   {
@@ -79,7 +80,8 @@ const glossarySections: CardSectionType[] = [
   <Back />
   <section class="container__alphabets">
     <div class="alphabets__header">
-      <h1>{title}</h1>
+      <h1 class="title">{title}</h1>
+      <p class="subtitle">{subtitle}</p>
     </div>
     <ul class="list__alphabets">
       {

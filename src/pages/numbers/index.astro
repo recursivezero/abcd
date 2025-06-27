@@ -5,7 +5,9 @@ import CardLayout from "@/components/CardLayout.astro";
 import BaseLayout from "@/layouts/Base";
 import type { CardSectionType } from "@/types/alphabet";
 
-const pageTitle = "Explore various number systems";
+const title = "Number systems";
+
+const subtitle = "Explore various number systems and their representations";
 
 const numberSections: CardSectionType[] = [
   {
@@ -43,7 +45,8 @@ const numberSections: CardSectionType[] = [
   <Back />
   <section class="container__alphabets">
     <div class="alphabets__header">
-      <h1>{pageTitle}</h1>
+      <h1 class="title">{title}</h1>
+      <p class="subtitle">{subtitle}</p>
     </div>
     <ul class="list__alphabets">
       {

@@ -5,8 +5,11 @@ import CardLayout from "@/components/CardLayout.astro";
 import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
 import type { AlphabetsData } from "@/types/alphabet";
-const alphabetData = rawAlphabetData as AlphabetsData;
 
+const title = "Alphabet Categories";
+const subtitle = "Choose a category to discover different alphabet representations";
+
+const alphabetData = rawAlphabetData as AlphabetsData;
 const categories = Object.keys(alphabetData);
 
 const categoryList = categories.map((category, index) => {
@@ -27,8 +30,8 @@ const categoryList = categories.map((category, index) => {
   <Back />
   <section class="container__alphabets">
     <div class="alphabets__header">
-      <h1>Alphabet Categories</h1>
-      <p class="subtitle">Choose a category to discover different alphabet representations</p>
+      <h1 class="title">{title}</h1>
+      <p class="subtitle">{subtitle}</p>
     </div>
     <ul class="list__alphabets">
       {
