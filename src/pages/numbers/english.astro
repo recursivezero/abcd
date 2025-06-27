@@ -1,8 +1,9 @@
 ---
 import "@/assets/styles/varnmala/number.css";
-import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
 import Help from "@/components/Help.astro";
+import NumberGrid from "@/components/NumberGrid.astro";
+import BaseLayout from "@/layouts/Base";
 
 const pageTitle = "English Numbers";
 const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -14,40 +15,15 @@ const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
   </Fragment>
 
   <BackButton />
-  <div class="page__header">
-    <h2 class="page__title">{pageTitle}</h2>
-  </div>
-
-  <article class="container__numbers">
-    <div class="numbers__grid">
-      {
-        numbers.map((number) => (
-          <div class="number__card" data-active="false">
-            <span class="number">{number}</span>
-            <button class="quick-view-btn">🔍</button>
-            <div class="multiplication__popover">
-              <div class="variations__grid">
-                {numbers.map((multiplier) => (
-                  <div class="variation">{number * multiplier}</div>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))
-      }
+  <div class="container__page">
+    <div class="page__header">
+      <h2 class="page__title">{pageTitle}</h2>
     </div>
-  </article>
-</BaseLayout>
 
-<script>
-  document.querySelectorAll(".quick-view-btn").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      // Toggle current popover
-      const card = (e.currentTarget as HTMLElement).closest(".number__card") as HTMLElement;
-      const isActive = card.getAttribute("data-active") === "true";
-      const newState = !isActive;
-      card.setAttribute("data-active", String(newState));
-      (e.currentTarget as HTMLElement).textContent = newState ? "✖️" : "🔍";
-    });
-  });
-</script>
+    <div class="container__numbers">
+      <div class="numbers__grid">
+        {numbers.map((number) => <NumberGrid number={number} numbers={numbers} />)}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
