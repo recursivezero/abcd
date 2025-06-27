@@ -1,36 +1,27 @@
 ---
-import "@/assets/styles/varnmala/greek-alphabet.css"; // Imported the CSS styles
+import "@/assets/styles/glossary/glossary.css";
 import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
 import glossaryData from "@/data/glossary.json";
 import BaseLayout from "@/layouts/Base";
 
-const pageTitle = glossaryData.shapes.title;
-const category = "shapes";
-const shapesData = glossaryData.shapes.data;
+const {
+  shapes: { title, data, category }
+} = glossaryData;
 ---
 
-<BaseLayout meta={{ title: pageTitle }}>
-  <BackButton href="/Glossary" />
-  <article class="container__page alphabet-page-container">
-    <div class="page-header">
-      <h1 class="page-main-title">{pageTitle}</h1>
-      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+<BaseLayout meta={{ title: "Glossary" }}>
+  <BackButton href="/glossary" />
+  <div class="container__page">
+    <div class="page__header">
+      <h1 class="page__title">{title}</h1>
+      <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
 
-    <div class="grid-container alphabet-grid">
-      {
-        shapesData.map((entry) => {
-          // Prepare the item for LetterCard, ensuring text and description are non-optional
-          const letterCardItem = {
-            ...entry, // Spread all properties from the entry
-            text: entry.text || "",
-            description: entry.description || "",
-            emoji: entry.letter // Use letter as emoji
-          };
-          return <LetterCard item={letterCardItem} category={category} />;
-        })
-      }
+    <div class="container__glossary">
+      <div class="glossary__grid">
+        {data.map((entry) => <LetterCard item={entry} category={category} />)}
+      </div>
     </div>
-  </article>
+  </div>
 </BaseLayout>

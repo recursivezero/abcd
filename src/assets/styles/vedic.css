@@ -39,10 +39,12 @@
   --unit-card-h3: #1a237e;
   --unit-card-details: #37474f;
 }
+
 .container__vedic {
   min-height: 100vh;
   padding: 3rem 1.5rem;
 }
+
 .vedic__layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -139,6 +141,7 @@
   font-size: 1.8rem;
   word-spacing: 6px;
 }
+
 .disclaimer {
   max-width: 900px;
   margin: 2rem auto;
@@ -166,6 +169,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -192,6 +196,7 @@
     font-size: 0.85rem;
   }
 }
+
 /* Converter Horizontal Layout */
 .converter__horizontal {
   display: flex;
@@ -203,6 +208,10 @@
   margin-bottom: 2.5rem;
   border: 2px solid var(--border);
   background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
+
+  & input {
+    padding: 1rem;
+  }
 }
 
 .converter__title {
@@ -371,9 +380,11 @@ select:focus {
 .units__starfield span:nth-child(2) {
   transform: rotate(45deg);
 }
+
 .units__starfield span:nth-child(3) {
   transform: rotate(69deg);
 }
+
 .units__starfield span:nth-child(4) {
   transform: rotate(123deg);
 }
@@ -401,12 +412,14 @@ select:focus {
   animation: fadeInScale 2s ease-out forwards;
   transform: scale(0.8);
 }
+
 @keyframes fadeInScale {
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
+
 .timeline-wrapper {
   display: flex;
   flex-direction: column;
@@ -458,6 +471,7 @@ select:focus {
   transform: scale(1.05) translateY(-5px);
   box-shadow: 0 10px 30px var(--unit-title-card-shadow-2);
 }
+
 .unit__header {
   margin-bottom: 0.75rem;
 }
@@ -485,6 +499,7 @@ select:focus {
   gap: 0.6rem;
   font-weight: 500;
 }
+
 /* Animations */
 @keyframes gradient {
   0% {
@@ -559,6 +574,7 @@ select:focus {
   .units__title {
     padding: 0 1rem;
   }
+
   .timeline-wrapper {
     /* Add padding-top for mobile */
     padding-top: 1.5rem;
@@ -568,12 +584,14 @@ select:focus {
     gap: 60px;
     min-height: auto;
   }
+
   .timeline-node {
     width: 90%;
     max-width: 280px;
     transform: none !important;
     align-self: auto;
   }
+
   .timeline-card {
     min-height: 120px;
     padding: 1rem;
@@ -592,6 +610,7 @@ select:focus {
     font-size: 1.1em;
   }
 }
+
 @media (max-width: 480px) {
   .date-format {
     font-size: 1.2rem;
@@ -602,6 +621,7 @@ select:focus {
     margin-bottom: 5rem;
     font-size: 3rem;
   }
+
   .unit__header h3 {
     font-size: 1.5rem;
   }
@@ -611,6 +631,7 @@ select:focus {
     gap: 0.4rem;
   }
 }
+
 /* Custom scrollbar */
 .units__timeline-container::-webkit-scrollbar {
   width: 8px;
