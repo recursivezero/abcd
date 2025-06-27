@@ -1,5 +1,6 @@
 ---
 import Settings from "@/components/Settings.astro";
+import HintIcon from "@/assets/icons/hint.svg";
 ---
 
 <div class="puzzle-container">
@@ -47,12 +48,9 @@ import Settings from "@/components/Settings.astro";
       }
       "
     >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 28px; height: 28px;">
-        <path
-          fill="#FFD700"
-          d="M256 0C150 0 64 86 64 192c0 50.9 20.3 96.9 53.1 130.9 12.4 12.8 19.9 29.5 21.2 47L144 400c0 8.8 7.2 16 16 16h192c8.8 0 16-7.2 16-16l5.7-30.1c1.4-17.5 8.8-34.2 21.2-47 32.8-34 53.1-80 53.1-130.9C448 86 362 0 256 0zm0 480c-17.7 0-32 14.3-32 32h64c0-17.7-14.3-32-32-32z"
-        ></path>
-      </svg>
+      <div style="width: 28px; height: 28px;">
+        <HintIcon />
+      </div>
       <span
         id="hintTooltip"
         style="

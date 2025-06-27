@@ -59,6 +59,7 @@ prerender
 Reddy
 roboto
 Rushi
+samay
 sanyukat
 shadcn
 Shravana

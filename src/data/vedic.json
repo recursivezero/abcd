@@ -1,5 +1,5 @@
 {
-  "-comment": "'seconds' field is only used for unit conversion and is not displaayed in Vedic Time Journey.",
+  "-comment": "'seconds' field is only used for unit conversion and is not displayed in Vedic Time Journey.",
   "time_units": [
     {
       "name": "त्रुटि",

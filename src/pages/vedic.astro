@@ -3,7 +3,7 @@ import { fullEnglish, fullHindi, styleOption, tithiNames } from "@/utils/constan
 import BackIcon from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/vedic.css";
-import vedicData from "@/assets/json/vedic.json";
+import vedicData from "@/data/vedic.json";
 
 const timeUnits = vedicData.time_units;
 ---
@@ -43,7 +43,7 @@ const timeUnits = vedicData.time_units;
       <div class="converter__horizontal">
         <div class="form__group">
           <label for="input__value">Enter a number</label>
-          <input type="number" id="input__value" placeholder=" 123 " required />
+          <input type="number" id="input__value" placeholder="123" required />
         </div>
 
         <div class="form__group">
