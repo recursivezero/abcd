@@ -1,0 +1,147 @@
+.error-container {
+  min-height: 100vh;
+  background: light-dark(#f8fafc, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.error-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, light-dark(#3b82f6, #ffffff) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, light-dark(#3b82f6, #ffffff) 1px, transparent 1px);
+  background-size: 100px 100px;
+  animation: sparkle 3s linear infinite;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-10px);
+  }
+}
+
+.content {
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.error-number {
+  font-size: 8rem;
+  font-weight: 900;
+  color: #3b82f6;
+  text-shadow: 0 0 15px #3b82f6;
+  animation: pulse 2s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: light-dark(#1e293b, #ffffff);
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.1em;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: light-dark(#64748b, #cbd5e1);
+  margin-bottom: 1rem;
+}
+
+.tip {
+  font-size: 1.1rem;
+  color: light-dark(#475569, #e2e8f0);
+  margin-bottom: 2rem;
+}
+
+.error-illustration {
+  width: 200px;
+  height: auto;
+  margin: 1rem auto;
+  display: block;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.primary {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.primary:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+.secondary {
+  background: #e0f2fe;
+  color: #0c4a6e;
+  border: 2px solid #0ea5e9;
+}
+
+.secondary:hover {
+  background: #bae6fd;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .error-number {
+    font-size: 6rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn {
+    width: 180px;
+  }
+  .error-illustration {
+    width: 150px;
+  }
+}
