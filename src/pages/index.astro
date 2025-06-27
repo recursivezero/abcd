@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/Base";
-
+import MobileSplash from '@/components/MobileSplash.astro';
 import Help from "@/components/Help.astro";
 ---
 
@@ -20,6 +20,7 @@ import Help from "@/components/Help.astro";
   }
 </style>
 <BaseLayout meta={{ title: "Home" }}>
+  <MobileSplash />
   <h1>Welcome to parixan.xyz</h1>
   <Fragment slot="header-right">
     <Help title="Sample Dialog" description="This is sample dialog which need your details if you want to give?" />

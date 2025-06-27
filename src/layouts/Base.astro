@@ -4,7 +4,6 @@ import BaseHead from "@/layouts/BaseHead";
 import Footer from "@/layouts/common/Footer";
 import Header from "@/layouts/common/Header";
 import Menu from "@/layouts/common/Menu";
-import MobileSplash from '@/components/MobileSplash.astro';
 import { siteConfig } from "@/site-config";
 
 const {
@@ -17,7 +16,6 @@ const {
     <BaseHead title={title} description={description} ogImage={ogImage} date={articleDate} />
   </head>
   <body id="body" class="body__container">
-    <MobileSplash />
     <ThemeProvider />
     <Header title={title}>
       <slot name="header-left" slot="left" />
