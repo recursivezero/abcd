@@ -41,7 +41,7 @@ import "@/assets/styles/map/district.css";
     async function loadSVG() {
       try {
         const stateName = state.split(" ").join("");
-        const response = await fetch(`/public/map/svg/states/${stateName}.svg`);
+        const response = await fetch(`/map/svg/states/${stateName}.svg`);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         const svgText = await response.text();

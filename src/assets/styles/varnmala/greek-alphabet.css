@@ -5,48 +5,37 @@
   font-family: var(--font-family-sans, sans-serif);
 }
 
-.page-header {
+.page__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
-}
 
-.page-header .page-main-title {
-  margin: 0;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: var(--text-heading, var(--text, #333));
-  font-weight: 700;
-  flex-grow: 1;
-  text-align: center;
-}
+  &.page__title {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--text-heading, var(--text, #333));
+    font-weight: 700;
+    flex-grow: 1;
+    text-align: center;
+  }
 
-.flip__all__button {
-  background-color: var(--background);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-weight: 200;
-  margin: 1rem 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: flex-end;
-}
+  .flip__all__button:hover {
+    transform: translateY(-2px);
+  }
 
-.flip__all__button:hover {
-  transform: translateY(-2px);
-}
-
-& .flip__all__button.active {
-  transform: scale(0.95);
-  background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
+  & .flip__all__button.active {
+    transform: scale(0.95);
+    background-color: color-mix(in srgb, var(--primary) 70%, black 30%);
+  }
 }
 
 .grid-container.alphabet-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Adjust minmax as per LetterCard size */
+  grid-template-columns: repeat(3, 1fr);
+  /* Adjust minmax as per LetterCard size */
   gap: 1.75rem;
   padding-top: 1.5rem;
 }
@@ -63,12 +52,14 @@
     flex-direction: column;
     align-items: stretch;
   }
+
   .page-header .page-main-title {
     order: -1;
     width: 100%;
     margin-bottom: 1rem;
     text-align: center;
   }
+
   .flip__all__button {
     width: auto;
     align-self: center;
@@ -79,6 +70,7 @@
   .page-header .back-button-container {
     align-self: center;
   }
+
   .grid-container.alphabet-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1.25rem;
@@ -89,6 +81,7 @@
   .alphabet-page-container {
     padding: 1rem 1rem;
   }
+
   .grid-container.alphabet-grid {
     grid-template-columns: 1fr;
     gap: 1rem;

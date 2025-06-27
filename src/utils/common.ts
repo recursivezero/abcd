@@ -18,3 +18,11 @@ export const getRandomColor = () => {
 };
 
 export const generateRandomLetter = () => String.fromCharCode(65 + Math.floor(Math.random() * 26));
+
+export const getFlagEmoji = (countryCode: string = "IN") => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split("")
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};

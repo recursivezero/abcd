@@ -1,0 +1,7 @@
+This Astro starter was built by Recursive Zero!
+
+GitHub: https://github.com/recursivezero
+Twitter: https://twitter.com/recursivezero
+Personal: https://recursivezero.com
+
+Checkout the https://humanstxt.org/ protocol to see how you should format your humans.txt file!

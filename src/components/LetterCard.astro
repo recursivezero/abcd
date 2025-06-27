@@ -1,12 +1,17 @@
 ---
 import { type AlphabetEntry } from "@/types/alphabet.ts";
 
+import "@/assets/styles/letter-card.css";
+
 interface Props {
+  class?: string;
   item: AlphabetEntry;
   category: string;
 }
 
-const { item, category } = Astro.props;
+const { class: className, ...rest } = Astro.props;
+
+const { item, category } = rest as Props;
 ---
 
 <div class="flip__card">
@@ -16,7 +21,7 @@ const { item, category } = Astro.props;
         <span class="flip__button__text" title="Flip Card">Flip Card</span>
       </div>
       <div class="letter__header">
-        <p class="character">{item.letter}</p>
+        <p class={`character ${className}`}>{item.letter}</p>
       </div>
       <div class="letter__content">
         <h2 class="text">{item.text}</h2>
@@ -24,9 +29,9 @@ const { item, category } = Astro.props;
       </div>
       <div class="card__glow"></div>
     </div>
-    <div class="card card__back">
+    <div class="card card__back" style={category === "colours" && item.cssColor ? `background: ${item.cssColor}` : ""}>
       <div class="flip__button">
-        <span class="flip__button__text" title="Flip Card">Flip Card</span>
+        <span class="flip__button__text" title="Click to flip">Flip Card</span>
       </div>
       {
         item.image ? (
@@ -40,241 +45,13 @@ const { item, category } = Astro.props;
     </div>
   </div>
 </div>
-<style>
-  :root[data-theme="light"] {
-    --character-gradient-start: var(--primary);
-    --character-gradient-end: var(--primary-light);
-    --character-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  :root[data-theme="dark"] {
-    --character-gradient-start: hsl(48, 100%, 75%);
-    --character-gradient-end: hsl(48, 100%, 85%);
-    --character-shadow: 0 0 20px hsla(48, 100%, 75%, 0.2);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --character-gradient-start: hsl(48, 100%, 75%);
-      --character-gradient-end: hsl(48, 100%, 85%);
-      --character-shadow: 0 0 20px hsla(48, 100%, 75%, 0.2);
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --character-gradient-start: var(--primary);
-      --character-gradient-end: var(--primary-light);
-      --character-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-  }
-
-  .flip__card {
-    width: 100%;
-    height: 100%;
-    perspective: 1000px;
-    min-height: 250px;
-
-    & .image {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      background-color: var(--border);
-    }
-
-    & .character,
-    .flipped__text {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 800;
-      margin: 0;
-      line-height: 1.2; /* Adjusted line-height */
-      background: linear-gradient(
-        135deg,
-        var(--character-gradient-start, var(--primary)) 0%,
-        var(--character-gradient-end, var(--primary-light)) 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: var(--character-shadow);
-      text-align: center; /* Adjusted text-align */
-    }
-
-    & .flipped__text {
-      font-size: 3.5rem;
-    }
-
-    & .emoji {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      font-size: clamp(5rem, 10vw, 8rem);
-      margin: 0;
-      line-height: 1;
-      text-align: center;
-      font-family: monospace;
-    }
-
-    & .card {
-      background: linear-gradient(145deg, var(--background), color-mix(in srgb, var(--background) 97%, var(--text) 3%));
-      border-radius: 1.25rem;
-      padding: 1.75rem;
-      box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.05),
-        0 1px 2px rgba(0, 0, 0, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-      width: 100%;
-      height: 100%;
-
-      &:hover .card__glow {
-        opacity: 1;
-      }
-
-      &:hover .text {
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-    }
-
-    & .flip__card__inner {
-      width: 100%;
-      height: 100%;
-      text-align: left;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-
-    & .card__front,
-    & .card__back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      top: 0;
-      left: 0;
-    }
-
-    & .card__back {
-      padding: 0%;
-      transform: rotateY(180deg);
-    }
-
-    &.flipped .flip__card__inner {
-      transform: rotateY(180deg);
-      padding: 0%;
-    }
-
-    & .letter:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow:
-        0 20px 30px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(59, 130, 246, 0.1);
-    }
-
-    & .letter__header {
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      position: relative;
-    }
-
-    & .flip__button {
-      position: absolute;
-      top: 5%;
-      right: 5%;
-      z-index: 1;
-    }
-
-    & .flip__button__text {
-      font-size: 0.875rem;
-      color: var(--secondary);
-      padding: 0.35rem 0.75rem;
-      background: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
-      border-radius: 2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: 1px solid var(--border);
-      text-align: left;
-
-      &:hover {
-        background: var(--primary);
-        color: var(--text);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-    }
-
-    & .letter__content {
-      flex-direction: column;
-      gap: 0.75rem;
-      z-index: 1;
-      text-align: left;
-    }
-
-    & .text {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-      margin: 0;
-      transition: color 0.3s ease;
-      text-align: left;
-    }
-
-    & .description {
-      font-size: 0.925rem;
-      color: var(--secondary);
-      margin: 0;
-      line-height: 1.6;
-      opacity: 0.9;
-      text-align: left;
-    }
-
-    & .card__glow {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        color-mix(in srgb, var(--primary) 10%, transparent) 0%,
-        transparent 60%
-      );
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-
-    @media (max-width: 768px) {
-      & .character {
-        font-size: 2.5rem;
-      }
-
-      & .text {
-        font-size: 1.25rem;
-      }
-
-      & .description {
-        font-size: 0.875rem;
-      }
-    }
-  }
-</style>
 
 <script>
-  const cards = document.querySelectorAll(".card");
+  const cards = document.querySelectorAll(".card") as NodeListOf<HTMLElement>;
+  const flipCards = document.querySelectorAll(".flip__card") as NodeListOf<HTMLElement>;
+  const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
+  let allFlipped = false;
+
   cards.forEach((letter) => {
     letter.addEventListener("mousemove", (e: Event) => {
       const htmlLetter = letter as HTMLElement;
@@ -287,47 +64,30 @@ const { item, category } = Astro.props;
     });
   });
 
-  const flipCards = document.querySelectorAll(".flip__card");
   flipCards.forEach((card) => {
     const flipButtons = card.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
-
     flipButtons.forEach((button) => {
       button.addEventListener("click", () => {
         card.classList.toggle("flipped");
       });
     });
   });
-</script>
-
-<script>
-  const flipAllButton = document.getElementById("flip-all-button") as HTMLButtonElement | null;
-  const flipCards = document.querySelectorAll(".flip__card");
-  let allFlipped = false;
 
   if (flipAllButton) {
     flipAllButton.addEventListener("click", () => {
       allFlipped = !allFlipped;
 
-      flipCards.forEach((card) => {
-        const flipCardElement = card as HTMLElement; // Cast to HTMLElement
-        if (allFlipped) {
-          flipCardElement.classList.add("flipped");
-        } else {
-          flipCardElement.classList.remove("flipped");
-        }
+      flipCards.forEach((card: HTMLElement) => {
+        const flipCardElement = card;
+        flipCardElement.classList.toggle("flipped", allFlipped);
         // Also toggle flip button text/icon on each card if LetterCard handles it
         const allButtonsOnThisCard = flipCardElement.querySelectorAll(".flip__button") as NodeListOf<HTMLElement>;
         allButtonsOnThisCard.forEach((btn) => {
-          const textLabel = btn.querySelector(".flip-text-label") as HTMLElement | null;
-          const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement | null;
+          const textLabel = btn.querySelector(".flip-text-label") as HTMLElement;
+          const symbolLabel = btn.querySelector(".rotate-symbol-label") as HTMLElement;
           if (textLabel && symbolLabel) {
-            if (allFlipped) {
-              textLabel.classList.add("is-hidden");
-              symbolLabel.classList.remove("is-hidden");
-            } else {
-              textLabel.classList.remove("is-hidden");
-              symbolLabel.classList.add("is-hidden");
-            }
+            textLabel.classList.toggle("is-hidden", allFlipped);
+            symbolLabel.classList.toggle("is-hidden", !allFlipped);
           }
         });
       });
@@ -342,19 +102,6 @@ const { item, category } = Astro.props;
       }, 300);
     });
   } else {
-    console.warn("Flip All button with ID 'flip-all-button' not found.");
+    console.warn("flip not working, flip-all-button not found");
   }
-
-  const cardsForMouseInteraction = document.querySelectorAll(".alphabet-grid .card");
-  cardsForMouseInteraction.forEach((cardElement) => {
-    cardElement.addEventListener("mousemove", (e: Event) => {
-      const htmlCardElement = cardElement as HTMLElement;
-      const rect = htmlCardElement.getBoundingClientRect();
-      const event = e as MouseEvent;
-      const x = ((event.clientX - rect.left) / htmlCardElement.clientWidth) * 100;
-      const y = ((event.clientY - rect.top) / htmlCardElement.clientHeight) * 100;
-      htmlCardElement.style.setProperty("--mouse-x", `${x}%`);
-      htmlCardElement.style.setProperty("--mouse-y", `${y}%`);
-    });
-  });
 </script>

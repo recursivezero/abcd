@@ -257,7 +257,6 @@
 }
 
 @media screen and (min-width: 768px) {
-
   .tooltip,
   #state-tooltip {
     transform: translate(-50%, -120%);
@@ -266,7 +265,6 @@
 }
 
 @media screen and (min-width: 1200px) {
-
   .tooltip,
   #state-tooltip {
     transform: translate(-15vw, -20vh);
