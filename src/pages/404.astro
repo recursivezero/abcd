@@ -1,13 +1,21 @@
 ---
 import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/404.css";
 
 const meta = {
-  title: "Oops! You found a missing page!",
-  description: "Oops! It looks like this page is lost in space!"
+  title: "Yikes! This Page Is Somewhere Beyond the Milky Way ✨",
+  description: "Looks like this page took a wrong turn! Let's guide you back to learning."
 };
 ---
-
 <BaseLayout meta={meta}>
-  <h1 class="title mb-6">404 | Oops something went wrong</h1>
-  <p class="mb-8">Please use the navigation to find your way back</p>
+  <div class="error-container">
+    <div class="content">
+      <div class="error-number">404</div>
+      <h1 class="title">Oops! You're Lost in Space 🚀</h1>
+      <p class="tip">Don't worry, Cadet! Let's fly back and keep learning.</p>
+      <div class="buttons">
+        <a href="/" class="btn primary">🏠 Home</a>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
