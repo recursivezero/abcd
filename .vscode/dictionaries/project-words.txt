@@ -41,6 +41,7 @@ Kartika
 kmeans
 linalg
 lucide
+LXXX
 Magha
 Margashirsha
 matras
