@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
-import "@/assets/styles/varnmala/greek-alphabet.css"; // General styles
+import "@/assets/styles/varnmala/number.css"; // General styles
 import "@/assets/styles/glossary/colour.css"; // Import the specific styles for this page
 import glossaryData from "@/data/glossary.json";
 
@@ -33,7 +33,7 @@ function parseNames(fullName: string): { english: string; hindi: string } {
 
     <div class="grid-container alphabet-grid colours-grid">
       {
-        coloursData.map((entry) => {
+        coloursData.map((entry: any) => {
           const names = parseNames(entry.fullName);
           return (
             <div class="flip__card" data-id={entry.id}>

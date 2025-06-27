@@ -40,13 +40,13 @@
   "days": {
     "title": "Days of the Week",
     "data": [
-      { "id": "sunday", "letter": "Sun", "fullName": "Sunday (रविवार)" },
-      { "id": "monday", "letter": "Mon", "fullName": "Monday (सोमवार)" },
-      { "id": "tuesday", "letter": "Tue", "fullName": "Tuesday (मंगलवार)" },
-      { "id": "wednesday", "letter": "Wed", "fullName": "Wednesday (बुधवार)" },
-      { "id": "thursday", "letter": "Thu", "fullName": "Thursday (गुरुवार)" },
-      { "id": "friday", "letter": "Fri", "fullName": "Friday (शुक्रवार)" },
-      { "id": "saturday", "letter": "Sat", "fullName": "Saturday (शनिवार)" }
+      { "id": "sunday", "letter": "S", "hindi": "रविवार" },
+      { "id": "monday", "letter": "M", "hindi": "सोमवार" },
+      { "id": "tuesday", "letter": "T", "hindi": "मंगलवार" },
+      { "id": "wednesday", "letter": "W", "hindi": "बुधवार" },
+      { "id": "thursday", "letter": "T", "hindi": "गुरुवार" },
+      { "id": "friday", "letter": "F", "hindi": "शुक्रवार" },
+      { "id": "saturday", "letter": "S", "hindi": "शनिवार" }
     ]
   },
   "months": {
@@ -301,12 +301,12 @@
   "seasons": {
     "title": "Seasons",
     "data": [
-      { "id": "spring", "letter": "🌸", "fullName": "Spring (वसन्त)" },
-      { "id": "summer", "letter": "☀️", "fullName": "Summer (ग्रीष्म)" },
-      { "id": "monsoon", "letter": "🌧️", "fullName": "Monsoon (वर्षा)" },
-      { "id": "autumn", "letter": "🍂", "fullName": "Autumn (शरद)" },
-      { "id": "pre_winter", "letter": "🌬️", "fullName": "Pre-Winter (हेमन्त)" },
-      { "id": "winter", "letter": "❄️", "fullName": "Winter (शिशिर/शीत)" }
+      { "id": "spring", "letter": "🌸", "hindi": " वसन्त" },
+      { "id": "summer", "letter": "☀️", "hindi": "ग्रीष्म" },
+      { "id": "monsoon", "letter": "🌧️", "hindi": "वर्षा" },
+      { "id": "autumn", "letter": "🍂", "hindi": "शरद" },
+      { "id": "pre_winter", "letter": "🌬️", "hindi": "हेमन्त" },
+      { "id": "winter", "letter": "❄️", "hindi": "शिशिर/शीत" }
     ]
   },
   "sunsign": {

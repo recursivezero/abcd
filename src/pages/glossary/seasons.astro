@@ -5,32 +5,9 @@ import LetterCard from "@/components/LetterCard.astro";
 import glossaryData from "@/data/glossary.json";
 import BaseLayout from "@/layouts/Base";
 
-// Define the type for our season data entries
-export interface SeasonEntry {
-  id: string;
-  letter: string; // First letter of the season or a representative emoji
-  fullName: string;
-}
-
 const pageTitle = glossaryData.seasons.title;
 const category = "seasons";
-const seasonsData: SeasonEntry[] = glossaryData.seasons.data;
-
-// Helper function to parse English and Hindi names
-function parseNames(fullName: string): { english: string; hindi: string } {
-  const match = fullName.match(/^(.*?) \((.*?)\)$/);
-  if (match && match.length === 3) {
-    return { english: match[1].trim(), hindi: match[2].trim() };
-  }
-  // Fallback if no Hindi name is found in parentheses
-  const hindiMatch = fullName.match(/([\u0900-\u097F]+)/); // Basic Hindi Unicode range
-  if (hindiMatch) {
-    const hindi = hindiMatch[0].trim();
-    const english = fullName.replace(hindi, "").trim();
-    return { english, hindi };
-  }
-  return { english: fullName, hindi: "" }; // Absolute fallback
-}
+const seasonsData = glossaryData.seasons.data;
 ---
 
 <BaseLayout meta={{ title: pageTitle }}>
@@ -43,16 +20,17 @@ function parseNames(fullName: string): { english: string; hindi: string } {
 
     <div class="grid-container alphabet-grid">
       {
-        seasonsData.map((entry) => {
-          const names = parseNames(entry.fullName);
-          const letterCardItem = {
-            id: entry.id,
-            letter: entry.letter,
-            text: names.english, // English name for the front
-            description: names.hindi // Hindi name for the back
-          };
-          return <LetterCard item={letterCardItem} category={category} />;
-        })
+        seasonsData.map((entry) => (
+          <LetterCard
+            item={{
+              id: entry.id,
+              letter: entry.letter,
+              text: entry.id,      
+              description: entry.hindi  
+            }}
+            category={category}
+          />
+        ))
       }
     </div>
   </article>

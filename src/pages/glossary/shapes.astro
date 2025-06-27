@@ -21,12 +21,11 @@ const shapesData = glossaryData.shapes.data;
     <div class="grid-container alphabet-grid">
       {
         shapesData.map((entry) => {
-          // Prepare the item for LetterCard, ensuring text and description are non-optional
           const letterCardItem = {
-            ...entry, // Spread all properties from the entry
+            ...entry,
             text: entry.text || "",
             description: entry.description || "",
-            emoji: entry.letter // Use letter as emoji
+            emoji: entry.letter 
           };
           return <LetterCard item={letterCardItem} category={category} />;
         })
