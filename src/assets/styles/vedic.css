@@ -210,7 +210,7 @@
   background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
 
   & input {
-    padding: 1rem
+    padding: 1rem;
   }
 }
 

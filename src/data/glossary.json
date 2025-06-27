@@ -109,13 +109,13 @@
     "title": "Days of the Week",
     "category": "days",
     "data": [
-      { "id": "sunday", "letter": "S", "text": "रविवार","description": "Sunday" },
-      { "id": "monday", "letter": "M", "text": "सोमवार","description": "Monday" },
-      { "id": "tuesday", "letter": "T", "text": "मंगलवार","description": "Tuesday" },
-      { "id": "wednesday", "letter": "W", "text": "बुधवार","description": "Wednesday" },
-      { "id": "thursday", "letter": "T", "text": "गुरुवार","description": "Thursday" },
-      { "id": "friday", "letter": "F", "text": "शुक्रवार","description": "Friday" },
-      { "id": "saturday", "letter": "S", "text": "शनिवार","description": "Saturday" }
+      { "id": "sunday", "letter": "S", "text": "रविवार", "description": "Sunday" },
+      { "id": "monday", "letter": "M", "text": "सोमवार", "description": "Monday" },
+      { "id": "tuesday", "letter": "T", "text": "मंगलवार", "description": "Tuesday" },
+      { "id": "wednesday", "letter": "W", "text": "बुधवार", "description": "Wednesday" },
+      { "id": "thursday", "letter": "T", "text": "गुरुवार", "description": "Thursday" },
+      { "id": "friday", "letter": "F", "text": "शुक्रवार", "description": "Friday" },
+      { "id": "saturday", "letter": "S", "text": "शनिवार", "description": "Saturday" }
     ]
   },
   "months": {
@@ -372,14 +372,14 @@
   },
   "seasons": {
     "title": "Seasons",
-    "category": "seasons",   
+    "category": "seasons",
     "data": [
-      { "id": "spring", "letter": "🌸", "text": "spring","description": "वसन्त" },
-      { "id": "summer", "letter": "☀️", "text": "summer","description": "ग्रीष्म" },
-      { "id": "monsoon", "letter": "🌧️", "text": "monsoon","description": "बरसात" },
-      { "id": "autumn", "letter": "🍂", "text": "autumn","description": "पतझड़" },
-      { "id": "pre_winter", "letter": "🌬️", "text": "pre-winter","description": "हेमन्त" },
-      { "id": "winter", "letter": "❄️", "text": "winter","description": "शीत" }
+      { "id": "spring", "letter": "🌸", "text": "spring", "description": "वसन्त" },
+      { "id": "summer", "letter": "☀️", "text": "summer", "description": "ग्रीष्म" },
+      { "id": "monsoon", "letter": "🌧️", "text": "monsoon", "description": "बरसात" },
+      { "id": "autumn", "letter": "🍂", "text": "autumn", "description": "पतझड़" },
+      { "id": "pre_winter", "letter": "🌬️", "text": "pre-winter", "description": "हेमन्त" },
+      { "id": "winter", "letter": "❄️", "text": "winter", "description": "शीत" }
     ]
   },
   "sunsign": {
