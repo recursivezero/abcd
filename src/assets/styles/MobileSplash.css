@@ -14,7 +14,22 @@
     align-items: center;
     padding: 1rem;
     transition: background-color 0.3s ease;
-  }
+    
+    &-card {
+      background-color: light-dark(#ffffff, #0f172a);
+      padding: 2rem;
+      margin-bottom: 0.5vh;
+      border-radius: 1rem;
+      box-shadow: light-dark(
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 10px 30px rgba(0, 0, 0, 0.3)
+      );
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      border: light-dark(none, 1px solid #404040);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
 
   .container_splash_card {
     background-color: light-dark(#ffffff, #0f172a);
