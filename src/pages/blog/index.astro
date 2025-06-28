@@ -23,17 +23,20 @@ const blogPosts = blogs.map((entry) => {
 
 <BaseLayout meta={{ title: "Blogs" }}>
   <div class="container__blog">
-    <header class="mb-12 text-center">
-      <h1
-        class="mb-4 text-4xl font-bold md:text-6xl"
-        style="background: linear-gradient(90deg, var(--text), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
-      >
-        Our Blog
+    <header class="blog-header">
+      <h1 class="blog-title">
+        Our <span class="title-accent">Blog</span>
       </h1>
-      <p class="mx-auto max-w-2xl text-lg text-[var(--secondary)] md:text-xl">
+      <p class="blog-subtitle">
         Discover stories, thinking, and expertise from writers on any topic.
       </p>
+      <div class="header-decoration">
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+      </div>
     </header>
+
     <div class="blog-grid">
       {blogPosts.map((post) => <BlogCard post={post} height="240px" />)}
     </div>
