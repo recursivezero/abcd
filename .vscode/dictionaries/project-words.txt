@@ -70,6 +70,7 @@ sportrop
 streamlit
 sunsign
 sunsigns
+swar
 tailwindcss
 threadzip
 Threazip
@@ -80,6 +81,7 @@ vaul
 venv
 Verdana
 Vijayadashami
+vyanjan
 waitlist
 webring
 werkzeug

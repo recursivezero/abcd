@@ -1,5 +1,3 @@
-@tailwind base;
-
 @layer base {
   .container__setting {
     container: setting/inline-size;

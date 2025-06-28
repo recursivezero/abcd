@@ -1,5 +1,4 @@
 import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
@@ -22,13 +21,6 @@ export default defineConfig({
   integrations: [
     sitemap(),
     mdx(),
-    react({
-      experimentalReactChildren: true
-    })
-    //tailwind({
-    //  applyBaseStyles: false,
-    //  nesting: true
-    //})
   ],
   style: {
     global: true // Ensure global styles are applied
