@@ -22,7 +22,7 @@
 .container__blog {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0rem 2rem;
+  padding: 4rem 2rem;
   position: relative;
   overflow: hidden;
 }
@@ -44,18 +44,21 @@
 }
 
 .title-accent {
-  color: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   position: relative;
 }
 
 .title-accent::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 100%;
   height: 4px;
-  color: var(--primary_blue);
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
   border-radius: 2px;
 }
 
@@ -80,7 +83,7 @@
 .decoration-circle {
   position: absolute;
   border-radius: 50%;
-  background: var(--primary_blue);
+  background: var(--primary);
   filter: blur(30px);
 }
 
@@ -112,7 +115,6 @@
   grid-template-columns: repeat(1, 1fr);
   gap: 2.5rem;
   margin-top: 3rem;
-  margin-bottom: 15px;
 }
 
 .blog-card {
@@ -128,18 +130,18 @@
 }
 
 .blog-card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   border-radius: 1.5rem;
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
 }
 
 .blog-card::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 2px;
   border-radius: 1.3rem;
@@ -223,7 +225,7 @@
 }
 
 .blog-card-title::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -247,7 +249,6 @@
   -webkit-line-clamp: 3;
   overflow: hidden;
   transition: color 0.3s ease;
-  text-align: left;
 }
 
 .blog-card:hover .blog-card-description {
@@ -273,7 +274,7 @@
 }
 
 .blog-card-details::after {
-  content: "Read More →";
+  content: 'Read More →';
   position: absolute;
   bottom: 1rem;
   right: 2rem;
@@ -293,7 +294,7 @@
 
 @media (min-width: 640px) {
   .blog-grid {
-    grid-template-columns: repeat(auto, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -314,6 +315,7 @@
   opacity: 0;
   transform: translateY(20px);
 }
+
 
 @keyframes fadeInUp {
   to {
