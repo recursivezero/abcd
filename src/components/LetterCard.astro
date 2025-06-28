@@ -16,7 +16,7 @@ const { item, category } = rest as Props;
 // For sunsigns, split description into lines
 let descriptionLines: string[] = [];
 if (category === "sunsigns" && typeof item.description === "string") {
-  descriptionLines = item.description.split(";").map(line => line.trim());
+  descriptionLines = item.description.split(";").map((line) => line.trim());
 }
 ---
 
@@ -31,17 +31,24 @@ if (category === "sunsigns" && typeof item.description === "string") {
       </div>
       <div class="letter__content">
         <h2 class="text">{item.text}</h2>
-        {category === "sunsigns" && descriptionLines.length > 0 ? (
-          <div class="description">
-            {descriptionLines.map(line => <div>{line}</div>)}
-          </div>
-        ) : (
-          <p class="description">{item.description}</p>
-        )}
+        {
+          category === "sunsigns" && descriptionLines.length > 0 ? (
+            <div class="description">
+              {descriptionLines.map((line) => (
+                <div>{line}</div>
+              ))}
+            </div>
+          ) : (
+            <p class="description">{item.description}</p>
+          )
+        }
       </div>
       <div class="card__glow"></div>
     </div>
-    <div class="card card__back" style={category === "colours" && item.cssColor ? `background: ${item.cssColor}` : ""}>
+    <div
+      class="card card__back"
+      style={category === "colours" && item.cssColor ? `background-color: ${item.cssColor}` : ""}
+    >
       <div class="flip__button">
         <span class="flip__button__text" title="Click to flip">Flip Card</span>
       </div>

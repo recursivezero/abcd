@@ -143,6 +143,7 @@
       & .content {
         grid-area: content;
         grid-column: span 2;
+        text-align: center;
       }
     }
   }
@@ -179,4 +180,8 @@
     height: fit-content;
     max-height: 100dvh;
   }
+}
+
+.txt__center {
+  text-align: center;
 }

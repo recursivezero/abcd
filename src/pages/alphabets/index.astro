@@ -12,18 +12,16 @@ const subtitle = "Choose a category to discover different alphabet representatio
 const alphabetData = rawAlphabetData as AlphabetsData;
 const categories = Object.keys(alphabetData);
 
-const categoryList = categories.map((category, index) => {
-  return {
-    id: index.toString(),
-    icon: alphabetData[category as keyof AlphabetsData].icon,
-    title: category.charAt(0).toUpperCase() + category.slice(1),
-    description: alphabetData[category as keyof AlphabetsData].description,
-    href: {
-      playground: { icon: "📚", link: `/alphabets/${category}/playground/`, text: "Playground" },
-      board: { icon: "📋", link: `/alphabets/${category}/board/`, text: "Board" }
-    }
-  };
-});
+const categoryList = categories.map((category, index) => ({
+  id: index.toString(),
+  icon: alphabetData[category as keyof AlphabetsData].icon,
+  title: category.charAt(0).toUpperCase() + category.slice(1),
+  description: alphabetData[category as keyof AlphabetsData].description,
+  href: {
+    playground: { icon: "📚", link: `/alphabets/${category}/playground/`, text: "Playground" },
+    board: { icon: "📋", link: `/alphabets/${category}/board/`, text: "Board" }
+  }
+}));
 ---
 
 <BaseLayout meta={{ title: "Alphabets Explorer" }}>

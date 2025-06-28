@@ -13,185 +13,194 @@
   transition: opacity 0.3s ease;
   max-height: 90vh;
   overflow-y: auto;
+}
 
-  &__name {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 12px;
+.state-popup__name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.state-popup__info {
+  font-size: 1.4rem;
+  margin: 12px 0;
+  color: #444;
+  line-height: 1.4;
+}
+
+.state-popup__image {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.state-popup__close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+
+  &:hover {
     color: #333;
   }
+}
 
-  &__info {
-    font-size: 1.4rem;
-    margin: 12px 0;
-    color: #444;
-    line-height: 1.4;
+.state-popup__buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.state-popup__button {
+  flex: 1;
+  padding: 10px 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  .state-popup__button--copy {
+    background-color: #4caf50;
+    color: white;
   }
 
-  &__image {
-    width: 100%;
-    height: auto;
-    max-height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin: 10px 0;
+  .state-popup__button--more {
+    background-color: #007bff;
+    color: white;
   }
 
-  &__close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: #666;
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: #333;
-    }
+  &:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
   }
+}
 
-  &__buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 15px;
-  }
-
-  &__button {
-    flex: 1;
-    padding: 10px 16px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-
-    &--copy {
-      background-color: #4caf50;
-      color: white;
-    }
-
-    &--more {
-      background-color: #007bff;
-      color: white;
-    }
-
-    &:hover {
-      transform: translateY(-2px);
-      opacity: 0.9;
-    }
-  }
-
-  /* Responsive Adjustments */
-  @media (max-width: 1024px) {
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .state-popup {
     max-width: 350px;
     padding: 18px;
 
-    &__name {
+
+    .state-popup__name {
       font-size: 1.6rem;
     }
 
-    &__info {
+    .state-popup__info {
       font-size: 1.2rem;
     }
 
-    &__image {
+    .state-popup__image {
       max-height: 180px;
     }
   }
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .state-popup {
     width: 80%;
     max-width: 300px;
     padding: 15px;
     margin: 0 auto;
-
-    &__name {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
-
-    &__info {
-      font-size: 1.1rem;
-      margin: 8px 0;
-    }
-
-    &__image {
-      max-height: 150px;
-      margin: 8px 0;
-    }
-
-    &__buttons {
-      flex-direction: row;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    &__button {
-      padding: 8px 12px;
-      font-size: 1.1rem;
-    }
   }
 
-  @media (max-width: 480px) {
+  .state-popup__name {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+
+  .state-popup__info {
+    font-size: 1.1rem;
+    margin: 8px 0;
+  }
+
+  .state-popup__image {
+    max-height: 150px;
+    margin: 8px 0;
+  }
+
+  .state-popup__buttons {
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .state-popup__button {
+    padding: 8px 12px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .state-popup {
     width: 90%;
     max-width: 280px;
     padding: 12px;
     border-radius: 8px;
-
-    &__name {
-      font-size: 1.2rem;
-      margin-bottom: 6px;
-    }
-
-    &__info {
-      font-size: 1rem;
-      margin: 6px 0;
-    }
-
-    &__image {
-      max-height: 120px;
-      margin: 6px 0;
-    }
-
-    &__close {
-      font-size: 1.4rem;
-      top: 6px;
-      right: 10px;
-    }
-
-    &__buttons {
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    &__button {
-      width: 100%;
-      font-size: 1rem;
-      padding: 8px;
-    }
   }
 
-  @media (max-width: 320px) {
+  .state-popup__name {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  .state-popup__info {
+    font-size: 1rem;
+    margin: 6px 0;
+  }
+
+  .state-popup__image {
+    max-height: 120px;
+    margin: 6px 0;
+  }
+
+  .state-popup__close {
+    font-size: 1.4rem;
+    top: 6px;
+    right: 10px;
+  }
+
+  .state-popup__buttons {
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .state-popup__button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 320px) {
+  .state-popup {
     width: 95%;
     padding: 10px;
+  }
 
-    &__name {
-      font-size: 1.1rem;
-    }
+  .state-popup__name {
+    font-size: 1.1rem;
+  }
 
-    &__info {
-      font-size: 0.9rem;
-    }
+  .state-popup__info {
+    font-size: 0.9rem;
+  }
 
-    &__image {
-      max-height: 100px;
-    }
+  .state-popup__image {
+    max-height: 100px;
+  }
 
-    &__button {
-      font-size: 0.9rem;
-      padding: 6px;
-    }
+  .state-popup__button {
+    font-size: 0.9rem;
+    padding: 6px;
   }
 }

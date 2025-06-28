@@ -1,20 +1,20 @@
 // Simple service worker for PWA installability
-const CACHE_NAME = 'astro-pwa-cache-v1';
+const CACHE_NAME = "astro-pwa-cache-v1";
 const ASSETS_TO_CACHE = [
-  '/',
-  '/manifest.webmanifest',
-  '/assets/images/favicon.ico',
-  '/assets/images/favicon-16x16.png',
-  '/assets/images/favicon-32x32.png',
-  '/assets/images/48x48.png',
-  '/assets/images/apple-touch-icon.png',
+  "/",
+  "/manifest.webmanifest",
+  "/assets/images/favicon.ico",
+  "/assets/images/favicon-16x16.png",
+  "/assets/images/favicon-32x32.png",
+  "/assets/images/48x48.png",
+  "/assets/images/apple-touch-icon.png"
   // Add more static assets or generated Astro routes as needed
 ];
 
 // Dynamically cache all files under /assets/
 async function cacheAssets(cache) {
   try {
-    const response = await fetch('/assets/');
+    const response = await fetch("/assets/");
     if (response.ok) {
       // If you have a directory listing or an API that returns asset files, parse and cache them here
       // For static Astro, you may need to manually add asset paths or use a build script to generate the list
@@ -23,7 +23,7 @@ async function cacheAssets(cache) {
     // Ignore if directory listing is not available
   }
   // Fallback: cache common asset types
-  const assetTypes = ['fonts', 'images', 'json', 'media'];
+  const assetTypes = ["fonts", "images", "json", "media"];
   for (const type of assetTypes) {
     try {
       const req = await fetch(`/assets/${type}/`);
@@ -34,7 +34,7 @@ async function cacheAssets(cache) {
   }
 }
 
-self.addEventListener('install', (event) => {
+self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
       await cache.addAll(ASSETS_TO_CACHE);
@@ -44,19 +44,17 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name))
-      );
+      return Promise.all(cacheNames.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name)));
     })
   );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
@@ -69,8 +67,8 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(() => {
           // Optionally return a fallback page for navigation requests
-          if (event.request.mode === 'navigate') {
-            return caches.match('/');
+          if (event.request.mode === "navigate") {
+            return caches.match("/");
           }
         });
     })

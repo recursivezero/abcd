@@ -1,0 +1,301 @@
+{
+  "vowels": [
+    {
+      "letter": "अ",
+      "code": "0905",
+      "text": "अदरक (Ginger)",
+      "emoji": "🫚",
+      "description": "a"
+    },
+    {
+      "letter": "आ",
+      "code": "0906",
+      "text": "आम (Mango)",
+      "emoji": "🥭",
+      "description": "aa, ā"
+    },
+    {
+      "letter": "इ",
+      "code": "0907",
+      "text": "इमली (Tamarind)",
+      "emoji": "🥔",
+      "description": "i"
+    },
+    {
+      "letter": "ई",
+      "code": "0908",
+      "text": "ईख (Sugarcane)",
+      "emoji": "🎋",
+      "description": "ii, ī"
+    },
+    {
+      "letter": "उ",
+      "code": "0909",
+      "text": "उल्लू (Owl)",
+      "emoji": "🦉",
+      "description": "u"
+    },
+    {
+      "letter": "ऊ",
+      "code": "090A",
+      "text": "ऊँट (Camel)",
+      "emoji": "🐫",
+      "description": "uu, ū"
+    },
+    {
+      "letter": "ऋ",
+      "code": "090B",
+      "text": "ऋषि (Sage)",
+      "emoji": "🧘‍♂️",
+      "description": "r, ṛ"
+    },
+    {
+      "letter": "ए",
+      "code": "090F",
+      "text": "एड़ी (Heel)",
+      "emoji": "🦶",
+      "description": "e, ē"
+    },
+    {
+      "letter": "ऐ",
+      "code": "0910",
+      "text": "ऐनक (Glasses)",
+      "emoji": "👓",
+      "description": "ai, āi"
+    },
+    {
+      "letter": "ओ",
+      "code": "0913",
+      "text": "ओखली (Mortar)",
+      "emoji": "🪨",
+      "description": "o"
+    },
+    {
+      "letter": "औ",
+      "code": "0914",
+      "text": "औरत (Woman)",
+      "emoji": "👩",
+      "description": "au, āu"
+    },
+    {
+      "letter": "अं",
+      "code": "0914,0902",
+      "text": "अंगूर (Grapes)",
+      "emoji": "🍇",
+      "description": "an, aṃ"
+    },
+    {
+      "letter": "अः",
+      "code": "0914,0903",
+      "text": "",
+      "emoji": "अः (Visarga)",
+      "description": "ah, aḥ"
+    }
+  ],
+  "consonants": [
+    {
+      "letter": "क",
+      "code": "0915",
+      "text": "कबूतर (pigeon)",
+      "emoji": "🐦"
+    },
+    {
+      "letter": "ख",
+      "code": "0916",
+      "text": "खरगोश (rabbit)",
+      "emoji": "🐇"
+    },
+    {
+      "letter": "ग",
+      "code": "0917",
+      "text": "गमला (flower pot)",
+      "emoji": "🪴"
+    },
+    {
+      "letter": "घ",
+      "code": "0918",
+      "text": "घड़ी (watch)",
+      "emoji": "⌚"
+    },
+    {
+      "letter": "च",
+      "code": "091A",
+      "text": "चम्मच (spoon)",
+      "emoji": "🥄"
+    },
+    {
+      "letter": "छ",
+      "code": "091B",
+      "text": "छतरी (umbrella)",
+      "emoji": "☂️"
+    },
+    {
+      "letter": "ज",
+      "code": "091C",
+      "text": "जहाज़ (ship)",
+      "emoji": "🚢"
+    },
+    {
+      "letter": "झ",
+      "code": "091D",
+      "text": "झंडा (flag)",
+      "emoji": "🏁"
+    },
+    {
+      "letter": "ट",
+      "code": "091F",
+      "text": "टमाटर (tomato)",
+      "emoji": "🍅"
+    },
+    {
+      "letter": "ठ",
+      "code": "0920",
+      "text": "ठठेरा (brass smith)",
+      "emoji": "🔨"
+    },
+    {
+      "letter": "ड",
+      "code": "0921",
+      "text": "डमरू (Shiva's drum)",
+      "emoji": "🥁"
+    },
+    {
+      "letter": "ढ",
+      "code": "0922",
+      "text": "ढक्कन (lid)",
+      "emoji": "🛢️"
+    },
+    {
+      "letter": "ण",
+      "code": "0923",
+      "text": "ण (none)",
+      "emoji": "♨️"
+    },
+    {
+      "letter": "त",
+      "code": "0924",
+      "text": "तरबूज (watermelon)",
+      "emoji": "🍉"
+    },
+    {
+      "letter": "थ",
+      "code": "0925",
+      "text": "थाली (plate)",
+      "emoji": "🍽️"
+    },
+    {
+      "letter": "द",
+      "code": "0926",
+      "text": "दर्पण (mirror)",
+      "emoji": "🪞"
+    },
+    {
+      "letter": "ध",
+      "code": "0927",
+      "text": "धनुष (bow)",
+      "emoji": "🏹"
+    },
+    {
+      "letter": "न",
+      "code": "0928",
+      "text": "नल (tap)",
+      "emoji": "🚰"
+    },
+    {
+      "letter": "प",
+      "code": "092A",
+      "text": "पतंग (kite)",
+      "emoji": "🪁"
+    },
+    {
+      "letter": "फ",
+      "code": "092B",
+      "text": "फल (fruit)",
+      "emoji": "🍎"
+    },
+    {
+      "letter": "ब",
+      "code": "092C",
+      "text": "बकरी (goat)",
+      "emoji": "🐐"
+    },
+    {
+      "letter": "भ",
+      "code": "092D",
+      "text": "भालू (bear)",
+      "emoji": "🐻"
+    },
+    {
+      "letter": "म",
+      "code": "092E",
+      "text": "मछली (fish)",
+      "emoji": "🐟"
+    },
+    {
+      "letter": "य",
+      "code": "092F",
+      "text": "यज्ञ (fire ritual)",
+      "emoji": "🔥"
+    },
+    {
+      "letter": "र",
+      "code": "0930",
+      "text": "रंग (color)",
+      "emoji": "🎨"
+    },
+    {
+      "letter": "ल",
+      "code": "0932",
+      "text": "लट्टू (top)",
+      "emoji": "🪀"
+    },
+    {
+      "letter": "व",
+      "code": "0935",
+      "text": "वृक्ष (tree)",
+      "emoji": "🌳"
+    },
+    {
+      "letter": "श",
+      "code": "0936",
+      "text": "शंख (conch)",
+      "emoji": "🐚"
+    },
+    {
+      "letter": "ष",
+      "code": "0937",
+      "text": "षट्कोण (hexagon)",
+      "emoji": "⬡"
+    },
+    {
+      "letter": "स",
+      "code": "0938",
+      "text": "सूरज (sun)",
+      "emoji": "☀️"
+    },
+    {
+      "letter": "ह",
+      "code": "0939",
+      "text": "हाथी (elephant)",
+      "emoji": "🐘"
+    },
+    {
+      "letter": "क्ष",
+      "code": "0915+094D+0937",
+      "text": "क्षत्रिय (warrior)",
+      "emoji": "⚔️"
+    },
+    {
+      "letter": "त्र",
+      "code": "0924+094D+0930",
+      "text": "त्रिशूल (trident)",
+      "emoji": "🔱"
+    },
+    {
+      "letter": "ज्ञ",
+      "code": "091C+094D+091E",
+      "text": "ज्ञान (knowledge)",
+      "emoji": "📚"
+    }
+  ]
+}

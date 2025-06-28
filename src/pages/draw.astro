@@ -1,5 +1,5 @@
 ---
-import Layout from "@/layouts/Base";
+import BaseLayout from "@/layouts/Base";
 import Keyboard from "@/components/DrawKeyboard.astro";
 import Help from "@/components/Help.astro";
 import ImageIcon from "@/assets/icons/image.svg";
@@ -7,7 +7,7 @@ import "@/assets/styles/DrawPage.css";
 import Back from "@/components/Back.astro";
 ---
 
-<Layout meta={{ title: "Draw by Keyboard" }}>
+<BaseLayout meta={{ title: "Draw by Keyboard" }}>
   <Back />
   <Fragment slot="header-right">
     <div class="controls-container">
@@ -92,7 +92,7 @@ import Back from "@/components/Back.astro";
     </div>
   </Fragment>
   <Keyboard />
-</Layout>
+</BaseLayout>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {

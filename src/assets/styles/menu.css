@@ -6,25 +6,27 @@
     --header-height: 80px;
     --sidebar-width: 16ch;
     --timing: 0.42s;
-    --ease: linear(0 0%,
-        0.0036 9.62%,
-        0.0185 16.66%,
-        0.0489 23.03%,
-        0.0962 28.86%,
-        0.1705 34.93%,
-        0.269 40.66%,
-        0.3867 45.89%,
-        0.5833 52.95%,
-        0.683 57.05%,
-        0.7829 62.14%,
-        0.8621 67.46%,
-        0.8991 70.68%,
-        0.9299 74.03%,
-        0.9545 77.52%,
-        0.9735 81.21%,
-        0.9865 85%,
-        0.9949 89.15%,
-        1 100%);
+    --ease: linear(
+      0 0%,
+      0.0036 9.62%,
+      0.0185 16.66%,
+      0.0489 23.03%,
+      0.0962 28.86%,
+      0.1705 34.93%,
+      0.269 40.66%,
+      0.3867 45.89%,
+      0.5833 52.95%,
+      0.683 57.05%,
+      0.7829 62.14%,
+      0.8621 67.46%,
+      0.8991 70.68%,
+      0.9299 74.03%,
+      0.9545 77.52%,
+      0.9735 81.21%,
+      0.9865 85%,
+      0.9949 89.15%,
+      1 100%
+    );
     --sidebar-collapsed: 4rem;
     --sidebar-expanded: 16ch;
     --icon-size: 1.5rem;
@@ -52,13 +54,14 @@
 
   [popover] .nav--list__item.active {
     background: color-mix(in srgb, var(--primary) 15%, transparent);
-    color: var(--primary);
+    color: color-contrast(var(--primary) vs white, black);
+
     font-weight: 600;
     border-radius: 0.75rem;
   }
 
   [popover] .nav--list__item:hover {
-    color: var(--primary);
+    color: color-contrast(var(--primary) vs white, black);
     border-radius: 0.75rem;
   }
 
@@ -152,7 +155,6 @@
     padding-block: 0.75rem;
     padding-inline: 1rem;
     text-decoration: none;
-    color: var(--secondary);
     font-size: 0.875rem;
     font-weight: 500;
     border-radius: 0.5rem;
