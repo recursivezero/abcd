@@ -40,9 +40,19 @@ if (!Content) {
   <Back />
   <article class="container__blog">
     <header class="blog-post-header">
-      <h1 class="blog-title">{validatedData.title}</h1>
+      <h1
+        style="font-size:45px; background: linear-gradient(90deg, var(--text), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+      >
+        {validatedData.title}
+      </h1>
 
-      {validatedData.description && <p class="blog-description">{validatedData.description}</p>}
+      {
+        validatedData.description && (
+          <p class="mx-auto mt-4 max-w-2xl text-lg" style="font-size:20px; color: var(--secondary)">
+            {validatedData.description}
+          </p>
+        )
+      }
 
       <div class="blog-post-meta">
         {
