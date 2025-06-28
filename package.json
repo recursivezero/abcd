@@ -72,21 +72,13 @@
     "clsx": "2.1.0",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
-    "lucide-react": "0.469.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "shadcn": "1.0.0",
-    "tailwind": "2.3.1",
     "tailwind-merge": "2.2.0",
-    "tailwindcss": "3.4.17",
-    "typescript": "5.6.2",
-    "zod": "3.24.1"
+    "typescript": "5.6.2"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.10",
     "@types/node": "22.10.2",
-    "@types/react": "19.0.0",
     "@typescript-eslint/eslint-plugin": "6.13.2",
     "@typescript-eslint/parser": "6.13.2",
     "autoprefixer": "10.4.16",
@@ -97,7 +89,6 @@
     "postcss-import": "16.1.0",
     "prettier": "3.1.0",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.6.8",
     "shx": "0.3.4"
   }
 }
