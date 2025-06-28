@@ -13,17 +13,33 @@
       "path": "./dictionaries/india.txt"
     }
   ],
-  "dictionaries": ["projectTerms", "teamMember", "india"],
-  "ignorePaths": ["**/*.svg", "src/assets/json/*.json"],
+  "dictionaries": [
+    "projectTerms",
+    "teamMember",
+    "india"
+  ],
+  "ignorePaths": [
+    "**/*.svg",
+    "src/assets/json/*.json"
+  ],
   "languageSettings": [
     {
       "languageId": "*",
-      "dictionaries": ["projectTerms"]
+      "dictionaries": [
+        "projectTerms"
+      ]
     },
     {
       "languageId": "json, md",
-      "dictionaries": ["teamMember", "geo"]
+      "dictionaries": [
+        "teamMember",
+        "geo"
+      ]
     }
   ],
-  "enableFiletypes": ["astro", "jsx", "tsx"]
+  "enableFiletypes": [
+    "astro",
+    "jsx",
+    "tsx"
+  ]
 }

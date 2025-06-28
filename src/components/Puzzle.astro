@@ -89,7 +89,7 @@ import HintIcon from "@/assets/icons/hint.svg";
 
     async function fetchCrosswordData() {
       try {
-        const response = await fetch("/json/cross.json");
+        const response = await fetch("/assets/json/cross.json");
         if (!response.ok) {
           throw new Error("Failed to fetch crossword data");
         }
