@@ -73,7 +73,8 @@ import FloralIcon from "@/assets/icons/floral.svg";
     currentOperator: "+",
     score: 0,
     scoreIncrement: 10,
-    isAnswerCorrect: false
+    isAnswerCorrect: false,
+    debounceTimer: null as NodeJS.Timeout | null
   };
 
   function initMathPractice() {
@@ -86,6 +87,12 @@ import FloralIcon from "@/assets/icons/floral.svg";
   }
 
   function updateNumbers() {
+    // Clear any existing debounce timer
+    if (state.debounceTimer) {
+      clearTimeout(state.debounceTimer);
+      state.debounceTimer = null;
+    }
+
     let first, second;
 
     if (state.currentOperator === "×") {
@@ -183,6 +190,24 @@ import FloralIcon from "@/assets/icons/floral.svg";
     }
   }
 
+  function debouncedCheckAnswer() {
+    // Clear any existing timer
+    if (state.debounceTimer) {
+      clearTimeout(state.debounceTimer);
+    }
+
+    // Clear the result indicator immediately when user starts typing
+    resultIndicator.innerHTML = "";
+    if (nextButton) {
+      nextButton.disabled = true;
+    }
+
+    // Set a new timer for 1 seconds
+    state.debounceTimer = setTimeout(() => {
+      checkAnswer();
+    }, 1000);
+  }
+
   function setOperator(op: string) {
     state.currentOperator = op;
     if (operatorDisplay) operatorDisplay.textContent = op;
@@ -194,7 +219,7 @@ import FloralIcon from "@/assets/icons/floral.svg";
       e.target.value = e.target.value.replace(/[^0-9]/g, "");
 
       if (output.value.length > 0) {
-        checkAnswer();
+        debouncedCheckAnswer();
       } else {
         resultIndicator.innerHTML = "";
         resultIndicator.className = "result-indicator";
