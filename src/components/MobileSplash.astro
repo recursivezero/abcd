@@ -5,16 +5,16 @@ const githubUrl = "https://github.com/recursivezero/abcd";
 const siteUrl = "https://abcdkbd.com";
 const logoAlt = "abcdkbd";
 ---
-<div class="mobile-splash">
-  <div class="splash-card">
-    <img src={logo.src} alt={logoAlt} class="logo" />
-    <h1><strong>abcdkbd is best experienced on desktop</strong></h1>
-    <p>
+<div class="container__splash">
+  <div class="container__splash-card">
+    <img src={logo.src} alt={logoAlt} class="container__splash-logo" />
+    <h1 class="container__splash-heading"><strong>abcdkbd is best experienced on desktop</strong></h1>
+    <p class="container__splash-text">
       Revisit on desktop to check out abcdkbd.com. We will optimize for mobile soon. Stay tuned…
     </p>
-    <div class="buttons">
-      <a href={githubUrl} class="btn primary" target="_blank" rel="noopener">🔗 GitHub</a>
-      <a href={siteUrl} class="btn secondary" target="_blank" rel="noopener">🌐 Visit abcdkbd.com</a>
+    <div class="container__splash-buttons">
+      <a href={githubUrl} class="container__splash-btn container__splash-btn--primary" target="_blank" rel="noopener">🔗 GitHub</a>
+      <a href={siteUrl} class="container__splash-btn container__splash-btn--secondary" target="_blank" rel="noopener">🌐 Visit abcdkbd.com</a>
     </div>
   </div>
 </div>
