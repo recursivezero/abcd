@@ -18,24 +18,6 @@ import Help from "@/components/Help.astro";
     border: 2px solid rgb(156, 236, 235);
     padding: 1rem;
   }
-  .webring {
-    border: 2px outset;
-    text-align: center;
-    position: relative;
-    margin: 1rem auto;
-    top: 10rem;
-    & p {
-      margin: 0;
-      padding: 0.1em;
-      border: 2px inset;
-    }
-  }
-  .site {
-    flex: 1;
-    margin: 0;
-    padding: 0.1em;
-    border: 2px inset;
-  }
 </style>
 <BaseLayout meta={{ title: "Home" }}>
   <h1>Welcome to parixan.xyz</h1>
@@ -48,12 +30,5 @@ import Help from "@/components/Help.astro";
       Previous Name: <output></output>
     </p>
   </Fragment>
-  <div class="webring">
-    <p>CSS JOY Webring</p>
-    <div style="display: flex">
-      <a class="site" href="https://webri.ng/webring/cssjoy/previous?via=https://abcdkbd.com">Previous Site</a>
-      <a class="site" href="https://webri.ng/webring/cssjoy/random?via=https://abcdkbd.com">Random Site</a>
-      <a class="site" href="https://webri.ng/webring/cssjoy/next?via=https://abcdkbd.com">Next Site</a>
-    </div>
-  </div>
+
 </BaseLayout>
