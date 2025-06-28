@@ -1,0 +1,75 @@
+---
+import ImageIcon from "@/assets/icons/image.svg";
+---
+
+<div class="controls-container">
+  <div class="controls">
+    <label for="toggleCase" class="control-item" data-tooltip="Toggle case">
+      <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
+      <span
+        id="text"
+        class="control-button case-toggle"
+        role="switch"
+        aria-checked="false"
+        tabindex="0"
+        aria-label="Toggle case">Aa</span
+      >
+    </label>
+    <label for="toggleFont" class="control-item" data-tooltip="Toggle font">
+      <input type="checkbox" name="toggle_font" id="toggleFont" class="visually-hidden hidden" />
+      <span
+        id="font"
+        class="control-button font-toggle"
+        role="switch"
+        aria-checked="false"
+        tabindex="0"
+        aria-label="Toggle font"
+      >
+        <span class="font-icon">F</span>
+      </span>
+    </label>
+    <div class="control-group">
+      <label for="toggleImg" class="control-item" data-tooltip="Toggle Image">
+        <input type="checkbox" name="toggle_img" id="toggleImg" class="visually-hidden hidden" />
+        <span
+          id="img"
+          class="control-button img-toggle"
+          role="switch"
+          aria-checked="false"
+          tabindex="0"
+          aria-label="Toggle Image"
+        >
+          <ImageIcon class="img-icon" />
+        </span>
+      </label>
+      <label for="toggleColor" class="control-item" data-tooltip="Toggle Font Color">
+        <input type="checkbox" name="toggle_color" id="toggleColor" class="visually-hidden hidden" />
+        <span
+          class="control-button color-toggle"
+          role="switch"
+          aria-checked="false"
+          tabindex="0"
+          aria-label="Toggle Font Color"
+        >
+          <span class="color-icon">T</span>
+        </span>
+      </label>
+    </div>
+    <label for="toggleBg" class="control-item" data-tooltip="Toggle background">
+      <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
+      <span
+        class="control-button bg-toggle"
+        role="switch"
+        aria-checked="false"
+        tabindex="0"
+        aria-label="Toggle background"
+      >
+        <span class="bg-icon">🎨</span>
+      </span>
+    </label>
+    <div class="control-item" data-tooltip="Reset all">
+      <button class="control-button reset-button" id="resetButton" tabindex="0" aria-label="Reset all">↻</button>
+    </div>
+  </div>
+</div>
+<script type="module" src="/controller-container.js" is:inline></script>
