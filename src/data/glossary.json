@@ -388,87 +388,75 @@
     "data": [
       {
         "id": "aries",
-        "name": "Aries (मेष)",
-        "symbol": "♈︎",
-        "dates": "March 21 - April 19",
-        "firstLetters": "A (अ), L (ल), E (ए), I (इ)"
+        "text": "Aries (मेष)",
+        "letter": "♈︎",
+        "description": "Date Range:March 21 - April 19;Initials: अ, ल, ए, इ;"
       },
       {
         "id": "taurus",
-        "name": "Taurus (वृषभ)",
-        "symbol": "♉︎",
-        "dates": "April 20 - May 20",
-        "firstLetters": "B (ब), V (व), U (उ), Va (वा), Vi (वी), Vo (वो)"
+        "text": "Taurus (वृषभ)",
+        "letter": "♉︎",
+        "description": "Date Range:April 20 - May 20;Initials: ब,व,उ,वा,वी,वो"
       },
       {
         "id": "gemini",
-        "name": "Gemini (मिथुन)",
-        "symbol": "♊︎",
-        "dates": "May 21 - June 20",
-        "firstLetters": "K (क), Chh (छ), Gh (घ), Ka (का), Ki (की), Ku (कु)"
+        "text": "Gemini (मिथुन)",
+        "letter": "♊︎",
+        "description": "Date Range:May 21 - June 20;Initials: क,छ,घ,का,की,कु"
       },
       {
         "id": "cancer",
-        "name": "Cancer (कर्क)",
-        "symbol": "♋︎",
-        "dates": "June 21 - July 22",
-        "firstLetters": "D (ड), H (ह), Da (डा), De (डे), Do (डो)"
+        "text": "Cancer (कर्क)",
+        "letter": "♋︎",
+        "description": "Date Range:June 21 - July 22;Initials: ड,ह,डा,डे,डो"
       },
       {
         "id": "leo",
-        "name": "Leo (सिंह)",
-        "symbol": "♌︎",
-        "dates": "July 23 - August 22",
-        "firstLetters": "M (म), T (ट), Ma (मा), Me (मे), Mu (मु)"
+        "text": "Leo (सिंह)",
+        "letter": "♌︎",
+        "description": "Date Range:July 23 - August 22;Initials: म,ट,मा,मे,मु"
       },
       {
         "id": "virgo",
-        "name": "Virgo (कन्या)",
-        "symbol": "♍︎",
-        "dates": "August 23 - September 22",
-        "firstLetters": "P (प), Th (ठ), N (ण), Pa (पा), Pi (पी), Pu (पु)"
+        "text": "Virgo (कन्या)",
+        "letter": "♍︎",
+        "description": "Date Range:August 23 - September 22;Initials: प,ठ,ण,पा,पी,पु"
       },
       {
         "id": "libra",
-        "name": "Libra (तुला)",
-        "symbol": "♎︎",
-        "dates": "September 23 - October 22",
-        "firstLetters": "R (र), T (त), Ra (रा), Ri (री), Ru (रु)"
+        "text": "Libra (तुला)",
+        "letter": "♎︎",
+        "description": "Date Range:September 23 - October 22;Initials:र,त,रा,री,रु"
       },
       {
         "id": "scorpio",
-        "name": "Scorpio (वृश्चिक)",
-        "symbol": "♏︎",
-        "dates": "October 23 - November 21",
-        "firstLetters": "N (न), Y (य), Na (ना), Ni (नी), Nu (नू), Ne (ने)"
+        "text": "Scorpio (वृश्चिक)",
+        "letter": "♏︎",
+        "description": "Date Range:October 23 - November 21;Initials:न,य,ना,नी,नू,ने"
       },
       {
         "id": "sagittarius",
-        "name": "Sagittarius (धनु)",
-        "symbol": "♐︎",
-        "dates": "November 22 - December 21",
-        "firstLetters": "Bh (भ), Dh (ध), Ph (फ), F (फ), Ye (ये), Yo (यो)"
+        "text": "Sagittarius (धनु)",
+        "letter": "♐︎",
+        "description": "Date Range:November 22 - December 21;Initials:भ,ध,फ,फ,ये,यो"
       },
       {
         "id": "capricorn",
-        "name": "Capricorn (मकर)",
-        "symbol": "♑︎",
-        "dates": "December 22 - January 19",
-        "firstLetters": "Kh (ख), J (ज), Bho (भो), Ja (जा), Ji (जी)"
+        "text": "Capricorn (मकर)",
+        "letter": "♑︎",
+        "description": "Date Range:December 22 - January 19;Initials:ख,ज,भो,जा,जी"
       },
       {
         "id": "aquarius",
-        "name": "Aquarius (कुंभ)",
-        "symbol": "♒︎",
-        "dates": "January 20 - February 18",
-        "firstLetters": "G (ग), S (स), Sh (श), Go (गो), Sa (सा), Si (सी), Su (सू)"
+        "text": "Aquarius (कुंभ)",
+        "letter": "♒︎",
+        "description": "Date Range:January 20 - February 18;Initials:ग,स,श,गो,सा,सी,सू"
       },
       {
         "id": "pisces",
-        "name": "Pisces (मीन)",
-        "symbol": "♓︎",
-        "dates": "February 19 - March 20",
-        "firstLetters": "D (द), Ch (च), Z (ज़), Th (थ), De (दे), Do (दो), Cha (चा), Chi (ची)"
+        "text": "Pisces (मीन)",
+        "letter": "♓︎",
+        "description": "Date Range:February 19 - March 20;Initials:द,च,ज़,थ,दे,दो,चा,ची"
       }
     ]
   }
