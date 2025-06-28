@@ -38,9 +38,9 @@
 
 /* Header Styles */
 .head {
-  display: relative;
+  display: block;
   padding-top: 10px;
-  height: 50px;
+  height: max-content;
   font-size: 25px;
   color: light-dark(#667eea, #ffffff);
   background: light-dark(var(--header-gradient-light), var(--header-gradient-dark));
