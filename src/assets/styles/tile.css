@@ -22,7 +22,7 @@
     font-weight: 200;
     cursor: pointer;
     transition: all 0.3s ease;
-    align-self: flex-end;
+    align-self: flex-center;
     width: 14rem;
 
     &:hover {
