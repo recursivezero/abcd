@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/varnmala/number.css";
+import "@/assets/styles/tile.css";
 import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
 import numbersData from "@/data/numbers.json";
@@ -14,12 +14,12 @@ const {
   <BackButton href="/numbers" />
   <div class="container__page">
     <div class="page__header">
-      <h1 class="page__title">{title}</h1>
+      <h2 class="page__title">{title}</h2>
       <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
 
-    <div class="container__numbers">
-      <div class="numbers__grid">
+    <div class="page__content">
+      <div class="page__grid">
         {data.map((entry) => <LetterCard item={entry} category={category} />)}
       </div>
     </div>

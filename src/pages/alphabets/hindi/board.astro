@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/varnmala/number.css";
+import "@/assets/styles/tile.css";
 import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
 import BaseLayout from "@/layouts/Base";
@@ -7,8 +7,7 @@ import BaseLayout from "@/layouts/Base";
 import { consonants, vowels } from "@/data/hindi.json";
 
 const title = "Hindi Alphabets | हिन्दी वर्णमाला";
-const description =
-  "Learn the Hindi alphabets with their meanings and emojis. Explore Swar (स्वर) and Vyanjan (व्यंजन) in this interactive guide.";
+const description = "Explore Swar (स्वर) and Vyanjan (व्यंजन) in this interactive guide.";
 const category = "hindi";
 ---
 
@@ -16,19 +15,19 @@ const category = "hindi";
   <BackButton href="/alphabets" />
   <div class="container__page">
     <div class="page__header">
-      <h1 class="page__title">{title}</h1>
+      <h2 class="page__title">{title}</h2>
       <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
-    <article class="container__numbers">
+    <article class="page__content">
       <section class="section__tabs">
         <blockquote class="txt__center">स्वर (Swar)</blockquote>
-        <div class="numbers__grid">
+        <div class="page__grid">
           {vowels.map((entry) => <LetterCard item={entry} category={category} />)}
         </div>
       </section>
       <section class="section __tabs">
         <blockquote class="txt__center">व्यंजन (Vyanjan)</blockquote>
-        <div class="numbers__grid">
+        <div class="page__grid">
           {consonants.map((entry) => <LetterCard item={entry} category={category} />)}
         </div>
       </section>
