@@ -7,6 +7,7 @@ import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import { blogPostSchema, type BlogPost } from "@/types/blog";
 import { getCollection } from "astro:content";
+import BackArrow from "@/components/Back.astro";
 
 const blogs = await getCollection("blogs");
 const blogPosts = blogs.map((entry) => {
@@ -23,13 +24,7 @@ const blogPosts = blogs.map((entry) => {
 ---
 
 <BaseLayout meta={{ title: "Blogs" }}>
-  <BackArrow />
-  <Fragment slot="header-right">
-    <Help
-      title="Blog"
-      description="Stay updated with the latest in technology, development trends, and digital innovation."
-    />
-  </Fragment>
+  <BackArrow/>
   <div class="container__blog">
     <header class="blog-header">
       <h1 class="blog-title">
