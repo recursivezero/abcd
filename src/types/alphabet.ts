@@ -11,7 +11,7 @@ export interface AlphabetEntry {
   emoji?: string;
   image?: string;
   englishSound?: string;
-  cssColor?: string;
+  code?: string;
 }
 
 export interface AlphabetCategory {

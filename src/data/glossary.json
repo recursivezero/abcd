@@ -3,23 +3,78 @@
     "title": "Country Flags",
     "category": "flags",
     "data": [
-      { "id": "usa", "countryCode": "US", "text": "United States", "description": "Capital: Washington, D.C." },
-      { "id": "canada", "countryCode": "CA", "text": "Canada", "description": "Capital: Ottawa" },
-      { "id": "india", "countryCode": "IN", "text": "India", "description": "Capital: New Delhi" },
-      { "id": "japan", "countryCode": "JP", "text": "Japan", "description": "Capital: Tokyo" },
-      { "id": "brazil", "countryCode": "BR", "text": "Brazil", "description": "Capital: Brasília" },
-      { "id": "australia", "countryCode": "AU", "text": "Australia", "description": "Capital: Canberra" },
-      { "id": "germany", "countryCode": "DE", "text": "Germany", "description": "Capital: Berlin" },
+      {
+        "id": "usa",
+        "countryCode": "US",
+        "text": "United States",
+        "description": "Capital: Washington, D.C."
+      },
+      {
+        "id": "canada",
+        "countryCode": "CA",
+        "text": "Canada",
+        "description": "Capital: Ottawa"
+      },
+      {
+        "id": "india",
+        "countryCode": "IN",
+        "text": "India",
+        "description": "Capital: New Delhi"
+      },
+      {
+        "id": "japan",
+        "countryCode": "JP",
+        "text": "Japan",
+        "description": "Capital: Tokyo"
+      },
+      {
+        "id": "brazil",
+        "countryCode": "BR",
+        "text": "Brazil",
+        "description": "Capital: Brasília"
+      },
+      {
+        "id": "australia",
+        "countryCode": "AU",
+        "text": "Australia",
+        "description": "Capital: Canberra"
+      },
+      {
+        "id": "germany",
+        "countryCode": "DE",
+        "text": "Germany",
+        "description": "Capital: Berlin"
+      },
       {
         "id": "southafrica",
         "countryCode": "ZA",
         "text": "South Africa",
         "description": "Capitals: Pretoria, Cape Town, Bloemfontein"
       },
-      { "id": "france", "countryCode": "FR", "text": "France", "description": "Capital: Paris" },
-      { "id": "unitedkingdom", "countryCode": "GB", "text": "United Kingdom", "description": "Capital: London" },
-      { "id": "china", "countryCode": "CN", "text": "China", "description": "Capital: Beijing" },
-      { "id": "italy", "countryCode": "IT", "text": "Italy", "description": "Capital: Rome" }
+      {
+        "id": "france",
+        "countryCode": "FR",
+        "text": "France",
+        "description": "Capital: Paris"
+      },
+      {
+        "id": "unitedkingdom",
+        "countryCode": "GB",
+        "text": "United Kingdom",
+        "description": "Capital: London"
+      },
+      {
+        "id": "china",
+        "countryCode": "CN",
+        "text": "China",
+        "description": "Capital: Beijing"
+      },
+      {
+        "id": "italy",
+        "countryCode": "IT",
+        "text": "Italy",
+        "description": "Capital: Rome"
+      }
     ]
   },
   "colours": {
@@ -27,81 +82,80 @@
     "category": "colours",
     "data": [
       {
-        "id": "red",
-        "letter": "R",
+        "letter": "Red",
         "text": "Red",
         "description": "लाल",
-        "cssColor": "#ff0000"
+        "code": "#ff0000"
       },
       {
         "id": "green",
         "letter": "G",
         "text": "Green",
         "description": "हरा",
-        "cssColor": "#00ff00"
+        "code": "#00ff00"
       },
       {
         "id": "yellow",
         "letter": "Y",
         "text": "Yellow",
         "description": "पीला",
-        "cssColor": "#ffff00"
+        "code": "#ffff00"
       },
       {
         "id": "blue",
         "letter": "B",
         "text": "Blue",
         "description": "नीला",
-        "cssColor": "#0000ff"
+        "code": "#0000ff"
       },
       {
         "id": "brown",
         "letter": "N",
         "text": "Brown",
         "description": "भूरा",
-        "cssColor": "#a52a2a"
+        "code": "#a52a2a"
       },
       {
         "id": "orange",
         "letter": "O",
         "text": "Orange",
         "description": "नारंगी",
-        "cssColor": "#ffa500"
+        "code": "#ffa500"
       },
       {
         "id": "pink",
         "letter": "P",
         "text": "Pink",
         "description": "गुलाबी",
-        "cssColor": "#ffc0cb"
+        "code": "#ffc0cb"
       },
       {
         "id": "purple",
         "letter": "V",
         "text": "Purple",
         "description": "बैंगनी",
-        "cssColor": "#800080"
+        "code": "#800080"
       },
       {
         "id": "gray",
         "letter": "S",
         "text": "Gray",
         "description": "स्लेटी",
-        "cssColor": "#808080"
+        "code": "#808080"
       },
       {
         "id": "black",
         "letter": "K",
         "text": "Black",
         "description": "काला",
-        "cssColor": "#000000"
+        "code": "#000000"
       },
       {
         "id": "white",
         "letter": "W",
         "text": "White",
         "description": "सफ़ेद",
-        "cssColor": "#ffffff"
+        "code": "#ffffff"
       }
     ]
   },
@@ -109,13 +163,48 @@
     "title": "Days of the Week",
     "category": "days",
     "data": [
-      { "id": "sunday", "letter": "S", "text": "रविवार", "description": "Sunday" },
-      { "id": "monday", "letter": "M", "text": "सोमवार", "description": "Monday" },
-      { "id": "tuesday", "letter": "T", "text": "मंगलवार", "description": "Tuesday" },
-      { "id": "wednesday", "letter": "W", "text": "बुधवार", "description": "Wednesday" },
-      { "id": "thursday", "letter": "T", "text": "गुरुवार", "description": "Thursday" },
-      { "id": "friday", "letter": "F", "text": "शुक्रवार", "description": "Friday" },
-      { "id": "saturday", "letter": "S", "text": "शनिवार", "description": "Saturday" }
+      {
+        "id": "sunday",
+        "letter": "S",
+        "text": "रविवार",
+        "description": "Sunday"
+      },
+      {
+        "id": "monday",
+        "letter": "M",
+        "text": "सोमवार",
+        "description": "Monday"
+      },
+      {
+        "id": "tuesday",
+        "letter": "T",
+        "text": "मंगलवार",
+        "description": "Tuesday"
+      },
+      {
+        "id": "wednesday",
+        "letter": "W",
+        "text": "बुधवार",
+        "description": "Wednesday"
+      },
+      {
+        "id": "thursday",
+        "letter": "T",
+        "text": "गुरुवार",
+        "description": "Thursday"
+      },
+      {
+        "id": "friday",
+        "letter": "F",
+        "text": "शुक्रवार",
+        "description": "Friday"
+      },
+      {
+        "id": "saturday",
+        "letter": "S",
+        "text": "शनिवार",
+        "description": "Saturday"
+      }
     ]
   },
   "months": {
@@ -220,14 +309,54 @@
       }
     ],
     "holidays": [
-      { "day": 1, "month": 0, "year": 2025, "name": "New Year's Day" },
-      { "day": 26, "month": 0, "year": 2025, "name": "Republic Day" },
-      { "day": 18, "month": 3, "year": 2025, "name": "Good Friday" },
-      { "day": 1, "month": 4, "year": 2025, "name": "May Day / Labour Day" },
-      { "day": 15, "month": 7, "year": 2025, "name": "Independence Day" },
-      { "day": 2, "month": 10, "year": 2025, "name": "Mahatma Gandhi Jayanti" },
-      { "day": 14, "month": 11, "year": 2025, "name": "Children's Day" },
-      { "day": 25, "month": 11, "year": 2025, "name": "Christmas Day" }
+      {
+        "day": 1,
+        "month": 0,
+        "year": 2025,
+        "name": "New Year's Day"
+      },
+      {
+        "day": 26,
+        "month": 0,
+        "year": 2025,
+        "name": "Republic Day"
+      },
+      {
+        "day": 18,
+        "month": 3,
+        "year": 2025,
+        "name": "Good Friday"
+      },
+      {
+        "day": 1,
+        "month": 4,
+        "year": 2025,
+        "name": "May Day / Labour Day"
+      },
+      {
+        "day": 15,
+        "month": 7,
+        "year": 2025,
+        "name": "Independence Day"
+      },
+      {
+        "day": 2,
+        "month": 10,
+        "year": 2025,
+        "name": "Mahatma Gandhi Jayanti"
+      },
+      {
+        "day": 14,
+        "month": 11,
+        "year": 2025,
+        "name": "Children's Day"
+      },
+      {
+        "day": 25,
+        "month": 11,
+        "year": 2025,
+        "name": "Christmas Day"
+      }
     ]
   },
   "shapes": {
@@ -258,8 +387,18 @@
         "text": "Rectangle",
         "description": "A quadrilateral with 4 right angles. Opposite sides are equal in length and parallel."
       },
-      { "id": "pentagon", "letter": "⬠", "text": "Pentagon", "description": "A polygon with 5 sides and 5 angles." },
-      { "id": "hexagon", "letter": "⬢", "text": "Hexagon", "description": "A polygon with 6 sides and 6 angles." },
+      {
+        "id": "pentagon",
+        "letter": "⬠",
+        "text": "Pentagon",
+        "description": "A polygon with 5 sides and 5 angles."
+      },
+      {
+        "id": "hexagon",
+        "letter": "⬢",
+        "text": "Hexagon",
+        "description": "A polygon with 6 sides and 6 angles."
+      },
       {
         "id": "oval",
         "letter": "⬬",
@@ -285,88 +424,76 @@
     "category": "waqt",
     "data": [
       {
-        "id": "dawn",
-        "englishTerm": "Dawn",
-        "hindiTranslation": "भोर (Bhor), सुबह (Subah)",
+        "letter": "Dawn",
+        "text": "भोर (Bhor), सुबह (Subah)",
         "description": "The first light of day before sunrise; early morning twilight.",
-        "icon": "🌄"
+        "emoji": "🌄"
       },
       {
-        "id": "sunrise",
-        "englishTerm": "Sunrise",
-        "hindiTranslation": "सूर्योदय (Sooryoday), भोर (Bhor)",
+        "letter": "Sunrise",
+        "text": "सूर्योदय (Sooryoday), भोर (Bhor)",
         "description": "The moment the sun appears above the horizon.",
-        "icon": "🌅"
+        "emoji": "🌅"
       },
       {
-        "id": "morning",
-        "englishTerm": "Morning",
-        "hindiTranslation": "सुबह (Subah), प्रातः (Praatah)",
+        "letter": "Morning",
+        "text": "सुबह (Subah), प्रातः (Praatah)",
         "description": "The early part of the day, from dawn until around noon.",
-        "icon": "🌅"
+        "emoji": "🌅"
       },
       {
-        "id": "noon",
-        "englishTerm": "Noon",
-        "hindiTranslation": "दोपहर (Dopehar)",
+        "letter": "Noon",
+        "text": "दोपहर (Dopehar)",
         "description": "Midday, exactly 12:00 PM, or broadly the middle of the day.",
-        "icon": "🕛"
+        "emoji": "🕛"
       },
       {
-        "id": "afternoon",
-        "englishTerm": "Afternoon",
-        "hindiTranslation": "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)",
+        "letter": "Afternoon",
+        "text": "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)",
         "description": "The time after noon until late afternoon/early evening.",
-        "icon": "☀️"
+        "emoji": "☀️"
       },
       {
-        "id": "evening",
-        "englishTerm": "Evening",
-        "hindiTranslation": "शाम (Shaam)",
+        "letter": "Evening",
+        "text": "शाम (Shaam)",
         "description": "The period from late afternoon until nightfall/dusk.",
-        "icon": "🌇"
+        "emoji": "🌇"
       },
       {
-        "id": "twilight",
-        "englishTerm": "Twilight",
-        "hindiTranslation": "सांझ (Saanjh), गोधूलि बेला (Godhuli Bela)",
+        "letter": "Twilight",
+        "text": "सांझ (Saanjh), गोधूलि बेला (Godhuli Bela)",
         "description": "Dim light period either just before sunrise or just after sunset.",
-        "icon": "🌥️"
+        "emoji": "🌥️"
       },
       {
-        "id": "dusk",
-        "englishTerm": "Dusk",
-        "hindiTranslation": "गोधूलि (Godhuli), शाम (Shaam)",
+        "letter": "Dusk",
+        "text": "गोधूलि (Godhuli), शाम (Shaam)",
         "description": "The darker stage of twilight immediately after sunset.",
-        "icon": "🌆"
+        "emoji": "🌆"
       },
       {
-        "id": "sunset",
-        "englishTerm": "Sunset",
-        "hindiTranslation": "सूर्यास्त (Sooryaast), शाम (Shaam)",
+        "letter": "Sunset",
+        "text": "सूर्यास्त (Sooryaast), शाम (Shaam)",
         "description": "The moment the sun disappears below the horizon.",
-        "icon": "🌇"
+        "emoji": "🌇"
       },
       {
-        "id": "night",
-        "englishTerm": "Night",
-        "hindiTranslation": "रात (Raat), रात्रि (Raatri)",
+        "letter": "Night",
+        "text": "रात (Raat), रात्रि (Raatri)",
         "description": "The period of darkness from sunset to sunrise.",
-        "icon": "🌙"
+        "emoji": "🌙"
       },
       {
-        "id": "midnight",
-        "englishTerm": "Midnight",
-        "hindiTranslation": "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)",
+        "letter": "Midnight",
+        "text": "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)",
         "description": "Exactly 12:00 AM, the middle of the night.",
-        "icon": "🌃"
+        "emoji": "🌃"
       },
       {
-        "id": "late-night",
-        "englishTerm": "Late Night",
-        "hindiTranslation": "रात गहराना (Raat Gahraana), देर रात (Der Raat)",
+        "letter": "Late Night",
+        "text": "रात गहराना (Raat Gahraana), देर रात (Der Raat)",
         "description": "The deep part of the night, usually well after midnight.",
-        "icon": "🌌"
+        "emoji": "🌌"
       }
     ]
   },
@@ -374,89 +501,185 @@
     "title": "Seasons",
     "category": "seasons",
     "data": [
-      { "id": "spring", "letter": "🌸", "text": "spring", "description": "वसन्त" },
-      { "id": "summer", "letter": "☀️", "text": "summer", "description": "ग्रीष्म" },
-      { "id": "monsoon", "letter": "🌧️", "text": "monsoon", "description": "बरसात" },
-      { "id": "autumn", "letter": "🍂", "text": "autumn", "description": "पतझड़" },
-      { "id": "pre_winter", "letter": "🌬️", "text": "pre-winter", "description": "हेमन्त" },
-      { "id": "winter", "letter": "❄️", "text": "winter", "description": "शीत" }
+      {
+        "id": "spring",
+        "letter": "🌸",
+        "text": "spring",
+        "description": "वसन्त"
+      },
+      {
+        "id": "summer",
+        "letter": "☀️",
+        "text": "summer",
+        "description": "ग्रीष्म"
+      },
+      {
+        "id": "monsoon",
+        "letter": "🌧️",
+        "text": "monsoon",
+        "description": "बरसात"
+      },
+      {
+        "id": "autumn",
+        "letter": "🍂",
+        "text": "autumn",
+        "description": "पतझड़"
+      },
+      {
+        "id": "pre_winter",
+        "letter": "🌬️",
+        "text": "pre-winter",
+        "description": "हेमन्त"
+      },
+      {
+        "id": "winter",
+        "letter": "❄️",
+        "text": "winter",
+        "description": "शीत"
+      }
     ]
   },
   "sunsign": {
-    "title": "Sun Signs",
+    "title": "Sun Sign",
     "category": "sunsigns",
     "data": [
       {
         "id": "aries",
         "text": "Aries (मेष)",
         "letter": "♈︎",
-        "description": "Date Range:March 21 - April 19;Initials: अ, ल, ए, इ;"
+        "description": "March 21 - April 19"
       },
       {
         "id": "taurus",
         "text": "Taurus (वृषभ)",
         "letter": "♉︎",
-        "description": "Date Range:April 20 - May 20;Initials: ब,व,उ,वा,वी,वो"
+        "description": "April 20 - May 20"
       },
       {
         "id": "gemini",
         "text": "Gemini (मिथुन)",
         "letter": "♊︎",
-        "description": "Date Range:May 21 - June 20;Initials: क,छ,घ,का,की,कु"
+        "description": "May 21 - June 20"
       },
       {
         "id": "cancer",
         "text": "Cancer (कर्क)",
         "letter": "♋︎",
-        "description": "Date Range:June 21 - July 22;Initials: ड,ह,डा,डे,डो"
+        "description": "June 21 - July 22"
       },
       {
         "id": "leo",
         "text": "Leo (सिंह)",
         "letter": "♌︎",
-        "description": "Date Range:July 23 - August 22;Initials: म,ट,मा,मे,मु"
+        "description": "July 23 - August 22"
       },
       {
         "id": "virgo",
         "text": "Virgo (कन्या)",
         "letter": "♍︎",
-        "description": "Date Range:August 23 - September 22;Initials: प,ठ,ण,पा,पी,पु"
+        "description": "August 23 - September 22"
       },
       {
         "id": "libra",
         "text": "Libra (तुला)",
         "letter": "♎︎",
-        "description": "Date Range:September 23 - October 22;Initials:र,त,रा,री,रु"
+        "description": "September 23 - October 22"
       },
       {
         "id": "scorpio",
         "text": "Scorpio (वृश्चिक)",
         "letter": "♏︎",
-        "description": "Date Range:October 23 - November 21;Initials:न,य,ना,नी,नू,ने"
+        "description": "October 23 - November 21"
       },
       {
         "id": "sagittarius",
         "text": "Sagittarius (धनु)",
         "letter": "♐︎",
-        "description": "Date Range:November 22 - December 21;Initials:भ,ध,फ,फ,ये,यो"
+        "description": "November 22 - December 21"
       },
       {
         "id": "capricorn",
         "text": "Capricorn (मकर)",
         "letter": "♑︎",
-        "description": "Date Range:December 22 - January 19;Initials:ख,ज,भो,जा,जी"
+        "description": "December 22 - January 19"
       },
       {
         "id": "aquarius",
         "text": "Aquarius (कुंभ)",
         "letter": "♒︎",
-        "description": "Date Range:January 20 - February 18;Initials:ग,स,श,गो,सा,सी,सू"
+        "description": "January 20 - February 18"
       },
       {
         "id": "pisces",
         "text": "Pisces (मीन)",
         "letter": "♓︎",
-        "description": "Date Range:February 19 - March 20;Initials:द,च,ज़,थ,दे,दो,चा,ची"
+        "description": "February 19 - March 20"
+      }
+    ]
+  },
+  "moonsign": {
+    "title": "Moon Sign",
+    "category": "moon_signs",
+    "data": [
+      {
+        "text": "मेष (Aries)",
+        "letter": "♈︎",
+        "description": "अ,च, चू, चे, ला, ली, लू, ले"
+      },
+      {
+        "text": "वृषभ (Taurus)",
+        "letter": "♉︎",
+        "description": "उ, ए, ई, औ, द, दी, वो"
+      },
+      {
+        "text": "मिथुन (Gemini)",
+        "letter": "♊︎",
+        "description": "के, को, क, घ, छ, ह, ड"
+      },
+      {
+        "text": "कर्क (Cancer)",
+        "letter": "♋︎",
+        "description": "ह, हे, हो, डा, ही, डो"
+      },
+      {
+        "text": "सिंह (Leo)",
+        "letter": "♌︎",
+        "description": "म, मे, मी, टे, टा, टी"
+      },
+      {
+        "text": "कन्या (Virgo)",
+        "letter": "♍︎",
+        "description": "प, ष, ण, पे, पो, प"
+      },
+      {
+        "text": "तुला (Libra)",
+        "letter": "♎︎",
+        "description": "रे, रो, रा, ता, ते, तू"
+      },
+      {
+        "text": "वृश्चिक (Scorpio)",
+        "letter": "♏︎",
+        "description": "लो, ने, नी, नू, या, यी"
+      },
+      {
+        "text": "धनु (Sagittarius)",
+        "letter": "♐︎",
+        "description": "धा, ये, यो, भी, भू, फा, ढा"
+      },
+      {
+        "text": "मकर (Capricorn)",
+        "letter": "♑︎",
+        "description": "जा, जी, खो, खू, ग, गी, भो"
+      },
+      {
+        "text": "कुंभ (Aquarius)",
+        "letter": "♒︎",
+        "description": "गे, गो, सा, सू, से, सो, द"
+      },
+      {
+        "text": "मीन (Pisces)",
+        "letter": "♓︎",
+        "description": "दी, चा, ची, झ, दो, दू"
       }
     ]
   }

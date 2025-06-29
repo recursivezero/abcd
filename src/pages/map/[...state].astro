@@ -6,6 +6,7 @@ import BackButton from "@/components/BackButton.astro";
 import District from "@/components/District.astro";
 
 export const prerender = true;
+
 export function getStaticPaths() {
   return stateData.map((state) => ({
     params: { state: state.id },

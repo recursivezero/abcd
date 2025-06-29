@@ -12,12 +12,6 @@ interface Props {
 const { class: className, ...rest } = Astro.props;
 
 const { item, category } = rest as Props;
-
-// For sunsigns, split description into lines
-let descriptionLines: string[] = [];
-if (category === "sunsigns" && typeof item.description === "string") {
-  descriptionLines = item.description.split(";").map((line) => line.trim());
-}
 ---
 
 <div class="flip__card">
@@ -27,28 +21,15 @@ if (category === "sunsigns" && typeof item.description === "string") {
         <span class="flip__button__text" title="Flip Card">Flip Card</span>
       </div>
       <div class="letter__header">
-        <p class={`character ${className}`}>{item.letter}</p>
+        <p class={`character ${className ?? ""}`}>{item.letter}</p>
       </div>
       <div class="letter__content">
         <h2 class="text">{item.text}</h2>
-        {
-          category === "sunsigns" && descriptionLines.length > 0 ? (
-            <div class="description">
-              {descriptionLines.map((line) => (
-                <div>{line}</div>
-              ))}
-            </div>
-          ) : (
-            <p class="description">{item.description}</p>
-          )
-        }
+        <p class="description">{item.description}</p>
       </div>
       <div class="card__glow"></div>
     </div>
-    <div
-      class="card card__back"
-      style={category === "colours" && item.cssColor ? `background-color: ${item.cssColor}` : ""}
-    >
+    <div class="card card__back" style={category === "colours" ? `background: ${item.code}` : ""}>
       <div class="flip__button">
         <span class="flip__button__text" title="Click to flip">Flip Card</span>
       </div>

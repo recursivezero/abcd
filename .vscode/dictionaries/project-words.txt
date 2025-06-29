@@ -45,6 +45,7 @@ LXXX
 Magha
 Margashirsha
 matras
+moonsign
 nameform
 nodownload
 Organja
