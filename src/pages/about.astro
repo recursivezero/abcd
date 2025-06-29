@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "@/layouts/Base";
 import TitleLayout from "@/layouts/TitleLayout";
-import Logo from "@/assets/icons/logo.svg";
-import contributors from "@/data/contributor.json";
-import GitHub from "@/assets/icons/github.svg";
+import HeroSection from "@/components/about/HeroSection.astro";
+import FeaturesSection from "@/components/about/FeaturesSection.astro";
+import TeamSection from "@/components/about/TeamSection.astro";
+import TechSection from "@/components/about/TechSection.astro";
 import "@/assets/styles/about.css";
+import BackIcon from "@/components/Back.astro";
+
 // Constants
 const appName = "abcdkbd";
 
@@ -12,217 +15,15 @@ const appName = "abcdkbd";
 const meta = {
   title: "About Us"
 };
-
-// Interfaces
-interface TeamMember {
-  name: string;
-  role: string;
-  description: string;
-  github: string;
-}
-
-interface Feature {
-  title: string;
-  description: string;
-  icon: string;
-  color: string;
-}
-
-const getInitials = (name: string): string => {
-  const names = name.split(' ').filter(n => n.length > 0);
-  return names
-    .map(n => n[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-};
-
-// Features data
-const features: Feature[] = [
-  {
-    title: "Alphabet Adventures",
-    description:
-      "Embark on a journey through letters with interactive games that teach English, Hindi, and Braille. Track progress and explore creative representations like fruits, animals, countries, and geeky codes!",
-    icon: "🔤",
-    color: "#3b82f6"
-  },
-  {
-    title: "Culture Explorer",
-    description:
-      "Travel through India's rich heritage with immersive maps and family tree explorations. Discover your roots through Gotra, Deity, and Caste search with downloadable clan data.",
-    icon: "🗺️",
-    color: "#10b981"
-  },
-  {
-    title: "Word Playground",
-    description:
-      "Challenge your mind with engaging puzzles and vocabulary hunts. Find words like CAT, DOG, SUN, and MOON while tracking your progress.",
-    icon: "🎲",
-    color: "#f59e0b"
-  },
-  {
-    title: "Math Quest",
-    description:
-      "Dive into numbers with fun challenges and games. Learn various number systems including English, Hindi, Roman, and Morse code formats.",
-    icon: "➕",
-    color: "#f43f5e"
-  },
-  {
-    title: "Draw & Learn",
-    description:
-      "Tap letters to display matching images, then draw over them with customizable colors and backgrounds. A fun blend of art and alphabet learning!",
-    icon: "✏️",
-    color: "#ec4899"
-  },
-  {
-    title: "Indic Varnmala",
-    description:
-      "Explore the vowels and consonants of different Indian languages. Compare scripts and sounds across regions in a simple, visual way.",
-    icon: "🅰️",
-    color: "#8b5cf6"
-  },
-  {
-    title: "Knowledge Glossary",
-    description:
-      "Learn about months, days, sun signs, country flags, seasons, colors, shapes, and times of the day in a fun and accessible format.",
-    icon: "📖",
-    color: "#6366f1"
-  },
-  {
-    title: "Tithi & Time Tools",
-    description:
-      "Explore traditional lunar calendar details alongside modern timestamps. Includes unit converters for daily use.",
-    icon: "⏳",
-    color: "#14b8a6"
-  },
-  {
-    title: "Creative Studio",
-    description:
-      "Design beautiful quotes or custom text visuals with the Text and Quote Designer tools — perfect for creative expression.",
-    icon: "🖌️",
-    color: "#ef4444"
-  },
-  {
-    title: "Display Modes",
-    description:
-      "Visualize alphabets interactively: build vertical stacks, create flowing queues, or swipe through sliders in fun display formats.",
-    icon: "🧩",
-    color: "#0ea5e9"
-  },
-  {
-    title: "Varnmala Learning Hub",
-    description:
-      "Learn and practice alphabets with tools for reading, writing, listening, and drawing — including Barahkhadi and interactive speak-to-draw modes.",
-    icon: "📖",
-    color: "#8b5cf6"
-  },
-  {
-    title: "Word Hunt",
-    description:
-      "Explore a word discovery game where you find hidden words while keeping track of clicks and progress in an interactive way.",
-    icon: "🔍",
-    color: "#f97316"
-  }
-];
 ---
+
 <BaseLayout meta={meta}>
+  <BackIcon/>
   <TitleLayout title="Welcome to the World of Learning" />
-
   <main class="about-container">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-content">
-        <img src={Logo.src} alt={`${appName} Logo`} class="hero-logo" />
-        <h1 class="hero-title">Learning Made <span class="text-highlight">Magical!</span></h1>
-        <p class="hero-text">
-          At {appName}, we transform education into captivating adventures that ignite young minds. Our interactive
-          platform takes children on an unforgettable journey through letters, words, and diverse cultures.
-        </p>
-        <div class="hero-buttons">
-          <a href="https://parixan.xyz" class="btn btn-primary">Let's Get Started</a>
-          <a href="https://deepwiki.com/recursivezero/abcd" class="btn btn-secondary">Read More</a>
-        </div>
-      </div>
-      <div class="hero-bubbles">
-        {["A", "B", "C", "D", "1", "2", "🎈", "📚", "🌈"].map((char, i) => (
-          <span class="bubble" style={`--i: ${i}; --size: ${Math.random() * 2 + 1}rem;`} aria-hidden="true">
-            {char}
-          </span>
-        ))}
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="section features-section">
-      <h2 class="section-title">Our <span class="text-highlight">Enchanting</span> Features</h2>
-      <p class="section-subtitle">
-        Designed to spark curiosity and foster a lifelong love for learning through innovative experiences
-      </p>
-      <div class="features-grid">
-        {features.map((feature) => (
-          <div class="feature-card" style={`--accent-color: ${feature.color}`}>
-            <div class="feature-icon" aria-label={feature.title}>
-              {feature.icon}
-            </div>
-            <h3 class="feature-title">{feature.title}</h3>
-            <p class="feature-desc">{feature.description}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="section team-section">
-      <h2 class="section-title">Meet Our <span class="text-highlight">Passionate</span> Team</h2>
-      <p class="section-subtitle">
-        A dedicated group of educators, designers, and developers committed to making learning magical
-      </p>
-      <div class="team-grid">
-        {contributors.map((member: TeamMember) => {
-          const initials = getInitials(member.name);
-          return (
-            <div class="team-card">
-              <div class="team-image-container">
-                <div class="team-avatar" style={`background-color: ${(member.name)}`}>
-                  {initials}
-                </div>
-                <div class="team-image-border" />
-              </div>
-              <h3 class="team-name">{member.name}</h3>
-              <p class="team-role">{member.role}</p>
-              <p class="team-desc">{member.description}</p>
-              <a
-                href={`https://github.com/${member.github}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="team-github-link"
-                aria-label={`${member.name}'s GitHub profile`}
-              >
-                @{member.github} <GitHub class="github-icon" />
-              </a>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-
-    <!-- Tech Section -->
-    <section class="tech-section">
-      <div class="tech-content">
-        <h2 class="section-title">Built for <span class="text-highlight">Young Minds</span> with Joy & Purpose</h2>
-        <p class="tech-text">
-          We blend educational insight with technology to help kids explore alphabets, languages, numbers, and stories
-          from India and beyond in a fun, safe, and colorful way.
-        </p>
-        <div class="tech-icons">
-          {["🔡", "🌍", "🎨", "📖", "🗣️"].map((icon, i) => (
-            <span class="tech-icon" style={`--i: ${i}`} aria-hidden="true">
-              {icon}
-            </span>
-          ))}
-        </div>
-        <a href="https://abcdkbd.com" class="btn btn-primary">Start Your Learning Adventure</a>
-      </div>
-    </section>
+    <HeroSection appName={appName} />
+    <FeaturesSection />
+    <TeamSection />
+    <TechSection />
   </main>
 </BaseLayout>
