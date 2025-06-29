@@ -1,11 +1,11 @@
 ---
 import "@/assets/styles/varnmala/alphabet.css";
-import BaseLayout from "@/layouts/Base";
 import AlphabetComponent from "@/components/Alphabet.astro";
-import Help from "@/components/Help.astro";
 import BackButton from "@/components/BackButton.astro";
+import Help from "@/components/Help.astro";
+import BaseLayout from "@/layouts/Base";
 // Imported consonants and the vowel list
-import { varnmala_hindi, hindiVowelList } from "@/utils/characters";
+import { hindiVowelList, varnmala_hindi } from "@/utils/characters";
 
 // Vowels to be excluded
 const vowelsToRemove = ["ऌ", "ऎ", "ऒ"];
@@ -31,37 +31,12 @@ const formattedVowelList = hindiVowelList
   <article class="container__alphabets">
     {/* Section for Hindi Vowels */}
     <section id="hindi_vowels">
-      {}
       <AlphabetComponent list={formattedVowelList} title="Hindi Vowels (स्वर)" />
     </section>
 
     {/* Section for Hindi Consonants */}
     <section id="hindi_consonants">
-      {}
       <AlphabetComponent list={varnmala_hindi} title="Hindi Consonants (व्यंजन)" />
     </section>
   </article>
 </BaseLayout>
-
-<script>
-  const tabs = document.querySelectorAll(".tab");
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      // Remove active class from all tabs
-      tabs.forEach((t) => t.classList.remove("active"));
-
-      // Add active class to clicked tab
-      tab.classList.add("active");
-
-      // Scroll to target section with offset
-      const targetId = tab.getAttribute("data-target");
-      if (targetId) {
-        const targetSection = document.getElementById(targetId) || document.getElementById(`hindi_${targetId}`);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    });
-  });
-</script>

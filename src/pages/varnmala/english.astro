@@ -1,9 +1,9 @@
 ---
 import "@/assets/styles/varnmala/alphabet.css";
-import BaseLayout from "@/layouts/Base";
 import AlphabetComponent from "@/components/Alphabet.astro";
-import Help from "@/components/Help.astro";
 import BackButton from "@/components/BackButton.astro";
+import Help from "@/components/Help.astro";
+import BaseLayout from "@/layouts/Base";
 
 import { varnmala_english } from "@/utils/characters";
 ---
@@ -23,25 +23,3 @@ import { varnmala_english } from "@/utils/characters";
     </section>
   </article>
 </BaseLayout>
-<script>
-  const tabs = document.querySelectorAll(".tab");
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      // Remove active class from all tabs
-      tabs.forEach((t) => t.classList.remove("active"));
-
-      // Add active class to clicked tab
-      tab.classList.add("active");
-
-      // Scroll to target section with offset
-      const targetId = tab.getAttribute("data-target");
-      if (targetId) {
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    });
-  });
-</script>

@@ -98,16 +98,3 @@
     }
   }
 }
-
-.five-column-grid-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-}
-
-.tv {
-  background-color: #f0f0f0;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-}

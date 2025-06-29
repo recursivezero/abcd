@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/alphabets/index.css";
+import "@/assets/styles/board.css";
 import Back from "@/components/Back.astro";
 import CardLayout from "@/components/CardLayout.astro";
 import BaseLayout from "@/layouts/Base";
@@ -43,15 +43,15 @@ const numberSections: CardSectionType[] = [
 
 <BaseLayout meta={{ title: "Numbers" }}>
   <Back />
-  <section class="container__alphabets">
-    <div class="alphabets__header">
+  <section class="container__board">
+    <div class="board__header">
       <h1 class="title">{title}</h1>
       <p class="subtitle">{subtitle}</p>
     </div>
-    <ul class="list__alphabets">
+    <ul class="board__list">
       {
         numberSections.map((section, index) => (
-          <li class="card" style={`animation-delay: ${index * 50}ms`}>
+          <li class="board__card" style={`animation-delay: ${index * 50}ms`}>
             <CardLayout section={section} />
           </li>
         ))
