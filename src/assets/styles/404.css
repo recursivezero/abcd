@@ -10,13 +10,10 @@
 }
 
 .error-container::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 30%, light-dark(#3b82f6, #ffffff) 1px, transparent 1px),
-    radial-gradient(circle at 80% 70%, light-dark(#3b82f6, #ffffff) 1px, transparent 1px);
-  background-size: 100px 100px;
-  animation: sparkle 3s linear infinite;
+  background:radial-gradient(circle at 20% 30%, light-dark(#3b82f6, #ffffff) 1px, transparent 1px),
 }
 
 @keyframes sparkle {
