@@ -12,42 +12,27 @@ export async function getStaticPaths() {
 }
 
 const { item } = Astro.params;
-
 const categoryData = item ? (glossaryData as any)[item] : undefined;
-
 const { title, data, category } = categoryData || {};
 
-// Optional: handle special cases like "months" with custom logic
-const isMonths = item === "months";
-const isSunSign = item === "sunsign";
-
-if (!categoryData && !isMonths && !isSunSign) {
+if (!categoryData) {
   throw new Error("Glossary category not found");
 }
 ---
 
 <BaseLayout meta={{ title: title ?? item }}>
+  <BackButton href="/glossary"/>
   <div class="container__page">
     <div class="page__header">
-      <BackButton href="/glossary" />
       <h2 class="page__title">{title ?? item}</h2>
       <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
     <div class="page__content">
       <div class="page__grid">
-        {
-          isMonths
-            ? /* Render MonthCard grid here */
-              null
-            : data.map((entry: any) => <LetterCard item={entry} category={category ?? item} />)
-        }
+        {data && data.map((entry: any) => (
+          <LetterCard item={entry} category={category ?? item} />
+        ))}
       </div>
     </div>
   </div>
 </BaseLayout>
-{
-  /*
-  Note: The "sunsign" and "moonsign" categories are handled separately
-  in their respective files, so this code does not include them.
-*/
-}

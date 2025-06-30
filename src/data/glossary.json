@@ -334,157 +334,41 @@
     ],
     "title": "Country Flags"
   },
-  "months": {
-    "category": "months",
-    "holidays": [
-      {
-        "day": 1,
-        "month": 0,
-        "name": "New Year's Day",
-        "year": 2025
-      },
-      {
-        "day": 26,
-        "month": 0,
-        "name": "Republic Day",
-        "year": 2025
-      },
-      {
-        "day": 18,
-        "month": 3,
-        "name": "Good Friday",
-        "year": 2025
-      },
-      {
-        "day": 1,
-        "month": 4,
-        "name": "May Day / Labour Day",
-        "year": 2025
-      },
-      {
-        "day": 15,
-        "month": 7,
-        "name": "Independence Day",
-        "year": 2025
-      },
-      {
-        "day": 2,
-        "month": 10,
-        "name": "Mahatma Gandhi Jayanti",
-        "year": 2025
-      },
-      {
-        "day": 14,
-        "month": 11,
-        "name": "Children's Day",
-        "year": 2025
-      },
-      {
-        "day": 25,
-        "month": 11,
-        "name": "Christmas Day",
-        "year": 2025
-      }
+  "hindimonths": {
+    "category": "hindimonths",
+    "data": [
+      { "letter": "चैत्र", "text": "Chaitra", "description": "March-April (First Hindu month)" },
+      { "letter": "वैशाख", "text": "Vaishakha", "description": "April-May (Second Hindu month)" },
+      { "letter": "ज्येष्ठ", "text": "Jyeshtha", "description": "May-June (Third Hindu month)" },
+      { "letter": "आषाढ़", "text": "Ashadha", "description": "June-July (Fourth Hindu month)" },
+      { "letter": "श्रावण", "text": "Shravana", "description": "July-August (Fifth Hindu month)" },
+      { "letter": "भाद्रपद", "text": "Bhadrapada", "description": "August-September (Sixth Hindu month)" },
+      { "letter": "आश्विन", "text": "Ashvina", "description": "September-October (Seventh Hindu month)" },
+      { "letter": "कार्तिक", "text": "Kartika", "description": "October-November (Eighth Hindu month)" },
+      { "letter": "मार्गशीर्ष", "text": "Margashirsha", "description": "November-December (Ninth Hindu month)" },
+      { "letter": "पौष", "text": "Pausha", "description": "December-January (Tenth Hindu month)" },
+      { "letter": "माघ", "text": "Magha", "description": "January-February (Eleventh Hindu month)" },
+      { "letter": "फाल्गुन", "text": "Phalguna", "description": "February-March (Twelfth Hindu month)" }
     ],
-    "indian": [
-      {
-        "dates": "March 21 - April 20",
-        "displayName": "Chaitra",
-        "hinduOrdinalText": "First Hindu Month",
-        "monthIndex": 2,
-        "name": "चैत्र ",
-        "type": "indian"
-      },
-      {
-        "dates": "April 21 - May 21",
-        "displayName": "Vaishakha",
-        "hinduOrdinalText": "Second Hindu Month",
-        "monthIndex": 3,
-        "name": "वैशाख ",
-        "type": "indian"
-      },
-      {
-        "dates": "May 22 - June 21",
-        "displayName": "Jyeshtha",
-        "hinduOrdinalText": "Third Hindu Month",
-        "monthIndex": 4,
-        "name": "ज्येष्ठ ",
-        "type": "indian"
-      },
-      {
-        "dates": "June 22 - July 22",
-        "displayName": "Ashadha",
-        "hinduOrdinalText": "Fourth Hindu Month",
-        "monthIndex": 5,
-        "name": "आषाढ़ ",
-        "type": "indian"
-      },
-      {
-        "dates": "July 23 - August 22",
-        "displayName": "Shravana",
-        "hinduOrdinalText": "Fifth Hindu Month",
-        "monthIndex": 6,
-        "name": "श्रावण ",
-        "type": "indian"
-      },
-      {
-        "dates": "August 23 - September 22",
-        "displayName": "Bhadrapada",
-        "hinduOrdinalText": "Sixth Hindu Month",
-        "monthIndex": 7,
-        "name": "भाद्रपद ",
-        "type": "indian"
-      },
-      {
-        "dates": "September 23 - October 22",
-        "displayName": "Ashvina",
-        "hinduOrdinalText": "Seventh Hindu Month",
-        "monthIndex": 8,
-        "name": "आश्विन ",
-        "type": "indian"
-      },
-      {
-        "dates": "October 23 - November 21",
-        "displayName": "Kartika",
-        "hinduOrdinalText": "Eighth Hindu Month",
-        "monthIndex": 9,
-        "name": "कार्तिक ",
-        "type": "indian"
-      },
-      {
-        "dates": "November 22 - December 21",
-        "displayName": "Margashirsha",
-        "hinduOrdinalText": "Ninth Hindu Month",
-        "monthIndex": 10,
-        "name": "मार्गशीर्ष ",
-        "type": "indian"
-      },
-      {
-        "dates": "December 22 - January 20",
-        "displayName": "Pausha",
-        "hinduOrdinalText": "Tenth Hindu Month",
-        "monthIndex": 11,
-        "name": "पौष",
-        "type": "indian"
-      },
-      {
-        "dates": "January 21 - February 19",
-        "displayName": "Magha",
-        "hinduOrdinalText": "Eleventh Hindu Month",
-        "monthIndex": 0,
-        "name": "माघ ",
-        "type": "indian"
-      },
-      {
-        "dates": "February 20 - March 20",
-        "displayName": "Phalguna",
-        "hinduOrdinalText": "Twelfth Hindu Month",
-        "monthIndex": 1,
-        "name": "फाल्गुन ",
-        "type": "indian"
-      }
+    "title": "Hindi Months"
+  },
+  "englishmonths": {
+    "category": "englishmonths",
+    "data": [
+      { "letter": "January", "text": "जनवरी", "description": "First month of the year" },
+      { "letter": "February", "text": "फ़रवरी", "description": "Second month of the year" },
+      { "letter": "March", "text": "मार्च", "description": "Third month of the year" },
+      { "letter": "April", "text": "अप्रैल", "description": "Fourth month of the year" },
+      { "letter": "May", "text": "मई", "description": "Fifth month of the year" },
+      { "letter": "June", "text": "जून", "description": "Sixth month of the year" },
+      { "letter": "July", "text": "जुलाई", "description": "Seventh month of the year" },
+      { "letter": "August", "text": "अगस्त", "description": "Eighth month of the year" },
+      { "letter": "September", "text": "सितंबर", "description": "Ninth month of the year" },
+      { "letter": "October", "text": "अक्टूबर", "description": "Tenth month of the year" },
+      { "letter": "November", "text": "नवंबर", "description": "Eleventh month of the year" },
+      { "letter": "December", "text": "दिसंबर", "description": "Twelfth month of the year" }
     ],
-    "title": "Months"
+    "title": "Hindi Months"
   },
   "moonsign": {
     "category": "moon_signs",
