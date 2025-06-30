@@ -23,15 +23,6 @@ import Keyboard from "@/components/Keyboard.astro";
   <Keyboard />
 </div>
 
-<div class="popup-overlay" id="popupOverlay">
-  <div class="popup">
-    <div class="popup-icon">⚠️</div>
-    <p class="popup-line">You pressed: <span id="pressedKey" class="pressed-key"></span></p>
-    <p class="popup-line">Press A-Z, a-z or 0-9 keys</p>
-    <button class="popup-close" id="popupClose">Got it!</button>
-  </div>
-</div>
-
 <script
   define:vars={{
     colorBox,
@@ -64,9 +55,6 @@ import Keyboard from "@/components/Keyboard.astro";
   const toggleBackgroundSwitch = document.getElementById("toggleBg");
   const toggleColorSwitch = document.getElementById("toggleColor");
   const info = document.querySelector(".info");
-  const popupOverlay = document.getElementById("popupOverlay");
-  const pressedKeySpan = document.getElementById("pressedKey");
-  const popupClose = document.getElementById("popupClose");
   const imgToggle = document.querySelector(".img-toggle");
   const bgToggle = document.querySelector(".bg-toggle");
   const colorToggle = document.querySelector(".color-toggle");
@@ -106,19 +94,6 @@ import Keyboard from "@/components/Keyboard.astro";
   function getRandomValue(arr) {
     if (!arr || arr.length === 0) return "#ffffff";
     return arr[Math.floor(Math.random() * arr.length)];
-  }
-
-  function showPopup(key) {
-    pressedKeySpan.textContent = key;
-    popupOverlay.style.display = "flex";
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-  }
-
-  function hidePopup() {
-    popupOverlay.style.display = "none";
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
   }
 
   function clearAllBackgrounds() {
@@ -237,6 +212,7 @@ import Keyboard from "@/components/Keyboard.astro";
       currentFontColorIndex = 0;
     }
 
+    // Handle numbers
     if (!isNaN(Number(key))) {
       isNumberPressed = true;
       const randomColor = getRandomValue(colorBox);
@@ -253,6 +229,8 @@ import Keyboard from "@/components/Keyboard.astro";
     }
 
     isNumberPressed = false;
+    
+    // Handle alphabetic characters
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
 
     if (found) {
@@ -276,7 +254,23 @@ import Keyboard from "@/components/Keyboard.astro";
 
       updateToggleButtons();
     } else {
-      showPopup(key);
+      // Handle any other key (not alphabet or number)
+      info.textContent = "Unknown";
+      charDiv.textContent = key;
+      charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
+      currentDisplayedKey = key;
+      updateFontColor();
+      
+      // Apply background based on current mode
+      if (backgroundMode === "color") {
+        const randomColor = getRandomValue(colorBox);
+        setBackgroundColor(randomColor);
+      } else {
+        clearAllBackgrounds();
+      }
+      
+      charDiv.style.fontSize = "";
+      updateToggleButtons();
     }
     showContinueMessage();
   }
@@ -284,17 +278,14 @@ import Keyboard from "@/components/Keyboard.astro";
   function handleKeyPress(e) {
     const key = e.key;
 
-    if (popupOverlay.style.display === "flex") {
-      if (key === "Escape") {
-        hidePopup();
-      }
+    // Ignore space, tab, and enter keys
+    if (key === " " || key === "Tab" || key === "Enter") {
       return;
     }
 
-    if (key.length === 1 && /[a-zA-Z0-9]/.test(key)) {
+    // Handle any other single character key
+    if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
       updateDisplay(key);
-    } else if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
-      showPopup(key);
     }
   }
 
@@ -302,26 +293,10 @@ import Keyboard from "@/components/Keyboard.astro";
 
   // Add virtual keyboard event listener
   document.addEventListener("virtualKeyPress", (e) => {
-    if (popupOverlay.style.display === "flex") return;
     updateDisplay(e.detail.key);
   });
 
   document.addEventListener("keydown", handleKeyPress);
-  if (popupClose) popupClose.addEventListener("click", hidePopup);
-
-  if (popupOverlay) {
-    popupOverlay.addEventListener("click", (e) => {
-      if (e.target === popupOverlay) {
-        hidePopup();
-      }
-    });
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      hidePopup();
-    }
-  });
 
   if (imgToggle) {
     imgToggle.addEventListener("click", () => {
@@ -468,8 +443,6 @@ import Keyboard from "@/components/Keyboard.astro";
     if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
     if (toggleImgSwitch) toggleImgSwitch.checked = true;
     if (toggleColorSwitch) toggleColorSwitch.checked = false;
-
-    hidePopup();
   });
 </script>
 
@@ -643,101 +616,6 @@ import Keyboard from "@/components/Keyboard.astro";
       opacity: 1;
       transform: scale(1);
     }
-  }
-
-  .popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(4px);
-  }
-
-  .popup {
-    background: white;
-    padding: 1rem;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 350px;
-    width: 50%;
-    animation: popupSlideIn 0.3s ease-out;
-    border: 5px solid #ff0000;
-  }
-
-  @keyframes popupSlideIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9) translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-
-  .popup-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  .popup h3 {
-    color: #2563eb;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-
-  .popup p {
-    color: #374151;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-
-  .pressed-key {
-    color: #2563eb;
-    background: transparent;
-    padding: 0.1rem 0.1rem;
-    border-radius: 0.25rem;
-    font-family: monospace;
-  }
-
-  .valid-keys {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .key-group {
-    background: rgb(201, 203, 205);
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    font-family: monospace;
-    font-size: 0.9rem;
-    color: #374151;
-  }
-
-  .popup-close {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: var(--transition);
-    font-weight: 500;
-  }
-
-  .popup-close:hover {
-    background: rgba(15, 23, 42, 0.7);
-    transform: translateY(-2px);
   }
 
   @media (max-width: 1024px) {
