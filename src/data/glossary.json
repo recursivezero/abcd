@@ -807,73 +807,73 @@
         "description": "The first light of day before sunrise; early morning twilight.",
         "emoji": "🌄",
         "letter": "Dawn",
-        "text": "भोर (Bhor), सुबह (Subah)"
+        "text": "भोर, प्रभात"
       },
       {
         "description": "The moment the sun appears above the horizon.",
         "emoji": "🌅",
         "letter": "Sunrise",
-        "text": "सूर्योदय (Sooryoday), भोर (Bhor)"
+        "text": "सूर्योदय, प्रभात"
       },
       {
         "description": "The early part of the day, from dawn until around noon.",
         "emoji": "🌅",
         "letter": "Morning",
-        "text": "सुबह (Subah), प्रातः (Praatah)"
+        "text": "सुबह, प्रातः"
       },
       {
         "description": "Midday, exactly 12:00 PM, or broadly the middle of the day.",
         "emoji": "🕛",
         "letter": "Noon",
-        "text": "दोपहर (Dopehar)"
+        "text": "दोपहर"
       },
       {
         "description": "The time after noon until late afternoon/early evening.",
         "emoji": "☀️",
         "letter": "Afternoon",
-        "text": "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)"
+        "text": "दोपहर बाद, अपराह्न"
       },
       {
         "description": "The period from late afternoon until nightfall/dusk.",
         "emoji": "🌇",
         "letter": "Evening",
-        "text": "शाम (Shaam)"
+        "text": "शाम"
       },
       {
         "description": "Dim light period either just before sunrise or just after sunset.",
         "emoji": "🌥️",
         "letter": "Twilight",
-        "text": "सांझ (Saanjh), गोधूलि बेला (Godhuli Bela)"
+        "text": "सांझ, गोधूलि बेला"
       },
       {
         "description": "The darker stage of twilight immediately after sunset.",
         "emoji": "🌆",
         "letter": "Dusk",
-        "text": "गोधूलि (Godhuli), शाम (Shaam)"
+        "text": "गोधूलि"
       },
       {
         "description": "The moment the sun disappears below the horizon.",
         "emoji": "🌇",
         "letter": "Sunset",
-        "text": "सूर्यास्त (Sooryaast), शाम (Shaam)"
+        "text": "सूर्यास्त"
       },
       {
         "description": "The period of darkness from sunset to sunrise.",
         "emoji": "🌙",
         "letter": "Night",
-        "text": "रात (Raat), रात्रि (Raatri)"
+        "text": "रात, रात्रि"
       },
       {
         "description": "Exactly 12:00 AM, the middle of the night.",
         "emoji": "🌃",
         "letter": "Midnight",
-        "text": "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)"
+        "text": "मध्यरात्रि, आधी रात"
       },
       {
         "description": "The deep part of the night, usually well after midnight.",
         "emoji": "🌌",
-        "letter": "Late Night",
-        "text": "रात गहराना (Raat Gahraana), देर रात (Der Raat)"
+        "letter": "Latenight",
+        "text": "देर रात"
       }
     ]
   }

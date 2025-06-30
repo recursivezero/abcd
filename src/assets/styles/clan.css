@@ -59,12 +59,6 @@
   }
 }
 
-/* Base Styles */
-body {
-  background-color: var(--background-color);
-  color: var(--text-primary);
-  transition: var(--transition);
-}
 
 /* Main Container */
 .container__clan {
@@ -119,7 +113,8 @@ body {
   display: flex;
   align-items: center;
   background: color-mix(in srgb, var(--background) 90%, var(--text-primary) 10%);
-  border: 2px solid #000; /* Changed to black border */
+  border: 2px solid #000;
+  /* Changed to black border */
   border-radius: var(--border-radius);
   padding: 0.75rem 1.25rem;
   transition: var(--transition);
@@ -409,6 +404,7 @@ body {
 
 /* Print Styles */
 @media print {
+
   .clan__search,
   .clan__legend {
     display: none;
@@ -418,9 +414,11 @@ body {
     padding: 0;
     background: none;
   }
+
   .caption {
     display: none;
   }
+
   .card-header {
     border-bottom: 1px solid #000;
     display: flex;
@@ -455,6 +453,7 @@ body {
   .header__brand {
     display: none;
   }
+
   .header__brand span {
     display: none;
   }
