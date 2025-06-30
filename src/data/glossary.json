@@ -682,5 +682,101 @@
         "description": "दी, चा, ची, झ, दो, दू"
       }
     ]
-  }
+  },
+  "currencies": {
+    "title": "Country Currency Symbols",
+    "category": "currencies",
+    "data": [
+      {
+        "letter": "$",
+        "text": "United States",
+        "description": "Dollar (USD)"
+      },
+      {
+        "letter": "$",
+        "text": "Canada",
+        "description": "Dollar (CAD)"
+      },
+      {
+        "letter": "₹",
+        "text": "India",
+        "description": "Rupee (INR)"
+      },
+      {
+        "letter": "¥",
+        "text": "Japan",
+        "description": "Yen (JPY)"
+      },
+      {
+        "letter": "R$",
+        "text": "Brazil",
+        "description": "Real (BRL)"
+      },
+      {
+        "letter": "$",
+        "text": "Australia",
+        "description": "Dollar (AUD)"
+      },
+      {
+        "letter": "€",
+        "text": "Germany",
+        "description": "Euro (EUR)"
+      },
+      {
+        "letter": "R",
+        "text": "South Africa",
+        "description": "Rand (ZAR)"
+      },
+      {
+        "letter": "€",
+        "text": "France",
+        "description": "Euro (EUR)"
+      },
+      {
+        "letter": "£",
+        "text": "United Kingdom",
+        "description": "Pound Sterling (GBP)"
+      },
+      {
+        "letter": "¥",
+        "text": "China",
+        "description": "Yuan (CNY)"
+      },
+      {
+        "letter": "€",
+        "text": "Italy",
+        "description": "Euro (EUR)"
+      }
+    ]
+  },
+  "musicnotes": {
+    "title": "Music Notes",
+    "category": "music_notes",
+    "data": [
+      { "letter": "Sa", "text": "सा", "description": "Shadja (1st note)" },
+      { "letter": "Re", "text": "रे", "description": "Rishabh (2nd note)" },
+      { "letter": "Ga", "text": "गा", "description": "Gandhar (3rd note)" },
+      { "letter": "Ma", "text": "मा", "description": "Madhyam (4th note)" },
+      { "letter": "Pa", "text": "पा", "description": "Pancham (5th note)" },
+      { "letter": "Dha", "text": "धा", "description": "Dhaivat (6th note)" },
+      { "letter": "Ni", "text": "नि", "description": "Nishad (7th note)" }
+    ]
+  },
+  "crops": {
+  "title": "Basic Crops",
+  "category": "crops",
+  "data": [
+    { "letter": "Wheat", "text": "गेहूं", "description": "A staple grain crop, used for making flour and bread." },
+    { "letter": "Rice", "text": "चावल", "description": "A major cereal grain, primary food for much of the world." },
+    { "letter": "Maize", "text": "मक्का", "description": "Also known as corn, used as food and fodder." },
+    { "letter": "Barley", "text": "जौ", "description": "A cereal grain used for food, animal feed, and brewing." },
+    { "letter": "Millet", "text": "बाजरा", "description": "A group of small-seeded grasses, important in arid regions." },
+    { "letter": "Potato", "text": "आलू", "description": "A starchy tuber, widely used as a vegetable." },
+    { "letter": "Tomato", "text": "टमाटर", "description": "A red fruit used as a vegetable in cooking." },
+    { "letter": "Carrot", "text": "गाजर", "description": "An orange root vegetable, eaten raw or cooked." },
+    { "letter": "Cucumber", "text": "खीरा", "description": "A green, refreshing vegetable, often eaten raw." },
+    { "letter": "Brinjal", "text": "बैंगन", "description": "Also called eggplant, a purple vegetable." },
+    { "letter": "Spinach", "text": "पालक", "description": "A leafy green vegetable, rich in iron." }
+  ]
+}
 }
