@@ -15,8 +15,6 @@ bincount
 Chaitra
 clsx
 cmdk
-Colour
-colours
 controlslist
 datetime
 Deepavali

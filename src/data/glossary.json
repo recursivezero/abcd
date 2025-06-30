@@ -3,8 +3,8 @@
     "id": 1,
     "category": "color",
     "icon": "🎨",
-    "title": "Colours",
-    "description": "A collection of basic colours with their names.",
+    "title": "Colors",
+    "description": "A collection of basic colors with their names.",
     "data": [
       {
         "code": "#ff0000",

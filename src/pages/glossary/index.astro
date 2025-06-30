@@ -5,17 +5,9 @@ import CardLayout from "@/components/CardLayout.astro";
 import glossaryData from "@/data/glossary.json";
 import BaseLayout from "@/layouts/Base";
 import type { CardSectionType } from "@/types/alphabet";
+import { sortById } from "@/utils";
 
 const glossarySections: CardSectionType[] = [];
-const sortById = (a: any, b: any) => {
-  // Compare as numbers if both ids are numeric, else as strings
-  const aId = typeof a.id === "number" ? a.id : Number(a.id);
-  const bId = typeof b.id === "number" ? b.id : Number(b.id);
-  if (!isNaN(aId) && !isNaN(bId)) {
-    return aId - bId;
-  }
-  return String(a.id).localeCompare(String(b.id));
-};
 
 Object.entries(glossaryData)
   .map(([key, value]) => {
