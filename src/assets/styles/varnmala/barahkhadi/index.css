@@ -145,6 +145,7 @@
     color: var(--text);
     border: 1px solid var(--border);
   }
+
   & .variations__grid::-webkit-scrollbar {
     display: none;
   }

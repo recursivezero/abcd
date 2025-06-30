@@ -13,10 +13,9 @@ const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
   <Fragment slot="header-left">
     <Help title="Multiplication Tables" description="This page displays numbers and their multiplication tables." />
   </Fragment>
-
-  <BackButton />
   <div class="container__page">
     <div class="page__header">
+      <BackButton />
       <h2 class="page__title">{title}</h2>
     </div>
 
