@@ -110,6 +110,24 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Numbers",
+    title: "Numbers",
+    path: "/numbers",
+    isActive: true
+  },
+  {
+    name: "Glossary",
+    title: "Glossary",
+    path: "/glossary",
+    isActive: true
+  },
+  {
+    name: "Capital",
+    title: "Capital",
+    path: "/capital",
+    isActive: true
+  },
+  {
     name: "India",
     title: "India Map",
     path: "/map",
@@ -123,25 +141,14 @@ export const NavbarLinks: LinkProps[] = [
   },
   {
     name: "Crossword",
-    title: "English Cross words",
+    title: "Cross words",
     path: "/crossword",
     isActive: true
   },
-  {
-    name: "Societree",
-    title: "Clan",
-    path: "/clan",
-    isActive: true
-  },
-  {
-    name: "Capital",
-    title: "Capital",
-    path: "/capital",
-    isActive: true
-  },
+
   {
     name: "HideNSeek",
-    title: "HideNSeek",
+    title: "Hide N Seek",
     path: "/hidenseek",
     isActive: true
   },
@@ -176,23 +183,11 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Numbers",
-    title: "Numbers",
-    path: "/numbers",
-    isActive: true
-  },
-  {
-    name: "Glossary",
-    title: "Glossary",
-    path: "/glossary",
+    name: "Societree",
+    title: "Clan Explorer",
+    path: "/clan",
     isActive: true
   }
-  // {
-  //   name: "Sunsigns",
-  //   title: "Sunsigns",
-  //   path: "/sunsigns",
-  //   isActive: true
-  // },
 ];
 
 export const FooterLinks: LinkProps[] = [
@@ -322,9 +317,6 @@ const tithiNames = [
   "अमावस्या"
 ];
 
-export { tithiNames };
-export { englishVowels, englishConsonants };
-export { fullEnglish, fullHindi, styleOption };
-export { BASE_URL, IMAGE_DIR };
+export { BASE_URL, englishConsonants, englishVowels, fullEnglish, fullHindi, IMAGE_DIR, styleOption, tithiNames };
 
 export { colorBox, fontBox, fontColor, numberBox };

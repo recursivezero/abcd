@@ -39,6 +39,7 @@ import { NavbarLinks } from "@/utils/constants";
   const placer = document.querySelector(".placement-toggle") as HTMLButtonElement;
   const hider = document.querySelector(".hider") as HTMLElement;
   const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLButtonElement;
+  const nav = document.querySelector("#nav") as HTMLElement;
 
   let debounce: number | undefined;
   document.documentElement.dataset.resizing = String(false);
@@ -74,11 +75,12 @@ import { NavbarLinks } from "@/utils/constants";
   popover?.addEventListener("toggle", () => {
     document.documentElement.dataset.complete = String(false);
     document.documentElement.style.setProperty("--complete", "0");
+    nav.classList.remove("minimized");
+
     popover.style.setProperty("--ty", "0");
   });
 
   minimizeBtn?.addEventListener("click", () => {
-    const nav = document.querySelector("#nav") as HTMLElement;
     if (nav && minimizeBtn) {
       nav.classList.toggle("minimized");
       minimizeBtn.classList.toggle("rotated");
