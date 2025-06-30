@@ -2,38 +2,31 @@
 import "@/assets/styles/tile.css";
 import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
-import rawAlphabetData from "@/data/alphabets.json";
+import { DATASET } from "@/data/alphabet_dataset";
 import BaseLayout from "@/layouts/Base";
-import { type AlphabetsData } from "@/types/alphabet.ts";
-
-const alphabetData = rawAlphabetData as AlphabetsData;
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const alphabetData = rawAlphabetData as AlphabetsData;
-  const categories = Object.keys(alphabetData);
-
-  return categories.map((category) => ({
+  return Object.keys(DATASET).map((category) => ({
     params: { alphabet: category }
   }));
 }
 
 const { alphabet } = Astro.params;
 
-const data = alphabetData[alphabet as keyof AlphabetsData].data;
+const data = DATASET[alphabet].data;
 ---
 
 <BaseLayout meta={{ title: `Alphabets - ${alphabet.charAt(0).toUpperCase() + alphabet.slice(1)}` }}>
   <article class="container__page">
     <div class="page__header">
       <BackButton />
-      <h2 class="page__title">{"ABCD"}</h2>
       <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
     <div class="page__content">
       <div class="page__grid">
-        {data && Object.values(data).map((d) => <LetterCard item={d} category={alphabet} />)}
+        {data.map((d) => <LetterCard item={d} category={alphabet} />)}
       </div>
     </div>
   </article>

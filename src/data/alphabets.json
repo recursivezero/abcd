@@ -1,2032 +1,2517 @@
 {
-  "general": {
-    "description": "General knowledge about the English alphabet",
-    "icon": "🔤",
+  "animals": {
     "data": [
       {
+        "code": 65,
+        "description": "Swift-moving hoofed mammal",
         "id": 1,
         "letter": "A",
-        "code": 65,
-        "text": "Apple",
-        "description": "",
-        "emoji": "🍎"
+        "text": "Antelope"
       },
       {
+        "code": 66,
+        "description": "Large omnivorous mammal",
         "id": 2,
         "letter": "B",
-        "code": 66,
-        "text": "Bat",
-        "emoji": "🦇",
-        "description": ""
+        "text": "Bear"
       },
       {
+        "code": 67,
+        "description": "Small domesticated feline",
         "id": 3,
         "letter": "C",
-        "code": 67,
-        "text": "Cat",
-        "emoji": "🐱",
-        "description": ""
+        "text": "Cat"
       },
       {
+        "code": 68,
+        "description": "Domesticated canine",
         "id": 4,
         "letter": "D",
-        "code": 68,
-        "text": "Dog",
-        "emoji": "🐶",
-        "description": ""
+        "text": "Dog"
       },
       {
+        "code": 69,
+        "description": "Large mammal with trunk",
         "id": 5,
         "letter": "E",
-        "code": 69,
-        "text": "Elephant",
-        "emoji": "🐘",
-        "description": ""
+        "text": "Elephant"
       },
       {
+        "code": 70,
+        "description": "Small wild canine",
         "id": 6,
         "letter": "F",
-        "code": 70,
-        "text": "Fish",
-        "emoji": "🐟",
-        "description": ""
+        "text": "Fox"
       },
       {
+        "code": 71,
+        "description": "Long-necked African mammal",
         "id": 7,
         "letter": "G",
-        "code": 71,
-        "text": "Goat",
-        "emoji": "🐐",
-        "description": ""
+        "text": "Giraffe"
       },
       {
+        "code": 72,
+        "description": "Large semi-aquatic African mammal",
         "id": 8,
         "letter": "H",
-        "code": 72,
-        "text": "Hat",
-        "emoji": "🎩",
-        "description": ""
+        "text": "Hippo"
       },
       {
+        "code": 73,
+        "description": "Large tropical lizard",
         "id": 9,
         "letter": "I",
-        "code": 73,
-        "text": "Ice",
-        "emoji": "🧊",
-        "description": ""
+        "text": "Iguana"
       },
       {
+        "code": 74,
+        "description": "Large spotted wild cat",
         "id": 10,
         "letter": "J",
-        "code": 74,
-        "text": "Jug",
-        "emoji": "🏺",
-        "description": ""
+        "text": "Jaguar"
       },
       {
+        "code": 75,
+        "description": "Marsupial that hops",
         "id": 11,
         "letter": "K",
-        "code": 75,
-        "text": "Kite",
-        "emoji": "🪁",
-        "description": ""
+        "text": "Kangaroo"
       },
       {
+        "code": 76,
+        "description": "Large African wild cat",
         "id": 12,
         "letter": "L",
-        "code": 76,
-        "text": "Lamp",
-        "emoji": "💡",
-        "description": ""
+        "text": "Lion"
       },
       {
+        "code": 77,
+        "description": "Primate with tail",
         "id": 13,
         "letter": "M",
-        "code": 77,
-        "text": "Moon",
-        "emoji": "🌙",
-        "description": ""
+        "text": "Monkey"
       },
       {
+        "code": 78,
+        "description": "Arctic whale with long tusk",
         "id": 14,
         "letter": "N",
-        "code": 78,
-        "text": "Nest",
-        "emoji": "🐣",
-        "description": ""
+        "text": "Narwhal"
       },
       {
+        "code": 79,
+        "description": "Eight-armed sea creature",
         "id": 15,
         "letter": "O",
-        "code": 79,
-        "text": "Orange",
-        "emoji": "🍊",
-        "description": ""
+        "text": "Octopus"
       },
       {
+        "code": 80,
+        "description": "Flightless aquatic bird",
         "id": 16,
         "letter": "P",
-        "code": 80,
-        "text": "Pen",
-        "emoji": "🖊️",
-        "description": ""
+        "text": "Penguin"
       },
       {
+        "code": 81,
+        "description": "Small ground-dwelling bird",
         "id": 17,
         "letter": "Q",
-        "code": 81,
-        "text": "Queen",
-        "emoji": "👑",
-        "description": ""
+        "text": "Quail"
       },
       {
+        "code": 82,
+        "description": "Small mammal with long ears",
         "id": 18,
         "letter": "R",
-        "code": 82,
-        "text": "Rat",
-        "emoji": "🐀",
-        "description": ""
+        "text": "Rabbit"
       },
       {
+        "code": 83,
+        "description": "Legless reptile",
         "id": 19,
         "letter": "S",
-        "code": 83,
-        "text": "Sun",
-        "emoji": "☀️",
-        "description": ""
+        "text": "Snake"
       },
       {
+        "code": 84,
+        "description": "Large striped wild cat",
         "id": 20,
         "letter": "T",
-        "code": 84,
-        "text": "Tree",
-        "emoji": "🌳",
-        "description": ""
+        "text": "Tiger"
       },
       {
+        "code": 85,
+        "description": "Red-faced monkey species",
         "id": 21,
         "letter": "U",
-        "code": 85,
-        "text": "Umbrella",
-        "emoji": "☂️",
-        "description": ""
+        "text": "Uakari"
       },
       {
+        "code": 86,
+        "description": "Scavenging bird of prey",
         "id": 22,
         "letter": "V",
-        "code": 86,
-        "text": "Van",
-        "emoji": "🚐",
-        "description": ""
+        "text": "Vulture"
       },
       {
+        "code": 87,
+        "description": "Wild canine that hunts in packs",
         "id": 23,
         "letter": "W",
-        "code": 87,
-        "text": "Watch",
-        "emoji": "⌚",
-        "description": ""
+        "text": "Wolf"
       },
       {
+        "code": 88,
+        "description": "Transparent fish species",
         "id": 24,
         "letter": "X",
-        "code": 88,
-        "text": "xerox",
-        "emoji": "🖨️",
-        "description": ""
+        "text": "X-Ray Fish"
       },
       {
+        "code": 89,
+        "description": "Long-haired mountain bovine",
         "id": 25,
         "letter": "Y",
-        "code": 89,
-        "text": "Yacht",
-        "emoji": "⛵",
-        "description": ""
+        "text": "Yak"
       },
       {
+        "code": 90,
+        "description": "Striped African equine",
         "id": 26,
         "letter": "Z",
-        "code": 90,
-        "text": "Zebra",
-        "emoji": "🦓",
-        "description": ""
+        "text": "Zebra"
       }
-    ]
+    ],
+    "description": "Animals of the English alphabet",
+    "icon": "🦁"
   },
-
-  "greek": {
-    "icon": "🔤",
-    "description": "Explore the letters of the ancient and modern Greek alphabet.",
+  "birds": {
     "data": [
       {
-        "letter": "A",
-        "text": "Alpha (Α α)",
-        "description": "First letter of the Greek alphabet. Sound: 'a' as in father.",
-        "code": 913,
-        "emoji": "Α"
-      },
-      {
-        "letter": "B",
-        "text": "Beta (Β β)",
-        "description": "Second letter of the Greek alphabet. Sound: 'v' as in vase (Modern Greek).",
-        "code": 914,
-        "emoji": "Β"
-      },
-      {
-        "letter": "G",
-        "text": "Gamma (Γ γ)",
-        "description": "Third letter of the Greek alphabet. Sound: 'g' as in go, or 'y' as in yes.",
-        "code": 915,
-        "emoji": "Γ"
-      },
-      {
-        "letter": "D",
-        "text": "Delta (Δ δ)",
-        "description": "Fourth letter of the Greek alphabet. Sound: 'th' as in then (Modern Greek).",
-        "code": 916,
-        "emoji": "Δ"
-      },
-      {
-        "letter": "E",
-        "text": "Epsilon (Ε ε)",
-        "description": "Fifth letter of the Greek alphabet. Sound: 'e' as in met.",
-        "code": 917,
-        "emoji": "Ε"
-      },
-      {
-        "letter": "Z",
-        "text": "Zeta (Ζ ζ)",
-        "description": "Sixth letter of the Greek alphabet. Sound: 'z' as in zoo.",
-        "code": 918,
-        "emoji": "Ζ"
-      },
-      {
-        "letter": "H",
-        "text": "Eta (Η η)",
-        "description": "Seventh letter of the Greek alphabet. Sound: 'i' as in machine.",
-        "code": 919,
-        "emoji": "Η"
-      },
-      {
-        "letter": "Q",
-        "text": "Theta (Θ θ)",
-        "description": "Eighth letter of the Greek alphabet. Sound: 'th' as in thin.",
-        "code": 920,
-        "emoji": "Θ"
-      },
-      {
-        "letter": "I",
-        "text": "Iota (Ι ι)",
-        "description": "Ninth letter of the Greek alphabet. Sound: 'i' as in machine.",
-        "code": 921,
-        "emoji": "Ι"
-      },
-      {
-        "letter": "K",
-        "text": "Kappa (Κ κ)",
-        "description": "Tenth letter of the Greek alphabet. Sound: 'k' as in kite.",
-        "code": 922,
-        "emoji": "Κ"
-      },
-      {
-        "letter": "L",
-        "text": "Lambda (Λ λ)",
-        "description": "Eleventh letter of the Greek alphabet. Sound: 'l' as in lamp.",
-        "code": 923,
-        "emoji": "Λ"
-      },
-      {
-        "letter": "M",
-        "text": "Mu (Μ μ)",
-        "description": "Twelfth letter of the Greek alphabet. Sound: 'm' as in map.",
-        "code": 924,
-        "emoji": "Μ"
-      },
-      {
-        "letter": "N",
-        "text": "Nu (Ν ν)",
-        "description": "Thirteenth letter of the Greek alphabet. Sound: 'n' as in net.",
-        "code": 925,
-        "emoji": "Ν"
-      },
-      {
-        "letter": "X",
-        "text": "Xi (Ξ ξ)",
-        "description": "Fourteenth letter of the Greek alphabet. Sound: 'x' as in axe.",
-        "code": 926,
-        "emoji": "Ξ"
-      },
-      {
-        "letter": "O",
-        "text": "Omicron (Ο ο)",
-        "description": "Fifteenth letter of the Greek alphabet. Sound: 'o' as in pot.",
-        "code": 927,
-        "emoji": "Ο"
-      },
-      {
-        "letter": "P",
-        "text": "Pi (Π π)",
-        "description": "Sixteenth letter of the Greek alphabet. Sound: 'p' as in pen.",
-        "code": 928,
-        "emoji": "Π"
-      },
-      {
-        "letter": "R",
-        "text": "Rho (Ρ ρ)",
-        "description": "Seventeenth letter of the Greek alphabet. Sound: 'r' as in run (often rolled).",
-        "code": 929,
-        "emoji": "Ρ"
-      },
-      {
-        "letter": "S",
-        "text": "Sigma (Σ σ/ς)",
-        "description": "Eighteenth letter of the Greek alphabet. Sound: 's' as in sun.",
-        "code": 931,
-        "emoji": "Σ"
-      },
-      {
-        "letter": "T",
-        "text": "Tau (Τ τ)",
-        "description": "Nineteenth letter of the Greek alphabet. Sound: 't' as in tap.",
-        "code": 932,
-        "emoji": "Τ"
-      },
-      {
-        "letter": "U",
-        "text": "Upsilon (Υ υ)",
-        "description": "Twentieth letter of the Greek alphabet. Sound: 'i' as in machine (Modern Greek).",
-        "code": 933,
-        "emoji": "Υ"
-      },
-      {
-        "letter": "F",
-        "text": "Phi (Φ φ)",
-        "description": "Twenty-first letter of the Greek alphabet. Sound: 'f' as in fan.",
-        "code": 934,
-        "emoji": "Φ"
-      },
-      {
-        "letter": "C",
-        "text": "Chi (Χ χ)",
-        "description": "Twenty-second letter of the Greek alphabet. Sound: 'ch' as in Scottish loch, or 'h' as in huge.",
-        "code": 935,
-        "emoji": "Χ"
-      },
-      {
-        "letter": "Y",
-        "text": "Psi (Ψ ψ)",
-        "description": "Twenty-third letter of the Greek alphabet. Sound: 'ps' as in psychology.",
-        "code": 936,
-        "emoji": "Ψ"
-      },
-      {
-        "letter": "W",
-        "text": "Omega (Ω ω)",
-        "description": "Twenty-fourth letter of the Greek alphabet. Sound: 'o' as in go.",
-        "code": 937,
-        "emoji": "Ω"
-      }
-    ]
-  },
-  "geek": {
-    "icon": "🔤",
-    "description": "Discover common 'leet speak' and other geeky character representations.",
-    "data": [
-      { "letter": "A", "text": "4, @, /-\\", "description": "Common representations for A." },
-      { "letter": "B", "text": "8, |3, ß", "description": "Common representations for B." },
-      { "letter": "C", "text": "(, <, [, {", "description": "Common representations for C." },
-      { "letter": "D", "text": "|), |>, Ð, ð", "description": "Common representations for D." },
-      { "letter": "E", "text": "3, £, €", "description": "Common representations for E." },
-      { "letter": "F", "text": "|=, ph, ƒ", "description": "Common representations for F." },
-      { "letter": "G", "text": "6, 9, (_+", "description": "Common representations for G." },
-      { "letter": "H", "text": "#, |-|, H", "description": "Common representations for H." },
-      { "letter": "I", "text": "1, !, |, ][", "description": "Common representations for I." },
-      { "letter": "J", "text": "_|, ;|, _/", "description": "Common representations for J." },
-      { "letter": "K", "text": "|<, /<, |{", "description": "Common representations for K." },
-      { "letter": "L", "text": "1, |_, £, |", "description": "Common representations for L." },
-      { "letter": "M", "text": "|\\/|, /\\/\\, (V)", "description": "Common representations for M." },
-      { "letter": "N", "text": "|\\|, /\\/, |V", "description": "Common representations for N." },
-      { "letter": "O", "text": "0, (), <>", "description": "Common representations for O." },
-      { "letter": "P", "text": "|*, |D, |>", "description": "Common representations for P." },
-      { "letter": "Q", "text": "(_,)", "description": "Common representations for Q." },
-      { "letter": "R", "text": "|2, |?, ®", "description": "Common representations for R." },
-      { "letter": "S", "text": "5, $, §", "description": "Common representations for S." },
-      { "letter": "T", "text": "7, +, ']['", "description": "Common representations for T." },
-      { "letter": "U", "text": "|_|, (_), V", "description": "Common representations for U." },
-      { "letter": "V", "text": "\\/, |/", "description": "Common representations for V." },
-      { "letter": "W", "text": "\\/\\/, VV, \\^/", "description": "Common representations for W." },
-      { "letter": "X", "text": "><, %", "description": "Common representations for X." },
-      { "letter": "Y", "text": "j, `/, ¥", "description": "Common representations for Y." },
-      { "letter": "Z", "text": "2, 7_, >_", "description": "Common representations for Z." }
-    ]
-  },
-  "nato": {
-    "description": "NATO phonetic alphabet",
-    "icon": "🎖️",
-    "data": [
-      {
+        "description": "A large seabird known for its long wingspan.",
         "id": 1,
         "letter": "A",
-        "code": 65,
-        "text": "Alpha",
-        "description": "First letter of NATO phonetic alphabet"
+        "text": "Albatross"
       },
       {
+        "description": "A small thrush known for its bright blue plumage.",
         "id": 2,
         "letter": "B",
-        "code": 66,
-        "text": "Bravo",
-        "description": "Second letter of NATO phonetic alphabet"
+        "text": "Bluebird"
       },
       {
+        "description": "A small songbird in the finch family, often kept as a pet.",
         "id": 3,
         "letter": "C",
-        "code": 67,
-        "text": "Charlie",
-        "description": "Third letter of NATO phonetic alphabet"
+        "text": "Crow"
       },
       {
+        "description": "A stocky bird with a short neck and legs, related to pigeons.",
         "id": 4,
         "letter": "D",
-        "code": 68,
-        "text": "Delta",
-        "description": "Fourth letter of NATO phonetic alphabet"
+        "text": "Dove"
       },
       {
+        "description": "A large bird of prey with a heavy head and beak.",
         "id": 5,
         "letter": "E",
-        "code": 69,
-        "text": "Echo",
-        "description": "Fifth letter of NATO phonetic alphabet"
+        "text": "Eagle"
       },
       {
+        "description": "A large wading bird known for its pink feathers and long legs.",
         "id": 6,
         "letter": "F",
-        "code": 70,
-        "text": "Foxtrot",
-        "description": "Sixth letter of NATO phonetic alphabet"
+        "text": "Flamingo"
       },
       {
+        "description": "A large waterbird with a long neck and webbed feet.",
         "id": 7,
         "letter": "G",
-        "code": 71,
-        "text": "Golf",
-        "description": "Seventh letter of NATO phonetic alphabet"
+        "text": "Goose"
       },
       {
+        "description": "A small bird capable of hovering in mid-air by rapidly flapping its wings.",
         "id": 8,
         "letter": "H",
-        "code": 72,
-        "text": "Hotel",
-        "description": "Eighth letter of NATO phonetic alphabet"
+        "text": "Hummingbird"
       },
       {
+        "description": "A long-legged wading bird with a long, down-curved bill.",
         "id": 9,
         "letter": "I",
-        "code": 73,
-        "text": "India",
-        "description": "Ninth letter of NATO phonetic alphabet"
+        "text": "Ibis"
       },
       {
+        "description": "A noisy, brightly colored bird of the crow family.",
         "id": 10,
         "letter": "J",
-        "code": 74,
-        "text": "Juliet",
-        "description": "Tenth letter of NATO phonetic alphabet"
+        "text": "Jay"
       },
       {
+        "description": "A flightless bird native to New Zealand.",
         "id": 11,
         "letter": "K",
-        "code": 75,
-        "text": "Kilo",
-        "description": "Eleventh letter of NATO phonetic alphabet"
+        "text": "Kiwi"
       },
       {
+        "description": "A small ground-dwelling bird, known for its melodious song.",
         "id": 12,
         "letter": "L",
-        "code": 76,
-        "text": "Lima",
-        "description": "Twelfth letter of NATO phonetic alphabet"
+        "text": "Lark"
       },
       {
+        "description": "A large, long-tailed parrot with brightly colored plumage.",
         "id": 13,
         "letter": "M",
-        "code": 77,
-        "text": "Mike",
-        "description": "Thirteenth letter of NATO phonetic alphabet"
+        "text": "Macaw"
       },
       {
+        "description": "A small thrush famous for its powerful and beautiful song.",
         "id": 14,
         "letter": "N",
-        "code": 78,
-        "text": "November",
-        "description": "Fourteenth letter of NATO phonetic alphabet"
+        "text": "Nightingale"
       },
       {
+        "description": "A large flightless bird native to Africa.",
         "id": 15,
         "letter": "O",
-        "code": 79,
-        "text": "Oscar",
-        "description": "Fifteenth letter of NATO phonetic alphabet"
+        "text": "Ostrich"
       },
       {
+        "description": "A flightless aquatic bird found in the Southern Hemisphere.",
         "id": 16,
         "letter": "P",
-        "code": 80,
-        "text": "Papa",
-        "description": "Sixteenth letter of NATO phonetic alphabet"
+        "text": "Penguin"
       },
       {
+        "description": "A small, short-tailed game bird.",
         "id": 17,
         "letter": "Q",
-        "code": 81,
-        "text": "Quebec",
-        "description": "Seventeenth letter of NATO phonetic alphabet"
+        "text": "Quail"
       },
       {
+        "description": "A small insectivorous songbird with a reddish-orange breast.",
         "id": 18,
         "letter": "R",
-        "code": 82,
-        "text": "Romeo",
-        "description": "Eighteenth letter of NATO phonetic alphabet"
+        "text": "Robin"
       },
       {
+        "description": "A small bird with a stout bill, typically with brown and grey plumage.",
         "id": 19,
         "letter": "S",
-        "code": 83,
-        "text": "Sierra",
-        "description": "Nineteenth letter of NATO phonetic alphabet"
+        "text": "Sparrow"
       },
       {
+        "description": "A tropical bird known for its large, colorful bill.",
         "id": 20,
         "letter": "T",
-        "code": 84,
-        "text": "Tango",
-        "description": "Twentieth letter of NATO phonetic alphabet"
+        "text": "Toucan"
       },
       {
+        "description": "A tropical bird with a large crest on its head.",
         "id": 21,
         "letter": "U",
-        "code": 85,
-        "text": "Uniform",
-        "description": "Twenty-first letter of NATO phonetic alphabet"
+        "text": "Umbrella bird"
       },
       {
+        "description": "A large bird of prey that scavenges on carrion.",
         "id": 22,
         "letter": "V",
-        "code": 86,
-        "text": "Victor",
-        "description": "Twenty-second letter of NATO phonetic alphabet"
+        "text": "Vulture"
       },
       {
+        "description": "A bird that pecks at tree trunks to find insects.",
         "id": 23,
         "letter": "W",
-        "code": 87,
-        "text": "Whiskey",
-        "description": "Twenty-third letter of NATO phonetic alphabet"
+        "text": "Woodpecker"
       },
       {
+        "description": "A small rainforest bird in the ovenbird family.",
         "id": 24,
         "letter": "X",
-        "code": 88,
-        "text": "X-ray",
-        "description": "Twenty-fourth letter of NATO phonetic alphabet"
+        "text": "Xenops"
       },
       {
+        "description": "A passerine bird in the bunting family.",
         "id": 25,
         "letter": "Y",
-        "code": 89,
-        "text": "Yankee",
-        "description": "Twenty-fifth letter of NATO phonetic alphabet"
+        "text": "Yellow hammer"
       },
       {
+        "description": "A common finch of Central Australia.",
         "id": 26,
         "letter": "Z",
-        "code": 90,
-        "text": "Zulu",
-        "description": "Twenty-sixth letter of NATO phonetic alphabet"
+        "text": "Zebra Finch"
       }
-    ]
+    ],
+    "description": "A list of birds from A to Z.",
+    "icon": "🐦"
   },
   "braille": {
+    "data": [
+      {
+        "code": 65,
+        "description": "Braille pattern dots-1",
+        "id": 1,
+        "letter": "A",
+        "text": "⠁"
+      },
+      {
+        "code": 66,
+        "description": "Braille pattern dots-1-2",
+        "id": 2,
+        "letter": "B",
+        "text": "⠃"
+      },
+      {
+        "code": 67,
+        "description": "Braille pattern dots-1-4",
+        "id": 3,
+        "letter": "C",
+        "text": "⠉"
+      },
+      {
+        "code": 68,
+        "description": "Braille pattern dots-1-4-5",
+        "id": 4,
+        "letter": "D",
+        "text": "⠙"
+      },
+      {
+        "code": 69,
+        "description": "Braille pattern dots-1-5",
+        "id": 5,
+        "letter": "E",
+        "text": "⠑"
+      },
+      {
+        "code": 70,
+        "description": "Braille pattern dots-1-2-4",
+        "id": 6,
+        "letter": "F",
+        "text": "⠋"
+      },
+      {
+        "code": 71,
+        "description": "Braille pattern dots-1-2-4-5",
+        "id": 7,
+        "letter": "G",
+        "text": "⠛"
+      },
+      {
+        "code": 72,
+        "description": "Braille pattern dots-1-2-5",
+        "id": 8,
+        "letter": "H",
+        "text": "⠓"
+      },
+      {
+        "code": 73,
+        "description": "Braille pattern dots-2-4",
+        "id": 9,
+        "letter": "I",
+        "text": "⠊"
+      },
+      {
+        "code": 74,
+        "description": "Braille pattern dots-2-4-5",
+        "id": 10,
+        "letter": "J",
+        "text": "⠚"
+      },
+      {
+        "code": 75,
+        "description": "Braille pattern dots-1-3",
+        "id": 11,
+        "letter": "K",
+        "text": "⠅"
+      },
+      {
+        "code": 76,
+        "description": "Braille pattern dots-1-2-3",
+        "id": 12,
+        "letter": "L",
+        "text": "⠇"
+      },
+      {
+        "code": 77,
+        "description": "Braille pattern dots-1-3-4",
+        "id": 13,
+        "letter": "M",
+        "text": "⠍"
+      },
+      {
+        "code": 78,
+        "description": "Braille pattern dots-1-3-4-5",
+        "id": 14,
+        "letter": "N",
+        "text": "⠝"
+      },
+      {
+        "code": 79,
+        "description": "Braille pattern dots-1-3-5",
+        "id": 15,
+        "letter": "O",
+        "text": "⠕"
+      },
+      {
+        "code": 80,
+        "description": "Braille pattern dots-1-2-3-4",
+        "id": 16,
+        "letter": "P",
+        "text": "⠏"
+      },
+      {
+        "code": 81,
+        "description": "Braille pattern dots-1-2-3-4-5",
+        "id": 17,
+        "letter": "Q",
+        "text": "⠟"
+      },
+      {
+        "code": 82,
+        "description": "Braille pattern dots-1-2-3-5",
+        "id": 18,
+        "letter": "R",
+        "text": "⠗"
+      },
+      {
+        "code": 83,
+        "description": "Braille pattern dots-2-3-4",
+        "id": 19,
+        "letter": "S",
+        "text": "⠎"
+      },
+      {
+        "code": 84,
+        "description": "Braille pattern dots-2-3-4-5",
+        "id": 20,
+        "letter": "T",
+        "text": "⠞"
+      },
+      {
+        "code": 85,
+        "description": "Braille pattern dots-1-3-6",
+        "id": 21,
+        "letter": "U",
+        "text": "⠥"
+      },
+      {
+        "code": 86,
+        "description": "Braille pattern dots-1-2-3-6",
+        "id": 22,
+        "letter": "V",
+        "text": "⠧"
+      },
+      {
+        "code": 87,
+        "description": "Braille pattern dots-2-4-5-6",
+        "id": 23,
+        "letter": "W",
+        "text": "⠺"
+      },
+      {
+        "code": 88,
+        "description": "Braille pattern dots-1-3-4-6",
+        "id": 24,
+        "letter": "X",
+        "text": "⠭"
+      },
+      {
+        "code": 89,
+        "description": "Braille pattern dots-1-3-4-5-6",
+        "id": 25,
+        "letter": "Y",
+        "text": "⠽"
+      },
+      {
+        "code": 90,
+        "description": "Braille pattern dots-1-3-5-6",
+        "id": 26,
+        "letter": "Z",
+        "text": "⠵"
+      }
+    ],
     "description": "Braille alphabet",
-    "icon": "⠿",
-    "data": [
-      {
-        "id": 1,
-        "letter": "A",
-        "code": 65,
-        "text": "⠁",
-        "description": "Braille pattern dots-1"
-      },
-      {
-        "id": 2,
-        "letter": "B",
-        "code": 66,
-        "text": "⠃",
-        "description": "Braille pattern dots-1-2"
-      },
-      {
-        "id": 3,
-        "letter": "C",
-        "code": 67,
-        "text": "⠉",
-        "description": "Braille pattern dots-1-4"
-      },
-      {
-        "id": 4,
-        "letter": "D",
-        "code": 68,
-        "text": "⠙",
-        "description": "Braille pattern dots-1-4-5"
-      },
-      {
-        "id": 5,
-        "letter": "E",
-        "code": 69,
-        "text": "⠑",
-        "description": "Braille pattern dots-1-5"
-      },
-      {
-        "id": 6,
-        "letter": "F",
-        "code": 70,
-        "text": "⠋",
-        "description": "Braille pattern dots-1-2-4"
-      },
-      {
-        "id": 7,
-        "letter": "G",
-        "code": 71,
-        "text": "⠛",
-        "description": "Braille pattern dots-1-2-4-5"
-      },
-      {
-        "id": 8,
-        "letter": "H",
-        "code": 72,
-        "text": "⠓",
-        "description": "Braille pattern dots-1-2-5"
-      },
-      {
-        "id": 9,
-        "letter": "I",
-        "code": 73,
-        "text": "⠊",
-        "description": "Braille pattern dots-2-4"
-      },
-      {
-        "id": 10,
-        "letter": "J",
-        "code": 74,
-        "text": "⠚",
-        "description": "Braille pattern dots-2-4-5"
-      },
-      {
-        "id": 11,
-        "letter": "K",
-        "code": 75,
-        "text": "⠅",
-        "description": "Braille pattern dots-1-3"
-      },
-      {
-        "id": 12,
-        "letter": "L",
-        "code": 76,
-        "text": "⠇",
-        "description": "Braille pattern dots-1-2-3"
-      },
-      {
-        "id": 13,
-        "letter": "M",
-        "code": 77,
-        "text": "⠍",
-        "description": "Braille pattern dots-1-3-4"
-      },
-      {
-        "id": 14,
-        "letter": "N",
-        "code": 78,
-        "text": "⠝",
-        "description": "Braille pattern dots-1-3-4-5"
-      },
-      {
-        "id": 15,
-        "letter": "O",
-        "code": 79,
-        "text": "⠕",
-        "description": "Braille pattern dots-1-3-5"
-      },
-      {
-        "id": 16,
-        "letter": "P",
-        "code": 80,
-        "text": "⠏",
-        "description": "Braille pattern dots-1-2-3-4"
-      },
-      {
-        "id": 17,
-        "letter": "Q",
-        "code": 81,
-        "text": "⠟",
-        "description": "Braille pattern dots-1-2-3-4-5"
-      },
-      {
-        "id": 18,
-        "letter": "R",
-        "code": 82,
-        "text": "⠗",
-        "description": "Braille pattern dots-1-2-3-5"
-      },
-      {
-        "id": 19,
-        "letter": "S",
-        "code": 83,
-        "text": "⠎",
-        "description": "Braille pattern dots-2-3-4"
-      },
-      {
-        "id": 20,
-        "letter": "T",
-        "code": 84,
-        "text": "⠞",
-        "description": "Braille pattern dots-2-3-4-5"
-      },
-      {
-        "id": 21,
-        "letter": "U",
-        "code": 85,
-        "text": "⠥",
-        "description": "Braille pattern dots-1-3-6"
-      },
-      {
-        "id": 22,
-        "letter": "V",
-        "code": 86,
-        "text": "⠧",
-        "description": "Braille pattern dots-1-2-3-6"
-      },
-      {
-        "id": 23,
-        "letter": "W",
-        "code": 87,
-        "text": "⠺",
-        "description": "Braille pattern dots-2-4-5-6"
-      },
-      {
-        "id": 24,
-        "letter": "X",
-        "code": 88,
-        "text": "⠭",
-        "description": "Braille pattern dots-1-3-4-6"
-      },
-      {
-        "id": 25,
-        "letter": "Y",
-        "code": 89,
-        "text": "⠽",
-        "description": "Braille pattern dots-1-3-4-5-6"
-      },
-      {
-        "id": 26,
-        "letter": "Z",
-        "code": 90,
-        "text": "⠵",
-        "description": "Braille pattern dots-1-3-5-6"
-      }
-    ]
+    "icon": "⠿"
   },
-  "fruits": {
-    "description": "Fruits of the English alphabet",
-    "icon": "🍎",
+  "colors": {
     "data": [
       {
+        "code": 65,
+        "colorCode": "#FFBF00",
+        "description": "A honey-yellow color.",
         "id": 1,
         "letter": "A",
-        "code": 65,
-        "text": "Apple",
-        "description": "Common red or green fruit"
+        "text": "Amber"
       },
       {
+        "code": 66,
+        "colorCode": "#0000FF",
+        "description": "The color of the sky and sea.",
         "id": 2,
         "letter": "B",
-        "code": 66,
-        "text": "Banana",
-        "description": "Yellow curved tropical fruit"
+        "text": "Blue"
       },
       {
+        "code": 67,
+        "colorCode": "#00FFFF",
+        "description": "A greenish-blue color.",
         "id": 3,
         "letter": "C",
-        "code": 67,
-        "text": "Cherry",
-        "description": "Small red stone fruit"
+        "text": "Cyan"
       },
       {
+        "code": 68,
+        "colorCode": "#1560BD",
+        "description": "A sturdy cotton twill fabric, typically blue.",
         "id": 4,
         "letter": "D",
-        "code": 68,
-        "text": "Date",
-        "description": "Sweet brown fruit from palm trees"
+        "text": "Denim"
       },
       {
+        "code": 69,
+        "colorCode": "#50C878",
+        "description": "A bright green color.",
         "id": 5,
         "letter": "E",
-        "code": 69,
-        "text": "Elderberry",
-        "description": "Small dark purple berries"
+        "text": "Emerald"
       },
       {
+        "code": 70,
+        "colorCode": "#FF00FF",
+        "description": "A vivid purplish-red color.",
         "id": 6,
         "letter": "F",
-        "code": 70,
-        "text": "Fig",
-        "description": "Sweet Mediterranean fruit"
+        "text": "Fuchsia"
       },
       {
+        "code": 71,
+        "colorCode": "#008000",
+        "description": "The color of living grass and leaves.",
         "id": 7,
         "letter": "G",
-        "code": 71,
-        "text": "Grape",
-        "description": "Small round fruit growing in clusters"
+        "text": "Green"
       },
       {
+        "code": 72,
+        "colorCode": "#DF73FF",
+        "description": "A pink-purple tint.",
         "id": 8,
         "letter": "H",
-        "code": 72,
-        "text": "Honeydew",
-        "description": "Sweet green melon variety"
+        "text": "Heliotrope"
       },
       {
+        "code": 73,
+        "colorCode": "#4B0082",
+        "description": "A deep and rich color close to the color wheel blue.",
         "id": 9,
         "letter": "I",
-        "code": 73,
-        "text": "Ice Apple",
-        "description": "Translucent fruit from palm trees"
+        "text": "Indigo"
       },
       {
+        "code": 74,
+        "colorCode": "#00A86B",
+        "description": "A light green color.",
         "id": 10,
         "letter": "J",
-        "code": 74,
-        "text": "Jackfruit",
-        "description": "Large tropical fruit"
+        "text": "Jade"
       },
       {
+        "code": 75,
+        "colorCode": "#C3B091",
+        "description": "A light brownish-yellow color.",
         "id": 11,
         "letter": "K",
-        "code": 75,
-        "text": "Kiwi",
-        "description": "Brown fuzzy fruit with green flesh"
+        "text": "Khaki"
       },
       {
+        "code": 76,
+        "colorCode": "#E6E6FA",
+        "description": "A light purple color.",
         "id": 12,
         "letter": "L",
-        "code": 76,
-        "text": "Lemon",
-        "description": "Sour yellow citrus fruit"
+        "text": "Lavender"
       },
       {
+        "code": 77,
+        "colorCode": "#FF00FF",
+        "description": "A purplish-pink color.",
         "id": 13,
         "letter": "M",
-        "code": 77,
-        "text": "Mango",
-        "description": "Sweet tropical stone fruit"
+        "text": "Magenta"
       },
       {
+        "code": 78,
+        "colorCode": "#000080",
+        "description": "A very dark blue color.",
         "id": 14,
         "letter": "N",
-        "code": 78,
-        "text": "Nectarine",
-        "description": "Smooth-skinned peach variety"
+        "text": "Navy"
       },
       {
+        "code": 79,
+        "colorCode": "#FFA500",
+        "description": "A bright, warm color.",
         "id": 15,
         "letter": "O",
-        "code": 79,
-        "text": "Orange",
-        "description": "Round citrus fruit"
+        "text": "Orange"
       },
       {
+        "code": 80,
+        "colorCode": "#800080",
+        "description": "A color intermediate between blue and red.",
         "id": 16,
         "letter": "P",
-        "code": 80,
-        "text": "Pear",
-        "description": "Sweet bell-shaped fruit"
+        "text": "Purple"
       },
       {
+        "code": 81,
+        "colorCode": "#51484F",
+        "description": "A greyish-white color.",
         "id": 17,
         "letter": "Q",
-        "code": 81,
-        "text": "Quince",
-        "description": "Hard acidic fruit used in preserves"
+        "text": "Quartz"
       },
       {
+        "code": 82,
+        "colorCode": "#FF0000",
+        "description": "The color of blood, or a ruby.",
         "id": 18,
         "letter": "R",
-        "code": 82,
-        "text": "Raspberry",
-        "description": "Small red aggregate fruit"
+        "text": "Red"
       },
       {
+        "code": 83,
+        "colorCode": "#C0C0C0",
+        "description": "A precious shiny grayish-white color.",
         "id": 19,
         "letter": "S",
-        "code": 83,
-        "text": "Strawberry",
-        "description": "Red heart-shaped berry"
+        "text": "Silver"
       },
       {
+        "code": 84,
+        "colorCode": "#008080",
+        "description": "A medium to dark greenish-blue color.",
         "id": 20,
         "letter": "T",
-        "code": 84,
-        "text": "Tangerine",
-        "description": "Small orange citrus fruit"
+        "text": "Teal"
       },
       {
+        "code": 85,
+        "colorCode": "#120A8F",
+        "description": "A deep blue color pigment.",
         "id": 21,
         "letter": "U",
-        "code": 85,
-        "text": "Ugli Fruit",
-        "description": "Citrus fruit hybrid from Jamaica"
+        "text": "Ultramarine"
       },
       {
+        "code": 86,
+        "colorCode": "#EE82EE",
+        "description": "A bluish-purple color.",
         "id": 22,
         "letter": "V",
-        "code": 86,
-        "text": "Voavanga",
-        "description": "African fruit also known as Spanish tamarind"
+        "text": "Violet"
       },
       {
+        "code": 87,
+        "colorCode": "#FFFFFF",
+        "description": "The color of milk or fresh snow.",
         "id": 23,
         "letter": "W",
-        "code": 87,
-        "text": "Watermelon",
-        "description": "Large sweet fruit with green rind and red flesh"
+        "text": "White"
       },
       {
+        "code": 88,
+        "colorCode": "#738678",
+        "description": "A grayish-green color.",
         "id": 24,
         "letter": "X",
-        "code": 88,
-        "text": "Ximenia",
-        "description": "Small orange-colored wild fruit"
+        "text": "Xanadu"
       },
       {
+        "code": 89,
+        "colorCode": "#FFFF00",
+        "description": "The color of ripe lemons or egg yolks.",
         "id": 25,
         "letter": "Y",
-        "code": 89,
-        "text": "Yellow Watermelon",
-        "description": "Watermelon variety with yellow flesh"
+        "text": "Yellow"
       },
       {
+        "code": 90,
+        "colorCode": "#0014A8",
+        "description": "A deep blue pigment.",
         "id": 26,
         "letter": "Z",
-        "code": 90,
-        "text": "Ziziphus",
-        "description": "Small fruit also known as jujube"
+        "text": "Zaffre"
       }
-    ]
-  },
-  "animals": {
-    "description": "Animals of the English alphabet",
-    "icon": "🦁",
-    "data": [
-      {
-        "id": 1,
-        "letter": "A",
-        "code": 65,
-        "text": "Antelope",
-        "description": "Swift-moving hoofed mammal"
-      },
-      {
-        "id": 2,
-        "letter": "B",
-        "code": 66,
-        "text": "Bear",
-        "description": "Large omnivorous mammal"
-      },
-      {
-        "id": 3,
-        "letter": "C",
-        "code": 67,
-        "text": "Cat",
-        "description": "Small domesticated feline"
-      },
-      {
-        "id": 4,
-        "letter": "D",
-        "code": 68,
-        "text": "Dog",
-        "description": "Domesticated canine"
-      },
-      {
-        "id": 5,
-        "letter": "E",
-        "code": 69,
-        "text": "Elephant",
-        "description": "Large mammal with trunk"
-      },
-      {
-        "id": 6,
-        "letter": "F",
-        "code": 70,
-        "text": "Fox",
-        "description": "Small wild canine"
-      },
-      {
-        "id": 7,
-        "letter": "G",
-        "code": 71,
-        "text": "Giraffe",
-        "description": "Long-necked African mammal"
-      },
-      {
-        "id": 8,
-        "letter": "H",
-        "code": 72,
-        "text": "Hippo",
-        "description": "Large semi-aquatic African mammal"
-      },
-      {
-        "id": 9,
-        "letter": "I",
-        "code": 73,
-        "text": "Iguana",
-        "description": "Large tropical lizard"
-      },
-      {
-        "id": 10,
-        "letter": "J",
-        "code": 74,
-        "text": "Jaguar",
-        "description": "Large spotted wild cat"
-      },
-      {
-        "id": 11,
-        "letter": "K",
-        "code": 75,
-        "text": "Kangaroo",
-        "description": "Marsupial that hops"
-      },
-      {
-        "id": 12,
-        "letter": "L",
-        "code": 76,
-        "text": "Lion",
-        "description": "Large African wild cat"
-      },
-      {
-        "id": 13,
-        "letter": "M",
-        "code": 77,
-        "text": "Monkey",
-        "description": "Primate with tail"
-      },
-      {
-        "id": 14,
-        "letter": "N",
-        "code": 78,
-        "text": "Narwhal",
-        "description": "Arctic whale with long tusk"
-      },
-      {
-        "id": 15,
-        "letter": "O",
-        "code": 79,
-        "text": "Octopus",
-        "description": "Eight-armed sea creature"
-      },
-      {
-        "id": 16,
-        "letter": "P",
-        "code": 80,
-        "text": "Penguin",
-        "description": "Flightless aquatic bird"
-      },
-      {
-        "id": 17,
-        "letter": "Q",
-        "code": 81,
-        "text": "Quail",
-        "description": "Small ground-dwelling bird"
-      },
-      {
-        "id": 18,
-        "letter": "R",
-        "code": 82,
-        "text": "Rabbit",
-        "description": "Small mammal with long ears"
-      },
-      {
-        "id": 19,
-        "letter": "S",
-        "code": 83,
-        "text": "Snake",
-        "description": "Legless reptile"
-      },
-      {
-        "id": 20,
-        "letter": "T",
-        "code": 84,
-        "text": "Tiger",
-        "description": "Large striped wild cat"
-      },
-      {
-        "id": 21,
-        "letter": "U",
-        "code": 85,
-        "text": "Uakari",
-        "description": "Red-faced monkey species"
-      },
-      {
-        "id": 22,
-        "letter": "V",
-        "code": 86,
-        "text": "Vulture",
-        "description": "Scavenging bird of prey"
-      },
-      {
-        "id": 23,
-        "letter": "W",
-        "code": 87,
-        "text": "Wolf",
-        "description": "Wild canine that hunts in packs"
-      },
-      {
-        "id": 24,
-        "letter": "X",
-        "code": 88,
-        "text": "X-Ray Fish",
-        "description": "Transparent fish species"
-      },
-      {
-        "id": 25,
-        "letter": "Y",
-        "code": 89,
-        "text": "Yak",
-        "description": "Long-haired mountain bovine"
-      },
-      {
-        "id": 26,
-        "letter": "Z",
-        "code": 90,
-        "text": "Zebra",
-        "description": "Striped African equine"
-      }
-    ]
+    ],
+    "description": "Colors of the English alphabet with their hex codes.",
+    "icon": "🎨"
   },
   "countries": {
+    "data": [
+      {
+        "code": 65,
+        "description": "Continent and country in Southern Hemisphere",
+        "id": 1,
+        "letter": "A",
+        "text": "Australia"
+      },
+      {
+        "code": 66,
+        "description": "Largest country in South America",
+        "id": 2,
+        "letter": "B",
+        "text": "Brazil"
+      },
+      {
+        "code": 67,
+        "description": "Second largest country by total area",
+        "id": 3,
+        "letter": "C",
+        "text": "Canada"
+      },
+      {
+        "code": 68,
+        "description": "Nordic country in Europe",
+        "id": 4,
+        "letter": "D",
+        "text": "Denmark"
+      },
+      {
+        "code": 69,
+        "description": "North African country with ancient pyramids",
+        "id": 5,
+        "letter": "E",
+        "text": "Egypt"
+      },
+      {
+        "code": 70,
+        "description": "Western European country",
+        "id": 6,
+        "letter": "F",
+        "text": "France"
+      },
+      {
+        "code": 71,
+        "description": "Central European country",
+        "id": 7,
+        "letter": "G",
+        "text": "Germany"
+      },
+      {
+        "code": 72,
+        "description": "Central European country",
+        "id": 8,
+        "letter": "H",
+        "text": "Hungary"
+      },
+      {
+        "code": 73,
+        "description": "South Asian country",
+        "id": 9,
+        "letter": "I",
+        "text": "India"
+      },
+      {
+        "code": 74,
+        "description": "East Asian island country",
+        "id": 10,
+        "letter": "J",
+        "text": "Japan"
+      },
+      {
+        "code": 75,
+        "description": "East African country",
+        "id": 11,
+        "letter": "K",
+        "text": "Kenya"
+      },
+      {
+        "code": 76,
+        "description": "Baltic country in Northern Europe",
+        "id": 12,
+        "letter": "L",
+        "text": "Lithuania"
+      },
+      {
+        "code": 77,
+        "description": "North American country",
+        "id": 13,
+        "letter": "M",
+        "text": "Mexico"
+      },
+      {
+        "code": 78,
+        "description": "Nordic country with fjords",
+        "id": 14,
+        "letter": "N",
+        "text": "Norway"
+      },
+      {
+        "code": 79,
+        "description": "Middle Eastern country",
+        "id": 15,
+        "letter": "O",
+        "text": "Oman"
+      },
+      {
+        "code": 80,
+        "description": "Southern European country",
+        "id": 16,
+        "letter": "P",
+        "text": "Portugal"
+      },
+      {
+        "code": 81,
+        "description": "Middle Eastern peninsula country",
+        "id": 17,
+        "letter": "Q",
+        "text": "Qatar"
+      },
+      {
+        "code": 82,
+        "description": "Largest country by land area",
+        "id": 18,
+        "letter": "R",
+        "text": "Russia"
+      },
+      {
+        "code": 83,
+        "description": "Southern European country",
+        "id": 19,
+        "letter": "S",
+        "text": "Spain"
+      },
+      {
+        "code": 84,
+        "description": "Transcontinental country",
+        "id": 20,
+        "letter": "T",
+        "text": "Turkey"
+      },
+      {
+        "code": 85,
+        "description": "East African country",
+        "id": 21,
+        "letter": "U",
+        "text": "Uganda"
+      },
+      {
+        "code": 86,
+        "description": "Southeast Asian country",
+        "id": 22,
+        "letter": "V",
+        "text": "Vietnam"
+      },
+      {
+        "code": 87,
+        "description": "Country part of United Kingdom",
+        "id": 23,
+        "letter": "W",
+        "text": "Wales"
+      },
+      {
+        "code": 88,
+        "description": "Alternative name for Hong Kong",
+        "id": 24,
+        "letter": "X",
+        "text": "Xianggang"
+      },
+      {
+        "code": 89,
+        "description": "Middle Eastern country",
+        "id": 25,
+        "letter": "Y",
+        "text": "Yemen"
+      },
+      {
+        "code": 90,
+        "description": "Southern African country",
+        "id": 26,
+        "letter": "Z",
+        "text": "Zimbabwe"
+      }
+    ],
     "description": "Countries of the English alphabet",
-    "icon": "🌍",
-    "data": [
-      {
-        "id": 1,
-        "letter": "A",
-        "code": 65,
-        "text": "Australia",
-        "description": "Continent and country in Southern Hemisphere"
-      },
-      {
-        "id": 2,
-        "letter": "B",
-        "code": 66,
-        "text": "Brazil",
-        "description": "Largest country in South America"
-      },
-      {
-        "id": 3,
-        "letter": "C",
-        "code": 67,
-        "text": "Canada",
-        "description": "Second largest country by total area"
-      },
-      {
-        "id": 4,
-        "letter": "D",
-        "code": 68,
-        "text": "Denmark",
-        "description": "Nordic country in Europe"
-      },
-      {
-        "id": 5,
-        "letter": "E",
-        "code": 69,
-        "text": "Egypt",
-        "description": "North African country with ancient pyramids"
-      },
-      {
-        "id": 6,
-        "letter": "F",
-        "code": 70,
-        "text": "France",
-        "description": "Western European country"
-      },
-      {
-        "id": 7,
-        "letter": "G",
-        "code": 71,
-        "text": "Germany",
-        "description": "Central European country"
-      },
-      {
-        "id": 8,
-        "letter": "H",
-        "code": 72,
-        "text": "Hungary",
-        "description": "Central European country"
-      },
-      {
-        "id": 9,
-        "letter": "I",
-        "code": 73,
-        "text": "India",
-        "description": "South Asian country"
-      },
-      {
-        "id": 10,
-        "letter": "J",
-        "code": 74,
-        "text": "Japan",
-        "description": "East Asian island country"
-      },
-      {
-        "id": 11,
-        "letter": "K",
-        "code": 75,
-        "text": "Kenya",
-        "description": "East African country"
-      },
-      {
-        "id": 12,
-        "letter": "L",
-        "code": 76,
-        "text": "Lithuania",
-        "description": "Baltic country in Northern Europe"
-      },
-      {
-        "id": 13,
-        "letter": "M",
-        "code": 77,
-        "text": "Mexico",
-        "description": "North American country"
-      },
-      {
-        "id": 14,
-        "letter": "N",
-        "code": 78,
-        "text": "Norway",
-        "description": "Nordic country with fjords"
-      },
-      {
-        "id": 15,
-        "letter": "O",
-        "code": 79,
-        "text": "Oman",
-        "description": "Middle Eastern country"
-      },
-      {
-        "id": 16,
-        "letter": "P",
-        "code": 80,
-        "text": "Portugal",
-        "description": "Southern European country"
-      },
-      {
-        "id": 17,
-        "letter": "Q",
-        "code": 81,
-        "text": "Qatar",
-        "description": "Middle Eastern peninsula country"
-      },
-      {
-        "id": 18,
-        "letter": "R",
-        "code": 82,
-        "text": "Russia",
-        "description": "Largest country by land area"
-      },
-      {
-        "id": 19,
-        "letter": "S",
-        "code": 83,
-        "text": "Spain",
-        "description": "Southern European country"
-      },
-      {
-        "id": 20,
-        "letter": "T",
-        "code": 84,
-        "text": "Turkey",
-        "description": "Transcontinental country"
-      },
-      {
-        "id": 21,
-        "letter": "U",
-        "code": 85,
-        "text": "Uganda",
-        "description": "East African country"
-      },
-      {
-        "id": 22,
-        "letter": "V",
-        "code": 86,
-        "text": "Vietnam",
-        "description": "Southeast Asian country"
-      },
-      {
-        "id": 23,
-        "letter": "W",
-        "code": 87,
-        "text": "Wales",
-        "description": "Country part of United Kingdom"
-      },
-      {
-        "id": 24,
-        "letter": "X",
-        "code": 88,
-        "text": "Xianggang",
-        "description": "Alternative name for Hong Kong"
-      },
-      {
-        "id": 25,
-        "letter": "Y",
-        "code": 89,
-        "text": "Yemen",
-        "description": "Middle Eastern country"
-      },
-      {
-        "id": 26,
-        "letter": "Z",
-        "code": 90,
-        "text": "Zimbabwe",
-        "description": "Southern African country"
-      }
-    ]
+    "icon": "🌍"
   },
-  "Indian": {
-    "description": "Mythological Indian culture Alphabets",
-    "icon": "🕉️",
+  "fruits": {
     "data": [
       {
+        "code": 65,
+        "description": "Common red or green fruit",
         "id": 1,
         "letter": "A",
-        "code": 65,
-        "text": "Aryabhatta",
-        "description": "Ancient Indian mathematician and astronomer who calculated Pi"
+        "text": "Apple"
       },
       {
+        "code": 66,
+        "description": "Yellow curved tropical fruit",
         "id": 2,
         "letter": "B",
-        "code": 66,
-        "text": "Brahma",
-        "description": "Creator deity in Hinduism"
+        "text": "Banana"
       },
       {
+        "code": 67,
+        "description": "Small red stone fruit",
         "id": 3,
         "letter": "C",
-        "code": 67,
-        "text": "Chanakya",
-        "description": "Ancient Indian teacher, philosopher, and royal advisor"
+        "text": "Cherry"
       },
       {
+        "code": 68,
+        "description": "Sweet brown fruit from palm trees",
         "id": 4,
         "letter": "D",
-        "code": 68,
-        "text": "Durga",
-        "description": "Hindu goddess of war, strength and protection"
+        "text": "Date"
       },
       {
+        "code": 69,
+        "description": "Small dark purple berries",
         "id": 5,
         "letter": "E",
-        "code": 69,
-        "text": "Eklavya",
-        "description": "Skilled archer from the Mahabharata"
+        "text": "Elderberry"
       },
       {
+        "code": 70,
+        "description": "Sweet Mediterranean fruit",
         "id": 6,
         "letter": "F",
-        "code": 70,
-        "text": "Fauna",
-        "description": "Sacred animals in Indian mythology like Garuda and Nandi"
+        "text": "Fig"
       },
       {
+        "code": 71,
+        "description": "Small round fruit growing in clusters",
         "id": 7,
         "letter": "G",
-        "code": 71,
-        "text": "Ganesha",
-        "description": "Elephant-headed deity known as remover of obstacles"
+        "text": "Grape"
       },
       {
+        "code": 72,
+        "description": "Sweet green melon variety",
         "id": 8,
         "letter": "H",
-        "code": 72,
-        "text": "Hanuman",
-        "description": "Monkey deity known for strength, devotion and service"
+        "text": "Honeydew"
       },
       {
+        "code": 73,
+        "description": "Translucent fruit from palm trees",
         "id": 9,
         "letter": "I",
-        "code": 73,
-        "text": "Indra",
-        "description": "King of the gods and deity of lightning and thunder"
+        "text": "Ice Apple"
       },
       {
+        "code": 74,
+        "description": "Large tropical fruit",
         "id": 10,
         "letter": "J",
-        "code": 74,
-        "text": "Jatayu",
-        "description": "Divine eagle who fought Ravana in the Ramayana"
+        "text": "Jackfruit"
       },
       {
+        "code": 75,
+        "description": "Brown fuzzy fruit with green flesh",
         "id": 11,
         "letter": "K",
-        "code": 75,
-        "text": "Krishna",
-        "description": "Divine incarnation of Vishnu and key figure in Bhagavad Gita"
+        "text": "Kiwi"
       },
       {
+        "code": 76,
+        "description": "Sour yellow citrus fruit",
         "id": 12,
         "letter": "L",
-        "code": 76,
-        "text": "Lakshmi",
-        "description": "Goddess of wealth, fortune and prosperity"
+        "text": "Lemon"
       },
       {
+        "code": 77,
+        "description": "Sweet tropical stone fruit",
         "id": 13,
         "letter": "M",
-        "code": 77,
-        "text": "Murugan",
-        "description": "Tamil God also known as Kartikeya"
+        "text": "Mango"
       },
       {
+        "code": 78,
+        "description": "Smooth-skinned peach variety",
         "id": 14,
         "letter": "N",
-        "code": 78,
-        "text": "Narada",
-        "description": "Divine sage famous for carrying news and gossip"
+        "text": "Nectarine"
       },
       {
+        "code": 79,
+        "description": "Round citrus fruit",
         "id": 15,
         "letter": "O",
-        "code": 79,
-        "text": "Om",
-        "description": "Sacred sound and spiritual symbol in Indian religions"
+        "text": "Orange"
       },
       {
+        "code": 80,
+        "description": "Sweet bell-shaped fruit",
         "id": 16,
         "letter": "P",
-        "code": 80,
-        "text": "Parvati",
-        "description": "Goddess of fertility, love and devotion"
+        "text": "Pear"
       },
       {
+        "code": 81,
+        "description": "Hard acidic fruit used in preserves",
         "id": 17,
         "letter": "Q",
-        "code": 81,
-        "text": "Qutub Minar",
-        "description": "Historic minaret built by Qutb-ud-Din Aibak in Delhi"
+        "text": "Quince"
       },
       {
+        "code": 82,
+        "description": "Small red aggregate fruit",
         "id": 18,
         "letter": "R",
-        "code": 82,
-        "text": "Rama",
-        "description": "Seventh avatar of Vishnu and protagonist of the Ramayana"
+        "text": "Raspberry"
       },
       {
+        "code": 83,
+        "description": "Red heart-shaped berry",
         "id": 19,
         "letter": "S",
-        "code": 83,
-        "text": "Shiva",
-        "description": "One of the principal deities, known as the destroyer"
+        "text": "Strawberry"
       },
       {
+        "code": 84,
+        "description": "Small orange citrus fruit",
         "id": 20,
         "letter": "T",
-        "code": 84,
-        "text": "Tulsidas",
-        "description": "Author who wrote the epic Ramcharitmanas"
+        "text": "Tangerine"
       },
       {
+        "code": 85,
+        "description": "Citrus fruit hybrid from Jamaica",
         "id": 21,
         "letter": "U",
-        "code": 85,
-        "text": "Urvashi",
-        "description": "Beautiful apsara (celestial nymph) created from Vishnu's thigh"
+        "text": "Ugli Fruit"
       },
       {
+        "code": 86,
+        "description": "African fruit also known as Spanish tamarind",
         "id": 22,
         "letter": "V",
-        "code": 86,
-        "text": "Vishnu",
-        "description": "Preserver deity with ten avatars including Rama and Krishna"
+        "text": "Voavanga"
       },
       {
+        "code": 87,
+        "description": "Large sweet fruit with green rind and red flesh",
         "id": 23,
         "letter": "W",
-        "code": 87,
-        "text": "Wayang",
-        "description": "Puppetry art form influenced by Indian epics and mythology"
+        "text": "Watermelon"
       },
       {
+        "code": 88,
+        "description": "Small orange-colored wild fruit",
         "id": 24,
         "letter": "X",
-        "code": 88,
-        "text": "Xerxes",
-        "description": "Persian king who encountered Indian warriors and philosophers"
+        "text": "Ximenia"
       },
       {
+        "code": 89,
+        "description": "Watermelon variety with yellow flesh",
         "id": 25,
         "letter": "Y",
-        "code": 89,
-        "text": "Yama",
-        "description": "God of death and justice who judges souls"
+        "text": "Yellow Watermelon"
       },
       {
+        "code": 90,
+        "description": "Small fruit also known as jujube",
         "id": 26,
         "letter": "Z",
-        "code": 90,
-        "text": "Zodiac",
-        "description": "Vedic astrology (Jyotish) with its unique zodiac system"
+        "text": "Ziziphus"
       }
-    ]
+    ],
+    "description": "Fruits of the English alphabet",
+    "icon": "🍎"
+  },
+  "geek": {
+    "data": [
+      {
+        "description": "Common representations for A.",
+        "letter": "A",
+        "text": "4, @, /-\\"
+      },
+      {
+        "description": "Common representations for B.",
+        "letter": "B",
+        "text": "8, |3, ß"
+      },
+      {
+        "description": "Common representations for C.",
+        "letter": "C",
+        "text": "(, <, [, {"
+      },
+      {
+        "description": "Common representations for D.",
+        "letter": "D",
+        "text": "|), |>, Ð, ð"
+      },
+      {
+        "description": "Common representations for E.",
+        "letter": "E",
+        "text": "3, £, €"
+      },
+      {
+        "description": "Common representations for F.",
+        "letter": "F",
+        "text": "|=, ph, ƒ"
+      },
+      {
+        "description": "Common representations for G.",
+        "letter": "G",
+        "text": "6, 9, (_+"
+      },
+      {
+        "description": "Common representations for H.",
+        "letter": "H",
+        "text": "#, |-|, H"
+      },
+      {
+        "description": "Common representations for I.",
+        "letter": "I",
+        "text": "1, !, |, ]["
+      },
+      {
+        "description": "Common representations for J.",
+        "letter": "J",
+        "text": "_|, ;|, _/"
+      },
+      {
+        "description": "Common representations for K.",
+        "letter": "K",
+        "text": "|<, /<, |{"
+      },
+      {
+        "description": "Common representations for L.",
+        "letter": "L",
+        "text": "1, |_, £, |"
+      },
+      {
+        "description": "Common representations for M.",
+        "letter": "M",
+        "text": "|\\/|, /\\/\\, (V)"
+      },
+      {
+        "description": "Common representations for N.",
+        "letter": "N",
+        "text": "|\\|, /\\/, |V"
+      },
+      {
+        "description": "Common representations for O.",
+        "letter": "O",
+        "text": "0, (), <>"
+      },
+      {
+        "description": "Common representations for P.",
+        "letter": "P",
+        "text": "|*, |D, |>"
+      },
+      {
+        "description": "Common representations for Q.",
+        "letter": "Q",
+        "text": "(_,)"
+      },
+      {
+        "description": "Common representations for R.",
+        "letter": "R",
+        "text": "|2, |?, ®"
+      },
+      {
+        "description": "Common representations for S.",
+        "letter": "S",
+        "text": "5, $, §"
+      },
+      {
+        "description": "Common representations for T.",
+        "letter": "T",
+        "text": "7, +, ']['"
+      },
+      {
+        "description": "Common representations for U.",
+        "letter": "U",
+        "text": "|_|, (_), V"
+      },
+      {
+        "description": "Common representations for V.",
+        "letter": "V",
+        "text": "\\/, |/"
+      },
+      {
+        "description": "Common representations for W.",
+        "letter": "W",
+        "text": "\\/\\/, VV, \\^/"
+      },
+      {
+        "description": "Common representations for X.",
+        "letter": "X",
+        "text": "><, %"
+      },
+      {
+        "description": "Common representations for Y.",
+        "letter": "Y",
+        "text": "j, `/, ¥"
+      },
+      {
+        "description": "Common representations for Z.",
+        "letter": "Z",
+        "text": "2, 7_, >_"
+      }
+    ],
+    "description": "Discover common 'leet speak' and other geeky character representations.",
+    "icon": "🔤"
+  },
+  "general": {
+    "data": [
+      {
+        "code": 65,
+        "description": "A sweet red fruit.",
+        "emoji": "🍎",
+        "id": 1,
+        "letter": "A",
+        "text": "Apple"
+      },
+      {
+        "code": 66,
+        "description": "",
+        "emoji": "🦇",
+        "id": 2,
+        "letter": "B",
+        "text": "Bat"
+      },
+      {
+        "code": 67,
+        "description": "A small domesticated carnivorous mammal.",
+        "emoji": "🐱",
+        "id": 3,
+        "letter": "C",
+        "text": "Cat"
+      },
+      {
+        "code": 68,
+        "description": "",
+        "emoji": "🐶",
+        "id": 4,
+        "letter": "D",
+        "text": "Dog"
+      },
+      {
+        "code": 69,
+        "description": "",
+        "emoji": "🐘",
+        "id": 5,
+        "letter": "E",
+        "text": "Elephant"
+      },
+      {
+        "code": 70,
+        "description": "",
+        "emoji": "🐟",
+        "id": 6,
+        "letter": "F",
+        "text": "Fish"
+      },
+      {
+        "code": 71,
+        "description": "",
+        "emoji": "🐐",
+        "id": 7,
+        "letter": "G",
+        "text": "Goat"
+      },
+      {
+        "code": 72,
+        "description": "",
+        "emoji": "🎩",
+        "id": 8,
+        "letter": "H",
+        "text": "Hat"
+      },
+      {
+        "code": 73,
+        "description": "",
+        "emoji": "🧊",
+        "id": 9,
+        "letter": "I",
+        "text": "Ice"
+      },
+      {
+        "code": 74,
+        "description": "",
+        "emoji": "🏺",
+        "id": 10,
+        "letter": "J",
+        "text": "Jug"
+      },
+      {
+        "code": 75,
+        "description": "",
+        "emoji": "🪁",
+        "id": 11,
+        "letter": "K",
+        "text": "Kite"
+      },
+      {
+        "code": 76,
+        "description": "",
+        "emoji": "💡",
+        "id": 12,
+        "letter": "L",
+        "text": "Lamp"
+      },
+      {
+        "code": 77,
+        "description": "",
+        "emoji": "🌙",
+        "id": 13,
+        "letter": "M",
+        "text": "Moon"
+      },
+      {
+        "code": 78,
+        "description": "",
+        "emoji": "🐣",
+        "id": 14,
+        "letter": "N",
+        "text": "Nest"
+      },
+      {
+        "code": 79,
+        "description": "",
+        "emoji": "🍊",
+        "id": 15,
+        "letter": "O",
+        "text": "Orange"
+      },
+      {
+        "code": 80,
+        "description": "",
+        "emoji": "🖊️",
+        "id": 16,
+        "letter": "P",
+        "text": "Pen"
+      },
+      {
+        "code": 81,
+        "description": "",
+        "emoji": "👑",
+        "id": 17,
+        "letter": "Q",
+        "text": "Queen"
+      },
+      {
+        "code": 82,
+        "description": "",
+        "emoji": "🐀",
+        "id": 18,
+        "letter": "R",
+        "text": "Rat"
+      },
+      {
+        "code": 83,
+        "description": "",
+        "emoji": "☀️",
+        "id": 19,
+        "letter": "S",
+        "text": "Sun"
+      },
+      {
+        "code": 84,
+        "description": "",
+        "emoji": "🌳",
+        "id": 20,
+        "letter": "T",
+        "text": "Tree"
+      },
+      {
+        "code": 85,
+        "description": "",
+        "emoji": "☂️",
+        "id": 21,
+        "letter": "U",
+        "text": "Umbrella"
+      },
+      {
+        "code": 86,
+        "description": "",
+        "emoji": "🚐",
+        "id": 22,
+        "letter": "V",
+        "text": "Van"
+      },
+      {
+        "code": 87,
+        "description": "",
+        "emoji": "⌚",
+        "id": 23,
+        "letter": "W",
+        "text": "Watch"
+      },
+      {
+        "code": 88,
+        "description": "",
+        "emoji": "🖨️",
+        "id": 24,
+        "letter": "X",
+        "text": "xerox"
+      },
+      {
+        "code": 89,
+        "description": "",
+        "emoji": "⛵",
+        "id": 25,
+        "letter": "Y",
+        "text": "Yacht"
+      },
+      {
+        "code": 90,
+        "description": "",
+        "emoji": "🦓",
+        "id": 26,
+        "letter": "Z",
+        "text": "Zebra"
+      }
+    ],
+    "description": "General knowledge about the English alphabet",
+    "icon": "🔤"
+  },
+  "greek": {
+    "data": [
+      {
+        "code": 913,
+        "description": "First letter of the Greek alphabet. Sound: 'a' as in father.",
+        "emoji": "A",
+        "letter": "A",
+        "text": "Alpha (Α α)"
+      },
+      {
+        "code": 914,
+        "description": "Second letter of the Greek alphabet. Sound: 'v' as in vase (Modern Greek).",
+        "emoji": "Β",
+        "letter": "B",
+        "text": "Beta (Β β)"
+      },
+      {
+        "code": 915,
+        "description": "Third letter of the Greek alphabet. Sound: 'g' as in go, or 'y' as in yes.",
+        "emoji": "Γ",
+        "letter": "G",
+        "text": "Gamma (Γ γ)"
+      },
+      {
+        "code": 916,
+        "description": "Fourth letter of the Greek alphabet. Sound: 'th' as in then (Modern Greek).",
+        "emoji": "Δ",
+        "letter": "D",
+        "text": "Delta (Δ δ)"
+      },
+      {
+        "code": 917,
+        "description": "Fifth letter of the Greek alphabet. Sound: 'e' as in met.",
+        "emoji": "Ε",
+        "letter": "E",
+        "text": "Epsilon (Ε ε)"
+      },
+      {
+        "code": 918,
+        "description": "Sixth letter of the Greek alphabet. Sound: 'z' as in zoo.",
+        "emoji": "Ζ",
+        "letter": "Z",
+        "text": "Zeta (Ζ ζ)"
+      },
+      {
+        "code": 919,
+        "description": "Seventh letter of the Greek alphabet. Sound: 'i' as in machine.",
+        "emoji": "Η",
+        "letter": "H",
+        "text": "Eta (Η η)"
+      },
+      {
+        "code": 920,
+        "description": "Eighth letter of the Greek alphabet. Sound: 'th' as in thin.",
+        "emoji": "Θ",
+        "letter": "Q",
+        "text": "Theta (Θ θ)"
+      },
+      {
+        "code": 921,
+        "description": "Ninth letter of the Greek alphabet. Sound: 'i' as in machine.",
+        "emoji": "Ι",
+        "letter": "I",
+        "text": "Iota (Ι ι)"
+      },
+      {
+        "code": 922,
+        "description": "Tenth letter of the Greek alphabet. Sound: 'k' as in kite.",
+        "emoji": "Κ",
+        "letter": "K",
+        "text": "Kappa (Κ κ)"
+      },
+      {
+        "code": 923,
+        "description": "Eleventh letter of the Greek alphabet. Sound: 'l' as in lamp.",
+        "emoji": "Λ",
+        "letter": "L",
+        "text": "Lambda (Λ λ)"
+      },
+      {
+        "code": 924,
+        "description": "Twelfth letter of the Greek alphabet. Sound: 'm' as in map.",
+        "emoji": "Μ",
+        "letter": "M",
+        "text": "Mu (Μ μ)"
+      },
+      {
+        "code": 925,
+        "description": "Thirteenth letter of the Greek alphabet. Sound: 'n' as in net.",
+        "emoji": "Ν",
+        "letter": "N",
+        "text": "Nu (Ν ν)"
+      },
+      {
+        "code": 926,
+        "description": "Fourteenth letter of the Greek alphabet. Sound: 'x' as in axe.",
+        "emoji": "Ξ",
+        "letter": "X",
+        "text": "Xi (Ξ ξ)"
+      },
+      {
+        "code": 927,
+        "description": "Fifteenth letter of the Greek alphabet. Sound: 'o' as in pot.",
+        "emoji": "Ο",
+        "letter": "O",
+        "text": "Omicron (Ο ο)"
+      },
+      {
+        "code": 928,
+        "description": "Sixteenth letter of the Greek alphabet. Sound: 'p' as in pen.",
+        "emoji": "Π",
+        "letter": "P",
+        "text": "Pi (Π π)"
+      },
+      {
+        "code": 929,
+        "description": "Seventeenth letter of the Greek alphabet. Sound: 'r' as in run (often rolled).",
+        "emoji": "Ρ",
+        "letter": "R",
+        "text": "Rho (Ρ ρ)"
+      },
+      {
+        "code": 931,
+        "description": "Eighteenth letter of the Greek alphabet. Sound: 's' as in sun.",
+        "emoji": "Σ",
+        "letter": "S",
+        "text": "Sigma (Σ σ/ς)"
+      },
+      {
+        "code": 932,
+        "description": "Nineteenth letter of the Greek alphabet. Sound: 't' as in tap.",
+        "emoji": "Τ",
+        "letter": "T",
+        "text": "Tau (Τ τ)"
+      },
+      {
+        "code": 933,
+        "description": "Twentieth letter of the Greek alphabet. Sound: 'i' as in machine (Modern Greek).",
+        "emoji": "Υ",
+        "letter": "U",
+        "text": "Upsilon (Υ υ)"
+      },
+      {
+        "code": 934,
+        "description": "Twenty-first letter of the Greek alphabet. Sound: 'f' as in fan.",
+        "emoji": "Φ",
+        "letter": "F",
+        "text": "Phi (Φ φ)"
+      },
+      {
+        "code": 935,
+        "description": "Twenty-second letter of the Greek alphabet. Sound: 'ch' as in Scottish loch, or 'h' as in huge.",
+        "emoji": "Χ",
+        "letter": "C",
+        "text": "Chi (Χ χ)"
+      },
+      {
+        "code": 936,
+        "description": "Twenty-third letter of the Greek alphabet. Sound: 'ps' as in psychology.",
+        "emoji": "Ψ",
+        "letter": "Y",
+        "text": "Psi (Ψ ψ)"
+      },
+      {
+        "code": 937,
+        "description": "Twenty-fourth letter of the Greek alphabet. Sound: 'o' as in go.",
+        "emoji": "Ω",
+        "letter": "W",
+        "text": "Omega (Ω ω)"
+      }
+    ],
+    "description": "Explore the letters of the ancient and modern Greek alphabet.",
+    "icon": "🔤"
   },
   "hindi": {
-    "icon": "🕉️",
-    "description": "Learn the Hindi alphabet, including Swar (vowels) and Vyanjan (consonants).",
     "data": {
-      "vowels": [
-        { "letter": "अ", "code": "0905", "meaning": "अदरक (Ginger)", "emoji": "🫚", "unicode": "U+1F95D" },
-        { "letter": "आ", "code": "0906", "meaning": "आम (Mango)", "emoji": "🥭", "unicode": "U+1F96D" },
-        { "letter": "इ", "code": "0907", "meaning": "इमली (Tamarind)", "emoji": "🥔", "unicode": "U+1F330" },
-        { "letter": "ई", "code": "0908", "meaning": "ईख (Sugarcane)", "emoji": "🎋", "unicode": "U+1F36C" },
-        { "letter": "उ", "code": "0909", "meaning": "उल्लू (Owl)", "emoji": "🦉", "unicode": "U+1F989" },
-        { "letter": "ऊ", "code": "090A", "meaning": "ऊँट (Camel)", "emoji": "🐫", "unicode": "U+1F42B" },
-        { "letter": "ऋ", "code": "090B", "meaning": "ऋषि (Sage)", "emoji": "🧘‍♂️", "unicode": "U+1F9D8" },
-        { "letter": "ए", "code": "090F", "meaning": "एड़ी (Heel)", "emoji": "🦶", "unicode": "U+1F9B6" },
-        { "letter": "ऐ", "code": "0910", "meaning": "ऐनक (Glasses)", "emoji": "👓", "unicode": "U+1F453" },
-        { "letter": "ओ", "code": "0913", "meaning": "ओखली (Mortar)", "emoji": "🪨", "unicode": "U+1FAA8" },
-        { "letter": "औ", "code": "0914", "meaning": "औरत (Woman)", "emoji": "👩", "unicode": "U+1F469" }
-      ],
       "consonants": [
-        { "letter": "क", "code": "0915", "meaning": "कबूतर (pigeon)", "emoji": "🐦", "unicode": "U+1F426" },
-        { "letter": "ख", "code": "0916", "meaning": "खरगोश (rabbit)", "emoji": "🐇", "unicode": "U+1F407" },
-        { "letter": "ग", "code": "0917", "meaning": "गमला (flower pot)", "emoji": "🪴", "unicode": "U+1F33C" },
-        { "letter": "घ", "code": "0918", "meaning": "घोड़ा (horse)", "emoji": "🐎", "unicode": "U+1F40E" },
-        { "letter": "च", "code": "091A", "meaning": "चम्मच (spoon)", "emoji": "🥄", "unicode": "U+1F944" },
-        { "letter": "छ", "code": "091B", "meaning": "छतरी (umbrella)", "emoji": "☂️", "unicode": "U+2602" },
-        { "letter": "ज", "code": "091C", "meaning": "जहाज़ (ship)", "emoji": "🚢", "unicode": "U+1F6A2" },
-        { "letter": "झ", "code": "091D", "meaning": "झंडा (flag)", "emoji": "🏁", "unicode": "U+1F3C1" },
-        { "letter": "ट", "code": "091F", "meaning": "टमाटर (tomato)", "emoji": "🍅", "unicode": "U+1F345" },
-        { "letter": "ठ", "code": "0920", "meaning": "ठठेरा (brass smith)", "emoji": "🔨", "unicode": "U+1F44F" },
-        { "letter": "ड", "code": "0921", "meaning": "डमरू (Shiva's drum)", "emoji": "🥁", "unicode": "U+1F941" },
-        { "letter": "ढ", "code": "0922", "meaning": "ढोलक (drum)", "emoji": "🪘", "unicode": "U+1FA98" },
-        { "letter": "ण", "code": "0923", "meaning": "ण (none)", "emoji": "♨️", "unicode": "U+2668" },
-        { "letter": "त", "code": "0924", "meaning": "तरबूज (watermelon)", "emoji": "🍉", "unicode": "U+1F349" },
-        { "letter": "थ", "code": "0925", "meaning": "थाली (plate)", "emoji": "🍽️", "unicode": "U+1F37D" },
-        { "letter": "द", "code": "0926", "meaning": "दिवा (lamp)", "emoji": "🪔", "unicode": "U+1FA94" },
-        { "letter": "ध", "code": "0927", "meaning": "धनुष (bow)", "emoji": "🏹", "unicode": "U+1F3F9" },
-        { "letter": "न", "code": "0928", "meaning": "नाग (snake)", "emoji": "🐍", "unicode": "U+1F40D" },
-        { "letter": "प", "code": "092A", "meaning": "पतंग (kite)", "emoji": "🪁", "unicode": "U+1FA81" },
-        { "letter": "फ", "code": "092B", "meaning": "फल (fruit)", "emoji": "🍎", "unicode": "U+1F34E" },
-        { "letter": "ब", "code": "092C", "meaning": "बकरी (goat)", "emoji": "🐐", "unicode": "U+1F410" },
-        { "letter": "भ", "code": "092D", "meaning": "भैंस (buffalo)", "emoji": "🐃", "unicode": "U+1F403" },
-        { "letter": "म", "code": "092E", "meaning": "मक्खी (fly)", "emoji": "🪰", "unicode": "U+1FAB0" },
-        { "letter": "य", "code": "092F", "meaning": "यज्ञ (fire ritual)", "emoji": "🔥", "unicode": "U+1F525" },
-        { "letter": "र", "code": "0930", "meaning": "रंग (color)", "emoji": "🎨", "unicode": "U+1F3A8" },
-        { "letter": "ल", "code": "0932", "meaning": "लट्टू (top)", "emoji": "🪀", "unicode": "U+1FA80" },
-        { "letter": "व", "code": "0935", "meaning": "वृक्ष (tree)", "emoji": "🌳", "unicode": "U+1F333" },
-        { "letter": "श", "code": "0936", "meaning": "शंख (conch)", "emoji": "🐚", "unicode": "U+1F41A" },
-        { "letter": "ष", "code": "0937", "meaning": "षट्कोण (hexagon)", "emoji": "⬡", "unicode": "U+1F981" },
-        { "letter": "स", "code": "0938", "meaning": "सांप (snake)", "emoji": "🐍", "unicode": "U+1F40D" },
-        { "letter": "ह", "code": "0939", "meaning": "हाथी (elephant)", "emoji": "🐘", "unicode": "U+1F418" },
         {
-          "letter": "क्ष",
+          "code": "0915",
+          "emoji": "🐦",
+          "letter": "क",
+          "meaning": "कबूतर (pigeon)",
+          "unicode": "U+1F426"
+        },
+        {
+          "code": "0916",
+          "emoji": "🐇",
+          "letter": "ख",
+          "meaning": "खरगोश (rabbit)",
+          "unicode": "U+1F407"
+        },
+        {
+          "code": "0917",
+          "emoji": "🪴",
+          "letter": "ग",
+          "meaning": "गमला (flower pot)",
+          "unicode": "U+1F33C"
+        },
+        {
+          "code": "0918",
+          "emoji": "🐎",
+          "letter": "घ",
+          "meaning": "घोड़ा (horse)",
+          "unicode": "U+1F40E"
+        },
+        {
+          "code": "091A",
+          "emoji": "🥄",
+          "letter": "च",
+          "meaning": "चम्मच (spoon)",
+          "unicode": "U+1F944"
+        },
+        {
+          "code": "091B",
+          "emoji": "☂️",
+          "letter": "छ",
+          "meaning": "छतरी (umbrella)",
+          "unicode": "U+2602"
+        },
+        {
+          "code": "091C",
+          "emoji": "🚢",
+          "letter": "ज",
+          "meaning": "जहाज़ (ship)",
+          "unicode": "U+1F6A2"
+        },
+        {
+          "code": "091D",
+          "emoji": "🏁",
+          "letter": "झ",
+          "meaning": "झंडा (flag)",
+          "unicode": "U+1F3C1"
+        },
+        {
+          "code": "091F",
+          "emoji": "🍅",
+          "letter": "ट",
+          "meaning": "टमाटर (tomato)",
+          "unicode": "U+1F345"
+        },
+        {
+          "code": "0920",
+          "emoji": "🔨",
+          "letter": "ठ",
+          "meaning": "ठठेरा (brass smith)",
+          "unicode": "U+1F44F"
+        },
+        {
+          "code": "0921",
+          "emoji": "🥁",
+          "letter": "ड",
+          "meaning": "डमरू (Shiva's drum)",
+          "unicode": "U+1F941"
+        },
+        {
+          "code": "0922",
+          "emoji": "🪘",
+          "letter": "ढ",
+          "meaning": "ढोलक (drum)",
+          "unicode": "U+1FA98"
+        },
+        {
+          "code": "0923",
+          "emoji": "♨️",
+          "letter": "ण",
+          "meaning": "ण (none)",
+          "unicode": "U+2668"
+        },
+        {
+          "code": "0924",
+          "emoji": "🍉",
+          "letter": "त",
+          "meaning": "तरबूज (watermelon)",
+          "unicode": "U+1F349"
+        },
+        {
+          "code": "0925",
+          "emoji": "🍽️",
+          "letter": "थ",
+          "meaning": "थाली (plate)",
+          "unicode": "U+1F37D"
+        },
+        {
+          "code": "0926",
+          "emoji": "🪔",
+          "letter": "द",
+          "meaning": "दिवा (lamp)",
+          "unicode": "U+1FA94"
+        },
+        {
+          "code": "0927",
+          "emoji": "🏹",
+          "letter": "ध",
+          "meaning": "धनुष (bow)",
+          "unicode": "U+1F3F9"
+        },
+        {
+          "code": "0928",
+          "emoji": "🐍",
+          "letter": "न",
+          "meaning": "नाग (snake)",
+          "unicode": "U+1F40D"
+        },
+        {
+          "code": "092A",
+          "emoji": "🪁",
+          "letter": "प",
+          "meaning": "पतंग (kite)",
+          "unicode": "U+1FA81"
+        },
+        {
+          "code": "092B",
+          "emoji": "🍎",
+          "letter": "फ",
+          "meaning": "फल (fruit)",
+          "unicode": "U+1F34E"
+        },
+        {
+          "code": "092C",
+          "emoji": "🐐",
+          "letter": "ब",
+          "meaning": "बकरी (goat)",
+          "unicode": "U+1F410"
+        },
+        {
+          "code": "092D",
+          "emoji": "🐃",
+          "letter": "भ",
+          "meaning": "भैंस (buffalo)",
+          "unicode": "U+1F403"
+        },
+        {
+          "code": "092E",
+          "emoji": "🪰",
+          "letter": "म",
+          "meaning": "मक्खी (fly)",
+          "unicode": "U+1FAB0"
+        },
+        {
+          "code": "092F",
+          "emoji": "🔥",
+          "letter": "य",
+          "meaning": "यज्ञ (fire ritual)",
+          "unicode": "U+1F525"
+        },
+        {
+          "code": "0930",
+          "emoji": "🎨",
+          "letter": "र",
+          "meaning": "रंग (color)",
+          "unicode": "U+1F3A8"
+        },
+        {
+          "code": "0932",
+          "emoji": "🪀",
+          "letter": "ल",
+          "meaning": "लट्टू (top)",
+          "unicode": "U+1FA80"
+        },
+        {
+          "code": "0935",
+          "emoji": "🌳",
+          "letter": "व",
+          "meaning": "वृक्ष (tree)",
+          "unicode": "U+1F333"
+        },
+        {
+          "code": "0936",
+          "emoji": "🐚",
+          "letter": "श",
+          "meaning": "शंख (conch)",
+          "unicode": "U+1F41A"
+        },
+        {
+          "code": "0937",
+          "emoji": "⬡",
+          "letter": "ष",
+          "meaning": "षट्कोण (hexagon)",
+          "unicode": "U+1F981"
+        },
+        {
+          "code": "0938",
+          "emoji": "🐍",
+          "letter": "स",
+          "meaning": "सांप (snake)",
+          "unicode": "U+1F40D"
+        },
+        {
+          "code": "0939",
+          "emoji": "🐘",
+          "letter": "ह",
+          "meaning": "हाथी (elephant)",
+          "unicode": "U+1F418"
+        },
+        {
           "code": "0915+094D+0937",
-          "meaning": "क्षत्रिय (warrior)",
           "emoji": "⚔️",
+          "letter": "क्ष",
+          "meaning": "क्षत्रिय (warrior)",
           "unicode": "U+2694"
         },
         {
-          "letter": "त्र",
           "code": "0924+094D+0930",
-          "meaning": "त्रिशूल (trident)",
           "emoji": "🔱",
+          "letter": "त्र",
+          "meaning": "त्रिशूल (trident)",
           "unicode": "U+1F531"
         },
         {
-          "letter": "ज्ञ",
           "code": "091C+094D+091E",
-          "meaning": "ज्ञान (knowledge)",
           "emoji": "📚",
+          "letter": "ज्ञ",
+          "meaning": "ज्ञान (knowledge)",
           "unicode": "U+1F4DA"
         }
+      ],
+      "vowels": [
+        {
+          "code": "0905",
+          "emoji": "🫚",
+          "letter": "अ",
+          "meaning": "अदरक (Ginger)",
+          "unicode": "U+1F95D"
+        },
+        {
+          "code": "0906",
+          "emoji": "🥭",
+          "letter": "आ",
+          "meaning": "आम (Mango)",
+          "unicode": "U+1F96D"
+        },
+        {
+          "code": "0907",
+          "emoji": "🥔",
+          "letter": "इ",
+          "meaning": "इमली (Tamarind)",
+          "unicode": "U+1F330"
+        },
+        {
+          "code": "0908",
+          "emoji": "🎋",
+          "letter": "ई",
+          "meaning": "ईख (Sugarcane)",
+          "unicode": "U+1F36C"
+        },
+        {
+          "code": "0909",
+          "emoji": "🦉",
+          "letter": "उ",
+          "meaning": "उल्लू (Owl)",
+          "unicode": "U+1F989"
+        },
+        {
+          "code": "090A",
+          "emoji": "🐫",
+          "letter": "ऊ",
+          "meaning": "ऊँट (Camel)",
+          "unicode": "U+1F42B"
+        },
+        {
+          "code": "090B",
+          "emoji": "🧘‍♂️",
+          "letter": "ऋ",
+          "meaning": "ऋषि (Sage)",
+          "unicode": "U+1F9D8"
+        },
+        {
+          "code": "090F",
+          "emoji": "🦶",
+          "letter": "ए",
+          "meaning": "एड़ी (Heel)",
+          "unicode": "U+1F9B6"
+        },
+        {
+          "code": "0910",
+          "emoji": "👓",
+          "letter": "ऐ",
+          "meaning": "ऐनक (Glasses)",
+          "unicode": "U+1F453"
+        },
+        {
+          "code": "0913",
+          "emoji": "🪨",
+          "letter": "ओ",
+          "meaning": "ओखली (Mortar)",
+          "unicode": "U+1FAA8"
+        },
+        {
+          "code": "0914",
+          "emoji": "👩",
+          "letter": "औ",
+          "meaning": "औरत (Woman)",
+          "unicode": "U+1F469"
+        }
       ]
-    }
+    },
+    "description": "Learn the Hindi alphabet, including Swar (vowels) and Vyanjan (consonants).",
+    "icon": "🕉️"
   },
-  "morse-alphabet": {
-    "icon": "⚫➖",
-    "description": "Learn the International Morse Code for the English alphabet.",
-    "data": [
-      { "id": 1, "letter": "A", "emoji": "•−", "text": "Morse for A" },
-      { "id": 2, "letter": "B", "emoji": "−•••", "text": "Morse for B" },
-      { "id": 3, "letter": "C", "emoji": "−•−•", "text": "Morse for C" },
-      { "id": 4, "letter": "D", "emoji": "−••", "text": "Morse for D" },
-      { "id": 5, "letter": "E", "emoji": "•", "text": "Morse for E" },
-      { "id": 6, "letter": "F", "emoji": "••−•", "text": "Morse for F" },
-      { "id": 7, "letter": "G", "emoji": "−−•", "text": "Morse for G" },
-      { "id": 8, "letter": "H", "emoji": "••••", "text": "Morse for H" },
-      { "id": 9, "letter": "I", "emoji": "••", "text": "Morse for I" },
-      { "id": 10, "letter": "J", "emoji": "•−−−", "text": "Morse for J" },
-      { "id": 11, "letter": "K", "emoji": "−•−", "text": "Morse for K" },
-      { "id": 12, "letter": "L", "emoji": "•−••", "text": "Morse for L" },
-      { "id": 13, "letter": "M", "emoji": "−−", "text": "Morse for M" },
-      { "id": 14, "letter": "N", "emoji": "−•", "text": "Morse for N" },
-      { "id": 15, "letter": "O", "emoji": "−−−", "text": "Morse for O" },
-      { "id": 16, "letter": "P", "emoji": "•−−•", "text": "Morse for P" },
-      { "id": 17, "letter": "Q", "emoji": "−−•−", "text": "Morse for Q" },
-      { "id": 18, "letter": "R", "emoji": "•−•", "text": "Morse for R" },
-      { "id": 19, "letter": "S", "emoji": "•••", "text": "Morse for S" },
-      { "id": 20, "letter": "T", "emoji": "−", "text": "Morse for T" },
-      { "id": 21, "letter": "U", "emoji": "••−", "text": "Morse for U" },
-      { "id": 22, "letter": "V", "emoji": "•••−", "text": "Morse for V" },
-      { "id": 23, "letter": "W", "emoji": "•−−", "text": "Morse for W" },
-      { "id": 24, "letter": "X", "emoji": "−••−", "text": "Morse for X" },
-      { "id": 25, "letter": "Y", "emoji": "−•−−", "text": "Morse for Y" },
-      { "id": 26, "letter": "Z", "emoji": "−−••", "text": "Morse for Z" }
-    ]
-  },
-  "colors": {
-    "description": "Colors of the English alphabet with their hex codes.",
-    "icon": "🎨",
+  "indian": {
     "data": [
       {
-        "id": 1,
-        "letter": "A",
         "code": 65,
-        "text": "Amber",
-        "description": "A honey-yellow color.",
-        "colorCode": "#FFBF00"
-      },
-      {
-        "id": 2,
-        "letter": "B",
-        "code": 66,
-        "text": "Blue",
-        "description": "The color of the sky and sea.",
-        "colorCode": "#0000FF"
-      },
-      {
-        "id": 3,
-        "letter": "C",
-        "code": 67,
-        "text": "Cyan",
-        "description": "A greenish-blue color.",
-        "colorCode": "#00FFFF"
-      },
-      {
-        "id": 4,
-        "letter": "D",
-        "code": 68,
-        "text": "Denim",
-        "description": "A sturdy cotton twill fabric, typically blue.",
-        "colorCode": "#1560BD"
-      },
-      {
-        "id": 5,
-        "letter": "E",
-        "code": 69,
-        "text": "Emerald",
-        "description": "A bright green color.",
-        "colorCode": "#50C878"
-      },
-      {
-        "id": 6,
-        "letter": "F",
-        "code": 70,
-        "text": "Fuchsia",
-        "description": "A vivid purplish-red color.",
-        "colorCode": "#FF00FF"
-      },
-      {
-        "id": 7,
-        "letter": "G",
-        "code": 71,
-        "text": "Green",
-        "description": "The color of living grass and leaves.",
-        "colorCode": "#008000"
-      },
-      {
-        "id": 8,
-        "letter": "H",
-        "code": 72,
-        "text": "Heliotrope",
-        "description": "A pink-purple tint.",
-        "colorCode": "#DF73FF"
-      },
-      {
-        "id": 9,
-        "letter": "I",
-        "code": 73,
-        "text": "Indigo",
-        "description": "A deep and rich color close to the color wheel blue.",
-        "colorCode": "#4B0082"
-      },
-      {
-        "id": 10,
-        "letter": "J",
-        "code": 74,
-        "text": "Jade",
-        "description": "A light green color.",
-        "colorCode": "#00A86B"
-      },
-      {
-        "id": 11,
-        "letter": "K",
-        "code": 75,
-        "text": "Khaki",
-        "description": "A light brownish-yellow color.",
-        "colorCode": "#C3B091"
-      },
-      {
-        "id": 12,
-        "letter": "L",
-        "code": 76,
-        "text": "Lavender",
-        "description": "A light purple color.",
-        "colorCode": "#E6E6FA"
-      },
-      {
-        "id": 13,
-        "letter": "M",
-        "code": 77,
-        "text": "Magenta",
-        "description": "A purplish-pink color.",
-        "colorCode": "#FF00FF"
-      },
-      {
-        "id": 14,
-        "letter": "N",
-        "code": 78,
-        "text": "Navy",
-        "description": "A very dark blue color.",
-        "colorCode": "#000080"
-      },
-      {
-        "id": 15,
-        "letter": "O",
-        "code": 79,
-        "text": "Orange",
-        "description": "A bright, warm color.",
-        "colorCode": "#FFA500"
-      },
-      {
-        "id": 16,
-        "letter": "P",
-        "code": 80,
-        "text": "Purple",
-        "description": "A color intermediate between blue and red.",
-        "colorCode": "#800080"
-      },
-      {
-        "id": 17,
-        "letter": "Q",
-        "code": 81,
-        "text": "Quartz",
-        "description": "A greyish-white color.",
-        "colorCode": "#51484F"
-      },
-      {
-        "id": 18,
-        "letter": "R",
-        "code": 82,
-        "text": "Red",
-        "description": "The color of blood, or a ruby.",
-        "colorCode": "#FF0000"
-      },
-      {
-        "id": 19,
-        "letter": "S",
-        "code": 83,
-        "text": "Silver",
-        "description": "A precious shiny grayish-white color.",
-        "colorCode": "#C0C0C0"
-      },
-      {
-        "id": 20,
-        "letter": "T",
-        "code": 84,
-        "text": "Teal",
-        "description": "A medium to dark greenish-blue color.",
-        "colorCode": "#008080"
-      },
-      {
-        "id": 21,
-        "letter": "U",
-        "code": 85,
-        "text": "Ultramarine",
-        "description": "A deep blue color pigment.",
-        "colorCode": "#120A8F"
-      },
-      {
-        "id": 22,
-        "letter": "V",
-        "code": 86,
-        "text": "Violet",
-        "description": "A bluish-purple color.",
-        "colorCode": "#EE82EE"
-      },
-      {
-        "id": 23,
-        "letter": "W",
-        "code": 87,
-        "text": "White",
-        "description": "The color of milk or fresh snow.",
-        "colorCode": "#FFFFFF"
-      },
-      {
-        "id": 24,
-        "letter": "X",
-        "code": 88,
-        "text": "Xanadu",
-        "description": "A grayish-green color.",
-        "colorCode": "#738678"
-      },
-      {
-        "id": 25,
-        "letter": "Y",
-        "code": 89,
-        "text": "Yellow",
-        "description": "The color of ripe lemons or egg yolks.",
-        "colorCode": "#FFFF00"
-      },
-      {
-        "id": 26,
-        "letter": "Z",
-        "code": 90,
-        "text": "Zaffre",
-        "description": "A deep blue pigment.",
-        "colorCode": "#0014A8"
-      }
-    ]
-  },
-  "birds": {
-    "description": "A list of birds from A to Z.",
-    "icon": "🐦",
-    "data": [
-      {
+        "description": "Ancient Indian mathematician and astronomer who calculated Pi",
         "id": 1,
         "letter": "A",
-        "text": "Albatross",
-        "description": "A large seabird known for its long wingspan."
+        "text": "Aryabhatta"
       },
       {
+        "code": 66,
+        "description": "Creator deity in Hinduism",
         "id": 2,
         "letter": "B",
-        "text": "Bluebird",
-        "description": "A small thrush known for its bright blue plumage."
+        "text": "Brahma"
       },
       {
+        "code": 67,
+        "description": "Ancient Indian teacher, philosopher, and royal advisor",
         "id": 3,
         "letter": "C",
-        "text": "Crow",
-        "description": "A small songbird in the finch family, often kept as a pet."
+        "text": "Chanakya"
       },
       {
+        "code": 68,
+        "description": "Hindu goddess of war, strength and protection",
         "id": 4,
         "letter": "D",
-        "text": "Dove",
-        "description": "A stocky bird with a short neck and legs, related to pigeons."
+        "text": "Durga"
       },
       {
+        "code": 69,
+        "description": "Skilled archer from the Mahabharata",
         "id": 5,
         "letter": "E",
-        "text": "Eagle",
-        "description": "A large bird of prey with a heavy head and beak."
+        "text": "Eklavya"
       },
       {
+        "code": 70,
+        "description": "Sacred animals in Indian mythology like Garuda and Nandi",
         "id": 6,
         "letter": "F",
-        "text": "Flamingo",
-        "description": "A large wading bird known for its pink feathers and long legs."
+        "text": "Fauna"
       },
       {
+        "code": 71,
+        "description": "Elephant-headed deity known as remover of obstacles",
         "id": 7,
         "letter": "G",
-        "text": "Goose",
-        "description": "A large waterbird with a long neck and webbed feet."
+        "text": "Ganesha"
       },
       {
+        "code": 72,
+        "description": "Monkey deity known for strength, devotion and service",
         "id": 8,
         "letter": "H",
-        "text": "Hummingbird",
-        "description": "A small bird capable of hovering in mid-air by rapidly flapping its wings."
+        "text": "Hanuman"
       },
       {
+        "code": 73,
+        "description": "King of the gods and deity of lightning and thunder",
         "id": 9,
         "letter": "I",
-        "text": "Ibis",
-        "description": "A long-legged wading bird with a long, down-curved bill."
+        "text": "Indra"
       },
       {
+        "code": 74,
+        "description": "Divine eagle who fought Ravana in the Ramayana",
         "id": 10,
         "letter": "J",
-        "text": "Jay",
-        "description": "A noisy, brightly colored bird of the crow family."
+        "text": "Jatayu"
       },
       {
+        "code": 75,
+        "description": "Divine incarnation of Vishnu and key figure in Bhagavad Gita",
         "id": 11,
         "letter": "K",
-        "text": "Kiwi",
-        "description": "A flightless bird native to New Zealand."
+        "text": "Krishna"
       },
       {
+        "code": 76,
+        "description": "Goddess of wealth, fortune and prosperity",
         "id": 12,
         "letter": "L",
-        "text": "Lark",
-        "description": "A small ground-dwelling bird, known for its melodious song."
+        "text": "Lakshmi"
       },
       {
+        "code": 77,
+        "description": "Tamil God also known as Kartikeya",
         "id": 13,
         "letter": "M",
-        "text": "Macaw",
-        "description": "A large, long-tailed parrot with brightly colored plumage."
+        "text": "Murugan"
       },
       {
+        "code": 78,
+        "description": "Divine sage famous for carrying news and gossip",
         "id": 14,
         "letter": "N",
-        "text": "Nightingale",
-        "description": "A small thrush famous for its powerful and beautiful song."
+        "text": "Narada"
       },
       {
+        "code": 79,
+        "description": "Sacred sound and spiritual symbol in Indian religions",
         "id": 15,
         "letter": "O",
-        "text": "Ostrich",
-        "description": "A large flightless bird native to Africa."
+        "text": "Om"
       },
       {
+        "code": 80,
+        "description": "Goddess of fertility, love and devotion",
         "id": 16,
         "letter": "P",
-        "text": "Penguin",
-        "description": "A flightless aquatic bird found in the Southern Hemisphere."
+        "text": "Parvati"
       },
       {
+        "code": 81,
+        "description": "Historic minaret built by Qutb-ud-Din Aibak in Delhi",
         "id": 17,
         "letter": "Q",
-        "text": "Quail",
-        "description": "A small, short-tailed game bird."
+        "text": "Qutub Minar"
       },
       {
+        "code": 82,
+        "description": "Seventh avatar of Vishnu and protagonist of the Ramayana",
         "id": 18,
         "letter": "R",
-        "text": "Robin",
-        "description": "A small insectivorous songbird with a reddish-orange breast."
+        "text": "Rama"
       },
       {
+        "code": 83,
+        "description": "One of the principal deities, known as the destroyer",
         "id": 19,
         "letter": "S",
-        "text": "Sparrow",
-        "description": "A small bird with a stout bill, typically with brown and grey plumage."
+        "text": "Shiva"
       },
       {
+        "code": 84,
+        "description": "Author who wrote the epic Ramcharitmanas",
         "id": 20,
         "letter": "T",
-        "text": "Toucan",
-        "description": "A tropical bird known for its large, colorful bill."
+        "text": "Tulsidas"
       },
       {
+        "code": 85,
+        "description": "Beautiful apsara (celestial nymph) created from Vishnu's thigh",
         "id": 21,
         "letter": "U",
-        "text": "Umbrella bird",
-        "description": "A tropical bird with a large crest on its head."
+        "text": "Urvashi"
       },
       {
+        "code": 86,
+        "description": "Preserver deity with ten avatars including Rama and Krishna",
         "id": 22,
         "letter": "V",
-        "text": "Vulture",
-        "description": "A large bird of prey that scavenges on carrion."
+        "text": "Vishnu"
       },
       {
+        "code": 87,
+        "description": "Puppetry art form influenced by Indian epics and mythology",
         "id": 23,
         "letter": "W",
-        "text": "Woodpecker",
-        "description": "A bird that pecks at tree trunks to find insects."
+        "text": "Wayang"
       },
       {
+        "code": 88,
+        "description": "Persian king who encountered Indian warriors and philosophers",
         "id": 24,
         "letter": "X",
-        "text": "Xenops",
-        "description": "A small rainforest bird in the ovenbird family."
+        "text": "Xerxes"
       },
       {
+        "code": 89,
+        "description": "God of death and justice who judges souls",
         "id": 25,
         "letter": "Y",
-        "text": "Yellow hammer",
-        "description": "A passerine bird in the bunting family."
+        "text": "Yama"
       },
       {
+        "code": 90,
+        "description": "Vedic astrology (Jyotish) with its unique zodiac system",
         "id": 26,
         "letter": "Z",
-        "text": "Zebra Finch",
-        "description": "A common finch of Central Australia."
+        "text": "Zodiac"
       }
-    ]
+    ],
+    "description": "Mythological Indian culture Alphabets",
+    "icon": "🕉️"
+  },
+  "morse": {
+    "data": [
+      {
+        "emoji": "•−",
+        "id": 1,
+        "letter": "A",
+        "text": "Morse for A"
+      },
+      {
+        "emoji": "−•••",
+        "id": 2,
+        "letter": "B",
+        "text": "Morse for B"
+      },
+      {
+        "emoji": "−•−•",
+        "id": 3,
+        "letter": "C",
+        "text": "Morse for C"
+      },
+      {
+        "emoji": "−••",
+        "id": 4,
+        "letter": "D",
+        "text": "Morse for D"
+      },
+      {
+        "emoji": "•",
+        "id": 5,
+        "letter": "E",
+        "text": "Morse for E"
+      },
+      {
+        "emoji": "••−•",
+        "id": 6,
+        "letter": "F",
+        "text": "Morse for F"
+      },
+      {
+        "emoji": "−−•",
+        "id": 7,
+        "letter": "G",
+        "text": "Morse for G"
+      },
+      {
+        "emoji": "••••",
+        "id": 8,
+        "letter": "H",
+        "text": "Morse for H"
+      },
+      {
+        "emoji": "••",
+        "id": 9,
+        "letter": "I",
+        "text": "Morse for I"
+      },
+      {
+        "emoji": "•−−−",
+        "id": 10,
+        "letter": "J",
+        "text": "Morse for J"
+      },
+      {
+        "emoji": "−•−",
+        "id": 11,
+        "letter": "K",
+        "text": "Morse for K"
+      },
+      {
+        "emoji": "•−••",
+        "id": 12,
+        "letter": "L",
+        "text": "Morse for L"
+      },
+      {
+        "emoji": "−−",
+        "id": 13,
+        "letter": "M",
+        "text": "Morse for M"
+      },
+      {
+        "emoji": "−•",
+        "id": 14,
+        "letter": "N",
+        "text": "Morse for N"
+      },
+      {
+        "emoji": "−−−",
+        "id": 15,
+        "letter": "O",
+        "text": "Morse for O"
+      },
+      {
+        "emoji": "•−−•",
+        "id": 16,
+        "letter": "P",
+        "text": "Morse for P"
+      },
+      {
+        "emoji": "−−•−",
+        "id": 17,
+        "letter": "Q",
+        "text": "Morse for Q"
+      },
+      {
+        "emoji": "•−•",
+        "id": 18,
+        "letter": "R",
+        "text": "Morse for R"
+      },
+      {
+        "emoji": "•••",
+        "id": 19,
+        "letter": "S",
+        "text": "Morse for S"
+      },
+      {
+        "emoji": "−",
+        "id": 20,
+        "letter": "T",
+        "text": "Morse for T"
+      },
+      {
+        "emoji": "••−",
+        "id": 21,
+        "letter": "U",
+        "text": "Morse for U"
+      },
+      {
+        "emoji": "•••−",
+        "id": 22,
+        "letter": "V",
+        "text": "Morse for V"
+      },
+      {
+        "emoji": "•−−",
+        "id": 23,
+        "letter": "W",
+        "text": "Morse for W"
+      },
+      {
+        "emoji": "−••−",
+        "id": 24,
+        "letter": "X",
+        "text": "Morse for X"
+      },
+      {
+        "emoji": "−•−−",
+        "id": 25,
+        "letter": "Y",
+        "text": "Morse for Y"
+      },
+      {
+        "emoji": "−−••",
+        "id": 26,
+        "letter": "Z",
+        "text": "Morse for Z"
+      }
+    ],
+    "description": "Learn the International Morse Code for the English alphabet.",
+    "icon": "⚫➖"
+  },
+  "nato": {
+    "data": [
+      {
+        "code": 65,
+        "description": "First letter of NATO phonetic alphabet",
+        "id": 1,
+        "letter": "A",
+        "text": "Alpha"
+      },
+      {
+        "code": 66,
+        "description": "Second letter of NATO phonetic alphabet",
+        "id": 2,
+        "letter": "B",
+        "text": "Bravo"
+      },
+      {
+        "code": 67,
+        "description": "Third letter of NATO phonetic alphabet",
+        "id": 3,
+        "letter": "C",
+        "text": "Charlie"
+      },
+      {
+        "code": 68,
+        "description": "Fourth letter of NATO phonetic alphabet",
+        "id": 4,
+        "letter": "D",
+        "text": "Delta"
+      },
+      {
+        "code": 69,
+        "description": "Fifth letter of NATO phonetic alphabet",
+        "id": 5,
+        "letter": "E",
+        "text": "Echo"
+      },
+      {
+        "code": 70,
+        "description": "Sixth letter of NATO phonetic alphabet",
+        "id": 6,
+        "letter": "F",
+        "text": "Foxtrot"
+      },
+      {
+        "code": 71,
+        "description": "Seventh letter of NATO phonetic alphabet",
+        "id": 7,
+        "letter": "G",
+        "text": "Golf"
+      },
+      {
+        "code": 72,
+        "description": "Eighth letter of NATO phonetic alphabet",
+        "id": 8,
+        "letter": "H",
+        "text": "Hotel"
+      },
+      {
+        "code": 73,
+        "description": "Ninth letter of NATO phonetic alphabet",
+        "id": 9,
+        "letter": "I",
+        "text": "India"
+      },
+      {
+        "code": 74,
+        "description": "Tenth letter of NATO phonetic alphabet",
+        "id": 10,
+        "letter": "J",
+        "text": "Juliet"
+      },
+      {
+        "code": 75,
+        "description": "Eleventh letter of NATO phonetic alphabet",
+        "id": 11,
+        "letter": "K",
+        "text": "Kilo"
+      },
+      {
+        "code": 76,
+        "description": "Twelfth letter of NATO phonetic alphabet",
+        "id": 12,
+        "letter": "L",
+        "text": "Lima"
+      },
+      {
+        "code": 77,
+        "description": "Thirteenth letter of NATO phonetic alphabet",
+        "id": 13,
+        "letter": "M",
+        "text": "Mike"
+      },
+      {
+        "code": 78,
+        "description": "Fourteenth letter of NATO phonetic alphabet",
+        "id": 14,
+        "letter": "N",
+        "text": "November"
+      },
+      {
+        "code": 79,
+        "description": "Fifteenth letter of NATO phonetic alphabet",
+        "id": 15,
+        "letter": "O",
+        "text": "Oscar"
+      },
+      {
+        "code": 80,
+        "description": "Sixteenth letter of NATO phonetic alphabet",
+        "id": 16,
+        "letter": "P",
+        "text": "Papa"
+      },
+      {
+        "code": 81,
+        "description": "Seventeenth letter of NATO phonetic alphabet",
+        "id": 17,
+        "letter": "Q",
+        "text": "Quebec"
+      },
+      {
+        "code": 82,
+        "description": "Eighteenth letter of NATO phonetic alphabet",
+        "id": 18,
+        "letter": "R",
+        "text": "Romeo"
+      },
+      {
+        "code": 83,
+        "description": "Nineteenth letter of NATO phonetic alphabet",
+        "id": 19,
+        "letter": "S",
+        "text": "Sierra"
+      },
+      {
+        "code": 84,
+        "description": "Twentieth letter of NATO phonetic alphabet",
+        "id": 20,
+        "letter": "T",
+        "text": "Tango"
+      },
+      {
+        "code": 85,
+        "description": "Twenty-first letter of NATO phonetic alphabet",
+        "id": 21,
+        "letter": "U",
+        "text": "Uniform"
+      },
+      {
+        "code": 86,
+        "description": "Twenty-second letter of NATO phonetic alphabet",
+        "id": 22,
+        "letter": "V",
+        "text": "Victor"
+      },
+      {
+        "code": 87,
+        "description": "Twenty-third letter of NATO phonetic alphabet",
+        "id": 23,
+        "letter": "W",
+        "text": "Whiskey"
+      },
+      {
+        "code": 88,
+        "description": "Twenty-fourth letter of NATO phonetic alphabet",
+        "id": 24,
+        "letter": "X",
+        "text": "X-ray"
+      },
+      {
+        "code": 89,
+        "description": "Twenty-fifth letter of NATO phonetic alphabet",
+        "id": 25,
+        "letter": "Y",
+        "text": "Yankee"
+      },
+      {
+        "code": 90,
+        "description": "Twenty-sixth letter of NATO phonetic alphabet",
+        "id": 26,
+        "letter": "Z",
+        "text": "Zulu"
+      }
+    ],
+    "description": "NATO phonetic alphabet",
+    "icon": "🎖️"
   }
 }

@@ -2,21 +2,20 @@
 import "@/assets/styles/board.css";
 import Back from "@/components/Back.astro";
 import CardLayout from "@/components/CardLayout.astro";
-import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
-import type { AlphabetsData } from "@/types/alphabet";
+
+import { DATASET } from "@/data/alphabet_dataset";
 
 const title = "Alphabet Categories";
 const subtitle = "Choose a category to discover different alphabet representations";
 
-const alphabetData = rawAlphabetData as AlphabetsData;
-const categories = Object.keys(alphabetData);
+const categories = Object.keys(DATASET);
 
 const categoryList = categories.map((category, index) => ({
   id: index.toString(),
-  icon: alphabetData[category as keyof AlphabetsData].icon,
+  icon: DATASET[category].icon,
   title: category.charAt(0).toUpperCase() + category.slice(1),
-  description: alphabetData[category as keyof AlphabetsData].description,
+  description: DATASET[category].description,
   href: {
     playground: { icon: "📚", link: `/alphabets/${category}/playground/`, text: "Playground" },
     board: { icon: "📋", link: `/alphabets/${category}/board/`, text: "Board" }
@@ -28,7 +27,7 @@ const categoryList = categories.map((category, index) => ({
   <Back />
   <section class="container__board">
     <div class="board__header">
-      <h1 class="title">{title}</h1>
+      <h2 class="title">{title}</h2>
       <p class="subtitle">{subtitle}</p>
     </div>
     <ul class="board__list">

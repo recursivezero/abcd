@@ -5,10 +5,6 @@
   --steps-desc: 30;
 }
 
-.tv {
-  margin-top: 3rem;
-}
-
 .title_header {
   margin-bottom: 4rem;
   text-align: center;
@@ -18,10 +14,23 @@
   color: #9ca3af;
 }
 
+.container__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & .info {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+}
+
 .container__typing {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 35% auto auto;
+  grid-template-rows: 35% max-content auto;
   grid-template-areas:
     "letter content__display"
     "spelling spelling"
