@@ -100,10 +100,54 @@ export const BIRDS_DATASETS: AlphabetDataset = {
     }))
 };
 
+/* nato */
+
+export const natoData = [
+  { letter: "A", description: "AL fah", text: "Alfa" },
+  { letter: "B", description: "BRAH voh", text: "Bravo" },
+  { letter: "C", description: "CHAR lee", text: "Charlie" },
+  { letter: "D", description: "DELL tah", text: "Delta" },
+  { letter: "E", description: "ECK oh", text: "Echo" },
+  { letter: "F", description: "FOKS trot", text: "Foxtrot" },
+  { letter: "G", description: "GOLF", text: "Golf" },
+  { letter: "H", description: "ho TELL", text: "Hotel" },
+  { letter: "I", description: "IN dee ah", text: "India" },
+  { letter: "J", description: "JEW lee ETT", text: "Juliet" },
+  { letter: "K", description: "KEY loh", text: "Kilo" },
+  { letter: "L", description: "LEE mah", text: "Lima" },
+  { letter: "M", description: "MIKE", text: "Mike" },
+  { letter: "N", description: "no VEM ber", text: "November" },
+  { letter: "O", description: "OSS cah", text: "Oscar" },
+  { letter: "P", description: "pah PAH", text: "Papa" },
+  { letter: "Q", description: "keh BECK", text: "Quebec" },
+  { letter: "R", description: "ROW me oh", text: "Romeo" },
+  { letter: "S", description: "see AIR rah", text: "Sierra" },
+  { letter: "T", description: "TANG o", text: "Tango" },
+  { letter: "U", description: "YOU nee form", text: "Uniform" },
+  { letter: "V", description: "VIK tah", text: "Victor" },
+  { letter: "W", description: "WISS key", text: "Whiskey" },
+  { letter: "X", description: "ECKS ray", text: "X-ray" },
+  { letter: "Y", description: "YANG key", text: "Yankee" },
+  { letter: "Z", description: "ZOO loo", text: "Zulu" }
+];
+export const NATO_DATASETS: AlphabetDataset = {
+  category: "nato",
+  description: "NATO Phonetic Alphabet",
+  icon: "🎖️",
+  data: natoData
+    .sort((a, b) => a.letter.localeCompare(b.letter))
+    .map((item, index) => ({
+      id: index + 1,
+      code: 65 + index, // ASCII code for 'A' is 65
+      ...item
+    }))
+};
+
 /** TODO: add others from alphabets.json */
 
 export const DATASET: { [key: string]: AlphabetDataset } = {
   animals: ANIMAL_DATASETS,
-  birds: BIRDS_DATASETS
+  birds: BIRDS_DATASETS,
+  nato: NATO_DATASETS
 };
 export type AlphabetsData = typeof DATASET;
