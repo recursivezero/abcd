@@ -8,7 +8,7 @@ const { title, description, ogImage, articleDate } = Astro.props;
 const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const socialImageURL = new URL(ogImage ? ogImage : "/assets/images/ABCD.png", Astro.url).href;
+const socialImageURL = new URL(ogImage ? ogImage : "/assets/images/logo.png", Astro.url).href;
 ---
 
 <meta charset="utf-8" />
@@ -17,10 +17,10 @@ const socialImageURL = new URL(ogImage ? ogImage : "/assets/images/ABCD.png", As
 <title>{siteTitle}</title>
 
 {/* Icons / Favicon */}
-<link rel="icon" href="/assets/images/48x48.png" type="image/png" sizes="48x48" />
-<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
-<link rel="shortcut icon" href="/assets/images/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+<link rel="icon" href="/assets/icons/parixan/favicon-32x32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="/assets/icons/parixan/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/assets/icons/parixan/favicon.ico" />
+<link rel="apple-touch-icon" href="/assets/icons/parixan/apple-touch-icon-180x180.png" sizes="180x180" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="canonical" href={canonicalURL} />
 
@@ -28,6 +28,11 @@ const socialImageURL = new URL(ogImage ? ogImage : "/assets/images/ABCD.png", As
 <meta name="title" content={siteTitle} />
 <meta name="description" content={description} />
 <meta name="author" content={siteConfig.author} />
+
+{/* Additional Meta Tags */}
+<meta name="robots" content="index, nofollow" />
+<meta name="application-name" content={siteConfig.title} />
+<meta name="apple-mobile-web-app-title" content={siteConfig.title} />
 
 {/* Theme Color */}
 <meta name="theme-color" content="dark" />
@@ -41,6 +46,7 @@ const socialImageURL = new URL(ogImage ? ogImage : "/assets/images/ABCD.png", As
 <meta property="og:site_name" content={siteConfig.title} />
 <meta property="og:locale" content={siteConfig.ogLocale} />
 <meta property="og:image" content={socialImageURL} />
+<meta property="og:image:alt" content={description} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 {
@@ -53,12 +59,14 @@ const socialImageURL = new URL(ogImage ? ogImage : "/assets/images/ABCD.png", As
 }
 
 {/* Twitter */}
-<meta property="twitter:card" content="/assets/images/ABCD.png" />
+<meta property="twitter:card" content="/assets/images/parixan/512x512.png" />
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={socialImageURL} />
-
+<meta property="twitter:image:alt" content={description} />
+<meta property="twitter:site" content="@recursivezero" />
+<meta property="twitter:creator" content="@recursivezero" />
 {/* Sitemap */}
 <link rel="sitemap" href="/sitemap-index.xml" />
 
