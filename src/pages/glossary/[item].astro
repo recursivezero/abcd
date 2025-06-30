@@ -21,7 +21,7 @@ if (!categoryData) {
 ---
 
 <BaseLayout meta={{ title: title ?? item }}>
-  <BackButton href="/glossary"/>
+  <BackButton href="/glossary" />
   <div class="container__page">
     <div class="page__header">
       <h2 class="page__title">{title ?? item}</h2>
@@ -29,9 +29,7 @@ if (!categoryData) {
     </div>
     <div class="page__content">
       <div class="page__grid">
-        {data && data.map((entry: any) => (
-          <LetterCard item={entry} category={category ?? item} />
-        ))}
+        {data && data.map((entry: any) => <LetterCard item={entry} category={category ?? item} />)}
       </div>
     </div>
   </div>

@@ -49,7 +49,6 @@
 }
 
 .container__alphabets {
-
   #english,
   & #hindi {
     scroll-margin-top: calc(var(--header-height) + 80px);

@@ -229,7 +229,7 @@ import Keyboard from "@/components/Keyboard.astro";
     }
 
     isNumberPressed = false;
-    
+
     // Handle alphabetic characters
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
 
@@ -260,7 +260,7 @@ import Keyboard from "@/components/Keyboard.astro";
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
       currentDisplayedKey = key;
       updateFontColor();
-      
+
       // Apply background based on current mode
       if (backgroundMode === "color") {
         const randomColor = getRandomValue(colorBox);
@@ -268,7 +268,7 @@ import Keyboard from "@/components/Keyboard.astro";
       } else {
         clearAllBackgrounds();
       }
-      
+
       charDiv.style.fontSize = "";
       updateToggleButtons();
     }
