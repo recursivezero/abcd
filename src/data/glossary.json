@@ -1,782 +1,861 @@
 {
-  "flags": {
-    "title": "Country Flags",
-    "category": "flags",
-    "data": [
-      {
-        "id": "usa",
-        "countryCode": "US",
-        "text": "United States",
-        "description": "Capital: Washington, D.C."
-      },
-      {
-        "id": "canada",
-        "countryCode": "CA",
-        "text": "Canada",
-        "description": "Capital: Ottawa"
-      },
-      {
-        "id": "india",
-        "countryCode": "IN",
-        "text": "India",
-        "description": "Capital: New Delhi"
-      },
-      {
-        "id": "japan",
-        "countryCode": "JP",
-        "text": "Japan",
-        "description": "Capital: Tokyo"
-      },
-      {
-        "id": "brazil",
-        "countryCode": "BR",
-        "text": "Brazil",
-        "description": "Capital: Brasília"
-      },
-      {
-        "id": "australia",
-        "countryCode": "AU",
-        "text": "Australia",
-        "description": "Capital: Canberra"
-      },
-      {
-        "id": "germany",
-        "countryCode": "DE",
-        "text": "Germany",
-        "description": "Capital: Berlin"
-      },
-      {
-        "id": "southafrica",
-        "countryCode": "ZA",
-        "text": "South Africa",
-        "description": "Capitals: Pretoria, Cape Town, Bloemfontein"
-      },
-      {
-        "id": "france",
-        "countryCode": "FR",
-        "text": "France",
-        "description": "Capital: Paris"
-      },
-      {
-        "id": "unitedkingdom",
-        "countryCode": "GB",
-        "text": "United Kingdom",
-        "description": "Capital: London"
-      },
-      {
-        "id": "china",
-        "countryCode": "CN",
-        "text": "China",
-        "description": "Capital: Beijing"
-      },
-      {
-        "id": "italy",
-        "countryCode": "IT",
-        "text": "Italy",
-        "description": "Capital: Rome"
-      }
-    ]
-  },
   "colours": {
-    "title": "Colours",
     "category": "colours",
     "data": [
       {
-        "letter": "Red",
-        "text": "Red",
+        "code": "#ff0000",
         "description": "लाल",
-        "code": "#ff0000"
+        "letter": "Red",
+        "text": "Red"
       },
       {
+        "code": "#00ff00",
+        "description": "हरा",
         "id": "green",
         "letter": "G",
-        "text": "Green",
-        "description": "हरा",
-        "code": "#00ff00"
+        "text": "Green"
       },
       {
+        "code": "#ffff00",
+        "description": "पीला",
         "id": "yellow",
         "letter": "Y",
-        "text": "Yellow",
-        "description": "पीला",
-        "code": "#ffff00"
+        "text": "Yellow"
       },
       {
+        "code": "#0000ff",
+        "description": "नीला",
         "id": "blue",
         "letter": "B",
-        "text": "Blue",
-        "description": "नीला",
-        "code": "#0000ff"
+        "text": "Blue"
       },
       {
+        "code": "#a52a2a",
+        "description": "भूरा",
         "id": "brown",
         "letter": "N",
-        "text": "Brown",
-        "description": "भूरा",
-        "code": "#a52a2a"
+        "text": "Brown"
       },
       {
+        "code": "#ffa500",
+        "description": "नारंगी",
         "id": "orange",
         "letter": "O",
-        "text": "Orange",
-        "description": "नारंगी",
-        "code": "#ffa500"
+        "text": "Orange"
       },
       {
+        "code": "#ffc0cb",
+        "description": "गुलाबी",
         "id": "pink",
         "letter": "P",
-        "text": "Pink",
-        "description": "गुलाबी",
-        "code": "#ffc0cb"
+        "text": "Pink"
       },
       {
+        "code": "#800080",
+        "description": "बैंगनी",
         "id": "purple",
         "letter": "V",
-        "text": "Purple",
-        "description": "बैंगनी",
-        "code": "#800080"
+        "text": "Purple"
       },
       {
+        "code": "#808080",
+        "description": "स्लेटी",
         "id": "gray",
         "letter": "S",
-        "text": "Gray",
-        "description": "स्लेटी",
-        "code": "#808080"
+        "text": "Gray"
       },
       {
+        "code": "#000000",
+        "description": "काला",
         "id": "black",
         "letter": "K",
-        "text": "Black",
-        "description": "काला",
-        "code": "#000000"
+        "text": "Black"
       },
       {
+        "code": "#ffffff",
+        "description": "सफ़ेद",
         "id": "white",
         "letter": "W",
-        "text": "White",
-        "description": "सफ़ेद",
-        "code": "#ffffff"
+        "text": "White"
       }
-    ]
+    ],
+    "title": "Colours"
+  },
+  "crops": {
+    "category": "crops",
+    "data": [
+      {
+        "description": "A staple grain crop, used for making flour and bread.",
+        "letter": "Wheat",
+        "text": "गेहूं"
+      },
+      {
+        "description": "A major cereal grain, primary food for much of the world.",
+        "letter": "Rice",
+        "text": "चावल"
+      },
+      {
+        "description": "Also known as corn, used as food and fodder.",
+        "letter": "Maize",
+        "text": "मक्का"
+      },
+      {
+        "description": "A cereal grain used for food, animal feed, and brewing.",
+        "letter": "Barley",
+        "text": "जौ"
+      },
+      {
+        "description": "A group of small-seeded grasses, important in arid regions.",
+        "letter": "Millet",
+        "text": "बाजरा"
+      },
+      {
+        "description": "A starchy tuber, widely used as a vegetable.",
+        "letter": "Potato",
+        "text": "आलू"
+      },
+      {
+        "description": "A red fruit used as a vegetable in cooking.",
+        "letter": "Tomato",
+        "text": "टमाटर"
+      },
+      {
+        "description": "An orange root vegetable, eaten raw or cooked.",
+        "letter": "Carrot",
+        "text": "गाजर"
+      },
+      {
+        "description": "A green, refreshing vegetable, often eaten raw.",
+        "letter": "Cucumber",
+        "text": "खीरा"
+      },
+      {
+        "description": "Also called eggplant, a purple vegetable.",
+        "letter": "Brinjal",
+        "text": "बैंगन"
+      },
+      {
+        "description": "A leafy green vegetable, rich in iron.",
+        "letter": "Spinach",
+        "text": "पालक"
+      }
+    ],
+    "title": "Basic Crops"
+  },
+  "currencies": {
+    "category": "currencies",
+    "data": [
+      {
+        "description": "Dollar (USD)",
+        "letter": "$",
+        "text": "United States"
+      },
+      {
+        "description": "Dollar (CAD)",
+        "letter": "$",
+        "text": "Canada"
+      },
+      {
+        "description": "Rupee (INR)",
+        "letter": "₹",
+        "text": "India"
+      },
+      {
+        "description": "Yen (JPY)",
+        "letter": "¥",
+        "text": "Japan"
+      },
+      {
+        "description": "Real (BRL)",
+        "letter": "R$",
+        "text": "Brazil"
+      },
+      {
+        "description": "Dollar (AUD)",
+        "letter": "$",
+        "text": "Australia"
+      },
+      {
+        "description": "Euro (EUR)",
+        "letter": "€",
+        "text": "Germany"
+      },
+      {
+        "description": "Rand (ZAR)",
+        "letter": "R",
+        "text": "South Africa"
+      },
+      {
+        "description": "Euro (EUR)",
+        "letter": "€",
+        "text": "France"
+      },
+      {
+        "description": "Pound Sterling (GBP)",
+        "letter": "£",
+        "text": "United Kingdom"
+      },
+      {
+        "description": "Yuan (CNY)",
+        "letter": "¥",
+        "text": "China"
+      },
+      {
+        "description": "Euro (EUR)",
+        "letter": "€",
+        "text": "Italy"
+      }
+    ],
+    "title": "Country Currency Symbols"
   },
   "days": {
-    "title": "Days of the Week",
     "category": "days",
     "data": [
       {
+        "description": "Sunday",
         "id": "sunday",
         "letter": "S",
-        "text": "रविवार",
-        "description": "Sunday"
+        "text": "रविवार"
       },
       {
+        "description": "Monday",
         "id": "monday",
         "letter": "M",
-        "text": "सोमवार",
-        "description": "Monday"
+        "text": "सोमवार"
       },
       {
+        "description": "Tuesday",
         "id": "tuesday",
         "letter": "T",
-        "text": "मंगलवार",
-        "description": "Tuesday"
+        "text": "मंगलवार"
       },
       {
+        "description": "Wednesday",
         "id": "wednesday",
         "letter": "W",
-        "text": "बुधवार",
-        "description": "Wednesday"
+        "text": "बुधवार"
       },
       {
+        "description": "Thursday",
         "id": "thursday",
         "letter": "T",
-        "text": "गुरुवार",
-        "description": "Thursday"
+        "text": "गुरुवार"
       },
       {
+        "description": "Friday",
         "id": "friday",
         "letter": "F",
-        "text": "शुक्रवार",
-        "description": "Friday"
+        "text": "शुक्रवार"
       },
       {
+        "description": "Saturday",
         "id": "saturday",
         "letter": "S",
-        "text": "शनिवार",
-        "description": "Saturday"
-      }
-    ]
-  },
-  "months": {
-    "title": "Months",
-    "category": "months",
-    "indian": [
-      {
-        "type": "indian",
-        "name": "चैत्र ",
-        "dates": "March 21 - April 20",
-        "monthIndex": 2,
-        "displayName": "Chaitra",
-        "hinduOrdinalText": "First Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "वैशाख ",
-        "dates": "April 21 - May 21",
-        "monthIndex": 3,
-        "displayName": "Vaishakha",
-        "hinduOrdinalText": "Second Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "ज्येष्ठ ",
-        "dates": "May 22 - June 21",
-        "monthIndex": 4,
-        "displayName": "Jyeshtha",
-        "hinduOrdinalText": "Third Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "आषाढ़ ",
-        "dates": "June 22 - July 22",
-        "monthIndex": 5,
-        "displayName": "Ashadha",
-        "hinduOrdinalText": "Fourth Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "श्रावण ",
-        "dates": "July 23 - August 22",
-        "monthIndex": 6,
-        "displayName": "Shravana",
-        "hinduOrdinalText": "Fifth Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "भाद्रपद ",
-        "dates": "August 23 - September 22",
-        "monthIndex": 7,
-        "displayName": "Bhadrapada",
-        "hinduOrdinalText": "Sixth Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "आश्विन ",
-        "dates": "September 23 - October 22",
-        "monthIndex": 8,
-        "displayName": "Ashvina",
-        "hinduOrdinalText": "Seventh Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "कार्तिक ",
-        "dates": "October 23 - November 21",
-        "monthIndex": 9,
-        "displayName": "Kartika",
-        "hinduOrdinalText": "Eighth Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "मार्गशीर्ष ",
-        "dates": "November 22 - December 21",
-        "monthIndex": 10,
-        "displayName": "Margashirsha",
-        "hinduOrdinalText": "Ninth Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "पौष",
-        "dates": "December 22 - January 20",
-        "monthIndex": 11,
-        "displayName": "Pausha",
-        "hinduOrdinalText": "Tenth Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "माघ ",
-        "dates": "January 21 - February 19",
-        "monthIndex": 0,
-        "displayName": "Magha",
-        "hinduOrdinalText": "Eleventh Hindu Month"
-      },
-      {
-        "type": "indian",
-        "name": "फाल्गुन ",
-        "dates": "February 20 - March 20",
-        "monthIndex": 1,
-        "displayName": "Phalguna",
-        "hinduOrdinalText": "Twelfth Hindu Month"
+        "text": "शनिवार"
       }
     ],
+    "title": "Days of the Week"
+  },
+  "flags": {
+    "category": "flags",
+    "data": [
+      {
+        "countryCode": "US",
+        "description": "Capital: Washington, D.C.",
+        "id": "usa",
+        "text": "United States"
+      },
+      {
+        "countryCode": "CA",
+        "description": "Capital: Ottawa",
+        "id": "canada",
+        "text": "Canada"
+      },
+      {
+        "countryCode": "IN",
+        "description": "Capital: New Delhi",
+        "id": "india",
+        "text": "India"
+      },
+      {
+        "countryCode": "JP",
+        "description": "Capital: Tokyo",
+        "id": "japan",
+        "text": "Japan"
+      },
+      {
+        "countryCode": "BR",
+        "description": "Capital: Brasília",
+        "id": "brazil",
+        "text": "Brazil"
+      },
+      {
+        "countryCode": "AU",
+        "description": "Capital: Canberra",
+        "id": "australia",
+        "text": "Australia"
+      },
+      {
+        "countryCode": "DE",
+        "description": "Capital: Berlin",
+        "id": "germany",
+        "text": "Germany"
+      },
+      {
+        "countryCode": "ZA",
+        "description": "Capitals: Pretoria, Cape Town, Bloemfontein",
+        "id": "southafrica",
+        "text": "South Africa"
+      },
+      {
+        "countryCode": "FR",
+        "description": "Capital: Paris",
+        "id": "france",
+        "text": "France"
+      },
+      {
+        "countryCode": "GB",
+        "description": "Capital: London",
+        "id": "unitedkingdom",
+        "text": "United Kingdom"
+      },
+      {
+        "countryCode": "CN",
+        "description": "Capital: Beijing",
+        "id": "china",
+        "text": "China"
+      },
+      {
+        "countryCode": "IT",
+        "description": "Capital: Rome",
+        "id": "italy",
+        "text": "Italy"
+      }
+    ],
+    "title": "Country Flags"
+  },
+  "months": {
+    "category": "months",
     "holidays": [
       {
         "day": 1,
         "month": 0,
-        "year": 2025,
-        "name": "New Year's Day"
+        "name": "New Year's Day",
+        "year": 2025
       },
       {
         "day": 26,
         "month": 0,
-        "year": 2025,
-        "name": "Republic Day"
+        "name": "Republic Day",
+        "year": 2025
       },
       {
         "day": 18,
         "month": 3,
-        "year": 2025,
-        "name": "Good Friday"
+        "name": "Good Friday",
+        "year": 2025
       },
       {
         "day": 1,
         "month": 4,
-        "year": 2025,
-        "name": "May Day / Labour Day"
+        "name": "May Day / Labour Day",
+        "year": 2025
       },
       {
         "day": 15,
         "month": 7,
-        "year": 2025,
-        "name": "Independence Day"
+        "name": "Independence Day",
+        "year": 2025
       },
       {
         "day": 2,
         "month": 10,
-        "year": 2025,
-        "name": "Mahatma Gandhi Jayanti"
+        "name": "Mahatma Gandhi Jayanti",
+        "year": 2025
       },
       {
         "day": 14,
         "month": 11,
-        "year": 2025,
-        "name": "Children's Day"
+        "name": "Children's Day",
+        "year": 2025
       },
       {
         "day": 25,
         "month": 11,
-        "year": 2025,
-        "name": "Christmas Day"
+        "name": "Christmas Day",
+        "year": 2025
       }
-    ]
-  },
-  "shapes": {
-    "title": "Geometric Shapes",
-    "category": "shapes",
-    "data": [
+    ],
+    "indian": [
       {
-        "id": "circle",
-        "letter": "●",
-        "text": "Circle",
-        "description": "A perfectly round shape with no corners or edges. All points on the edge are equidistant from the center."
+        "dates": "March 21 - April 20",
+        "displayName": "Chaitra",
+        "hinduOrdinalText": "First Hindu Month",
+        "monthIndex": 2,
+        "name": "चैत्र ",
+        "type": "indian"
       },
       {
-        "id": "square",
-        "letter": "■",
-        "text": "Square",
-        "description": "A quadrilateral with 4 equal sides and 4 right (90-degree) angles."
+        "dates": "April 21 - May 21",
+        "displayName": "Vaishakha",
+        "hinduOrdinalText": "Second Hindu Month",
+        "monthIndex": 3,
+        "name": "वैशाख ",
+        "type": "indian"
       },
       {
-        "id": "triangle",
-        "letter": "▲",
-        "text": "Triangle",
-        "description": "A polygon with 3 sides and 3 angles (vertices)."
+        "dates": "May 22 - June 21",
+        "displayName": "Jyeshtha",
+        "hinduOrdinalText": "Third Hindu Month",
+        "monthIndex": 4,
+        "name": "ज्येष्ठ ",
+        "type": "indian"
       },
       {
-        "id": "rectangle",
-        "letter": "▭",
-        "text": "Rectangle",
-        "description": "A quadrilateral with 4 right angles. Opposite sides are equal in length and parallel."
+        "dates": "June 22 - July 22",
+        "displayName": "Ashadha",
+        "hinduOrdinalText": "Fourth Hindu Month",
+        "monthIndex": 5,
+        "name": "आषाढ़ ",
+        "type": "indian"
       },
       {
-        "id": "pentagon",
-        "letter": "⬠",
-        "text": "Pentagon",
-        "description": "A polygon with 5 sides and 5 angles."
+        "dates": "July 23 - August 22",
+        "displayName": "Shravana",
+        "hinduOrdinalText": "Fifth Hindu Month",
+        "monthIndex": 6,
+        "name": "श्रावण ",
+        "type": "indian"
       },
       {
-        "id": "hexagon",
-        "letter": "⬢",
-        "text": "Hexagon",
-        "description": "A polygon with 6 sides and 6 angles."
+        "dates": "August 23 - September 22",
+        "displayName": "Bhadrapada",
+        "hinduOrdinalText": "Sixth Hindu Month",
+        "monthIndex": 7,
+        "name": "भाद्रपद ",
+        "type": "indian"
       },
       {
-        "id": "oval",
-        "letter": "⬬",
-        "text": "Oval",
-        "description": "An elongated circle, like an egg shape. A regular oval is an ellipse."
+        "dates": "September 23 - October 22",
+        "displayName": "Ashvina",
+        "hinduOrdinalText": "Seventh Hindu Month",
+        "monthIndex": 8,
+        "name": "आश्विन ",
+        "type": "indian"
       },
       {
-        "id": "star",
-        "letter": "★",
-        "text": "Star",
-        "description": "A pointed shape, typically with 5 or 6 points, formed by connecting vertices of a polygon."
+        "dates": "October 23 - November 21",
+        "displayName": "Kartika",
+        "hinduOrdinalText": "Eighth Hindu Month",
+        "monthIndex": 9,
+        "name": "कार्तिक ",
+        "type": "indian"
       },
       {
-        "id": "rhombus",
-        "letter": "◆",
-        "text": "Rhombus",
-        "description": "A quadrilateral with all 4 sides of equal length. Opposite angles are equal."
+        "dates": "November 22 - December 21",
+        "displayName": "Margashirsha",
+        "hinduOrdinalText": "Ninth Hindu Month",
+        "monthIndex": 10,
+        "name": "मार्गशीर्ष ",
+        "type": "indian"
+      },
+      {
+        "dates": "December 22 - January 20",
+        "displayName": "Pausha",
+        "hinduOrdinalText": "Tenth Hindu Month",
+        "monthIndex": 11,
+        "name": "पौष",
+        "type": "indian"
+      },
+      {
+        "dates": "January 21 - February 19",
+        "displayName": "Magha",
+        "hinduOrdinalText": "Eleventh Hindu Month",
+        "monthIndex": 0,
+        "name": "माघ ",
+        "type": "indian"
+      },
+      {
+        "dates": "February 20 - March 20",
+        "displayName": "Phalguna",
+        "hinduOrdinalText": "Twelfth Hindu Month",
+        "monthIndex": 1,
+        "name": "फाल्गुन ",
+        "type": "indian"
       }
-    ]
-  },
-  "waqt": {
-    "title": "Waqt (Times of Day)",
-    "category": "waqt",
-    "data": [
-      {
-        "letter": "Dawn",
-        "text": "भोर (Bhor), सुबह (Subah)",
-        "description": "The first light of day before sunrise; early morning twilight.",
-        "emoji": "🌄"
-      },
-      {
-        "letter": "Sunrise",
-        "text": "सूर्योदय (Sooryoday), भोर (Bhor)",
-        "description": "The moment the sun appears above the horizon.",
-        "emoji": "🌅"
-      },
-      {
-        "letter": "Morning",
-        "text": "सुबह (Subah), प्रातः (Praatah)",
-        "description": "The early part of the day, from dawn until around noon.",
-        "emoji": "🌅"
-      },
-      {
-        "letter": "Noon",
-        "text": "दोपहर (Dopehar)",
-        "description": "Midday, exactly 12:00 PM, or broadly the middle of the day.",
-        "emoji": "🕛"
-      },
-      {
-        "letter": "Afternoon",
-        "text": "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)",
-        "description": "The time after noon until late afternoon/early evening.",
-        "emoji": "☀️"
-      },
-      {
-        "letter": "Evening",
-        "text": "शाम (Shaam)",
-        "description": "The period from late afternoon until nightfall/dusk.",
-        "emoji": "🌇"
-      },
-      {
-        "letter": "Twilight",
-        "text": "सांझ (Saanjh), गोधूलि बेला (Godhuli Bela)",
-        "description": "Dim light period either just before sunrise or just after sunset.",
-        "emoji": "🌥️"
-      },
-      {
-        "letter": "Dusk",
-        "text": "गोधूलि (Godhuli), शाम (Shaam)",
-        "description": "The darker stage of twilight immediately after sunset.",
-        "emoji": "🌆"
-      },
-      {
-        "letter": "Sunset",
-        "text": "सूर्यास्त (Sooryaast), शाम (Shaam)",
-        "description": "The moment the sun disappears below the horizon.",
-        "emoji": "🌇"
-      },
-      {
-        "letter": "Night",
-        "text": "रात (Raat), रात्रि (Raatri)",
-        "description": "The period of darkness from sunset to sunrise.",
-        "emoji": "🌙"
-      },
-      {
-        "letter": "Midnight",
-        "text": "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)",
-        "description": "Exactly 12:00 AM, the middle of the night.",
-        "emoji": "🌃"
-      },
-      {
-        "letter": "Late Night",
-        "text": "रात गहराना (Raat Gahraana), देर रात (Der Raat)",
-        "description": "The deep part of the night, usually well after midnight.",
-        "emoji": "🌌"
-      }
-    ]
-  },
-  "seasons": {
-    "title": "Seasons",
-    "category": "seasons",
-    "data": [
-      {
-        "id": "spring",
-        "letter": "🌸",
-        "text": "spring",
-        "description": "वसन्त"
-      },
-      {
-        "id": "summer",
-        "letter": "☀️",
-        "text": "summer",
-        "description": "ग्रीष्म"
-      },
-      {
-        "id": "monsoon",
-        "letter": "🌧️",
-        "text": "monsoon",
-        "description": "बरसात"
-      },
-      {
-        "id": "autumn",
-        "letter": "🍂",
-        "text": "autumn",
-        "description": "पतझड़"
-      },
-      {
-        "id": "pre_winter",
-        "letter": "🌬️",
-        "text": "pre-winter",
-        "description": "हेमन्त"
-      },
-      {
-        "id": "winter",
-        "letter": "❄️",
-        "text": "winter",
-        "description": "शीत"
-      }
-    ]
-  },
-  "sunsign": {
-    "title": "Sun Sign",
-    "category": "sunsigns",
-    "data": [
-      {
-        "id": "aries",
-        "text": "Aries (मेष)",
-        "letter": "♈︎",
-        "description": "March 21 - April 19"
-      },
-      {
-        "id": "taurus",
-        "text": "Taurus (वृषभ)",
-        "letter": "♉︎",
-        "description": "April 20 - May 20"
-      },
-      {
-        "id": "gemini",
-        "text": "Gemini (मिथुन)",
-        "letter": "♊︎",
-        "description": "May 21 - June 20"
-      },
-      {
-        "id": "cancer",
-        "text": "Cancer (कर्क)",
-        "letter": "♋︎",
-        "description": "June 21 - July 22"
-      },
-      {
-        "id": "leo",
-        "text": "Leo (सिंह)",
-        "letter": "♌︎",
-        "description": "July 23 - August 22"
-      },
-      {
-        "id": "virgo",
-        "text": "Virgo (कन्या)",
-        "letter": "♍︎",
-        "description": "August 23 - September 22"
-      },
-      {
-        "id": "libra",
-        "text": "Libra (तुला)",
-        "letter": "♎︎",
-        "description": "September 23 - October 22"
-      },
-      {
-        "id": "scorpio",
-        "text": "Scorpio (वृश्चिक)",
-        "letter": "♏︎",
-        "description": "October 23 - November 21"
-      },
-      {
-        "id": "sagittarius",
-        "text": "Sagittarius (धनु)",
-        "letter": "♐︎",
-        "description": "November 22 - December 21"
-      },
-      {
-        "id": "capricorn",
-        "text": "Capricorn (मकर)",
-        "letter": "♑︎",
-        "description": "December 22 - January 19"
-      },
-      {
-        "id": "aquarius",
-        "text": "Aquarius (कुंभ)",
-        "letter": "♒︎",
-        "description": "January 20 - February 18"
-      },
-      {
-        "id": "pisces",
-        "text": "Pisces (मीन)",
-        "letter": "♓︎",
-        "description": "February 19 - March 20"
-      }
-    ]
+    ],
+    "title": "Months"
   },
   "moonsign": {
-    "title": "Moon Sign",
     "category": "moon_signs",
     "data": [
       {
-        "text": "मेष (Aries)",
+        "description": "अ,च, चू, चे, ला, ली, लू, ले",
         "letter": "♈︎",
-        "description": "अ,च, चू, चे, ला, ली, लू, ले"
+        "text": "मेष (Aries)"
       },
       {
-        "text": "वृषभ (Taurus)",
+        "description": "उ, ए, ई, औ, द, दी, वो",
         "letter": "♉︎",
-        "description": "उ, ए, ई, औ, द, दी, वो"
+        "text": "वृषभ (Taurus)"
       },
       {
-        "text": "मिथुन (Gemini)",
+        "description": "के, को, क, घ, छ, ह, ड",
         "letter": "♊︎",
-        "description": "के, को, क, घ, छ, ह, ड"
+        "text": "मिथुन (Gemini)"
       },
       {
-        "text": "कर्क (Cancer)",
+        "description": "ह, हे, हो, डा, ही, डो",
         "letter": "♋︎",
-        "description": "ह, हे, हो, डा, ही, डो"
+        "text": "कर्क (Cancer)"
       },
       {
-        "text": "सिंह (Leo)",
+        "description": "म, मे, मी, टे, टा, टी",
         "letter": "♌︎",
-        "description": "म, मे, मी, टे, टा, टी"
+        "text": "सिंह (Leo)"
       },
       {
-        "text": "कन्या (Virgo)",
+        "description": "प, ष, ण, पे, पो, प",
         "letter": "♍︎",
-        "description": "प, ष, ण, पे, पो, प"
+        "text": "कन्या (Virgo)"
       },
       {
-        "text": "तुला (Libra)",
+        "description": "रे, रो, रा, ता, ते, तू",
         "letter": "♎︎",
-        "description": "रे, रो, रा, ता, ते, तू"
+        "text": "तुला (Libra)"
       },
       {
-        "text": "वृश्चिक (Scorpio)",
+        "description": "लो, ने, नी, नू, या, यी",
         "letter": "♏︎",
-        "description": "लो, ने, नी, नू, या, यी"
+        "text": "वृश्चिक (Scorpio)"
       },
       {
-        "text": "धनु (Sagittarius)",
+        "description": "धा, ये, यो, भी, भू, फा, ढा",
         "letter": "♐︎",
-        "description": "धा, ये, यो, भी, भू, फा, ढा"
+        "text": "धनु (Sagittarius)"
       },
       {
-        "text": "मकर (Capricorn)",
+        "description": "जा, जी, खो, खू, ग, गी, भो",
         "letter": "♑︎",
-        "description": "जा, जी, खो, खू, ग, गी, भो"
+        "text": "मकर (Capricorn)"
       },
       {
-        "text": "कुंभ (Aquarius)",
+        "description": "गे, गो, सा, सू, से, सो, द",
         "letter": "♒︎",
-        "description": "गे, गो, सा, सू, से, सो, द"
+        "text": "कुंभ (Aquarius)"
       },
       {
-        "text": "मीन (Pisces)",
+        "description": "दी, चा, ची, झ, दो, दू",
         "letter": "♓︎",
-        "description": "दी, चा, ची, झ, दो, दू"
+        "text": "मीन (Pisces)"
       }
-    ]
+    ],
+    "title": "Moon Sign"
   },
-  "currencies": {
-    "title": "Country Currency Symbols",
-    "category": "currencies",
+  "music": {
+    "category": "music",
     "data": [
       {
-        "letter": "$",
-        "text": "United States",
-        "description": "Dollar (USD)"
+        "description": "Shadja (1st note)",
+        "emoji": "♩",
+        "letter": "Sa",
+        "text": "सा"
       },
       {
-        "letter": "$",
-        "text": "Canada",
-        "description": "Dollar (CAD)"
+        "description": "Rishabh (2nd note)",
+        "emoji": "♩̲",
+        "letter": "Re",
+        "text": "रे"
       },
       {
-        "letter": "₹",
-        "text": "India",
-        "description": "Rupee (INR)"
+        "description": "Gandhar (3rd note)",
+        "emoji": "♩̅ ",
+        "letter": "Ga",
+        "text": "गा"
       },
       {
-        "letter": "¥",
-        "text": "Japan",
-        "description": "Yen (JPY)"
+        "description": "Madhyam (4th note)",
+        "emoji": "♩̄̄ ",
+        "letter": "Ma",
+        "text": "मा"
       },
       {
-        "letter": "R$",
-        "text": "Brazil",
-        "description": "Real (BRL)"
+        "description": "Pancham (5th note)",
+        "emoji": "♬",
+        "letter": "Pa",
+        "text": "पा"
       },
       {
-        "letter": "$",
-        "text": "Australia",
-        "description": "Dollar (AUD)"
+        "description": "Dhaivat (6th note)",
+        "emoji": "♫",
+        "letter": "Dha",
+        "text": "धा"
       },
       {
-        "letter": "€",
-        "text": "Germany",
-        "description": "Euro (EUR)"
-      },
-      {
-        "letter": "R",
-        "text": "South Africa",
-        "description": "Rand (ZAR)"
-      },
-      {
-        "letter": "€",
-        "text": "France",
-        "description": "Euro (EUR)"
-      },
-      {
-        "letter": "£",
-        "text": "United Kingdom",
-        "description": "Pound Sterling (GBP)"
-      },
-      {
-        "letter": "¥",
-        "text": "China",
-        "description": "Yuan (CNY)"
-      },
-      {
-        "letter": "€",
-        "text": "Italy",
-        "description": "Euro (EUR)"
+        "description": "Nishad (7th note)",
+        "emoji": "♪",
+        "letter": "Ni",
+        "text": "नि"
       }
-    ]
+    ],
+    "title": "Music Notes"
   },
-  "musicnotes": {
-    "title": "Music Notes",
-    "category": "music_notes",
+  "seasons": {
+    "category": "seasons",
     "data": [
-      { "letter": "Sa", "text": "सा", "description": "Shadja (1st note)" },
-      { "letter": "Re", "text": "रे", "description": "Rishabh (2nd note)" },
-      { "letter": "Ga", "text": "गा", "description": "Gandhar (3rd note)" },
-      { "letter": "Ma", "text": "मा", "description": "Madhyam (4th note)" },
-      { "letter": "Pa", "text": "पा", "description": "Pancham (5th note)" },
-      { "letter": "Dha", "text": "धा", "description": "Dhaivat (6th note)" },
-      { "letter": "Ni", "text": "नि", "description": "Nishad (7th note)" }
-    ]
+      {
+        "description": "वसन्त",
+        "id": "spring",
+        "letter": "🌸",
+        "text": "spring"
+      },
+      {
+        "description": "ग्रीष्म",
+        "id": "summer",
+        "letter": "☀️",
+        "text": "summer"
+      },
+      {
+        "description": "बरसात",
+        "id": "monsoon",
+        "letter": "🌧️",
+        "text": "monsoon"
+      },
+      {
+        "description": "पतझड़",
+        "id": "autumn",
+        "letter": "🍂",
+        "text": "autumn"
+      },
+      {
+        "description": "हेमन्त",
+        "id": "pre_winter",
+        "letter": "🌬️",
+        "text": "pre-winter"
+      },
+      {
+        "description": "शीत",
+        "id": "winter",
+        "letter": "❄️",
+        "text": "winter"
+      }
+    ],
+    "title": "Seasons"
   },
-  "crops": {
-  "title": "Basic Crops",
-  "category": "crops",
-  "data": [
-    { "letter": "Wheat", "text": "गेहूं", "description": "A staple grain crop, used for making flour and bread." },
-    { "letter": "Rice", "text": "चावल", "description": "A major cereal grain, primary food for much of the world." },
-    { "letter": "Maize", "text": "मक्का", "description": "Also known as corn, used as food and fodder." },
-    { "letter": "Barley", "text": "जौ", "description": "A cereal grain used for food, animal feed, and brewing." },
-    { "letter": "Millet", "text": "बाजरा", "description": "A group of small-seeded grasses, important in arid regions." },
-    { "letter": "Potato", "text": "आलू", "description": "A starchy tuber, widely used as a vegetable." },
-    { "letter": "Tomato", "text": "टमाटर", "description": "A red fruit used as a vegetable in cooking." },
-    { "letter": "Carrot", "text": "गाजर", "description": "An orange root vegetable, eaten raw or cooked." },
-    { "letter": "Cucumber", "text": "खीरा", "description": "A green, refreshing vegetable, often eaten raw." },
-    { "letter": "Brinjal", "text": "बैंगन", "description": "Also called eggplant, a purple vegetable." },
-    { "letter": "Spinach", "text": "पालक", "description": "A leafy green vegetable, rich in iron." }
-  ]
-}
+  "shapes": {
+    "category": "shapes",
+    "data": [
+      {
+        "description": "A perfectly round shape with no corners or edges. All points on the edge are equidistant from the center.",
+        "id": "circle",
+        "letter": "●",
+        "text": "Circle"
+      },
+      {
+        "description": "A quadrilateral with 4 equal sides and 4 right (90-degree) angles.",
+        "id": "square",
+        "letter": "■",
+        "text": "Square"
+      },
+      {
+        "description": "A polygon with 3 sides and 3 angles (vertices).",
+        "id": "triangle",
+        "letter": "▲",
+        "text": "Triangle"
+      },
+      {
+        "description": "A quadrilateral with 4 right angles. Opposite sides are equal in length and parallel.",
+        "id": "rectangle",
+        "letter": "▭",
+        "text": "Rectangle"
+      },
+      {
+        "description": "A polygon with 5 sides and 5 angles.",
+        "id": "pentagon",
+        "letter": "⬠",
+        "text": "Pentagon"
+      },
+      {
+        "description": "A polygon with 6 sides and 6 angles.",
+        "id": "hexagon",
+        "letter": "⬢",
+        "text": "Hexagon"
+      },
+      {
+        "description": "An elongated circle, like an egg shape. A regular oval is an ellipse.",
+        "id": "oval",
+        "letter": "⬬",
+        "text": "Oval"
+      },
+      {
+        "description": "A pointed shape, typically with 5 or 6 points, formed by connecting vertices of a polygon.",
+        "id": "star",
+        "letter": "★",
+        "text": "Star"
+      },
+      {
+        "description": "A quadrilateral with all 4 sides of equal length. Opposite angles are equal.",
+        "id": "rhombus",
+        "letter": "◆",
+        "text": "Rhombus"
+      }
+    ],
+    "title": "Geometric Shapes"
+  },
+  "sunsign": {
+    "category": "sunsigns",
+    "data": [
+      {
+        "description": "March 21 - April 19",
+        "id": "aries",
+        "letter": "♈︎",
+        "text": "Aries (मेष)"
+      },
+      {
+        "description": "April 20 - May 20",
+        "id": "taurus",
+        "letter": "♉︎",
+        "text": "Taurus (वृषभ)"
+      },
+      {
+        "description": "May 21 - June 20",
+        "id": "gemini",
+        "letter": "♊︎",
+        "text": "Gemini (मिथुन)"
+      },
+      {
+        "description": "June 21 - July 22",
+        "id": "cancer",
+        "letter": "♋︎",
+        "text": "Cancer (कर्क)"
+      },
+      {
+        "description": "July 23 - August 22",
+        "id": "leo",
+        "letter": "♌︎",
+        "text": "Leo (सिंह)"
+      },
+      {
+        "description": "August 23 - September 22",
+        "id": "virgo",
+        "letter": "♍︎",
+        "text": "Virgo (कन्या)"
+      },
+      {
+        "description": "September 23 - October 22",
+        "id": "libra",
+        "letter": "♎︎",
+        "text": "Libra (तुला)"
+      },
+      {
+        "description": "October 23 - November 21",
+        "id": "scorpio",
+        "letter": "♏︎",
+        "text": "Scorpio (वृश्चिक)"
+      },
+      {
+        "description": "November 22 - December 21",
+        "id": "sagittarius",
+        "letter": "♐︎",
+        "text": "Sagittarius (धनु)"
+      },
+      {
+        "description": "December 22 - January 19",
+        "id": "capricorn",
+        "letter": "♑︎",
+        "text": "Capricorn (मकर)"
+      },
+      {
+        "description": "January 20 - February 18",
+        "id": "aquarius",
+        "letter": "♒︎",
+        "text": "Aquarius (कुंभ)"
+      },
+      {
+        "description": "February 19 - March 20",
+        "id": "pisces",
+        "letter": "♓︎",
+        "text": "Pisces (मीन)"
+      }
+    ],
+    "title": "Sun Sign"
+  },
+  "waqt": {
+    "category": "waqt",
+    "data": [
+      {
+        "description": "The first light of day before sunrise; early morning twilight.",
+        "emoji": "🌄",
+        "letter": "Dawn",
+        "text": "भोर (Bhor), सुबह (Subah)"
+      },
+      {
+        "description": "The moment the sun appears above the horizon.",
+        "emoji": "🌅",
+        "letter": "Sunrise",
+        "text": "सूर्योदय (Sooryoday), भोर (Bhor)"
+      },
+      {
+        "description": "The early part of the day, from dawn until around noon.",
+        "emoji": "🌅",
+        "letter": "Morning",
+        "text": "सुबह (Subah), प्रातः (Praatah)"
+      },
+      {
+        "description": "Midday, exactly 12:00 PM, or broadly the middle of the day.",
+        "emoji": "🕛",
+        "letter": "Noon",
+        "text": "दोपहर (Dopehar)"
+      },
+      {
+        "description": "The time after noon until late afternoon/early evening.",
+        "emoji": "☀️",
+        "letter": "Afternoon",
+        "text": "दोपहर बाद (Dopehar Baad), अपराह्न (Apraahn)"
+      },
+      {
+        "description": "The period from late afternoon until nightfall/dusk.",
+        "emoji": "🌇",
+        "letter": "Evening",
+        "text": "शाम (Shaam)"
+      },
+      {
+        "description": "Dim light period either just before sunrise or just after sunset.",
+        "emoji": "🌥️",
+        "letter": "Twilight",
+        "text": "सांझ (Saanjh), गोधूलि बेला (Godhuli Bela)"
+      },
+      {
+        "description": "The darker stage of twilight immediately after sunset.",
+        "emoji": "🌆",
+        "letter": "Dusk",
+        "text": "गोधूलि (Godhuli), शाम (Shaam)"
+      },
+      {
+        "description": "The moment the sun disappears below the horizon.",
+        "emoji": "🌇",
+        "letter": "Sunset",
+        "text": "सूर्यास्त (Sooryaast), शाम (Shaam)"
+      },
+      {
+        "description": "The period of darkness from sunset to sunrise.",
+        "emoji": "🌙",
+        "letter": "Night",
+        "text": "रात (Raat), रात्रि (Raatri)"
+      },
+      {
+        "description": "Exactly 12:00 AM, the middle of the night.",
+        "emoji": "🌃",
+        "letter": "Midnight",
+        "text": "मध्यरात्रि (Madhyaraatri), आधी रात (Aadhi Raat)"
+      },
+      {
+        "description": "The deep part of the night, usually well after midnight.",
+        "emoji": "🌌",
+        "letter": "Late Night",
+        "text": "रात गहराना (Raat Gahraana), देर रात (Der Raat)"
+      }
+    ],
+    "title": "Waqt (Times of Day)"
+  }
 }
