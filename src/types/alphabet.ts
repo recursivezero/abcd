@@ -45,8 +45,8 @@ export interface GeekAlphabetEntry {
 }
 
 export type CardSectionType = {
+  id?: string | number;
   icon?: string;
-  id?: string;
   kind?: string;
   title: string;
   description: string;

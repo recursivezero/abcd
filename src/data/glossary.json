@@ -1,11 +1,15 @@
 {
-  "colours": {
-    "category": "colours",
+  "color": {
+    "id": 1,
+    "category": "color",
+    "icon": "🎨",
+    "title": "Colours",
+    "description": "A collection of basic colours with their names.",
     "data": [
       {
         "code": "#ff0000",
         "description": "लाल",
-        "letter": "Red",
+        "letter": "R",
         "text": "Red"
       },
       {
@@ -78,11 +82,14 @@
         "letter": "W",
         "text": "White"
       }
-    ],
-    "title": "Colours"
+    ]
   },
-  "crops": {
-    "category": "crops",
+  "crop": {
+    "id": 8,
+    "category": "crop",
+    "icon": "🌾",
+    "title": "Basic Crops",
+    "description": "A collection of basic crops with their names and descriptions.",
     "data": [
       {
         "description": "A staple grain crop, used for making flour and bread.",
@@ -139,11 +146,14 @@
         "letter": "Spinach",
         "text": "पालक"
       }
-    ],
-    "title": "Basic Crops"
+    ]
   },
-  "currencies": {
-    "category": "currencies",
+  "currency": {
+    "id": 9,
+    "category": "currency",
+    "icon": "💰",
+    "title": "Currency Symbols",
+    "description": "A collection of country currency symbols with their names.",
     "data": [
       {
         "description": "Dollar (USD)",
@@ -205,11 +215,14 @@
         "letter": "€",
         "text": "Italy"
       }
-    ],
-    "title": "Country Currency Symbols"
+    ]
   },
-  "days": {
-    "category": "days",
+  "week": {
+    "id": 2,
+    "category": "week",
+    "icon": "📅",
+    "title": "Days of the Week",
+    "description": "A collection of days of the week with their names in Hindi.",
     "data": [
       {
         "description": "Sunday",
@@ -253,11 +266,14 @@
         "letter": "S",
         "text": "शनिवार"
       }
-    ],
-    "title": "Days of the Week"
+    ]
   },
-  "flags": {
-    "category": "flags",
+  "flag": {
+    "id": 3,
+    "category": "flag",
+    "icon": "🏳️",
+    "description": "A collection of country flags with their names.",
+    "title": "Country Flags",
     "data": [
       {
         "countryCode": "US",
@@ -331,47 +347,152 @@
         "id": "italy",
         "text": "Italy"
       }
-    ],
-    "title": "Country Flags"
+    ]
   },
-  "hindimonths": {
-    "category": "hindimonths",
+  "maas": {
+    "id": 4,
+    "category": "months",
+    "icon": "📅",
+    "description": "A collection of Hindu months with their names in Hindi.",
+    "title": "Hindi Months",
     "data": [
-      { "letter": "चैत्र", "text": "Chaitra", "description": "March-April (First Hindu month)" },
-      { "letter": "वैशाख", "text": "Vaishakha", "description": "April-May (Second Hindu month)" },
-      { "letter": "ज्येष्ठ", "text": "Jyeshtha", "description": "May-June (Third Hindu month)" },
-      { "letter": "आषाढ़", "text": "Ashadha", "description": "June-July (Fourth Hindu month)" },
-      { "letter": "श्रावण", "text": "Shravana", "description": "July-August (Fifth Hindu month)" },
-      { "letter": "भाद्रपद", "text": "Bhadrapada", "description": "August-September (Sixth Hindu month)" },
-      { "letter": "आश्विन", "text": "Ashvina", "description": "September-October (Seventh Hindu month)" },
-      { "letter": "कार्तिक", "text": "Kartika", "description": "October-November (Eighth Hindu month)" },
-      { "letter": "मार्गशीर्ष", "text": "Margashirsha", "description": "November-December (Ninth Hindu month)" },
-      { "letter": "पौष", "text": "Pausha", "description": "December-January (Tenth Hindu month)" },
-      { "letter": "माघ", "text": "Magha", "description": "January-February (Eleventh Hindu month)" },
-      { "letter": "फाल्गुन", "text": "Phalguna", "description": "February-March (Twelfth Hindu month)" }
-    ],
-    "title": "Hindi Months"
+      {
+        "description": "March-April (First Hindu month)",
+        "letter": "चैत्र",
+        "text": "Chaitra"
+      },
+      {
+        "description": "April-May (Second Hindu month)",
+        "letter": "वैशाख",
+        "text": "Vaishakha"
+      },
+      {
+        "description": "May-June (Third Hindu month)",
+        "letter": "ज्येष्ठ",
+        "text": "Jyeshtha"
+      },
+      {
+        "description": "June-July (Fourth Hindu month)",
+        "letter": "आषाढ़",
+        "text": "Ashadha"
+      },
+      {
+        "description": "July-August (Fifth Hindu month)",
+        "letter": "श्रावण",
+        "text": "Shravana"
+      },
+      {
+        "description": "August-September (Sixth Hindu month)",
+        "letter": "भाद्रपद",
+        "text": "Bhadrapada"
+      },
+      {
+        "description": "September-October (Seventh Hindu month)",
+        "letter": "आश्विन",
+        "text": "Ashvina"
+      },
+      {
+        "description": "October-November (Eighth Hindu month)",
+        "letter": "कार्तिक",
+        "text": "Kartika"
+      },
+      {
+        "description": "November-December (Ninth Hindu month)",
+        "letter": "मार्गशीर्ष",
+        "text": "Margashirsha"
+      },
+      {
+        "description": "December-January (Tenth Hindu month)",
+        "letter": "पौष",
+        "text": "Pausha"
+      },
+      {
+        "description": "January-February (Eleventh Hindu month)",
+        "letter": "माघ",
+        "text": "Magha"
+      },
+      {
+        "description": "February-March (Twelfth Hindu month)",
+        "letter": "फाल्गुन",
+        "text": "Phalguna"
+      }
+    ]
   },
-  "englishmonths": {
-    "category": "englishmonths",
+  "month": {
+    "id": 5,
+    "category": "months",
+    "icon": "📅",
+    "title": "English Months",
+    "description": "A collection of months with their names in English.",
     "data": [
-      { "letter": "January", "text": "जनवरी", "description": "First month of the year" },
-      { "letter": "February", "text": "फ़रवरी", "description": "Second month of the year" },
-      { "letter": "March", "text": "मार्च", "description": "Third month of the year" },
-      { "letter": "April", "text": "अप्रैल", "description": "Fourth month of the year" },
-      { "letter": "May", "text": "मई", "description": "Fifth month of the year" },
-      { "letter": "June", "text": "जून", "description": "Sixth month of the year" },
-      { "letter": "July", "text": "जुलाई", "description": "Seventh month of the year" },
-      { "letter": "August", "text": "अगस्त", "description": "Eighth month of the year" },
-      { "letter": "September", "text": "सितंबर", "description": "Ninth month of the year" },
-      { "letter": "October", "text": "अक्टूबर", "description": "Tenth month of the year" },
-      { "letter": "November", "text": "नवंबर", "description": "Eleventh month of the year" },
-      { "letter": "December", "text": "दिसंबर", "description": "Twelfth month of the year" }
-    ],
-    "title": "Hindi Months"
+      {
+        "description": "First month of the year",
+        "letter": "January",
+        "text": "जनवरी"
+      },
+      {
+        "description": "Second month of the year",
+        "letter": "February",
+        "text": "फ़रवरी"
+      },
+      {
+        "description": "Third month of the year",
+        "letter": "March",
+        "text": "मार्च"
+      },
+      {
+        "description": "Fourth month of the year",
+        "letter": "April",
+        "text": "अप्रैल"
+      },
+      {
+        "description": "Fifth month of the year",
+        "letter": "May",
+        "text": "मई"
+      },
+      {
+        "description": "Sixth month of the year",
+        "letter": "June",
+        "text": "जून"
+      },
+      {
+        "description": "Seventh month of the year",
+        "letter": "July",
+        "text": "जुलाई"
+      },
+      {
+        "description": "Eighth month of the year",
+        "letter": "August",
+        "text": "अगस्त"
+      },
+      {
+        "description": "Ninth month of the year",
+        "letter": "September",
+        "text": "सितंबर"
+      },
+      {
+        "description": "Tenth month of the year",
+        "letter": "October",
+        "text": "अक्टूबर"
+      },
+      {
+        "description": "Eleventh month of the year",
+        "letter": "November",
+        "text": "नवंबर"
+      },
+      {
+        "description": "Twelfth month of the year",
+        "letter": "December",
+        "text": "दिसंबर"
+      }
+    ]
   },
   "moonsign": {
-    "category": "moon_signs",
+    "id": 6,
+    "category": "moonsign",
+    "icon": "🌙",
+    "title": "Moon Sign",
+    "description": "A collection of moon signs with their names in Hindi.",
     "data": [
       {
         "description": "अ,च, चू, चे, ला, ली, लू, ले",
@@ -433,11 +554,14 @@
         "letter": "♓︎",
         "text": "मीन (Pisces)"
       }
-    ],
-    "title": "Moon Sign"
+    ]
   },
   "music": {
+    "id": 10,
     "category": "music",
+    "icon": "🎵",
+    "description": "A collection of music notes with their names in Hindi.",
+    "title": "Music Notes",
     "data": [
       {
         "description": "Shadja (1st note)",
@@ -481,11 +605,14 @@
         "letter": "Ni",
         "text": "नि"
       }
-    ],
-    "title": "Music Notes"
+    ]
   },
-  "seasons": {
+  "season": {
+    "id": 11,
     "category": "seasons",
+    "icon": "🌦️",
+    "title": "Seasons",
+    "description": "A collection of seasons with their names in Hindi.",
     "data": [
       {
         "description": "वसन्त",
@@ -523,11 +650,14 @@
         "letter": "❄️",
         "text": "winter"
       }
-    ],
-    "title": "Seasons"
+    ]
   },
-  "shapes": {
+  "shape": {
+    "id": 12,
     "category": "shapes",
+    "icon": "🔺",
+    "title": "Geometric Shapes",
+    "description": "A collection of basic geometric shapes with their names and descriptions.",
     "data": [
       {
         "description": "A perfectly round shape with no corners or edges. All points on the edge are equidistant from the center.",
@@ -583,11 +713,14 @@
         "letter": "◆",
         "text": "Rhombus"
       }
-    ],
-    "title": "Geometric Shapes"
+    ]
   },
   "sunsign": {
-    "category": "sunsigns",
+    "id": 7,
+    "category": "sunsign",
+    "icon": "☀️",
+    "title": "Sun Sign",
+    "description": "A collection of sun signs with their date range.",
     "data": [
       {
         "description": "March 21 - April 19",
@@ -661,11 +794,14 @@
         "letter": "♓︎",
         "text": "Pisces (मीन)"
       }
-    ],
-    "title": "Sun Sign"
+    ]
   },
   "waqt": {
+    "id": 13,
     "category": "waqt",
+    "icon": "⏰",
+    "title": "Waqt (Times of Day)",
+    "description": "A collection of times of day with their names in Hindi.",
     "data": [
       {
         "description": "The first light of day before sunrise; early morning twilight.",
@@ -739,7 +875,6 @@
         "letter": "Late Night",
         "text": "रात गहराना (Raat Gahraana), देर रात (Der Raat)"
       }
-    ],
-    "title": "Waqt (Times of Day)"
+    ]
   }
 }

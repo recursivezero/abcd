@@ -16,12 +16,8 @@
     "[html]": {
       "editor.defaultFormatter": "vscode.html-language-features"
     },
-    "[jsonc]": {
+    "[json][jsonc]": {
       "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "prettier.printWidth": 10000
     },
     "[markdown]": {
       "diffEditor.ignoreTrimWhitespace": false
@@ -196,7 +192,6 @@
     "files.readonlyInclude": {
       ".githooks/**": true
     },
-    "typescript.preferences.preferGoToSourceDefinition": true,
     "[xml]": {
       "editor.defaultFormatter": "redhat.vscode-xml"
     }
