@@ -39,6 +39,7 @@ jsonify
 Jyeshtha
 Kartika
 kmeans
+letterpad
 linalg
 lucide
 LXXX
