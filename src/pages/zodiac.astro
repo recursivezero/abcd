@@ -1,0 +1,16 @@
+---
+import BaseLayout from "@/layouts/Base";
+import Back from "@/components/Back.astro";
+import ZodiacGrid from "@/components/ZodiacGrid.astro";
+import Headers from "@/components/Header.astro";
+import "@/assets/styles/zodiac.css";
+---
+
+<BaseLayout meta={{ title: "Nakshtra Nexus" }}>
+  <Back />
+  <Headers />
+  <article>
+    <ZodiacGrid />
+  </article>
+  <script type="module" src="/js/main.js"></script></BaseLayout
+>

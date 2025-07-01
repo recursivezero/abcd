@@ -1,9 +1,9 @@
 ---
-import BackIcon from "@/components/Back.astro";
-import Stack from "@/assets/icons/stack.svg";
 import Queue from "@/assets/icons/queue.svg";
+import Stack from "@/assets/icons/stack.svg";
+import "@/assets/styles/cards/main.css";
+import BackIcon from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
-import "@/assets/styles/CardIndex.css";
 
 const meta = {
   title: "Alphabet Explorer: Learn with Motion",
@@ -11,7 +11,7 @@ const meta = {
 };
 ---
 
-<BaseLayout {meta}>
+<BaseLayout meta={meta}>
   <a href="/" class="back"><BackIcon class="bck" /></a>
   <div class="selection-container">
     <h1 class="selection-title">Explore Display Modes</h1>

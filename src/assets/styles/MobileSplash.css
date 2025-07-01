@@ -26,7 +26,9 @@
     max-width: 400px;
     width: 100%;
     border: light-dark(none, 1px solid #404040);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .container_splash_logo {

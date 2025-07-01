@@ -1,92 +1,52 @@
 ---
-import "@/assets/styles/alphabets/index.css";
+import "@/assets/styles/board.css";
 import Back from "@/components/Back.astro";
 import CardLayout from "@/components/CardLayout.astro";
+import glossaryData from "@/data/glossary.json";
 import BaseLayout from "@/layouts/Base";
 import type { CardSectionType } from "@/types/alphabet";
+import { sortById } from "@/utils";
+
+const glossarySections: CardSectionType[] = [];
+
+Object.entries(glossaryData)
+  .map(([key, value]) => {
+    const section: CardSectionType = {
+      id: value.id,
+      kind: key,
+      title: value.title || key.charAt(0).toUpperCase() + key.slice(1),
+      description: value.description || `Explore the ${key} category.`,
+      href: {
+        playground: {
+          link: `/glossary/${key}`,
+          icon: value.icon || "🔍",
+          text: "Explore"
+        }
+      }
+    };
+    return section;
+  })
+  .forEach((section) => {
+    if (!glossarySections.some((s) => s.kind === section.kind)) {
+      glossarySections.push(section);
+    }
+  });
 
 const title = "Glossary";
 const subtitle = "Explore various categories of knowledge and information";
-
-const glossarySections: CardSectionType[] = [
-  {
-    kind: "months",
-    title: "Months",
-    description: "Learn about the twelve months, their names, and order.",
-    href: {
-      playground: { link: "/glossary/months", icon: "📅", text: "Explore" }
-    }
-  },
-  {
-    kind: "sunsigns",
-    title: "Sun Signs",
-    description: "Explore the twelve zodiac sun signs and their characteristics.",
-    href: {
-      playground: { link: "/glossary/sunsign", icon: "☀️", text: "Explore" }
-    }
-  },
-  {
-    kind: "flags",
-    title: "Country Flags",
-    description: "Discover flags from various countries around the world.",
-    href: {
-      playground: { link: "/glossary/flags", icon: "🚩", text: "Explore" }
-    }
-  },
-  {
-    kind: "shapes",
-    title: "Geometric Shapes",
-    description: "Learn to identify different common geometric shapes.",
-    href: {
-      playground: { link: "/glossary/shapes", icon: "💠", text: "Explore" }
-    }
-  },
-  {
-    kind: "days",
-    title: "Days",
-    description: "Learn about the seven days of the week, their names, and order.",
-    href: {
-      playground: { link: "/glossary/days", icon: "📅", text: "Explore" }
-    }
-  },
-  {
-    kind: "seasons",
-    title: "Seasons",
-    description: "Explore the four seasons and their characteristics.",
-    href: {
-      playground: { link: "/glossary/seasons", icon: "🌸", text: "Explore" }
-    }
-  },
-  {
-    kind: "colours",
-    title: "Colours",
-    description: "Learn about different colours and their names.",
-    href: {
-      playground: { link: "/glossary/colours", icon: "🎨", text: "Explore" }
-    }
-  },
-  {
-    kind: "waqt",
-    title: "Waqt (Times of Day)",
-    description: "Learn about different times of the day and their Hindi names.",
-    href: {
-      playground: { link: "/glossary/waqt", icon: "🕰️", text: "Explore" }
-    }
-  }
-];
 ---
 
 <BaseLayout meta={{ title: "Glossary" }}>
   <Back />
-  <section class="container__alphabets">
-    <div class="alphabets__header">
+  <section class="container__board">
+    <div class="board__header">
       <h1 class="title">{title}</h1>
       <p class="subtitle">{subtitle}</p>
     </div>
-    <ul class="list__alphabets">
+    <ul class="board__list">
       {
-        glossarySections.map((section, index) => (
-          <li class="card" style={`animation-delay: ${index * 50}ms`}>
+        glossarySections.sort(sortById).map((section, index) => (
+          <li class="board__card" style={`animation-delay: ${index * 50}ms`}>
             <CardLayout section={section} />
           </li>
         ))
