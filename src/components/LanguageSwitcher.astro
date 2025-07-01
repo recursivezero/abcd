@@ -1,5 +1,5 @@
 ---
-const setLang = `(lang) => {
+export const setLang = `(lang) => {
   localStorage.setItem('language', lang);
   document.documentElement.lang = lang === 'hindi' ? 'hi' : 'en';
   document.body.classList.toggle('hindi', lang === 'hindi');

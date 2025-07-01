@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "@/layouts/Base";
-import Back from "@/components/Back.astro";
-import ZodiacGrid from "@/components/ZodiacGrid.astro";
-import Headers from "@/components/Header.astro";
 import "@/assets/styles/zodiac.css";
+import Back from "@/components/Back.astro";
+import Headers from "@/components/Header.astro";
+import ZodiacGrid from "@/components/ZodiacGrid.astro";
+import BaseLayout from "@/layouts/Base";
 ---
 
 <BaseLayout meta={{ title: "Nakshtra Nexus" }}>
@@ -12,5 +12,5 @@ import "@/assets/styles/zodiac.css";
   <article>
     <ZodiacGrid />
   </article>
-  <script type="module" src="/js/main.js"></script></BaseLayout
+  <script type="module" src="/js/main.js" is:inline></script></BaseLayout
 >

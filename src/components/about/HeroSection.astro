@@ -13,8 +13,8 @@ const { appName } = Astro.props;
     <img src={Logo.src} alt={`${appName} Logo`} class="hero-logo" />
     <h1 class="hero-title">Learning Made <span class="text-highlight">Magical!</span></h1>
     <p class="hero-text">
-      At {appName}, we transform education into captivating adventures that ignite young minds. Our interactive
-      platform takes children on an unforgettable journey through letters, words, and diverse cultures.
+      At {appName}, we transform education into captivating adventures that ignite young minds. Our interactive platform
+      takes children on an unforgettable journey through letters, words, and diverse cultures.
     </p>
     <div class="hero-buttons">
       <a href="https://parixan.xyz" class="btn btn-primary">Let's Get Started</a>
@@ -22,117 +22,119 @@ const { appName } = Astro.props;
     </div>
   </div>
   <div class="hero-bubbles">
-    {["A", "B", "C", "D", "1", "2", "🎈", "📚", "🌈"].map((char, i) => (
-      <span class="bubble" style={`--i: ${i}; --size: ${Math.random() * 2 + 1}rem;`} aria-hidden="true">
-        {char}
-      </span>
-    ))}
+    {
+      ["A", "B", "C", "D", "1", "2", "🎈", "📚", "🌈"].map((char, i) => (
+        <span class="bubble" style={`--i: ${i}; --size: ${Math.random() * 2 + 1}rem;`} aria-hidden="true">
+          {char}
+        </span>
+      ))
+    }
   </div>
 </section>
 
 <style>
-/* Hero Section */
-.hero-section {
-  position: relative;
-  text-align: center;
-  padding: 4rem 1rem;
-  margin-bottom: 4rem;
-  border-radius: 1rem;
-  background: light-dark(var(--bg-light), linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-dark) 100%));
-  box-shadow: 2px 5px 10px 3px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-.hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-  z-index: 2;
-  position: relative;
-}
-
-.hero-logo {
-  max-width: 150px;
-  height: auto;
-  margin-bottom: 1.5rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.hero-title {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: light-dark(var(--text-secondary), var(--text-primary));
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.hero-text {
-  font-size: 1.25rem;
-  color: light-dark(var(--text-secondary), var(--text-primary));
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.hero-bubbles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.bubble {
-  position: absolute;
-  background: light-dark(rgb(226, 223, 223), rgba(59, 130, 246, 0.2));
-  color: light-dark(var(--bg-dark), var(--bg-light));
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: calc(var(--size) * 0.6);
-  animation: float-up 15s linear infinite;
-  animation-delay: calc(var(--i) * 2s);
-  width: var(--size);
-  height: var(--size);
-  bottom: -10%;
-  left: calc(10% + var(--i) * 12%);
-}
-
-@keyframes float-up {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    text-align: center;
+    padding: 4rem 1rem;
+    margin-bottom: 4rem;
+    border-radius: 1rem;
+    background: light-dark(var(--bg-light), linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-dark) 100%));
+    box-shadow: 2px 5px 10px 3px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
   }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
 
-@media (max-width: 768px) {
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+  }
+
   .hero-logo {
-    max-width: 120px;
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: light-dark(var(--text-secondary), var(--text-primary));
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .hero-text {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    color: light-dark(var(--text-secondary), var(--text-primary));
+    line-height: 1.6;
+    margin-bottom: 2rem;
   }
-}
+
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .hero-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .bubble {
+    position: absolute;
+    background: light-dark(rgb(226, 223, 223), rgba(59, 130, 246, 0.2));
+    color: light-dark(var(--bg-dark), var(--bg-light));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(var(--size) * 0.6);
+    animation: float-up 15s linear infinite;
+    animation-delay: calc(var(--i) * 2s);
+    width: var(--size);
+    height: var(--size);
+    bottom: -10%;
+    left: calc(10% + var(--i) * 12%);
+  }
+
+  @keyframes float-up {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-logo {
+      max-width: 120px;
+    }
+
+    .hero-title {
+      font-size: 1.8rem;
+    }
+
+    .hero-text {
+      font-size: 1rem;
+    }
+  }
 </style>

@@ -100,60 +100,62 @@ const features: Feature[] = [
     Designed to spark curiosity and foster a lifelong love for learning through innovative experiences
   </p>
   <div class="features-grid">
-    {features.map((feature) => (
-      <div class="feature-card" style={`--accent-color: ${feature.color}`}>
-        <div class="feature-icon" aria-label={feature.title}>
-          {feature.icon}
+    {
+      features.map((feature) => (
+        <div class="feature-card" style={`--accent-color: ${feature.color}`}>
+          <div class="feature-icon" aria-label={feature.title}>
+            {feature.icon}
+          </div>
+          <h3 class="feature-title">{feature.title}</h3>
+          <p class="feature-desc">{feature.description}</p>
         </div>
-        <h3 class="feature-title">{feature.title}</h3>
-        <p class="feature-desc">{feature.description}</p>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </section>
 
 <style>
-.features-section {
-  margin-bottom: 4rem;
-}
+  .features-section {
+    margin-bottom: 4rem;
+  }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
 
-.feature-card {
-  background: light-dark(var(--bg-light), var(--bg-secondary));
-  border-radius: 1rem;
-  padding: 2rem;
-  transition: transform 0.3s ease;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+  .feature-card {
+    background: light-dark(var(--bg-light), var(--bg-secondary));
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-.feature-card:hover {
-  transform: translateY(-10px);
-}
+  .feature-card:hover {
+    transform: translateY(-10px);
+  }
 
-.feature-icon {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  color: var(--accent-color);
-}
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+  }
 
-.feature-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: light-dark(var(--primary), var(--text-main));
-}
+  .feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: light-dark(var(--primary), var(--text-main));
+  }
 
-.feature-desc {
-  color: light-dark(var(--bg-dark), var(--text-primary));
-  line-height: 1.6;
-}
+  .feature-desc {
+    color: light-dark(var(--bg-dark), var(--text-primary));
+    line-height: 1.6;
+  }
 </style>

@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #7b1fa2;
+  --primary-color: #7b1fa2;
   --secondary-color: rgba(161, 10, 144, 0.72);
   --text-color: #f5f5f5;
   --bg-color1: #121212;
@@ -18,7 +18,7 @@
   --header-bg: #1e1e1e;
   --footer-social-bg: #33353d;
 }
-[data-theme="light"]{
+[data-theme="light"] {
   --primary-color: #f12711;
   --secondary-color: #f5af19;
   --text-color: #333;
@@ -232,7 +232,6 @@ article {
     justify-content: space-between;
     width: 100%;
   }
-
 }
 
 @media (max-width: 480px) {
@@ -243,10 +242,9 @@ article {
   }
 
   .language-buttons {
-    order: 1; 
+    order: 1;
     justify-content: space-between;
   }
-
 }
 .info-btn {
   background: none;
