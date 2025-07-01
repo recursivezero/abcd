@@ -183,6 +183,12 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Sunsigns",
+    title: "Sunsigns",
+    path: "/zodiacs",
+    isActive: true
+  },
+  {
     name: "Societree",
     title: "Clan Explorer",
     path: "/clan",
