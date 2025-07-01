@@ -20,6 +20,7 @@ datetime
 Deepavali
 dhaga
 Dhaivat
+dogri
 Dussehra
 ensurepip
 fontsource
@@ -45,13 +46,16 @@ lucide
 LXXX
 Madhyam
 Magha
+maithili
 Margashirsha
 matra
 matras
 moonsign
+Nakshtra
 nameform
 Nishad
 nodownload
+odia
 Organja
 orgenja
 paksha
