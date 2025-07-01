@@ -1,11 +1,101 @@
-.container__about {
-  display: grid;
-  justify-content: center;
-  height: 90vh;
-  padding: 1rem;
+:root {
+  --bg-dark: #0f172a;
+  --bg-light: #ffffff;
+  --bg-secondary: #1e293b;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --text-main: #f8fafc;
+  --text-primary: #cbd5e1;
+  --text-secondary: #212223;
+  --accent: #f59e0b;
+}
 
-  & .moto {
-    color: #3a8657;
-    font-size: 2rem;
+.about-container {
+  background-color: light-dark(var(--bg-light), var(--bg-dark));
+  color: var(--text-main);
+  min-height: 100vh;
+  font-family: "Comic Neue", cursive, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.text-highlight {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Sections */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: light-dark(var(--text-secondary), var(--text-primary));
+  position: relative;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: light-dark(var(--bg-dark), var(--text-primary));
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem;
   }
 }
