@@ -1,43 +1,39 @@
 ---
-import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/varnmala/speak.css";
+import BaseLayout from "@/layouts/Base";
 import Help from "@/components/Help.astro";
 import BackButton from "@/components/BackButton.astro";
 ---
 
-<BaseLayout meta={{ title: "Draw and Speak" }}>
+<BaseLayout meta={{ title: "Hear and Play" }}>
+  <BackButton />
   <Fragment slot="header-right">
     <div class="controls" id="controls">
       <div class="control-group">
-        <label>Bg:</label>
         <select id="bgSelector">
+          <option aria-readonly="true" disabled>Background</option>
           <option value="none">None</option>
           <option value="gradient1">G1</option>
           <option value="gradient2">G2</option>
           <option value="gradient3">G3</option>
           <option value="gradient4">G4</option>
           <option value="gradient5">G5</option>
-          <option value="pattern1">P1</option>
-          <option value="pattern2">P2</option>
-          <option value="pattern3">P3</option>
         </select>
         <button id="toggleBg">Toggle</button>
       </div>
 
       <div class="control-group">
-        <label>Font:</label>
         <select id="fontSelector">
+          <option aria-readonly="true" disabled>Font</option>
           <option value="Arial">Arial</option>
           <option value="Georgia">Georgia</option>
           <option value="Times New Roman">Times</option>
           <option value="Roboto, sans-serif">Roboto</option>
           <option value="Verdana, sans-serif">Verdana</option>
           <option value="'Courier New', monospace">Courier</option>
-          <option value="'Lucida Console', monospace">Lucida</option>
           <option value="Impact, sans-serif">Impact</option>
           <option value="'Comic Sans MS', cursive">Comic</option>
         </select>
-        <label>Font Colour:</label>
         <input type="color" id="colorPicker" value="#000000" />
       </div>
       <div class="action">
@@ -49,7 +45,6 @@ import BackButton from "@/components/BackButton.astro";
       description="Press any letter from the keyboard to display it. Use the controls to customize the background, font, and color."
     />
   </Fragment>
-  <BackButton />
   <article class="container__english">
     <article class="container__hindi" id="letterContainer">
       <div class="letter">A</div>

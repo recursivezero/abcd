@@ -1,5 +1,4 @@
 ---
-import "@/assets/styles/varnmala/alphabet.css";
 import AlphabetComponent from "@/components/Alphabet.astro";
 import BackButton from "@/components/BackButton.astro";
 import Help from "@/components/Help.astro";
@@ -9,17 +8,15 @@ import { varnmala_english } from "@/utils/characters";
 ---
 
 <BaseLayout meta={{ title: "English" }}>
+  <BackButton />
   <Fragment slot="header-right">
     <Help
       title="English "
       description="It is a collection of alphabets in English. It is used to teach kids the basics of language."
     />
   </Fragment>
-  <BackButton />
 
   <article class="container__alphabets">
-    <section id="english">
-      <AlphabetComponent list={varnmala_english} title="English" />
-    </section>
+    <AlphabetComponent list={varnmala_english} title="English" />
   </article>
 </BaseLayout>

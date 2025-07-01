@@ -5,7 +5,8 @@ import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
 ---
 
-<BaseLayout meta={{ title: "Audio Reader" }}>
+<BaseLayout meta={{ title: "Listen the Letter" }}>
+  <BackButton />
   <Fragment slot="header-right">
     <div class="action">
       <button type="button" title="click audio" id="mute" class="mute-button mute-button-audio"></button>
@@ -28,7 +29,6 @@ import BackButton from "@/components/BackButton.astro";
     />
   </Fragment>
 
-  <BackButton />
   <article id="container__reader" class="container__reader">a🍎</article>
   <section class="section--audio hide">
     <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>

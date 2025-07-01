@@ -45,6 +45,7 @@ LXXX
 Madhyam
 Magha
 Margashirsha
+matra
 matras
 moonsign
 nameform
