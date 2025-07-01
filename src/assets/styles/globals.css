@@ -123,6 +123,7 @@
 
     &.content {
       grid-area: content;
+      height: 100vh;
     }
   }
 
@@ -170,11 +171,7 @@
     min-height: 100vh;
   }
 
-  @media (max-width: 768px) {
-    .content {
-      height: 10vh;
-    }
-  }
+
 
   .layout {
     height: fit-content;

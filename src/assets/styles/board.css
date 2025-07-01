@@ -1,5 +1,4 @@
 .container__board {
-  padding: 2rem clamp(1rem, 5vw, 3rem);
   max-width: 80vw;
   margin: 0 auto;
   min-height: 100vh;
@@ -61,7 +60,6 @@
 
 @media (max-width: 768px) {
   .container__board {
-    padding: 1rem clamp(0.75rem, 3vw, 1.5rem);
 
     & .board__list {
       padding: 0 clamp(0.5rem, 2vw, 1rem);
@@ -73,7 +71,6 @@
 
 @media (max-width: 480px) {
   .container__board {
-    padding: 0.75rem clamp(0.5rem, 2vw, 1rem);
 
     & .board__list {
       padding: 0 0.5rem;
