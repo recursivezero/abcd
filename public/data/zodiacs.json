@@ -1,0 +1,230 @@
+[
+  {
+    "name": {
+      "english": "Mesha (Aries)",
+      "hindi": "मेष (मेष राशि)"
+    },
+    "dates": {
+      "english": "April 14 - May 14",
+      "hindi": "14 अप्रैल - 14 मई"
+    },
+    "image": "1.jpeg",
+    "description": {
+      "english": "Mesha is the first sign of the Indian zodiac, represented by the Ram. People born under this sign are known for their leadership qualities, courage, and enthusiasm.",
+      "hindi": "मेष भारतीय राशि चक्र का पहला चिन्ह है, जिसे मेढ़े द्वारा दर्शाया जाता है। इस राशि के लोग नेतृत्व गुणों, साहस और उत्साह के लिए जाने जाते हैं।"
+    },
+    "points": {
+      "english": ["Corresponding Letters:A, L, E, C", "Ruled by Mars (Mangal) - planet of energy and action", "Fire sign - passionate and dynamic personality", "Natural leaders with competitive spirit", "Impulsive decision makers but quick learners", "Best suited for careers in military, sports or entrepreneurship", "Health concerns: Headaches, high blood pressure", "Compatible with Leo and Sagittarius"],
+      "hindi": ["संबंधित अक्षर: अ, ल, ई, च", "मंगल ग्रह द्वारा शासित - ऊर्जा और कार्य का ग्रह", "अग्नि तत्व - उत्साही और गतिशील व्यक्तित्व", "प्राकृतिक नेता प्रवृत्ति के साथ प्रतिस्पर्धी स्वभाव", "आवेगी निर्णय लेने वाले परंतु तीव्र सीखने की क्षमता", "सेना, खेल या उद्यमिता में करियर के लिए उपयुक्त", "स्वास्थ्य संबंधी चिंताएँ: सिरदर्द, उच्च रक्तचाप", "सिंह और धनु राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Vrishabha (Taurus)",
+      "hindi": "वृषभ (वृषभ राशि)"
+    },
+    "dates": {
+      "english": "May 15 - June 14",
+      "hindi": "15 मई - 14 जून"
+    },
+    "image": "2.jpeg",
+    "description": {
+      "english": "Vrishabha is represented by the Bull. Individuals born under this sign are typically reliable, patient, and practical, with a strong connection to material comforts.",
+      "hindi": "वृषभ को बैल द्वारा दर्शाया जाता है। इस राशि के जातक आमतौर पर विश्वसनीय, धैर्यवान और व्यावहारिक होते हैं, जो भौतिक सुखों से गहरा जुड़ाव रखते हैं।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: B,V,U,W", "Ruled by Venus (Shukra) - planet of love and beauty", "Earth sign - grounded and stable personality", "Extremely patient but can be stubborn", "Have great appreciation for arts and luxury", "Excel in banking, real estate and agriculture", "Health concerns: Throat and thyroid issues", "Compatible with Virgo and Capricorn"],
+      "hindi": ["संबंधित अक्षर:  ब, व, उ, ऊ", "शुक्र ग्रह द्वारा शासित - प्रेम और सौंदर्य का ग्रह", "पृथ्वी तत्व - स्थिर और व्यावहारिक व्यक्तित्व", "अत्यधिक धैर्यवान परंतु जिद्दी स्वभाव", "कला और विलासिता के प्रति गहरी रुचि", "बैंकिंग, रियल एस्टेट और कृषि में उत्कृष्ट", "स्वास्थ्य संबंधी चिंताएँ: गले और थायरॉयड समस्याएँ", "कन्या और मकर राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Mithuna (Gemini)",
+      "hindi": "मिथुन (मिथुन राशि)"
+    },
+    "dates": {
+      "english": "June 15 - July 14",
+      "hindi": "15 जून - 14 जुलाई"
+    },
+    "image": "3.jpeg",
+    "description": {
+      "english": "Mithuna is symbolized by the Twins. Those born under this sign are often adaptable, communicative, and intellectually curious, with a dual nature.",
+      "hindi": "मिथुन को जुड़वां बच्चों द्वारा दर्शाया जाता है। इस राशि के लोग अक्सर अनुकूलनीय, संवादशील और बौद्धिक रूप से जिज्ञासु होते हैं, जिनमें द्वैध स्वभाव होता है।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: K,Ch,Gh", "Ruled by Mercury (Budh) - planet of communication", "Air sign - intellectual and social personality", "Quick learners with excellent communication skills", "Can be inconsistent due to dual nature", "Best suited for journalism, teaching and IT fields", "Health concerns: Nervous system and lung issues", "Compatible with Libra and Aquarius"],
+      "hindi": ["संबंधित अक्षर: क, छ, घ", "बुध ग्रह द्वारा शासित - संचार का ग्रह", "वायु तत्व - बौद्धिक और सामाजिक व्यक्तित्व", "तीव्र सीखने की क्षमता और उत्कृष्ट संचार कौशल", "द्वैध स्वभाव के कारण अस्थिर हो सकते हैं", "पत्रकारिता, शिक्षण और आईटी क्षेत्रों के लिए उपयुक्त", "स्वास्थ्य संबंधी चिंताएँ: तंत्रिका तंत्र और फेफड़ों की समस्याएँ", "तुला और कुंभ राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Karka (Cancer)",
+      "hindi": "कर्क (कर्क राशि)"
+    },
+    "dates": {
+      "english": "July 15 - August 14",
+      "hindi": "15 जुलाई - 14 अगस्त"
+    },
+    "image": "4.jpeg",
+    "description": {
+      "english": "Karka is represented by the Crab. People of this sign are typically emotional, intuitive, and nurturing, with strong connections to home and family.",
+      "hindi": "कर्क को केकड़े द्वारा दर्शाया जाता है। इस राशि के लोग आमतौर पर भावुक, अंतर्ज्ञानी और पोषण करने वाले होते हैं, जो घर और परिवार से मजबूत जुड़ाव रखते हैं।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: D,H", "Ruled by Moon (Chandra) - planet of emotions", "Water sign - sensitive and caring personality", "Highly intuitive with strong memory", "Can be moody and overly sensitive", "Excel in nursing, psychology and culinary arts", "Health concerns: Digestive issues and anxiety", "Compatible with Scorpio and Pisces"],
+      "hindi": ["संबंधित अक्षर: ड, ह", "चंद्रमा द्वारा शासित - भावनाओं का ग्रह", "जल तत्व - संवेदनशील और देखभाल करने वाला व्यक्तित्व", "अत्यधिक अंतर्ज्ञानी और तीव्र स्मरण शक्ति", "मूड स्विंग्स और अतिसंवेदनशील हो सकते हैं", "नर्सिंग, मनोविज्ञान और पाक कला में उत्कृष्ट", "स्वास्थ्य संबंधी चिंताएँ: पाचन समस्याएँ और चिंता", "वृश्चिक और मीन राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Simha (Leo)",
+      "hindi": "सिंह (सिंह राशि)"
+    },
+    "dates": {
+      "english": "August 15 - September 15",
+      "hindi": "15 अगस्त - 15 सितंबर"
+    },
+    "image": "5.jpeg",
+    "description": {
+      "english": "Simha is symbolized by the Lion. Individuals born under this sign are often confident, generous, and natural leaders who enjoy being in the spotlight.",
+      "hindi": "सिंह को शेर द्वारा दर्शाया जाता है। इस राशि के जातक अक्सर आत्मविश्वासी, उदार और प्राकृतिक नेता होते हैं जो स्पॉटलाइट में रहना पसंद करते हैं।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: M,T", "Ruled by Sun (Surya) - planet of vitality", "Fire sign - charismatic and bold personality", "Natural performers with leadership qualities", "Can be arrogant and attention-seeking", "Best suited for politics, entertainment and management", "Health concerns: Heart and back problems", "Compatible with Aries and Sagittarius"],
+      "hindi": ["संबंधित अक्षर: म, ट", "सूर्य द्वारा शासित - जीवन शक्ति का ग्रह", "अग्नि तत्व - करिश्माई और साहसी व्यक्तित्व", "नेतृत्व गुणों के साथ प्राकृतिक प्रदर्शनकर्ता", "अहंकारी और ध्यान आकर्षित करने वाले हो सकते हैं", "राजनीति, मनोरंजन और प्रबंधन के लिए उपयुक्त", "स्वास्थ्य संबंधी चिंताएँ: हृदय और पीठ की समस्याएँ", "मेष और धनु राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Kanya (Virgo)",
+      "hindi": "कन्या (कन्या राशि)"
+    },
+    "dates": {
+      "english": "September 16 - October 15",
+      "hindi": "16 सितंबर - 15 अक्टूबर"
+    },
+    "image": "6.jpeg",
+    "description": {
+      "english": "Kanya is represented by the Virgin. Those born under this sign are typically analytical, practical, and detail-oriented, with a strong sense of service.",
+      "hindi": "कन्या को कुंवारी द्वारा दर्शाया जाता है। इस राशि के लोग आमतौर पर विश्लेषणात्मक, व्यावहारिक और विस्तार-उन्मुख होते हैं, जिनमें सेवा की प्रबल भावना होती है।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: P,Th,N", "Ruled by Mercury (Budh) - planet of intellect", "Earth sign - methodical and organized personality", "Perfectionists with strong analytical skills", "Can be overly critical and worrisome", "Excel in healthcare, research and accounting", "Health concerns: Digestive and nervous disorders", "Compatible with Taurus and Capricorn"],
+      "hindi": ["संबंधित अक्षर: प, ठ, ण", "बुध ग्रह द्वारा शासित - बुद्धि का ग्रह", "पृथ्वी तत्व - व्यवस्थित और संगठित व्यक्तित्व", "मजबूत विश्लेषणात्मक कौशल के साथ पूर्णतावादी", "अत्यधिक आलोचनात्मक और चिंतित हो सकते हैं", "स्वास्थ्य सेवा, शोध और लेखा में उत्कृष्ट", "स्वास्थ्य संबंधी चिंताएँ: पाचन और तंत्रिका संबंधी विकार", "वृषभ और मकर राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Tula (Libra)",
+      "hindi": "तुला (तुला राशि)"
+    },
+    "dates": {
+      "english": "October 16 - November 14",
+      "hindi": "16 अक्टूबर - 14 नवंबर"
+    },
+    "image": "7.jpeg",
+    "description": {
+      "english": "Tula is symbolized by the Scales. People of this sign are often diplomatic, social, and fair-minded, with a strong sense of justice and balance.",
+      "hindi": "तुला को तराजू द्वारा दर्शाया जाता है। इस राशि के लोग अक्सर कूटनीतिक, सामाजिक और निष्पक्ष विचारों वाले होते हैं, जिनमें न्याय और संतुलन की प्रबल भावना होती है।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: R,T", "Ruled by Venus (Shukra) - planet of harmony", "Air sign - charming and balanced personality", "Natural peacemakers with good taste", "Can be indecisive and people-pleasers", "Best suited for law, diplomacy and arts", "Health concerns: Kidney and skin issues", "Compatible with Gemini and Aquarius"],
+      "hindi": ["संबंधित अक्षर: र, त", "शुक्र ग्रह द्वारा शासित - सामंजस्य का ग्रह", "वायु तत्व - आकर्षक और संतुलित व्यक्तित्व", "अच्छे स्वाद के साथ प्राकृतिक शांतिदूत", "अनिर्णायक और लोगों को खुश करने वाले हो सकते हैं", "कानून, कूटनीति और कला के लिए उपयुक्त", "स्वास्थ्य संबंधी चिंताएँ: गुर्दे और त्वचा की समस्याएँ", "मिथुन और कुंभ राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Vrishchika (Scorpio)",
+      "hindi": "वृश्चिक (वृश्चिक राशि)"
+    },
+    "dates": {
+      "english": "November 15 - December 14",
+      "hindi": "15 नवंबर - 14 दिसंबर"
+    },
+    "image": "8.jpeg",
+    "description": {
+      "english": "Vrishchika is represented by the Scorpion. Individuals born under this sign are typically passionate, resourceful, and determined, with strong intuitive abilities.",
+      "hindi": "वृश्चिक को बिच्छू द्वारा दर्शाया जाता है। इस राशि के जातक आमतौर पर भावुक, साधन संपन्न और दृढ़ निश्चयी होते हैं, जिनमें मजबूत अंतर्ज्ञानी क्षमताएं होती हैं।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: N,Y", "Ruled by Mars (Mangal) and Ketu - planets of intensity", "Water sign - mysterious and transformative personality", "Excellent researchers with strong willpower", "Can be secretive and vengeful", "Excel in investigation, medicine and occult sciences", "Health concerns: Reproductive system issues", "Compatible with Cancer and Pisces"],
+      "hindi": ["संबंधित अक्षर: N, Y", "मंगल और केतु द्वारा शासित - तीव्रता के ग्रह", "जल तत्व - रहस्यमय और परिवर्तनशील व्यक्तित्व", "मजबूत इच्छाशक्ति के साथ उत्कृष्ट शोधकर्ता", "गोपनीय और प्रतिशोधी हो सकते हैं", "जाँच, चिकित्सा और गूढ़ विद्याओं में उत्कृष्ट", "स्वास्थ्य संबंधी चिंताएँ: प्रजनन प्रणाली की समस्याएँ", "कर्क और मीन राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Dhanu (Sagittarius)",
+      "hindi": "धनु (धनु राशि)"
+    },
+    "dates": {
+      "english": "December 15 - January 13",
+      "hindi": "15 दिसंबर - 13 जनवरी"
+    },
+    "image": "9.jpeg",
+    "description": {
+      "english": "Dhanu is symbolized by the Archer. Those born under this sign are often optimistic, adventurous, and philosophical, with a love for freedom and exploration.",
+      "hindi": "धनु को धनुर्धर द्वारा दर्शाया जाता है। इस राशि के लोग अक्सर आशावादी, साहसी और दार्शनिक होते हैं, जिन्हें स्वतंत्रता और अन्वेषण का प्रेम होता है।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: Bh,Dh,Ph,Ddh", "Ruled by Jupiter (Guru) - planet of wisdom", "Fire sign - enthusiastic and freedom-loving personality", "Natural teachers with broad perspective", "Can be tactless and over-optimistic", "Best suited for teaching, travel and philosophy", "Health concerns: Liver and hip issues", "Compatible with Aries and Leo"],
+      "hindi": ["संबंधित अक्षर: भ, ध, फ, ढ", "गुरु ग्रह द्वारा शासित - ज्ञान का ग्रह", "अग्नि तत्व - उत्साही और स्वतंत्रता-प्रेमी व्यक्तित्व", "व्यापक दृष्टिकोण के साथ प्राकृतिक शिक्षक", "असभ्य और अति-आशावादी हो सकते हैं", "शिक्षण, यात्रा और दर्शन के लिए उपयुक्त", "स्वास्थ्य संबंधी चिंताएँ: यकृत और कूल्हे की समस्याएँ", "मेष और सिंह राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Makara (Capricorn)",
+      "hindi": "मकर (मकर राशि)"
+    },
+    "dates": {
+      "english": "January 14 - February 11",
+      "hindi": "14 जनवरी - 11 फरवरी"
+    },
+    "image": "10.jpeg",
+    "description": {
+      "english": "Makara is represented by the Crocodile or Sea-Goat. People of this sign are typically disciplined, ambitious, and practical, with strong organizational skills.",
+      "hindi": "मकर को मगरमच्छ या समुद्री बकरी द्वारा दर्शाया जाता है। इस राशि के लोग आमतौर पर अनुशासित, महत्वाकांक्षी और व्यावहारिक होते हैं, जिनमें मजबूत संगठनात्मक कौशल होते हैं।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: Kh.J", "Ruled by Saturn (Shani) - planet of discipline", "Earth sign - responsible and patient personality", "Excellent planners with long-term vision", "Can be pessimistic and workaholic", "Excel in administration, engineering and politics", "Health concerns: Bones and joints pain", "Compatible with Taurus and Virgo"],
+      "hindi": ["संबंधित अक्षर:  ख, ज", "शनि ग्रह द्वारा शासित - अनुशासन का ग्रह", "पृथ्वी तत्व - जिम्मेदार और धैर्यवान व्यक्तित्व", "दीर्घकालिक दृष्टि के साथ उत्कृष्ट योजनाकार", "निराशावादी और कार्यरत हो सकते हैं", "प्रशासन, इंजीनियरिंग और राजनीति में उत्कृष्ट", "स्वास्थ्य संबंधी चिंताएँ: हड्डियों और जोड़ों का दर्द", "वृषभ और कन्या राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Kumbha (Aquarius)",
+      "hindi": "कुंभ (कुंभ राशि)"
+    },
+    "dates": {
+      "english": "February 12 - March 12",
+      "hindi": "12 फरवरी - 12 मार्च"
+    },
+    "image": "11.jpeg",
+    "description": {
+      "english": "Kumbha is symbolized by the Water Bearer. Individuals born under this sign are often innovative, humanitarian, and independent thinkers with progressive ideas.",
+      "hindi": "कुंभ को कलश वाहक द्वारा दर्शाया जाता है। इस राशि के जातक अक्सर नवप्रवर्तक, मानवतावादी और स्वतंत्र विचारक होते हैं जिनके पास प्रगतिशील विचार होते हैं।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: G, S, Sh, Ss", "Ruled by Saturn (Shani) and Rahu - planets of innovation", "Air sign - unconventional and intellectual personality", "Visionaries with unique perspectives", "Can be emotionally detached and stubborn", "Best suited for technology, science and social work", "Health concerns: Circulatory system issues", "Compatible with Gemini and Libra"],
+      "hindi": ["संबंधित अक्षर: ग, स, श, ष", "शनि और राहु द्वारा शासित - नवाचार के ग्रह", "वायु तत्व - अपरंपरागत और बौद्धिक व्यक्तित्व", "अनोखे दृष्टिकोण के साथ दूरदर्शी", "भावनात्मक रूप से अलग और जिद्दी हो सकते हैं", "प्रौद्योगिकी, विज्ञान और सामाजिक कार्य के लिए उपयुक्त", "स्वास्थ्य संबंधी चिंताएँ: परिसंचरण तंत्र की समस्याएँ", "मिथुन और तुला राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
+      "english": "Meena (Pisces)",
+      "hindi": "मीन (मीन राशि)"
+    },
+    "dates": {
+      "english": "March 13 - April 13",
+      "hindi": "13 मार्च - 13 अप्रैल"
+    },
+    "image": "12.jpeg",
+    "description": {
+      "english": "Meena is represented by the Fish. Those born under this sign are typically compassionate, artistic, and intuitive, with a strong connection to the spiritual realm.",
+      "hindi": "मीन को मछली द्वारा दर्शाया जाता है। इस राशि के लोग आमतौर पर दयालु, कलात्मक और अंतर्ज्ञानी होते हैं, जिनका आध्यात्मिक क्षेत्र से गहरा जुड़ाव होता है।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: D,Sh,Ss,Ksh", "Ruled by Jupiter (Guru) - planet of spirituality", "Water sign - sensitive and imaginative personality", "Natural healers with psychic abilities", "Can be escapist and overly trusting", "Excel in arts, spirituality and healing professions", "Health concerns: Feet and lymphatic system", "Compatible with Cancer and Scorpio"],
+      "hindi": ["संबंधित अक्षर:  द, श, ष, क्ष", "गुरु ग्रह द्वारा शासित - आध्यात्मिकता का ग्रह", "जल तत्व - संवेदनशील और कल्पनाशील व्यक्तित्व", "मानसिक क्षमताओं के साथ प्राकृतिक चिकित्सक", "पलायनवादी और अति-विश्वासी हो सकते हैं", "कला, आध्यात्मिकता और उपचार व्यवसायों में उत्कृष्ट", "स्वास्थ्य संबंधी चिंताएँ: पैर और लसीका प्रणाली", "कर्क और वृश्चिक राशि के साथ अच्छी संगतता"]
+    }
+  }
+]

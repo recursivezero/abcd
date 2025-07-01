@@ -3,9 +3,10 @@ import BaseLayout from "@/layouts/Base";
 import stateData from "@/data/state.json";
 import "@/assets/styles/map/state.css";
 import BackButton from "@/components/BackButton.astro";
-import District from "@/components/map/District.astro";
+import District from "@/components/District.astro";
 
 export const prerender = true;
+
 export function getStaticPaths() {
   return stateData.map((state) => ({
     params: { state: state.id },

@@ -1,0 +1,62 @@
+.container__consonant {
+  height: 100%;
+  padding: 2rem;
+
+  & .consonant__header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    & .consonant {
+      margin: 0 auto;
+      font-size: 2rem;
+      color: aquamarine;
+    }
+  }
+
+  & .combinations__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--background);
+  }
+
+  & .combination__card {
+    background-color: color-mix(in srgb, var(--secondary) 15%, var(--background) 85%);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    display: grid;
+    place-items: center;
+    gap: 0.5rem;
+  }
+
+  & .combination__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  & .combination__result {
+    font-size: 7rem;
+    font-weight: normal;
+  }
+
+  @container (min-width: 768px) {
+    .combination-result {
+      font-size: 4rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    & .combinations__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
