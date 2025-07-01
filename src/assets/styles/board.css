@@ -60,7 +60,6 @@
 
 @media (max-width: 768px) {
   .container__board {
-
     & .board__list {
       padding: 0 clamp(0.5rem, 2vw, 1rem);
       grid-template-columns: 1fr;
@@ -71,7 +70,6 @@
 
 @media (max-width: 480px) {
   .container__board {
-
     & .board__list {
       padding: 0 0.5rem;
     }

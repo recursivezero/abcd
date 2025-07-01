@@ -34,20 +34,20 @@ const games = {
     <div class="header-content">
       <h1 class="selection-title">Select a creative mode</h1>
     </div>
-      <div class="selection-buttons-grid">
-        {
-          Object.entries(games).map(([route, game]) => (
-            <GameCard
-              cardType={route as "grid" | "kbd"}
-              title={game.title}
-              description={game.description}
-              href={game.href}
-            >
-              {route === "grid" && <GridGameIcon slot="grid-icon" />}
-              {route === "kbd" && <KeyboardGameIcon slot="keyboard-icon" />}
-            </GameCard>
-          ))
-        }
-      </div>
+    <div class="selection-buttons-grid">
+      {
+        Object.entries(games).map(([route, game]) => (
+          <GameCard
+            cardType={route as "grid" | "kbd"}
+            title={game.title}
+            description={game.description}
+            href={game.href}
+          >
+            {route === "grid" && <GridGameIcon slot="grid-icon" />}
+            {route === "kbd" && <KeyboardGameIcon slot="keyboard-icon" />}
+          </GameCard>
+        ))
+      }
+    </div>
   </div>
 </BaseLayout>
