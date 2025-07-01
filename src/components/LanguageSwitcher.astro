@@ -6,14 +6,15 @@ const setLang = `(lang) => {
   window.dispatchEvent(new Event('languagechange'));
 }`;
 ---
+
 <div class="language-buttons">
   <button class="language-btn" id="englishBtn">English</button>
   <button class="language-btn" id="hindiBtn">हिंदी</button>
 </div>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const lang = localStorage.getItem('language') || 'english';
-    const btn = document.getElementById(lang + 'Btn');
-    if (btn) btn.classList.add('active');
+  document.addEventListener("DOMContentLoaded", function () {
+    const lang = localStorage.getItem("language") || "english";
+    const btn = document.getElementById(lang + "Btn");
+    if (btn) btn.classList.add("active");
   });
 </script>
