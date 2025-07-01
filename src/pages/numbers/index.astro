@@ -2,43 +2,53 @@
 import "@/assets/styles/board.css";
 import Back from "@/components/Back.astro";
 import CardLayout from "@/components/CardLayout.astro";
+import NumberData from "@/data/numbers.json";
 import BaseLayout from "@/layouts/Base";
 import type { CardSectionType } from "@/types/alphabet";
+import { sortById } from "@/utils";
 
-const title = "Number systems";
+const numberSections: CardSectionType[] = [];
 
-const subtitle = "Explore various number systems and their representations";
-
-const numberSections: CardSectionType[] = [
-  {
-    kind: "english-numbers",
-    title: "English Numbers",
-    description: "Learn about numbers in English and their multiplication tables.",
-    href: {
-      playground: { link: "/numbers/english", icon: "🔢", text: "Explore" }
+//  English Numbers
+numberSections.push({
+  id: 0,
+  kind: "english",
+  title: "English Numbers",
+  description: "A collection of numbers in English numerals.",
+  href: {
+    playground: {
+      link: "/numbers/english",
+      icon: "🔢",
+      text: "Explore"
     }
-  },
-  {
-    kind: "hindi-numbers",
-    title: "Hindi Numbers",
-    description: "Learn Devanagari numerals and their names.",
-    href: {
-      playground: { link: "/numbers/hindi", icon: "🔢", text: "Explore" }
-    }
-  },
-  {
-    kind: "roman-numerals",
-    title: "Roman Numerals",
-    description: "Learn to read and write Roman numerals.",
-    href: { playground: { link: "/numbers/roman", icon: "🏛️", text: "Explore" } }
-  },
-  {
-    kind: "morse-code-numbers",
-    title: "Morse Code Numbers",
-    description: "Learn to read and write Morse code for numbers.",
-    href: { playground: { link: "/numbers/morse", icon: "📡", text: "Explore" } }
   }
-];
+});
+
+Object.entries(NumberData)
+  .map(([key, value]) => {
+    const section: CardSectionType = {
+      id: value.id,
+      kind: key,
+      title: value.title || key.charAt(0).toUpperCase() + key.slice(1),
+      description: value.description || `Explore the ${key} category.`,
+      href: {
+        playground: {
+          link: `/numbers/${key}`,
+          icon: value.icon || "🔍",
+          text: "Explore"
+        }
+      }
+    };
+    return section;
+  })
+  .forEach((section) => {
+    if (!numberSections.some((s) => s.kind === section.kind)) {
+      numberSections.push(section);
+    }
+  });
+
+const title = "Numbers";
+const subtitle = "Explore various categories of numbers";
 ---
 
 <BaseLayout meta={{ title: "Numbers" }}>
@@ -50,7 +60,7 @@ const numberSections: CardSectionType[] = [
     </div>
     <ul class="board__list">
       {
-        numberSections.map((section, index) => (
+        numberSections.sort(sortById).map((section, index) => (
           <li class="board__card" style={`animation-delay: ${index * 50}ms`}>
             <CardLayout section={section} />
           </li>
