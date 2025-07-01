@@ -28,18 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("englishBtn")?.addEventListener("click", () => setLanguage("english"));
   document.getElementById("hindiBtn")?.addEventListener("click", () => setLanguage("hindi"));
 
-  // Dark mode
-  const darkToggle = document.getElementById("darkModeToggle");
-  if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-    if (darkToggle) darkToggle.checked = true;
-  }
-  darkToggle?.addEventListener("change", () => {
-    const enabled = darkToggle.checked;
-    document.body.classList.toggle("dark-mode", enabled);
-    localStorage.setItem("darkMode", enabled ? "enabled" : "disabled");
-  });
-
   // Zodiac page logic
   if (window.location.pathname.includes("zodiac")) {
     fetch("/data/zodiacs.json")
@@ -52,8 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
           zodiacs.forEach((zodiac, i) => {
             const card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `<h3>${zodiac.name[currentLang]}</h3><p>${zodiac.dates[currentLang]}</p>`;
-            card.addEventListener("click", () => openModal(i));
+            card.innerHTML = `
+              <h3>${zodiac.name[currentLang]}</h3>
+              <p>${zodiac.dates[currentLang]}</p>
+              <button class="info-btn" title="Show Info" data-index="${i}">
+                <span class="icon">🔍</span>
+              </button>
+            `;
             zodiacsGrid.appendChild(card);
           });
         }
@@ -77,6 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("languagechange", () => {
           currentLang = localStorage.getItem("language") || "english";
           renderCards();
+        });
+        zodiacsGrid.addEventListener("click", (e) => {
+          const btn = e.target.closest(".info-btn");
+          if (btn) {
+            const idx = btn.getAttribute("data-index");
+            openModal(Number(idx));
+          }
         });
         renderCards();
       });
