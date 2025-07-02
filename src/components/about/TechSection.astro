@@ -7,7 +7,7 @@
     </p>
     <div class="tech-icons">
       {
-        ["🔡", "🌍", "🎨", "📖", "🗣️"].map((icon, i) => (
+        ["🔡", "🌍", "🎨", "📖", "🗣️","🧮","🎲","🚀"].map((icon, i) => (
           <span class="tech-icon" style={`--i: ${i}`} aria-hidden="true">
             {icon}
           </span>
@@ -44,6 +44,7 @@
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
   }
 
   .tech-icon {
@@ -62,9 +63,49 @@
     }
   }
 
+  /* Tablet */
+  @media (max-width: 992px) {
+    .tech-section {
+      padding: 3rem 2rem;
+    }
+    
+    .tech-text {
+      font-size: 1.1rem;
+    }
+    
+    .tech-icon {
+      font-size: 2rem;
+    }
+  }
+
+  /* Mobile */
   @media (max-width: 768px) {
     .tech-section {
-      padding: 3rem 1rem;
+      padding: 2.5rem 1.5rem;
+    }
+    
+    .tech-text {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tech-icons {
+      gap: 1.5rem;
+    }
+  }
+
+  /* Small Mobile */
+  @media (max-width: 480px) {
+    .tech-section {
+      padding: 2rem 1rem;
+    }
+    
+    .tech-icons {
+      gap: 1rem;
+    }
+    
+    .tech-icon {
+      font-size: 1.8rem;
     }
   }
 </style>

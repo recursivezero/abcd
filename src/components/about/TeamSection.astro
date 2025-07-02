@@ -56,7 +56,6 @@ const getInitials = (name: string): string => {
 </section>
 
 <style>
-  /* Team Section */
   .team-section {
     margin-bottom: 4rem;
   }
@@ -162,10 +161,60 @@ const getInitials = (name: string): string => {
     }
   }
 
-  @media (max-width: 768px) {
+  /* Tablet */
+  @media (max-width: 992px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
     .team-image-container {
       width: 120px;
       height: 120px;
+    }
+    
+    .team-name {
+      font-size: 1.3rem;
+    }
+    
+    .team-desc {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .team-card {
+      padding: 1.5rem;
+    }
+    
+    .team-image-container {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .team-avatar {
+      font-size: 2rem;
+    }
+  }
+
+  /* Small Mobile */
+  @media (max-width: 480px) {
+    .team-card {
+      padding: 1.25rem;
+    }
+    
+    .team-name {
+      font-size: 1.2rem;
+    }
+    
+    .team-desc {
+      font-size: 0.85rem;
     }
   }
 </style>

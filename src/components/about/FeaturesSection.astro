@@ -10,7 +10,7 @@ const features: Feature[] = [
   {
     title: "Alphabet Adventures",
     description:
-      "Embark on a journey through letters with interactive games that teach English, Hindi, and Braille. Track progress and explore creative representations like fruits, animals, countries, and geeky codes!",
+      "Embark on a journey through letters with interactive games that teach English, Hindi, and Braille. Track progress and explore creative representations like fruits and animals!",
     icon: "🔤",
     color: "#3b82f6"
   },
@@ -157,5 +157,43 @@ const features: Feature[] = [
   .feature-desc {
     color: light-dark(var(--bg-dark), var(--text-primary));
     line-height: 1.6;
+  }
+
+  /* Tablet */
+  @media (max-width: 992px) {
+    .features-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    
+    .feature-card {
+      padding: 1.5rem;
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+    }
+    
+    .feature-title {
+      font-size: 1.3rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .feature-card {
+      padding: 1.5rem 1rem;
+    }
+    
+    .feature-title {
+      font-size: 1.2rem;
+    }
+    
+    .feature-desc {
+      font-size: 0.9rem;
+    }
   }
 </style>
