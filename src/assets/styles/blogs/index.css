@@ -1,3 +1,24 @@
+:root {
+  --background-light: #f8fafc;
+  --background-dark: #0f172a;
+  --text-light: #1e293b;
+  --text-dark: #f1f5f9;
+  --secondary-light: #64748b;
+  --secondary-dark: #94a3b8;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --primary-dark: #1d4ed8;
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --border-light: #e2e8f0;
+  --border-dark: #475569;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --card-light: #ffffff;
+  --card-dark: #1e293b;
+  --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
 .container__blog {
   max-width: 1440px;
   margin: 0 auto;
