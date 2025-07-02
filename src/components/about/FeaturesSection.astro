@@ -1,0 +1,161 @@
+---
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+const features: Feature[] = [
+  {
+    title: "Alphabet Adventures",
+    description:
+      "Embark on a journey through letters with interactive games that teach English, Hindi, and Braille. Track progress and explore creative representations like fruits, animals, countries, and geeky codes!",
+    icon: "🔤",
+    color: "#3b82f6"
+  },
+  {
+    title: "Culture Explorer",
+    description:
+      "Travel through India's rich heritage with immersive maps and family tree explorations. Discover your roots through Gotra, Deity, and Caste search with downloadable clan data.",
+    icon: "🗺️",
+    color: "#10b981"
+  },
+  {
+    title: "Word Playground",
+    description:
+      "Challenge your mind with engaging puzzles and vocabulary hunts. Find words like CAT, DOG, SUN, and MOON while tracking your progress.",
+    icon: "🎲",
+    color: "#f59e0b"
+  },
+  {
+    title: "Math Quest",
+    description:
+      "Dive into numbers with fun challenges and games. Learn various number systems including English, Hindi, Roman, and Morse code formats.",
+    icon: "➕",
+    color: "#f43f5e"
+  },
+  {
+    title: "Draw & Learn",
+    description:
+      "Tap letters to display matching images, then draw over them with customizable colors and backgrounds. A fun blend of art and alphabet learning!",
+    icon: "✏️",
+    color: "#ec4899"
+  },
+  {
+    title: "Indic Varnmala",
+    description:
+      "Explore the vowels and consonants of different Indian languages. Compare scripts and sounds across regions in a simple, visual way.",
+    icon: "🅰️",
+    color: "#8b5cf6"
+  },
+  {
+    title: "Knowledge Glossary",
+    description:
+      "Learn about months, days, sun signs, country flags, seasons, colors, shapes, and times of the day in a fun and accessible format.",
+    icon: "📖",
+    color: "#6366f1"
+  },
+  {
+    title: "Tithi & Time Tools",
+    description:
+      "Explore traditional lunar calendar details alongside modern timestamps. Includes unit converters for daily use.",
+    icon: "⏳",
+    color: "#14b8a6"
+  },
+  {
+    title: "Creative Studio",
+    description:
+      "Design beautiful quotes or custom text visuals with the Text and Quote Designer tools — perfect for creative expression.",
+    icon: "🖌️",
+    color: "#ef4444"
+  },
+  {
+    title: "Display Modes",
+    description:
+      "Visualize alphabets interactively: build vertical stacks, create flowing queues, or swipe through sliders in fun display formats.",
+    icon: "🧩",
+    color: "#0ea5e9"
+  },
+  {
+    title: "Varnmala Learning Hub",
+    description:
+      "Learn and practice alphabets with tools for reading, writing, listening, and drawing — including Barahkhadi and interactive speak-to-draw modes.",
+    icon: "📖",
+    color: "#8b5cf6"
+  },
+  {
+    title: "Word Hunt",
+    description:
+      "Explore a word discovery game where you find hidden words while keeping track of clicks and progress in an interactive way.",
+    icon: "🔍",
+    color: "#f97316"
+  }
+];
+---
+
+<section id="features" class="section features-section">
+  <h2 class="section-title">Our <span class="text-highlight">Enchanting</span> Features</h2>
+  <p class="section-subtitle">
+    Designed to spark curiosity and foster a lifelong love for learning through innovative experiences
+  </p>
+  <div class="features-grid">
+    {
+      features.map((feature) => (
+        <div class="feature-card" style={`--accent-color: ${feature.color}`}>
+          <div class="feature-icon" aria-label={feature.title}>
+            {feature.icon}
+          </div>
+          <h3 class="feature-title">{feature.title}</h3>
+          <p class="feature-desc">{feature.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .features-section {
+    margin-bottom: 4rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: light-dark(var(--bg-light), var(--bg-secondary));
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+  }
+
+  .feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: light-dark(var(--primary), var(--text-main));
+  }
+
+  .feature-desc {
+    color: light-dark(var(--bg-dark), var(--text-primary));
+    line-height: 1.6;
+  }
+</style>

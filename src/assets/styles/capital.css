@@ -23,13 +23,12 @@
 }
 
 /* Base Styles */
-.geographical-mosaic {
+.container__capital {
   width: 100%;
-  max-width: 1400px;
+  max-width: 90vw;
   margin: 0 auto;
   padding: 1rem;
   box-sizing: border-box;
-  font-family: "Courier New", Courier, monospace;
   letter-spacing: 1px;
   color: light-dark(#ffffff, #000000);
   min-height: 100vh;
@@ -38,7 +37,7 @@
 
 /* Header Styles */
 .head {
-  display: block;
+  display: flex;
   padding-top: 10px;
   height: max-content;
   font-size: 25px;
@@ -50,7 +49,6 @@
   justify-content: center;
   font-weight: bold;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -62,7 +60,7 @@
   margin-bottom: 1.5rem;
 }
 
-.search-container {
+.container__search {
   display: flex;
   align-items: center;
   width: 100%;
@@ -86,54 +84,26 @@
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   }
 
-  #searchBar {
+  .search__input {
     flex: 1;
     border: none;
     outline: none;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: light-dark(#000000, #ffffff);
     background: transparent;
     padding: 0.4rem 0.5rem;
     font-family: inherit;
-    font-weight: bold;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+    }
   }
 
   .search-icon {
     font-size: 1.2rem;
     margin-right: 0.5rem;
+    margin-top: 6px;
     color: light-dark(#667eea, #06ffa5);
-  }
-
-  .clear-button {
-    font-size: 1.5rem;
-    padding: 0 0.5rem;
-    background: none;
-    border: none;
-    color: light-dark(#667eea, #06ffa5);
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    margin-left: 0.25rem;
-    user-select: none;
-
-    &:hover {
-      color: #ff3e6d;
-      transform: scale(1.1);
-    }
-
-    &:focus {
-      outline: 2px solid var(--border-primary);
-      outline-offset: 2px;
-    }
-  }
-
-  input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-    display: none;
-  }
-
-  #searchBar:focus {
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
   }
 }
 
@@ -285,6 +255,7 @@
   flex: 1;
   position: relative;
   z-index: 1;
+  text-align: left;
 }
 
 .location-card summary {

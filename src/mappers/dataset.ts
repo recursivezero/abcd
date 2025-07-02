@@ -262,7 +262,6 @@ const generalData = [
   { letter: "Z", description: "A black and white striped animal.", text: "Zebra", emoji: "🦓" }
 ];
 
-
 export const GENERAL_DATASETS: AlphabetDataset = {
   category: "general",
   description: "General knowledge about the English alphabet",
@@ -277,30 +276,150 @@ export const GENERAL_DATASETS: AlphabetDataset = {
 /*Greek*/
 
 const greekData = [
-  { letter: "A", description: "First letter of the Greek alphabet. Sound: 'a' as in father.", text: "Alpha (Α α)", emoji: "A" },
-  { letter: "B", description: "Second letter of the Greek alphabet. Sound: 'v' as in vase (Modern Greek).", text: "Beta (Β β)", emoji: "Β" },
-  { letter: "G", description: "Third letter of the Greek alphabet. Sound: 'g' as in go, or 'y' as in yes.", text: "Gamma (Γ γ)", emoji: "Γ" },
-  { letter: "D", description: "Fourth letter of the Greek alphabet. Sound: 'th' as in then (Modern Greek).", text: "Delta (Δ δ)", emoji: "Δ" },
-  { letter: "E", description: "Fifth letter of the Greek alphabet. Sound: 'e' as in met.", text: "Epsilon (Ε ε)", emoji: "Ε" },
-  { letter: "Z", description: "Sixth letter of the Greek alphabet. Sound: 'z' as in zoo.", text: "Zeta (Ζ ζ)", emoji: "Ζ" },
-  { letter: "H", description: "Seventh letter of the Greek alphabet. Sound: 'i' as in machine.", text: "Eta (Η η)", emoji: "Η" },
-  { letter: "Q", description: "Eighth letter of the Greek alphabet. Sound: 'th' as in thin.", text: "Theta (Θ θ)", emoji: "Θ" },
-  { letter: "I", description: "Ninth letter of the Greek alphabet. Sound: 'i' as in machine.", text: "Iota (Ι ι)", emoji: "Ι" },
-  { letter: "K", description: "Tenth letter of the Greek alphabet. Sound: 'k' as in kite.", text: "Kappa (Κ κ)", emoji: "Κ" },
-  { letter: "L", description: "Eleventh letter of the Greek alphabet. Sound: 'l' as in lamp.", text: "Lambda (Λ λ)", emoji: "Λ" },
-  { letter: "M", description: "Twelfth letter of the Greek alphabet. Sound: 'm' as in map.", text: "Mu (Μ μ)", emoji: "Μ" },
-  { letter: "N", description: "Thirteenth letter of the Greek alphabet. Sound: 'n' as in net.", text: "Nu (Ν ν)", emoji: "Ν" },
-  { letter: "X", description: "Fourteenth letter of the Greek alphabet. Sound: 'x' as in axe.", text: "Xi (Ξ ξ)", emoji: "Ξ" },
-  { letter: "O", description: "Fifteenth letter of the Greek alphabet. Sound: 'o' as in pot.", text: "Omicron (Ο ο)", emoji: "Ο" },
-  { letter: "P", description: "Sixteenth letter of the Greek alphabet. Sound: 'p' as in pen.", text: "Pi (Π π)", emoji: "Π" },
-  { letter: "R", description: "Seventeenth letter of the Greek alphabet. Sound: 'r' as in run (often rolled).", text: "Rho (Ρ ρ)", emoji: "Ρ" },
-  { letter: "S", description: "Eighteenth letter of the Greek alphabet. Sound: 's' as in sun.", text: "Sigma (Σ σ/ς)", emoji: "Σ" },
-  { letter: "T", description: "Nineteenth letter of the Greek alphabet. Sound: 't' as in tap.", text: "Tau (Τ τ)", emoji: "Τ" },
-  { letter: "U", description: "Twentieth letter of the Greek alphabet. Sound: 'i' as in machine (Modern Greek).", text: "Upsilon (Υ υ)", emoji: "Υ" },
-  { letter: "F", description: "Twenty-first letter of the Greek alphabet. Sound: 'f' as in fan.", text: "Phi (Φ φ)", emoji: "Φ" },
-  { letter: "C", description: "Twenty-second letter of the Greek alphabet. Sound: 'ch' as in Scottish loch, or 'h' as in huge.", text: "Chi (Χ χ)", emoji: "Χ" },
-  { letter: "Y", description: "Twenty-third letter of the Greek alphabet. Sound: 'ps' as in psychology.", text: "Psi (Ψ ψ)", emoji: "Ψ" },
-  { letter: "W", description: "Twenty-fourth letter of the Greek alphabet. Sound: 'o' as in go.", text: "Omega (Ω ω)", emoji: "Ω" }
+  {
+    letter: "A",
+    description: "First letter of the Greek alphabet. Sound: 'a' as in father.",
+    text: "Alpha (Α α)",
+    emoji: "A"
+  },
+  {
+    letter: "B",
+    description: "Second letter of the Greek alphabet. Sound: 'v' as in vase (Modern Greek).",
+    text: "Beta (Β β)",
+    emoji: "Β"
+  },
+  {
+    letter: "G",
+    description: "Third letter of the Greek alphabet. Sound: 'g' as in go, or 'y' as in yes.",
+    text: "Gamma (Γ γ)",
+    emoji: "Γ"
+  },
+  {
+    letter: "D",
+    description: "Fourth letter of the Greek alphabet. Sound: 'th' as in then (Modern Greek).",
+    text: "Delta (Δ δ)",
+    emoji: "Δ"
+  },
+  {
+    letter: "E",
+    description: "Fifth letter of the Greek alphabet. Sound: 'e' as in met.",
+    text: "Epsilon (Ε ε)",
+    emoji: "Ε"
+  },
+  {
+    letter: "Z",
+    description: "Sixth letter of the Greek alphabet. Sound: 'z' as in zoo.",
+    text: "Zeta (Ζ ζ)",
+    emoji: "Ζ"
+  },
+  {
+    letter: "H",
+    description: "Seventh letter of the Greek alphabet. Sound: 'i' as in machine.",
+    text: "Eta (Η η)",
+    emoji: "Η"
+  },
+  {
+    letter: "Q",
+    description: "Eighth letter of the Greek alphabet. Sound: 'th' as in thin.",
+    text: "Theta (Θ θ)",
+    emoji: "Θ"
+  },
+  {
+    letter: "I",
+    description: "Ninth letter of the Greek alphabet. Sound: 'i' as in machine.",
+    text: "Iota (Ι ι)",
+    emoji: "Ι"
+  },
+  {
+    letter: "K",
+    description: "Tenth letter of the Greek alphabet. Sound: 'k' as in kite.",
+    text: "Kappa (Κ κ)",
+    emoji: "Κ"
+  },
+  {
+    letter: "L",
+    description: "Eleventh letter of the Greek alphabet. Sound: 'l' as in lamp.",
+    text: "Lambda (Λ λ)",
+    emoji: "Λ"
+  },
+  {
+    letter: "M",
+    description: "Twelfth letter of the Greek alphabet. Sound: 'm' as in map.",
+    text: "Mu (Μ μ)",
+    emoji: "Μ"
+  },
+  {
+    letter: "N",
+    description: "Thirteenth letter of the Greek alphabet. Sound: 'n' as in net.",
+    text: "Nu (Ν ν)",
+    emoji: "Ν"
+  },
+  {
+    letter: "X",
+    description: "Fourteenth letter of the Greek alphabet. Sound: 'x' as in axe.",
+    text: "Xi (Ξ ξ)",
+    emoji: "Ξ"
+  },
+  {
+    letter: "O",
+    description: "Fifteenth letter of the Greek alphabet. Sound: 'o' as in pot.",
+    text: "Omicron (Ο ο)",
+    emoji: "Ο"
+  },
+  {
+    letter: "P",
+    description: "Sixteenth letter of the Greek alphabet. Sound: 'p' as in pen.",
+    text: "Pi (Π π)",
+    emoji: "Π"
+  },
+  {
+    letter: "R",
+    description: "Seventeenth letter of the Greek alphabet. Sound: 'r' as in run (often rolled).",
+    text: "Rho (Ρ ρ)",
+    emoji: "Ρ"
+  },
+  {
+    letter: "S",
+    description: "Eighteenth letter of the Greek alphabet. Sound: 's' as in sun.",
+    text: "Sigma (Σ σ/ς)",
+    emoji: "Σ"
+  },
+  {
+    letter: "T",
+    description: "Nineteenth letter of the Greek alphabet. Sound: 't' as in tap.",
+    text: "Tau (Τ τ)",
+    emoji: "Τ"
+  },
+  {
+    letter: "U",
+    description: "Twentieth letter of the Greek alphabet. Sound: 'i' as in machine (Modern Greek).",
+    text: "Upsilon (Υ υ)",
+    emoji: "Υ"
+  },
+  {
+    letter: "F",
+    description: "Twenty-first letter of the Greek alphabet. Sound: 'f' as in fan.",
+    text: "Phi (Φ φ)",
+    emoji: "Φ"
+  },
+  {
+    letter: "C",
+    description: "Twenty-second letter of the Greek alphabet. Sound: 'ch' as in Scottish loch, or 'h' as in huge.",
+    text: "Chi (Χ χ)",
+    emoji: "Χ"
+  },
+  {
+    letter: "Y",
+    description: "Twenty-third letter of the Greek alphabet. Sound: 'ps' as in psychology.",
+    text: "Psi (Ψ ψ)",
+    emoji: "Ψ"
+  },
+  {
+    letter: "W",
+    description: "Twenty-fourth letter of the Greek alphabet. Sound: 'o' as in go.",
+    text: "Omega (Ω ω)",
+    emoji: "Ω"
+  }
 ];
 
 export const GREEK_DATASETS: AlphabetDataset = {
@@ -309,7 +428,7 @@ export const GREEK_DATASETS: AlphabetDataset = {
   icon: "🔤",
   data: greekData.map((item, index) => ({
     id: index + 1,
-    code: item.text.charCodeAt(0), 
+    code: item.text.charCodeAt(0),
     ...item
   }))
 };
@@ -409,7 +528,12 @@ const colorsData = [
   { letter: "F", text: "Fuchsia", description: "A vivid purplish-red color.", colorCode: "#FF00FF" },
   { letter: "G", text: "Green", description: "The color of living grass and leaves.", colorCode: "#008000" },
   { letter: "H", text: "Heliotrope", description: "A pink-purple tint.", colorCode: "#DF73FF" },
-  { letter: "I", text: "Indigo", description: "A deep and rich color close to the color wheel blue.", colorCode: "#4B0082" },
+  {
+    letter: "I",
+    text: "Indigo",
+    description: "A deep and rich color close to the color wheel blue.",
+    colorCode: "#4B0082"
+  },
   { letter: "J", text: "Jade", description: "A light green color.", colorCode: "#00A86B" },
   { letter: "K", text: "Khaki", description: "A light brownish-yellow color.", colorCode: "#C3B091" },
   { letter: "L", text: "Lavender", description: "A light purple color.", colorCode: "#E6E6FA" },
@@ -587,7 +711,6 @@ export const HINDI_DATASETS: AlphabetDataset = {
     ...item
   }))
 };
-
 
 /** TODO: add others from alphabets.json */
 

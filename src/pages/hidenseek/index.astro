@@ -1,7 +1,7 @@
 ---
 import GridGameIcon from "@/assets/icons/game.svg";
 import KeyboardGameIcon from "@/assets/icons/keyboard.svg";
-import "@/assets/styles/games.css";
+import "@/assets/styles/cards/main.css";
 import Back from "@/components/Back.astro";
 import GameCard from "@/components/GameCard.astro";
 import BaseLayout from "@/layouts/Base";
@@ -32,24 +32,22 @@ const games = {
   <Back />
   <div class="selection-container">
     <div class="header-content">
-      <h1 class="game-page-title">Select a creative mode</h1>
+      <h1 class="selection-title">Select a creative mode</h1>
     </div>
-    <div class="game-selection-container">
-      <div class="game-cards">
-        {
-          Object.entries(games).map(([route, game]) => (
-            <GameCard
-              cardType={route as "grid" | "kbd"}
-              title={game.title}
-              description={game.description}
-              href={game.href}
-            >
-              {route === "grid" && <GridGameIcon slot="grid-icon" />}
-              {route === "kbd" && <KeyboardGameIcon slot="keyboard-icon" />}
-            </GameCard>
-          ))
-        }
-      </div>
+    <div class="selection-buttons-grid">
+      {
+        Object.entries(games).map(([route, game]) => (
+          <GameCard
+            cardType={route as "grid" | "kbd"}
+            title={game.title}
+            description={game.description}
+            href={game.href}
+          >
+            {route === "grid" && <GridGameIcon slot="grid-icon" />}
+            {route === "kbd" && <KeyboardGameIcon slot="keyboard-icon" />}
+          </GameCard>
+        ))
+      }
     </div>
   </div>
 </BaseLayout>
