@@ -1,3 +1,6 @@
+---
+import "@/assets/styles/about.css";
+---
 <section class="tech-section">
   <div class="tech-content">
     <h2 class="section-title">Built for <span class="text-highlight">Young Minds</span> with Joy & Purpose</h2>
@@ -23,7 +26,8 @@
     background: light-dark(var(--bg-light), var(--bg-secondary));
     box-shadow: 2px 5px 10px 3px rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
-    padding: 4rem 2rem;
+    padding: 0rem 10rem;
+    padding-bottom: 1rem;
     text-align: center;
   }
 
@@ -53,6 +57,28 @@
     animation-delay: calc(var(--i) * 0.2s);
   }
 
+    .btn {
+    display: inline-block;
+    padding: 0.65rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 0.5rem;
+  }
+
+  .btn-primary {
+    background-color:  #3b82f6;
+    color: white;
+    border: 2px solid  #3b82f6;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  }
+
   @keyframes bounce {
     0%,
     100% {
@@ -63,7 +89,6 @@
     }
   }
 
-  /* Tablet */
   @media (max-width: 992px) {
     .tech-section {
       padding: 3rem 2rem;
@@ -78,7 +103,6 @@
     }
   }
 
-  /* Mobile */
   @media (max-width: 768px) {
     .tech-section {
       padding: 2.5rem 1.5rem;
@@ -92,9 +116,13 @@
     .tech-icons {
       gap: 1.5rem;
     }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+  }
   }
 
-  /* Small Mobile */
   @media (max-width: 480px) {
     .tech-section {
       padding: 2rem 1rem;
