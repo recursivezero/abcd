@@ -1,6 +1,7 @@
 ---
 title: "The tech stack that we preferred"
 description: "The tech stack that we work with and why we choose it ? "
+image: "/assets/images/blog/blog-1.png"
 publishDate: "24 December 2024"
 ---
 

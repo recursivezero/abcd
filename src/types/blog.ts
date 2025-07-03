@@ -1,10 +1,7 @@
-// src/types/blog.ts
 import { z } from "astro:content";
 
-// Custom URL validator for both local and full URLs
 const urlSchema = z.string().refine(
   (url) => {
-    // Accept both local paths starting with '/' and full URLs
     return url.startsWith("/") || url.match(/^https?:\/\//);
   },
   { message: "Must be a valid URL or local path" }
@@ -14,7 +11,7 @@ const urlSchema = z.string().refine(
 export const blogPostSchema = z.object({
   title: z.string().max(100),
   description: z.string().optional(),
-  image: z.string().url().optional(),
+  image: z.string().optional(),
   author: z.string().optional(),
   date: z.string().or(z.date()).optional(),
   url: urlSchema
