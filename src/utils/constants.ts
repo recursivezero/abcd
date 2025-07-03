@@ -128,7 +128,7 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "India",
+    name: "Map",
     title: "India Map",
     path: "/map",
     isActive: true
