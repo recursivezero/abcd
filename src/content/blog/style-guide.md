@@ -12,34 +12,35 @@ This document outlines the style guide we follow to maintain consistency and rea
 
 ## **1. File Structure**
 
-- Use a clear and consistent folder structure.
-- Place CSS files for components inside the `assets/styles` folder, named according to the component (e.g., `result-products.css` for `ResultProducts` component).
-- Keep reusable styles in a `globals.css` file.
+- **1.1** Use a clear and consistent folder structure.
+- **1.2** Place CSS files for components inside the `assets/styles` folder, named according to the component (e.g., `result-products.css` for `ResultProducts` component).
+- **1.3** Keep reusable styles in a `globals.css` file.
 
 ---
 
 ## **2. CSS Naming Convention**
 
-- Use `kebab-case` for CSS class names.
-  - Example: `card__image`, `container__card`
-- For component-specific styles, use the format:  
-  `componentName__element` (e.g., `card__image` for an image in the `Card` component).
-- Use utility classes from Tailwind CSS wherever possible for common properties (e.g., margins, padding, colors).
+- **2.1** Use `kebab-case` for CSS class names.  
+  Example: `card__image`, `container__card`
+
+- **2.2** For component-specific styles, use the format:  
+  `componentName__element` (e.g., `card__image` for an image in the `Card` component)
+
+- **2.3** Use utility classes from Tailwind CSS wherever possible for common properties  
+  (e.g., margins, padding, colors)
 
 ---
 
 ## **3. Tailwind CSS Usage**
 
-- **Use Tailwind utilities for common tasks** like spacing, typography, and colors:
+- **3.1** Use Tailwind utilities for common tasks like spacing, typography, and colors:
 
-  - Example:
+  ```html
+  <div class="rounded-lg bg-white p-4 text-gray-800"></div>
+  ```
 
-    ```html
-    <div class="rounded-lg bg-white p-4 text-gray-800"></div>
-    ```
-
-- **Avoid redundancy:** Don't add CSS rules for properties already provided by Tailwind classes.
-- Create custom styles only when:
+- **3.2** Avoid redundancy: Don't add CSS rules for properties already provided by Tailwind classes.
+- **3.3** Create custom styles only when:
   - Tailwind utilities cannot achieve the desired layout or behavior.
   - Styles are specific to a particular component.
 
@@ -47,36 +48,40 @@ This document outlines the style guide we follow to maintain consistency and rea
 
 ## **4. Component-Specific CSS**
 
-- For each React component, create a corresponding CSS file if it requires custom styles.
-- **CSS file naming**: Use the same name as the component, in lowercase and hyphen-separated.
+- **4.1** For each React component, create a corresponding CSS file if it requires custom styles.
+- **4.2** CSS file naming: Use the same name as the component, in lowercase and hyphen-separated.
   - Example:
     - Component: `ResultProducts.tsx`
     - CSS File: `result-products.css`
-- Limit the use of global styles to prevent style conflicts.
+- **4.3** Limit the use of global styles to prevent style conflicts.
 
 ---
 
 ## **5. Naming Variables & Functions**
 
-- Use `camelCase` for variables, functions, and methods.
-  - Example: `filterItemsByRating`, `sortItems`
-- Use `PascalCase` for React components and TypeScript interfaces/types.
-  - Example: `ResultProducts`, `ProductProps`
-- Use `UPPER_SNAKE_CASE` for constants.
-  - Example: `BASE_IMAGE_PATH`
+- **5.1** Use `camelCase` for variables, functions, and methods.  
+  Example: `filterItemsByRating`, `sortItems`
+
+- **5.2** Use `PascalCase` for React components and TypeScript interfaces/types.  
+  Example: `ResultProducts`, `ProductProps`
+
+- **5.3** Use `UPPER_SNAKE_CASE` for constants.  
+  Example: `BASE_IMAGE_PATH`
 
 ---
 
-## **7. JSX Structure**
+## **6. JSX Structure**
 
-- **Keep JSX clean and readable:**
-  - Use meaningful class names.
+- **6.1** Keep JSX clean and readable:
+  -  Use meaningful class names.
   - Avoid inline styles unless absolutely necessary.
-- Wrap component logic (e.g., filtering, sorting) in separate functions for clarity.
+- **6.2** Wrap component logic (e.g., filtering, sorting) in separate functions for clarity.
 
-### **12. Example: Component and CSS Pair**
+---
 
-#### React Component (`ResultProducts.tsx`)
+## **7. Example: Component and CSS Pair**
+
+### **7.1 React Component (`ResultProducts.tsx`)**
 
 ```tsx
 <div className="container__card">
@@ -89,7 +94,7 @@ This document outlines the style guide we follow to maintain consistency and rea
 </div>
 ```
 
-#### CSS File (`result-products.css`)
+### **7.2 CSS File (`result-products.css`)**
 
 ```css
 .container__card {
