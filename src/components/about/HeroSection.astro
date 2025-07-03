@@ -1,5 +1,5 @@
 ---
-import Logo from "@/assets/icons/ABCD.png";
+import Logo from "/public/assets/images/ABCD.png";
 
 interface Props {
   appName: string;
@@ -50,6 +50,7 @@ const { appName } = Astro.props;
   .hero-logo {
     max-width: 150px;
     height: auto;
+    border-radius: 50%;
   }
 
   .hero-title {

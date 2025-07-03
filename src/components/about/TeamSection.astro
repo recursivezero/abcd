@@ -107,7 +107,7 @@ const getInitials = (name: string): string => {
     right: -5px;
     bottom: -5px;
     border-radius: 50%;
-    background:linear-gradient(135deg, #3b82f6, #5a8ddf, #7193c9);
+    background:light-dark(var(--primary),var(--primary-dark));
     z-index: 1;
     animation: rotate-border 4s linear infinite;
   }
@@ -115,7 +115,7 @@ const getInitials = (name: string): string => {
   .team-name {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: var(--primary-light);
+    color: light-dark(var(--primary),var(--primary-dark));
     margin-top:0;
     margin-bottom:5px;
   }
@@ -140,7 +140,7 @@ const getInitials = (name: string): string => {
     align-items: center;
     gap: 0.5rem;
     margin-top: 1rem;
-    color: var(--primary-light);
+    color: light-dark(var(--primary),var(--primary-dark));
     text-decoration: none;
     transition: color 0.3s ease;
     margin-bottom:5px;
