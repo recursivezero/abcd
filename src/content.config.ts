@@ -12,7 +12,7 @@ export const blogSchema = z.object({
   tags: z.array(z.string()).default(["rz"]),
   draft: z.boolean().default(false),
   author: z.string().optional(),
-  image: z.string().optional(),
+  image : z.string().optional(),
   description: z.string().optional()
 });
 
