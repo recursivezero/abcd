@@ -4,6 +4,7 @@ import { blogCardSchema } from "@/types/blog";
 const props = blogCardSchema.parse(Astro.props);
 const { post, height = "auto" } = props;
 const { url, title, description, image, author, date } = post;
+const imageUrl = image; 
 ---
 
 <article class="blog-card">
@@ -11,7 +12,7 @@ const { url, title, description, image, author, date } = post;
     <div class="blog-card-content">
       <div class="blog-card-image">
         <figure class={`${typeof height === "number" ? `height: ${height}px` : `height: ${height}`}`}>
-          <img src={image} alt={title} loading="lazy" />
+          <img src={imageUrl} alt={title} loading="lazy" />
         </figure>
       </div>
       <div class="blog-card-details">
