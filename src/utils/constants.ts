@@ -134,6 +134,12 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Journey",
+    title: "journey",
+    path: "/journey",
+    isActive: true
+  },
+  {
     name: "Capital",
     title: "Capital",
     path: "/capital",
