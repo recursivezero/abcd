@@ -1,0 +1,18 @@
+---
+import "@/assets/styles/home/TestimonialsSection.css";
+import testimonials from "@/data/testimonials.json";
+---
+<section class="section">
+  <h2 class="section-title1">Parents love us.</h2>
+  <div class="stars centered">
+    <span>★★★★★</span>
+  </div>
+  <div class="grid three">
+    {testimonials.map(testimonial => (
+      <div class="card light-blue">
+        <p>"{testimonial.text}"</p>
+        <p class="author">{testimonial.author}</p>
+      </div>
+    ))}
+  </div>
+</section>

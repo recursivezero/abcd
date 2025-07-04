@@ -2,7 +2,7 @@
 import { Picture } from "astro:assets";
 import "@/assets/styles/header.css";
 import { APP_NAME } from "@/utils/constants";
-import logoImage from "/public/assets/images/logo.png";
+import logoImage from "/public/assets/images/512x512.png";
 
 const { title, hasBack = true } = Astro.props;
 ---
@@ -14,7 +14,11 @@ const { title, hasBack = true } = Astro.props;
   </div>
 
   <div class="caption">
-    <h1>{title}</h1>
+     <a href="/main">Home</a>
+      <a href="/about">About</a>
+      <a href="/parents">Parents</a>
+      <a href="/teachers">Teachers</a>
+      <!-- <a href="/help">Help</a> -->
   </div>
 
   <div class="action-group">

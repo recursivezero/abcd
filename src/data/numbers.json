@@ -26,16 +26,16 @@
     "title": "Morse Code Numbers",
     "description": "A collection of numbers in Morse code.",
     "data": [
-      { "id": 0, "letter": "0", "text": "0", "description": "Zero", "emoji": "−−−−−" },
-      { "id": 1, "letter": "1", "text": "1", "description": "One", "emoji": "•−−−−" },
-      { "id": 2, "letter": "2", "text": "2", "description": "Two", "emoji": "••−−−" },
-      { "id": 3, "letter": "3", "text": "3", "description": "Three", "emoji": "•••−−" },
-      { "id": 4, "letter": "4", "text": "4", "description": "Four", "emoji": "••••−" },
-      { "id": 5, "letter": "5", "text": "5", "description": "Five", "emoji": "•••••" },
-      { "id": 6, "letter": "6", "text": "6", "description": "Six", "emoji": "−••••" },
-      { "id": 7, "letter": "7", "text": "7", "description": "Seven", "emoji": "−−•••" },
-      { "id": 8, "letter": "8", "text": "8", "description": "Eight", "emoji": "−−−••" },
-      { "id": 9, "letter": "9", "text": "9", "description": "Nine", "emoji": "−−−−•" }
+      { "id": 0, "letter": "−−−−−", "text": "0", "description": "Zero", "emoji": "−−−−−" },
+      { "id": 1, "letter": "•−−−−", "text": "1", "description": "One", "emoji": "•−−−−" },
+      { "id": 2, "letter": "••−−−", "text": "2", "description": "Two", "emoji": "••−−−" },
+      { "id": 3, "letter": "•••−−", "text": "3", "description": "Three", "emoji": "•••−−" },
+      { "id": 4, "letter": "••••−", "text": "4", "description": "Four", "emoji": "••••−" },
+      { "id": 5, "letter": "•••••", "text": "5", "description": "Five", "emoji": "•••••" },
+      { "id": 6, "letter": "−••••", "text": "6", "description": "Six", "emoji": "−••••" },
+      { "id": 7, "letter": "−−•••", "text": "7", "description": "Seven", "emoji": "−−•••" },
+      { "id": 8, "letter": "−−−••", "text": "8", "description": "Eight", "emoji": "−−−••" },
+      { "id": 9, "letter": "−−−−•", "text": "9", "description": "Nine", "emoji": "−−−−•" }
     ]
   },
   "roman": {

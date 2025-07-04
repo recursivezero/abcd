@@ -2,7 +2,7 @@ import HomeIcon from "@/assets/icons/home.svg";
 import RecordIcon from "@/assets/icons/record.svg";
 import type { LinkProps } from "@/types/index.ts";
 
-export const APP_NAME = "Parixan";
+export const APP_NAME = "abcdkbd";
 
 let BASE_URL = "http://localhost:4321";
 let IMAGE_DIR = "/assets/images/background";
@@ -74,7 +74,7 @@ export const NavbarLinks: LinkProps[] = [
   {
     name: "Home",
     title: "Home",
-    path: "/",
+    path: "/main",
     icon: HomeIcon,
     isActive: true
   },

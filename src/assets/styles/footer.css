@@ -1,16 +1,123 @@
+/* Footer background and layout */
 .container__footer {
-  @apply w-full;
-  border-top: 2px solid;
-  padding: 2rem 0;
+  background: #82e4dc;
+  padding: 2.5rem 2rem 1.5rem 2rem;
+  color: #22223b;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Footer navigation grid */
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  gap: 5rem;
+}
+
+/* Footer nav columns */
+.footer__nav--item {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  margin-right: 2rem;
+  gap: 0.5rem;
+}
+
+.footer__nav--item a {
+  color: gray;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+
+.footer__nav--item a:hover {
+  color: #090909;
+  text-decoration: underline;
+}
+
+/* Brand and description */
+.container__footer > :first-child {
+  flex: 1 1 0;
+}
+
+.container__footer .brand {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f3f3f8;
+  margin-bottom: 0.5rem;
+}
+
+.container__footer .brand .kbd {
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.container__footer p {
+  margin: 0.5rem 0 1.5rem 0;
+  color: #22223b;
+  font-size: 1.2rem;
+  max-width: 260px;
+}
+
+/* Social icons */
+.container__footer .social {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.container__footer .social a {
+  color: #22223b;
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+.container__footer .social a:hover {
+  color: #0ea5e9;
+}
+
+/* Copyright and links */
+.container__footer .copyright {
+  text-align: center;
+  color: #22223b;
+  font-size: 0.95rem;
   margin-top: 2rem;
 }
 
-.footer__nav {
-  @apply flex flex-col items-center justify-center gap-3 text-gray-700 underline underline-offset-2 dark:text-gray-500 md:flex-row;
+.container__footer .copyright a {
+  color: #58250b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-size: 0.95rem;
 }
 
-.footer__nav--item {
-  @apply underline underline-offset-2 hover:text-blue-500 dark:hover:text-blue-400;
+.container__footer .copyright a:hover {
+  text-decoration: underline;
+  color: #178bb9;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer__nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .footer__nav--item {
+    min-width: 0;
+    margin-right: 0;
+  }
+  .container__footer {
+    padding: 2rem 1rem 1rem 1rem;
+  }
 }
 
 @media (max-width: 768px) {
