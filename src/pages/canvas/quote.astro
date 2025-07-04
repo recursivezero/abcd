@@ -5,6 +5,9 @@ import Help from "@/components/Help.astro";
 import DownloadIcon from "@/assets/icons/download.svg";
 import ResetIcon from "@/assets/icons/reset.svg";
 import "@/assets/styles/quote-designer.css";
+import { SocialShare } from "astro-social-share";
+import SharePopover from "@/components/SharePopover.astro";
+
 
 const pageTitle = "Quote Designer";
 const pageDescription = "Design beautiful quotes with our advanced tool.";
@@ -18,6 +21,8 @@ const pageMeta = {
 <BaseLayout meta={pageMeta}>
   <Fragment slot="header-right">
     <div class="header-tools-wrapper"></div>
+    <SharePopover />
+
     <Help
       title="Quote designer"
       description="Design beautiful quotes through this intuitive visual editor. You can customize the text, font, and background color. You can also change the alignment of the text."
