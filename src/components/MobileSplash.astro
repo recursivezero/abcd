@@ -1,0 +1,25 @@
+---
+import "@/assets/styles/MobileSplash.css";
+import { Image } from "astro:assets";
+import logoImage from "public/assets/images/ABCD.png";
+const githubUrl = "https://github.com/recursivezero/abcd";
+const siteUrl = "https://abcdkbd.com";
+---
+
+<div class="container_splash">
+  <div class="container_splash_card">
+    <Image src={logoImage} alt="logo of abcd." width="50" height="50" />
+    <h1 class="container_splash_heading"><strong>abcdkbd is best experienced on desktop</strong></h1>
+    <p class="container_splash_text">
+      Revisit on desktop to check out abcdkbd.com. We will optimize for mobile soon. Stay tuned…
+    </p>
+    <div class="container_splash_buttons">
+      <a href={githubUrl} class="container_splash_btn container_splash_btn_primary" target="_blank" rel="noopener"
+        >🔗 GitHub</a
+      >
+      <a href={siteUrl} class="container_splash_btn container_splash_btn_secondary" target="_blank" rel="noopener"
+        >🌐 Visit abcdkbd.com</a
+      >
+    </div>
+  </div>
+</div>

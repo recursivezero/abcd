@@ -1,0 +1,269 @@
+:root {
+  /* Color Variables */
+  --primary-600: #4f46e5;
+  --primary-500: #6366f1;
+  --accent-500: #f59e0b;
+  --accent-400: #fbbf24;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Light Mode Defaults */
+  --card-bg: var(--white);
+  --card-border: var(--gray-200);
+  --card-header-bg: var(--gray-100);
+  --text-primary: var(--gray-800);
+  --text-secondary: #6b7280;
+  --text-on-primary: var(--gray-800);
+
+  /* Surname colors */
+  --surname-bg: rgba(0, 0, 0, 0.05);
+  --surname-hover-bg: rgba(0, 0, 0, 0.08);
+  --surname-card-bg: rgba(0, 0, 0, 0.03);
+  --surname-card-hover: rgba(0, 0, 0, 0.05);
+
+  /* UI Variables */
+  --border-radius: 0.5rem;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.2s ease;
+}
+
+[data-theme="dark"],
+.dark-mode {
+  /* Dark Mode Overrides */
+  --card-bg: #1a1a1a;
+  --card-border: #333333;
+  --card-header-bg: #2a2a2a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #9e9e9e;
+  --text-on-primary: #ffffff;
+
+  /* Surname colors */
+  --surname-bg: rgba(255, 255, 255, 0.1);
+  --surname-hover-bg: rgba(255, 255, 255, 0.2);
+  --surname-card-bg: rgba(255, 255, 255, 0.05);
+  --surname-card-hover: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --card-bg: #1a1a1a;
+    --card-border: #333333;
+    --card-header-bg: #2a2a2a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #9e9e9e;
+    --text-on-primary: #ffffff;
+
+    --surname-bg: rgba(255, 255, 255, 0.1);
+    --surname-hover-bg: rgba(255, 255, 255, 0.2);
+    --surname-card-bg: rgba(255, 255, 255, 0.05);
+    --surname-card-hover: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Card Container - Grid layout remains unchanged */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 1.25rem;
+  padding: 1.25rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Card Styles - White in light mode, dark gray in dark mode */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  overflow: hidden;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  background: var(--card-header-bg);
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* Rest of the card styles remain exactly the same */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-grow: 1;
+}
+
+.info-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.value {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.value::before {
+  content: attr(data-icon);
+  margin-right: 0.4rem;
+  font-size: 0.9em;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.surname-count {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--surname-bg);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--border-radius);
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text-primary);
+}
+
+.surname-count:hover {
+  background: var(--surname-hover-bg);
+  color: var(--text-primary);
+}
+
+.copy-button {
+  background: var(--accent-500);
+  color: var(--black);
+  border: none;
+  border-radius: var(--border-radius);
+  width: 1.8rem;
+  height: 1.8rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.copy-button:hover {
+  background: var(--accent-400);
+}
+
+.card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background: var(--card-bg);
+}
+
+.card.expanded .card-body {
+  max-height: 500px;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.surnames-title {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: var(--text-primary);
+  opacity: 0.9;
+}
+
+.surname-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.5rem;
+}
+
+.surname-card {
+  background: var(--surname-card-bg);
+  border-radius: calc(var(--border-radius) - 0.1rem);
+  padding: 0.5rem;
+  transition: var(--transition);
+  list-style-type: none;
+}
+
+.surname-card:hover {
+  background: var(--surname-card-hover);
+}
+
+.surname-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.copy-button {
+  position: relative;
+}
+
+.copied-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  margin-bottom: 5px;
+  z-index: 10;
+}
+
+/* Responsive breakpoints remain exactly the same */
+@media (max-width: 1200px) {
+  .card-container {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .card-container {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .card-container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .card-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}

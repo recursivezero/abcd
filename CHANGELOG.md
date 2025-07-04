@@ -10,8 +10,13 @@ Created Repo from template
 
 ## [2.0.0] - 2025-06-28
 
-- Added Pages
+- Added Multiple Pages on Varnmala,Map,Glossary
 - Navigation and Redesign the repo
+
+## [2.1.0] - 2025-07-01
+
+- fix minor bugs 
+- Added About Page
 
 ### [Unreleased]
 

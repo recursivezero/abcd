@@ -4,15 +4,14 @@ export type LetterEntity = {
 };
 
 export interface AlphabetEntry {
-  id: number | string;
+  id?: number | string;
+  description?: string;
   letter: string;
   text: string;
-  description: string;
-  code?: number;
   emoji?: string;
   image?: string;
   englishSound?: string;
-  cssColor?: string;
+  code?: string | number;
 }
 
 export interface AlphabetCategory {
@@ -46,8 +45,8 @@ export interface GeekAlphabetEntry {
 }
 
 export type CardSectionType = {
+  id?: string | number;
   icon?: string;
-  id?: string;
   kind?: string;
   title: string;
   description: string;

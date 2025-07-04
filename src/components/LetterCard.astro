@@ -21,7 +21,7 @@ const { item, category } = rest as Props;
         <span class="flip__button__text" title="Flip Card">Flip Card</span>
       </div>
       <div class="letter__header">
-        <p class={`character ${className}`}>{item.letter}</p>
+        <p class={`character ${className ?? ""}`}>{item.letter}</p>
       </div>
       <div class="letter__content">
         <h2 class="text">{item.text}</h2>
@@ -29,7 +29,7 @@ const { item, category } = rest as Props;
       </div>
       <div class="card__glow"></div>
     </div>
-    <div class="card card__back" style={category === "colours" && item.cssColor ? `background: ${item.cssColor}` : ""}>
+    <div class="card card__back" style={category === "color" ? `background: ${item.code}` : ""}>
       <div class="flip__button">
         <span class="flip__button__text" title="Click to flip">Flip Card</span>
       </div>

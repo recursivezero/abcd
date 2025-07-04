@@ -15,9 +15,14 @@ const sections = [
     href: "hindi"
   },
   {
-    title: "Reader",
+    title: "Barahkhadi",
+    description: "Learn the basic barahkhadi characters",
+    href: "barahkhadi"
+  },
+  {
+    title: "Listen",
     description: "Practice reading alphabets with audio support",
-    href: "reader"
+    href: "listen"
   },
   {
     title: "Write",
@@ -25,24 +30,17 @@ const sections = [
     href: "write"
   },
   {
-    title: "Barahkhadi",
-    description: "Learn the basic barahkhadi characters",
-    href: "barahkhadi"
-  },
-  {
-    title: "Speak and draw",
-    description: "Draw the basic Varnmala characters",
-    href: "speak"
+    title: "Play",
+    description: "Listen and play with the basic Alphabet characters",
+    href: "play"
   }
 ];
 ---
 
 <BaseLayout meta={{ title: "Varnmala" }}>
   <Back />
+  <h2 class="txt__center m-0">Varnmala</h2>
   <div class="container__varnmala">
-    <div class="alphabets__header">
-      <h1>Varnmala</h1>
-    </div>
     <ul class="list__alphabets">
       {
         sections.map((section, index) => (

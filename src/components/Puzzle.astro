@@ -31,8 +31,6 @@ import HintIcon from "@/assets/icons/hint.svg";
       justify-content: center;
       border-radius: 12px;
       "
-      onmouseover="if(!this.classList.contains('active')) { this.style.boxShadow='0 0 10px yellow'; const hint = document.getElementById('hintTooltip'); if(hint) { hint.style.display='block'; } }"
-      onmouseout="if(!this.classList.contains('active')) { this.style.boxShadow=''; } const hint = document.getElementById('hintTooltip'); if(hint) { hint.style.display='none'; }"
       onclick="
       this.classList.toggle('active');
       const bulb = this.querySelector('svg path');
@@ -51,26 +49,6 @@ import HintIcon from "@/assets/icons/hint.svg";
       <div style="width: 28px; height: 28px;">
         <HintIcon />
       </div>
-      <span
-        id="hintTooltip"
-        style="
-        display: none;
-        position: absolute;
-        top: 30.5%;
-        left: 75%;
-        transform: translateY(-50%);
-        background: none;
-        color: grey;
-        padding: 6px 12px;
-        border-radius: 6px;
-        font-size: 16px;
-        white-space: nowrap;
-        z-index: 10;
-        pointer-events: none;
-        "
-      >
-        Show hint
-      </span>
     </button>
   </div>
 
@@ -89,7 +67,7 @@ import HintIcon from "@/assets/icons/hint.svg";
 
     async function fetchCrosswordData() {
       try {
-        const response = await fetch("/json/cross.json");
+        const response = await fetch("/assets/json/cross.json");
         if (!response.ok) {
           throw new Error("Failed to fetch crossword data");
         }

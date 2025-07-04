@@ -1,35 +1,41 @@
 {
-  "name": "ABCDKBD",
-  "id": "abcdkbd",
-  "short_name": "ABCDKBD",
+  "background_color": "#1d1f21",
+  "category": "education",
   "description": "A learning pad for ABCD keyboard layout enthusiasts.",
+  "display": "standalone",
   "icons": [
     {
-      "src": "/assets/images/144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "maskable",
+      "sizes": "128x128",
+      "src": "/assets/images/parixan/128x128.png",
+      "type": "image/png"
     },
     {
-      "src": "/assets/images/512x512.png",
+      "purpose": "maskable",
+      "sizes": "144x144",
+      "src": "/assets/images/parixan/144x144.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "src": "/assets/images/parixan/512x512.png",
+      "type": "image/png"
     }
   ],
+  "id": "abcdkbd",
+  "lang": "en",
+  "name": "parixan",
+  "orientation": "portrait",
   "screenshots": [
     {
-      "src": "/assets/images/logo.png",
-      "sizes": "1024x768",
-      "type": "image/png",
-      "label": "ABCD"
+      "label": "parixan",
+      "sizes": "196x196",
+      "src": "/assets/icons/parixan/favicon-196x196.png",
+      "type": "image/svg+xml"
     }
   ],
+  "short_name": "ABCDKBD",
   "start_url": "/",
-  "background_color": "#1d1f21",
-  "theme_color": "#2bbc8a",
-  "display": "standalone",
-  "lang": "en",
-  "orientation": "portrait",
-  "category": "business"
+  "theme_color": "#2bbc8a"
 }

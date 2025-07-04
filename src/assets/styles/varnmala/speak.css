@@ -66,17 +66,24 @@
 }
 
 .mute-button {
-  font-size: 1.5;
+  display: flex;
   border: 1px solid #6767d3;
-
   cursor: pointer;
   width: min(3em, 15vw);
-  height: min(3em, 15vw);
-  display: flex;
-  align-items: center;
+  height: min(2em, 6vw);
+  items: center;
   justify-content: center;
   border-radius: 5px;
+  align-items: center;
+  background-color: transparent;
 }
+
+.mute-button-audio.mute {
+  background-color: hsla(255, 100%, 50%, 0.281);
+  color: #fff;
+  border-color: #ff61d5;
+}
+
 .mute-button-audio::before {
   content: "\1F508";
 }
@@ -84,6 +91,7 @@
 .mute-button-audio.mute::before {
   content: "\1F507";
 }
+
 /* Container styles */
 .container__english {
   & .letter {
@@ -114,15 +122,19 @@
       transparent 4px
     );
   }
+
   &.bg-gradient3 {
     background: linear-gradient(135deg, #667eea, #764ba2);
   }
+
   &.bg-gradient4 {
     background: linear-gradient(135deg, #2af598, #009efd);
   }
+
   &.bg-gradient5 {
     background: linear-gradient(135deg, #f83600, #f9d423);
   }
+
   &.bg-pattern2 {
     background-image: repeating-linear-gradient(
       45deg,
@@ -132,6 +144,7 @@
       rgba(0, 0, 0, 0.05) 20px
     );
   }
+
   &.bg-pattern3 {
     background-image: repeating-radial-gradient(
       circle,

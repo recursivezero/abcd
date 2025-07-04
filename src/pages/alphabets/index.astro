@@ -1,42 +1,39 @@
 ---
-import "@/assets/styles/alphabets/index.css";
+import "@/assets/styles/board.css";
 import Back from "@/components/Back.astro";
 import CardLayout from "@/components/CardLayout.astro";
-import rawAlphabetData from "@/data/alphabets.json";
 import BaseLayout from "@/layouts/Base";
-import type { AlphabetsData } from "@/types/alphabet";
+
+import { DATASET } from "@/mappers/dataset";
 
 const title = "Alphabet Categories";
 const subtitle = "Choose a category to discover different alphabet representations";
 
-const alphabetData = rawAlphabetData as AlphabetsData;
-const categories = Object.keys(alphabetData);
+const categories = Object.keys(DATASET);
 
-const categoryList = categories.map((category, index) => {
-  return {
-    id: index.toString(),
-    icon: alphabetData[category as keyof AlphabetsData].icon,
-    title: category.charAt(0).toUpperCase() + category.slice(1),
-    description: alphabetData[category as keyof AlphabetsData].description,
-    href: {
-      playground: { icon: "📚", link: `/alphabets/${category}/playground/`, text: "Playground" },
-      board: { icon: "📋", link: `/alphabets/${category}/board/`, text: "Board" }
-    }
-  };
-});
+const categoryList = categories.map((category, index) => ({
+  id: index.toString(),
+  icon: DATASET[category].icon,
+  title: category.charAt(0).toUpperCase() + category.slice(1),
+  description: DATASET[category].description,
+  href: {
+    playground: { icon: "📚", link: `/alphabets/${category}/playground/`, text: "Playground" },
+    board: { icon: "📋", link: `/alphabets/${category}/board/`, text: "Board" }
+  }
+}));
 ---
 
 <BaseLayout meta={{ title: "Alphabets Explorer" }}>
   <Back />
-  <section class="container__alphabets">
-    <div class="alphabets__header">
-      <h1 class="title">{title}</h1>
+  <section class="container__board">
+    <div class="board__header">
+      <h2 class="title">{title}</h2>
       <p class="subtitle">{subtitle}</p>
     </div>
-    <ul class="list__alphabets">
+    <ul class="board__list">
       {
         categoryList.map((category, index) => (
-          <li class="card" style={`animation-delay: ${index * 50}ms`}>
+          <li class="board__card" style={`animation-delay: ${index * 50}ms`}>
             <CardLayout section={category} />
           </li>
         ))

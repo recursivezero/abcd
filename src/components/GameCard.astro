@@ -9,12 +9,11 @@ interface Props {
 const { title, description, cardType, href } = Astro.props;
 ---
 
-<a href={href} class={`game-card ${cardType}-card`}>
-  <div class="game-card-content">
-    <div class="game-card-icon">
-      {cardType === "grid" ? <slot name="grid-icon" /> : <slot name="keyboard-icon" />}
-    </div>
-    <h2 class="game-card-title">{title}</h2>
-    <p class="game-card-description">{description}</p>
+<a href={href} class={`selection-card ${cardType}-card`}>
+  <div class="card-icon">
+    <slot name="grid-icon" />
+    <slot name="keyboard-icon" />
   </div>
+  <h2 class="card-title">{title}</h2>
+  <p class="card-description">{description}</p>
 </a>

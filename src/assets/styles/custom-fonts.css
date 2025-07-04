@@ -3,8 +3,8 @@
   @font-face {
     font-family: "sportrop";
     src:
-      url("/fonts/sportrop-webfont.woff2") format("woff2"),
-      url("/fonts/sportrop-webfont.woff") format("woff");
+      url("/assets/fonts/sportrop-webfont.woff2") format("woff2"),
+      url("/assets/fonts/sportrop-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -13,8 +13,8 @@
   @font-face {
     font-family: "atkinson";
     src:
-      url("/fonts/atkinson-hyperlegible-regular-102-webfont.woff2") format("woff2"),
-      url("/fonts/atkinson-hyperlegible-regular-102-webfont.woff") format("woff");
+      url("/assets/fonts/atkinson-hyperlegible-regular-102-webfont.woff2") format("woff2"),
+      url("/assets/fonts/atkinson-hyperlegible-regular-102-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -22,7 +22,7 @@
 
   @font-face {
     font-family: "Mudra";
-    src: url("/fonts/Mudra_Mohta-Regular.ttf") format("truetype");
+    src: url("/assets/fonts/Mudra_Mohta-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
   }
@@ -30,7 +30,7 @@
 
 @font-face {
   font-family: "boisuStroke";
-  src: url("/fonts/Boisu-Stroke.otf") format("otf");
+  src: url("/assets/fonts/Boisu-Stroke.otf") format("otf");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -38,7 +38,7 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("/fonts/Roboto-Bold.ttf") format("ttf");
+  src: url("/assets/fonts/Roboto-Bold.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

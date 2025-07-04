@@ -1,6 +1,5 @@
 @import url("https://unpkg.com/normalize.css") layer(normalize);
-@tailwind base;
-@layer normalize, base, demo;
+@layer normalize, demo, base;
 
 @layer demo {
   :root {
@@ -51,17 +50,26 @@
     gap: 0.5rem;
     padding: 0.5rem;
     transition: all 0.2s ease;
+    background-image: linear-gradient(color-mix(in srgb, var(--primary) 35%, transparent));
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    transition: 0.4s;
+
+    &:hover {
+      background-size: 100% 100%;
+    }
   }
 
   [popover] .nav--list__item.active {
     background: color-mix(in srgb, var(--primary) 15%, transparent);
-    color: var(--primary);
+    color: color-contrast(var(--primary) vs white, black);
+
     font-weight: 600;
     border-radius: 0.75rem;
   }
 
   [popover] .nav--list__item:hover {
-    color: var(--primary);
+    color: color-contrast(var(--primary) vs white, black);
     border-radius: 0.75rem;
   }
 
@@ -88,7 +96,7 @@
     padding: 1rem 0;
     overflow: visible;
     min-height: calc(100svh - var(--header-height));
-
+    border-radius: 0.75rem;
     position: sticky;
     border-right: 1px solid var(--border);
     transition: width 0.3s ease;
@@ -133,6 +141,8 @@
 
   main {
     border: 2px solid #0000;
+    display: grid;
+    grid-template-areas: "sidebar content";
   }
 
   [popover] ul {
@@ -153,7 +163,6 @@
     padding-block: 0.75rem;
     padding-inline: 1rem;
     text-decoration: none;
-    color: var(--secondary);
     font-size: 0.875rem;
     font-weight: 500;
     border-radius: 0.5rem;
@@ -467,6 +476,12 @@
     }
 
     min-width: var(--sidebar-expanded);
+  }
+
+  @media (max-width: 768px) {
+    [popover] .minimize-toggle {
+      display: none !important;
+    }
   }
 
   .theme-toggle {

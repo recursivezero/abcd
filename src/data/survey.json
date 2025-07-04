@@ -42,12 +42,7 @@
       "id": 7,
       "questionText": "What resources or tools have been most useful for your child’s early writing and speaking?",
       "type": "multiChoice",
-      "options": [
-        "Interactive apps or websites",
-        "Handwriting practice sheets",
-        "Educational toys",
-        "Other (please specify)"
-      ]
+      "options": ["Interactive apps or websites", "Handwriting practice sheets", "Educational toys", "Other (please specify)"]
     },
     {
       "id": 8,

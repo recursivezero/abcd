@@ -23,13 +23,12 @@
 }
 
 /* Base Styles */
-.geographical-mosaic {
+.container__capital {
   width: 100%;
-  max-width: 1400px;
+  max-width: 90vw;
   margin: 0 auto;
   padding: 1rem;
   box-sizing: border-box;
-  font-family: "Courier New", Courier, monospace;
   letter-spacing: 1px;
   color: light-dark(#ffffff, #000000);
   min-height: 100vh;
@@ -38,9 +37,9 @@
 
 /* Header Styles */
 .head {
-  display: relative;
+  display: flex;
   padding-top: 10px;
-  height: 50px;
+  height: max-content;
   font-size: 25px;
   color: light-dark(#667eea, #ffffff);
   background: light-dark(var(--header-gradient-light), var(--header-gradient-dark));
@@ -50,7 +49,6 @@
   justify-content: center;
   font-weight: bold;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -62,7 +60,7 @@
   margin-bottom: 1.5rem;
 }
 
-.search-container {
+.container__search {
   display: flex;
   align-items: center;
   width: 100%;
@@ -75,58 +73,38 @@
   margin-top: 10px;
   position: relative;
   overflow: hidden;
-}
 
-.search-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-}
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  }
 
-.search-container #searchBar {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  color: light-dark(#000000, #ffffff);
-  background: transparent;
-  padding: 0.4rem 0.5rem;
-  font-family: inherit;
-  font-weight: bold;
-}
+  .search__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    color: light-dark(#000000, #ffffff);
+    background: transparent;
+    padding: 0.4rem 0.5rem;
+    font-family: inherit;
 
-.search-icon {
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
-  color: light-dark(#667eea, #06ffa5);
-}
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+    }
+  }
 
-.clear-button {
-  font-size: 1.5rem;
-  padding: 0 0.5rem;
-  background: none;
-  border: none;
-  color: light-dark(#667eea, #06ffa5);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  margin-left: 0.25rem;
-  user-select: none;
-}
-
-.clear-button:hover {
-  color: #ff3e6d;
-  transform: scale(1.1);
-}
-
-/* Hide default search cancel button */
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
-  display: none;
+  .search-icon {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    margin-top: 6px;
+    color: light-dark(#667eea, #06ffa5);
+  }
 }
 
 /* Location Sections */
@@ -194,22 +172,22 @@ input[type="search"]::-webkit-search-cancel-button {
   display: flex;
   flex-direction: column;
   position: relative;
-}
 
-.location-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  transition: var(--transition-smooth);
-  pointer-events: none;
-}
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+  }
 
-.location-card:hover::before {
-  opacity: 1;
+  &:hover::before {
+    opacity: 1;
+  }
 }
 
 /* Card Color Variations */
@@ -232,30 +210,37 @@ input[type="search"]::-webkit-search-cancel-button {
   --card-color: var(--card-color-1);
   --card-color-rgb: 255, 62, 109;
 }
+
 .color-card-color-2 {
   --card-color: var(--card-color-2);
   --card-color-rgb: 0, 245, 212;
 }
+
 .color-card-color-3 {
   --card-color: var(--card-color-3);
   --card-color-rgb: 76, 201, 240;
 }
+
 .color-card-color-4 {
   --card-color: var(--card-color-4);
   --card-color-rgb: 114, 9, 183;
 }
+
 .color-card-color-5 {
   --card-color: var(--card-color-5);
   --card-color-rgb: 247, 37, 133;
 }
+
 .color-card-color-6 {
   --card-color: var(--card-color-6);
   --card-color-rgb: 67, 97, 238;
 }
+
 .color-card-color-7 {
   --card-color: var(--card-color-7);
   --card-color-rgb: 247, 127, 0;
 }
+
 .color-card-color-8 {
   --card-color: var(--card-color-8);
   --card-color-rgb: 6, 255, 165;
@@ -270,11 +255,12 @@ input[type="search"]::-webkit-search-cancel-button {
   flex: 1;
   position: relative;
   z-index: 1;
+  text-align: left;
 }
 
 .location-card summary {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   cursor: pointer;
   list-style: none;
   text-transform: capitalize;
@@ -286,30 +272,30 @@ input[type="search"]::-webkit-search-cancel-button {
   position: relative;
   padding-left: 1.5rem;
   color: light-dark(#e80883, #ffffff);
-}
 
-.location-card summary::before {
-  content: "▶";
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 1rem;
-  transition: var(--transition-smooth);
-  background: linear-gradient(45deg, light-dark(#20c997, #4cc9f0));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+  &::before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    background: linear-gradient(45deg, light-dark(#20c997, #4cc9f0));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-.location-card details[open] summary::before {
-  content: "▼";
-  font-size: 1rem;
-  color: light-dark(#ff3e6d, #06ffa5);
-  transform: scale(1.2);
-  background: linear-gradient(45deg, light-dark(#ff3e6d, #06ffa5));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  details[open] &::before {
+    content: "▼";
+    font-size: 1rem;
+    color: light-dark(#ff3e6d, #06ffa5);
+    transform: scale(1.2);
+    background: linear-gradient(45deg, light-dark(#ff3e6d, #06ffa5));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .location-card p {
@@ -317,7 +303,7 @@ input[type="search"]::-webkit-search-cancel-button {
   font-family: Tahoma, sans-serif;
   font-style: italic;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.8rem;
   color: light-dark(#333333, #57a4df);
   line-height: 1.4;
   word-wrap: break-word;
@@ -359,25 +345,12 @@ input[type="search"]::-webkit-search-cancel-button {
   box-shadow: none !important;
 }
 
-.search-container #searchBar:focus {
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
-}
-
-.location-card summary:focus {
-  outline: 2px solid var(--border-primary);
-  outline-offset: 2px;
-}
-
-.clear-button:focus {
-  outline: 2px solid var(--border-primary);
-  outline-offset: 2px;
-}
-
 /* Animations */
 @keyframes shimmer {
   0% {
     left: -100%;
   }
+
   100% {
     left: 100%;
   }
@@ -387,44 +360,10 @@ input[type="search"]::-webkit-search-cancel-button {
   0% {
     left: -100%;
   }
+
   100% {
     left: 100%;
   }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.location-card {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-/* Staggered animation delay for cards */
-.location-card:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.location-card:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.location-card:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.location-card:nth-child(4) {
-  animation-delay: 0.4s;
-}
-.location-card:nth-child(5) {
-  animation-delay: 0.5s;
-}
-.location-card:nth-child(6) {
-  animation-delay: 0.6s;
 }
 
 /* Responsive Design */
@@ -474,9 +413,4 @@ input[type="search"]::-webkit-search-cancel-button {
   .search-container {
     max-width: 100%;
   }
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
 }

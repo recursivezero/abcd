@@ -3,16 +3,16 @@ import "@/assets/styles/alphabet.css";
 import Letter from "@/components/Letter.astro";
 import type { LetterEntity } from "@/types";
 
-type Props = {
+interface Props {
   title: string;
   list: LetterEntity[];
-};
+}
 
 const { title, list } = Astro.props;
 ---
 
 <div class="container__alphabet">
-  <h1>{title}</h1>
+  <h2 class="title txt__center">{title}</h2>
   <div class="list">
     {list.map((item) => <Letter item={item} />)}
   </div>

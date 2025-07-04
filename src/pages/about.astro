@@ -1,16 +1,29 @@
 ---
-import "@/assets/styles/about.css";
 import BaseLayout from "@/layouts/Base";
+import TitleLayout from "@/layouts/TitleLayout";
+import HeroSection from "@/components/about/HeroSection.astro";
+import FeaturesSection from "@/components/about/FeaturesSection.astro";
+import TeamSection from "@/components/about/TeamSection.astro";
+import TechSection from "@/components/about/TechSection.astro";
+import "@/assets/styles/about.css";
+import BackIcon from "@/components/Back.astro";
+
+// Constants
+const appName = "abcdkbd";
+
+// Meta data
+const meta = {
+  title: "About Us"
+};
 ---
 
-<BaseLayout meta={{ title: "About us" }}>
-  <article class="container__about">
-    <section class="moto">
-      <p>This is my initial version to make interactive games for kids</p>
-      <p>
-        Inspiration behind these games are to take kids away from smartphone and close to keyboard which will help in
-        their future building also.
-      </p>
-    </section>
-  </article>
+<BaseLayout meta={meta}>
+  <BackIcon />
+  <TitleLayout title="Welcome to the World of Learning" />
+  <main class="about-container">
+    <HeroSection appName={appName} />
+    <FeaturesSection />
+    <TeamSection />
+    <TechSection />
+  </main>
 </BaseLayout>
