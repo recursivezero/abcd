@@ -1,5 +1,5 @@
 ---
-import Logo from "@/assets/icons/logo.svg";
+import Logo from "@/assets/icons/ABCD.png";
 
 interface Props {
   appName: string;
@@ -16,10 +16,6 @@ const { appName } = Astro.props;
       At {appName}, we transform education into captivating adventures that ignite young minds. Our interactive platform
       takes children on an unforgettable journey through letters, words, and diverse cultures.
     </p>
-    <div class="hero-buttons">
-      <a href="https://parixan.xyz" class="btn btn-primary">Let's Get Started</a>
-      <a href="https://deepwiki.com/recursivezero/abcd" class="btn btn-secondary">Read More</a>
-    </div>
   </div>
   <div class="hero-bubbles">
     {
@@ -33,12 +29,11 @@ const { appName } = Astro.props;
 </section>
 
 <style>
-  /* Hero Section */
   .hero-section {
     position: relative;
     text-align: center;
-    padding: 4rem 1rem;
-    margin-bottom: 4rem;
+    padding: 0.5rem 0.5rem;
+  
     border-radius: 1rem;
     background: light-dark(var(--bg-light), linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-dark) 100%));
     box-shadow: 2px 5px 10px 3px rgba(0, 0, 0, 0.2);
@@ -55,10 +50,6 @@ const { appName } = Astro.props;
   .hero-logo {
     max-width: 150px;
     height: auto;
-    margin-bottom: 1.5rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .hero-title {
@@ -124,7 +115,23 @@ const { appName } = Astro.props;
     }
   }
 
+  /* Tablet */
+  @media (max-width: 992px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-text {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Mobile */
   @media (max-width: 768px) {
+    .hero-section {
+      padding: 3rem 1rem;
+    }
+    
     .hero-logo {
       max-width: 120px;
     }
@@ -135,6 +142,26 @@ const { appName } = Astro.props;
 
     .hero-text {
       font-size: 1rem;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .bubble {
+      font-size: calc(var(--size) * 0.5);
+    }
+  }
+
+  /* Small Mobile */
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.5rem;
+    }
+    
+    .hero-text {
+      font-size: 0.9rem;
     }
   }
 </style>
