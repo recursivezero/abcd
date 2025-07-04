@@ -12,17 +12,15 @@ const meta = {
 ---
 
 <Layout meta={meta}>
+  <BackButton />
+  <Fragment slot="header-right">
+    <Help
+      title="Hide & Seek Game"
+      description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
+    />
+  </Fragment>
   <div class="game-page-container">
     <div class="game-wrapper">
-      <div class="game-header">
-        <BackButton />
-      </div>
-      <div class="game-menu">
-        <Help
-          title="Hide & Seek Game"
-          description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."
-        />
-      </div>
     </div>
     <HideSeekGrid />
   </div>
