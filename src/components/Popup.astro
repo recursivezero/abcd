@@ -34,10 +34,14 @@ import "@/assets/styles/map/popup.css";
   });
 
   seeMoreBtn.addEventListener("click", () => {
+    popup.hidePopover(); 
+    setTimeout(() => {
     const stateName = popupName.textContent;
     if (stateName) {
       const stateUrl = stateName.replace(/\s+/g, "").toLowerCase();
       window.location.href = `/map/${stateUrl}`;
     }
-  });
+  }, 50); 
+});
+
 </script>
