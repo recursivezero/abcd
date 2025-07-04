@@ -74,7 +74,7 @@ export const NavbarLinks: LinkProps[] = [
   {
     name: "Home",
     title: "Home",
-    path: "/main",
+    path: "/home",
     icon: HomeIcon,
     isActive: true
   },

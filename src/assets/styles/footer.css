@@ -1,6 +1,6 @@
 /* Footer background and layout */
 .container__footer {
-  background: #82e4dc;
+  background: #c7f3ef;
   padding: 2.5rem 2rem 1.5rem 2rem;
   color: #22223b;
   font-size: 1rem;
@@ -51,7 +51,7 @@
 .container__footer .brand {
   font-size: 2rem;
   font-weight: 700;
-  color: #f3f3f8;
+  color: #0f0f10;
   margin-bottom: 0.5rem;
 }
 
