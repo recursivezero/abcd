@@ -1,12 +1,18 @@
 ---
-import "/src/assets/styles/journey/global.css";
+import "/src/assets/styles/journey/journey.css";
 import "/src/assets/styles/journey/timeline.css";
 import "/src/assets/styles/journey/form.css";
 import BaseLayout from "@/layouts/Base";
 import Back from "@/components/Back.astro";
+import Help from "@/components/Help.astro";
+
 ---
 
 <BaseLayout meta={{ title: "Journey" }}>
+<Back />
+<Fragment slot="header-right">
+    <Help title="Journey" description="Create your Life Journey Timeline" />
+  </Fragment>
  <div class='flex-col'>
  <html lang="en">
     <head>
@@ -24,7 +30,6 @@ import Back from "@/components/Back.astro";
     <body>
       <div class="page-container">
         <header>
-        <Back />
           <h1 class="page-title">My Life Journey Timeline</h1>
           <p class="page-subtitle">Watch your life story grow like a beautiful plant</p>
           <button class="add-event-button" id="addEventBtn">🌱 Add New Event</button>
@@ -62,7 +67,7 @@ import Back from "@/components/Back.astro";
           </form>
         </div>
       </div>
-
+      
       <!-- ✅ Inline JS -->
       <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -107,8 +112,8 @@ import Back from "@/components/Back.astro";
               <span class="event-date">${ev.date}</span>
               <span class="event-description">${ev.description}</span>
               <div class="event-actions">
-                <button class="edit-btn">Edit</button>
-                <button class="delete-btn">Delete</button>
+                <button class="edit-btn">✏️ Edit</button>
+                <button class="delete-btn">🗑️ Delete</button>
               </div>
             </div>
           `;

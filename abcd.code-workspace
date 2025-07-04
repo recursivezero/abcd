@@ -174,8 +174,7 @@
       "titleBar.activeBackground": "#6a3b98",
       "titleBar.activeForeground": "#e7e7e7",
       "titleBar.inactiveBackground": "#6a3b9899",
-      "titleBar.inactiveForeground": "#e7e7e799",
-      "tab.activeBorder": "#844cba"
+      "titleBar.inactiveForeground": "#e7e7e799"
     },
     "files.exclude": {
       "**/.git": false,

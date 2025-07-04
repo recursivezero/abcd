@@ -26,7 +26,7 @@
     top: 0;
     height: 100%;
     width: 6px;
-    background: linear-gradient(135deg, #ff80ab, #ea80fc);
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     transform: translateX(-50%);
     border-radius: 3px;
     z-index: 1;
@@ -56,8 +56,7 @@
     top: 0;
     width: 350px;
     height: 275px;
-    background: linear-gradient(135deg, #ff80ab, #ea80fc);
-    color: white;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     padding: 25px;
     border-radius: 15px;
     font-size: 16px;
@@ -73,7 +72,7 @@
     top: 50%;
     width: 40px;
     height: 4px;
-    background: linear-gradient(135deg, #ff80ab, #ea80fc);
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     /* Uses your chosen accent */
     transform: translateY(-50%);
     border-radius: 2px;
@@ -106,7 +105,7 @@
 .event-date {
     font-weight: 700;
     font-size: 20px;
-    color: #6a49ed;
+    color: white;
     
 }
 

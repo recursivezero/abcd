@@ -1,26 +1,26 @@
 /* Light Theme (Default) */
 :root {
-  --bg-color: #fff1f9;
-    --text-color: #5a3360;
-    --accent-color: #f48fb1;
-    --header-bg: linear-gradient(135deg, #fce4ec, #f8bbd0);
-    --timeline-bg: #fffefc;
-    --button-bg: linear-gradient(135deg, #ff80ab, #ea80fc);
-    --dot-color: #ffb74d;
-    --label-bg: #fce4ec;
-    --label-border: #f8bbd0;
-    --date-bg: #f06292;
+  --bg-color: var(--gray-200);
+    --text-color: #1e1e1e;
+    --accent-color: #f43f5e;
+    --header-bg: linear-gradient(135deg, #f9fafb, #e5e7eb);
+    --timeline-bg: #f3f4f6;
+    --button-bg: linear-gradient(135deg, #3b82f6, #2563eb);
+    --dot-color: #22c55e;
+    --label-bg: #ffffff;
+    --label-border: #e0e0e0;
+    --date-bg: #f43f5e;
     --date-text: white;
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --bg-color: #121212;
+  --bg-color: var(--gray-800);
   --text-color: #e5e5e5;
   --accent-color: #34d399;
   --header-bg: linear-gradient(135deg, #4c1d95 0%, #7e22ce 50%, #6b21a8 100%);
   --timeline-bg: #1e1e1e;
-  --button-bg: linear-gradient(135deg, #ff80ab, #ea80fc);
+  --button-bg: linear-gradient(135deg, #3b82f6, #2563eb);
 }
 
 /* Reset and base */
@@ -48,6 +48,8 @@ body {
   flex-direction: column;
   align-items: center;
   background: var(--bg-color);
+  margin-top: -65px;
+  margin-left: -20px;
 }
 
 /* Header */
