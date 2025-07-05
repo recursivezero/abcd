@@ -1,5 +1,5 @@
 ---
-import type { SurveyData } from "../types/survey";
+import type { SurveyData } from "@/types/survey";
 interface Props {
   data: SurveyData;
 }
@@ -61,6 +61,7 @@ const { data } = Astro.props;
     if (!statusEl) {
       statusEl = document.createElement("div");
       statusEl.id = "formStatus";
+      statusEl.className = "form-status";
       form.appendChild(statusEl);
     }
 
@@ -68,13 +69,7 @@ const { data } = Astro.props;
       e.preventDefault();
       submitBtn.disabled = true;
       statusEl.textContent = "Submitting your response...";
-      statusEl.style.cssText = `
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background: #e0f2ff;
-      color: #3b82f6;
-      border-radius: 0.5rem;
-    `;
+      statusEl.className = "form-status";
 
       try {
         const formData = {};
@@ -112,30 +107,20 @@ const { data } = Astro.props;
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData)
-        });
+        })
 
         if (!response.ok) {
-          const error = await response.json().catch(() => ({}));
-          throw new Error(error.error || "Server error");
+          const error = await response.json();
+          throw new Error(error.message || "Failed to save response");  
         }
 
         submitBtn.style.display = "none";
         statusEl.textContent = "Thank you for your response!";
-        statusEl.style.cssText = `
-        margin-top: 0;
-        padding: 1rem;
-        color: #fffff;
-        background: light-dark(var(--primary), var(--primary));
-        border-radius: 0.5rem;
-        text-align: center;
-        font-weight: bold;
-      `;
+        statusEl.className = "form-status success";
         form.reset();
       } catch (error) {
-        console.error("Submission error:", error);
         statusEl.textContent = "Error: " + (error.message || "Failed to save response");
-        statusEl.style.background = "#fee2e2";
-        statusEl.style.color = "#b91c1c";
+        statusEl.className = "form-status error";
         submitBtn.disabled = false;
       }
     });
