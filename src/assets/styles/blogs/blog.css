@@ -25,6 +25,9 @@
   --accent-hover-dark: #3b82f6;
   --shadow-dark: rgba(0, 0, 0, 0.3);
   --gradient-dark: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --primary-light: #764ba2;
+  --text: #1a1a1a;
+  --secondary: var(--text-secondary-light);
 }
 
 .container__blog {
@@ -34,11 +37,12 @@
   background: light-dark(var(--background-light), var(--background-dark));
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
   min-height: 100vh;
-  font-family: 'georgia', sans-serif;
+  font-family: atkinson, sans-serif;
   line-height: 1.6;
   box-sizing: border-box;
   position: relative;
   overflow-x: hidden;
+  counter-reset: main-counter;
 }
 
 .container__blog::before {
@@ -64,34 +68,25 @@
   animation: fadeInUp 0.8s ease-out;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.blog-post-header h1 {
-  font-size: clamp(2.25rem, 6vw, 2.75rem);
-  font-weight: 600;
-  background: light-dark(var(--gradient-light), var(--gradient-dark));
+.blog-title {
+  font-size: 45px;
+  background: #3b82f6;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin: 0 0 1rem 0;
   line-height: 1.2;
-  letter-spacing: -0.02em;
-  position: relative;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  text-align: center;
 }
 
-.blog-post-header h1:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
+.blog-description {
+  margin: 0 auto;
+  margin-top: 1rem;
+  max-width: 42rem;
+  font-size: 20px;
+  color: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
+  line-height: 1.5;
+  text-align: center;
 }
 
 .blog-post-meta {
@@ -99,7 +94,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  font-size: clamp(1rem, 3vw, 1.1rem);
+  font-size: 1.1rem;
   color: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
   margin-top: 1rem;
   padding: 0.75rem 1.5rem;
@@ -115,85 +110,84 @@
   box-shadow: 0 4px 12px light-dark(var(--shadow-light), var(--shadow-dark));
 }
 
-.blog-post-meta span {
+.meta-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.blog-post-meta .date-icon {
-  width: 18px;
-  height: 18px;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-.blog-post-meta:hover .date-icon {
-  opacity: 1;
-}
-
-.blog-post-tags {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.blog-post-tags span {
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
-  color: light-dark(var(--accent-light), var(--accent-dark));
-  padding: 0.4rem 0.8rem;
-  background: light-dark(rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1));
-  border: 1px solid light-dark(var(--accent-light), var(--accent-dark));
-  border-radius: 15px;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.blog-post-tags span::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.blog-post-tags span:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px light-dark(var(--shadow-light), var(--shadow-dark));
-  background: light-dark(var(--accent-light), var(--accent-dark));
-  color: white;
-}
-
-.blog-post-tags span:hover::before {
-  left: 100%;
+.meta-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
 }
 
 .markdown-content {
   margin-top: 2rem;
   max-width: 800px;
   margin-inline: auto;
-  font-size: clamp(1.5vw, 3vw, 1.25rem);
+  font-size: 3vh;
   line-height: 1.7;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
   animation: fadeIn 1s ease-out 0.3s both;
+  text-align: left;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.markdown-content h2 {
+  counter-increment: main-counter;
+  counter-reset: sub-counter;
+}
+
+.markdown-content h2::before {
+  content: counter(main-counter) ". ";
+  color: light-dark(var(--accent-light), var(--accent-dark));
+  font-weight: 700;
+  margin-right: 0.75rem;
+}
+
+.markdown-content h2 + ul {
+  counter-reset: sub-counter;
+}
+
+.markdown-content h2 + ul > li,
+.markdown-content h2 + * + ul > li {
+  counter-increment: sub-counter;
+  list-style: none;
+  position: relative;
+  padding-left: 0;
+}
+
+.markdown-content h2 + ul > li::before,
+.markdown-content h2 + * + ul > li::before {
+  content: counter(main-counter) "." counter(sub-counter) " ";
+  color: light-dark(var(--accent-light), var(--accent-dark));
+  font-weight: 600;
+  position: absolute;
+  left: -3rem;
+  width: 2.5rem;
+  text-align: left;
+}
+
+.markdown-content h3 {
+  counter-reset: example-counter;
+}
+
+.markdown-content h3::before {
+  content: counter(main-counter) "." counter(sub-counter, lower-alpha) " ";
+  color: light-dark(var(--accent-light), var(--accent-dark));
+  font-weight: 600;
+  margin-right: 0.75rem;
+}
+
+.markdown-content h3 + * + h3 {
+  counter-increment: example-counter;
+}
+
+.markdown-content h3 + * + h3::before {
+  content: "Example " counter(example-counter) ": ";
+  color: light-dark(var(--accent-light), var(--accent-dark));
+  font-weight: 600;
+  margin-right: 0.75rem;
 }
 
 .markdown-content h1,
@@ -207,52 +201,28 @@
   letter-spacing: -0.02em;
   position: relative;
   transition: all 0.3s ease;
-}
-
-.markdown-content h1:hover,
-.markdown-content h2:hover,
-.markdown-content h3:hover,
-.markdown-content h4:hover {
-  color: light-dark(var(--accent-light), var(--accent-dark));
-  transform: translateX(5px);
-}
-
-.markdown-content h1::before,
-.markdown-content h2::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  width: 4px;
-  height: 0;
-  background: light-dark(var(--accent-light), var(--accent-dark));
-  border-radius: 2px;
-  transition: height 0.3s ease;
-  transform: translateY(-50%);
-}
-
-.markdown-content h1:hover::before,
-.markdown-content h2:hover::before {
-  height: 60%;
+  text-align: left;
 }
 
 .markdown-content h1 {
-  font-size: clamp(1.85rem, 5vw, 2.25rem);
+  font-size: 2.25rem;
   margin-top: 2.5rem;
+  margin-left: 0px;
 }
 
 .markdown-content h2 {
-  font-size: clamp(1.55rem, 4.5vw, 1.85rem);
+  font-size: 1.85rem;
   margin-top: 2.25rem;
+  margin-left: -15px;
 }
 
 .markdown-content h3 {
-  font-size: clamp(1.35rem, 4vw, 1.55rem);
+  font-size: 1.55rem;
   margin-top: 2rem;
 }
 
 .markdown-content h4 {
-  font-size: clamp(1.2rem, 3.5vw, 1.35rem);
+  font-size: 1.35rem;
   margin-top: 1.75rem;
 }
 
@@ -261,6 +231,7 @@
   line-height: inherit;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
   transition: color 0.3s ease;
+  text-align: left;
 }
 
 .markdown-content strong {
@@ -308,10 +279,11 @@
   background: light-dark(var(--blockquote-bg-light), var(--blockquote-bg-dark));
   color: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
   font-style: italic;
-  font-size: clamp(1.05rem, 2.75vw, 1.15rem);
+  font-size: 1.15rem;
   border-radius: 0 8px 8px 0;
   position: relative;
   transition: all 0.3s ease;
+  text-align: left;
 }
 
 .markdown-content blockquote::before {
@@ -336,12 +308,13 @@
   border: 1px solid light-dark(var(--border-light), var(--border-dark));
   border-radius: 12px;
   overflow-x: auto;
-  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  font-size: 1.05rem;
   line-height: 1.6;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
   font-family: 'Dancing Script', cursive;
   position: relative;
   transition: all 0.3s ease;
+  text-align: left;
 }
 
 .markdown-content pre:hover {
@@ -375,6 +348,7 @@
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
   list-style-position: outside;
   font-size: inherit;
+  text-align: left;
 }
 
 .markdown-content ul ul {
@@ -390,64 +364,33 @@
   line-height: inherit;
   transition: all 0.3s ease;
   position: relative;
-}
-
-.markdown-content img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  margin: 1.25rem auto;
-  display: block;
-  border: 1px solid light-dark(var(--border-light), var(--border-dark));
-  object-fit: cover;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px light-dark(var(--shadow-light), var(--shadow-dark));
-}
-
-.markdown-content img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 24px light-dark(var(--shadow-light), var(--shadow-dark));
+  text-align: left;
 }
 
 .markdown-content hr {
-  margin: 2rem 0;
-  border: none;
-  height: 2px;
-  background: light-dark(var(--gradient-light), var(--gradient-dark));
-  border-radius: 1px;
-  opacity: 0.6;
+  display: none !important;
+}
+@keyfr
+ames fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.markdown-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.25rem 0;
-  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px light-dark(var(--shadow-light), var(--shadow-dark));
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.markdown-content th {
-  background: light-dark(var(--table-bg-light), var(--table-bg-dark));
-  font-weight: 600;
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 2px solid light-dark(var(--accent-light), var(--accent-dark));
-}
-
-.markdown-content td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid light-dark(var(--border-light), var(--border-dark));
-  transition: background-color 0.3s ease;
-}
-
-.markdown-content tr:hover td {
-  background: light-dark(rgba(59, 130, 246, 0.05), rgba(96, 165, 250, 0.05));
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .container__blog {
     padding: 1.75rem 1rem;
@@ -464,19 +407,18 @@
     padding: 0.5rem 1rem;
   }
 
-  .blog-post-tags {
-    gap: 0.6rem;
+  .blog-title {
+    font-size: 2.25rem;
+  }
+
+  .blog-description {
+    font-size: 1.1rem;
   }
 
   .markdown-content {
-    font-size: clamp(1rem, 3vw, 1.1rem);
+    font-size: 1.1rem;
     line-height: 1.65;
     padding: 0 0.75rem;
-  }
-
-  .markdown-content h1::before,
-  .markdown-content h2::before {
-    left: -15px;
   }
 
   .markdown-content blockquote {
@@ -485,58 +427,17 @@
 
   .markdown-content pre {
     padding: 0.65rem;
-    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    font-size: 0.95rem;
   }
 
-  .markdown-content img {
-    margin: 1rem auto;
-    border-radius: 8px;
-  }
-}
-
-@media (max-width: 600px) {
-  .markdown-content table {
-    display: block;
-    overflow-x: auto;
+  .markdown-content ul,
+  .markdown-content ol {
+    padding-left: 1.5rem;
   }
 
-  .markdown-content thead {
-    display: none;
-  }
-
-  .markdown-content tr {
-    display: block;
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid light-dark(var(--border-light), var(--border-dark));
-    padding: 0.5rem;
-    border-radius: 8px;
-    background: light-dark(var(--table-bg-light), var(--table-bg-dark));
-  }
-
-  .markdown-content td {
-    display: block;
-    text-align: right;
-    position: relative;
-    padding-left: 50%;
-    border: none;
-    border-bottom: 1px solid light-dark(var(--border-light), var(--border-dark));
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-
-  .markdown-content td:before {
-    content: attr(data-label);
-    position: absolute;
-    left: 1rem;
-    width: 45%;
-    font-weight: 600;
-    text-align: left;
-    color: light-dark(var(--accent-light), var(--accent-dark));
-  }
-
-  .markdown-content th,
-  .markdown-content td {
-    padding: 0.6rem;
+  .markdown-content h2 + ul > li::before,
+  .markdown-content h2 + * + ul > li::before {
+    left: -2.5rem;
   }
 }
 
@@ -545,28 +446,33 @@
     padding: 1.25rem 0.75rem;
   }
 
-  .blog-post-header h1 {
-    font-size: clamp(1.85rem, 5.5vw, 2.25rem);
-  }
-
-  .markdown-content h1::before,
-  .markdown-content h2::before {
-    left: -10px;
+  .blog-title {
+    font-size: 1.85rem;
   }
 
   .markdown-content h1 {
-    font-size: clamp(1.55rem, 4.5vw, 1.85rem);
+    font-size: 1.55rem;
   }
 
   .markdown-content h2 {
-    font-size: clamp(1.35rem, 4vw, 1.55rem);
+    font-size: 1.35rem;
   }
 
   .markdown-content h3 {
-    font-size: clamp(1.2rem, 3.5vw, 1.35rem);
+    font-size: 1.2rem;
   }
 
   .markdown-content h4 {
-    font-size: clamp(1.05rem, 3vw, 1.2rem);
+    font-size: 1.05rem;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    padding-left: 1rem;
+  }
+
+  .markdown-content h2 + ul > li::before,
+  .markdown-content h2 + * + ul > li::before {
+    left: -2rem;
   }
 }
