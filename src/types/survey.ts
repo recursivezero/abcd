@@ -1,13 +1,18 @@
 // types/survey.ts
-export type Question = {
+export interface Question {
   id: number;
   questionText: string;
   type: "singleChoice" | "multiChoice" | "openEnded";
-  options: string[];
-};
+  options?: string[];
+}
 
-export type SurveyData = {
+export interface SurveyData {
   surveyTitle: string;
   description: string;
   questions: Question[];
-};
+}
+
+export interface SurveyResponse {
+  timestamp: string;
+  responses: Record<string, string | string[]>;
+}

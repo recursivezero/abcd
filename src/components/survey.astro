@@ -1,0 +1,143 @@
+---
+import type { SurveyData } from "../types/survey";
+interface Props {
+  data: SurveyData;
+}
+const { data } = Astro.props;
+---
+
+<div class="survey-container">
+  <header class="survey-header">
+    <h1>{data.surveyTitle}</h1>
+    <p>{data.description}</p>
+  </header>
+
+  <form id="surveyForm" class="survey-form">
+    {
+      data.questions.map((question) => (
+        <div class="question-card">
+          <h3>{question.questionText}</h3>
+
+          {question.type === "openEnded" ? (
+            <textarea name={`q${question.id}`} class="textarea-input" rows="4" placeholder="Type your answer here..." />
+          ) : question.type === "singleChoice" ? (
+            <div class="options-group">
+              {question.options?.map((option) => (
+                <label class="option-label">
+                  <input type="radio" name={`q${question.id}`} value={option} class="radio-input" required />
+                  <span class="radio-text">{option}</span>
+                </label>
+              ))}
+            </div>
+          ) : (
+            <div class="options-group">
+              {question.options?.map((option) => (
+                <label class="option-label">
+                  <input type="checkbox" name={`q${question.id}`} value={option} class="checkbox-input" />
+                  <span class="checkbox-text">{option}</span>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+      ))
+    }
+
+    <div class="survey-controls">
+      <button type="submit" class="submit-btn" id="submitBtn">Submit Survey</button>
+      <div id="formStatus" class="form-status"></div>
+    </div>
+  </form>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("surveyForm");
+    if (!form) return;
+
+    let statusEl = document.getElementById("formStatus");
+    const submitBtn = document.getElementById("submitBtn");
+
+    if (!statusEl) {
+      statusEl = document.createElement("div");
+      statusEl.id = "formStatus";
+      form.appendChild(statusEl);
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      statusEl.textContent = "Submitting your response...";
+      statusEl.style.cssText = `
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background: #e0f2ff;
+      color: #3b82f6;
+      border-radius: 0.5rem;
+    `;
+
+      try {
+        const formData = {};
+        const elements = form.elements;
+
+        for (let i = 0; i < elements.length; i++) {
+          const el = elements[i];
+          if (!el.name || el.disabled || el.type === "submit") continue;
+
+          if (el.type === "checkbox") {
+            if (el.checked) {
+              if (!formData[el.name]) {
+                formData[el.name] = [];
+              }
+              formData[el.name].push(el.value);
+            }
+          } else if (el.type === "radio" && el.checked) {
+            formData[el.name] = el.value;
+          } else if (el.type === "textarea" || el.type === "text") {
+            formData[el.name] = el.value;
+          }
+        }
+
+        const checkboxInputs = form.querySelectorAll('input[type="checkbox"]');
+        const checkboxNames = new Set();
+        checkboxInputs.forEach((input) => checkboxNames.add(input.name));
+
+        checkboxNames.forEach((name) => {
+          if (!formData[name]) {
+            formData[name] = [];
+          }
+        });
+
+        const response = await fetch("/api/survey", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}));
+          throw new Error(error.error || "Server error");
+        }
+
+        submitBtn.style.display = "none";
+        statusEl.textContent = "Thank you for your response!";
+        statusEl.style.cssText = `
+        margin-top: 0;
+        padding: 1rem;
+        color: #fffff;
+        background: light-dark(var(--primary), var(--primary));
+        border-radius: 0.5rem;
+        text-align: center;
+        font-weight: bold;
+      `;
+        form.reset();
+      } catch (error) {
+        console.error("Submission error:", error);
+        statusEl.textContent = "Error: " + (error.message || "Failed to save response");
+        statusEl.style.background = "#fee2e2";
+        statusEl.style.color = "#b91c1c";
+        submitBtn.disabled = false;
+      }
+    });
+  });
+</script>

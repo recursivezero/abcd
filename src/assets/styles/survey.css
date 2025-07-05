@@ -1,52 +1,30 @@
-/* ==========================================================================
-   Modern Survey Styling with Improved Aesthetics and Compact Design
-   ========================================================================== */
-
-/* Base Variables
-   ========================================================================== */
 :root {
-  /* Colors */
   --primary-color: #4f46e5;
   --primary-light: #818cf8;
-  --primary-dark: #3730a3;
   --secondary-color: #0f172a;
   --accent-color: #f97316;
-
-  /* Text Colors */
   --text-light: #f8fafc;
-  --text-dark: #1e293b;
-
-  /* Background Colors */
   --background-light: #ffffff;
   --background-dark: #0f172a;
-
-  /* UI Elements */
   --border-radius: 8px;
 
   /* Shadows */
   --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 6px 10px -3px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 6px 8px -6px rgba(0, 0, 0, 0.1);
-
-  /* Transitions */
   --transition: all 0.25s ease;
 }
 
-/* Main Container
-       ========================================================================== */
 .survey-container {
-  max-width: 1100px;
+  max-width: 90vw;
   margin: auto;
   padding: 1rem;
-  background: var(--background-dark);
-  background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(15, 23, 42, 1) 100%);
+  background: light-dark(var(--background-light), var(--background-dark));
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Header Styles
-       ========================================================================== */
 .survey-header {
   text-align: center;
   margin-bottom: 1.75rem;
@@ -60,32 +38,27 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: var(--primary-color);
+    background: light-dark(var(--primary), var(--primary));
     border-radius: 2px;
   }
 
   & h1 {
     font-size: 2.2rem;
     font-weight: 700;
-    color: var(--text-light);
+    color: light-dark(var(--primary), var(--primary));
     margin-bottom: 1.75rem;
     letter-spacing: -0.025em;
-    background: linear-gradient(to right, var(--primary-light), var(--primary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   & p {
     font-size: 1rem;
     line-height: 1.5;
-    color: rgba(248, 250, 252, 0.8);
+    color: light-dark(#0f172a, #ffffff);
     max-width: 650px;
     margin: 0 auto 1.5rem auto;
   }
 }
 
-/* Progress Indicator
-       ========================================================================== */
 .progress-indicator {
   width: 100%;
   height: 4px;
@@ -103,8 +76,6 @@
   }
 }
 
-/* Questions Container
-       ========================================================================== */
 .questions-container {
   max-height: 70vh;
   overflow-y: auto;
@@ -131,10 +102,8 @@
   }
 }
 
-/* Question Card
-       ========================================================================== */
 .question-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--border-radius);
   padding: 1.25rem;
@@ -146,12 +115,12 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
-    border-color: rgba(129, 140, 248, 0.2);
+    border-color: light-dark(var(--primary), var(--primary));
   }
 
   & h3 {
     font-size: 1.25rem;
-    color: var(--text-light);
+    color: light-dark(var(--secondary-color), var(--text-light));
     margin-bottom: 0.75rem;
     font-weight: 600;
     display: flex;
@@ -162,7 +131,7 @@
       display: inline-block;
       width: 6px;
       height: 20px;
-      background: var(--primary-color);
+      background: light-dark(var(--primary), var(--primary));
       margin-right: 10px;
       border-radius: 3px;
     }
@@ -171,11 +140,10 @@
       display: inline-block;
       margin-right: 8px;
       font-weight: 700;
-      color: var(--text-light); /* Ensure the question number is white */
+      color: var(--text-light);
     }
   }
 
-  /* Animation delays for sequential appearance */
   &:nth-child(2) {
     animation-delay: 0.1s;
   }
@@ -193,15 +161,11 @@
   }
 }
 
-/* Form Elements
-       ========================================================================== */
-/* Options Group */
 .options-group {
   display: grid;
   gap: 0.75rem;
 }
 
-/* Option Label */
 .option-label {
   display: flex;
   align-items: center;
@@ -210,32 +174,31 @@
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
-  color: var(--text-light);
+  color: light-dark(var(--background-dark), var(--background-light));
   transition: var(--transition);
   border: 1px solid transparent;
   font-size: 0.95rem;
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
-    border-color: var(--primary-light);
+    border-color: light-dark(var(--primary), var(--primary));
   }
 }
 
-/* Radio and Checkbox Inputs */
 .radio-input,
 .checkbox-input {
   appearance: none;
   width: 1.1rem;
   height: 1.1rem;
-  border: 2px solid var(--primary-light);
+  border: 2px solid light-dark(var(--primary), var(--primary));
   outline: none;
   cursor: pointer;
   position: relative;
   transition: var(--transition);
 
   &:checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: light-dark(var(--primary), var(--primary));
+    border-color: light-dark(var(--primary), var(--primary));
 
     &::after {
       content: "";
@@ -251,12 +214,10 @@
   }
 }
 
-/* Radio Input Specific */
 .radio-input {
   border-radius: 50%;
 }
 
-/* Checkbox Input Specific */
 .checkbox-input {
   border-radius: 4px;
 
@@ -271,15 +232,14 @@
   }
 }
 
-/* Textarea Input */
 .textarea-input {
   width: 100%;
   padding: 0.85rem;
   background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid light-dark(var(--primary), var(--primary));
   border-radius: 6px;
   resize: vertical;
-  color: var(--text-light);
+  color: light-dark(#0f172a, #f8fafc);
   font-family: inherit;
   font-size: 0.95rem;
   min-height: 100px;
@@ -287,13 +247,11 @@
 
   &:focus {
     outline: none;
-    border-color: var(--primary-light);
+    border-color: light-dark(var(--primary), var(--primary));
     box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
   }
 }
 
-/* Survey Controls
-       ========================================================================== */
 .survey-controls {
   display: flex;
   gap: 1.25rem;
@@ -302,7 +260,6 @@
   padding: 0.75rem;
 }
 
-/* Button Styles */
 .submit-btn,
 .download-btn {
   padding: 0.75rem 1.75rem;
@@ -315,9 +272,8 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* Submit Button */
 .submit-btn {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  background: light-dark(var(--primary), var(--primary));
   color: white;
   position: relative;
   overflow: hidden;
@@ -343,7 +299,6 @@
   }
 }
 
-/* Download Button */
 .download-btn {
   background: transparent;
   color: var(--primary-light);
@@ -373,8 +328,6 @@
   }
 }
 
-/* Animations
-       ========================================================================== */
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -387,8 +340,6 @@
   }
 }
 
-/* Responsive Design
-       ========================================================================== */
 @media (max-width: 768px) {
   .survey-container {
     padding: 1.25rem;
@@ -430,151 +381,7 @@
     gap: 0.75rem;
   }
 }
-/*-----thankyou page css------*/
 
-/* Thank You Page Styles */
-.thank-you-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 70vh;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  transition: all 0.3s ease;
-}
-
-.thank-you-container {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  max-width: 550px;
-  width: 100%;
-  text-align: center;
-  transform: translateY(0);
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
-  animation: slideIn 0.5s ease-out forwards;
-  margin: auto;
-}
-
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.thank-you-icon {
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-.thank-you-icon svg {
-  width: 100px;
-  height: 100px;
-  filter: drop-shadow(0 4px 6px rgba(76, 175, 80, 0.3));
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.thank-you-container h2 {
-  color: #2c3e50;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  letter-spacing: -0.5px;
-}
-
-.thank-you-container p {
-  color: #5d6778;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 2.5rem;
-  font-weight: 400;
-}
-
-.return-btn {
-  background-color: #4f46e5;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 6px rgba(76, 175, 80, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.return-btn:hover {
-  background-color: #43a047;
-  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
-  transform: translateY(-2px);
-}
-
-.return-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
-}
-
-.return-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
-}
-
-.return-btn::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 5px;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.5);
-  opacity: 0;
-  border-radius: 100%;
-  transform: scale(1, 1) translate(-50%);
-  transform-origin: 50% 50%;
-}
-
-.return-btn:focus:not(:active)::after {
-  animation: ripple 1s ease-out;
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0, 0);
-    opacity: 0.5;
-  }
-  20% {
-    transform: scale(25, 25);
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(40, 40);
-  }
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .thank-you-container {
     padding: 2rem;
