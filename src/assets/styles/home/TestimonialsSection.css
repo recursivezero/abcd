@@ -1,3 +1,19 @@
+.section-title1 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.01rem;
+  color: var(--hero-heading, #111827);
+  letter-spacing: -1px;
+}
+
+.grid.three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2.5rem; 
+}
+
 .grid.three h3 {
   font-size: 1.15rem;
   font-weight: 700;
@@ -61,4 +77,11 @@
   font-weight: 600;
   color: var(--testimonial-author-text);
   margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .grid.three {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
 }
