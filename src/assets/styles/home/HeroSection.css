@@ -57,6 +57,8 @@
 .hero-text {
   flex: 1 1 0;
   min-width: 300px;
+  justify-items: anchor-center;
+  padding:1rem;
 }
 
 .hero-image {
