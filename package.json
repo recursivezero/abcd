@@ -89,6 +89,7 @@
     "@astrojs/sitemap": "3.4.1",
     "@fontsource/roboto": "5.1.0",
     "astro": "5.4.1",
+    "astro-social-share": "2.2.0",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.0",
     "dotenv": "16.4.5",

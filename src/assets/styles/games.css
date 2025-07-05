@@ -97,12 +97,6 @@
   max-width: 1000px;
 }
 
-.game-menu {
-  display: grid;
-  place-items: center;
-  justify-content: flex-end;
-}
-
 /* Game Card Styles */
 .game-card {
   background-color: var(--card-bg, light-dark(#ffffff, #2b2b40));
