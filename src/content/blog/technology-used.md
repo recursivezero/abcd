@@ -5,13 +5,13 @@ image: "/assets/images/blog/blog-1.png"
 publishDate: "24 December 2024"
 ---
 
-## Project Technology Stack Documentation
+# **Project Technology Stack Documentation**
 
 ---
 
-## **1. Frontend**
+# **Frontend**
 
-### **1.1 Astro.js**
+## **Astro.js**
 
 - **Purpose**: Utilized as the core frontend framework for building the project.
 - **Features**:
@@ -19,23 +19,23 @@ publishDate: "24 December 2024"
   -  Supports server-side rendering (SSR) and static site generation (SSG).
   -  Integrates seamlessly with other frameworks like React.
 
-### **1.2 React**
+## **React**
 
 - **Purpose**: Used for creating interactive and dynamic components within the Astro.js framework.
 - **Features**:
   -  Component-based architecture.
   -  State management and lifecycle methods.
 
-### **1.3 Styling**
+## **Styling**
 
-### Tailwind CSS
+#### Tailwind CSS
 
 - **Purpose**: A utility-first CSS framework used for styling.
 - **Features**:
   -  Rapid prototyping with predefined classes.
   -  Highly customizable via a configuration file.
 
-### **1.4 Component Library**
+## **Component Library**
 
 #### shadcn/ui
 
@@ -44,7 +44,7 @@ publishDate: "24 December 2024"
   -  Offers accessible and customizable components.
   -  Works seamlessly with Tailwind CSS.
 
-### **1.5 Icons**
+## **Icons**
 
 - **Purpose**: Used for visual enhancements and icons across the application.
 - **Libraries**:
@@ -52,7 +52,7 @@ publishDate: "24 December 2024"
   -  React Icons: A collection of popular icon libraries for React.
   -  Lucide Icons: Modern, consistent, and open-source icon library.
 
-### **1.6 State Management**
+## **State Management**
 
 #### Zustand
 
@@ -61,7 +61,7 @@ publishDate: "24 December 2024"
   -  Minimal boilerplate.
   -  Simple and scalable API for managing state.
 
-### **1.7 Data Validation**
+## **Data Validation**
 
 #### Zod
 
@@ -72,16 +72,16 @@ publishDate: "24 December 2024"
 
 ## Backend
 
-## **2. Backend**
+# **Backend**
 
-### **2.1 Node.js**
+## **Node.js**
 
 - **Purpose**: Backend runtime environment.
 - **Features**:
   -  Non-blocking, event-driven architecture for handling asynchronous operations.
   -  Large ecosystem of libraries and tools.
 
-### **2.2 Hono.js Framework**
+## **Hono.js Framework**
 
 - **Purpose**: Lightweight, high-performance framework for building backend APIs.
 - **Features**:
@@ -90,16 +90,16 @@ publishDate: "24 December 2024"
 
 ## Database
 
-## **3. Database**
+# **Database**
 
-### **3.1 MongoDB**
+## **MongoDB**
 
 - **Purpose**: NoSQL database used for storing application data.
 - **Features**:
   -  Document-oriented storage.
   -  Scalable and flexible schema design.
 
-### **3.2 Mongoose**
+## **Mongoose**
 
 - **Purpose**: Object Relational Mapping (ORM) library for MongoDB.
 - **Features**:
@@ -108,9 +108,9 @@ publishDate: "24 December 2024"
 
 ## Other Tools
 
-## **4. Other Tools**
+# **Other Tools**
 
-### **4.1 Code Formatting & Linting**
+## **Code Formatting & Linting**
 
--  Prettier: For consistent code formatting.
--  ESLint: For identifying and fixing coding errors.
+- Prettier: For consistent code formatting.
+- ESLint: For identifying and fixing coding errors.
