@@ -104,7 +104,7 @@
   .explore-container {
     padding: 1rem;
   }
-  .explore-card{
+  .explore-card {
     width: 18rem;
   }
   .explore-grid {
@@ -115,7 +115,7 @@
     font-size: 1.13rem;
     font-weight: 500;
   }
-  
+
   .card-content p {
     font-size: 0.975rem;
     font-weight: 100;
@@ -156,7 +156,7 @@
       margin-top: -15px;
     }
   }
- 
+
   @media screen and (min-width: 1200px) {
     .tooltip {
       transform: translate(-15vw, -20vh);
