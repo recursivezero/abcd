@@ -5,7 +5,7 @@ image: "/assets/images/blog/blog-2.png"
 publishDate: "26 December 2024" 
 ---
 
-# **Style Guide Documentation**
+## **Style Guide Documentation**
 
 This document outlines the style guide we follow to maintain consistency and readability in our codebase. These principles apply to both CSS and JavaScript/TypeScript components.
 
