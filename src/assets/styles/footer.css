@@ -1,13 +1,39 @@
+:root {
+  --footer-bg: #c7f3ef;
+  --footer-text-main: #22223b;
+  --footer-text-secondary: gray;
+  --footer-text-hover: #090909;
+  --footer-brand-text: #0f0f10;
+  --footer-brand-highlight: #fbbf24;
+  --footer-social-hover: #0ea5e9;
+  --footer-copyright-link: #58250b;
+  --footer-copyright-link-hover: #178bb9;
+  --footer-border-color: #e5e7eb;
+}
+
+[data-theme="dark"] {
+  --footer-bg: #1f2937; 
+  --footer-text-main: #d1d5db; 
+  --footer-text-secondary: #9ca3af; 
+  --footer-text-hover: #2825e8; 
+  --footer-brand-text: #ffffff; 
+  --footer-brand-highlight: #fbbf24; 
+  --footer-social-hover: #0ea5e9; 
+  --footer-copyright-link: #9ca3af; 
+  --footer-copyright-link-hover: #0ea5e9; 
+  --footer-border-color: #374151; 
+}
+
 /* Footer background and layout */
 .container__footer {
-  background: #c7f3ef;
+  background: var(--footer-bg);
   padding: 2.5rem 2rem 1.5rem 2rem;
-  color: #22223b;
+  color: var(--footer-text-main);
   font-size: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--footer-border-color);
 }
 
 /* Footer navigation grid */
@@ -31,7 +57,7 @@
 }
 
 .footer__nav--item a {
-  color: gray;
+  color: var(--footer-text-secondary);
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 400;
@@ -39,7 +65,7 @@
 }
 
 .footer__nav--item a:hover {
-  color: #090909;
+  color: var(--footer-text-hover);
   text-decoration: underline;
 }
 
@@ -51,18 +77,18 @@
 .container__footer .brand {
   font-size: 2rem;
   font-weight: 700;
-  color: #0f0f10;
+  color: var(--footer-brand-text);
   margin-bottom: 0.5rem;
 }
 
 .container__footer .brand .kbd {
-  color: #fbbf24;
+  color: var(--footer-brand-highlight);
   font-weight: 700;
 }
 
 .container__footer p {
   margin: 0.5rem 0 1.5rem 0;
-  color: #22223b;
+  color: var(--footer-text-main);
   font-size: 1.2rem;
   max-width: 260px;
 }
@@ -75,25 +101,25 @@
 }
 
 .container__footer .social a {
-  color: #22223b;
+  color: var(--footer-text-main);
   font-size: 1.5rem;
   transition: color 0.2s;
 }
 
 .container__footer .social a:hover {
-  color: #0ea5e9;
+  color: var(--footer-social-hover);
 }
 
 /* Copyright and links */
 .container__footer .copyright {
   text-align: center;
-  color: #22223b;
+  color: var(--footer-text-main);
   font-size: 0.95rem;
   margin-top: 2rem;
 }
 
 .container__footer .copyright a {
-  color: #58250b;
+  color: var(--footer-copyright-link);
   text-decoration: none;
   margin: 0 0.5rem;
   font-size: 0.95rem;
@@ -101,7 +127,7 @@
 
 .container__footer .copyright a:hover {
   text-decoration: underline;
-  color: #178bb9;
+  color: var(--footer-copyright-link-hover);
 }
 
 /* Responsive */

@@ -91,3 +91,18 @@
     margin-top: 2rem;
   }
 }
+
+/* --- Responsive Styles for Mobile --- */
+@media (max-width: 768px) {
+  .cta-buttons {
+    flex-direction: column; 
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .cta-buttons .button {
+    font-size: 1rem;
+    padding: 1rem; 
+    white-space: nowrap; 
+  }
+}
