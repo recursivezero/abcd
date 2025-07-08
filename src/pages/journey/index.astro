@@ -5,177 +5,65 @@ import "/src/assets/styles/journey/form.css";
 import BaseLayout from "@/layouts/Base";
 import Back from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
-
 ---
 
 <BaseLayout meta={{ title: "Journey" }}>
-<Back />
-<Fragment slot="header-right">
+  <Back />
+  <Fragment slot="header-right">
     <Help title="Journey" description="Create your Life Journey Timeline" />
   </Fragment>
- <div class='flex-col'>
- <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>My Life Journey Timeline</title>
-      <script>
-        (() => {
-          const saved = localStorage.getItem("theme");
-          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
-        })();
-      </script>
-    </head>
-    <body>
-      <div class="page-container">
-        <header>
-          <h1 class="page-title">My Life Journey Timeline</h1>
-          <p class="page-subtitle">Watch your life story grow like a beautiful plant</p>
-          <button class="add-event-button" id="addEventBtn">🌱 Add New Event</button>
-          <button class="print-pdf-button" onclick="window.print()">📄 Download as PDF</button>
-          <button class="theme-toggle-button" id="themeToggleBtn">🌓 Toggle Theme</button>
-        </header>
 
-   
-        <main class="timeline-wrapper" id="timelineWrapper" style="display: none;">
-          <div class="timeline-container" id="timelineContainer">
-            <div class="timeline-line"></div>
+  <div class="flex-col">
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Life Journey Timeline</title>
+
+        <!-- External JS file with all logic -->
+        <script src="/src/assets/journey script/timeline.js" defer></script>
+      </head>
+
+      <body>
+        <div class="page-container">
+          <header>
+            <h1 class="page-title">My Life Journey Timeline</h1>
+            <p class="page-subtitle">Watch your life story grow like a beautiful plant</p>
+            <button class="add-event-button" id="addEventBtn">🌱 Add New Event</button>
+            <button class="print-pdf-button" onclick="window.print()">📄 Download as PDF</button>
+            <button class="theme-toggle-button" id="themeToggleBtn">🌓 Toggle Theme</button>
+          </header>
+
+          <main class="timeline-wrapper" id="timelineWrapper" style="display: none;">
+            <div class="timeline-container" id="timelineContainer">
+              <div class="timeline-line"></div>
+            </div>
+          </main>
+
+          <div class="empty-state" id="emptyState">
+            <h2>Start Your Journey</h2>
+            <p>Add your first life event to begin creating your timeline</p>
           </div>
-        </main>
 
-        <div class="empty-state" id="emptyState">
-          <h2>Start Your Journey</h2>
-          <p>Add your first life event to begin creating your timeline</p>
-        </div>
-
-        <div class="form-overlay" id="formOverlay">
-          <form class="event-form" id="eventForm">
-            <h2 class="form-title">Add / Edit Life Event</h2>
-            <div class="form-group">
-              <label for="eventDate">Date</label>
-              <input type="text" id="eventDate" placeholder="e.g. 2020" required />
-            </div>
-            <div class="form-group">
-              <label for="eventDesc">Description</label>
-              <textarea id="eventDesc" placeholder="Describe your life event..." required></textarea>
-            </div>
-            <div class="form-buttons">
-              <button type="button" class="form-button cancel-button" id="cancelBtn">Cancel</button>
-              <button type="submit" class="form-button submit-button">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      
-      <!-- ✅ Inline JS -->
-      <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const addBtn = document.getElementById("addEventBtn");
-          const formOverlay = document.getElementById("formOverlay");
-          const eventForm = document.getElementById("eventForm");
-          const cancelBtn = document.getElementById("cancelBtn");
-          const emptyState = document.getElementById("emptyState");
-          const timelineWrapper = document.getElementById("timelineWrapper");
-          const timelineContainer = document.getElementById("timelineContainer");
-          const themeToggleBtn = document.getElementById("themeToggleBtn");
-          const eventDate = document.getElementById("eventDate");
-          const eventDesc = document.getElementById("eventDesc");
-
-          let events = JSON.parse(localStorage.getItem("timelineEvents") || "[]");
-          let editIndex = null;
-          const SPACING = 288;
-
-          function save() {
-            localStorage.setItem("timelineEvents", JSON.stringify(events));
-          }
-
-          function render() {
-            timelineContainer.innerHTML = '<div class="timeline-line"></div>';
-            if (events.length === 0) {
-              emptyState.style.display = "block";
-              timelineWrapper.style.display = "none";
-              return;
-            }
-
-            emptyState.style.display = "none";
-            timelineWrapper.style.display = "block";
-            timelineWrapper.style.height = events.length * SPACING + 100 + "px";
-
-            events.forEach((ev, idx) => {
-              const el = document.createElement("div");
-              el.className = "timeline-event";
-              el.style.top = idx * SPACING + "px";
-              el.innerHTML = `
-            <div class="timeline-dot"></div>
-            <div class="timeline-label ${idx % 2 === 0 ? "left" : "right"}">
-              <span class="event-date">${ev.date}</span>
-              <span class="event-description">${ev.description}</span>
-              <div class="event-actions">
-                <button class="edit-btn">✏️ Edit</button>
-                <button class="delete-btn">🗑️ Delete</button>
+          <div class="form-overlay" id="formOverlay">
+            <form class="event-form" id="eventForm">
+              <h2 class="form-title">Add / Edit Life Event</h2>
+              <div class="form-group">
+                <label for="eventDate">Date</label>
+                <input type="text" id="eventDate" placeholder="e.g. 2020" required />
               </div>
-            </div>
-          `;
-
-              el.querySelector(".edit-btn").addEventListener("click", () => {
-                editIndex = idx;
-                eventDate.value = ev.date;
-                eventDesc.value = ev.description;
-                formOverlay.classList.add("active");
-              });
-
-              el.querySelector(".delete-btn").addEventListener("click", () => {
-                if (confirm("Delete this event?")) {
-                  events.splice(idx, 1);
-                  save();
-                  render();
-                }
-              });
-
-              timelineContainer.appendChild(el);
-            });
-          }
-
-          addBtn.addEventListener("click", () => {
-            editIndex = null;
-            eventForm.reset();
-            formOverlay.classList.add("active");
-          });
-
-          cancelBtn.addEventListener("click", () => {
-            formOverlay.classList.remove("active");
-          });
-
-          formOverlay.addEventListener("click", (e) => {
-            if (e.target === formOverlay) formOverlay.classList.remove("active");
-          });
-
-          eventForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const date = eventDate.value.trim();
-            const desc = eventDesc.value.trim().split(/\s+/).slice(0, 40).join(" ");
-            if (editIndex !== null) {
-              events[editIndex] = { date, description: desc };
-            } else {
-              events.push({ date, description: desc });
-            }
-            save();
-            render();
-            formOverlay.classList.remove("active");
-          });
-
-          themeToggleBtn.addEventListener("click", () => {
-            const current = document.documentElement.getAttribute("data-theme");
-            const next = current === "dark" ? "light" : "dark";
-            document.documentElement.setAttribute("data-theme", next);
-            localStorage.setItem("theme", next);
-          });
-
-          render();
-        });
-      </script>
-    </body>
-  </html>
- </div>
+              <div class="form-group">
+                <label for="eventDesc">Description</label>
+                <textarea id="eventDesc" placeholder="Describe your life event..." required></textarea>
+              </div>
+              <div class="form-buttons">
+                <button type="button" class="form-button cancel-button" id="cancelBtn">Cancel</button>
+                <button type="submit" class="form-button submit-button">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </body>
+    </html>
+  </div>
 </BaseLayout>
