@@ -52,7 +52,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 20%, light-dark(rgba(59, 130, 246, 0.03), rgba(96, 165, 250, 0.05)) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, light-dark(rgba(139, 92, 246, 0.03), rgba(168, 85, 247, 0.05)) 0%, transparent 50%);
   pointer-events: none;
@@ -70,7 +70,7 @@
 
 .blog-title {
   font-size: 45px;
-  background: #3b82f6;
+  background: var(--primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0 0 1rem 0;
@@ -124,7 +124,7 @@
 
 .markdown-content {
   margin-top: 2rem;
-  max-width: 800px;
+  max-width: min(90vw, 90%);
   margin-inline: auto;
   font-size: 3vh;
   line-height: 1.7;
@@ -140,27 +140,27 @@
 
 .markdown-content h2::before {
   content: counter(main-counter) ". ";
-  color: light-dark(var(--accent-light), var(--accent-dark));
+  color: var(--primary);
   font-weight: 700;
   margin-right: 0.75rem;
 }
 
-.markdown-content h2 + ul {
+.markdown-content h2+ul {
   counter-reset: sub-counter;
 }
 
-.markdown-content h2 + ul > li,
-.markdown-content h2 + * + ul > li {
+.markdown-content h2+ul>li,
+.markdown-content h2+*+ul>li {
   counter-increment: sub-counter;
   list-style: none;
   position: relative;
   padding-left: 0;
 }
 
-.markdown-content h2 + ul > li::before,
-.markdown-content h2 + * + ul > li::before {
+.markdown-content h2+ul>li::before,
+.markdown-content h2+*+ul>li::before {
   content: counter(main-counter) "." counter(sub-counter) " ";
-  color: light-dark(var(--accent-light), var(--accent-dark));
+  color: var(--primary);
   font-weight: 600;
   position: absolute;
   left: -3rem;
@@ -179,11 +179,11 @@
   margin-right: 0.75rem;
 }
 
-.markdown-content h3 + * + h3 {
+.markdown-content h3+*+h3 {
   counter-increment: example-counter;
 }
 
-.markdown-content h3 + * + h3::before {
+.markdown-content h3+*+h3::before {
   content: "Example " counter(example-counter) ": ";
   color: light-dark(var(--accent-light), var(--accent-dark));
   font-weight: 600;
@@ -222,7 +222,7 @@
 }
 
 .markdown-content h4 {
-  font-size: 1.35rem;
+  font-size: 1em;
   margin-top: 1.75rem;
 }
 
@@ -235,7 +235,7 @@
 }
 
 .markdown-content strong {
-  color: light-dark(var(--accent-light), var(--accent-dark));
+  color: var(--primary);
   font-weight: 600;
 }
 
@@ -324,7 +324,7 @@
 
 .markdown-content code {
   background: light-dark(var(--code-bg-light), var(--code-bg-dark));
-  color: light-dark(var(--accent-light), var(--accent-dark));
+  color: var(--primary);
   padding: 0.1rem 0.4rem;
   border-radius: 6px;
   font-size: 0.95em;
@@ -370,12 +370,13 @@
 .markdown-content hr {
   display: none !important;
 }
-@keyfr
-ames fadeInUp {
+
+@keyfr ames fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -386,6 +387,7 @@ ames fadeInUp {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -435,8 +437,8 @@ ames fadeInUp {
     padding-left: 1.5rem;
   }
 
-  .markdown-content h2 + ul > li::before,
-  .markdown-content h2 + * + ul > li::before {
+  .markdown-content h2+ul>li::before,
+  .markdown-content h2+*+ul>li::before {
     left: -2.5rem;
   }
 }
@@ -471,8 +473,8 @@ ames fadeInUp {
     padding-left: 1rem;
   }
 
-  .markdown-content h2 + ul > li::before,
-  .markdown-content h2 + * + ul > li::before {
+  .markdown-content h2+ul>li::before,
+  .markdown-content h2+*+ul>li::before {
     left: -2rem;
   }
 }
