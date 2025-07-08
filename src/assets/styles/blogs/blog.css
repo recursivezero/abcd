@@ -46,15 +46,22 @@
 }
 
 .container__blog::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    radial-gradient(circle at 20% 20%, light-dark(rgba(59, 130, 246, 0.03), rgba(96, 165, 250, 0.05)) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, light-dark(rgba(139, 92, 246, 0.03), rgba(168, 85, 247, 0.05)) 0%, transparent 50%);
+  background: radial-gradient(
+      circle at 20% 20%,
+      light-dark(rgba(59, 130, 246, 0.03), rgba(96, 165, 250, 0.05)) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      light-dark(rgba(139, 92, 246, 0.03), rgba(168, 85, 247, 0.05)) 0%,
+      transparent 50%
+    );
   pointer-events: none;
   z-index: -1;
 }
@@ -241,7 +248,7 @@
 }
 
 .markdown-content a::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -299,7 +306,7 @@
   font-size: 1.05rem;
   line-height: 1.6;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   position: relative;
   transition: all 0.3s ease;
   text-align: left;
@@ -316,7 +323,7 @@
   padding: 0.1rem 0.4rem;
   border-radius: 6px;
   font-size: 0.95em;
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   font-weight: 500;
   border: 1px solid light-dark(var(--border-light), var(--border-dark));
 }
