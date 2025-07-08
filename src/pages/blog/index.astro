@@ -23,7 +23,7 @@ const blogPosts = blogs.map((entry) => {
 ---
 
 <BaseLayout meta={{ title: "Blogs" }}>
-  <BackArrow />
+
   <Fragment slot="header-right">
     <Help
       title="Blog"
@@ -31,6 +31,7 @@ const blogPosts = blogs.map((entry) => {
     />
   </Fragment>
   <div class="container__blog">
+      <BackArrow />
     <header class="blog-header">
       <h1 class="blog-title">
         Our <span class="title-accent">Blog</span>
