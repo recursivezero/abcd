@@ -1,0 +1,174 @@
+:root {
+  --icon-hover-color: #172fda;
+}
+
+.share-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.share-trigger-button {
+  background-color: transparent;
+  color: var(--primary);
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--primary);
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.share-trigger-button:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.share-trigger-button svg {
+  display: block;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  fill: var(--primary);
+  transition: fill 0.2s ease;
+}
+
+.share-trigger-button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  transform: translateX(-50%);
+  margin-top: 30px;
+  color: light-dark(black, white);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.share-trigger-button:hover::after,
+.share-trigger-button:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.share-popover {
+  position: absolute;
+  top: 100%;
+  right: 0%;
+  background-color: #19191E;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 10px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  min-width: 105px;
+  margin-top: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transform-origin: top right;
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out, transform 0.2s ease-out;
+  pointer-events: none;
+}
+
+.share-popover.is-open {
+  opacity: 0.98;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.share-popover .astro-social-share {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 8px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+  width: 100%;
+}
+
+.share-popover .astro-social-share a[href*="medium.com/new-story"],
+.share-popover .astro-social-share a[href*="news.ycombinator.com/submitlink"],
+.share-popover .astro-social-share a[href^="mailto:"],
+.share-popover .astro-social-share a[href*="bsky.app/intent/compose"] {
+  display: none !important;
+}
+
+.share-popover .astro-social-share a {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.share-popover .astro-social-share svg {
+  fill: #ffffff;
+  width: 24px;
+  height: 24px;
+}
+
+.share-popover .astro-social-share svg:hover {
+  transform: translateY(-1px);
+  fill: #1d880c;
+  width: 24px;
+  height: 24px;
+}
+
+.share-popover .astro-social-share a[href*="whatsapp://send"] {
+  order: -4;
+}
+
+.share-popover .astro-social-share a[href*="facebook.com/sharer"] {
+  order: -2;
+}
+
+.share-popover .astro-social-share a[href*="linkedin.com/shareArticle"] {
+  order: -1;
+}
+
+.copy-link-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #fff;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.copy-link-item:hover {
+  transform: translateY(-1px);
+  color: #1d880c;
+}
+
+.copy-link-item svg {
+  color: white;
+  width: 26px;
+  height: 26px;
+  margin-right: 10px;
+  transition: fill 0.2s ease;
+}
+
+.copy-link-item:hover svg {
+  color: #1d880c;
+}
+
+.copy-link-item span {
+  font-size: 14px;
+  font-weight: 500;
+}
