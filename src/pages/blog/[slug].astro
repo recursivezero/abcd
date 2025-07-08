@@ -7,9 +7,6 @@ import Back from "@/components/BackButton.astro";
 import { blogSchema } from "@/content.config";
 import BaseLayout from "@/layouts/Base";
 import { getCollection, getEntry, render } from "astro:content";
-import UserIcon from "@/assets/icons/User.svg";
-import CalendarIcon from "@/assets/icons/Calendar.svg";
-
 export const prerender = true;
 
 export async function getStaticPaths() {
@@ -39,34 +36,33 @@ if (!Content) {
 }
 ---
 
-<BaseLayout meta={{ title:"Blog", description: validatedData.description }}>
+<BaseLayout meta={{ title: "Blog", description: validatedData.description }}>
+  <Back />
   <article class="container__blog">
     <header class="blog-post-header">
       <h1 class="blog-title">{validatedData.title}</h1>
 
-      {
-        validatedData.description && (
-          <p class="blog-description">
-            {validatedData.description}
-          </p>
-        )
-      }
+      {validatedData.description && <p class="blog-description">{validatedData.description}</p>}
 
       <div class="blog-post-meta">
-        {validatedData.author && (
-          <span class="meta-item">
-            <UserIcon />
-            {validatedData.author}
-          </span>
-        )}
-        {validatedData.publishDate && (
-          <span class="meta-item">
-            <CalendarIcon />
-            <time datetime={validatedData.publishDate.toISOString()}>
-              {validatedData.publishDate.toLocaleDateString()}
-            </time>
-          </span>
-        )}
+        {
+          validatedData.author && (
+            <span class="meta-item">
+              <UserIcon />
+              {validatedData.author}
+            </span>
+          )
+        }
+        {
+          validatedData.publishDate && (
+            <span class="meta-item">
+              <CalendarIcon />
+              <time datetime={validatedData.publishDate.toISOString()}>
+                {validatedData.publishDate.toLocaleDateString()}
+              </time>
+            </span>
+          )
+        }
       </div>
     </header>
 
