@@ -340,7 +340,6 @@
   background: var(--primary);
   color: white;
   align-content: center;
-
 }
 
 .preview-btn:hover {
@@ -604,7 +603,7 @@
     gap: 1rem;
   }
 
-  .survey-header p{
+  .survey-header p {
     text-align: left;
   }
 
@@ -695,7 +694,8 @@
   }
 }
 
-html, body {
+html,
+body {
   height: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
