@@ -1,7 +1,8 @@
 ---
 import { SocialShare } from "astro-social-share";
 import ShareIcon from "@/assets/icons/share.svg";
-import "@/assets/styles/share-button.css";
+import CopyIcon from "@/assets/icons/Copy.svg";
+import "@/assets/styles/SharePopover.css";
 ---
 
 <div class="share-button-container">
@@ -10,29 +11,14 @@ import "@/assets/styles/share-button.css";
   </button>
 
   <div id="sharePopover" class="share-popover">
-    <div class="popover-content">
-      <h3 class="popover-title">Share this page!</h3>
-      <p class="popover-description">Share this page with the world!</p>
-    </div>
-
-    <div class="social-share-section">
-      <div class="astro-social-share">
-        <SocialShare
-          description={Astro.props.description || "Check out this amazing page!"}
-          title={Astro.props.title || "My Awesome Page"}
-        />
-      </div>
-    </div>
-
-    <div class="copy-link-section">
-      <span class="share-link-label">Share the link:</span>
-      <div class="copy-input-container">
-        <input type="text" id="copyUrlInput" class="copy-url-input" readonly value={Astro.url.href} />
-        <button id="copyUrlButton" class="copy-link-button">
-          <span>Copy</span>
-        </button>
-      </div>
-    </div>
+    <SocialShare
+      description={Astro.props.description || "Check out this amazing page!"}
+      title={Astro.props.title || "My Awesome Page"}
+    />
+    <button id="copyUrlButton" class="share-option-item copy-link-item">
+      <CopyIcon />
+      <span>Copy Link</span>
+    </button>
   </div>
 </div>
 
@@ -40,9 +26,7 @@ import "@/assets/styles/share-button.css";
   document.addEventListener("DOMContentLoaded", () => {
     const shareTrigger = document.getElementById("shareTrigger")! as HTMLButtonElement;
     const sharePopover = document.getElementById("sharePopover")! as HTMLDivElement;
-    const copyUrlInput = document.getElementById("copyUrlInput")! as HTMLInputElement;
     const copyUrlButton = document.getElementById("copyUrlButton")! as HTMLButtonElement;
-    let copyTimeoutId: ReturnType<typeof setTimeout> | undefined;
 
     function togglePopover() {
       sharePopover.classList.toggle("is-open");
@@ -65,29 +49,17 @@ import "@/assets/styles/share-button.css";
       }
     });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && sharePopover.classList.contains("is-open")) {
-        togglePopover();
-      }
-    });
-
     copyUrlButton.addEventListener("click", async () => {
-      const buttonSpan = copyUrlButton.querySelector("span");
-      if (!buttonSpan || buttonSpan.textContent === "Copied!") {
-        return;
-      }
-      const currentUrl = copyUrlInput.value;
+      const currentUrl = window.location.href;
       try {
         await navigator.clipboard.writeText(currentUrl);
-        if (copyTimeoutId) {
-          clearTimeout(copyTimeoutId);
-        }
-        const originalText = "Copy";
-        buttonSpan.textContent = "Copied!";
-        copyTimeoutId = setTimeout(() => {
-          buttonSpan.textContent = originalText;
-          copyTimeoutId = undefined;
+        const originalText = copyUrlButton.querySelector("span")!.textContent;
+        copyUrlButton.querySelector("span")!.textContent = "Copied!";
+        setTimeout(() => {
+          copyUrlButton.querySelector("span")!.textContent = originalText;
         }, 1500);
+
+        togglePopover();
       } catch (err) {
         alert("Failed to copy URL. Please copy it manually: " + currentUrl);
       }
