@@ -10,18 +10,12 @@ module.exports = {
   endOfLine: "lf",
   trailingComma: "none",
   htmlWhitespaceSensitivity: "css",
-  plugins: ["prettier-plugin-astro"],
+  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss" /* Must come last */],
   overrides: [
     {
       files: "*.astro",
       options: {
         parser: "astro"
-      }
-    },
-    {
-      files: "*.json",
-      options: {
-        printWidth: 10000
       }
     }
   ]

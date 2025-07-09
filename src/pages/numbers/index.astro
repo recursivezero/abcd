@@ -1,68 +1,37 @@
 ---
-import "@/assets/styles/board.css";
 import Back from "@/components/Back.astro";
-import CardLayout from "@/components/CardLayout.astro";
-import NumberData from "@/data/numbers.json";
 import BaseLayout from "@/layouts/Base";
-import type { CardSectionType } from "@/types/alphabet";
-import { sortById } from "@/utils";
+import "@/assets/styles/alphabets/index.css";
+import "@/assets/styles/numbers/index.css";
+import numbersData from "@/data/numbers.json";
 
-const numberSections: CardSectionType[] = [];
-
-//  English Numbers
-numberSections.push({
-  id: 0,
-  kind: "english",
-  title: "English Numbers",
-  description: "A collection of numbers in English numerals.",
-  href: {
-    playground: {
-      link: "/numbers/english",
-      icon: "🔢",
-      text: "Explore"
-    }
-  }
-});
-
-Object.entries(NumberData)
-  .map(([key, value]) => {
-    const section: CardSectionType = {
-      id: value.id,
-      kind: key,
-      title: value.title || key.charAt(0).toUpperCase() + key.slice(1),
-      description: value.description || `Explore the ${key} category.`,
-      href: {
-        playground: {
-          link: `/numbers/${key}`,
-          icon: value.icon || "🔍",
-          text: "Explore"
-        }
-      }
-    };
-    return section;
-  })
-  .forEach((section) => {
-    if (!numberSections.some((s) => s.kind === section.kind)) {
-      numberSections.push(section);
-    }
-  });
-
-const title = "Numbers";
-const subtitle = "Explore various categories of numbers";
+const pageTitle = "Explore various number systems";
+const numberSections = numbersData.sections;
 ---
 
 <BaseLayout meta={{ title: "Numbers" }}>
   <Back />
-  <section class="container__board">
-    <div class="board__header">
-      <h1 class="title">{title}</h1>
-      <p class="subtitle">{subtitle}</p>
+  <section class="container__alphabets">
+    <div class="alphabets__header">
+      <h1>{pageTitle}</h1>
     </div>
-    <ul class="board__list">
+    <ul class="list__alphabets">
       {
-        numberSections.sort(sortById).map((section, index) => (
-          <li class="board__card" style={`animation-delay: ${index * 50}ms`}>
-            <CardLayout section={section} />
+        numberSections.map((section, index) => (
+          <li class="card" style={`animation-delay: ${index * 50}ms`}>
+            <div class="card__inner">
+              <div class="card__content">
+                {section.icon && <div class="category__icon">{section.icon}</div>}
+                <h2 class="category__title">{section.title}</h2>
+                <p class="category__description">{section.description}</p>
+              </div>
+              <div class="card__actions">
+                <a href={section.href} class="btn btn-playground">
+                  <span class="icon">📚</span>
+                  Explore
+                </a>
+              </div>
+            </div>
           </li>
         ))
       }

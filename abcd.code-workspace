@@ -11,17 +11,13 @@
         "source.fixAll": "always",
         "source.organizeImports": "explicit"
       },
-      "editor.defaultFormatter": "astro-build.astro-vscode"
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[html]": {
       "editor.defaultFormatter": "vscode.html-language-features"
     },
-    "[jsonc]": {
+    "[json][jsonc]": {
       "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "prettier.printWidth": 10000
     },
     "[markdown]": {
       "diffEditor.ignoreTrimWhitespace": false
@@ -178,8 +174,7 @@
       "titleBar.activeBackground": "#6a3b98",
       "titleBar.activeForeground": "#e7e7e7",
       "titleBar.inactiveBackground": "#6a3b9899",
-      "titleBar.inactiveForeground": "#e7e7e799",
-      "tab.activeBorder": "#844cba"
+      "titleBar.inactiveForeground": "#e7e7e799"
     },
     "files.exclude": {
       "**/.git": false,
@@ -196,6 +191,7 @@
     "files.readonlyInclude": {
       ".githooks/**": true
     },
+    "typescript.preferences.preferGoToSourceDefinition": true,
     "[xml]": {
       "editor.defaultFormatter": "redhat.vscode-xml"
     }

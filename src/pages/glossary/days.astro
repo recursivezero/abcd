@@ -1,0 +1,45 @@
+---
+import "@/assets/styles/varnmala/greek-alphabet.css"; // Import the CSS styles
+import BackButton from "@/components/BackButton.astro";
+import LetterCard from "@/components/LetterCard.astro";
+import glossaryData from "@/data/glossary.json";
+import BaseLayout from "@/layouts/Base";
+
+const pageTitle = glossaryData.days.title;
+const category = "days";
+const daysData = glossaryData.days.data;
+
+// Helper function to parse English and Hindi names
+function parseDayNames(fullName: string): { english: string; hindi: string } {
+  const match = fullName.match(/^(.*?) \((.*?)\)$/);
+  if (match && match.length === 3) {
+    return { english: match[1].trim(), hindi: match[2].trim() };
+  }
+  return { english: fullName, hindi: "" };
+}
+---
+
+<BaseLayout meta={{ title: pageTitle }}>
+  <BackButton href="/Glossary" />
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        daysData.map((entry) => {
+          const names = parseDayNames(entry.fullName);
+          const letterCardItem = {
+            id: entry.id,
+            letter: entry.letter, // e.g., "S" - for the main front display
+            text: names.hindi, // English name for the front
+            description: names.english
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+</BaseLayout>

@@ -1,41 +1,27 @@
 {
-  "background_color": "#1d1f21",
-  "category": "education",
-  "description": "A learning pad for ABCD keyboard layout enthusiasts.",
-  "display": "standalone",
+  "name": "APP Name",
+  "id": "App Name",
+  "short_name": "App Name",
+  "description": "A virtual front store for textile industry",
   "icons": [
     {
-      "purpose": "maskable",
-      "sizes": "128x128",
-      "src": "/assets/images/parixan/128x128.png",
-      "type": "image/png"
+      "src": "/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
-      "purpose": "maskable",
-      "sizes": "144x144",
-      "src": "/assets/images/parixan/144x144.png",
-      "type": "image/png"
-    },
-    {
-      "purpose": "maskable",
+      "src": "/512x512.png",
       "sizes": "512x512",
-      "src": "/assets/images/parixan/512x512.png",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "id": "abcdkbd",
-  "lang": "en",
-  "name": "parixan",
-  "orientation": "portrait",
-  "screenshots": [
-    {
-      "label": "parixan",
-      "sizes": "196x196",
-      "src": "/assets/icons/parixan/favicon-196x196.png",
-      "type": "image/svg+xml"
-    }
-  ],
-  "short_name": "ABCDKBD",
   "start_url": "/",
-  "theme_color": "#2bbc8a"
+  "background_color": "#1d1f21",
+  "theme_color": "#2bbc8a",
+  "display": "standalone",
+  "lang": "en",
+  "orientation": "portrait",
+  "category": "business"
 }

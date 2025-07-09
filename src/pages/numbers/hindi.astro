@@ -1,0 +1,43 @@
+---
+import "@/assets/styles/varnmala/greek-alphabet.css";
+import BackButton from "@/components/BackButton.astro";
+import LetterCard from "@/components/LetterCard.astro";
+import numbersData from "@/data/numbers.json";
+import BaseLayout from "@/layouts/Base";
+
+export interface HindiNumberEntry {
+  id: number;
+  letter: string;
+  text?: string;
+  description?: string;
+  code?: number;
+  emoji?: string;
+}
+
+const pageTitle = numbersData.hindi.title;
+const category = "hindi-numbers";
+const hindiNumbersData: HindiNumberEntry[] = numbersData.hindi.data;
+---
+
+<BaseLayout meta={{ title: "Numbers" }}>
+  <BackButton href="/numbers" />
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        hindiNumbersData.map((entry) => {
+          const letterCardItem = {
+            ...entry,
+            text: entry.text || "",
+            description: entry.description || ""
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+</BaseLayout>

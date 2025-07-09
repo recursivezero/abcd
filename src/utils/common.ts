@@ -18,21 +18,3 @@ export const getRandomColor = () => {
 };
 
 export const generateRandomLetter = () => String.fromCharCode(65 + Math.floor(Math.random() * 26));
-
-export const getFlagEmoji = (countryCode: string = "IN") => {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split("")
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
-};
-
-export const sortById = (a: any, b: any) => {
-  // Compare as numbers if both ids are numeric, else as strings
-  const aId = typeof a.id === "number" ? a.id : Number(a.id);
-  const bId = typeof b.id === "number" ? b.id : Number(b.id);
-  if (!isNaN(aId) && !isNaN(bId)) {
-    return aId - bId;
-  }
-  return String(a.id).localeCompare(String(b.id));
-};

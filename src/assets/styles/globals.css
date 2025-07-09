@@ -1,5 +1,9 @@
 @import "./custom-fonts.css";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
   :root {
     --primary: #3b82f6;
@@ -26,8 +30,8 @@
   }
 
   [data-theme="light"] {
-    --primary: #ba1db8;
-    --primary-light: #c975c6;
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
     --secondary: #64748b;
     --background: #ffffff;
     --text: #0f172a;
@@ -123,7 +127,6 @@
 
     &.content {
       grid-area: content;
-      height: 100vh;
     }
   }
 
@@ -144,7 +147,6 @@
       & .content {
         grid-area: content;
         grid-column: span 2;
-        text-align: center;
       }
     }
   }
@@ -171,16 +173,14 @@
     min-height: 100vh;
   }
 
+  @media (max-width: 768px) {
+    .content {
+      height: 10vh;
+    }
+  }
+
   .layout {
     height: fit-content;
     max-height: 100dvh;
   }
-}
-
-.txt__center {
-  text-align: center;
-}
-
-.m-0 {
-  margin: 0;
 }

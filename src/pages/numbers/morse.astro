@@ -1,0 +1,44 @@
+---
+import "@/assets/styles/varnmala/greek-alphabet.css";
+import BackButton from "@/components/BackButton.astro";
+import LetterCard from "@/components/LetterCard.astro";
+import numbersData from "@/data/numbers.json";
+import BaseLayout from "@/layouts/Base";
+
+export interface MorseNumberEntry {
+  id: number;
+  letter: string;
+  text?: string;
+  description?: string;
+  code?: number;
+  emoji?: string;
+}
+
+const pageTitle = numbersData.morse.title;
+const category = "morse-numbers";
+const morseNumbersData: MorseNumberEntry[] = numbersData.morse.data;
+---
+
+<BaseLayout meta={{ title: "Numbers" }}>
+  <BackButton href="/numbers" />
+  <article class="container__page alphabet-page-container">
+    <div class="page-header">
+      <h1 class="page-main-title">{pageTitle}</h1>
+      <button id="flip-all-button" class="flip__all__button">Flip All Cards</button>
+    </div>
+
+    <div class="grid-container alphabet-grid">
+      {
+        morseNumbersData.map((entry) => {
+          const letterCardItem = {
+            ...entry,
+            text: "", // Show digit on front
+            description: entry.description || "",
+            emoji: entry.emoji // Morse code on back
+          };
+          return <LetterCard item={letterCardItem} category={category} />;
+        })
+      }
+    </div>
+  </article>
+</BaseLayout>

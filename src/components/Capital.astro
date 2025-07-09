@@ -1,10 +1,10 @@
 ---
-import "@/assets/styles/capital.css";
-import SearchIcon from "@/assets/icons/search.svg";
-interface Props {
+export interface Props {
   stateList: any[];
   utList: any[];
 }
+import "@/assets/styles/capital.css";
+import Back from "@/components/Back.astro";
 const { stateList, utList } = Astro.props;
 
 function getColorClass(index: number) {
@@ -22,23 +22,31 @@ function getColorClass(index: number) {
 }
 ---
 
-<div class="container__capital">
-  <div class="head">
-    <h2>India's Geographical Mosaic</h2>
-  </div>
+<div class="geographical-mosaic">
+  <nav class="head">
+    <Back />
+    <h1>India's Geographical Mosaic</h1>
+  </nav>
+
   <div class="controls-bar">
-    <div class="container__search" role="search">
-      <span class="search-icon" aria-hidden="true"><SearchIcon /></span>
+    <div class="search-container" role="search">
+      <span class="search-icon" aria-hidden="true"
+        ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+          <path
+            fill-rule="evenodd"
+            d="M11.742 10.344a6.5 6.5 0 10-1.398 1.398l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"
+          ></path>
+        </svg>
+      </span>
       <input
         type="search"
         id="searchBar"
-        class="search__input"
         aria-label="Search states and union territories"
-        placeholder="Search states or capital"
+        placeholder="Search states or capitals..."
         autocomplete="off"
         spellcheck="false"
       />
-      <!--<button class="clear-button" aria-label="Clear search">×</button>-->
+      <button class="clear-button" aria-label="Clear search">×</button>
     </div>
   </div>
 

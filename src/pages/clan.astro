@@ -1,8 +1,8 @@
 ---
-import "@/assets/styles/clan.css";
-import ClanCard from "@/components/ClanCard.astro";
+import "@/assets/styles/societree.css";
+import Card from "@/components/Card.astro";
 import BaseLayout from "@/layouts/Base";
-import clanJson from "@/data/family.json";
+import clanJson from "public/assets/json/family.json";
 import Back from "@/components/Back.astro";
 
 interface Surname {
@@ -92,7 +92,7 @@ const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
 
     <div class="clan__content">
       <section class="clan__section">
-        <ClanCard initialData={validClanData} />
+        <Card initialData={validClanData} />
       </section>
     </div>
   </article>

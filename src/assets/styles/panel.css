@@ -3,6 +3,7 @@
   --bg: #0f172a;
   --surface: #1e293b;
   --text: #f8fafc;
+  --primary: #3b82f6;
   --shadow: rgba(0, 0, 0, 0.2);
   --panel-width: 20rem;
   --panel-height: 15rem;
@@ -271,8 +272,8 @@
 }
 
 .settings-button {
-  background: transparent;
-  border: 1px solid var(--primary);
+  background: light-dark(#ffffff, #0f172a);
+  border: 1px solid #3b82f6;
   color: var(--text-light);
   padding: 0.6rem;
   width: 50px;
@@ -282,6 +283,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: all var(--transition-speed) ease;
   cursor: pointer;
   margin-top: 0;
@@ -300,7 +302,7 @@
 .settings-button .settings-icon {
   width: 1.4em;
   height: 1.4em;
-  color: var(--primary);
+  color: #3b82f6;
   fill: currentColor;
   transition: fill var(--transition-speed) ease;
   flex-shrink: 0;

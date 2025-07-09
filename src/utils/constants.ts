@@ -2,7 +2,7 @@ import HomeIcon from "@/assets/icons/home.svg";
 import RecordIcon from "@/assets/icons/record.svg";
 import type { LinkProps } from "@/types/index.ts";
 
-export const APP_NAME = "Parixan";
+export const APP_NAME = "Template";
 
 let BASE_URL = "http://localhost:4321";
 let IMAGE_DIR = "/assets/images/background";
@@ -110,24 +110,6 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Numbers",
-    title: "Numbers",
-    path: "/numbers",
-    isActive: true
-  },
-  {
-    name: "Glossary",
-    title: "Glossary",
-    path: "/glossary",
-    isActive: true
-  },
-  {
-    name: "Capital",
-    title: "Capital",
-    path: "/capital",
-    isActive: true
-  },
-  {
     name: "India",
     title: "India Map",
     path: "/map",
@@ -141,14 +123,31 @@ export const NavbarLinks: LinkProps[] = [
   },
   {
     name: "Crossword",
-    title: "Cross words",
+    title: "English Cross words",
     path: "/crossword",
     isActive: true
   },
-
+  {
+    name: "Societree",
+    title: "Clan",
+    path: "/clan",
+    isActive: true
+  },
+  {
+    name: "Journey",
+    title: "journey",
+    path: "/journey",
+    isActive: true
+  },
+  {
+    name: "Capital",
+    title: "Capital",
+    path: "/capital",
+    isActive: true
+  },
   {
     name: "HideNSeek",
-    title: "Hide N Seek",
+    title: "HideNSeek",
     path: "/hidenseek",
     isActive: true
   },
@@ -183,17 +182,23 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Zodiac",
-    title: "zodiac",
-    path: "/zodiac",
-    isActive: false
+    name: "Numbers",
+    title: "Numbers",
+    path: "/numbers",
+    isActive: true
   },
   {
-    name: "Societree",
-    title: "Clan Explorer",
-    path: "/clan",
-    isActive: false
+    name: "Glossary",
+    title: "Glossary",
+    path: "/glossary",
+    isActive: true
   }
+  // {
+  //   name: "Sunsigns",
+  //   title: "Sunsigns",
+  //   path: "/sunsigns",
+  //   isActive: true
+  // },
 ];
 
 export const FooterLinks: LinkProps[] = [
@@ -323,6 +328,9 @@ const tithiNames = [
   "अमावस्या"
 ];
 
-export { BASE_URL, englishConsonants, englishVowels, fullEnglish, fullHindi, IMAGE_DIR, styleOption, tithiNames };
+export { tithiNames };
+export { englishVowels, englishConsonants };
+export { fullEnglish, fullHindi, styleOption };
+export { BASE_URL, IMAGE_DIR };
 
 export { colorBox, fontBox, fontColor, numberBox };
