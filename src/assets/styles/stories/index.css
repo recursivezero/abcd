@@ -1,3 +1,4 @@
+/* src/assets/styles/stories/index.css */
 .container__stories {
   max-width: 1440px;
   margin: 0 auto;
@@ -8,7 +9,7 @@
 
 .stories-header {
   text-align: center;
-  margin-bottom: 0rem;
+  margin-bottom: 4rem;
   position: relative;
 }
 
@@ -56,12 +57,41 @@
   opacity: 0.15;
 }
 
+.decoration-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--primary_blue);
+  filter: blur(30px);
+}
+
+.decoration-circle:nth-child(1) {
+  width: 120px;
+  height: 120px;
+  top: 0;
+  right: 0;
+}
+
+.decoration-circle:nth-child(2) {
+  width: 80px;
+  height: 80px;
+  top: 40px;
+  right: 100px;
+  background: var(--primary-light);
+}
+
+.decoration-circle:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  top: 100px;
+  right: 40px;
+  background: var(--accent);
+}
+
 .stories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2.5rem;
   margin-top: 3rem;
-  margin-bottom: 15px;
 }
 
 .story-card {
@@ -122,80 +152,32 @@
   z-index: 1;
 }
 
-.filter-chips {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  margin-bottom: 0px;
-  justify-content: center;
-  padding: 0 20px;
-}
-
-.chip {
-  padding: 6px 10px;
-  border-radius: 15px;
-  border: 2px solid transparent;
-  transition: all 0.2s ease;
-  color: #ffffff;
-}
-
-
-:is(button, figcaption) {
-  &[data-category="all"] {
-    background-color: #6701cc;
-  }
-
-  &[data-category="fictional" i] {
-    background-color: #e91e63;
-  }
-
-  &[data-category="mythology" i] {
-    background-color: #df5275;
-  }
-
-  &[data-category="humorous" i] {
-    background-color: #d6890c;
-  }
-
-  &[data-category="short" i] {
-    background-color: #4caf50;
-  }
-
-  &[data-category="uncategorized" i] {
-    background-color: #ff9800;
-  }
-}
-
-.chip.active {
-  background-color: #000000;
-  color: #ffffff;
-  border: 2px solid #000000;
-  outline: 3px dotted #866e6e;
-  outline-offset: 5px;
-}
-
-.chip:hover {
-  opacity: 0.85;
-  cursor: pointer;
-}
-
 .story-card-image {
   position: relative;
   height: 240px;
   overflow: hidden;
   border-radius: 1.5rem 1.5rem 0 0;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
+.story-card-image::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(transparent, var(--background));
+}
 
-  &:hover img {
-    transform: scale(1.06);
-  }
+.story-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.story-card:hover .story-card-image img {
+  transform: scale(1.05);
 }
 
 .story-card-details {
@@ -215,7 +197,6 @@
   font-weight: 700;
   color: var(--text);
   margin-bottom: 0rem;
-  margin-top: 0px;
   line-height: 1.3;
   transition: color 0.3s ease;
   position: relative;
@@ -249,7 +230,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
   overflow: hidden;
   transition: color 0.3s ease;
   text-align: left;
@@ -336,33 +316,30 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 76px) {
   .container__stories {
     padding: 0 1rem;
   }
 
   .stories-header {
-    text-align: center;
+    text-align: left;
     margin-bottom: 2rem;
-    padding: 0;
-  }
-
-  .stories-title {
-    font-size: clamp(1.75rem, 6vw, 2.5rem);
-    margin-bottom: 1rem;
-    line-height: 1.1;
-  }
-
-  .stories-subtitle {
-    font-size: clamp(0.875rem, 3vw, 1rem);
-    text-align: center;
-    margin: 0 auto;
-    max-width: 100%;
     padding: 0 0.5rem;
   }
 
+  .stories-title {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .stories-subtitle {
+    text-align: left;
+    margin: 0;
+    max-width: 100%;
+  }
+
   .header-decoration {
-    display: none;
+    display: none; 
   }
 
   .stories-grid {
@@ -373,113 +350,58 @@
 
   .story-card {
     border-radius: 1rem;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  }
-
-  .story-card::before {
-    border-radius: 1rem;
-  }
-
-  .story-card::after {
-    border-radius: 0.8rem;
-  }
-
-  .filter-chips {
-    padding: 0 16px;
-    gap: 8px;
-  }
-
-  .chip {
-    padding: 6px 12px;
-    font-size: 13px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
 
   .story-card-image {
-    height: 180px;
+    height: 200px;
     border-radius: 1rem 1rem 0 0;
   }
 
-  .story-card-image::after {
-    height: 30px;
-  }
-
   .story-card-details {
-    padding: 1.25rem;
-    gap: 0.75rem;
-    border-radius: 0 0 1rem 1rem;
-  }
-
-  .reading-time {
+    padding: 1.5rem;
     text-align: left;
-    margin-left: -15px;
   }
 
   .story-card-title {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     margin-bottom: 0.5rem;
-    line-height: 1.25;
   }
 
   .story-card-description {
-    font-size: 0.875rem;
+    -webkit-line-clamp: 3; 
+    font-size: 0.9375rem;
     line-height: 1.5;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    margin-bottom: 0.5rem;
   }
 
   .story-card-meta {
     padding-top: 0.75rem;
-    font-size: 0.75rem;
-    margin-bottom: 0.75rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
+    font-size: 0.8125rem;
   }
 
   .story-category,
   .story-featured {
-    font-size: 0.625rem;
-    padding: 0.25rem 0.5rem;
-    top: 0.75rem;
-  }
-
-  .story-category {
-    right: 0.75rem;
-  }
-
-  .story-featured {
-    left: 0.75rem;
+    font-size: 0.6875rem;
+    padding: 0.2rem 0.6rem;
   }
 
   .story-card-details::after {
     bottom: 0.75rem;
-    right: 1.25rem;
-    font-size: 0.75rem;
+    right: 1.5rem;
   }
 }
 
-@media (max-width: 480px) {
-  .filter-chips {
-    justify-content: flex-start;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+@media (min-width: 768px) and (max-width: 1023px) {
+  .stories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
-  .filter-chips::-webkit-scrollbar {
-    display: none;
-  }
-
-  .chip {
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-}
-
-@media (min-width: 800px) and (max-width: 1199px) {
   .story-card-image {
-    height: 350px;
-    border-radius: 1rem 1rem 0 0;
+    height: 220px;
+  }
+
+  .story-card-details {
+    padding: 1.75rem;
   }
 }
