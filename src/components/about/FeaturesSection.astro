@@ -159,7 +159,11 @@ const features: Feature[] = [
 
   .features-grid {
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: repeat(3, minmax(280px, 1fr));
+=======
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+>>>>>>> 1fd9079 ([RZA-250092]: fix columns)
     gap: 2rem;
   }
 
@@ -239,7 +243,7 @@ const features: Feature[] = [
   /* Tablet */
   @media (max-width: 992px) {
     .features-grid {
-      grid-template-columns: repeat(1, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
     }
 
     .feature-card {
