@@ -1,30 +1,21 @@
 :root {
-  --bg-dark: #0f172a;
-  --bg-light: #ffffff;
-  --bg-secondary: #1e293b;
-  --primary: #3b82f6;
-  --primary-light: #60a5fa;
-  --text-main: #212223;
-  --text-primary: #cbd5e1;
-  --text-secondary: #212223;
-  --accent: #f59e0b;
-  --card-red-bg: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
-  --card-blue-bg: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
-  --card-yellow-bg: linear-gradient(135deg, #fbbf24 0%, #fcd34d 100%);
-  --card-green-bg: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+  --card-red-bg: linear-gradient(135deg, #b91c1c 0%, #ef4444 100%);
+  --card-blue-bg: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  --card-yellow-bg: linear-gradient(135deg, #f59e42 0%, #fbbf24 100%);
+  --card-green-bg: linear-gradient(135deg, #059669 0%, #10b981 100%);
   --card-red-text: #fff;
   --card-blue-text: #fff;
   --card-yellow-text: #fff;
   --card-green-text: #fff;
-  --card-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
-  --section-divider: #e5e7eb;
-  --section-bg: #ffffff;
-  --section-bg-alt: #f7fafc;
-  --section-text: #22223b;
-  --testimonial-card-bg: #eef5fc;
-  --testimonial-card-text: #334155;
-  --testimonial-author-text: #64748b;
-  --star-color: #f59e0b;
+  --card-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+  --hero-heading: #f3f4f6;
+  --section-divider: #23304a;
+  --section-bg: #0f172a;
+  --section-bg-alt: #16213a;
+  --section-text: #f3f4f6;
+  --testimonial-card-bg: #1e293b;
+  --testimonial-card-text: #cbd5e1;
+  --testimonial-author-text: #94a3b8;
 }
 
 [data-theme="dark"] {
@@ -47,6 +38,36 @@
   --testimonial-author-text: #94a3b8;
 }
 
+[data-theme="light"] {
+  --bg-dark: #0f172a;
+  --bg-light: #ffffff;
+  --bg-secondary: #1e293b;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --text-main: #212223;
+  --text-primary: #cbd5e1;
+  --text-secondary: #212223;
+  --accent: #f59e0b;
+    --hero-heading: #131414;
+  --card-red-bg: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+  --card-blue-bg: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  --card-yellow-bg: linear-gradient(135deg, #fbbf24 0%, #fcd34d 100%);
+  --card-green-bg: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+  --card-red-text: #fff;
+  --card-blue-text: #fff;
+  --card-yellow-text: #fff;
+  --card-green-text: #fff;
+  --card-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+  --section-divider: #e5e7eb;
+  --section-bg: #ffffff;
+  --section-bg-alt: #f7fafc;
+  --section-text: #22223b;
+  --testimonial-card-bg: #eef5fc;
+  --testimonial-card-text: #334155;
+  --testimonial-author-text: #64748b;
+  --star-color: #f59e0b;
+}
+
 .about-container {
   background-color: light-dark(var(--bg-light), var(--bg-dark));
   color: var(--text-main);
@@ -54,7 +75,7 @@
   font-family: "roboto", cursive, sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1rem;
 }
 
 .button {
@@ -77,7 +98,7 @@
 .section {
   background: var(--section-bg-alt);
   color: var(--section-text);
-  padding: 4rem 1rem 4rem 1rem;
+  padding: 2rem 1rem 2rem 1rem;
   border-top: 1px solid var(--section-divider);
 }
 .section:nth-of-type(odd) {
