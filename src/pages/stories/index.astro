@@ -1,0 +1,63 @@
+---
+import "@/assets/styles/page.css";
+import "@/assets/styles/stories/index.css";
+import BackArrow from "@/components/Back.astro";
+import Help from "@/components/Help.astro";
+import StoryCard from "@/components/StoryCard.astro";
+import BaseLayout from "@/layouts/Base";
+import { storyPostSchema, type StoryPost } from "@/types/stories";
+import { getCollection } from "astro:content";
+
+const stories = await getCollection("stories", ({ data }) => {
+  return !data.draft;
+});
+const storyPosts = stories.map((entry) => {
+  const slug = entry.data.slug || entry.id.replace(/\.md$/, "").toLowerCase().replace(/\s+/g, "-");
+  const post: StoryPost = storyPostSchema.parse({
+    url: `/stories/${slug}`,
+    title: entry.data.title,
+    description: entry.data.description,
+    author: entry.data.author,
+    image: entry.data.image,
+    date: entry.data.publishDate?.toLocaleDateString(),
+    category: entry.data.category,
+    readingTime: entry.data.readingTime,
+    featured: entry.data.featured,
+    tags: entry.data.tags
+  });
+  return post;
+});
+
+const sortedStories = storyPosts.sort((a, b) => {
+  if (a.featured && !b.featured) return -1;
+  if (!a.featured && b.featured) return 1;
+  return new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime();
+});
+---
+
+<BaseLayout meta={{ title: "Stories" }}>
+  <BackArrow />
+  <Fragment slot="header-right">
+    <Help
+      title="Stories"
+      description="Explore our collection of stories, tales, and creative writing from various authors."
+    />
+  </Fragment>
+  <div class="container__stories">
+    <header class="stories-header">
+      <h1 class="stories-title">
+        <span class="title-accent">Stories</span> for Kids
+      </h1>
+      <p class="stories-subtitle">Discover tales, narratives, and creative works from talented writers.</p>
+      <div class="header-decoration">
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+      </div>
+    </header>
+
+    <div class="stories-grid">
+      {sortedStories.map((post) => <StoryCard post={post} height="240px" />)}
+    </div>
+  </div>
+</BaseLayout>

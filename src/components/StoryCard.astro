@@ -1,0 +1,37 @@
+---
+import { storyCardSchema } from "@/types/stories";
+
+const props = storyCardSchema.parse(Astro.props);
+const { post, height = "auto" } = props;
+const { url, title, description, image, author, date, category, readingTime, featured } = post;
+const imageUrl = image;
+---
+
+<article class={`story-card ${featured ? "featured" : ""}`}>
+  <a href={url}>
+    <div class="story-card-content">
+      <div class="story-card-image">
+        <figure class={`${typeof height === "number" ? `height: ${height}px` : `height: ${height}`}`}>
+          <img src={imageUrl} alt={title} loading="lazy" />
+          {category && <span class="story-category">{category}</span>}
+          {featured && <span class="story-featured">Featured</span>}
+        </figure>
+      </div>
+      <div class="story-card-details">
+        <h3 class="story-card-title">
+          {title}
+        </h3>
+
+        {description && <p class="story-card-description">{description}</p>}
+
+        <div class="story-card-meta">
+          <div>
+            {author && <p>By {author}</p>}
+            {readingTime && <span class="reading-time">{readingTime} minutes read</span>}
+          </div>
+          {date && <time datetime={date.toString()}>{date}</time>}
+        </div>
+      </div>
+    </div>
+  </a>
+</article>
