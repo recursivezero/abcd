@@ -1,22 +1,22 @@
 :root {
   --stories-background-light: #f8fafc;
-  --stories-background-dark: #0f172a;
-  --stories-text-dark: #f1f5f9;
+  --stories-background-dark: #0f172a; 
+  --stories-text-dark: #f1f5f9; 
   --stories-secondary-light: #64748b;
-  --stories-secondary-dark: #94a3b8;
+  --stories-secondary-dark: #94a3b8; 
   --stories-primary-blue: #3b82f6;
   --stories-primary-light: #60a5fa;
   --stories-primary-dark: #1d4ed8;
   --stories-accent: #f59e0b;
   --stories-accent-light: #fbbf24;
   --stories-border-light: #e2e8f0;
-  --stories-border-dark: #475569;
+  --stories-border-dark: #475569; 
   --stories-shadow-light: rgba(0, 0, 0, 0.1);
   --stories-shadow-dark: rgba(0, 0, 0, 0.3);
   --stories-card-light: #ffffff;
-  --stories-card-dark: #1e293b;
+  --stories-card-dark: #1e293b; 
   --stories-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  --stories-text-light: #334155;
+  --stories-text-light: #334155; 
   --primary-background: var(--stories-background-light);
   --secondary-background: var(--stories-card-light);
   --text-color: var(--stories-text-light);
@@ -33,8 +33,8 @@
   padding: 2rem 1.5rem;
   position: relative;
   overflow: hidden;
-  background-color: var(--primary-background);
-  color: var(--text-color);
+  background-color: var(--primary-background); 
+  color: var(--text-color); 
 }
 
 .stories-header {
@@ -64,7 +64,7 @@
   left: 0;
   width: 100%;
   height: 0.25rem;
-  background: var(--main-primary-color);
+  background: var(--main-primary-color); 
   border-radius: 0.125rem;
 }
 
@@ -72,7 +72,7 @@
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   max-width: 600px;
   margin: 0 auto 1.5rem;
-  color: var(--secondary-text-color);
+  color: var(--secondary-text-color); 
   opacity: 0.9;
   line-height: 1.6;
 }
@@ -98,7 +98,7 @@
   height: 80px;
   top: 0;
   right: 0;
-  background: var(--main-primary-color);
+  background: var(--main-primary-color); 
 }
 
 .decoration-circle:nth-child(2) {
@@ -106,48 +106,15 @@
   height: 60px;
   top: 30px;
   right: 70px;
-  background: var(--main-primary-color);
+  background: var(--main-primary-color); 
 }
 
-.font-size-control input[type="range"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 100px;
-  height: 4px;
-  background: var(--primary);
-  border-radius: 4px;
-  outline: none;
-}
-
-.font-size-control input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: var(--primary);
-  border-radius: 50%;
-  cursor: pointer;
-  border: 1px solid var(--primary);
-}
-
-.font-size-control button {
-  background-color: light-dark(#ffffff, #0f172a);
-  color: var(--primary);
-  border: 1px solid var(--primary);
-  border-radius: 8px;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: background-color 0.2s;
-}
-
-.font-size-control button:hover {
-  background-color: var(--primary);
-  color: #ffffff;
-}
-
-.font-size-control button:active {
-  background-color: var(--primary);
+.decoration-circle:nth-child(3) {
+  width: 40px;
+  height: 40px;
+  top: 70px;
+  right: 30px;
+  background: var(--main-accent-color); 
 }
 
 .stories-grid {
@@ -160,12 +127,12 @@
 .story-card {
   height: 100%;
   border-radius: 1rem;
-  background: var(--secondary-background);
-  box-shadow: 0 2px 10px var(--shadow-color);
+  background: var(--secondary-background); 
+  box-shadow: 0 2px 10px var(--shadow-color); 
   overflow: hidden;
   transition: all 0.3s ease;
   position: relative;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color); 
   cursor: pointer;
   animation: fadeInUp 0.6s ease forwards;
   opacity: 0;
@@ -174,7 +141,7 @@
 
 .story-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
 }
 
 .story-card-image {
@@ -201,25 +168,24 @@
 .story-card-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-color);
+  color: var(--text-color); 
   margin-bottom: 0.75rem;
   line-height: 1.4;
   transition: color 0.3s ease;
 }
 
 .story-card:hover .story-card-title {
-  color: var(--main-primary-color);
+  color: var(--main-primary-color); 
 }
 
 .story-card-description {
   font-size: 0.95rem;
   line-height: 1.5;
-  color: var(--secondary-text-color);
+  color: var(--secondary-text-color); 
   margin-bottom: 1rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
   overflow: hidden;
 }
 
@@ -229,9 +195,9 @@
   align-items: center;
   padding-top: 0.75rem;
   margin-top: auto;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color); 
   font-size: 0.8rem;
-  color: var(--secondary-text-color);
+  color: var(--secondary-text-color); 
 }
 
 .story-card-meta-left {
@@ -249,7 +215,7 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--text-color);
+  color: var(--text-color); 
 }
 
 .meta-item svg {
@@ -257,18 +223,18 @@
   height: 14px;
   flex-shrink: 0;
   font-weight: bold;
-  color: var(--main-primary-color);
+  color: var(--main-primary-color); 
 }
 
 .story-card:hover .story-card-meta {
-  border-top-color: var(--main-primary-color);
+  border-top-color: var(--main-primary-color); 
 }
 
 .story-category {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: var(--main-primary-color);
+  background: var(--main-primary-color); 
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
@@ -282,7 +248,7 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: var(--main-accent-color);
+  background: var(--main-accent-color); 
   color: var(--text-color);
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
@@ -293,7 +259,7 @@
 }
 
 .reading-time {
-  color: light-dark(#000000, #ffffff);
+  color: light-dark(#000000,#ffffff);
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -303,20 +269,49 @@
 .reading-time svg {
   width: 14px;
   height: 14px;
-  color: var(--main-primary-color);
+  color: var(--main-primary-color); 
 }
+
 
 .container__story {
   max-width: 1400px;
   margin-top: 5px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  background-color: light-dark(#0000, #0f172a);
+  background-color: light-dark(#0000,#0f172a); /* Use dynamic variable */
   border-radius: 1.5rem;
-  box-shadow: 0 10px 30px var(--shadow-color);
+  box-shadow: 0 10px 30px var(--shadow-color); /* Use dynamic variable */
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--primary); /* Use dynamic variable */
+}
+
+.container__story::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 150px;
+  height: 150px;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(30px);
+  z-index: 0;
+}
+
+.container__story::after {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 120px;
+  height: 120px;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(30px);
+  z-index: 0;
 }
 
 .container__story::before {
@@ -366,7 +361,7 @@
 
 .story-description {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: light-dark(#000000, #ffffff);
+  color: light-dark(#000000,#ffffff);
   margin-bottom: 2rem;
   line-height: 1.7;
   max-width: 800px;
@@ -380,7 +375,7 @@
   gap: 1.5rem;
   margin-bottom: 2rem;
   flex-wrap: wrap;
-  border-bottom: 1px dashed light-dark(#000000, #ffffff);
+  border-bottom: 1px dashed light-dark(#000000,#ffffff); 
   padding-bottom: 1.5rem;
 }
 
@@ -388,11 +383,11 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  color: light-dark(#000000, #ffffff);
+  color: light-dark(#000000,#ffffff);
   font-size: 0.95rem;
   font-weight: 500;
   border-radius: 50rem;
-  padding: 4px 10px;
+  padding: 4px 6px;
   border: 2px solid var(--primary);
 }
 
@@ -404,7 +399,7 @@
 }
 
 .category-badge {
-  color: light-dark(#000000, #ffffff);
+  color: light-dark(#000000,#ffffff);
   padding: 0.3rem 0.9rem;
   border-radius: 9999px;
   font-size: 0.8rem;
@@ -412,17 +407,17 @@
 }
 
 .story-tags {
-  display: none;
+display: none;
 }
 
 .tag {
-  display: none;
+  display:none;
 }
 
 .story-content {
   font-size: 1.4rem;
   line-height: 1.8;
-  color: light-dark(#000000, #ffffff);
+  color: light-dark(#000000,#ffffff);
   position: relative;
   z-index: 1;
   text-align: left;
@@ -455,7 +450,7 @@
 .story-content p {
   margin-bottom: 0;
   margin-top: 0;
-  color: light-dark(#000000, #ffffff);
+  color: light-dark(#000000,#ffffff);
   font-size: clamp(1rem, 2.5vw, 1.1rem);
   text-align: justify;
   font-family: atkinson;
@@ -464,16 +459,16 @@
 .moral-section {
   margin-top: 3.5rem;
   padding: 2rem;
-  background-color: var(--secondary-background);
+  background-color: var(--secondary-background); 
   border-radius: 1rem;
-  box-shadow: 0 5px 15px var(--shadow-color);
+  box-shadow: 0 5px 15px var(--shadow-color); 
   border: 1px solid var(--border-color);
   text-align: center;
 }
 
 .moral-section h2 {
   font-size: clamp(1.4rem, 3.5vw, 2rem);
-  color: var(--main-accent-color);
+  color: var(--main-accent-color); 
   margin-bottom: 1rem;
   font-weight: 800;
   position: relative;
@@ -496,6 +491,8 @@
   font-style: italic;
 }
 
+
+
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -511,6 +508,34 @@
 
   .story-card-image {
     height: 220px;
+  }
+}
+
+@media (min-width: 640px) {
+  .stories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header-decoration {
+    top: -2rem;
+    right: -2rem;
+    width: 180px;
+    height: 180px;
+  }
+
+  .decoration-circle:nth-child(1) {
+    width: 100px;
+    height: 100px;
+  }
+
+  .decoration-circle:nth-child(2) {
+    width: 70px;
+    height: 70px;
+  }
+
+  .decoration-circle:nth-child(3) {
+    width: 50px;
+    height: 50px;
   }
 }
 
@@ -539,5 +564,29 @@
   .meta-item svg {
     width: 18px;
     height: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container__story {
+    padding: 4rem;
+    max-width: 100%;
+  }
+
+  .story-title {
+    font-size: 3.5rem;
+  }
+
+  .story-description {
+    font-size: 1.3rem;
+  }
+
+  .story-content h2 {
+    font-size: 2.5rem;
+    
+  }
+
+  .story-content p {
+    font-size: 1.3rem;
   }
 }
