@@ -30,16 +30,50 @@ const {
     <Footer />
     <script>
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/service-worker.js")
-            .then(() => {
-              console.log("Service Worker Registered");
-            })
-            .catch((err) => {
-              console.error("Service worker registration failed:", err);
+        // Always unregister existing workers first
+        navigator.serviceWorker
+          .getRegistrations()
+          .then((registrations) => {
+            // Unregister all existing service workers
+            const unregisterPromises = registrations.map((registration) => {
+              return registration.unregister().then((success) => {
+                if (success) {
+                  console.log("Successfully unregistered service worker:", registration.scope);
+                } else {
+                  console.warn("Failed to unregister service worker:", registration.scope);
+                }
+                return success;
+              });
             });
-        });
+
+            // Wait for all unregister to complete
+            return Promise.all(unregisterPromises);
+          })
+          .then(() => {
+            // Only register new service worker in production
+            if (!import.meta.env.DEV) {
+              // or `process.env.NODE_ENV !== 'development'`
+              window.addEventListener("load", () => {
+                navigator.serviceWorker
+                  .register("/service-worker.js")
+                  .then((registration) => {
+                    console.log("Service Worker successfully registered:", registration.scope);
+                    // Optional: Check for updates
+                    registration.update().then(() => {
+                      console.log("Service Worker checked for updates");
+                    });
+                  })
+                  .catch((error) => {
+                    console.error("Service Worker registration failed:", error);
+                  });
+              });
+            } else {
+              console.log("Service Worker registration skipped in development mode");
+            }
+          })
+          .catch((error) => {
+            console.error("Service Worker cleanup failed:", error);
+          });
       }
     </script>
   </body>
