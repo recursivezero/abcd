@@ -2,117 +2,46 @@
 import "@/assets/styles/map/popup.css";
 ---
 
-<!-- HTML Structure -->
-<div class="state-popup">
-  <span class="state-popup__close">&times;</span>
-  <div class="state-popup__name">State Name</div>
-  <img class="state-popup__image" src="" alt="State Image" />
-  <div class="state-popup__info">State Information</div>
-  <div class="state-popup__buttons">
-    <!--<button class="state-popup__button state-popup__button--copy">Copy Info</button>-->
-    <button class="state-popup__button state-popup__button--more">See More</button>
+<!-- Popover Panel -->
+<div class="container__popover">
+  <div id="popup-panel" class="state-popup" popover="hint">
+  <button popovertarget="popup-panel" popovertargetaction="hide" class="state-popup__close">&times;</button>
+  <div class="state-popup__content">
+    <div class="state-popup__name" id="popup-name">State Name</div>
+    <img class="state-popup__image" id="popup-image" src="" alt="State Image" />
+    <div class="state-popup__info" id="popup-info">State Information</div>
+    <div class="state-popup__buttons">
+      <button class="state-popup__button state-popup__button--more" id="see-more-btn">See More</button>
+    </div>
   </div>
 </div>
+</div>
 
-<script>
-  const popup = document.querySelector(".state-popup") as HTMLElement;
-  const popupStateName = document.querySelector(".state-popup__name") as HTMLElement;
-  const popupStateInfo = document.querySelector(".state-popup__info") as HTMLElement;
-  const popupStateImage = document.querySelector(".state-popup__image") as HTMLImageElement;
-  const seeMoreButton = document.querySelector(".state-popup__button--more") as HTMLElement;
-  const closePopup = document.querySelector(".state-popup__close") as HTMLElement;
-  //const copyButton = document.querySelector(".state-popup__button--copy") as HTMLElement;
+<script is:inline>
+  const popup = document.getElementById("popup-panel");
+  const popupName = document.getElementById("popup-name");
+  const popupInfo = document.getElementById("popup-info");
+  const popupImage = document.getElementById("popup-image");
+  const seeMoreBtn = document.getElementById("see-more-btn");
 
-  function showPopup(event: MouseEvent, stateInfo: any) {
-    // Update popup content
-    popupStateName.textContent = stateInfo.name;
-    popupStateInfo.innerHTML = `<p><strong>State Dance:</strong> ${stateInfo.dance}</p>`;
-    popupStateImage.src = `/map/images/${stateInfo.image}`;
-    popupStateImage.alt = `${stateInfo.name} state image`;
-
-    // Make popup visible but temporarily transparent for measurements
-    popup.style.display = "flex";
-    popup.style.opacity = "0";
-
-    // Get viewport dimensions
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    // Get popup dimensions
-    const popupWidth = popup.offsetWidth;
-    const popupHeight = popup.offsetHeight;
-
-    const scrollX = window.scrollX || document.documentElement.scrollLeft;
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-
-    const clickX = event.pageX;
-    const clickY = event.pageY;
-
-    let left = clickX - popupWidth / 2;
-    let top = clickY - popupHeight / 2;
-
-    if (left + popupWidth > viewportWidth + scrollX - 20) {
-      left = viewportWidth + scrollX - popupWidth - 20;
-    }
-    if (left < scrollX + 20) {
-      left = scrollX + 20;
-    }
-
-    if (top + popupHeight > viewportHeight + scrollY - 20) {
-      top = clickY - popupHeight - 20;
-    }
-    if (top < scrollY + 20) {
-      top = scrollY + 20;
-    }
-
-    popup.style.left = `${left}px`;
-    popup.style.top = `${top}px`;
-
-    requestAnimationFrame(() => {
-      popup.style.opacity = "1";
-    });
-  }
-
-  document.addEventListener("showStatePopup", ((e: CustomEvent) => {
-    const { event, stateInfo } = e.detail;
-    showPopup(event, stateInfo);
-  }) as EventListener);
-
-  closePopup?.addEventListener("click", () => {
-    popup.style.display = "none";
-    popup.style.opacity = "0";
+  document.addEventListener("showStatePopup", (e) => {
+    const {stateInfo } = e.detail;
+    popupName.textContent = stateInfo.name.length > 16 ? stateInfo.name.slice(0, 14) + ".." : stateInfo.name;
+    popupInfo.innerHTML = `<p><strong>State Dance:</strong> ${stateInfo.dance}</p>`;
+    popupImage.src = `/map/images/${stateInfo.image}`;
+    popupImage.alt = `${stateInfo.name} state image`;
+    popup.showPopover();
   });
 
-  //copyButton?.addEventListener("click", () => {
-  //  const stateName = popupStateName.textContent;
-  //  const stateInfo = popupStateInfo.textContent;
-  //  if (stateName && stateInfo) {
-  //    navigator.clipboard
-  //      .writeText(`${stateName} - ${stateInfo}`)
-  //      .then(() => {
-  //        alert("State information copied to clipboard!");
-  //      })
-  //      .catch((err) => {
-  //        console.error("Failed to copy text: ", err);
-  //        alert("Failed to copy to clipboard");
-  //      });
-  //  }
-  //});
-
-  seeMoreButton?.addEventListener("click", () => {
-    const stateName = popupStateName.textContent;
+  seeMoreBtn.addEventListener("click", () => {
+    popup.hidePopover(); 
+    setTimeout(() => {
+    const stateName = popupName.textContent;
     if (stateName) {
       const stateUrl = stateName.replace(/\s+/g, "").toLowerCase();
       window.location.href = `/map/${stateUrl}`;
     }
-  });
+  }, 50); 
+});
 
-  // Close popup when clicking outside
-  document.addEventListener("click", (e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    if (!popup.contains(target) && target.closest("[data-state]") === null) {
-      popup.style.display = "none";
-      popup.style.opacity = "0";
-    }
-  });
 </script>
