@@ -109,45 +109,12 @@
   background: var(--main-primary-color); 
 }
 
-.font-size-control input[type="range"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 100px;
-  height: 4px;
-  background: var(--primary);
-  border-radius: 4px;
-  outline: none;
-}
-
-.font-size-control input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: var(--primary);
-  border-radius: 50%;
-  cursor: pointer;
-  border: 1px solid var(--primary);
-}
-
-.font-size-control button {
-  background-color: light-dark(#ffffff, #0f172a);
-  color: var(--primary);
-  border: 1px solid var(--primary);
-  border-radius: 8px;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: background-color 0.2s;
-}
-
-.font-size-control button:hover {
-  background-color: var(--primary);
-  color: #ffffff;
-}
-
-.font-size-control button:active {
-  background-color: var(--primary);
+.decoration-circle:nth-child(3) {
+  width: 40px;
+  height: 40px;
+  top: 70px;
+  right: 30px;
+  background: var(--main-accent-color); 
 }
 
 .stories-grid {
@@ -219,7 +186,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
   overflow: hidden;
 }
 
@@ -389,6 +355,7 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  color: light-dark(#000000,#ffffff);
   font-size: 0.95rem;
   font-weight: 500;
   border-radius: 50rem;
@@ -400,7 +367,7 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: var(--primary);
+  color: var(--primary)
 }
 
 .category-badge {
@@ -422,6 +389,7 @@ display: none;
 .story-content {
   font-size: 1.4rem;
   line-height: 1.8;
+  color: light-dark(#000000,#ffffff);
   position: relative;
   z-index: 1;
   text-align: left;
@@ -440,7 +408,7 @@ display: none;
 }
 
 .story-content h2::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 5px;
   left: 50%;
@@ -454,6 +422,7 @@ display: none;
 .story-content p {
   margin-bottom: 0;
   margin-top: 0;
+  color: light-dark(#000000,#ffffff);
   font-size: clamp(1rem, 2.5vw, 1.1rem);
   text-align: justify;
   font-family: atkinson;
@@ -479,7 +448,7 @@ display: none;
 }
 
 .moral-section h2::after {
-  content: "🌟";
+  content: '🌟';
   position: absolute;
   bottom: -0.5rem;
   right: -1.5rem;
@@ -567,5 +536,29 @@ display: none;
   .meta-item svg {
     width: 18px;
     height: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container__story {
+    padding: 4rem;
+    max-width: 100%;
+  }
+
+  .story-title {
+    font-size: 3.5rem;
+  }
+
+  .story-description {
+    font-size: 1.3rem;
+  }
+
+  .story-content h2 {
+    font-size: 2.5rem;
+    
+  }
+
+  .story-content p {
+    font-size: 1.3rem;
   }
 }

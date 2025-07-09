@@ -89,7 +89,7 @@
 
 .stories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2.5rem;
   margin-top: 3rem;
 }
@@ -152,79 +152,32 @@
   z-index: 1;
 }
 
-.filter-chips {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  margin-bottom: 0px;
-  justify-content: center;
-  padding: 0 20px;
-}
-
-.chip {
-  padding: 6px 10px;
-  border-radius: 15px;
-  border: 2px solid transparent;
-  transition: all 0.2s ease;
-  color: #ffffff;
-}
-
-:is(button, figcaption) {
-  &[data-category="all"] {
-    background-color: #6701cc;
-  }
-
-  &[data-category="fictional" i] {
-    background-color: #e91e63;
-  }
-
-  &[data-category="mythology" i] {
-    background-color: #df5275;
-  }
-
-  &[data-category="humorous" i] {
-    background-color: #d6890c;
-  }
-
-  &[data-category="short" i] {
-    background-color: #4caf50;
-  }
-
-  &[data-category="uncategorized" i] {
-    background-color: #ff9800;
-  }
-}
-
-.chip.active {
-  background-color: #000000;
-  color: #ffffff;
-  border: 2px solid #000000;
-  outline: 3px dotted #866e6e;
-  outline-offset: 5px;
-}
-
-.chip:hover {
-  opacity: 0.85;
-  cursor: pointer;
-}
-
 .story-card-image {
   position: relative;
   height: 240px;
   overflow: hidden;
   border-radius: 1.5rem 1.5rem 0 0;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
+.story-card-image::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(transparent, var(--background));
+}
 
-  &:hover img {
-    transform: scale(1.06);
-  }
+.story-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.story-card:hover .story-card-image img {
+  transform: scale(1.05);
 }
 
 .story-card-details {
@@ -277,7 +230,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
   overflow: hidden;
   transition: color 0.3s ease;
   text-align: left;
@@ -420,9 +372,6 @@
     -webkit-line-clamp: 3; 
     font-size: 0.9375rem;
     line-height: 1.5;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    margin-bottom: 0.5rem;
   }
 
   .story-card-meta {
@@ -450,5 +399,9 @@
 
   .story-card-image {
     height: 220px;
+  }
+
+  .story-card-details {
+    padding: 1.75rem;
   }
 }
