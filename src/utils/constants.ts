@@ -193,6 +193,12 @@ export const NavbarLinks: LinkProps[] = [
     title: "Clan Explorer",
     path: "/clan",
     isActive: false
+  },
+  {
+    name: "Stories",
+    title: "Stories",
+    path: "/stories",
+    isActive: true
   }
 ];
 
