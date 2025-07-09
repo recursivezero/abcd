@@ -1,12 +1,15 @@
-/* Updated Timeline Styles */
-
 .timeline-wrapper {
-  background: var(--timeline-bg);
+  background: linear-gradient(to bottom, #ffffff 0%, #f0f4ff 100%);
+  background-attachment: local;
   border-radius: 25px;
   padding: 60px 40px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 1000px;
+  max-height: 80vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding-right: 10px;
   transform: translateY(20px);
   opacity: 0;
   transition: all 0.8s ease;
@@ -18,15 +21,15 @@
 }
 
 .timeline-container {
-  min-height: 100%;
   position: relative;
+  min-height: 100%;
+  padding-bottom: 100px;
 }
 
 .timeline-line {
   position: absolute;
   left: 50%;
   top: 0;
-  height: 100%;
   width: 6px;
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   transform: translateX(-50%);
@@ -34,11 +37,13 @@
   z-index: 1;
 }
 
+/* Event & Label Styling */
 .timeline-event {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
+  transition: top 0.3s ease; 
 }
 
 .timeline-dot {
@@ -48,45 +53,6 @@
   border: 3px solid #16A34A;
   border-radius: 50%;
   z-index: 3;
-}
-
-.timeline-label {
-  position: absolute;
-  top: 0;
-  width: 105px;
-  /* 30% of full width */
-  height: auto;
-  padding: 12px 16px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  border-radius: 15px;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.timeline-label .event-description,
-.timeline-label .event-actions {
-  display: none;
-}
-
-.timeline-label:hover {
-  width: 350px;
-  height: 275px;
-  padding: 25px;
-  font-size: 16px;
-  justify-content: space-between;
-  overflow: visible;
-}
-
-.timeline-label:hover .event-description,
-.timeline-label:hover .event-actions {
-  display: block;
 }
 
 .timeline-event::before {
@@ -109,6 +75,24 @@
   left: 24px;
 }
 
+.timeline-label {
+  position: absolute;
+  top: 0;
+  width: 105px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-radius: 15px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
 .timeline-label.left {
   left: 80px;
   transform: translateX(-20px);
@@ -117,6 +101,25 @@
 .timeline-label.right {
   right: 80px;
   transform: translateX(20px);
+}
+
+.timeline-label .event-description,
+.timeline-label .event-actions {
+  display: none;
+}
+
+.timeline-label:hover {
+  width: 350px;
+  height: 275px;
+  padding: 25px;
+  font-size: 16px;
+  justify-content: space-between;
+  overflow: visible;
+}
+
+.timeline-label:hover .event-description,
+.timeline-label:hover .event-actions {
+  display: block;
 }
 
 .event-date {
@@ -132,8 +135,8 @@
 }
 
 .event-actions {
-  text-align: right;
   width: 100%;
+  text-align: right;
 }
 
 .event-actions button {
@@ -143,8 +146,8 @@
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
-  cursor: pointer;
   font-size: 14px;
+  cursor: pointer;
   transition: background 0.2s ease;
 }
 
@@ -152,6 +155,7 @@
   background: rgba(255, 255, 255, 0.4);
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .timeline-label {
     width: 84px;
