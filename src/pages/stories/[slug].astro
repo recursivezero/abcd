@@ -6,8 +6,6 @@ import Back from "@/components/BackButton.astro";
 import { storySchema } from "@/content.config";
 import BaseLayout from "@/layouts/Base";
 import { getCollection, getEntry, render } from "astro:content";
-import Help from "@/components/Help.astro";
-import SharePopover from "@/components/ShareButton.astro";
 
 export const prerender = true;
 
@@ -53,19 +51,7 @@ if (!Content) {
 ---
 
 <BaseLayout meta={{ title: "Stories", description: validatedData.description }}>
-  <Fragment slot="header-left">
-    <SharePopover />
-    <Help title="Stories" description="Read and learn! 😄" />
-  </Fragment>
-  <div class="card-top-controls">
-    <Back />
-    <div class="font-size-control">
-      <input type="range" id="fontSizeSlider" min="10" max="30" value="18" step="1" />
-      <button id="fontDecrease" title="Decrease font size">A-</button>
-      <button id="fontIncrease" title="Increase font size">A+</button>
-      <button id="fontReset" title="Reset font size">↺</button>
-    </div>
-  </div>
+  <Back />
   <article class="container__story">
     <header class="story-header">
       <h1 class="story-title">{validatedData.title}</h1>
@@ -91,7 +77,7 @@ if (!Content) {
         {
           validatedData.readingTime && (
             <span class="meta-item">
-              <span class="reading-time">{validatedData.readingTime} mins read</span>
+              <span class="reading-time">{validatedData.readingTime} min read</span>
             </span>
           )
         }
