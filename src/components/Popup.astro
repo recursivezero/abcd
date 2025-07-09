@@ -25,7 +25,7 @@ import "@/assets/styles/map/popup.css";
   const seeMoreBtn = document.getElementById("see-more-btn");
 
   document.addEventListener("showStatePopup", (e) => {
-    const { stateInfo } = e.detail;
+    const {stateInfo } = e.detail;
     popupName.textContent = stateInfo.name.length > 16 ? stateInfo.name.slice(0, 14) + ".." : stateInfo.name;
     popupInfo.innerHTML = `<p><strong>State Dance:</strong> ${stateInfo.dance}</p>`;
     popupImage.src = `/map/images/${stateInfo.image}`;
@@ -34,13 +34,14 @@ import "@/assets/styles/map/popup.css";
   });
 
   seeMoreBtn.addEventListener("click", () => {
-    popup.hidePopover();
+    popup.hidePopover(); 
     setTimeout(() => {
-      const stateName = popupName.textContent;
-      if (stateName) {
-        const stateUrl = stateName.replace(/\s+/g, "").toLowerCase();
-        window.location.href = `/map/${stateUrl}`;
-      }
-    }, 50);
-  });
+    const stateName = popupName.textContent;
+    if (stateName) {
+      const stateUrl = stateName.replace(/\s+/g, "").toLowerCase();
+      window.location.href = `/map/${stateUrl}`;
+    }
+  }, 50); 
+});
+
 </script>
