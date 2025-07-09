@@ -3,13 +3,13 @@ title: "The Holi Rainbow"
 publishDate: "2025-07-09"
 author: "Folk Traditions"
 description: "A heartwarming Holi story about two friends in Mathura who learn the meaning of forgiveness through colors."
-image: "holi.png"
-category: "Fictional"
+image: "/assets/images/stories/story-3.png"
+category: "Short Stories"
 readingTime: 5
 draft: false
 ---
 
-## 🌈
+## 🌈 Holi
 
 In the colorful town of **Mathura**, everyone was preparing for **Holi**, the festival of colors. Streets were full of music, sweets, and laughter. Children ran with gulal in their hands, ready to splash joy on everyone.
 

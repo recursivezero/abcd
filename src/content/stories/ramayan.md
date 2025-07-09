@@ -3,13 +3,13 @@ title: "The Story of Ramayan"
 publishDate: "2025-07-09"
 author: "Sage Valmiki"
 description: "The heartwarming tale of the Ramayan unfolds with love, duty, and sacrifice, Where Rama's righteous path lights the way through trials and triumph."
-image: "ramayan.png"
+image: "/assets/images/stories/story-2.png"
 category: "Mythology"
 readingTime: 5
 draft: false
 ---
 
-## 📖
+## 📖 The Ramayan 
 
 Long ago in the kingdom of **Ayodhya**, there lived a noble king named **Dasharatha**. He had four sons—**Rama**, **Lakshmana**,
 **Bharata**, and **Shatrughna**. Rama, the eldest, was wise, brave, and loved by all. He married the beautiful and kind princess
@@ -35,6 +35,14 @@ justice.
 
 ## 🌟 Moral of the Story
 
-The Ramayan teaches us that good always wins over evil, and we should always do the right thing.
+The Ramayan teaches us:
+
+- Be **brave** like Rama
+- Be **faithful** like Sita
+- Be **loyal** like Lakshmana
+- Be **devoted** like Hanuman
+
+`It shows that good always wins over evil, and we should always do the right thing.`
 
 ---
+
