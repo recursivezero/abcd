@@ -169,11 +169,13 @@
     flex-direction: column;
     width: 100%;
     gap: 0;
+    flex: initial; 
   }
 
   .footer__nav--item {
     width: 100%;
     border-bottom: 1px solid var(--footer-border-color);
+    flex: initial;
   }
   .footer__nav--item:first-of-type {
     border-top: 1px solid var(--footer-border-color);
@@ -188,7 +190,7 @@
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0;
-    pointer-events: auto; /* Re-enable click on mobile */
+    pointer-events: auto; 
   }
 
   .footer__nav--title .fa-chevron-down {
