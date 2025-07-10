@@ -3,13 +3,13 @@ title: "The Thirsty Crow"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A clever little crow teaches us how patience and smart thinking can solve any problem."
-image: "thirsty-crow.png"
-category: "Short"
+image: "/assets/images/stories/thirsty-crow.png"
+category: "Short Stories"
 readingTime: 3
 draft: false
 ---
 
-## 🐦
+## 🐦 The Thirsty Crow and stone
 
 One hot summer afternoon, a **Crow** was flying over a village in search of water. The sun was blazing, and the ground was dry. The poor crow was very thirsty and growing tired.
 

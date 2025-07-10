@@ -3,13 +3,13 @@ title: "The Monkey and the Crocodile"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A clever monkey teaches a crocodile that wit and wisdom can save you from any danger."
-image: "monkey-crocodile.png"
-category: "Short"
+image: "/assets/images/stories/monkey-crocodile.png"
+category: "Short Stories"
 readingTime: 4
 draft: false
 ---
 
-## 🐒
+## 🐒 The Monkey and the Crocodile
 
 Long ago, near the banks of the **Ganga river**, there lived a cheerful **Monkey** in a big fruit tree. He spent his days eating sweet **jamuns** and swinging joyfully among the branches.
 

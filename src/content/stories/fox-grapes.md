@@ -3,13 +3,13 @@ title: "The Fox and the Grapes"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A clever little tale of a hungry fox who learns that not everything is within reach — and that’s okay."
-image: "fox-grapes.png"
-category: "Fictional"
+image: "/assets/images/stories/fox-grapes.png"
+category: "Short Stories"
 readingTime: 3
 draft: false
 ---
 
-## 🍇
+## 🦊 The Fox and the Grapes
 
 One hot afternoon, a hungry **Fox** was walking through a garden when he spotted a bunch of juicy **purple grapes** hanging from a vine. His mouth watered. “Ah, those grapes look perfect!” he said.
 

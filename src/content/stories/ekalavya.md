@@ -3,14 +3,13 @@ title: "The Story of Ekalavya"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A moving story of a tribal boy whose devotion to learning made him a great archer — even without a teacher."
-image: "ekalavya.png"
-featured: true
-category: "Mythology"
+image: "/assets/images/stories/ekalavya.png"
+category: "Short Stories"
 readingTime: 5
 draft: false
 ---
 
-## 🏹
+## 🏹 The Story of Ekalavya
 
 Long ago, in a forest village, lived a young and brave boy named **Ekalavya**. He belonged to a tribal family, but his heart burned with one dream — to become the **greatest archer** in the world.
 

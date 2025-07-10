@@ -3,13 +3,13 @@ title: "The Lion and The Mouse"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A heartwarming forest tale of kindness and how even the smallest can help the mighty."
-image: "lion-mouse.png"
+image: "/assets/images/stories/lion-mouse.png"
 category: "Humorous"
 readingTime: 4
 draft: false
 ---
 
-## 🦁
+## 🦁 The Lion and The Mouse
 
 Deep in the jungle, a mighty **Lion** lay resting under a tree. While he slept, a tiny **Mouse** ran across his paw, chasing a leaf. The Lion woke up with a loud roar and caught the Mouse under his claws.
 
