@@ -17,7 +17,10 @@ import Back from "@/components/Back.astro";
         <h3>Contact Information</h3>
         <div class="info-item">
           <i class="fa-solid fa-envelope"></i>
-          <a href="mailto:abcdkbd@outlook.com">Mail Us at: <span class="underline-text">abcdkbd@outlook.com</span></a>
+          <a href="mailto:abcdkbd@outlook.com">Mail Us at: <span id="email-text" class="underline-text">abcdkbd@outlook.com</span></a>
+          <button id="copy-email-btn" class="copy-btn" aria-label="Copy email address" title="Copy email">
+            <i class="fa-regular fa-copy"></i>
+          </button>
         </div>
         <div class="info-item">
           <i class="fa-brands fa-github"></i>
@@ -26,4 +29,34 @@ import Back from "@/components/Back.astro";
       </div>
     </div>
   </div>
+
+  <script>
+    const copyButton = document.getElementById('copy-email-btn');
+    if (copyButton) {
+      const emailText = document.getElementById('email-text')?.innerText;
+      const copyIcon = copyButton.querySelector('i');
+
+      // Add a null check for both emailText and copyIcon
+      if (emailText && copyIcon) {
+        copyButton.addEventListener('click', () => {
+          navigator.clipboard.writeText(emailText).then(() => {
+            // Success feedback
+            copyIcon.classList.remove('fa-copy');
+            copyIcon.classList.add('fa-check');
+            copyButton.title = 'Copied!';
+
+            // Revert back after 2 seconds
+            setTimeout(() => {
+              copyIcon.classList.remove('fa-check');
+              copyIcon.classList.add('fa-copy');
+              copyButton.title = 'Copy email';
+            }, 2000);
+          }).catch(err => {
+            console.error('Failed to copy email: ', err);
+            alert('Failed to copy email.');
+          });
+        });
+      }
+    }
+  </script>
 </BaseLayout>
