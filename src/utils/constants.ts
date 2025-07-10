@@ -183,6 +183,12 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Survey",
+    title: "Survey",
+    path: "/survey",
+    isActive: true
+  },
+  {
     name: "Zodiac",
     title: "zodiac",
     path: "/zodiac",

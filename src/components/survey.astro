@@ -1,0 +1,246 @@
+---
+import { type SurveyData, QuestionTypeEnum } from "@/types/survey";
+interface Props {
+  data: SurveyData;
+}
+const { data } = Astro.props;
+---
+
+<div class="survey-container">
+  <header class="survey-header">
+    <h1>{data.surveyTitle}</h1>
+    <p>{data.description}</p>
+  </header>
+
+  <!-- Survey Form -->
+  <form id="surveyForm" class="survey-form">
+    {
+      data.questions.map((question) => (
+        <div class="question-card">
+          <div class="question">{question.questionText}</div>
+
+          {question.type === QuestionTypeEnum.OPEN ? (
+            <textarea name={`q${question.id}`} class="textarea-input" rows="4" placeholder="Type your answer here..." />
+          ) : question.type === QuestionTypeEnum.SINGLE ? (
+            <div class="options-group">
+              {question.options?.map((option) => (
+                <label class="option-label">
+                  <input type="radio" name={`q${question.id}`} value={option} class="radio-input" required />
+                  <span class="radio-text">{option}</span>
+                </label>
+              ))}
+            </div>
+          ) : (
+            <div class="options-group">
+              {question.options?.map((option) => (
+                <label class="option-label">
+                  <input type="checkbox" name={`q${question.id}`} value={option} class="checkbox-input" />
+                  <span class="checkbox-text">{option}</span>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+      ))
+    }
+
+    <div class="survey-controls">
+      <button type="button" class="preview-btn" id="previewBtn">Preview</button>
+      <div id="formStatus" class="form-status"></div>
+    </div>
+  </form>
+
+  <!-- Preview Section -->
+  <div id="previewSection" class="preview-section" style="display: none;">
+    <header class="preview-header">
+      <h2>Preview Your Response</h2>
+      <p>Please review your answers before submitting</p>
+    </header>
+
+    <div id="previewContent" class="preview-content"></div>
+
+    <div class="preview-controls">
+      <button type="button" class="edit-btn" id="editBtn">Edit Response</button>
+      <button type="button" class="submit-btn" id="submitBtn">Submit Survey</button>
+      <div id="previewStatus" class="form-status"></div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("surveyForm");
+    const previewSection = document.getElementById("previewSection");
+    const previewContent = document.getElementById("previewContent");
+    const previewBtn = document.getElementById("previewBtn");
+    const editBtn = document.getElementById("editBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const formStatus = document.getElementById("formStatus");
+    const previewStatus = document.getElementById("previewStatus");
+
+    if (!form || !previewSection || !previewContent) return;
+
+    // Store survey data for preview generation
+    const surveyData = {
+      surveyTitle: document.querySelector(".survey-header h1").textContent,
+      questions: Array.from(document.querySelectorAll(".question-card")).map((card, index) => {
+        const questionText = card.querySelector(".question").textContent;
+        const hasRadio = card.querySelector('input[type="radio"]');
+        const hasCheckbox = card.querySelector('input[type="checkbox"]');
+        const hasTextarea = card.querySelector("textarea");
+
+        let type = "openEnded";
+        if (hasRadio) type = "singleChoice";
+        else if (hasCheckbox) type = "multipleChoice";
+
+        return {
+          id: index + 1,
+          questionText,
+          type
+        };
+      })
+    };
+
+    // Preview button click handler
+    previewBtn.addEventListener("click", () => {
+      const formData = collectFormData();
+
+      // Validate required fields
+      const requiredFields = form.querySelectorAll("input[required]");
+      let isValid = true;
+
+      for (let field of requiredFields) {
+        if (field.type === "radio") {
+          const radioGroup = form.querySelectorAll(`input[name="${field.name}"]`);
+          const isChecked = Array.from(radioGroup).some((radio) => radio.checked);
+          if (!isChecked) {
+            isValid = false;
+            break;
+          }
+        }
+      }
+
+      if (!isValid) {
+        formStatus.textContent = "Please answer all required questions before previewing.";
+        formStatus.className = "form-status error";
+        return;
+      }
+
+      generatePreview(formData);
+      form.style.display = "none";
+      previewSection.style.display = "block";
+      formStatus.textContent = "";
+    });
+
+    // Edit button click handler
+    editBtn.addEventListener("click", () => {
+      form.style.display = "block";
+      previewSection.style.display = "none";
+      previewStatus.textContent = "";
+    });
+
+    // Submit button click handler
+    submitBtn.addEventListener("click", async () => {
+      submitBtn.disabled = true;
+      previewStatus.textContent = "Submitting your response...";
+      previewStatus.className = "form-status";
+
+      try {
+        const formData = collectFormData();
+        const response = await fetch("/api/survey", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || "Failed to save response");
+        }
+
+        submitBtn.style.display = "none";
+        editBtn.style.display = "none";
+        previewStatus.textContent = "Thank you for your response!";
+        previewStatus.className = "form-status success";
+        form.reset();
+      } catch (error) {
+        previewStatus.textContent = "Error: " + (error.message || "Failed to save response");
+        previewStatus.className = "form-status error";
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Function to collect form data
+    function collectFormData() {
+      const formData = {};
+      const elements = form.elements;
+
+      for (let i = 0; i < elements.length; i++) {
+        const el = elements[i];
+        if (!el.name || el.disabled || el.type === "submit" || el.type === "button") continue;
+
+        if (el.type === "checkbox") {
+          if (el.checked) {
+            if (!formData[el.name]) {
+              formData[el.name] = [];
+            }
+            formData[el.name].push(el.value);
+          }
+        } else if (el.type === "radio" && el.checked) {
+          formData[el.name] = el.value;
+        } else if (el.type === "textarea" || el.type === "text") {
+          formData[el.name] = el.value;
+        }
+      }
+
+      // Ensure checkbox arrays exist even if empty
+      const checkboxInputs = form.querySelectorAll('input[type="checkbox"]');
+      const checkboxNames = new Set();
+      checkboxInputs.forEach((input) => checkboxNames.add(input.name));
+
+      checkboxNames.forEach((name) => {
+        if (!formData[name]) {
+          formData[name] = [];
+        }
+      });
+
+      return formData;
+    }
+
+    // Function to generate preview content
+    function generatePreview(formData) {
+      let previewHTML = "";
+
+      surveyData.questions.forEach((question, index) => {
+        const fieldName = `q${question.id}`;
+        const response = formData[fieldName];
+
+        previewHTML += `
+          <div class="preview-question">
+            <h4>${question.questionText}</h4>
+            <div class="preview-answer">
+        `;
+
+        if (question.type === "openEnded") {
+          previewHTML += `<p class="text-response">${response || "No response provided"}</p>`;
+        } else if (question.type === "singleChoice") {
+          previewHTML += `<p class="choice-response">${response || "No option selected"}</p>`;
+        } else if (question.type === "multipleChoice") {
+          if (response && response.length > 0) {
+            previewHTML += `<ul class="multiple-choice-response">`;
+            response.forEach((choice) => {
+              previewHTML += `<li>${choice}</li>`;
+            });
+            previewHTML += `</ul>`;
+          } else {
+            previewHTML += `<p class="choice-response">No options selected</p>`;
+          }
+        }
+
+        previewHTML += `</div> </div>`;
+      });
+
+      previewContent.innerHTML = previewHTML;
+    }
+  });
+</script>
