@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  padding: 3rem;
+  /* padding: 3rem; */
   /* background: linear-gradient(to bottom, #f9fbff, #eef5fc); */
   text-align: left;
 }
@@ -48,7 +48,7 @@
 }
 
 .note {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: green;
   margin-top: 2rem;
   

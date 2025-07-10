@@ -16,6 +16,8 @@
   transition: transform 0.3s ease, box-shadow 0.5s ease;
   min-height: 15rem; 
   text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -50,6 +52,11 @@
   font-size: 1.05rem;
   margin-bottom: 1.2rem;
   color: inherit;
+}
+
+/* Add this new rule to push the button to the bottom */
+.card a {
+  margin-top: auto;
 }
 
 .card .button.white {
