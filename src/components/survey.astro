@@ -1,5 +1,5 @@
 ---
-import type { SurveyData } from "@/types/survey";
+import { type SurveyData, QuestionTypeEnum } from "@/types/survey";
 interface Props {
   data: SurveyData;
 }
@@ -17,11 +17,11 @@ const { data } = Astro.props;
     {
       data.questions.map((question) => (
         <div class="question-card">
-          <h3>{question.questionText}</h3>
+          <div class="question">{question.questionText}</div>
 
-          {question.type === "openEnded" ? (
+          {question.type === QuestionTypeEnum.OPEN ? (
             <textarea name={`q${question.id}`} class="textarea-input" rows="4" placeholder="Type your answer here..." />
-          ) : question.type === "singleChoice" ? (
+          ) : question.type === QuestionTypeEnum.SINGLE ? (
             <div class="options-group">
               {question.options?.map((option) => (
                 <label class="option-label">
@@ -53,8 +53,8 @@ const { data } = Astro.props;
   <!-- Preview Section -->
   <div id="previewSection" class="preview-section" style="display: none;">
     <header class="preview-header">
-      <h2>Preview Your Responses</h2>
-      <p>Please review your answers before submitting:</p>
+      <h2>Preview Your Response</h2>
+      <p>Please review your answers before submitting</p>
     </header>
 
     <div id="previewContent" class="preview-content"></div>
@@ -84,7 +84,7 @@ const { data } = Astro.props;
     const surveyData = {
       surveyTitle: document.querySelector(".survey-header h1").textContent,
       questions: Array.from(document.querySelectorAll(".question-card")).map((card, index) => {
-        const questionText = card.querySelector("h3").textContent;
+        const questionText = card.querySelector(".question").textContent;
         const hasRadio = card.querySelector('input[type="radio"]');
         const hasCheckbox = card.querySelector('input[type="checkbox"]');
         const hasTextarea = card.querySelector("textarea");
