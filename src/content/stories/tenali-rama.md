@@ -9,16 +9,16 @@ readingTime: 5
 draft: false
 ---
 
-## 🦜 The Talking Parrot
+## 🦜
 
-In the royal court of **Vijayanagara**, King **Krishna Deva Raya** received a strange gift — a parrot in a golden cage. A clever merchant claimed, “This parrot speaks seven languages and can even recite poetry!” 
+In the royal court of **Vijayanagara**, King **Krishna Deva Raya** received a strange gift — a parrot in a golden cage. A clever merchant claimed, “This parrot speaks seven languages and can even recite poetry!”
 The king was amazed and paid him handsomely.
 
 But days passed, and the parrot only squawked and pecked at chillies. The king grew suspicious and called his most trusted poet, **Tenali Rama**. “Find out if this bird truly talks,” the king ordered.
 
 Tenali smiled and took the parrot home. He fed it, played soft music, and even read poems aloud. But the parrot stayed silent. The next day, Tenali returned to court — holding a **covered cage**. “Did it speak?” the king asked eagerly.
 
-“Yes, Maharaj,” Tenali said, “But in a different way.” He lifted the cloth — and revealed an **empty cage**. “The parrot flew away!” gasped the king. 
+“Yes, Maharaj,” Tenali said, “But in a different way.” He lifted the cloth — and revealed an **empty cage**. “The parrot flew away!” gasped the king.
 Tenali bowed and said, “It told me one thing clearly: a clever tongue is not proof of a clever mind.”
 
 The king laughed loudly, realizing he’d been tricked by the merchant. He thanked Tenali for saving both his pride and his gold.

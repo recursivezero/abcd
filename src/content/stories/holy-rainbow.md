@@ -9,7 +9,7 @@ readingTime: 5
 draft: false
 ---
 
-## 🌈 Holi
+## 🌈
 
 In the colorful town of **Mathura**, everyone was preparing for **Holi**, the festival of colors. Streets were full of music, sweets, and laughter. Children ran with gulal in their hands, ready to splash joy on everyone.
 

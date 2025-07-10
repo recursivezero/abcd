@@ -9,7 +9,7 @@ readingTime: 3
 draft: false
 ---
 
-## 🦊 The Fox and the Grapes
+## 🍇
 
 One hot afternoon, a hungry **Fox** was walking through a garden when he spotted a bunch of juicy **purple grapes** hanging from a vine. His mouth watered. “Ah, those grapes look perfect!” he said.
 

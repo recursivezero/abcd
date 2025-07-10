@@ -9,7 +9,7 @@ readingTime: 4
 draft: false
 ---
 
-## 🐒 The Monkey and the Crocodile
+## 🐒
 
 Long ago, near the banks of the **Ganga river**, there lived a cheerful **Monkey** in a big fruit tree. He spent his days eating sweet **jamuns** and swinging joyfully among the branches.
 

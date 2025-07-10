@@ -9,7 +9,7 @@ readingTime: 5
 draft: false
 ---
 
-## 🏹 The Story of Ekalavya
+## 🏹
 
 Long ago, in a forest village, lived a young and brave boy named **Ekalavya**. He belonged to a tribal family, but his heart burned with one dream — to become the **greatest archer** in the world.
 
