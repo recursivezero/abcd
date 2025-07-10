@@ -9,12 +9,11 @@ readingTime: 5
 draft: false
 ---
 
-## 📖 The Ramayan 
+## 📖
 
 Long ago in the kingdom of **Ayodhya**, there lived a noble king named **Dasharatha**. He had four sons—**Rama**, **Lakshmana**,
 **Bharata**, and **Shatrughna**. Rama, the eldest, was wise, brave, and loved by all. He married the beautiful and kind princess
 **Sita**.
-
 King Dasharatha wanted Rama to be the next king. But Queen **Kaikeyi** asked that her son **Bharata** be crowned, and that Rama
 be sent to the forest for **14 years**. The king was heartbroken, but Rama accepted the exile calmly. Sita and Lakshmana chose
 to go with him.
