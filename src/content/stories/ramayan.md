@@ -11,7 +11,6 @@ draft: false
 
 ## 📖
 
-
 Long ago in the kingdom of **Ayodhya**, there lived a noble king named **Dasharatha**. He had four sons—**Rama**, **Lakshmana**,
 **Bharata**, and **Shatrughna**. Rama, the eldest, was wise, brave, and loved by all. He married the beautiful and kind princess
 **Sita**.
@@ -36,4 +35,13 @@ justice.
 
 ## 🌟 Moral of the Story
 
-The Ramayan teaches us that good always wins over evil, and we should always do the right thing.
+The Ramayan teaches us:
+
+- Be **brave** like Rama
+- Be **faithful** like Sita
+- Be **loyal** like Lakshmana
+- Be **devoted** like Hanuman
+
+`It shows that good always wins over evil, and we should always do the right thing.`
+
+---

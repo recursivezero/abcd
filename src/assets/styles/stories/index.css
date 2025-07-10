@@ -363,6 +363,11 @@
     text-align: left;
   }
 
+  .reading-time {
+    text-align: left;
+    margin-left: -15px;
+  }
+
   .story-card-title {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
@@ -387,21 +392,7 @@
 
   .story-card-details::after {
     bottom: 0.75rem;
-    right: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .stories-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  .story-card-image {
-    height: 220px;
-  }
-
-  .story-card-details {
-    padding: 1.75rem;
+    right: 1.25rem;
+    font-size: 0.75rem;
   }
 }
