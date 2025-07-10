@@ -93,28 +93,58 @@
   filter: blur(20px);
 }
 
-.decoration-circle:nth-child(1) {
-  width: 80px;
-  height: 80px;
-  top: 0;
-  right: 0;
-  background: var(--main-primary-color);
+.card-top-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.decoration-circle:nth-child(2) {
-  width: 60px;
-  height: 60px;
-  top: 30px;
-  right: 70px;
-  background: var(--main-primary-color);
+.font-size-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.decoration-circle:nth-child(3) {
-  width: 40px;
-  height: 40px;
-  top: 70px;
-  right: 30px;
-  background: var(--main-accent-color);
+.font-size-control input[type="range"] {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 4px;
+  outline: none;
+}
+
+.font-size-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid var(--primary);
+}
+
+.font-size-control button {
+  background-color: light-dark(#ffffff, #0f172a);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.2s;
+}
+
+.font-size-control button:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.font-size-control button:active {
+  background-color: var(--primary);
 }
 
 .stories-grid {
@@ -283,34 +313,6 @@
   position: relative;
   overflow: hidden;
   border: 1px solid var(--primary);
-}
-
-.container__story::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  left: -50px;
-  width: 150px;
-  height: 150px;
-  background: var(--primary);
-  border-radius: 50%;
-  opacity: 0.15;
-  filter: blur(30px);
-  z-index: 0;
-}
-
-.container__story::after {
-  content: "";
-  position: absolute;
-  bottom: -50px;
-  right: -50px;
-  width: 120px;
-  height: 120px;
-  background: var(--primary);
-  border-radius: 50%;
-  opacity: 0.15;
-  filter: blur(30px);
-  z-index: 0;
 }
 
 .story-header {

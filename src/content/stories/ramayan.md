@@ -35,13 +35,6 @@ justice.
 
 ## 🌟 Moral of the Story
 
-The Ramayan teaches us:
-
-- Be **brave** like Rama
-- Be **faithful** like Sita
-- Be **loyal** like Lakshmana
-- Be **devoted** like Hanuman
-
-`It shows that good always wins over evil, and we should always do the right thing.`
+The Ramayan teaches us that good always wins over evil, and we should always do the right thing.
 
 ---
