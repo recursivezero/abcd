@@ -11,12 +11,23 @@ const app = new OpenAPIHono();
 
 app.route('/', userRoutes);
 app.doc('/openapi.json', {
-    openapi: '3.0.0',
-    info: {
-      title: 'User API',
-      version: '1.0.0',
+  openapi: '3.0.0',
+  info: {
+    title: 'User API',
+    version: '1.0.0',
+  },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
     },
-});
+  },
+  security: [{ bearerAuth: [] }],
+} as any);
+
 app.get('/docs', swaggerUI({ url: '/openapi.json' }));
 
 const port = Number(process.env.PORT) || 3000;
