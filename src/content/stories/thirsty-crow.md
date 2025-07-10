@@ -9,7 +9,7 @@ readingTime: 3
 draft: false
 ---
 
-## 🐦 The Thirsty Crow and stone
+## 🐦
 
 One hot summer afternoon, a **Crow** was flying over a village in search of water. The sun was blazing, and the ground was dry. The poor crow was very thirsty and growing tired.
 

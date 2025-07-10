@@ -9,7 +9,7 @@ readingTime: 5
 draft: false
 ---
 
-## 📖 The Ramayan 
+## 📖
 
 Long ago in the kingdom of **Ayodhya**, there lived a noble king named **Dasharatha**. He had four sons—**Rama**, **Lakshmana**,
 **Bharata**, and **Shatrughna**. Rama, the eldest, was wise, brave, and loved by all. He married the beautiful and kind princess
@@ -45,4 +45,3 @@ The Ramayan teaches us:
 `It shows that good always wins over evil, and we should always do the right thing.`
 
 ---
-
