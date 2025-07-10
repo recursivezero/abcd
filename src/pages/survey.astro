@@ -1,11 +1,11 @@
 ---
-import Surveys from "@/components/survey.astro";
-import surveyData from "@/data/survey.json";
-import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/survey.css";
-import type { SurveyData } from "@/types/survey";
+import SurveyComponent from "@/components/survey.astro";
+import surveyJson from "@/data/survey.json";
+import BaseLayout from "@/layouts/Base";
+import type { SurveyData } from "@/types";
 ---
 
 <BaseLayout meta={{ title: "Survey Form" }}>
-  <Surveys data={surveyData as SurveyData} />
+  <SurveyComponent data={surveyJson as SurveyData} />
 </BaseLayout>
