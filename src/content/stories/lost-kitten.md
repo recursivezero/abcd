@@ -28,7 +28,4 @@ the goodness that helped her find her way back.
 
 This timeless tale of Momo and Bruno teaches us that face your fears and seek help when lost.
 
-- **Be Brave:** Like Momo, face your fears and seek help when lost.
-- **Be Kind:** Like Bruno, offer assistance to those in need, for kindness is a divine virtue.
-- **Be Loyal:** Cherish your home and those who care for you.
-- **Good Always Prevails:** Even in moments of despair, acts of goodness and compassion will lead to a happy resolution.
+---
