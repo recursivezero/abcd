@@ -33,14 +33,19 @@
   // Listen to global theme-change events
   document.addEventListener("theme-change", (e) => {
     console.log("Theme changed to:", e.detail.theme);
-    setTheme(e.detail.theme);
+    document.startViewTransition(() => {
+      console.log("start view transition");
+      setTheme(e.detail.theme);
+    });
   });
 
   // Listen for system theme changes
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
     const currentTheme = getThemePreference();
     if (currentTheme === "system") {
-      setTheme("system");
+      document.startViewTransition(() => {
+        setTheme("system");
+      });
     }
   });
 </script>
