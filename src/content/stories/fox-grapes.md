@@ -4,7 +4,7 @@ publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A clever little tale of a hungry fox who learns that not everything is within reach — and that’s okay."
 image: "/assets/images/stories/fox-grapes.png"
-category: "Short Stories"
+category: "fictional"
 readingTime: 3
 draft: false
 ---
