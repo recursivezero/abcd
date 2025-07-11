@@ -6,12 +6,12 @@ import ImageIcon from "@/assets/icons/image.svg";
 import "@/assets/styles/draw.css";
 import Back from "@/components/Back.astro";
 import SharePopover from "@/components/ShareButton.astro";
-import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 ---
 
 <BaseLayout meta={{ title: "Draw by Keyboard" }}>
   <Back />
   <Fragment slot="header-right">
+    <SharePopover />
     <div class="controls-container">
       <SharePopover />
       <KeyboardTrigger />

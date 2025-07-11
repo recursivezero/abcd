@@ -5,6 +5,8 @@ import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import { locations } from "@/libs/location";
+import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 
 const meta = {
   title: "Capital",
@@ -19,8 +21,9 @@ const utList = locations.filter((loc) => !loc.isState);
 <BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
+    <KeyboardTrigger/>
     <SharePopover />
-    <Help title="Capital" description="Capital of India's States and Territories. " />
+    <Help title="Capital" description="An Interactive Journey Through India's States and Territories. " />
   </Fragment>
   <CapitalComponent stateList={stateList} utList={utList} />
 </BaseLayout>
