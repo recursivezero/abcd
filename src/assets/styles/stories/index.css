@@ -169,6 +169,8 @@
   background-color: #000000;
   color: #ffffff;
   border: 2px solid #000000;
+  outline: 3px dotted #866e6e;
+  outline-offset: 5px;
 }
 
 .container__stories .filter-chips .chip:hover {
@@ -245,6 +247,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
   transition: color 0.3s ease;
   text-align: left;
@@ -419,6 +422,7 @@
     font-size: 0.875rem;
     line-height: 1.5;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     margin-bottom: 0.5rem;
   }
 

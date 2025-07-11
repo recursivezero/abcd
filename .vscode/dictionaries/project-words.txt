@@ -89,6 +89,7 @@ tailwindcss
 threadzip
 Threazip
 tithi
+uncategorized
 Vaishakha
 varnmala
 vaul
