@@ -6,6 +6,8 @@ import DownloadIcon from "@/assets/icons/download.svg";
 import ResetIcon from "@/assets/icons/reset.svg";
 import "@/assets/styles/quote-designer.css";
 import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
+
 const pageTitle = "Quote Designer";
 const pageDescription = "Design beautiful quotes with our advanced tool.";
 
@@ -17,6 +19,8 @@ const pageMeta = {
 
 <BaseLayout meta={pageMeta}>
   <Fragment slot="header-right">
+    <div class="header-tools-wrapper"></div>
+    <KeyboardTrigger />
     <SharePopover />
     <Help
       title="Quote designer"
