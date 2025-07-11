@@ -3,7 +3,7 @@ title: "The Story of Ramayan"
 publishDate: "2025-07-09"
 author: "Sage Valmiki"
 description: "The heartwarming tale of the Ramayan unfolds with love, duty, and sacrifice, Where Rama's righteous path lights the way through trials and triumph."
-image: "/assets/images/stories/ramayan.png"
+image: "ramayan.png"
 category: "Mythology"
 readingTime: 5
 draft: false

@@ -2,19 +2,40 @@
 import { storyCardSchema } from "@/types/stories";
 
 const props = storyCardSchema.parse(Astro.props);
-const { post, height = "auto" } = props;
+const { post } = props;
 const { url, title, description, image, author, date, category, readingTime, featured } = post;
-const imageUrl = image;
+const socialImageURL = new URL(`/assets/images/stories/${image}`, Astro.url);
 ---
 
-<article class={`story-card ${featured ? "featured" : ""}`}>
+<style is:inline>
+  figure {
+    height: 15rem;
+  }
+  figcaption {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+</style>
+<meta property="og:image" content={socialImageURL} />
+<article class="story-card">
   <a href={url}>
     <div class="story-card-content">
       <div class="story-card-image">
-        <figure class={`${typeof height === "number" ? `height: ${height}px` : `height: ${height}`}`}>
-          <img src={imageUrl} alt={title} loading="lazy" />
-          {category && <span class="story-category">{category}</span>}
-          {featured && <span class="story-featured">Featured</span>}
+        <figure>
+          <img src={`/assets/images/stories/${image}`} alt={title ?? "story image"} loading="lazy" />
+          <figcaption style={{ "background-color": featured ? "blueviolet" : "" }} data-category={category}>
+            <span>{featured ? "🪶 " : ""}</span>
+            <span class="category">{category}</span>
+          </figcaption>
         </figure>
       </div>
       <div class="story-card-details">

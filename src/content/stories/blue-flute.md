@@ -3,7 +3,7 @@ title: "The Blue Flute"
 publishDate: "2025-07-09"
 author: "Folk Traditions"
 description: "A gentle tale of Lord Krishna’s journey from a playful child in Gokul to the wise charioteer of Kurukshetra."
-image: "/assets/images/stories/blue-flute.png"
+image: "blue-flute.png"
 category: "Mythology"
 readingTime: 5
 draft: false
