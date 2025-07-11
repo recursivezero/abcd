@@ -49,15 +49,17 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 22px;
+  margin-top: 30px;
   padding: 4px 8px;
   color: white;
   border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 500;
+  opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease-in-out;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .share-trigger-button:hover::after,
@@ -73,7 +75,7 @@
   right: 0%;
   background-color: var(--popover-bg);
   border: 1px solid var(--popover-border);
-  border-radius: 16px;
+  border-radius: 16px; /* Softened corners */
   padding: 20px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
   min-width: 320px;
@@ -82,10 +84,7 @@
   visibility: hidden;
   transform: scale(0.95);
   transform-origin: top right;
-  transition:
-    opacity 0.2s ease-out,
-    visibility 0.2s ease-out,
-    transform 0.2s ease-out;
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out, transform 0.2s ease-out;
   pointer-events: none;
   color: var(--text-color);
 }
@@ -95,6 +94,10 @@
   visibility: visible;
   transform: scale(1);
   pointer-events: auto;
+}
+
+.popover-header {
+  margin-bottom: 10px;
 }
 
 .popover-title {
@@ -113,7 +116,7 @@
 /* Social Share Section */
 .social-share-section {
   padding-top: 0px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee; 
   margin-bottom: 20px;
 }
 
@@ -132,10 +135,11 @@
 }
 
 .social-share-section .astro-social-share a[href*="whatsapp"],
-.social-share-section .astro-social-share a[href*="x.com"],
+.social-share-section .astro-social-share a[href*="twitter"],
 .social-share-section .astro-social-share a[href*="facebook"],
 .social-share-section .astro-social-share a[href*="linkedin"],
-.social-share-section .astro-social-share a[href*="reddit"] {
+.social-share-section .astro-social-share a[href*="reddit"],
+.social-share-section .astro-social-share a[href*="threads"] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,20 +153,16 @@
   justify-content: center;
 }
 
-.social-share-section .astro-social-share a[href*="whatsapp"] {
-  order: 1;
-}
-.social-share-section .astro-social-share a[href*="x.com"] {
-  order: 2;
-}
-.social-share-section .astro-social-share a[href*="facebook"] {
-  order: 3;
-}
-.social-share-section .astro-social-share a[href*="linkedin"] {
-  order: 4;
-}
-.social-share-section .astro-social-share a[href*="reddit"] {
-  order: 5;
+.social-share-section .astro-social-share a[href*="whatsapp"] { order: 1; }
+.social-share-section .astro-social-share a[href*="twitter"] { order: 2; }
+.social-share-section .astro-social-share a[href*="facebook"] { order: 3; }
+.social-share-section .astro-social-share a[href*="linkedin"] { order: 4; }
+.social-share-section .astro-social-share a[href*="reddit"] { order: 5; }
+.social-share-section .astro-social-share a[href*="threads"] { order: 6; }
+
+
+.social-share-section .astro-social-share a:hover {
+  background-color: #dddddd;
 }
 
 .social-share-section .astro-social-share svg {
