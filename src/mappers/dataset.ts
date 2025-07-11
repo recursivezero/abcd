@@ -1,3 +1,43 @@
+/** Body Parts */
+const bodyPartData = [
+  { letter: "A", text: "Arm", description: "Arm (Upper limb)", emoji: "💪" },
+  { letter: "B", text: "Belly", description: "Belly (Stomach area)", emoji: "🤰" },
+  { letter: "C", text: "Cheek", description: "Cheek (Side of the face)", emoji: "😊" },
+  { letter: "D", text: "Ear", description: "Ear (Hearing organ)", emoji: "👂" },
+  { letter: "F", text: "Finger", description: "Finger (Digit of the hand)", emoji: "☝️" },
+  { letter: "G", text: "Gum", description: "Gum (Mouth tissue)", emoji: "🦷" },
+  { letter: "H", text: "Hand", description: "Hand (End of the arm)", emoji: "✍" },
+  { letter: "I", text: "Iris", description: "Iris (Colored part of the eye)", emoji: "👁️" },
+  { letter: "J", text: "Jaw", description: "Jaw (Lower part of the face)", emoji: "🦷" },
+  { letter: "K", text: "Knee", description: "Knee (Leg joint)", emoji: "🦵" },
+  { letter: "L", text: "Lip", description: "Lip (Mouth part)", emoji: "👄" },
+  { letter: "M", text: "Mouth", description: "Mouth (Opening in the face)", emoji: "👄" },
+  { letter: "N", text: "Nose", description: "Nose (Smelling organ)", emoji: "👃" },
+  { letter: "O", text: "Organ", description: "Organ (Internal body part)", emoji: "❤️" },
+  { letter: "P", text: "Palm", description: "Palm (Inner hand)", emoji: "✋" },
+  { letter: "Q", text: "Quick feet", description: "Quick feet (Movement for Q)", emoji: "🏃" },
+  { letter: "R", text: "Rib", description: "Rib (Chest bone)", emoji: "🦴" },
+  { letter: "S", text: "Shoulder", description: "Shoulder (Upper body)", emoji: "🤷" },
+  { letter: "T", text: "Toe", description: "Toe (Foot digit)", emoji: "🦶" },
+  { letter: "U", text: "Underarm", description: "Underarm (Armpit)", emoji: "🙆" },
+  { letter: "V", text: "Voice", description: "Voice (Vocal cords)", emoji: "🗣️" },
+  { letter: "W", text: "Waist", description: "Waist (Midsection)", emoji: "🩳" },
+  { letter: "X", text: "X marks the spot", description: "X marks the spot (Belly button)", emoji: "❌" },
+  { letter: "Y", text: "Yawn", description: "Yawn (Open mouth wide)", emoji: "🥱" },
+  { letter: "Z", text: "Zzz", description: "Zzz (Pretend to sleep)", emoji: "😴" }
+];
+
+export const BODYPART_DATASET: AlphabetDataset = {
+  category: "body",
+  description: "Common body parts for each letter of the alphabet.",
+  icon: "🧍",
+  data: bodyPartData.map((item, index) => ({
+    id: index + 1,
+    code: item.letter.charCodeAt(0),
+    ...item
+  }))
+};
+
 type DataType = {
   id: string | number;
   code: string | number;
@@ -727,6 +767,9 @@ export const DATASET: { [key: string]: AlphabetDataset } = {
   colors: COLORS_DATASETS,
   countries: COUNTRIES_DATASETS,
   braille: BRAILLE_DATASETS,
-  hindi: HINDI_DATASETS
+  hindi: HINDI_DATASETS,
+  body: BODYPART_DATASET
 };
 export type AlphabetsData = typeof DATASET;
+
+/** Body Parts  */

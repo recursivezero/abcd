@@ -12,6 +12,7 @@ avgrah
 Barahkhadi
 Bhadrapada
 bincount
+BODYPART
 Chaitra
 clsx
 cmdk
