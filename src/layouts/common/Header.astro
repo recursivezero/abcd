@@ -2,9 +2,9 @@
 import { Picture } from "astro:assets";
 import "@/assets/styles/header.css";
 import { APP_NAME } from "@/utils/constants";
-import logoImage from "/public/assets/images/logo.png";
+import logoImage from "/public/assets/images/512x512.png";
 
-const { title, hasBack = true } = Astro.props;
+const { hasBack = true } = Astro.props;
 ---
 
 <header class="header">
@@ -14,7 +14,10 @@ const { title, hasBack = true } = Astro.props;
   </div>
 
   <div class="caption">
-    <h1>{title}</h1>
+     <a href="/home" class:list={{ "is-active": Astro.url.pathname === "/home" || Astro.url.pathname === "/" }}>Home</a>
+      <a href="/about" class:list={{ "is-active": Astro.url.pathname.startsWith("/about") }}>About</a>
+      <a href="/survey" class:list={{ "is-active": Astro.url.pathname.startsWith("/survey") }}>Parents</a>
+      <a href="/coming-soon" class:list={{ "is-active": Astro.url.pathname.startsWith("/coming-soon") }}>Teachers</a>
   </div>
 
   <div class="action-group">
@@ -53,5 +56,16 @@ const { title, hasBack = true } = Astro.props;
 
   .header-spacer {
     height: var(--header-h);
+  }
+
+  @media (max-width: 768px) {
+    .caption {
+      opacity: 0;
+      pointer-events: none; 
+      height: 0;
+      padding: 0;
+      border: none;
+      overflow: hidden;
+    }
   }
 </style>
