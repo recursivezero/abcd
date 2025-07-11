@@ -3,8 +3,8 @@ title: "The Monkey and the Crocodile"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A clever monkey teaches a crocodile that wit and wisdom can save you from any danger."
-image: "/assets/images/stories/monkey-crocodile.png"
-category: "Short Stories"
+image: "monkey-crocodile.png"
+category: "Short"
 readingTime: 4
 draft: false
 ---

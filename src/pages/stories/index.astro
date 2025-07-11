@@ -56,8 +56,32 @@ const sortedStories = storyPosts.sort((a, b) => {
       </div>
     </header>
 
-    <div class="stories-grid">
-      {sortedStories.map((post) => <StoryCard post={post} height="240px" />)}
+    {
+      categories.length > 0 && (
+        <div class="filter-chips">
+          <button class="chip active" data-category="all">
+            All Stories
+          </button>
+          {categories.map((category) => (
+            <button class="chip" data-category={category}>
+              {category
+                .split(" ")
+                .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ")}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
+    <div class="stories-grid" id="stories-grid">
+      {
+        sortedStories.map((post) => (
+          <div class="story-item" data-category={post.category?.toLowerCase() || "uncategorized"}>
+            <StoryCard post={post} />
+          </div>
+        ))
+      }
     </div>
   </div>
 </BaseLayout>

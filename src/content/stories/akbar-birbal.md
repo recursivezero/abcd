@@ -3,7 +3,7 @@ title: "The Half-Sun Reward"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A clever story where Birbal teaches Emperor Akbar that a full day’s work deserves a full day’s reward."
-image: "/assets/images/stories/akbar-birbal.png"
+image: "akbar-birbal.png"
 category: "Humorous"
 readingTime: 5
 draft: false
