@@ -4,7 +4,7 @@ publishDate: "2025-07-09"
 author: "Folk Traditions"
 description: "A heartwarming Holi story about two friends in Mathura who learn the meaning of forgiveness through colors."
 image: "/assets/images/stories/holi.png"
-category: "Short Stories"
+category: "fictional"
 readingTime: 5
 draft: false
 ---
