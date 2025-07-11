@@ -4,7 +4,6 @@ import BaseLayout from "@/layouts/Base";
 import Help from "@/components/Help.astro";
 import BackButton from "@/components/BackButton.astro";
 import SharePopover from "@/components/ShareButton.astro";
-import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 ---
 
 <BaseLayout meta={{ title: "Hear and Play" }}>
@@ -42,7 +41,6 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
         <button type="button" title="click audio" id="muteBtn" class="mute-button mute-button-audio"></button>
       </div>
     </div>
-    <KeyboardTrigger />
     <SharePopover />
     <Help
       title="English Playground"
