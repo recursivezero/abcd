@@ -83,7 +83,7 @@ const categories = allCategories;
       {
         sortedStories.map((post) => (
           <div class="story-item" data-category={post.category?.toLowerCase() || "uncategorized"}>
-            <StoryCard post={post} height="240px" />
+            <StoryCard post={post} />
           </div>
         ))
       }
