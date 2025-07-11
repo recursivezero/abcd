@@ -5,6 +5,7 @@ import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
 import { DATASET } from "@/mappers/dataset";
 import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 
 export const prerender = true;
 
@@ -30,6 +31,7 @@ const currentCategory = DATASET[alphabet] || defaultCategory;
     <span class="info">Press a key to see the magic</span>
   </div>
   <Fragment slot="header-right">
+    <KeyboardTrigger />
     <SharePopover />
     <Help
       title={`${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} Playground`}

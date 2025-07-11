@@ -4,6 +4,7 @@ import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
 import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 ---
 
 <BaseLayout meta={{ title: "Listen the Letter" }}>
@@ -23,6 +24,7 @@ import SharePopover from "@/components/ShareButton.astro";
         <div data-name="rutvi" class="voice-option">👧 Rutvi</div>
       </div>
     </div>
+    <KeyboardTrigger />
     <SharePopover />
     <Help
       title="Reader"
