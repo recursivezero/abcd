@@ -6,12 +6,12 @@ import "@/assets/styles/common.css";
 import SettingIcon from "@/assets/icons/settings.svg";
 import Back from "@/components/Back.astro";
 import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 ---
 
 <BaseLayout meta={{ title: "Panel" }}>
   <Back />
   <Fragment slot="header-right">
-    <SharePopover />
     <div class="right-header-buttons">
       <div class="settings-button-container">
         <button id="settingsButton" class="settings-button" aria-label="Open panel settings">
@@ -100,7 +100,6 @@ import SharePopover from "@/components/ShareButton.astro";
       </div>
     </div>
     <KeyboardTrigger />
-    <SharePopover />
     <Help
       title="Panel"
       description="Use arrow keys to navigate through letters/numbers. Up/down for vertical orientation, left/right for horizontal. Type any letter or number to jump to it. Adjust panel size with the slider."
