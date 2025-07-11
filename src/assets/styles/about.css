@@ -14,7 +14,7 @@
   background-color: light-dark(var(--bg-light), var(--bg-dark));
   color: var(--text-main);
   min-height: 100vh;
-  font-family: "Comic Neue", cursive, sans-serif;
+  font-family: sans-serif;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -24,39 +24,6 @@
   color: var(--primary);
   font-weight: 700;
 }
-
-  .btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin: 0.5rem;
-  }
-
-  .btn-primary {
-    background-color: var(--primary);
-    color: white;
-    border: 2px solid var(--primary);
-  }
-
-  .btn-primary:hover {
-    background-color: var(--primary-light);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
-  }
-
-  .btn-secondary {
-    background-color: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
-  }
-
-  .btn-secondary:hover {
-    background-color: rgba(59, 130, 246, 0.1);
-    transform: translateY(-2px);
-  }
 
 .section-title {
   font-size: 2rem;
@@ -90,7 +57,7 @@
   .section-title {
     font-size: 1.8rem;
   }
-  
+
   .section-subtitle {
     font-size: 0.95rem;
   }
@@ -100,12 +67,12 @@
   .section-title {
     font-size: 1.6rem;
   }
-  
+
   .section-subtitle {
     font-size: 0.9rem;
     margin-bottom: 2rem;
   }
-  
+
   .btn {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
@@ -116,7 +83,7 @@
   .section-title {
     font-size: 1.4rem;
   }
-  
+
   .section-subtitle {
     font-size: 0.85rem;
   }

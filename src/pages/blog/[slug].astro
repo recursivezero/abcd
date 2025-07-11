@@ -1,10 +1,12 @@
 ---
+import CalendarIcon from "@/assets/icons/Calendar.svg";
+import UserIcon from "@/assets/icons/User.svg";
 import "@/assets/styles/blogs/blog.css";
 import "@/assets/styles/page.css";
+import Back from "@/components/BackButton.astro";
 import { blogSchema } from "@/content.config";
 import BaseLayout from "@/layouts/Base";
 import { getCollection, getEntry, render } from "astro:content";
-
 export const prerender = true;
 
 export async function getStaticPaths() {
@@ -15,23 +17,18 @@ export async function getStaticPaths() {
   }));
 }
 
-// Update Props type since we're passing slug
 type Props = {
   slug: string;
 };
 
 const { slug } = Astro.props;
 
-// Use getEntry to fetch the blog post
 const entry = await getEntry("blogs", slug);
 if (!entry) {
   throw new Error(`Blog post not found: ${slug}`);
 }
 
-// Validate the data
 const validatedData = blogSchema.parse(entry.data);
-
-// Render the content
 const { Content } = await render(entry);
 
 if (!Content) {
@@ -39,44 +36,27 @@ if (!Content) {
 }
 ---
 
-<BaseLayout meta={{ title: validatedData.title, description: validatedData.description }}>
+<BaseLayout meta={{ title: "Blog", description: validatedData.description }}>
+  <Back />
   <article class="container__blog">
     <header class="blog-post-header">
-      <h1
-        style="background: linear-gradient(90deg, var(--text), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
-      >
-        {validatedData.title}
-      </h1>
+      <h1 class="blog-title">{validatedData.title}</h1>
 
-      {
-        validatedData.description && (
-          <p class="mx-auto mt-4 max-w-2xl text-lg" style="color: var(--secondary)">
-            {validatedData.description}
-          </p>
-        )
-      }
+      {validatedData.description && <p class="blog-description">{validatedData.description}</p>}
 
       <div class="blog-post-meta">
         {
           validatedData.author && (
-            <span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
+            <span class="meta-item">
+              <UserIcon />
               {validatedData.author}
             </span>
           )
         }
         {
           validatedData.publishDate && (
-            <span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-              </svg>
+            <span class="meta-item">
+              <CalendarIcon />
               <time datetime={validatedData.publishDate.toISOString()}>
                 {validatedData.publishDate.toLocaleDateString()}
               </time>

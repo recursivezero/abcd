@@ -20,7 +20,7 @@
   }
 
   .btn__flip__all {
-    background-color: var(--background);
+    background-color: var(--primary);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;

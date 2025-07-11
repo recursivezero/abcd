@@ -183,6 +183,12 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Survey",
+    title: "Survey",
+    path: "/survey",
+    isActive: true
+  },
+  {
     name: "Zodiac",
     title: "zodiac",
     path: "/zodiac",
@@ -193,6 +199,12 @@ export const NavbarLinks: LinkProps[] = [
     title: "Clan Explorer",
     path: "/clan",
     isActive: false
+  },
+  {
+    name: "Stories",
+    title: "Stories",
+    path: "/stories",
+    isActive: true
   }
 ];
 
@@ -203,12 +215,12 @@ export const FooterLinks: LinkProps[] = [
     isActive: true
   },
   {
-    title: "Terms and Condition",
+    title: "Terms and Conditions",
     path: "/terms",
     isActive: true
   },
   {
-    title: "Blogs",
+    title: "Blog",
     path: "/blog",
     isActive: true
   }

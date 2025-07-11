@@ -1,0 +1,165 @@
+---
+import CalendarIcon from "@/assets/icons/calendar.svg";
+import UserIcon from "@/assets/icons/user.svg";
+import "@/assets/styles/stories/stories.css";
+import Back from "@/components/BackButton.astro";
+import { storySchema } from "@/content.config";
+import BaseLayout from "@/layouts/Base";
+import { getCollection, getEntry, render } from "astro:content";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const stories = await getCollection("stories");
+  return stories.map((entry) => {
+    const slug = entry.data.slug || entry.id.replace(/\.md$/, "").toLowerCase().replace(/\s+/g, "-");
+    return {
+      params: { slug },
+      props: { slug, id: entry.id }
+    };
+  });
+}
+
+type Props = {
+  slug: string;
+  id: string;
+};
+
+const { slug, id } = Astro.props;
+
+let entry = await getEntry("stories", slug);
+if (!entry) {
+  entry = await getEntry("stories", id);
+}
+if (!entry) {
+  const normalizedId = slug.replace(/\.md$/, "");
+  entry = await getEntry("stories", normalizedId);
+}
+
+if (!entry) {
+  Astro.redirect("/404");
+  return;
+}
+
+const validatedData = storySchema.parse(entry.data);
+const { Content } = await render(entry);
+
+if (!Content) {
+  Astro.redirect("/404");
+  return;
+}
+---
+
+<BaseLayout meta={{ title: "Stories", description: validatedData.description }}>
+  <div class="card-top-controls">
+    <Back />
+    <div class="font-size-control">
+      <input type="range" id="fontSizeSlider" min="10" max="30" value="18" step="1" />
+      <button id="fontDecrease" title="Decrease font size">A-</button>
+      <button id="fontIncrease" title="Increase font size">A+</button>
+      <button id="fontReset" title="Reset font size">↺</button>
+    </div>
+  </div>
+  <article class="container__story">
+    <header class="story-header">
+      <h1 class="story-title">{validatedData.title}</h1>
+
+      {validatedData.description && <p class="story-description">{validatedData.description}</p>}
+
+      <div class="story-meta">
+        {
+          validatedData.author && (
+            <span class="meta-item">
+              <UserIcon />
+              {validatedData.author}
+            </span>
+          )
+        }
+        {
+          validatedData.category && (
+            <span class="meta-item">
+              <span class="category-badge">{validatedData.category}</span>
+            </span>
+          )
+        }
+        {
+          validatedData.readingTime && (
+            <span class="meta-item">
+              <span class="reading-time">{validatedData.readingTime} mins read</span>
+            </span>
+          )
+        }
+        {
+          validatedData.publishDate && (
+            <span class="meta-item">
+              <CalendarIcon />
+              <time datetime={validatedData.publishDate.toISOString()}>
+                {validatedData.publishDate.toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric"
+                })}
+              </time>
+            </span>
+          )
+        }
+      </div>
+
+      {
+        validatedData.tags && validatedData.tags.length > 0 && (
+          <div class="story-tags">
+            {validatedData.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    <div class="story-content">
+      <Content />
+    </div>
+  </article>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const slider = document.getElementById("fontSizeSlider") as HTMLInputElement;
+      const fontDecrease = document.getElementById("fontDecrease") as HTMLButtonElement;
+      const fontIncrease = document.getElementById("fontIncrease") as HTMLButtonElement;
+      const fontReset = document.getElementById("fontReset") as HTMLButtonElement;
+      const storyContent = document.querySelector(".story-content") as HTMLElement;
+
+      const updateFontSize = (size: number) => {
+        slider.value = size.toString();
+        const paragraphs = storyContent.querySelectorAll("p");
+        paragraphs.forEach((p) => {
+          p.style.fontSize = `${size}px`;
+        });
+      };
+
+      slider.addEventListener("input", (e: Event) => {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        const fontSize = parseInt(e.target.value);
+        updateFontSize(fontSize);
+      });
+
+      fontDecrease.addEventListener("click", () => {
+        const currentSize = parseInt(slider.value);
+        if (currentSize > 10) {
+          updateFontSize(currentSize - 1);
+        }
+      });
+
+      fontIncrease.addEventListener("click", () => {
+        const currentSize = parseInt(slider.value);
+        if (currentSize < 30) {
+          updateFontSize(currentSize + 1);
+        }
+      });
+
+      fontReset.addEventListener("click", () => {
+        updateFontSize(18);
+      });
+    });
+  </script>
+</BaseLayout>
