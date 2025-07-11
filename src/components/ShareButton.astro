@@ -10,11 +10,10 @@ import "@/assets/styles/share-button.css";
   </button>
 
   <div id="sharePopover" class="share-popover">
-    <div class="popover-header"></div>
     <div class="popover-content">
-      <h3 class="popover-title">Share the page!</h3>
+      <h3 class="popover-title">Share this page!</h3>
       <p class="popover-description">
-        Share the page with the world!
+        Share this page with the world!
       </p>
     </div>
 
@@ -45,6 +44,7 @@ import "@/assets/styles/share-button.css";
     const sharePopover = document.getElementById("sharePopover")! as HTMLDivElement;
     const copyUrlInput = document.getElementById("copyUrlInput")! as HTMLInputElement;
     const copyUrlButton = document.getElementById("copyUrlButton")! as HTMLButtonElement;
+    let copyTimeoutId: ReturnType<typeof setTimeout> | undefined;
 
     function togglePopover() {
       sharePopover.classList.toggle("is-open");
@@ -67,14 +67,28 @@ import "@/assets/styles/share-button.css";
       }
     });
 
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && sharePopover.classList.contains("is-open")) {
+        togglePopover();
+      }
+    });
+
     copyUrlButton.addEventListener("click", async () => {
+      const buttonSpan = copyUrlButton.querySelector("span");
+      if (!buttonSpan || buttonSpan.textContent === "Copied!") {
+        return;
+      }
       const currentUrl = copyUrlInput.value;
       try {
         await navigator.clipboard.writeText(currentUrl);
-        const originalText = copyUrlButton.querySelector("span")!.textContent;
-        copyUrlButton.querySelector("span")!.textContent = "Copied!";
-        setTimeout(() => {
-          copyUrlButton.querySelector("span")!.textContent = originalText;
+        if (copyTimeoutId) {
+          clearTimeout(copyTimeoutId);
+        }
+        const originalText = "Copy";
+        buttonSpan.textContent = "Copied!";
+        copyTimeoutId = setTimeout(() => {
+          buttonSpan.textContent = originalText;
+          copyTimeoutId = undefined;
         }, 1500);
       } catch (err) {
         alert("Failed to copy URL. Please copy it manually: " + currentUrl);
