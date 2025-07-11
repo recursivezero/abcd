@@ -3,6 +3,8 @@ import Back from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
 import MathPractice from "@/components/MathPractice.astro";
 import BaseLayout from "@/layouts/Base";
+import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 
 const pageDescription = "Practice basic math operations like addition, subtraction, and multiplication.";
 ---
@@ -10,6 +12,8 @@ const pageDescription = "Practice basic math operations like addition, subtracti
 <BaseLayout meta={{ title: "Basic Arithmetic" }} description={pageDescription}>
   <Back />
   <Fragment slot="header-right">
+    <KeyboardTrigger />
+    <SharePopover />
     <Help
       title="Basic Arithmetic"
       description="Practice basic math operations like addition, subtraction, and multiplication."
