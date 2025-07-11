@@ -3,8 +3,8 @@ title: "The Holi Rainbow"
 publishDate: "2025-07-09"
 author: "Folk Traditions"
 description: "A heartwarming Holi story about two friends in Mathura who learn the meaning of forgiveness through colors."
-image: "/assets/images/stories/story-3.png"
-category: "Short Stories"
+image: "holi.png"
+category: "Fictional"
 readingTime: 5
 draft: false
 ---
