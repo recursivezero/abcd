@@ -11,6 +11,7 @@ import { getCollection } from "astro:content";
 const stories = await getCollection("stories", ({ data }) => {
   return !data.draft;
 });
+
 const storyPosts = stories.map((entry) => {
   const slug = entry.data.slug || entry.id.replace(/\.md$/, "").toLowerCase().replace(/\s+/g, "-");
   const post: StoryPost = storyPostSchema.parse({
@@ -33,6 +34,15 @@ const sortedStories = storyPosts.sort((a, b) => {
   if (!a.featured && b.featured) return 1;
   return new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime();
 });
+
+// Automatically extract unique categories from all stories
+const allCategories = storyPosts
+  .map(post => post.category?.toLowerCase().trim())
+  .filter((category): category is string => Boolean(category)) // Type guard to ensure string
+  .filter((category, index, array) => array.indexOf(category) === index) // Remove duplicates
+  .sort(); // Sort alphabetically
+
+const categories = allCategories;
 ---
 
 <BaseLayout meta={{ title: "Stories" }}>
@@ -56,8 +66,50 @@ const sortedStories = storyPosts.sort((a, b) => {
       </div>
     </header>
 
-    <div class="stories-grid">
-      {sortedStories.map((post) => <StoryCard post={post} height="240px" />)}
+    {categories.length > 0 && (
+      <div class="filter-chips">
+        <button class="chip active" data-category="all">All Stories</button>
+        {categories.map((category) => (
+          <button class="chip" data-category={category}>
+            {category.split(' ').map((word: string) => 
+              word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ')}
+          </button>
+        ))}
+      </div>
+    )}
+
+    <div class="stories-grid" id="stories-grid">
+      {sortedStories.map((post) => (
+        <div class="story-item" data-category={post.category?.toLowerCase() || 'uncategorized'}>
+          <StoryCard post={post} height="240px" />
+        </div>
+      ))}
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const filterChips = document.querySelectorAll(".chip");
+      const storyItems = document.querySelectorAll(".story-item");
+
+      filterChips.forEach((chip) => {
+        chip.addEventListener("click", (e) => {
+          const target = e.target as HTMLButtonElement;
+          const category = target.dataset.category;
+          filterChips.forEach((c) => c.classList.remove("active"));
+          target.classList.add("active");
+
+          storyItems.forEach((item) => {
+            const itemCategory = (item as HTMLElement).dataset.category;
+            if (category === "all" || itemCategory === category) {
+              (item as HTMLElement).style.display = "block";
+            } else {
+              (item as HTMLElement).style.display = "none";
+            }
+          });
+        });
+      });
+    });
+  </script>
 </BaseLayout>
