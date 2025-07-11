@@ -48,11 +48,11 @@
   --text-primary: #cbd5e1;
   --text-secondary: #212223;
   --accent: #f59e0b;
-    --hero-heading: #131414;
+  --hero-heading: #131414;
   --card-red-bg: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
   --card-blue-bg: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
   --card-yellow-bg: linear-gradient(135deg, #fbbf24 0%, #fcd34d 100%);
-  --card-green-bg: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+  --card-green-bg: linear-gradient(135deg, #34d399 0%, #10b981 100%);
   --card-red-text: #fff;
   --card-blue-text: #fff;
   --card-yellow-text: #fff;

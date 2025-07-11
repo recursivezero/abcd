@@ -42,14 +42,14 @@
   color: var(--card-green-text);
 }
 .card h3 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.7rem;
   letter-spacing: -0.5px;
 }
 
 .card p {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   margin-bottom: 1.2rem;
   color: inherit;
 }
