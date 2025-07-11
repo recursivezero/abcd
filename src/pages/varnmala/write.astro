@@ -3,13 +3,20 @@ import "@/assets/styles/varnmala/write.css";
 import BackButton from "@/components/BackButton.astro";
 import LetterAnimation from "@/components/LetterAnimation.astro";
 import BaseLayout from "@/layouts/Base";
+import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
 
 const url = new URL(Astro.request.url);
 const letterParam = url.searchParams.get("letter")?.toUpperCase() ?? "A";
 ---
 
 <BaseLayout meta={{ title: "Write the Letter" }}>
-  <BackButton href="/varnmala" />
+  <BackButton />
+  <Fragment slot="header-left">
+    <SharePopover />
+    <Help title="Write" description="Learn to write alphabets! Press on restart button to see the animation again." />
+  </Fragment>
+
   <article class="writing-panel-main">
     <section class="writing-panel-section">
       <h2 class="writing-panel-title">✏️ Alphabet Writing Animation ✏️</h2>

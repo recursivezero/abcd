@@ -4,6 +4,7 @@ import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
 import { DATASET } from "@/mappers/dataset";
+import SharePopover from "@/components/ShareButton.astro";
 
 export const prerender = true;
 
@@ -29,6 +30,7 @@ const currentCategory = DATASET[alphabet] || defaultCategory;
     <span class="info">Press a key to see the magic</span>
   </div>
   <Fragment slot="header-right">
+    <SharePopover />
     <Help
       title={`${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} Playground`}
       description="Press any letter key (A-Z) or number key (0-9) to see the corresponding information from the selected alphabet category."
