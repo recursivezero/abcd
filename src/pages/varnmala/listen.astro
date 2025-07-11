@@ -3,6 +3,7 @@ import "@/assets/styles/varnmala/reader.css";
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
+import SharePopover from "@/components/ShareButton.astro";
 ---
 
 <BaseLayout meta={{ title: "Listen the Letter" }}>
@@ -22,7 +23,7 @@ import BackButton from "@/components/BackButton.astro";
         <div data-name="rutvi" class="voice-option">👧 Rutvi</div>
       </div>
     </div>
-
+    <SharePopover />
     <Help
       title="Reader"
       description="Press any letter key (A-Z) to display it with a related emoji. Use the Voices dropdown to change voices, and use the audio button to mute/unmute sounds."

@@ -5,6 +5,8 @@ import LetterCard from "@/components/LetterCard.astro";
 import glossaryData from "@/data/glossary.json";
 import BaseLayout from "@/layouts/Base";
 import type { AlphabetEntry } from "@/types/alphabet";
+import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
 
 export async function getStaticPaths() {
   return Object.keys(glossaryData).map((value) => ({
@@ -22,6 +24,10 @@ if (!categoryData) {
 ---
 
 <BaseLayout meta={{ title }}>
+    <Fragment slot="header-left">
+    <SharePopover />
+    <Help title="Glossary" description="Learn new information from the selected category!" />
+  </Fragment>
   <div class="container__page">
     <div class="page__header">
       <BackButton href="/glossary" />
