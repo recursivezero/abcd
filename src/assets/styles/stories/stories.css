@@ -108,6 +108,7 @@
 }
 
 .font-size-control input[type="range"] {
+  appearance: none;
   -webkit-appearance: none;
   width: 100px;
   height: 4px;
