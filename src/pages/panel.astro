@@ -5,11 +5,13 @@ import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/common.css";
 import SettingIcon from "@/assets/icons/settings.svg";
 import Back from "@/components/Back.astro";
+import SharePopover from "@/components/ShareButton.astro";
 ---
 
 <BaseLayout meta={{ title: "Panel" }}>
   <Back />
   <Fragment slot="header-right">
+    <SharePopover />
     <div class="right-header-buttons">
       <div class="settings-button-container">
         <button id="settingsButton" class="settings-button" aria-label="Open panel settings">

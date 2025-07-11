@@ -1,5 +1,14 @@
 :root {
   --icon-hover-color: #172fda;
+  --primary: #007bff;
+  --popover-bg: #ffffff;
+  --popover-border: #e0e0e0;
+  --text-color: #333333;
+  --description-color: #666666;
+  --input-bg: #f9f9f9;
+  --input-border: #cccccc;
+  --copy-button-bg: #f0f0f0;
+  --copy-button-text: #333;
 }
 
 .share-button-container {
@@ -38,15 +47,19 @@
 .share-trigger-button::after {
   content: attr(data-tooltip);
   position: absolute;
+  left: 50%;
   transform: translateX(-50%);
   margin-top: 30px;
-  color: light-dark(black, white);
+  padding: 4px 8px;
+  color: white;
   border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 500;
+  opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease-in-out;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .share-trigger-button:hover::after,
@@ -55,16 +68,17 @@
   visibility: visible;
 }
 
+/* Main Popover Styles */
 .share-popover {
   position: absolute;
   top: 100%;
   right: 0%;
-  background-color: #19191E;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 10px 10px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  min-width: 105px;
+  background-color: var(--popover-bg);
+  border: 1px solid var(--popover-border);
+  border-radius: 16px; /* Softened corners */
+  padding: 20px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  min-width: 320px;
   margin-top: 8px;
   opacity: 0;
   visibility: hidden;
@@ -72,103 +86,139 @@
   transform-origin: top right;
   transition: opacity 0.2s ease-out, visibility 0.2s ease-out, transform 0.2s ease-out;
   pointer-events: none;
+  color: var(--text-color);
 }
 
 .share-popover.is-open {
-  opacity: 0.98;
+  opacity: 1;
   visibility: visible;
   transform: scale(1);
   pointer-events: auto;
 }
 
-.share-popover .astro-social-share {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 8px;
-  height: auto;
+.popover-header {
+  margin-bottom: 10px;
+}
+
+.popover-title {
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0;
+  color: var(--text-color);
+}
+
+.popover-description {
+  font-size: 0.9rem;
+  color: var(--description-color);
+  margin-top: 5px;
+
+}
+
+/* Social Share Section */
+.social-share-section {
+  padding-top: 0px;
+  border-bottom: 1px solid #eeeeee; 
+  margin-bottom: 20px;
+}
+
+.social-share-section .astro-social-share {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
   padding: 0;
-  background-color: transparent;
-  box-shadow: none;
-  width: 100%;
+  margin: 8px 0px !important;
 }
 
-.share-popover .astro-social-share a[href*="medium.com/new-story"],
-.share-popover .astro-social-share a[href*="news.ycombinator.com/submitlink"],
-.share-popover .astro-social-share a[href^="mailto:"],
-.share-popover .astro-social-share a[href*="bsky.app/intent/compose"] {
-  display: none !important;
+/* Hide all icons by default */
+.social-share-section .astro-social-share a {
+  display: none;
 }
 
-.share-popover .astro-social-share a {
+.social-share-section .astro-social-share a[href*="whatsapp"],
+.social-share-section .astro-social-share a[href*="twitter"],
+.social-share-section .astro-social-share a[href*="facebook"],
+.social-share-section .astro-social-share a[href*="linkedin"],
+.social-share-section .astro-social-share a[href*="reddit"],
+.social-share-section .astro-social-share a[href*="threads"] {
   display: flex;
   flex-direction: column;
-  padding: 8px 10px;
-  box-sizing: border-box;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.share-popover .astro-social-share svg {
-  fill: #ffffff;
-  width: 24px;
-  height: 24px;
-}
-
-.share-popover .astro-social-share svg:hover {
-  transform: translateY(-1px);
-  fill: #1d880c;
-  width: 24px;
-  height: 24px;
-}
-
-.share-popover .astro-social-share a[href*="whatsapp://send"] {
-  order: -4;
-}
-
-.share-popover .astro-social-share a[href*="facebook.com/sharer"] {
-  order: -2;
-}
-
-.share-popover .astro-social-share a[href*="linkedin.com/shareArticle"] {
-  order: -1;
-}
-
-.copy-link-item {
-  display: flex;
   align-items: center;
-  padding: 8px 10px;
-  box-sizing: border-box;
+  text-align: center;
   text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  cursor: pointer;
+  color: var(--text-color);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  top: 30px;
+  min-height: 10px;
+  justify-content: center;
+}
+
+.social-share-section .astro-social-share a[href*="whatsapp"] { order: 1; }
+.social-share-section .astro-social-share a[href*="twitter"] { order: 2; }
+.social-share-section .astro-social-share a[href*="facebook"] { order: 3; }
+.social-share-section .astro-social-share a[href*="linkedin"] { order: 4; }
+.social-share-section .astro-social-share a[href*="reddit"] { order: 5; }
+.social-share-section .astro-social-share a[href*="threads"] { order: 6; }
+
+
+.social-share-section .astro-social-share a:hover {
+  background-color: #dddddd;
+}
+
+.social-share-section .astro-social-share svg {
+  width: 30px;
+  height: 30px;
+}
+
+.social-share-section .astro-social-share span {
+  font-size: 0.8rem;
+  color: #666;
+  display: none;
+}
+
+.share-link-label {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.copy-input-container {
+  display: flex;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--input-bg);
+}
+
+.copy-url-input {
+  flex-grow: 1;
   border: none;
   background: none;
-  color: #fff;
-  width: 100%;
-  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  outline: none;
+  cursor: text;
 }
 
-.copy-link-item:hover {
-  transform: translateY(-1px);
-  color: #1d880c;
+.copy-url-input:focus {
+  outline: none;
 }
 
-.copy-link-item svg {
-  color: white;
-  width: 26px;
-  height: 26px;
-  margin-right: 10px;
-  transition: fill 0.2s ease;
+.copy-link-button {
+  background-color: var(--copy-button-bg);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--copy-button-text);
+  transition: background-color 0.2s ease;
 }
 
-.copy-link-item:hover svg {
-  color: #1d880c;
-}
-
-.copy-link-item span {
-  font-size: 14px;
-  font-weight: 500;
+.copy-link-button:hover {
+  background-color: #e0e0e0;
 }
