@@ -4,7 +4,7 @@ publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A moving story of a tribal boy whose devotion to learning made him a great archer — even without a teacher."
 image: "/assets/images/stories/ekalavya.png"
-category: "Short Stories"
+category: "mythology"
 readingTime: 5
 draft: false
 ---
