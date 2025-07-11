@@ -375,7 +375,7 @@
   color: light-dark(#000000, #ffffff);
   padding: 0.3rem 0.9rem;
   border-radius: 9999px;
-  font-size: 0.8rem;
+  font-size: 15px;
   font-weight: 500;
 }
 

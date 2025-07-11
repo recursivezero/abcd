@@ -126,34 +126,54 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 0px;
   justify-content: center;
   padding: 0 20px;
 }
 
-.chip {
-  padding: 8px 16px;
-  border: 2px solid var(--primary);
-  border-radius: 24px;
-  background: white;
-  color: var(--primary);
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
+.container__stories .filter-chips .chip {
+  padding: 6px 10px;
+  border-radius: 15px;
+  border: 2px solid transparent;
   transition: all 0.2s ease;
-  text-transform: capitalize;
+  color: #ffffff;
 }
 
-.chip:hover {
-  border-color: var(--primary);
-  color: #000000;
-  transform: translateY(-2px);
+
+.container__stories .filter-chips .chip[data-category="all"] {
+  background-color: #6701cc;
 }
 
-.chip.active {
-  background: var(--primary);
-  color: white;
+.container__stories .filter-chips .chip[data-category="fictional"] {
+  background-color: #e91e63;
+}
+
+.container__stories .filter-chips .chip[data-category="humorous"] {
+  background-color: #d6890c;
+}
+
+.container__stories .filter-chips .chip[data-category="mythology"] {
+  background-color: #df5275;
+}
+
+.container__stories .filter-chips .chip[data-category="short stories"] {
+  background-color: #4caf50;
+}
+
+.container__stories .filter-chips .chip[data-category="uncategorized"] {
+  background-color: #ff9800;
+}
+
+.container__stories .filter-chips .chip.active {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+}
+
+.container__stories .filter-chips .chip:hover {
+  opacity: 0.85;
+  cursor: pointer;
 }
 
 .story-card-image {
