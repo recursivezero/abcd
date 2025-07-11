@@ -133,7 +133,7 @@
   padding: 0 20px;
 }
 
-.container__stories .filter-chips .chip {
+.chip {
   padding: 6px 10px;
   border-radius: 15px;
   border: 2px solid transparent;
@@ -142,31 +142,33 @@
 }
 
 
-.container__stories .filter-chips .chip[data-category="all"] {
-  background-color: #6701cc;
+:is(button, figcaption) {
+  &[data-category="all"] {
+    background-color: #6701cc;
+  }
+
+  &[data-category="fictional" i] {
+    background-color: #e91e63;
+  }
+
+  &[data-category="mythology" i] {
+    background-color: #df5275;
+  }
+
+  &[data-category="humorous" i] {
+    background-color: #d6890c;
+  }
+
+  &[data-category="short" i] {
+    background-color: #4caf50;
+  }
+
+  &[data-category="uncategorized" i] {
+    background-color: #ff9800;
+  }
 }
 
-.container__stories .filter-chips .chip[data-category="fictional"] {
-  background-color: #e91e63;
-}
-
-.container__stories .filter-chips .chip[data-category="humorous"] {
-  background-color: #d6890c;
-}
-
-.container__stories .filter-chips .chip[data-category="mythology"] {
-  background-color: #df5275;
-}
-
-.container__stories .filter-chips .chip[data-category="short stories"] {
-  background-color: #4caf50;
-}
-
-.container__stories .filter-chips .chip[data-category="uncategorized"] {
-  background-color: #ff9800;
-}
-
-.container__stories .filter-chips .chip.active {
+.chip.active {
   background-color: #000000;
   color: #ffffff;
   border: 2px solid #000000;
@@ -174,7 +176,7 @@
   outline-offset: 5px;
 }
 
-.container__stories .filter-chips .chip:hover {
+.chip:hover {
   opacity: 0.85;
   cursor: pointer;
   font-size: 14px;
@@ -199,17 +201,17 @@
   height: 240px;
   overflow: hidden;
   border-radius: 1.5rem 1.5rem 0 0;
-}
 
-.story-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
 
-.story-card:hover .story-card-image img {
-  transform: scale(1.06);
+  &:hover img {
+    transform: scale(1.06);
+  }
 }
 
 .story-card-details {

@@ -3,9 +3,7 @@ title: "The Lost Kitten"
 publishDate: "2025-07-09"
 author: "Emily Hart"
 description: "A simple and heartwarming story of a kitten who gets lost, and the kind dog who helps her find her way home, retold with lessons of virtue."
-
 image: "lost-kitten.png"
-
 category: "Fictional"
 readingTime: 2
 draft: false

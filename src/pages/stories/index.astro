@@ -80,11 +80,13 @@ const categories = allCategories;
     )}
 
     <div class="stories-grid" id="stories-grid">
-      {sortedStories.map((post) => (
-        <div class="story-item" data-category={post.category?.toLowerCase() || 'uncategorized'}>
-          <StoryCard post={post} height="240px" />
-        </div>
-      ))}
+      {
+        sortedStories.map((post) => (
+          <div class="story-item" data-category={post.category?.toLowerCase() || "uncategorized"}>
+            <StoryCard post={post} />
+          </div>
+        ))
+      }
     </div>
   </div>
 
