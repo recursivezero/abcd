@@ -4,6 +4,7 @@ import "@/assets/styles/games.css";
 import Help from "@/components/Help.astro";
 import HideSeekKbd from "@/components/HideSeekKbd.astro";
 import Layout from "@/layouts/Base";
+import SharePopover from "@/components/ShareButton.astro";
 
 const meta = {
   title: "Keyboard Game",
@@ -14,6 +15,7 @@ const meta = {
 <Layout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
+    <SharePopover />
     <Help
       title="Hide & Seek Game"
       description="Press any alphabet key from keyboard and that letter will appear. Press again to hide it. Enjoy the hover and active effects on each card."

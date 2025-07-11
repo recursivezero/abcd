@@ -5,11 +5,13 @@ import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 
 import { varnmala_english } from "@/utils/characters";
+import SharePopover from "@/components/ShareButton.astro";
 ---
 
 <BaseLayout meta={{ title: "English" }}>
   <BackButton />
   <Fragment slot="header-right">
+    <SharePopover />
     <Help
       title="English "
       description="It is a collection of alphabets in English. It is used to teach kids the basics of language."

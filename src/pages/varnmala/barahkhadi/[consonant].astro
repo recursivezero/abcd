@@ -2,6 +2,7 @@
 import "@/assets/styles/varnmala/consonant.css";
 import BackButton from "@/components/BackButton.astro";
 import BaseLayout from "@/layouts/Base";
+import SharePopover from "@/components/ShareButton.astro";
 
 import { hindiConsonants as consonants, matras } from "@/utils/characters";
 export const prerender = true;
@@ -17,6 +18,9 @@ const combinations = [consonant, ...Object.values(matras).map((matra) => consona
 
 <BaseLayout meta={{ title: `Barahkhadi - ${consonant}` }}>
   <BackButton />
+  <Fragment slot="header-left">
+    <SharePopover />
+  </Fragment>
   <div class="container__consonant">
     <div class="consonant__header">
       <div class="consonant">{consonant}</div>

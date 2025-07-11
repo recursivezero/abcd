@@ -5,6 +5,8 @@ import LetterCard from "@/components/LetterCard.astro";
 import glossaryData from "@/data/numbers.json";
 import BaseLayout from "@/layouts/Base";
 import type { AlphabetEntry } from "@/types/alphabet";
+import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
 
 export async function getStaticPaths() {
   return Object.keys(glossaryData).map((value) => ({
@@ -22,9 +24,13 @@ if (!categoryData) {
 ---
 
 <BaseLayout meta={{ title }}>
+  <Fragment slot="header-left">
+    <SharePopover />
+    <Help title="Numbers" description="Learn new information from the selected number category!" />
+  </Fragment>
   <div class="container__page">
     <div class="page__header">
-      <BackButton href="/glossary" />
+      <BackButton />
       <h2 class="page__title">{title}</h2>
       <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
