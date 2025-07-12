@@ -140,7 +140,6 @@
   color: #ffffff;
 }
 
-
 :is(button, figcaption) {
   &[data-category="all"] {
     background-color: #6701cc;

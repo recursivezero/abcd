@@ -369,7 +369,7 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: var(--primary)
+  color: var(--primary);
 }
 
 .category-badge {
@@ -409,7 +409,7 @@
 }
 
 .story-content h2::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 5px;
   left: 50%;
@@ -448,7 +448,7 @@
 }
 
 .moral-section h2::after {
-  content: '🌟';
+  content: "🌟";
   position: absolute;
   bottom: -0.5rem;
   right: -1.5rem;
