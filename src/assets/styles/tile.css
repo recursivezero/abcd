@@ -21,13 +21,14 @@
 
   .btn__flip__all {
     background-color: var(--primary);
+    color: white;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-weight: 200;
     cursor: pointer;
     transition: all 0.3s ease;
-    align-self: flex-center;
+    align-self: center;
     width: 14rem;
 
     &:hover {
