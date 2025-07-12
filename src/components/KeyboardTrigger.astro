@@ -1,6 +1,7 @@
 ---
 import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
 ---
+
 <button id="keyboard-trigger" aria-label="Toggle virtual keyboard">
   <KeyboardIcon />
 </button>
@@ -29,7 +30,6 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     color: #ffc0cb;
   }
-
 </style>
 
 <script>
@@ -37,14 +37,14 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
   let isKeyboardForcedOpen: boolean = false;
 
   function setButtonActiveState(isActive: boolean) {
-    const keyboardTrigger = document.getElementById('keyboard-trigger');
+    const keyboardTrigger = document.getElementById("keyboard-trigger");
     if (keyboardTrigger) {
       if (isActive) {
-        keyboardTrigger.classList.add('active');
-        keyboardTrigger.setAttribute('aria-pressed', 'true');
+        keyboardTrigger.classList.add("active");
+        keyboardTrigger.setAttribute("aria-pressed", "true");
       } else {
-        keyboardTrigger.classList.remove('active');
-        keyboardTrigger.setAttribute('aria-pressed', 'false');
+        keyboardTrigger.classList.remove("active");
+        keyboardTrigger.setAttribute("aria-pressed", "false");
       }
     }
   }
@@ -58,25 +58,25 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
 
   function createAndFocusHiddenInput() {
     if (currentHiddenInput) {
-        currentHiddenInput.blur();
-        cleanupHiddenInputDOM();
+      currentHiddenInput.blur();
+      cleanupHiddenInputDOM();
     }
 
-    const hiddenInput = document.createElement('input');
-    hiddenInput.type = 'text';
-    hiddenInput.style.position = 'fixed';
-    hiddenInput.style.top = '-9999px';
-    hiddenInput.style.left = '-9999px';
-    hiddenInput.style.opacity = '0';
-    hiddenInput.style.height = '0';
-    hiddenInput.style.width = '0';
-    hiddenInput.style.pointerEvents = 'none';
-    hiddenInput.id = 'hidden-keyboard-input';
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "text";
+    hiddenInput.style.position = "fixed";
+    hiddenInput.style.top = "-9999px";
+    hiddenInput.style.left = "-9999px";
+    hiddenInput.style.opacity = "0";
+    hiddenInput.style.height = "0";
+    hiddenInput.style.width = "0";
+    hiddenInput.style.pointerEvents = "none";
+    hiddenInput.id = "hidden-keyboard-input";
 
     document.body.appendChild(hiddenInput);
     currentHiddenInput = hiddenInput;
 
-    hiddenInput.addEventListener('blur', () => {
+    hiddenInput.addEventListener("blur", () => {
       cleanupHiddenInputDOM();
     });
 
@@ -85,12 +85,12 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
     setButtonActiveState(true);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const keyboardTrigger = document.getElementById('keyboard-trigger');
+  document.addEventListener("DOMContentLoaded", () => {
+    const keyboardTrigger = document.getElementById("keyboard-trigger");
     setButtonActiveState(isKeyboardForcedOpen);
 
     if (keyboardTrigger) {
-      keyboardTrigger.addEventListener('click', () => {
+      keyboardTrigger.addEventListener("click", () => {
         if (isKeyboardForcedOpen) {
           if (currentHiddenInput) {
             currentHiddenInput.blur();
@@ -104,14 +104,14 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
     }
   });
 
-  document.addEventListener('focusin', (event) => {
+  document.addEventListener("focusin", (event) => {
     const target = event.target as HTMLElement | null;
 
     if (isKeyboardForcedOpen && currentHiddenInput && document.body.contains(currentHiddenInput) &&
         target !== currentHiddenInput &&
-        target !== document.getElementById('keyboard-trigger') &&
+        target !== document.getElementById("keyboard-trigger") &&
         target &&
-        (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+        (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)) {
       currentHiddenInput.blur();
       isKeyboardForcedOpen = false;
       setButtonActiveState(false);
