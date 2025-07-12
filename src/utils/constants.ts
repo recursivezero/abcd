@@ -177,9 +177,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Cards",
-    title: "Cards",
-    path: "/cards",
+    name: "Gallery",
+    title: "Gallery",
+    path: "/gallery",
     isActive: true
   },
   {
@@ -192,7 +192,7 @@ export const NavbarLinks: LinkProps[] = [
     name: "Zodiac",
     title: "zodiac",
     path: "/zodiac",
-    isActive: false
+    isActive: true
   },
   {
     name: "Societree",

@@ -1,0 +1,223 @@
+:root {
+  --icon-hover-color: #172fda;
+  --primary: #007bff;
+  --popover-bg: #ffffff;
+  --popover-border: #e0e0e0;
+  --text-color: #333333;
+  --description-color: #666666;
+  --input-bg: #f9f9f9;
+  --input-border: #cccccc;
+  --copy-button-bg: #f0f0f0;
+  --copy-button-text: #333;
+}
+
+.share-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.share-trigger-button {
+  background-color: transparent;
+  color: var(--primary);
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--primary);
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.share-trigger-button:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.share-trigger-button svg {
+  display: block;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  fill: var(--primary);
+  transition: fill 0.2s ease;
+}
+
+.share-trigger-button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 22px;
+  padding: 4px 8px;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.share-trigger-button:hover::after,
+.share-trigger-button:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Main Popover Styles */
+.share-popover {
+  position: absolute;
+  top: 100%;
+  right: 0%;
+  background-color: var(--popover-bg);
+  border: 1px solid var(--popover-border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  min-width: 320px;
+  margin-top: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transform-origin: top right;
+  transition:
+    opacity 0.2s ease-out,
+    visibility 0.2s ease-out,
+    transform 0.2s ease-out;
+  pointer-events: none;
+  color: var(--text-color);
+}
+
+.share-popover.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.popover-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.popover-description {
+  font-size: 0.9rem;
+  color: var(--description-color);
+  margin-top: 5px;
+}
+
+/* Social Share Section */
+.social-share-section {
+  padding-top: 0px;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 20px;
+}
+
+.social-share-section .astro-social-share {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 0;
+  margin: 8px 0px !important;
+}
+
+/* Hide all icons by default */
+.social-share-section .astro-social-share a {
+  display: none;
+}
+
+.social-share-section .astro-social-share a[href*="whatsapp"],
+.social-share-section .astro-social-share a[href*="x.com"],
+.social-share-section .astro-social-share a[href*="facebook"],
+.social-share-section .astro-social-share a[href*="linkedin"],
+.social-share-section .astro-social-share a[href*="reddit"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  top: 30px;
+  min-height: 10px;
+  justify-content: center;
+}
+
+.social-share-section .astro-social-share a[href*="whatsapp"] {
+  order: 1;
+}
+.social-share-section .astro-social-share a[href*="x.com"] {
+  order: 2;
+}
+.social-share-section .astro-social-share a[href*="facebook"] {
+  order: 3;
+}
+.social-share-section .astro-social-share a[href*="linkedin"] {
+  order: 4;
+}
+.social-share-section .astro-social-share a[href*="reddit"] {
+  order: 5;
+}
+
+.social-share-section .astro-social-share svg {
+  width: 30px;
+  height: 30px;
+}
+
+.social-share-section .astro-social-share span {
+  font-size: 0.8rem;
+  color: #666;
+  display: none;
+}
+
+.share-link-label {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.copy-input-container {
+  display: flex;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--input-bg);
+}
+
+.copy-url-input {
+  flex-grow: 1;
+  border: none;
+  background: none;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  outline: none;
+  cursor: text;
+}
+
+.copy-url-input:focus {
+  outline: none;
+}
+
+.copy-link-button {
+  background-color: var(--copy-button-bg);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--copy-button-text);
+  transition: background-color 0.2s ease;
+}
+
+.copy-link-button:hover {
+  background-color: #e0e0e0;
+}

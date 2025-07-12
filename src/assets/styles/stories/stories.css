@@ -358,7 +358,6 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  color: light-dark(#000000, #ffffff);
   font-size: 0.95rem;
   font-weight: 500;
   border-radius: 50rem;
@@ -370,7 +369,7 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: var(--primary)
+  color: var(--primary);
 }
 
 .category-badge {
@@ -392,7 +391,6 @@
 .story-content {
   font-size: 1.4rem;
   line-height: 1.8;
-  color: light-dark(#000000, #ffffff);
   position: relative;
   z-index: 1;
   text-align: left;
@@ -411,7 +409,7 @@
 }
 
 .story-content h2::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 5px;
   left: 50%;
@@ -425,7 +423,6 @@
 .story-content p {
   margin-bottom: 0;
   margin-top: 0;
-  color: light-dark(#000000, #ffffff);
   font-size: clamp(1rem, 2.5vw, 1.1rem);
   text-align: justify;
   font-family: atkinson;
@@ -451,7 +448,7 @@
 }
 
 .moral-section h2::after {
-  content: '🌟';
+  content: "🌟";
   position: absolute;
   bottom: -0.5rem;
   right: -1.5rem;

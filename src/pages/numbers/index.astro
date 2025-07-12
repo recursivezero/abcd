@@ -2,6 +2,8 @@
 import "@/assets/styles/board.css";
 import Back from "@/components/Back.astro";
 import CardLayout from "@/components/CardLayout.astro";
+import SharePopover from "@/components/ShareButton.astro";
+
 import NumberData from "@/data/numbers.json";
 import BaseLayout from "@/layouts/Base";
 import type { CardSectionType } from "@/types/alphabet";
@@ -53,6 +55,9 @@ const subtitle = "Explore various categories of numbers";
 
 <BaseLayout meta={{ title: "Numbers" }}>
   <Back />
+  <Fragment slot="header-right">
+    <SharePopover />
+  </Fragment>
   <section class="container__board">
     <div class="board__header">
       <h1 class="title">{title}</h1>

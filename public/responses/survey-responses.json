@@ -19,9 +19,7 @@
     "q4": "Less than 15 minutes",
     "q5": "Not sure",
     "q6": "No, I don’t think it has a big impact.",
-    "q7": [
-      "Interactive apps or websites"
-    ],
+    "q7": ["Interactive apps or websites"],
     "q8": "Several times a week",
     "q9": ""
   }

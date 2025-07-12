@@ -1,0 +1,124 @@
+---
+import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
+---
+
+<button id="keyboard-trigger" aria-label="Toggle virtual keyboard">
+  <KeyboardIcon />
+</button>
+
+<style>
+  #keyboard-trigger {
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+    width: 49px;
+    height: 49px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  #keyboard-trigger:hover {
+    transform: translateY(-2px);
+  }
+
+  #keyboard-trigger.active {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    color: #ffc0cb;
+  }
+</style>
+
+<script>
+  let currentHiddenInput: HTMLInputElement | null = null;
+  let isKeyboardForcedOpen: boolean = false;
+
+  function setButtonActiveState(isActive: boolean) {
+    const keyboardTrigger = document.getElementById("keyboard-trigger");
+    if (keyboardTrigger) {
+      if (isActive) {
+        keyboardTrigger.classList.add("active");
+        keyboardTrigger.setAttribute("aria-pressed", "true");
+      } else {
+        keyboardTrigger.classList.remove("active");
+        keyboardTrigger.setAttribute("aria-pressed", "false");
+      }
+    }
+  }
+
+  function cleanupHiddenInputDOM() {
+    if (currentHiddenInput && document.body.contains(currentHiddenInput)) {
+      document.body.removeChild(currentHiddenInput);
+    }
+    currentHiddenInput = null;
+  }
+
+  function createAndFocusHiddenInput() {
+    if (currentHiddenInput) {
+      currentHiddenInput.blur();
+      cleanupHiddenInputDOM();
+    }
+
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "text";
+    hiddenInput.style.position = "fixed";
+    hiddenInput.style.top = "-9999px";
+    hiddenInput.style.left = "-9999px";
+    hiddenInput.style.opacity = "0";
+    hiddenInput.style.height = "0";
+    hiddenInput.style.width = "0";
+    hiddenInput.style.pointerEvents = "none";
+    hiddenInput.id = "hidden-keyboard-input";
+
+    document.body.appendChild(hiddenInput);
+    currentHiddenInput = hiddenInput;
+
+    hiddenInput.addEventListener("blur", () => {
+      cleanupHiddenInputDOM();
+    });
+
+    hiddenInput.focus();
+    isKeyboardForcedOpen = true;
+    setButtonActiveState(true);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const keyboardTrigger = document.getElementById("keyboard-trigger");
+    setButtonActiveState(isKeyboardForcedOpen);
+
+    if (keyboardTrigger) {
+      keyboardTrigger.addEventListener("click", () => {
+        if (isKeyboardForcedOpen) {
+          if (currentHiddenInput) {
+            currentHiddenInput.blur();
+          }
+          isKeyboardForcedOpen = false;
+          setButtonActiveState(false);
+        } else {
+          createAndFocusHiddenInput();
+        }
+      });
+    }
+  });
+
+  document.addEventListener("focusin", (event) => {
+    const target = event.target as HTMLElement | null;
+
+    if (
+      isKeyboardForcedOpen &&
+      currentHiddenInput &&
+      document.body.contains(currentHiddenInput) &&
+      target !== currentHiddenInput &&
+      target !== document.getElementById("keyboard-trigger") &&
+      target &&
+      (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)
+    ) {
+      currentHiddenInput.blur();
+      isKeyboardForcedOpen = false;
+      setButtonActiveState(false);
+    }
+  });
+</script>
