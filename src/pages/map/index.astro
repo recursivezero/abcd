@@ -1,9 +1,11 @@
 ---
 import "@/assets/styles/map/map.css";
+import Back from "@/components/Back.astro";
+import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
+import categoryData from "@/data/categories.json";
 import BaseLayout from "@/layouts/Base";
 import { Image } from "astro:assets";
-import categoryData from "@/data/categories.json";
-import Back from "@/components/Back.astro";
 type Category = {
   id: string;
   title: string;
@@ -17,6 +19,10 @@ const categories: Category[] = Object.values(categoryData.categories);
 
 <BaseLayout meta={{ title: "Explore India" }}>
   <Back />
+  <Fragment slot="header-right">
+    <SharePopover />
+    <Help title="Capital" description="An Interactive Journey Through India's States and Territories. " />
+  </Fragment>
   <main class="explore-container">
     <div class="explore-header">
       <h1>Explore India</h1>

@@ -4,6 +4,7 @@ import KeyboardGameIcon from "@/assets/icons/keyboard.svg";
 import "@/assets/styles/cards/main.css";
 import Back from "@/components/Back.astro";
 import GameCard from "@/components/GameCard.astro";
+import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 
 const meta = {
@@ -30,6 +31,9 @@ const games = {
 
 <BaseLayout meta={meta}>
   <Back />
+  <Fragment slot="header-right">
+    <SharePopover />
+  </Fragment>
   <div class="selection-container">
     <div class="header-content">
       <h1 class="selection-title">Select a creative mode</h1>
