@@ -6,6 +6,7 @@ import ExploreLearnSection from "@/components/home/ExploreLearnSection.astro";
 import TestimonialsSection from "@/components/home/TestimonialsSection.astro";
 import KidsLoveSection from "@/components/home/KidsLoveSection.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
+import SharePopover from "@/components/ShareButton.astro";
 import FeaturesSection from "@/components/about/FeaturesSection.astro";
 const meta = {
   title: "Home"
@@ -15,6 +16,7 @@ const meta = {
 <BaseLayout meta={meta}>
   <MobileSplash />
   <Fragment slot="header-right">
+        <SharePopover />
   </Fragment>
   <main class="about-container">
     <HeroSection />
