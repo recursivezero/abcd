@@ -107,11 +107,15 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
   document.addEventListener("focusin", (event) => {
     const target = event.target as HTMLElement | null;
 
-    if (isKeyboardForcedOpen && currentHiddenInput && document.body.contains(currentHiddenInput) &&
-        target !== currentHiddenInput &&
-        target !== document.getElementById("keyboard-trigger") &&
-        target &&
-        (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)) {
+    if (
+      isKeyboardForcedOpen &&
+      currentHiddenInput &&
+      document.body.contains(currentHiddenInput) &&
+      target !== currentHiddenInput &&
+      target !== document.getElementById("keyboard-trigger") &&
+      target &&
+      (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)
+    ) {
       currentHiddenInput.blur();
       isKeyboardForcedOpen = false;
       setButtonActiveState(false);
