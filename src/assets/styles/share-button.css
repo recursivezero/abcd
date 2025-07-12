@@ -82,7 +82,7 @@
   visibility: hidden;
   transform: scale(0.95);
   transform-origin: top right;
- transition:
+  transition:
     opacity 0.2s ease-out,
     visibility 0.2s ease-out,
     transform 0.2s ease-out;
