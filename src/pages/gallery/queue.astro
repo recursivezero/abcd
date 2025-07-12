@@ -6,6 +6,7 @@ import BackButton from "@/components/BackButton.astro";
 import Help from "@/components/Help.astro";
 import "@/assets/styles/cards/queue.css";
 import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 
 const pageTitle = "Queue | Interactive Alphabet";
 const pageDescription =
@@ -46,7 +47,7 @@ let currentIndex = 0;
 
 <BaseLayout meta={pageMeta}>
   <Fragment slot="header-right">
-    <div class="header-tools-wrapper"></div>
+    <KeyboardTrigger />
     <SharePopover />
     <Help
       title="Queue Designer"

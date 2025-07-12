@@ -1,10 +1,11 @@
 ---
-import BackButton from "@/components/BackButton.astro";
 import "@/assets/styles/games.css";
+import BackButton from "@/components/BackButton.astro";
 import Help from "@/components/Help.astro";
 import HideSeekKbd from "@/components/HideSeekKbd.astro";
-import Layout from "@/layouts/Base";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 import SharePopover from "@/components/ShareButton.astro";
+import Layout from "@/layouts/Base";
 
 const meta = {
   title: "Keyboard Game",
@@ -15,6 +16,7 @@ const meta = {
 <Layout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
+    <KeyboardTrigger />
     <SharePopover />
     <Help
       title="Hide & Seek Game"
@@ -22,8 +24,7 @@ const meta = {
     />
   </Fragment>
   <div class="game-page-container">
-    <div class="game-wrapper">
-    </div>
+    <div class="game-wrapper"></div>
     <HideSeekKbd />
   </div>
 </Layout>
