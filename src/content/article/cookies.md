@@ -58,8 +58,7 @@ You can manage or delete cookies via:
 
 We may use third-party services that place their own cookies. These services have their own policies:
 
-- Google Analytics: \[link]
-- YouTube: \[link]
+- [Google Analytics](https://support.google.com/analytics/answer/4597324?hl=en)
 
 ---
 
@@ -71,8 +70,6 @@ We may update this policy from time to time. Last updated: **\[July 11,2025]**
 
 ### 6. **Contact Us**
 
-For questions about our cookie usage, email: `abcdkbd@outlook.com`
+For questions about our cookie usage, email: <mark>[abcdkbd@outlook.com](mailto:abcdkbd@outlook.com)</mark>
 
 ---
-
-Let me know if you want a **template for the popup/banner consent UI** too.

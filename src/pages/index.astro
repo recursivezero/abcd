@@ -1,13 +1,12 @@
 ---
-import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/index.css";
-import HeroSection from "@/components/home/HeroSection.astro";
-import ExploreLearnSection from "@/components/home/ExploreLearnSection.astro";
-import TestimonialsSection from "@/components/home/TestimonialsSection.astro";
-import KidsLoveSection from "@/components/home/KidsLoveSection.astro";
-import MobileSplash from "@/components/MobileSplash.astro";
-import SharePopover from "@/components/ShareButton.astro";
 import FeaturesSection from "@/components/about/FeaturesSection.astro";
+import HeroSection from "@/components/about/HeroSection.astro";
+import ExploreLearnSection from "@/components/home/ExploreLearnSection.astro";
+import KidsLoveSection from "@/components/home/KidsLoveSection.astro";
+import TestimonialsSection from "@/components/home/TestimonialsSection.astro";
+import MobileSplash from "@/components/MobileSplash.astro";
+import BaseLayout from "@/layouts/Base";
 const meta = {
   title: "Home"
 };
@@ -15,17 +14,9 @@ const meta = {
 
 <BaseLayout meta={meta}>
   <MobileSplash />
-  <h1>Welcome to parixan.xyz</h1>
-  <Fragment slot="output">
-    <p>
-      Previous Name: <output></output>
-    </p>
-  </Fragment>
-  <main class="about-container">
-    <HeroSection />
-    <ExploreLearnSection />
-    <TestimonialsSection />
-    <KidsLoveSection />
-    <FeaturesSection />
-  </main>
+  <HeroSection />
+  <ExploreLearnSection />
+  <TestimonialsSection />
+  <KidsLoveSection />
+  <FeaturesSection />
 </BaseLayout>
