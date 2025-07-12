@@ -5,16 +5,18 @@ import "@/assets/styles/map/popup.css";
 <!-- Popover Panel -->
 <div class="container__popover">
   <div id="popup-panel" class="state-popup" popover="hint">
-    <button popovertarget="popup-panel" popovertargetaction="hide" class="state-popup__close">&times;</button>
     <div class="state-popup__content">
-      <div class="state-popup__name" id="popup-name">State Name</div>
-      <img class="state-popup__image" id="popup-image" src="" alt="State Image" />
-      <div class="state-popup__info" id="popup-info">State Information</div>
-      <div class="state-popup__buttons">
-        <button class="state-popup__button state-popup__button--more" id="see-more-btn">See More</button>
+      <div class="state-popup__header">
+        <div class="state-popup__name" id="popup-name">State Name</div>
+        <button popovertarget="popup-panel" popovertargetaction="hide" class="state-popup__close">&times;</button>
       </div>
+    <img class="state-popup__image" id="popup-image" src="" alt="State Image" />
+    <div class="state-popup__info" id="popup-info">State Information</div>
+    <div class="state-popup__buttons">
+      <button class="state-popup__button state-popup__button--more" id="see-more-btn">See More</button>
     </div>
   </div>
+</div>
 </div>
 
 <script is:inline>
@@ -25,8 +27,8 @@ import "@/assets/styles/map/popup.css";
   const seeMoreBtn = document.getElementById("see-more-btn");
 
   document.addEventListener("showStatePopup", (e) => {
-    const { stateInfo } = e.detail;
-    popupName.textContent = stateInfo.name.length > 16 ? stateInfo.name.slice(0, 14) + ".." : stateInfo.name;
+    const {stateInfo } = e.detail;
+    popupName.textContent = stateInfo.name;
     popupInfo.innerHTML = `<p><strong>State Dance:</strong> ${stateInfo.dance}</p>`;
     popupImage.src = `/map/images/${stateInfo.image}`;
     popupImage.alt = `${stateInfo.name} state image`;
@@ -34,13 +36,14 @@ import "@/assets/styles/map/popup.css";
   });
 
   seeMoreBtn.addEventListener("click", () => {
-    popup.hidePopover();
+    popup.hidePopover(); 
     setTimeout(() => {
-      const stateName = popupName.textContent;
-      if (stateName) {
-        const stateUrl = stateName.replace(/\s+/g, "").toLowerCase();
-        window.location.href = `/map/${stateUrl}`;
-      }
-    }, 50);
-  });
+    const stateName = popupName.textContent;
+    if (stateName) {
+      const stateUrl = stateName.replace(/\s+/g, "").toLowerCase();
+      window.location.href = `/map/${stateUrl}`;
+    }
+  }, 50); 
+});
+
 </script>
