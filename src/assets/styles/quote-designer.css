@@ -812,3 +812,53 @@ textarea.metallic-textarea {
     margin-left: 0;
   }
 }
+
+@media (max-width: 480px) {
+  .preview-panel {
+    min-height: 40vh;
+  }
+
+  .preview-container {
+    box-shadow: inset 0px 0px 0 8px light-dark(#e2dfd2, #0f172a);
+    padding: 0.5rem;
+  }
+
+  .header-controls {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .right-header-buttons {
+    gap: 0.3rem;
+  }
+
+  .header-tools-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .button-text-initial {
+    font-size: 1.1em !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .preview-panel {
+    min-height: 45vh;
+  }
+
+  .right-header-buttons {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .header-tools-btn {
+    flex-grow: 1;
+    min-width: 44px;
+  }
+
+  #quotePreview {
+    padding: 0.5rem;
+  }
+}
