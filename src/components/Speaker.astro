@@ -49,8 +49,7 @@ declare global {
     const muteIcon = muteBtn.querySelector(".mute-icon");
     const selectedVoiceText = document.querySelector(".selected-voice-text");
 
-    // State
-    let currentVoice = "${initialVoice}";
+    let currentVoice = "";
 
     // Function to stop all audio
     function stopAudio() {
@@ -65,7 +64,7 @@ declare global {
       option.addEventListener("click", (e) => {
         const voice = e.currentTarget.dataset.name;
         currentVoice = voice;
-        selectedVoiceText.textContent = `Voice: ${voice}`;
+        selectedVoiceText.textContent = voice ? `Voice: ${voice}` : "Voice: ";
         closeDropdown();
       });
     });
@@ -95,11 +94,10 @@ declare global {
       voicesOptions.classList.remove("show");
     }
 
-    // Global function to play sounds
     window.playLetterSound = (letter) => {
-      if (isMuted) return;
+      if (isMuted || !currentVoice) return; 
 
-      stopAudio(); // Stop any currently playing sound
+      stopAudio();
 
       try {
         currentAudio = new Audio(`/assets/media/alphabets/${currentVoice}/${letter.toLowerCase()}.ogg`);
@@ -211,5 +209,5 @@ declare global {
       padding: 0.25rem 0.5rem;
       font-size: 0.65rem;
     }
-  }
+  }*/
 </style>
