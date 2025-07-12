@@ -1,11 +1,10 @@
 ---
+import "@/assets/styles/coming-soon.css";
+import Countdown from "@/components/home/Countdown.astro";
 import BaseLayout from "@/layouts/Base";
 import { APP_NAME } from "@/utils/constants";
 import { Picture } from "astro:assets";
-import logoImage from "/public/assets/images/ABCD.png";
-import "@/assets/styles/coming-soon.css";
-
-const launchDate = "2025-12-31"; // Set target launch date
+import logoImage from "/public/assets/images/ABCD-blue.png";
 ---
 
 <BaseLayout meta={{ title: "Coming Soon" }}>
@@ -14,73 +13,9 @@ const launchDate = "2025-12-31"; // Set target launch date
     <div class="heading-container">
       <Picture src={logoImage} formats={["png", "webp"]} alt={APP_NAME} class="logo" />
       <h1>Something Amazing is Coming</h1>
-      <p class="subtitle">
-        We're working hard to bring you the best experience.
-      </p>
+      <p class="subtitle">We're working hard to bring you the best experience.</p>
     </div>
-
     <!-- Section 2: Countdown -->
-    <div class="countdown-container">
-      <div class="countdown" id="countdown">
-        <div class="countdown-item">
-          <div class="countdown-number" id="days">00</div>
-          <div class="countdown-label">Days</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="hours">00</div>
-          <div class="countdown-label">Hours</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="minutes">00</div>
-          <div class="countdown-label">Minutes</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="seconds">00</div>
-          <div class="countdown-label">Seconds</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 3: Form -->
-    <!-- <div class="form-container">
-      <form class="notify-form">
-        <p>Get notified when we launch:</p>
-        <div class="form-group">
-          <input type="email" placeholder="your@email.com" required />
-          <button type="submit">Notify Me</button>
-        </div>
-      </form>
-    </div>
-  </div> -->
-
-  <script define:vars={{ launchDate }}>
-    const countdownElement = document.getElementById('countdown');
-    if (countdownElement) {
-      const launch = new Date(launchDate).getTime();
-
-      const updateCountdown = () => {
-        const now = new Date().getTime();
-        const diff = launch - now;
-
-        if (diff < 0) {
-          countdownElement.innerHTML = "<h2>We've Launched!</h2>";
-          clearInterval(interval);
-          return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        document.getElementById('days').textContent = String(days).padStart(2, '0');
-        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-      };
-
-      const interval = setInterval(updateCountdown, 1000);
-      updateCountdown();
-    }
-  </script>
+    <Countdown date="2025-08-15" />
+  </div>
 </BaseLayout>
