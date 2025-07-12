@@ -6,7 +6,6 @@ import HideSeekGrid from "@/components/HideSeekGrid.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import Layout from "@/layouts/Base";
-import SharePopover from "@/components/ShareButton.astro";
 
 const meta = {
   title: "Grid Game",
@@ -17,6 +16,7 @@ const meta = {
 <Layout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
+    <KeyboardTrigger />
     <SharePopover />
     <Help
       title="Hide & Seek Game"
@@ -24,8 +24,7 @@ const meta = {
     />
   </Fragment>
   <div class="game-page-container">
-    <div class="game-wrapper">
-    </div>
+    <div class="game-wrapper"></div>
     <HideSeekGrid />
   </div>
 </Layout>
