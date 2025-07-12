@@ -1,16 +1,66 @@
 ---
 import "@/assets/styles/footer.css";
-import { FooterLinks } from "@/utils/constants";
 ---
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <div class="container__footer">
-  <div class="footer__nav">
-    {
-      FooterLinks.map((menu) => (
-        <span class="footer__nav--item">
-          <a href={menu.path}>{menu.title}</a>
-        </span>
-      ))
-    }
+  <div class="footer__main-content">
+    <!-- Brand and description -->
+    <div class="footer__brand-section">
+      <div class="brand">
+        abcd<span class="kbd">kbd</span>
+      </div>
+      <p>Making learning fun and engaging for young minds everywhere.</p>
+      <div class="social">
+        <a href="https://twitter.com/" aria-label="X" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://youtube.com/" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <!-- Navigation columns -->
+    <div class="footer__nav">
+      <details class="footer__nav--item" open>
+        <summary class="footer__nav--title">
+          <span>Learning</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="footer__nav--links">
+          <a href="/alphabets">Reading</a>
+          <a href="/math">Math</a>
+          <!-- <a href="/panel">Logic</a> -->
+          <a href="/crossword">Games</a>
+          <a href="/draw">Creativity</a>
+        </div>
+      </details>
+      <details class="footer__nav--item" open>
+        <summary class="footer__nav--title">
+          <span>For Parents</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="footer__nav--links">
+          <a href="/varnmala">Getting Started</a>
+          <!-- <a href="/progress-tracking">Progress Tracking</a> -->
+          <a href="/survey">Parent Resources</a>
+          <a href="/faq">FAQs</a>
+          <a href="/map">Geographic</a>
+        </div>
+      </details>
+      <details class="footer__nav--item" open>
+        <summary class="footer__nav--title">
+          <span>For Schools</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="footer__nav--links">
+          <a href="/coming-soon">School Programs</a>
+          <a href="/coming-soon">Classroom Tools</a>
+          <a href="/coming-soon">Teacher Resources</a>
+          <a href="/contact">Contact Us</a>
+        </div>
+      </details>
+    </div>
+  </div>
+  <div class="copyright">
+    © 2025 recursivezero.com. All rights reserved.
+    <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms and Conditions</a> | <a href="/cookies">Cookies</a>
   </div>
 </div>

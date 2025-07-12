@@ -1,0 +1,24 @@
+---
+import BaseLayout from "@/layouts/Base";
+import TitleLayout from "@/layouts/TitleLayout";
+import faqData from "@/data/faq.json";
+import "@/assets/styles/faq.css";
+---
+
+<BaseLayout meta={{ title: "Frequently Asked Questions" }}>
+  <TitleLayout title="Frequently Asked Questions" />
+
+  <div class="faq-container">
+    {faqData.map(item => (
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>{item.question}</span>
+          <i class="fa-solid fa-chevron-down icon"></i>
+        </summary>
+        <div class="faq-answer">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</BaseLayout>
