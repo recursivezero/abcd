@@ -105,7 +105,7 @@
 .state-popup__close:hover {
   color: #1976d2;
   background-colo: white;
-} 
+}
 
 .state-popup__name {
   font-size: 2rem;
@@ -149,7 +149,7 @@
   padding: 0.8rem 0;
   font-size: 1.1rem;
   font-weight: 600;
-  background:#1976d2;
+  background: #1976d2;
   color: #fff;
   border: none;
   border-radius: 0.7rem;
@@ -163,7 +163,7 @@
     .state-popup {
       width: 80vw;
       padding: 1.5rem 1rem;
-      
+
       &[popover] {
         min-height: 16rem;
 
@@ -188,7 +188,7 @@
       .state-popup__info {
         font-size: 1rem;
         margin-bottom: -1rem;
-        margin-right:0rem;
+        margin-right: 0rem;
         margin-top: -1rem;
         margin-left: 0rem;
       }
@@ -210,7 +210,7 @@
 
       .state-popup__close {
         font-size: 2rem;
-        top:0.9rem;
+        top: 0.9rem;
         right: 0rem;
         width: 2.5rem;
         height: 2.5rem;
@@ -218,5 +218,3 @@
     }
   }
 }
-
-
