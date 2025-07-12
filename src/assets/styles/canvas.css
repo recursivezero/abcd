@@ -1,3 +1,7 @@
+:root{
+  --shade: light-dark(#fff,#25354fcc);
+  --box: light-dark(#f5deb3,#0f172acc);
+}
 /* Global Styles for the Canvas Generator */
 .canvas-generator {
   min-height: 100vh;
@@ -19,7 +23,7 @@
 }
 
 .canvas-generator .input-area {
-  background: rgba(37, 53, 79, 0.8);
+  background: var(--shade);
   padding: 2rem;
   border-radius: 20px;
   border: 2px solid #334155;
@@ -33,7 +37,7 @@
   border-radius: 12px;
   font-size: 1.2rem;
   width: 100%;
-  background: rgba(15, 23, 42, 0.8);
+  background: var(--box);
   color: #e2e8f0;
   transition: border-color 0.3s ease;
   outline: none;
@@ -63,14 +67,14 @@
   cursor: pointer;
   transition: background 0.3s ease;
   border: none;
-  background: #1e40af;
+  background: light-dark(#383535,#1e40af);
   color: white;
   flex: 1;
   min-width: 120px;
 }
 
 .canvas-generator .action-button:hover {
-  background: #2563eb;
+  background: light-dark(#000,#2563eb);
 }
 
 .canvas-generator .checkbox-wrapper {
@@ -97,9 +101,8 @@
 }
 
 .canvas-generator .input-label {
-  color: #e2e8f0;
+  color: light-dark(#000,#e2e8f0);
   font-size: 1.2rem;
-  font-weight: bold;
 }
 
 /* Color Options */
@@ -118,8 +121,8 @@
   padding: 0.8rem;
   border: 2px solid #334155;
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.8);
-  color: #e2e8f0;
+  background: var(--box);
+  color: #334155;
   font-size: 1rem;
   cursor: pointer;
 }
@@ -131,7 +134,7 @@
 .canvas-generator label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #e2e8f0;
+  color: light-dark(#000,#e2e8f0);
   font-size: 1rem;
 }
 
@@ -140,7 +143,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
-  background: rgba(37, 53, 79, 0.8);
+  background: var(--shade);
   border: 2px solid #334155;
   padding: 2rem;
   border-radius: 20px;
