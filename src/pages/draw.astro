@@ -7,15 +7,15 @@ import "@/assets/styles/draw.css";
 import Back from "@/components/Back.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
+import Speak from "@/components/Speaker.astro";
 ---
 
 <BaseLayout meta={{ title: "Draw by Keyboard" }}>
   <Back />
   <Fragment slot="header-right">
     <div class="controls-container">
-      <SharePopover />
-      <KeyboardTrigger />
       <div class="controls">
+        <Speak />
         <label for="toggleCase" class="control-item" data-tooltip="Toggle case">
           <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
           <span
@@ -38,7 +38,7 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
             tabindex="0"
             aria-label="Toggle font"
           >
-            <span class="font-icon">F</span>
+            <span class="font-icon">𝓕</span>
           </span>
         </label>
 
@@ -89,6 +89,8 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
         </div>
       </div>
 
+      <KeyboardTrigger />
+      <SharePopover />
       <Help
         title="Draw Keyboard"
         description="Draw letters by sliding your finger across the keys! Try the buttons to change the style, make it BIG or small, change the images, pick cool backgrounds, and customize font colors!"
@@ -132,6 +134,16 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
       infoText: "Press any key",
       charText: ""
     };
+
+    //Speaker Feature imported here!
+    document.addEventListener("keydown", (event) => {
+      const key = event.key;
+      if (key.length === 1 && key.match(/[a-z]/i)) {
+        if (window.playLetterSound) {
+          window.playLetterSound(key.toLowerCase());
+        }
+      }
+    });
 
     const controlButtons = [caseToggle, fontToggle, imgToggle, colorToggle, bgToggle, resetButton];
 

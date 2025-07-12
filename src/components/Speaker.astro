@@ -1,0 +1,215 @@
+---
+declare global {
+  interface Window {
+    playLetterSound: (letter: string) => void;
+  }
+}
+
+//Append this to script section where you want to add this feature:
+/*    
+    document.addEventListener('keydown', (event) => {
+    const key = event.key;
+    if (key.length === 1 && key.match(/[a-z]/i)) {
+      if (window.playLetterSound) {
+        window.playLetterSound(key.toLowerCase());
+      }
+    }
+  });
+*/
+---
+
+<div class="speaker-controls">
+  <div class="voices-dropdown">
+    <button type="button" class="voices-btn" id="voices-btn" title="Choose Voice">
+      <span class="selected-voice-text">Voice: </span> ▼
+    </button>
+    <div class="voices-options" id="voices-options">
+      <div data-name="" class="voice-option">🔽 Choose</div>
+      <div data-name="mudra" class="voice-option">👦 Mudra</div>
+      <div data-name="rutvi" class="voice-option">👧 Rutvi</div>
+    </div>
+  </div>
+
+  <button type="button" class="mute-button" id="mute-button" aria-pressed="false" title="Mute">
+    <span class="mute-icon">🔊</span>
+  </button>
+</div>
+
+<script is:inline>
+  // Global audio element reference
+  let currentAudio = null;
+  let isMuted = false;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Elements
+    const voicesBtn = document.getElementById("voices-btn");
+    const voicesOptions = document.getElementById("voices-options");
+    const voiceOptions = document.querySelectorAll(".voice-option");
+    const muteBtn = document.getElementById("mute-button");
+    const muteIcon = muteBtn.querySelector(".mute-icon");
+    const selectedVoiceText = document.querySelector(".selected-voice-text");
+
+    // State
+    let currentVoice = "${initialVoice}";
+
+    // Function to stop all audio
+    function stopAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+      }
+    }
+
+    // Voice selection
+    voiceOptions.forEach((option) => {
+      option.addEventListener("click", (e) => {
+        const voice = e.currentTarget.dataset.name;
+        currentVoice = voice;
+        selectedVoiceText.textContent = `Voice: ${voice}`;
+        closeDropdown();
+      });
+    });
+
+    // Mute toggle
+    muteBtn.addEventListener("click", () => {
+      isMuted = !isMuted;
+      muteIcon.textContent = isMuted ? "🔇" : "🔊";
+      muteBtn.setAttribute("aria-pressed", isMuted);
+
+      // Stop audio immediately when muting
+      if (isMuted) {
+        stopAudio();
+      }
+    });
+
+    // Dropdown toggle
+    voicesBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      voicesOptions.classList.toggle("show");
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", closeDropdown);
+
+    function closeDropdown() {
+      voicesOptions.classList.remove("show");
+    }
+
+    // Global function to play sounds
+    window.playLetterSound = (letter) => {
+      if (isMuted) return;
+
+      stopAudio(); // Stop any currently playing sound
+
+      try {
+        currentAudio = new Audio(`/assets/media/alphabets/${currentVoice}/${letter.toLowerCase()}.ogg`);
+        currentAudio.play().catch((e) => console.log("Audio play failed:", e));
+      } catch (error) {
+        console.error("Error playing sound:", error);
+      }
+    };
+  });
+</script>
+
+<style>
+  .speaker-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .voices-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .voices-btn {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--primary);
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    margin-left: 5px;
+  }
+  .voices-btn:hover {
+    background: var(--primary);
+    color: #ffffff;
+  }
+  .voices-options {
+    display: none;
+    position: absolute;
+    right: 0px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    z-index: 100;
+    min-width: 90px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .voices-options.show {
+    display: block;
+  }
+  .voice-option {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .voice-option:hover {
+    background: var(--primary);
+    color: #ffffff;
+  }
+  .mute-button {
+    background: var(--color-bg-secondary);
+    color: #ffffff;
+    border: 1px solid var(--primary);
+    border-radius: 100px;
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 25px;
+  }
+  .mute-button:hover,
+  .mute-button[aria-pressed="true"] {
+    color: var(--primary);
+  }
+  .mute-icon {
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 480px) {
+    .speaker-controls {
+      padding: 0.25rem;
+      gap: 0.25rem;
+    }
+
+    .mute-button {
+      width: 2rem;
+      height: 2rem;
+      padding: 14px 14px;
+    }
+
+    .mute-icon {
+      font-size: 1rem;
+    }
+
+    .voices-btn {
+      padding: 6px 10px;
+      font-size: 0.75rem;
+    }
+
+    .voices-options {
+      min-width: 65px;
+    }
+
+    .voice-option {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.65rem;
+    }
+  }
+</style>
