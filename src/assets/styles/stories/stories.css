@@ -400,7 +400,7 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: var(--primary)
+  color: var(--primary);
 }
 
 .category-badge {
@@ -440,7 +440,7 @@ display: none;
 }
 
 .story-content h2::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 5px;
   left: 50%;
@@ -479,7 +479,7 @@ display: none;
 }
 
 .moral-section h2::after {
-  content: '🌟';
+  content: "🌟";
   position: absolute;
   bottom: -0.5rem;
   right: -1.5rem;
@@ -567,29 +567,5 @@ display: none;
   .meta-item svg {
     width: 18px;
     height: 18px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container__story {
-    padding: 4rem;
-    max-width: 100%;
-  }
-
-  .story-title {
-    font-size: 3.5rem;
-  }
-
-  .story-description {
-    font-size: 1.3rem;
-  }
-
-  .story-content h2 {
-    font-size: 2.5rem;
-    
-  }
-
-  .story-content p {
-    font-size: 1.3rem;
   }
 }
