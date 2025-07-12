@@ -152,6 +152,63 @@
   z-index: 1;
 }
 
+.filter-chips {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.chip {
+  padding: 6px 10px;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  color: #ffffff;
+}
+
+:is(button, figcaption) {
+  &[data-category="all"] {
+    background-color: #6701cc;
+  }
+
+  &[data-category="fictional" i] {
+    background-color: #e91e63;
+  }
+
+  &[data-category="mythology" i] {
+    background-color: #df5275;
+  }
+
+  &[data-category="humorous" i] {
+    background-color: #d6890c;
+  }
+
+  &[data-category="short" i] {
+    background-color: #4caf50;
+  }
+
+  &[data-category="uncategorized" i] {
+    background-color: #ff9800;
+  }
+}
+
+.chip.active {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  outline: 3px dotted #866e6e;
+  outline-offset: 5px;
+}
+
+.chip:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
 .story-card-image {
   position: relative;
   height: 240px;
@@ -399,9 +456,5 @@
 
   .story-card-image {
     height: 220px;
-  }
-
-  .story-card-details {
-    padding: 1.75rem;
   }
 }
