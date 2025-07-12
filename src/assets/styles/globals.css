@@ -184,3 +184,8 @@
 .m-0 {
   margin: 0;
 }
+
+mark {
+  margin-inline: 0.5rem;
+  padding-inline: 0.5rem;
+}

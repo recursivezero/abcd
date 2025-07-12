@@ -1,30 +1,22 @@
 ---
-import BaseLayout from "@/layouts/Base";
+import "@/assets/styles/index.css";
+import FeaturesSection from "@/components/about/FeaturesSection.astro";
+import HeroSection from "@/components/about/HeroSection.astro";
+import ExploreLearnSection from "@/components/home/ExploreLearnSection.astro";
+import KidsLoveSection from "@/components/home/KidsLoveSection.astro";
+import TestimonialsSection from "@/components/home/TestimonialsSection.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
-import Help from "@/components/Help.astro";
+import BaseLayout from "@/layouts/Base";
+const meta = {
+  title: "Home"
+};
 ---
 
-<style>
-  h2 {
-    text-align: center;
-    padding: 1rem;
-    margin: 1rem 0;
-    background-color: rebeccapurple;
-    color: white;
-    border-radius: 2rem;
-  }
-  article {
-    margin: 2rem auto;
-    border: 2px solid rgb(156, 236, 235);
-    padding: 1rem;
-  }
-</style>
-<BaseLayout meta={{ title: "Home" }}>
+<BaseLayout meta={meta}>
   <MobileSplash />
-  <h1>Welcome to parixan.xyz</h1>
-  <Fragment slot="output">
-    <p>
-      Previous Name: <output></output>
-    </p>
-  </Fragment>
+  <HeroSection appName="abcdkbd" />
+  <ExploreLearnSection />
+  <TestimonialsSection />
+  <KidsLoveSection />
+  <FeaturesSection />
 </BaseLayout>

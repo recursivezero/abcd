@@ -1,23 +1,5 @@
 [
-  {
-    "name": {
-      "english": "Mesha (Aries)",
-      "hindi": "मेष (मेष राशि)"
-    },
-    "dates": {
-      "english": "April 14 - May 14",
-      "hindi": "14 अप्रैल - 14 मई"
-    },
-    "image": "1.jpeg",
-    "description": {
-      "english": "Mesha is the first sign of the Indian zodiac, represented by the Ram. People born under this sign are known for their leadership qualities, courage, and enthusiasm.",
-      "hindi": "मेष भारतीय राशि चक्र का पहला चिन्ह है, जिसे मेढ़े द्वारा दर्शाया जाता है। इस राशि के लोग नेतृत्व गुणों, साहस और उत्साह के लिए जाने जाते हैं।"
-    },
-    "points": {
-      "english": ["Corresponding Letters:A, L, E, C", "Ruled by Mars (Mangal) - planet of energy and action", "Fire sign - passionate and dynamic personality", "Natural leaders with competitive spirit", "Impulsive decision makers but quick learners", "Best suited for careers in military, sports or entrepreneurship", "Health concerns: Headaches, high blood pressure", "Compatible with Leo and Sagittarius"],
-      "hindi": ["संबंधित अक्षर: अ, ल, ई, च", "मंगल ग्रह द्वारा शासित - ऊर्जा और कार्य का ग्रह", "अग्नि तत्व - उत्साही और गतिशील व्यक्तित्व", "प्राकृतिक नेता प्रवृत्ति के साथ प्रतिस्पर्धी स्वभाव", "आवेगी निर्णय लेने वाले परंतु तीव्र सीखने की क्षमता", "सेना, खेल या उद्यमिता में करियर के लिए उपयुक्त", "स्वास्थ्य संबंधी चिंताएँ: सिरदर्द, उच्च रक्तचाप", "सिंह और धनु राशि के साथ अच्छी संगतता"]
-    }
-  },
+  {},
   {
     "name": {
       "english": "Vrishabha (Taurus)",

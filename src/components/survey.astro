@@ -61,7 +61,7 @@ const { data } = Astro.props;
 
     <div class="preview-controls">
       <button type="button" class="edit-btn" id="editBtn">Edit Response</button>
-      <button type="button" class="submit-btn" id="submitBtn">Submit Survey</button>
+      <!--<button type="button" class="submit-btn" id="submitBtn">Submit Survey</button>-->
       <div id="previewStatus" class="form-status"></div>
     </div>
   </div>
@@ -87,7 +87,7 @@ const { data } = Astro.props;
         const questionText = card.querySelector(".question").textContent;
         const hasRadio = card.querySelector('input[type="radio"]');
         const hasCheckbox = card.querySelector('input[type="checkbox"]');
-        const hasTextarea = card.querySelector("textarea");
+        //const hasTextarea = card.querySelector("textarea");
 
         let type = "openEnded";
         if (hasRadio) type = "singleChoice";
@@ -211,7 +211,7 @@ const { data } = Astro.props;
     function generatePreview(formData) {
       let previewHTML = "";
 
-      surveyData.questions.forEach((question, index) => {
+      surveyData.questions.forEach((question) => {
         const fieldName = `q${question.id}`;
         const response = formData[fieldName];
 

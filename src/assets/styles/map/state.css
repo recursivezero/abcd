@@ -111,7 +111,7 @@
   transition: all 0.3s ease;
 }
 
-.info-card:hover{
+.info-card:hover {
   background-color: #6da4ece7;
   transform: scale(1.02);
   border-color: var(--accent-color);
@@ -128,7 +128,6 @@
   margin: 0;
   font-size: 0.9rem;
 }
-
 
 .quick-facts {
   background: var(--card-bg);

@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@/layouts/Base";
+import { Content, frontmatter } from "@/content/article/cookies.md";
+import "@/assets/styles/cookies.css";
+---
+
+<BaseLayout meta={{ title: frontmatter.title }}>
+  <article class="article-container">
+    <header class="article-header">
+      <h1>{frontmatter.title}</h1>
+      <p>By {frontmatter.author}</p>
+    </header>
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

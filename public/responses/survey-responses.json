@@ -19,10 +19,21 @@
     "q4": "Less than 15 minutes",
     "q5": "Not sure",
     "q6": "No, I don’t think it has a big impact.",
-    "q7": [
-      "Interactive apps or websites"
-    ],
+    "q7": ["Interactive apps or websites"],
     "q8": "Several times a week",
+    "q9": ""
+  },
+  {
+    "id": 3,
+    "timestamp": "2025-07-12T11:27:53.462Z",
+    "q1": "Not yet, but I plan to",
+    "q2": "Not yet, but I plan to",
+    "q3": "1-3 months ago",
+    "q4": "15-30 minutes",
+    "q5": "Not sure",
+    "q6": "No, I don’t think it has a big impact.",
+    "q7": ["Handwriting practice sheets"],
+    "q8": "Weekly",
     "q9": ""
   }
 ]
