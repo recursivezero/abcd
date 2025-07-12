@@ -63,7 +63,8 @@
   align-items: center;
   justify-content: center;
 }
-.info-item a, .info-item span {
+.info-item a,
+.info-item span {
   color: #ffffff;
   text-decoration: none;
   font-weight: 500;
@@ -75,7 +76,7 @@
   border: none;
   color: inherit;
   cursor: pointer;
-  padding: 0 0.5rem 0 0.2rem; 
+  padding: 0 0.5rem 0 0.2rem;
   font-size: 1rem;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -91,7 +92,7 @@
 
 /* --- Dark Theme Override for Contact Info --- */
 [data-theme="dark"] .contact-info {
-  background: #1f2937; 
+  background: #1f2937;
 }
 
 [data-theme="dark"] .contact-info h3,
@@ -105,7 +106,8 @@
 }
 
 @media (max-width: 768px) {
-  .contact-info, .container__form {
+  .contact-info,
+  .container__form {
     padding: 2rem;
   }
 }

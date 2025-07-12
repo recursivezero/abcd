@@ -28,22 +28,22 @@ curriculum-aligned educational content.
 
 ## 📚 What We Offer
 
-- Alphabet & number games  
-- Simple math & reading practice  
-- Interactive storytelling  
-- Coloring & memory activities  
-- Bilingual (English + Hindi) word support *(if applicable)*  
-- No distractions – ad-free, safe environment  
+- Alphabet & number games
+- Simple math & reading practice
+- Interactive storytelling
+- Coloring & memory activities
+- Bilingual (English + Hindi) word support _(if applicable)_
+- No distractions – ad-free, safe environment
 
 ---
 
 ## 🧠 Why Choose Us
 
-- Designed with child psychology in mind  
-- Supports classroom and home learning  
-- Works on mobile and desktop  
-- Offline access available *(if applicable)*  
-- Trusted by teachers and parents  
+- Designed with child psychology in mind
+- Supports classroom and home learning
+- Works on mobile and desktop
+- Offline access available _(if applicable)_
+- Trusted by teachers and parents
 
 ---
 
@@ -52,7 +52,7 @@ curriculum-aligned educational content.
 **Keshav Mohta** – Product Architect & Lead Developer  
 **[Name]** – Early Childhood Educator  
 **[Name]** – Illustrator & UI Designer  
-**[Name]** – Curriculum Advisor  
+**[Name]** – Curriculum Advisor
 
 We bring together tech and teaching to build tools that really help.
 
@@ -60,18 +60,18 @@ We bring together tech and teaching to build tools that really help.
 
 ## 💡 Our Core Values
 
-- **Simplicity** – Easy-to-use design for every age  
-- **Inclusivity** – Respecting every learner’s needs  
-- **Fun-first learning** – Making learning an adventure  
-- **Respect** – For every child’s pace and potential  
-- **Continuous improvement** – We listen, learn, and grow  
+- **Simplicity** – Easy-to-use design for every age
+- **Inclusivity** – Respecting every learner’s needs
+- **Fun-first learning** – Making learning an adventure
+- **Respect** – For every child’s pace and potential
+- **Continuous improvement** – We listen, learn, and grow
 
 ---
 
 ## Contact
 
-We’d love to hear from you! Please reach out to us at  .
+We’d love to hear from you! Please reach out to us at .
 
 We’re always looking to collaborate with educators and contributors  
 who believe in the power of playful learning. Got feedback or ideas?  
-👉 **[Get in touch with us →](#contact)**  
+👉 **[Get in touch with us →](#contact)**

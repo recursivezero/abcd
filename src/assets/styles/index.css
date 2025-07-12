@@ -7,7 +7,7 @@
   --card-blue-text: #fff;
   --card-yellow-text: #fff;
   --card-green-text: #fff;
-  --card-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+  --card-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.18);
   --hero-heading: #f3f4f6;
   --section-divider: #23304a;
   --section-bg: #0f172a;
@@ -27,7 +27,7 @@
   --card-blue-text: #fff;
   --card-yellow-text: #fff;
   --card-green-text: #fff;
-  --card-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+  --card-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.18);
   --hero-heading: #f3f4f6;
   --section-divider: #23304a;
   --section-bg: #0f172a;
@@ -57,7 +57,7 @@
   --card-blue-text: #fff;
   --card-yellow-text: #fff;
   --card-green-text: #fff;
-  --card-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+  --card-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
   --section-divider: #e5e7eb;
   --section-bg: #ffffff;
   --section-bg-alt: #f7fafc;
@@ -112,7 +112,6 @@
   background: linear-gradient(90deg, var(--primary), transparent);
   border-radius: 2px;
 }
-
 
 .button {
   font-weight: 600;

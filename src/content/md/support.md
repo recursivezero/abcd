@@ -26,7 +26,7 @@ simplicity in mind.
 
 ### ❓ Can I use it offline?
 
-Some activities support offline mode *(coming soon)*.  
+Some activities support offline mode _(coming soon)_.  
 Stay tuned for updates!
 
 ---
@@ -35,9 +35,9 @@ Stay tuned for updates!
 
 If something isn’t working:
 
-- Make sure your internet connection is active.  
-- Try refreshing the page.  
-- Use a modern browser like **Chrome**, **Firefox**, or **Edge**.  
+- Make sure your internet connection is active.
+- Try refreshing the page.
+- Use a modern browser like **Chrome**, **Firefox**, or **Edge**.
 - If you're using a school device, check for any firewall or content blockers.
 
 ---
@@ -46,7 +46,7 @@ If something isn’t working:
 
 Still facing issues? Have suggestions or ideas?
 
-📧 Email us at [support@learnbuddy.in](mailto:support@learnbuddy.in)  
+📧 Email us at [support@learnbuddy.in](mailto:support@learnbuddy.in)
 
 ---
 
@@ -54,7 +54,7 @@ Still facing issues? Have suggestions or ideas?
 
 Want to use **LearnBuddy** in your classroom or curriculum?
 
-- Visit our [Teacher's Corner](/survey)   
+- Visit our [Teacher's Corner](/survey)
 - Reach out to us for integration help and printable resources.
 
 ---

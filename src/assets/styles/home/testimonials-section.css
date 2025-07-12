@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 2.5rem; 
+  margin-bottom: 2.5rem;
 }
 
 .grid.three h3 {
@@ -26,15 +26,17 @@
   padding: 0.7rem 1.5rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07);
-  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.07);
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .button.link:hover {
   background: #118ab2;
 }
 
 .stars {
-  color: #FFD700;
+  color: #ffd700;
   font-size: 2rem;
   margin-bottom: 1rem;
 }
@@ -54,7 +56,7 @@
   color: var(--testimonial-card-text);
   border-radius: 1.5rem;
   padding: 2rem;
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
   border: 1px solid rgba(59, 130, 246, 0.2);
 }
 

@@ -9,16 +9,18 @@ import "@/assets/styles/faq.css";
   <TitleLayout title="Frequently Asked Questions" />
 
   <div class="faq-container">
-    {faqData.map(item => (
-      <details class="faq-item">
-        <summary class="faq-question">
-          <span>{item.question}</span>
-          <i class="fa-solid fa-chevron-down icon"></i>
-        </summary>
-        <div class="faq-answer">
-          <p>{item.answer}</p>
-        </div>
-      </details>
-    ))}
+    {
+      faqData.map((item) => (
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>{item.question}</span>
+            <i class="fa-solid fa-chevron-down icon" />
+          </summary>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))
+    }
   </div>
 </BaseLayout>

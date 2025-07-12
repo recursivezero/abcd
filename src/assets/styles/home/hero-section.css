@@ -19,7 +19,7 @@
 }
 
 .button.gray {
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   border: 2px solid green;
   color: green;
 }
@@ -30,7 +30,6 @@
 
 .hero {
   text-align: center;
-  
 }
 .hero h1 {
   font-size: 2.75rem;
@@ -51,14 +50,13 @@
   font-size: 2rem;
   color: green;
   margin-top: 2rem;
-  
 }
 
 .hero-text {
   flex: 1 1 0;
   min-width: 300px;
   justify-items: anchor-center;
-  padding:1rem;
+  padding: 1rem;
 }
 
 .hero-image {
@@ -80,7 +78,8 @@
     text-align: center;
     padding: 1.5rem;
   }
-  .hero-text, .hero-image {
+  .hero-text,
+  .hero-image {
     min-width: 0;
     width: 100%;
     justify-content: center;
@@ -95,14 +94,14 @@
 /* --- Responsive Styles for Mobile --- */
 @media (max-width: 768px) {
   .cta-buttons {
-    flex-direction: column; 
+    flex-direction: column;
     align-items: stretch;
     gap: 1rem;
   }
 
   .cta-buttons .button {
     font-size: 1rem;
-    padding: 1rem; 
-    white-space: nowrap; 
+    padding: 1rem;
+    white-space: nowrap;
   }
 }
