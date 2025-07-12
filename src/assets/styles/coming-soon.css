@@ -1,0 +1,34 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin: 2rem 0;
+}
+
+.heading-container {
+  background: var(--bg-secondary);
+  text-align: center;
+  border-radius: 1.5rem;
+}
+
+.logo {
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  height: 60rem;
+  aspect-ratio: 1;
+}
+
+h1 {
+  color: var(--primary);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
