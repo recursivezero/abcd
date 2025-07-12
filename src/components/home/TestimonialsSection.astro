@@ -1,6 +1,6 @@
 ---
 import "@/assets/styles/home/testimonials-section.css";
-// import testimonials from "@/data/testimonials.json";
+import testimonials from "@/data/testimonials.json";
 ---
 <section class="section">
   <h2 class="section-title">Parents <span class="text-highlight">love</span> us</h2>
@@ -8,11 +8,11 @@ import "@/assets/styles/home/testimonials-section.css";
     <span>★★★★★</span>
   </div>
   <div class="grid three">
-    <!-- {testimonials.map(testimonial => (
+    {testimonials.map(testimonial => (
       <div class="card light-blue">
         <p>"{testimonial.text}"</p>
         <p class="author">{testimonial.author}</p>
       </div>
-    ))} -->
+    ))}
   </div>
 </section>
