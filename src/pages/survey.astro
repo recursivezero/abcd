@@ -5,12 +5,11 @@ import SurveyComponent from "@/components/survey.astro";
 import surveyJson from "@/data/survey.json";
 import BaseLayout from "@/layouts/Base";
 import type { SurveyData } from "@/types";
-import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 ---
 
 <BaseLayout meta={{ title: "Survey Form" }}>
   <Fragment slot="header-right">
-    <KeyboardTrigger />
+    <SharePopover />
   </Fragment>
   <SurveyComponent data={surveyJson as SurveyData} />
 </BaseLayout>
