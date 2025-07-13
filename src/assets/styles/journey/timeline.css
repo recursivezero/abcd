@@ -183,6 +183,7 @@
     height: 60px;
     padding: 6px;
     font-size: 12px;
+    align-content: center;
   }
 
   .timeline-label:hover {
@@ -190,6 +191,7 @@
     height: 200px;
     padding: 15px;
     font-size: 14px;
+    align-content: center;
   }
 
   .event-date {
