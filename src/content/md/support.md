@@ -11,7 +11,7 @@ Whether you're a parent, teacher, or student — we’ve got you covered.
 
 ### ❓ How do I start learning?
 
-Just visit the **Home Page** and click on any topic.  
+Just visit the [Home](/) and click on any topic.  
 No login or registration is required.
 
 ### ❓ Does this work on mobile?
@@ -46,15 +46,15 @@ If something isn’t working:
 
 Still facing issues? Have suggestions or ideas?
 
-📧 Email us at [support@learnbuddy.in](mailto:support@learnbuddy.in)
+📧 Email us at [abcdkbd@outlook.com](mailto:abcdkbd@outlook.com)
 
 ---
 
 ## 🧑‍🏫 For Teachers & Schools
 
-Want to use **LearnBuddy** in your classroom or curriculum?
+Want to use **ABCDKBD** in your classroom or curriculum?
 
-- Visit our [Teacher's Corner](/survey)
+- Visit our [Teacher's Corner](/teacher)
 - Reach out to us for integration help and printable resources.
 
 ---
