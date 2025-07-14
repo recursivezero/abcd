@@ -36,12 +36,10 @@ declare global {
 </div>
 
 <script is:inline>
-  // Global audio element reference
   let currentAudio = null;
   let isMuted = false;
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Elements
     const voicesBtn = document.getElementById("voices-btn");
     const voicesOptions = document.getElementById("voices-options");
     const voiceOptions = document.querySelectorAll(".voice-option");
@@ -50,8 +48,6 @@ declare global {
     const selectedVoiceText = document.querySelector(".selected-voice-text");
 
     let currentVoice = "";
-
-    // Function to stop all audio
     function stopAudio() {
       if (currentAudio) {
         currentAudio.pause();
@@ -75,13 +71,11 @@ declare global {
       muteIcon.textContent = isMuted ? "🔇" : "🔊";
       muteBtn.setAttribute("aria-pressed", isMuted);
 
-      // Stop audio immediately when muting
       if (isMuted) {
         stopAudio();
       }
     });
 
-    // Dropdown toggle
     voicesBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       voicesOptions.classList.toggle("show");
@@ -95,7 +89,7 @@ declare global {
     }
 
     window.playLetterSound = (letter) => {
-      if (isMuted || !currentVoice) return; 
+      if (isMuted || !currentVoice) return;
 
       stopAudio();
 
@@ -184,12 +178,15 @@ declare global {
     .speaker-controls {
       padding: 0.25rem;
       gap: 0.25rem;
+      display: flex;
+      flex-direction: column;
     }
 
     .mute-button {
       width: 2rem;
       height: 2rem;
       padding: 14px 14px;
+      margin-right: -50px;
     }
 
     .mute-icon {
@@ -202,12 +199,13 @@ declare global {
     }
 
     .voices-options {
-      min-width: 65px;
+      max-height: 5px;
+      max-width: 10px;
     }
 
     .voice-option {
       padding: 0.25rem 0.5rem;
       font-size: 0.65rem;
     }
-  }*/
+  }
 </style>
