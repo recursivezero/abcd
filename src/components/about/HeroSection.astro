@@ -1,5 +1,6 @@
 ---
-import Logo from "@/assets/icons/ABCD.png";
+import LogoImage from "@/assets/images/ABCD.png";
+import { Image } from "astro:assets";
 
 interface Props {
   appName: string;
@@ -10,7 +11,8 @@ const { appName } = Astro.props;
 
 <section class="hero-section">
   <div class="hero-content">
-    <img src={Logo.src} alt={`${appName} Logo`} class="hero-logo" />
+    <Image src={LogoImage} alt="Logo" width={400} height={300} loading="eager" class={"hero-logo"} />
+
     <h1 class="hero-title">Learning Made <span class="text-highlight">Magical!</span></h1>
     <p class="hero-text">
       At {appName}, we transform education into captivating adventures that ignite young minds. Our interactive platform

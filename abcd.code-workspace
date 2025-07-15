@@ -198,6 +198,12 @@
     },
     "[xml]": {
       "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "github.copilot.chat.agent.terminal.allowList": {
+      "npm run": true
+    },
+    "github.copilot.chat.agent.terminal.denyList": {
+      "npm run nuke": true
     }
   }
 }
