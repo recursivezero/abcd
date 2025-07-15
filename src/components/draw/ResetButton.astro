@@ -1,0 +1,61 @@
+<div class="control-item" data-tooltip="Reset all">
+  <button class="control-button reset-button" id="resetButton" tabindex="0" aria-label="Reset all">↻</button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const resetButton = document.getElementById("resetButton") as HTMLButtonElement;
+
+    resetButton.addEventListener("click", () => {
+      const mainEl = document.querySelector("main");
+      const boardDiv = document.getElementById("board");
+      const charDiv = document.getElementById("char");
+      const info = document.querySelector(".info");
+      const originalState = {
+        isUpperCase: true,
+        currentFontIndex: 0,
+        mainElBackgroundBlendMode: "normal",
+        mainElFilter: "brightness(1)",
+        boardDivBackgroundColor: "",
+        boardDivBackgroundImage: "",
+        charDivFontFamily: "",
+        charDivColor: "",
+        infoText: "Press any key",
+        charText: ""
+      };
+
+      if (mainEl) {
+        mainEl.style.backgroundBlendMode = originalState.mainElBackgroundBlendMode;
+        mainEl.style.filter = originalState.mainElFilter;
+      }
+
+      if (boardDiv) {
+        boardDiv.style.backgroundColor = originalState.boardDivBackgroundColor;
+        boardDiv.style.backgroundImage = originalState.boardDivBackgroundImage;
+      }
+
+      if (charDiv) {
+        charDiv.style.fontFamily = originalState.charDivFontFamily;
+        charDiv.style.color = originalState.charDivColor;
+        charDiv.textContent = originalState.charText;
+      }
+
+      if (info) {
+        info.textContent = originalState.infoText;
+      }
+
+      document.dispatchEvent(
+        new CustomEvent("keyboardReset", {
+          detail: { originalState: originalState }
+        })
+      );
+    });
+
+    resetButton.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        resetButton.click();
+      }
+    });
+  });
+</script>
