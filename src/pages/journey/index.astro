@@ -19,8 +19,6 @@ import Help from "@/components/Help.astro";
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>My Life Journey Timeline</title>
-
-        <!-- External JS file with all logic -->
         <script src="/src/assets/journey script/timeline.js" defer></script>
       </head>
 
@@ -48,14 +46,18 @@ import Help from "@/components/Help.astro";
           <div class="form-overlay" id="formOverlay">
             <form class="event-form" id="eventForm">
               <h2 class="form-title">Add / Edit Life Event</h2>
+
               <div class="form-group">
                 <label for="eventDate">Date</label>
-                <input type="text" id="eventDate" placeholder="e.g. 2020" required />
+                <input type="date" id="eventDate" required />
               </div>
+
               <div class="form-group">
                 <label for="eventDesc">Description</label>
                 <textarea id="eventDesc" placeholder="Describe your life event..." required></textarea>
+                <div class="char-counter" id="charCounter">0 / 100</div>
               </div>
+
               <div class="form-buttons">
                 <button type="button" class="form-button cancel-button" id="cancelBtn">Cancel</button>
                 <button type="submit" class="form-button submit-button">Save</button>

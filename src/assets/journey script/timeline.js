@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggleBtn = document.getElementById("themeToggleBtn");
   const eventDate = document.getElementById("eventDate");
   const eventDesc = document.getElementById("eventDesc");
+  const charCounter = document.getElementById("charCounter");
+  const CHAR_LIMIT = 100;
 
   let events = JSON.parse(localStorage.getItem("timelineEvents") || "[]");
   let editIndex = null;
@@ -54,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
-      // Add hover effect to adjust spacing
       el.addEventListener("mouseenter", () => {
         adjustSpacingOnHover(idx, HOVER_SPACING);
       });
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         editIndex = idx;
         eventDate.value = ev.date;
         eventDesc.value = ev.description;
+        charCounter.textContent = `${ev.description.length} / ${CHAR_LIMIT}`;
         formOverlay.classList.add("active");
       });
 
@@ -81,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
       timelineContainer.appendChild(el);
     });
 
-    // Set dynamic height for the timeline line after DOM updates
     setTimeout(() => {
       const line = document.querySelector(".timeline-line");
       if (line) {
@@ -94,8 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function adjustSpacingOnHover(hoveredIndex, spacing) {
-    const events = document.querySelectorAll(".timeline-event");
-    events.forEach((event, idx) => {
+    const eventEls = document.querySelectorAll(".timeline-event");
+    eventEls.forEach((event, idx) => {
       if (idx > hoveredIndex) {
         event.style.top = `${hoveredIndex * DEFAULT_SPACING + spacing + (idx - hoveredIndex - 1) * DEFAULT_SPACING}px`;
       }
@@ -105,6 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
   addBtn.addEventListener("click", () => {
     editIndex = null;
     eventForm.reset();
+    eventDate.valueAsDate = new Date();
+    charCounter.textContent = `0 / ${CHAR_LIMIT}`;
     formOverlay.classList.add("active");
   });
 
@@ -118,11 +121,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  eventDesc.addEventListener("input", () => {
+    const val = eventDesc.value;
+    if (val.length > CHAR_LIMIT) {
+      eventDesc.value = val.slice(0, CHAR_LIMIT);
+    }
+    charCounter.textContent = `${eventDesc.value.length} / ${CHAR_LIMIT}`;
+  });
+
   eventForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const date = eventDate.value.trim();
-    const desc = eventDesc.value.trim().split(/\s+/).slice(0, 40).join(" ");
+    const desc = eventDesc.value.trim();
 
     if (editIndex !== null) {
       events[editIndex] = { date, description: desc };
