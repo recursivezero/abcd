@@ -18,13 +18,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const charCounter = document.getElementById("charCounter");
   const CHAR_LIMIT = 100;
 
+  const DEFAULT_SPACING = 100;
+  const EXPANDED_SPACING = 290;
+
   let events = JSON.parse(localStorage.getItem("timelineEvents") || "[]");
   let editIndex = null;
-  const DEFAULT_SPACING = 100;
-  const HOVER_SPACING = 290;
 
   function save() {
     localStorage.setItem("timelineEvents", JSON.stringify(events));
+  }
+
+  function adjustSpacing(expandedIndex = null) {
+    const allEvents = document.querySelectorAll(".timeline-event");
+    allEvents.forEach((el, idx) => {
+      if (expandedIndex === null || idx <= expandedIndex) {
+        el.style.top = `${idx * DEFAULT_SPACING}px`;
+      } else {
+        el.style.top = `${
+          expandedIndex * DEFAULT_SPACING + EXPANDED_SPACING + (idx - expandedIndex - 1) * DEFAULT_SPACING
+        }px`;
+      }
+    });
+
+    setTimeout(() => {
+      const line = document.querySelector(".timeline-line");
+      if (line) {
+        line.style.height = timelineContainer.scrollHeight + "px";
+      }
+    }, 0);
   }
 
   function render() {
@@ -56,14 +77,27 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
-      el.addEventListener("mouseenter", () => {
-        adjustSpacingOnHover(idx, HOVER_SPACING);
+      const label = el.querySelector(".timeline-label");
+      label.title = "Click to expand";
+
+      // Click-to-expand behavior
+      label.addEventListener("click", () => {
+        const isExpanded = label.classList.contains("expanded");
+
+        // Collapse all
+        document.querySelectorAll(".timeline-label.expanded").forEach((l) => {
+          l.classList.remove("expanded");
+        });
+
+        if (!isExpanded) {
+          label.classList.add("expanded");
+          adjustSpacing(idx);
+        } else {
+          adjustSpacing(null);
+        }
       });
 
-      el.addEventListener("mouseleave", () => {
-        adjustSpacingOnHover(idx, DEFAULT_SPACING);
-      });
-
+      // Edit Event
       el.querySelector(".edit-btn").addEventListener("click", () => {
         editIndex = idx;
         eventDate.value = ev.date;
@@ -72,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formOverlay.classList.add("active");
       });
 
+      // Delete Event
       el.querySelector(".delete-btn").addEventListener("click", () => {
         if (confirm("Delete this event?")) {
           events.splice(idx, 1);
@@ -83,26 +118,19 @@ document.addEventListener("DOMContentLoaded", () => {
       timelineContainer.appendChild(el);
     });
 
-    setTimeout(() => {
-      const line = document.querySelector(".timeline-line");
-      if (line) {
-        const totalHeight = timelineContainer.scrollHeight;
-        line.style.height = totalHeight + "px";
-      }
-    }, 0);
-
-    timelineWrapper.scrollTop = timelineWrapper.scrollHeight;
+    adjustSpacing(null);
   }
 
-  function adjustSpacingOnHover(hoveredIndex, spacing) {
-    const eventEls = document.querySelectorAll(".timeline-event");
-    eventEls.forEach((event, idx) => {
-      if (idx > hoveredIndex) {
-        event.style.top = `${hoveredIndex * DEFAULT_SPACING + spacing + (idx - hoveredIndex - 1) * DEFAULT_SPACING}px`;
-      }
-    });
+  // Live character counter
+  function updateCharCounter() {
+    const val = eventDesc.value;
+    if (val.length > CHAR_LIMIT) {
+      eventDesc.value = val.slice(0, CHAR_LIMIT);
+    }
+    charCounter.textContent = `${eventDesc.value.length} / ${CHAR_LIMIT}`;
   }
 
+  // Add New Event
   addBtn.addEventListener("click", () => {
     editIndex = null;
     eventForm.reset();
@@ -111,27 +139,23 @@ document.addEventListener("DOMContentLoaded", () => {
     formOverlay.classList.add("active");
   });
 
+  // Cancel form
   cancelBtn.addEventListener("click", () => {
     formOverlay.classList.remove("active");
   });
 
+  // Click outside form to close
   formOverlay.addEventListener("click", (e) => {
     if (e.target === formOverlay) {
       formOverlay.classList.remove("active");
     }
   });
 
-  eventDesc.addEventListener("input", () => {
-    const val = eventDesc.value;
-    if (val.length > CHAR_LIMIT) {
-      eventDesc.value = val.slice(0, CHAR_LIMIT);
-    }
-    charCounter.textContent = `${eventDesc.value.length} / ${CHAR_LIMIT}`;
-  });
+  eventDesc.addEventListener("input", updateCharCounter);
 
+  // Save form
   eventForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const date = eventDate.value.trim();
     const desc = eventDesc.value.trim();
 
@@ -146,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formOverlay.classList.remove("active");
   });
 
+  // Theme toggle
   themeToggleBtn.addEventListener("click", () => {
     const current = document.documentElement.getAttribute("data-theme");
     const next = current === "dark" ? "light" : "dark";

@@ -36,13 +36,12 @@
   z-index: 1;
 }
 
-/* Event & Label Styling */
 .timeline-event {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
-  transition: top 0.3s ease; 
+  transition: top 0.3s ease;
 }
 
 .timeline-dot {
@@ -77,7 +76,6 @@
 .timeline-label {
   position: absolute;
   top: 0;
-  width: 105px;
   padding: 12px 16px;
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   border-radius: 15px;
@@ -102,12 +100,30 @@
   transform: translateX(20px);
 }
 
-.timeline-label .event-description,
-.timeline-label .event-actions {
-  display: none;
+/* 🔽 Arrow and tooltip */
+.event-date {
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+  }
+
+.event-date::after {
+  content: "▼";
+  font-size: 12px;
+  margin-left: 8px;
+  transition: transform 0.9s ease;
 }
 
-.timeline-label:hover {
+/* ✅ Expanded label style on click */
+.timeline-label.expanded {
   width: 350px;
   height: 275px;
   padding: 25px;
@@ -116,15 +132,20 @@
   overflow: visible;
 }
 
-.timeline-label:hover .event-description,
-.timeline-label:hover .event-actions {
+/* ✅ Show extra content only when expanded */
+.timeline-label .event-description,
+.timeline-label .event-actions {
+  display: none;
+}
+
+.timeline-label.expanded .event-description,
+.timeline-label.expanded .event-actions {
   display: block;
 }
 
-.event-date {
-  font-weight: 700;
-  font-size: 16px;
-  color: white;
+/* 🔼 Flip arrow when expanded */
+.timeline-label.expanded .event-date::after {
+  transform: rotate(180deg);
 }
 
 .event-description {
@@ -162,7 +183,7 @@
     padding: 8px;
   }
 
-  .timeline-label:hover {
+  .timeline-label.expanded {
     width: 280px;
     height: 230px;
     padding: 20px;
@@ -186,7 +207,7 @@
     align-content: center;
   }
 
-  .timeline-label:hover {
+  .timeline-label.expanded {
     width: 220px;
     height: 200px;
     padding: 15px;
