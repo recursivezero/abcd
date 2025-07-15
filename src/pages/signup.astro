@@ -17,77 +17,54 @@ const slideImages = [
 ];
 ---
 
-<Base meta={{ title: "Create an Account" }} sidebar={false}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create an Account</title>
+</head>
+<body>
   <div class="signup-container">
     <div class="signup-left">
-      <div class="signup-header"></div>
+      <div class="signup-header">
+        <div class="logo">
+          <Image src={LogoImage} alt="Logo" width={50} height={50} loading="eager" />
+        </div>
+        <a href="/" class="back-link">
+          Back to website <span class="arrow">→</span>
+        </a>
+      </div>
 
-      <div class="slider-container" id="slider-wrapper">
+      <div class="slider-container">
         <div class="slider">
-          {
-            slideImages.map((image, index) => (
-              <div class:list={["slide", { active: index === 0 }]}>
-                <img alt={`Image ${index + 1}`} data-dark-src={image.dark} data-light-src={image.light} />
-                <div class="slide-caption">
-                  {index === 0 && (
-                    <h2>
-                      Capturing Moments,
-                      <br />
-                      Creating Memories
-                    </h2>
-                  )}
-                  {index === 1 && (
-                    <h2>
-                      Share Your Vision,
-                      <br />
-                      Express Your Style
-                    </h2>
-                  )}
-                  {index === 2 && (
-                    <h2>
-                      Design Your World,
-                      <br />
-                      One Click at a Time
-                    </h2>
-                  )}
-                  {index === 3 && (
-                    <h2>
-                      Share Your Vision,
-                      <br />
-                      Express Your Style
-                    </h2>
-                  )}
-                  {index === 4 && (
-                    <h2>
-                      Share Your Vision,
-                      <br />
-                      Express Your Style
-                    </h2>
-                  )}
-                  {index === 5 && (
-                    <h2>
-                      Design Your World,
-                      <br />
-                      One Click at a Time
-                    </h2>
-                  )}
-                </div>
-              </div>
-            ))
-          }
+          <div class="slide active">
+            <img src="/assets/images/signup/capital.PNG" alt="Image 1" />
+            <div class="slide-caption">
+              <h2>Capturing Moments,<br />Creating Memories</h2>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="/assets/images/signup/colors.PNG" alt="Image 2" />
+            <div class="slide-caption">
+              <h2>Share Your Vision,<br />Express Your Style</h2>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="/assets/images/signup/quote.PNG" alt="Image 3" />
+            <div class="slide-caption">
+              <h2>Design Your World,<br />One Click at a Time</h2>
+            </div>
+          </div>
         </div>
 
         <div class="slider-dots">
-          {slideImages.map((_, index) => <span class:list={["dot", { active: index === 0 }]} data-index={index} />)}
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
         </div>
       </div>
     </div>
 
     <div class="signup-right">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-        <SunIcon id="theme-icon-sun" width={24} height={24} />
-        <MoonIcon id="theme-icon-moon" width={24} height={24} />
-      </button>
       <div class="form-container">
         <h1>Create an account</h1>
         <p class="signup-text">Already have an account? <a href="/login" class="signup-link">Log in</a></p>
@@ -137,7 +114,7 @@ const slideImages = [
       </div>
     </div>
   </div>
-</Base>
+</body>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
