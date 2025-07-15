@@ -43,20 +43,29 @@
   gap: 0.5rem;
 }
 
+/* Default button style for LIGHT MODE */
 .language-btn {
   padding: 0.5rem 1rem;
-  border: none;
+  border: 1px solid var(--primary-color);
   border-radius: 6px;
   cursor: pointer;
   background-color: var(--card-bg);
-  color: var(--text-color);
-  border: 1px solid var(--primary-color);
+  color: #f5f5f5; 
   transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .language-btn {
+  color: #f5f5f5;
+}
+
+[data-theme="light"] .language-btn {
+  color: #333;
 }
 
 .language-btn.active {
   background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-  color: white;
+  color: white; 
+  border-color: transparent;
 }
 
 article {
