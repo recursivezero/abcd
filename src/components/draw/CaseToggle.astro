@@ -1,0 +1,66 @@
+<label for="toggleCase" class="control-item" data-tooltip="Toggle case">
+  <input type="checkbox" name="change_case" id="toggleCase" class="visually-hidden hidden" />
+  <span
+    id="text"
+    class="control-button case-toggle"
+    role="switch"
+    aria-checked="false"
+    tabindex="0"
+    aria-label="Toggle case">Aa</span
+  >
+</label>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const caseToggle = document.querySelector(".case-toggle") as HTMLElement;
+    const toggleCaseSwitch = document.getElementById("toggleCase") as HTMLInputElement;
+
+    caseToggle.addEventListener("click", () => {
+      const isActive = caseToggle.classList.contains("active");
+      if (isActive) {
+        caseToggle.classList.remove("active");
+        caseToggle.setAttribute("aria-checked", "false");
+        caseToggle.textContent = "Aa";
+        caseToggle.style.fontSize = "1rem";
+        if (toggleCaseSwitch) {
+          toggleCaseSwitch.checked = true;
+        }
+      } else {
+        caseToggle.classList.add("active");
+        caseToggle.setAttribute("aria-checked", "true");
+        caseToggle.textContent = "Aa";
+        caseToggle.style.fontSize = "1rem";
+
+        if (toggleCaseSwitch) {
+          toggleCaseSwitch.checked = false;
+        }
+      }
+
+      document.dispatchEvent(
+        new CustomEvent("caseToggled", {
+          detail: {
+            isActive: !isActive,
+            element: caseToggle
+          }
+        })
+      );
+    });
+
+    caseToggle.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        caseToggle.click();
+      }
+    });
+
+    document.addEventListener("keyboardReset", () => {
+      caseToggle.classList.remove("active");
+      caseToggle.setAttribute("aria-checked", "false");
+      caseToggle.textContent = "Aa";
+      caseToggle.style.fontSize = "1rem";
+      if (toggleCaseSwitch) {
+        toggleCaseSwitch.checked = false;
+      }
+    });
+  });
+</script>
