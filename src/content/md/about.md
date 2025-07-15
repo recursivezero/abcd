@@ -32,7 +32,7 @@ curriculum-aligned educational content.
 - Simple math & reading practice
 - Interactive storytelling
 - Coloring & memory activities
-- Bilingual (English + Hindi) word support _(if applicable)_
+- Multilingual (English + Hindi) word learning
 - No distractions – ad-free, safe environment
 
 ---
@@ -42,7 +42,7 @@ curriculum-aligned educational content.
 - Designed with child psychology in mind
 - Supports classroom and home learning
 - Works on mobile and desktop
-- Offline access available _(if applicable)_
+- Offline access available
 - Trusted by teachers and parents
 
 ---
@@ -61,7 +61,7 @@ We bring together tech and teaching to build tools that really help.
 ## 💡 Our Core Values
 
 - **Simplicity** – Easy-to-use design for every age
-- **Inclusivity** – Respecting every learner’s needs
+- **Inclusion** – Respecting every learner’s needs
 - **Fun-first learning** – Making learning an adventure
 - **Respect** – For every child’s pace and potential
 - **Continuous improvement** – We listen, learn, and grow

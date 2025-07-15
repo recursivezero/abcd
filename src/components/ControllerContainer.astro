@@ -15,12 +15,8 @@ import Speak from "@/components/Speaker.astro";
     <Speak />
     <CaseToggle />
     <FontToggle />
-
-    <div class="control-group">
-      <ImageToggle />
-      <ColorToggle />
-    </div>
-
+    <ImageToggle />
+    <ColorToggle />
     <BackgroundToggle />
     <ResetButton />
   </div>
@@ -71,24 +67,6 @@ import Speak from "@/components/Speaker.astro";
           window.playLetterSound(key.toLowerCase());
         }
       }
-    });
-    document.addEventListener("caseToggled", (event) => {
-      const { isActive } = (event as CustomEvent).detail;
-    });
-    document.addEventListener("fontToggled", (event) => {
-      const { isActive } = (event as CustomEvent).detail;
-    });
-    document.addEventListener("imageToggled", (event) => {
-      const { isActive } = (event as CustomEvent).detail;
-    });
-    document.addEventListener("colorToggled", (event) => {
-      const { isActive } = (event as CustomEvent).detail;
-    });
-    document.addEventListener("backgroundToggled", (event) => {
-      const { isActive } = (event as CustomEvent).detail;
-    });
-    document.addEventListener("keyboardReset", (event) => {
-      const { originalState } = (event as CustomEvent).detail;
     });
   });
 </script>
