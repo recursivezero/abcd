@@ -24,7 +24,7 @@
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   transform: translateY(20px);
   transition: transform 0.3s ease;
@@ -98,7 +98,7 @@
 }
 
 .form-button {
-  padding: 10px 20px;
+  padding: 8px 20px;
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;

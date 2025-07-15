@@ -87,8 +87,7 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s ease;
-}
+  transition: all 0.3s ease, height 0.3s ease, width 0.3s ease;}
 
 .timeline-label.left {
   left: 80px;

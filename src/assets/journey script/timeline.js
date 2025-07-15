@@ -16,28 +16,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const eventDate = document.getElementById("eventDate");
   const eventDesc = document.getElementById("eventDesc");
   const charCounter = document.getElementById("charCounter");
-  const CHAR_LIMIT = 100;
 
+  const deleteModal = document.getElementById("deleteModal");
+  const cancelDeleteBtn = document.getElementById("cancelDelete");
+  const confirmDeleteBtn = document.getElementById("confirmDelete");
+
+  const CHAR_LIMIT = 100;
   const DEFAULT_SPACING = 100;
   const EXPANDED_SPACING = 290;
 
   let events = JSON.parse(localStorage.getItem("timelineEvents") || "[]");
+  let expandedIndexes = JSON.parse(localStorage.getItem("expandedLabels") || "[]");
   let editIndex = null;
+  let deleteIndex = null;
 
   function save() {
     localStorage.setItem("timelineEvents", JSON.stringify(events));
   }
 
-  function adjustSpacing(expandedIndex = null) {
+  function saveExpanded() {
+    localStorage.setItem("expandedLabels", JSON.stringify(expandedIndexes));
+  }
+
+  function adjustSpacing() {
     const allEvents = document.querySelectorAll(".timeline-event");
+    let currentTop = 0;
+
     allEvents.forEach((el, idx) => {
-      if (expandedIndex === null || idx <= expandedIndex) {
-        el.style.top = `${idx * DEFAULT_SPACING}px`;
-      } else {
-        el.style.top = `${
-          expandedIndex * DEFAULT_SPACING + EXPANDED_SPACING + (idx - expandedIndex - 1) * DEFAULT_SPACING
-        }px`;
-      }
+      el.style.top = `${currentTop}px`;
+      const isExpanded = expandedIndexes.includes(idx);
+      currentTop += isExpanded ? EXPANDED_SPACING : DEFAULT_SPACING;
     });
 
     setTimeout(() => {
@@ -63,11 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
     events.forEach((ev, idx) => {
       const el = document.createElement("div");
       el.className = "timeline-event";
-      el.style.top = idx * DEFAULT_SPACING + "px";
 
       el.innerHTML = `
         <div class="timeline-dot"></div>
-        <div class="timeline-label ${idx % 2 === 0 ? "left" : "right"}">
+        <div class="timeline-label ${idx % 2 === 0 ? "left" : "right"} ${
+          expandedIndexes.includes(idx) ? "expanded" : ""
+        }">
           <span class="event-date">${ev.date}</span>
           <span class="event-description">${ev.description}</span>
           <div class="event-actions">
@@ -80,24 +89,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const label = el.querySelector(".timeline-label");
       label.title = "Click to expand";
 
-      // Click-to-expand behavior
       label.addEventListener("click", () => {
         const isExpanded = label.classList.contains("expanded");
 
-        // Collapse all
-        document.querySelectorAll(".timeline-label.expanded").forEach((l) => {
-          l.classList.remove("expanded");
-        });
-
-        if (!isExpanded) {
-          label.classList.add("expanded");
-          adjustSpacing(idx);
+        if (isExpanded) {
+          label.classList.remove("expanded");
+          expandedIndexes = expandedIndexes.filter((i) => i !== idx);
         } else {
-          adjustSpacing(null);
+          label.classList.add("expanded");
+          expandedIndexes.push(idx);
         }
+
+        saveExpanded();
+        adjustSpacing();
       });
 
-      // Edit Event
+      // Edit button logic
       el.querySelector(".edit-btn").addEventListener("click", () => {
         editIndex = idx;
         eventDate.value = ev.date;
@@ -106,22 +113,18 @@ document.addEventListener("DOMContentLoaded", () => {
         formOverlay.classList.add("active");
       });
 
-      // Delete Event
+      // Delete button logic (open modal)
       el.querySelector(".delete-btn").addEventListener("click", () => {
-        if (confirm("Delete this event?")) {
-          events.splice(idx, 1);
-          save();
-          render();
-        }
+        deleteIndex = idx;
+        deleteModal.classList.add("active");
       });
 
       timelineContainer.appendChild(el);
     });
 
-    adjustSpacing(null);
+    adjustSpacing();
   }
 
-  // Live character counter
   function updateCharCounter() {
     const val = eventDesc.value;
     if (val.length > CHAR_LIMIT) {
@@ -139,12 +142,10 @@ document.addEventListener("DOMContentLoaded", () => {
     formOverlay.classList.add("active");
   });
 
-  // Cancel form
   cancelBtn.addEventListener("click", () => {
     formOverlay.classList.remove("active");
   });
 
-  // Click outside form to close
   formOverlay.addEventListener("click", (e) => {
     if (e.target === formOverlay) {
       formOverlay.classList.remove("active");
@@ -153,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   eventDesc.addEventListener("input", updateCharCounter);
 
-  // Save form
   eventForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const date = eventDate.value.trim();
@@ -166,16 +166,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     save();
-    render();
     formOverlay.classList.remove("active");
+    render();
   });
 
-  // Theme toggle
   themeToggleBtn.addEventListener("click", () => {
     const current = document.documentElement.getAttribute("data-theme");
     const next = current === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
+  });
+
+  // Confirm delete modal
+  cancelDeleteBtn.addEventListener("click", () => {
+    deleteModal.classList.remove("active");
+    deleteIndex = null;
+  });
+
+  confirmDeleteBtn.addEventListener("click", () => {
+    if (deleteIndex !== null) {
+      events.splice(deleteIndex, 1);
+      expandedIndexes = expandedIndexes.filter((i) => i !== deleteIndex);
+      save();
+      saveExpanded();
+      render();
+      deleteModal.classList.remove("active");
+      deleteIndex = null;
+    }
+  });
+
+  deleteModal.addEventListener("click", (e) => {
+    if (e.target === deleteModal) {
+      deleteModal.classList.remove("active");
+      deleteIndex = null;
+    }
   });
 
   render();
