@@ -32,7 +32,7 @@
 .controls {
   display: flex;
   gap: 1rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
   align-items: center;
   justify-content: center;
 }
@@ -68,9 +68,9 @@ article {
 /* Grid Layout for Zodiacs */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .card {
@@ -149,9 +149,9 @@ article {
 }
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .grid-container {
+  /* .grid-container {
     grid-template-columns: repeat(2, 1fr);
-  }
+  } */
 
   .controls {
     width: 100%;
@@ -168,9 +168,6 @@ article {
 }
 
 @media (max-width: 480px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-  }
   .modal-content {
     width: 98%;
     padding: 12px;
