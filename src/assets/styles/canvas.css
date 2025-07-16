@@ -1,6 +1,6 @@
-:root{
-  --shade: light-dark(#fff,#25354fcc);
-  --box: light-dark(#f5deb3,#0f172acc);
+:root {
+  --shade: light-dark(#fff, #25354fcc);
+  --box: light-dark(#f5deb3, #0f172acc);
 }
 /* Global Styles for the Canvas Generator */
 .canvas-generator {
@@ -67,14 +67,14 @@
   cursor: pointer;
   transition: background 0.3s ease;
   border: none;
-  background: light-dark(#383535,#1e40af);
+  background: light-dark(#383535, #1e40af);
   color: white;
   flex: 1;
   min-width: 120px;
 }
 
 .canvas-generator .action-button:hover {
-  background: light-dark(#000,#2563eb);
+  background: light-dark(#000, #2563eb);
 }
 
 .canvas-generator .checkbox-wrapper {
@@ -101,7 +101,7 @@
 }
 
 .canvas-generator .input-label {
-  color: light-dark(#000,#e2e8f0);
+  color: light-dark(#000, #e2e8f0);
   font-size: 1.2rem;
 }
 
@@ -134,7 +134,7 @@
 .canvas-generator label {
   display: block;
   margin-bottom: 0.5rem;
-  color: light-dark(#000,#e2e8f0);
+  color: light-dark(#000, #e2e8f0);
   font-size: 1rem;
 }
 

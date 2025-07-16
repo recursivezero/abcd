@@ -220,7 +220,7 @@
     font-size: clamp(0.9em, 2vw, 1em);
     width: auto;
     white-space: normal;
-    text-align: center; 
+    text-align: center;
   }
   .container__typing .image__container img {
     max-width: 90vw;

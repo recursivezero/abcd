@@ -149,7 +149,6 @@
     }
   }
 
-
   mark {
     margin-inline: 0.5rem;
     padding-inline: 0.5rem;
@@ -216,7 +215,7 @@
       &::checkmark {
         order: 1;
         margin-left: auto;
-        content: '✔';
+        content: "✔";
         color: #806df9;
       }
     }

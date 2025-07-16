@@ -54,7 +54,9 @@
   background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 100% 2px; /* Underline effect */
-  transition: background-size 0.3s, color 0.3s;
+  transition:
+    background-size 0.3s,
+    color 0.3s;
   padding-bottom: 2px;
 }
 

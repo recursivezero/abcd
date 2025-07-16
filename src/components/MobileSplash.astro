@@ -3,7 +3,6 @@ import "@/assets/styles/MobileSplash.css";
 import { Image } from "astro:assets";
 import logoImage from "public/assets/images/ABCD.png";
 const { stay } = Astro.props;
-
 ---
 
 <div id="mobile-splash-wrapper" class="container_splash">
@@ -28,12 +27,12 @@ const { stay } = Astro.props;
     const userHasConsent = localStorage.getItem("viewAsDesktop") === "true";
 
     if (stay) {
-      splashWrapper.style.display = 'flex';  // always show
+      splashWrapper.style.display = "flex"; // always show
     } else {
       if (!userHasConsent) {
-        splashWrapper.style.display = 'flex'; // first time
+        splashWrapper.style.display = "flex"; // first time
       } else {
-        splashWrapper.style.display = 'none'; // skip next time
+        splashWrapper.style.display = "none"; // skip next time
       }
     }
 
@@ -46,6 +45,5 @@ const { stay } = Astro.props;
         splashWrapper.style.display = "none";
       }
     });
-  } 
+  }
 </script>
-
