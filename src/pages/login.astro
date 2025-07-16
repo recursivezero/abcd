@@ -3,18 +3,10 @@ import "@/assets/styles/signup.css";
 import GoogleIcon from "@/assets/icons/google.svg";
 import EyeIcon from "@/assets/icons/eye.svg";
 import XIcon from "@/assets/icons/x.svg";
+import LogoImage from "@/assets/images/ABCD.png";
 import SunIcon from "@/assets/icons/sun.svg";
 import MoonIcon from "@/assets/icons/moon.svg";
-import Base from "@/layouts/Base";
-
-const slideImages = [
-  { dark: "/assets/images/screenshots/dark/capital.PNG", light: "/assets/images/screenshots/light/capitalLight.png" },
-  { dark: "/assets/images/screenshots/dark/colors.PNG", light: "/assets/images/screenshots/light/colorsLight.png" },
-  { dark: "/assets/images/screenshots/dark/quote.PNG", light: "/assets/images/screenshots/light/quoteLight.png" },
-  { dark: "/assets/images/screenshots/dark/story.png", light: "/assets/images/screenshots/light/storyLight.png" },
-  { dark: "/assets/images/screenshots/dark/map.png", light: "/assets/images/screenshots/light/mapLight.png" },
-  { dark: "/assets/images/screenshots/dark/varnmala.png", light: "/assets/images/screenshots/light/varnmalaLight.png" }
-];
+import { Image } from "astro:assets";
 ---
 
 <Base meta={{ title: "Log In to Your Account" }} sidebar={false}>
@@ -172,30 +164,25 @@ const slideImages = [
       });
     }
 
-    type Theme = "light" | "dark";
     const themeToggleButton = document.getElementById("theme-toggle");
 
-    const updateSliderImages = (theme: Theme) => {
-      imageElements.forEach((imgElement) => {
-        imgElement.src = (theme === "dark" ? imgElement.dataset.darkSrc : imgElement.dataset.lightSrc) || "";
-      });
-    };
-
-    const applyTheme = (theme: Theme) => {
+    const applyTheme = (theme: "light" | "dark") => {
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
-      updateSliderImages(theme);
-      if (sliderWrapper) sliderWrapper.style.opacity = "1";
     };
 
-    const initialTheme = (document.documentElement.getAttribute("data-theme") as Theme) || "light";
-    applyTheme(initialTheme);
-
-    showSlide(0);
-    startSlider();
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedTheme === "dark" || savedTheme === "light") {
+      applyTheme(savedTheme);
+    } else if (prefersDark) {
+      applyTheme("dark");
+    } else {
+      applyTheme("light");
+    }
 
     themeToggleButton?.addEventListener("click", () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme") as Theme;
+      const currentTheme = document.documentElement.getAttribute("data-theme");
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       applyTheme(newTheme);
     });
