@@ -2,11 +2,11 @@
 import "@/assets/styles/astrology.css";
 import "@/assets/styles/zodiac.css";
 import Back from "@/components/Back.astro";
-import Headers from "@/components/Header.astro";
 import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import ZodiacGrid from "@/components/ZodiacGrid.astro";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 ---
 
 <BaseLayout meta={{ title: "Astrology" }}>
@@ -25,13 +25,17 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
 
     <!-- Zodiac Signs Tab Content -->
     <div id="zodiacs-tab-content" class="tab-content active">
-      <Headers />
+      <div class="controls">
+        <LanguageSwitcher />
+      </div>
       <ZodiacGrid />
     </div>
 
     <!-- Nakshatra Tab Content -->
     <div id="nakshatras-tab-content" class="tab-content">
-        <h1>Explore the Nakshatras</h1>
+      <div class="controls">
+        <LanguageSwitcher />
+      </div>
       <div id="nakshatrasGrid" class="grid-container"></div>
       <div class="nakshatra-note">
         <p>
@@ -42,7 +46,7 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
     </div>
   </div>
 
-  <!-- Modal for Zodiacs -->
+  <!-- Modal for Zodiacs (Nakshatra modal is removed) -->
   <div id="zodiacModal" class="modal">
     <div class="modal-content">
       <button class="close">&times;</button>
@@ -50,15 +54,6 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
       <h2 id="modalTitle"></h2>
       <p id="modalDescription"></p>
       <ul id="modalPoints"></ul>
-    </div>
-  </div>
-
-  <!-- ADD THIS: Modal for Nakshatras -->
-  <div id="nakshatraModal" class="modal">
-    <div class="modal-content">
-      <button class="close">&times;</button>
-      <h2 id="nakshatraModalTitle"></h2>
-      <ul id="nakshatraModalDetails" class="nakshatra-details"></ul>
     </div>
   </div>
 </BaseLayout>
@@ -69,6 +64,8 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
+    /* This ensures all cards in a row have the same height */
+    grid-auto-rows: 1fr;
   }
   .nakshatra-note {
     text-align: center;
@@ -79,46 +76,72 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
     border-left: 4px solid var(--primary-color);
     opacity: 0.8;
   }
+  /* Styles for the Nakshatra card layout */
+  .nakshatra-card {
+    aspect-ratio: auto; /* Let content define height */
+    cursor: default;
+    text-align: left;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nakshatra-card .nakshatra-symbol-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
+  .nakshatra-card h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .nakshatra-card .nakshatra-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+  .nakshatra-card .nakshatra-details li {
+    margin-bottom: 0.5rem;
+  }
+  .nakshatra-card .nakshatra-details li strong {
+    color: var(--primary-color);
+  }
 </style>
 
 <script>
   import type { Zodiac } from "@/types";
   import type { Language } from "@/types/zodiac";
 
-  // Define the Nakshatra type 
+  type LangProperty = { english: string; hindi: string };
+
   interface Nakshatra {
     id: number;
-    name: {
-      english: string;
-      hindi: string;
-    };
-    ruling_planet: string;
-    deity: string;
-    symbol: string;
+    name: LangProperty;
+    ruling_planet: LangProperty;
+    deity: LangProperty;
+    symbol: LangProperty;
+    image: string; // Added image property
   }
 
   // --- Element Selectors ---
-  const englishButton = document.getElementById("englishBtn") as HTMLElement | null;
-  const hindiButton = document.getElementById("hindiBtn") as HTMLElement | null;
+  const englishButtons = document.querySelectorAll("#englishBtn");
+  const hindiButtons = document.querySelectorAll("#hindiBtn");
 
-  // Zodiac Modal Elements
   const zodiacModal = document.getElementById("zodiacModal") as HTMLElement | null;
   const modalImage = document.getElementById("modalImage") as HTMLImageElement | null;
   const modalTitle = document.getElementById("modalTitle") as HTMLElement | null;
   const modalDescription = document.getElementById("modalDescription") as HTMLElement | null;
   const modalPoints = document.getElementById("modalPoints") as HTMLElement | null;
 
-  // Nakshatra Modal Elements
-  const nakshatraModal = document.getElementById("nakshatraModal") as HTMLElement | null;
-  const nakshatraModalTitle = document.getElementById("nakshatraModalTitle") as HTMLElement | null;
-  const nakshatraModalDetails = document.getElementById("nakshatraModalDetails") as HTMLElement | null;
-
   // --- Language Function ---
   function setLanguage(lang: string) {
     localStorage.setItem("language", lang);
     document.documentElement.lang = lang === "hindi" ? "hi" : "en";
-    if (englishButton) englishButton.classList.toggle("active", lang === "english");
-    if (hindiButton) hindiButton.classList.toggle("active", lang === "hindi");
+    englishButtons.forEach(btn => btn.classList.toggle("active", lang === "english"));
+    hindiButtons.forEach(btn => btn.classList.toggle("active", lang === "hindi"));
     window.dispatchEvent(new Event("languagechange"));
   }
 
@@ -126,8 +149,8 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
     const initialLang = localStorage.getItem("language") || "english";
     setLanguage(initialLang);
 
-    englishButton?.addEventListener("click", () => setLanguage("english"));
-    hindiButton?.addEventListener("click", () => setLanguage("hindi"));
+    englishButtons.forEach(btn => btn.addEventListener("click", () => setLanguage("english")));
+    hindiButtons.forEach(btn => btn.addEventListener("click", () => setLanguage("hindi")));
 
     // --- Tab Switching Logic ---
     const tabButtons = document.querySelectorAll(".tab-button");
@@ -153,7 +176,7 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
       const nakshatrasGrid = document.getElementById("nakshatrasGrid");
       let currentLang = (localStorage.getItem("language") || "english") as keyof Language;
 
-      // --- Zodiac Rendering ---
+      // --- Zodiac Rendering (unchanged) ---
       function renderZodiacCards() {
         if (!zodiacsGrid) return;
         zodiacsGrid.innerHTML = "";
@@ -170,24 +193,27 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
         });
       }
 
-      // --- Nakshatra Rendering ---
+      // --- Nakshatra Rendering (UPDATED) ---
       function renderNakshatraCards() {
         if (!nakshatrasGrid) return;
         nakshatrasGrid.innerHTML = "";
-        nakshatras.forEach((nakshatra: Nakshatra, i: number) => {
+        nakshatras.forEach((nakshatra: Nakshatra) => {
           const card = document.createElement("div");
-          card.className = "card";
-          card.setAttribute("data-nakshatra-index", String(i));
+          card.className = "card nakshatra-card";
           card.innerHTML = `
-            <h3>${nakshatra.name[currentLang as keyof typeof nakshatra.name]}</h3>
-            <p>Planet: ${nakshatra.ruling_planet}</p>
-            <button class="info-btn" title="Show Info"><span class="icon">🔍</span></button>
+            <img src="/data/nakshatra/${nakshatra.image}" alt="${nakshatra.name.english}" class="nakshatra-symbol-img">
+            <h3>${nakshatra.name[currentLang]}</h3>
+            <ul class="nakshatra-details">
+              <li><strong>Ruling Planet:</strong> ${nakshatra.ruling_planet[currentLang]}</li>
+              <li><strong>Deity:</strong> ${nakshatra.deity[currentLang]}</li>
+              <li><strong>Symbol:</strong> ${nakshatra.symbol[currentLang]}</li>
+            </ul>
           `;
           nakshatrasGrid.appendChild(card);
         });
       }
 
-      // --- Modal Logic ---
+      // --- Modal Logic (Simplified) ---
       function openZodiacModal(index: number) {
         if (!zodiacModal || !modalTitle || !modalDescription || !modalPoints) return;
         const zodiac = zodiacs[index];
@@ -199,75 +225,32 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
         document.body.classList.add("page-no-scroll");
       }
 
-      function openNakshatraModal(index: number) {
-        if (!nakshatraModal || !nakshatraModalTitle || !nakshatraModalDetails) return;
-        const nakshatra = nakshatras[index];
-        nakshatraModalTitle.textContent = `${nakshatra.name.english} (${nakshatra.name.hindi})`;
-        nakshatraModalDetails.innerHTML = `
-          <li><strong>Ruling Planet:</strong> ${nakshatra.ruling_planet}</li>
-          <li><strong>Deity:</strong> ${nakshatra.deity}</li>
-          <li><strong>Symbol:</strong> ${nakshatra.symbol}</li>
-        `;
-        nakshatraModal.style.display = "block";
-        document.body.classList.add("page-no-scroll");
-      }
-
       function closeModal() {
-        // Check each modal individually before trying to hide it
-        if (zodiacModal) {
-          zodiacModal.style.display = "none";
-        }
-        if (nakshatraModal) {
-          nakshatraModal.style.display = "none";
-        }
+        if (zodiacModal) zodiacModal.style.display = "none";
         document.body.classList.remove("page-no-scroll");
       }
 
-      // --- Event Listeners ---
+      // --- Event Listeners (Simplified) ---
       zodiacsGrid?.addEventListener("click", (e) => {
         const card = (e.target as HTMLElement).closest(".card");
         if (card) {
           const index = card.getAttribute("data-zodiac-index");
-          if (index !== null) {
-            openZodiacModal(parseInt(index, 10));
-          }
+          if (index !== null) openZodiacModal(parseInt(index, 10));
         }
       });
 
-      nakshatrasGrid?.addEventListener("click", (e) => {
-        const card = (e.target as HTMLElement).closest(".card");
-        if (card) {
-          const index = card.getAttribute("data-nakshatra-index");
-          if (index !== null) {
-            openNakshatraModal(parseInt(index, 10));
-          }
-        }
-      });
+      document.querySelectorAll(".close").forEach(btn => btn.addEventListener("click", closeModal));
+      zodiacModal?.addEventListener("click", (e) => { if (e.target === zodiacModal) closeModal(); });
 
-      document.querySelectorAll(".close").forEach(button => {
-        button.addEventListener("click", closeModal);
-      });
-
-      zodiacModal?.addEventListener("click", (e) => {
-        if (e.target === zodiacModal) {
-          closeModal();
-        }
-      });
-      nakshatraModal?.addEventListener("click", (e) => {
-        if (e.target === nakshatraModal) {
-          closeModal();
-        }
-      });
-
-      // Re-render cards when language changes
       window.addEventListener("languagechange", () => {
         currentLang = (localStorage.getItem("language") || "english") as keyof Language;
         renderZodiacCards();
         renderNakshatraCards();
       });
 
-      renderZodiacCards(); // Initial render for zodiacs
-      renderNakshatraCards(); // Initial render for nakshatras
+      // --- Initial Render ---
+      renderZodiacCards();
+      renderNakshatraCards();
     });
   });
 </script>
