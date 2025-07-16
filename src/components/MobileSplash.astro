@@ -3,6 +3,7 @@ import "@/assets/styles/MobileSplash.css";
 import { Image } from "astro:assets";
 import logoImage from "public/assets/images/ABCD.png";
 const { stay } = Astro.props;
+
 ---
 
 <div id="mobile-splash-wrapper" class="container_splash">
@@ -22,13 +23,29 @@ const { stay } = Astro.props;
 <script define:vars={{ stay }} is:inline>
   const splashWrapper = document.getElementById("mobile-splash-wrapper");
   const continueBtn = document.getElementById("continue-btn");
-  const consentGiven = localStorage.getItem("userConsent") === "true";
+
   if (window.innerWidth < 768) {
-    if (consentGiven && !stay) splashWrapper.style.display = "flex";
-    else if (consentGiven && stay) splashWrapper.style.display = "none";
-    continueBtn.addEventListener("click", () => {
-      localStorage.setItem("userConsent", "true");
-      splashWrapper.style.display = "none";
+    const userHasConsent = localStorage.getItem("viewAsDesktop") === "true";
+
+    if (stay) {
+      splashWrapper.style.display = 'flex';  // always show
+    } else {
+      if (!userHasConsent) {
+        splashWrapper.style.display = 'flex'; // first time
+      } else {
+        splashWrapper.style.display = 'none'; // skip next time
+      }
+    }
+
+    continueBtn?.addEventListener("click", () => {
+      localStorage.setItem("viewAsDesktop", "true");
+
+      if (stay) {
+        window.location.href = "/";
+      } else {
+        splashWrapper.style.display = "none";
+      }
     });
-  }
+  } 
 </script>
+
