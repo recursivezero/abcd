@@ -14,6 +14,7 @@ Bhadrapada
 bincount
 BODYPART
 Chaitra
+checkmark
 clsx
 cmdk
 controlslist
