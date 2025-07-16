@@ -1,8 +1,27 @@
 [
   {
     "name": {
+      "english": "Mesha (Aries)",
+      "hindi": "मेष"
+    },
+    "dates": {
+      "english": "April 14 - May 14",
+      "hindi": "14 अप्रैल - 14 मई"
+    },
+    "image": "1.jpeg",
+    "description": {
+      "english": "Mesha is symbolized by the Ram. Individuals born under this sign are known for their courage, determination, and leadership qualities.",
+      "hindi": "मेष को मेढ़े द्वारा दर्शाया जाता है। इस राशि के जातक अपने साहस, दृढ़ संकल्प और नेतृत्व गुणों के लिए जाने जाते हैं।"
+    },
+    "points": {
+      "english": ["Corresponding Letters: A,L,E", "Ruled by Mars (Mangal) - planet of energy", "Fire sign - passionate and dynamic personality", "Natural leaders with a competitive spirit", "Can be impulsive and impatient", "Best suited for entrepreneurship, sports and military", "Health concerns: Headaches and fevers", "Compatible with Leo and Sagittarius"],
+      "hindi": ["संबंधित अक्षर: अ, ल, ई", "मंगल ग्रह द्वारा शासित - ऊर्जा का ग्रह", "अग्नि तत्व - भावुक और गतिशील व्यक्तित्व", "प्रतिस्पर्धी भावना के साथ प्राकृतिक नेता", "आवेगी और अधीर हो सकते हैं", "उद्यमिता, खेल और सेना के लिए सबसे उपयुक्त", "स्वास्थ्य संबंधी चिंताएँ: सिरदर्द और बुखार", "सिंह और धनु राशि के साथ अच्छी संगतता"]
+    }
+  },
+  {
+    "name": {
       "english": "Vrishabha (Taurus)",
-      "hindi": "वृषभ (वृषभ राशि)"
+      "hindi": "वृषभ"
     },
     "dates": {
       "english": "May 15 - June 14",
@@ -21,7 +40,7 @@
   {
     "name": {
       "english": "Mithuna (Gemini)",
-      "hindi": "मिथुन (मिथुन राशि)"
+      "hindi": "मिथुन"
     },
     "dates": {
       "english": "June 15 - July 14",
@@ -40,7 +59,7 @@
   {
     "name": {
       "english": "Karka (Cancer)",
-      "hindi": "कर्क (कर्क राशि)"
+      "hindi": "कर्क"
     },
     "dates": {
       "english": "July 15 - August 14",
@@ -59,7 +78,7 @@
   {
     "name": {
       "english": "Simha (Leo)",
-      "hindi": "सिंह (सिंह राशि)"
+      "hindi": "सिंह"
     },
     "dates": {
       "english": "August 15 - September 15",
@@ -78,7 +97,7 @@
   {
     "name": {
       "english": "Kanya (Virgo)",
-      "hindi": "कन्या (कन्या राशि)"
+      "hindi": "कन्या"
     },
     "dates": {
       "english": "September 16 - October 15",
@@ -97,7 +116,7 @@
   {
     "name": {
       "english": "Tula (Libra)",
-      "hindi": "तुला (तुला राशि)"
+      "hindi": "तुला"
     },
     "dates": {
       "english": "October 16 - November 14",
@@ -116,7 +135,7 @@
   {
     "name": {
       "english": "Vrishchika (Scorpio)",
-      "hindi": "वृश्चिक (वृश्चिक राशि)"
+      "hindi": "वृश्चिक"
     },
     "dates": {
       "english": "November 15 - December 14",
@@ -135,7 +154,7 @@
   {
     "name": {
       "english": "Dhanu (Sagittarius)",
-      "hindi": "धनु (धनु राशि)"
+      "hindi": "धनु"
     },
     "dates": {
       "english": "December 15 - January 13",
@@ -154,7 +173,7 @@
   {
     "name": {
       "english": "Makara (Capricorn)",
-      "hindi": "मकर (मकर राशि)"
+      "hindi": "मकर"
     },
     "dates": {
       "english": "January 14 - February 11",
@@ -173,7 +192,7 @@
   {
     "name": {
       "english": "Kumbha (Aquarius)",
-      "hindi": "कुंभ (कुंभ राशि)"
+      "hindi": "कुंभ"
     },
     "dates": {
       "english": "February 12 - March 12",
@@ -192,7 +211,7 @@
   {
     "name": {
       "english": "Meena (Pisces)",
-      "hindi": "मीन (मीन राशि)"
+      "hindi": "मीन"
     },
     "dates": {
       "english": "March 13 - April 13",
