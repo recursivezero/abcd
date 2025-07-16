@@ -151,7 +151,7 @@
       &::checkmark {
         order: 1;
         margin-left: auto;
-        content: '✔';
+        content: "✔";
         color: #806df9;
       }
     }
