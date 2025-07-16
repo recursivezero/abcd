@@ -2,11 +2,10 @@
 import "@/assets/styles/MobileSplash.css";
 import { Image } from "astro:assets";
 import logoImage from "public/assets/images/ABCD.png";
-const githubUrl = "https://github.com/recursivezero/abcd";
-const siteUrl = "https://parixan.xyz";
+const { stay } = Astro.props;
 ---
 
-<div class="container_splash">
+<div id="mobile-splash-wrapper"  class="container_splash">
   <div class="container_splash_card">
     <Image src={logoImage} alt="logo of abcd." width="50" height="50" />
     <h1 class="container_splash_heading"><strong>This page is best experienced on desktop</strong></h1>
@@ -14,12 +13,23 @@ const siteUrl = "https://parixan.xyz";
       Revisit on desktop to check out abcdkbd.com. We will optimize for mobile soon. Stay tuned…
     </p>
     <div class="container_splash_buttons">
-      <a href={githubUrl} class="container_splash_btn container_splash_btn_primary" target="_blank" rel="noopener"
-        >🔗 GitHub</a
-      >
-      <a href={siteUrl} class="container_splash_btn container_splash_btn_secondary" target="_blank" rel="noopener"
-        >🌐 Visit abcdkbd.com</a
+      <a id="continue-btn"  class="container_splash_btn container_splash_btn_secondary" rel="noopener"
+        >📱 Continue on mobile</a
       >
     </div>
   </div>
 </div>
+ <script define:vars={{ stay }} >
+  const splashWrapper = document.getElementById("mobile-splash-wrapper");
+  const continueBtn = document.getElementById("continue-btn");
+  const heading = document.getElementsByClassName('container_splash_heading');
+  const consentGiven = localStorage.getItem("userConsent") === "true";
+  if (window.innerWidth < 768) {
+    if (consentGiven && !stay) splashWrapper.style.display = 'flex';
+    else if (consentGiven && stay) splashWrapper.style.display = 'none';
+    continueBtn.addEventListener("click", () => {
+      localStorage.setItem("userConsent", "true");
+      splashWrapper.style.display = "none";
+    });
+  }
+</script>
