@@ -1,22 +1,18 @@
 ---
-import contributors from "@/data/contributor.json";
 import GitHub from "@/assets/icons/github.svg";
+import Avatar from "@/components/Avatar.astro";
 
 interface TeamMember {
   name: string;
   role: string;
-  description: string;
   github: string;
 }
 
-const getInitials = (name: string): string => {
-  const names = name.split(" ").filter((n) => n.length > 0);
-  return names
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-};
+interface Props {
+  members: TeamMember[];
+}
+
+const { members } = Astro.props;
 ---
 
 <section class="section team-section">
@@ -26,19 +22,14 @@ const getInitials = (name: string): string => {
   </p>
   <div class="team-grid">
     {
-      contributors.map((member: TeamMember) => {
-        const initials = getInitials(member.name);
+      members.map((member) => {
         return (
           <div class="team-card">
             <div class="team-image-container">
-              <div class="team-avatar" style={`background-color: ${member.name}`}>
-                {initials}
-              </div>
-              <div class="team-image-border" />
+              <Avatar name={member.name} backgroundColor="#10b981" />
             </div>
             <h3 class="team-name">{member.name}</h3>
             <p class="team-role">{member.role}</p>
-            <p class="team-desc">{member.description}</p>
             <a
               href={`https://github.com/${member.github}`}
               target="_blank"

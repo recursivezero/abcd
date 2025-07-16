@@ -129,7 +129,6 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
       if (isAlphabet(keyCode)) {
         const upperKey = key.toUpperCase();
         let isDouble = false;
-        let doublePress = false;
         if (lastKey === upperKey) {
           // Double press detected
           isDouble = true;

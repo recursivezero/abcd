@@ -1,5 +1,7 @@
 @import "./custom-fonts.css";
 
+@import "./common.css";
+
 @layer base {
   :root {
     --primary: #3b82f6;
@@ -149,7 +151,6 @@
     }
   }
 
-
   mark {
     margin-inline: 0.5rem;
     padding-inline: 0.5rem;
@@ -216,7 +217,7 @@
       &::checkmark {
         order: 1;
         margin-left: auto;
-        content: '✔';
+        content: "✔";
         color: #806df9;
       }
     }

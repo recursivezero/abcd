@@ -1,11 +1,13 @@
 ---
-import BaseLayout from "@/layouts/Base";
-import TitleLayout from "@/layouts/TitleLayout";
+import "@/assets/styles/about.css";
 import HeroSection from "@/components/about/HeroSection.astro";
 import TeamSection from "@/components/about/TeamSection.astro";
 import TechSection from "@/components/about/TechSection.astro";
-import "@/assets/styles/about.css";
 import BackIcon from "@/components/Back.astro";
+import BaseLayout from "@/layouts/Base";
+import TitleLayout from "@/layouts/TitleLayout";
+
+import pkg from "../../package.json";
 
 // Constants
 const appName = "abcdkbd";
@@ -18,10 +20,10 @@ const meta = {
 
 <BaseLayout meta={meta}>
   <BackIcon />
-  <TitleLayout title="Welcome to the World of Learning" />
+  <TitleLayout title="Welcome to the world of learning" />
   <main class="about-container">
     <HeroSection appName={appName} />
-    <TeamSection />
+    <TeamSection members={pkg.contributors} />
     <TechSection />
   </main>
 </BaseLayout>
