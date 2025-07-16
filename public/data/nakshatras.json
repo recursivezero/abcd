@@ -1,0 +1,191 @@
+[
+  {
+    "id": 1,
+    "name": { "english": "Ashwini", "hindi": "अश्विनी" },
+    "ruling_planet": "Ketu",
+    "deity": "Ashwini Kumaras",
+    "symbol": "Horse’s head"
+  },
+  {
+    "id": 2,
+    "name": { "english": "Bharani", "hindi": "भरणी" },
+    "ruling_planet": "Venus",
+    "deity": "Yama",
+    "symbol": "Yoni (womb)"
+  },
+  {
+    "id": 3,
+    "name": { "english": "Krittika", "hindi": "कृत्तिका" },
+    "ruling_planet": "Sun",
+    "deity": "Agni",
+    "symbol": "Razor or flame"
+  },
+  {
+    "id": 4,
+    "name": { "english": "Rohini", "hindi": "रोहिणी" },
+    "ruling_planet": "Moon",
+    "deity": "Brahma",
+    "symbol": "Chariot or temple"
+  },
+  {
+    "id": 5,
+    "name": { "english": "Mrigashira", "hindi": "मृगशिरा" },
+    "ruling_planet": "Mars",
+    "deity": "Soma",
+    "symbol": "Deer’s head"
+  },
+  {
+    "id": 6,
+    "name": { "english": "Ardra", "hindi": "आर्द्रा" },
+    "ruling_planet": "Rahu",
+    "deity": "Rudra",
+    "symbol": "Teardrop or diamond"
+  },
+  {
+    "id": 7,
+    "name": { "english": "Punarvasu", "hindi": "पुनर्वसु" },
+    "ruling_planet": "Jupiter",
+    "deity": "Aditi",
+    "symbol": "Bow and quiver"
+  },
+  {
+    "id": 8,
+    "name": { "english": "Pushya", "hindi": "पुष्य" },
+    "ruling_planet": "Saturn",
+    "deity": "Brihaspati",
+    "symbol": "Cow’s udder"
+  },
+  {
+    "id": 9,
+    "name": { "english": "Ashlesha", "hindi": "आश्लेषा" },
+    "ruling_planet": "Mercury",
+    "deity": "Nagas",
+    "symbol": "Serpent"
+  },
+  {
+    "id": 10,
+    "name": { "english": "Magha", "hindi": "मघा" },
+    "ruling_planet": "Ketu",
+    "deity": "Pitris (ancestors)",
+    "symbol": "Royal throne"
+  },
+  {
+    "id": 11,
+    "name": { "english": "Purva Phalguni", "hindi": "पूर्व फाल्गुनी" },
+    "ruling_planet": "Venus",
+    "deity": "Bhaga",
+    "symbol": "Hammock / front legs of a bed"
+  },
+  {
+    "id": 12,
+    "name": { "english": "Uttara Phalguni", "hindi": "उत्तर फाल्गुनी" },
+    "ruling_planet": "Sun",
+    "deity": "Aryaman",
+    "symbol": "Back legs of a bed"
+  },
+  {
+    "id": 13,
+    "name": { "english": "Hasta", "hindi": "हस्त" },
+    "ruling_planet": "Moon",
+    "deity": "Savitur",
+    "symbol": "Hand or fist"
+  },
+  {
+    "id": 14,
+    "name": { "english": "Chitra", "hindi": "चित्रा" },
+    "ruling_planet": "Mars",
+    "deity": "Vishwakarma",
+    "symbol": "Bright jewel or pearl"
+  },
+  {
+    "id": 15,
+    "name": { "english": "Swati", "hindi": "स्वाति" },
+    "ruling_planet": "Rahu",
+    "deity": "Vayu",
+    "symbol": "Shoot of a plant or coral"
+  },
+  {
+    "id": 16,
+    "name": { "english": "Vishakha", "hindi": "विशाखा" },
+    "ruling_planet": "Jupiter",
+    "deity": "Indra-Agni",
+    "symbol": "Triumphal arch"
+  },
+  {
+    "id": 17,
+    "name": { "english": "Anuradha", "hindi": "अनुराधा" },
+    "ruling_planet": "Saturn",
+    "deity": "Mitra",
+    "symbol": "Lotus flower"
+  },
+  {
+    "id": 18,
+    "name": { "english": "Jyeshtha", "hindi": "ज्येष्ठा" },
+    "ruling_planet": "Mercury",
+    "deity": "Indra",
+    "symbol": "Circular amulet"
+  },
+  {
+    "id": 19,
+    "name": { "english": "Mula", "hindi": "मूल" },
+    "ruling_planet": "Ketu",
+    "deity": "Nirriti",
+    "symbol": "Lion’s tail or roots"
+  },
+  {
+    "id": 20,
+    "name": { "english": "Purva Ashadha", "hindi": "पूर्वाषाढ़ा" },
+    "ruling_planet": "Venus",
+    "deity": "Apah (Water)",
+    "symbol": "Elephant tusk or fan"
+  },
+  {
+    "id": 21,
+    "name": { "english": "Uttara Ashadha", "hindi": "उत्तराषाढ़ा" },
+    "ruling_planet": "Sun",
+    "deity": "Vishvedevas",
+    "symbol": "Elephant tusk"
+  },
+  {
+    "id": 22,
+    "name": { "english": "Shravana", "hindi": "श्रवण" },
+    "ruling_planet": "Moon",
+    "deity": "Vishnu",
+    "symbol": "Ear or three footprints"
+  },
+  {
+    "id": 23,
+    "name": { "english": "Dhanishta", "hindi": "धनिष्ठा" },
+    "ruling_planet": "Mars",
+    "deity": "Vasus",
+    "symbol": "Drum or flute"
+  },
+  {
+    "id": 24,
+    "name": { "english": "Shatabhisha", "hindi": "शतभिषा" },
+    "ruling_planet": "Rahu",
+    "deity": "Varuna",
+    "symbol": "Empty circle or 100 stars"
+  },
+  {
+    "id": 25,
+    "name": { "english": "Purva Bhadrapada", "hindi": "पूर्व भाद्रपद" },
+    "ruling_planet": "Jupiter",
+    "deity": "Ajaikapada",
+    "symbol": "Front legs of a funeral cot"
+  },
+  {
+    "id": 26,
+    "name": { "english": "Uttara Bhadrapada", "hindi": "उत्तर भाद्रपद" },
+    "ruling_planet": "Saturn",
+    "deity": "Ahirbudhnya",
+    "symbol": "Back legs of a funeral cot"
+  },
+  {
+    "id": 27,
+    "name": { "english": "Revati", "hindi": "रेवती" },
+    "ruling_planet": "Mercury",
+    "deity": "Pushan",
+    "symbol": "Fish or drum"
+  }
+]

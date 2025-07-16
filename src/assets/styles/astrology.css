@@ -61,3 +61,57 @@
     background-position: 0% 50%;
   }
 }
+
+/* --- Responsive Styles --- */
+
+@media (max-width: 768px) {
+  .container__astrology {
+    padding: 1rem;
+  }
+
+  .tab-buttons {
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .tab-button {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-buttons {
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+
+  .nakshatra-note {
+    margin: 1.5rem auto;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
