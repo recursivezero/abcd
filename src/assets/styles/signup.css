@@ -1,3 +1,60 @@
+:root {
+  --signup-body-bg: #4a455b;
+  --signup-container-bg: #221f2e;
+  --signup-container-shadow: rgba(0, 0, 0, 0.3);
+  --signup-left-bg: #311d5a;
+  --signup-text-primary: white;
+  --signup-text-secondary: #a3a1a8;
+  --signup-text-placeholder: #8a8692;
+  --signup-back-link-bg: rgba(255, 255, 255, 0.2);
+  --signup-back-link-bg-hover: rgba(255, 255, 255, 0.3);
+  --signup-dots-bg: rgba(255, 255, 255, 0.4);
+  --signup-dots-active-bg: white;
+  --signup-input-bg: #322d3d;
+  --signup-input-border: #3d3748;
+  --signup-button-primary-bg: #7b5ede;
+  --signup-button-primary-bg-hover: #6a4ecc;
+  --signup-button-social-bg-hover: #322d3d;
+}
+
+[data-theme="dark"] {
+  --signup-body-bg: #4a455b;
+  --signup-container-bg: #221f2e;
+  --signup-container-shadow: rgba(0, 0, 0, 0.3);
+  --signup-left-bg: #311d5a;
+  --signup-text-primary: white;
+  --signup-text-secondary: #a3a1a8;
+  --signup-text-placeholder: #8a8692;
+  --signup-back-link-bg: rgba(255, 255, 255, 0.2);
+  --signup-back-link-bg-hover: rgba(255, 255, 255, 0.3);
+  --signup-dots-bg: rgba(255, 255, 255, 0.4);
+  --signup-dots-active-bg: white;
+  --signup-input-bg: #322d3d;
+  --signup-input-border: #3d3748;
+  --signup-button-primary-bg: #7b5ede;
+  --signup-button-primary-bg-hover: #6a4ecc;
+  --signup-button-social-bg-hover: #322d3d;
+}
+
+[data-theme="light"] {
+  --signup-body-bg: #f0f2f5;
+  --signup-container-bg: #ffffff;
+  --signup-container-shadow: rgba(0, 0, 0, 0.1);
+  --signup-left-bg: #e9e9f2;
+  --signup-text-primary: #1c1e21;
+  --signup-text-secondary: #555;
+  --signup-text-placeholder: #8a8692;
+  --signup-back-link-bg: rgba(0, 0, 0, 0.05);
+  --signup-back-link-bg-hover: rgba(0, 0, 0, 0.1);
+  --signup-dots-bg: rgba(0, 0, 0, 0.3);
+  --signup-dots-active-bg: #000;
+  --signup-input-bg: #f0f2f5;
+  --signup-input-border: #ddd;
+  --signup-button-primary-bg: #7b5ede;
+  --signup-button-primary-bg-hover: #6a4ecc;
+  --signup-button-social-bg-hover: #f0f2f5;
+}
+
 * {
   margin: 0;
   padding: 0;
