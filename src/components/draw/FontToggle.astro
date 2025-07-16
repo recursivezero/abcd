@@ -1,0 +1,53 @@
+<label for="toggleFont" class="control-item" data-tooltip="Toggle font">
+  <input type="checkbox" name="toggle_font" id="toggleFont" class="visually-hidden hidden" />
+  <span
+    id="font"
+    class="control-button font-toggle"
+    role="switch"
+    aria-checked="false"
+    tabindex="0"
+    aria-label="Toggle font"
+  >
+    <span class="font-icon">F</span>
+  </span>
+</label>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const fontToggle = document.querySelector(".font-toggle") as HTMLElement;
+    const toggleFontSwitch = document.getElementById("toggleFont") as HTMLInputElement;
+
+    if (!fontToggle) return;
+
+    const handleFontToggle = () => {
+      const isActive = fontToggle.classList.contains("active");
+
+      if (!isActive) {
+        fontToggle.classList.add("active");
+        fontToggle.setAttribute("aria-checked", "true");
+        if (toggleFontSwitch) toggleFontSwitch.checked = true;
+
+        // Dispatch custom event
+        document.dispatchEvent(
+          new CustomEvent("fontToggled", {
+            detail: { isActive: true }
+          })
+        );
+      }
+    };
+
+    fontToggle.addEventListener("click", handleFontToggle);
+    fontToggle.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        handleFontToggle();
+      }
+    });
+
+    document.addEventListener("keyboardReset", () => {
+      fontToggle.classList.remove("active");
+      fontToggle.setAttribute("aria-checked", "false");
+      if (toggleFontSwitch) toggleFontSwitch.checked = false;
+    });
+  });
+</script>

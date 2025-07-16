@@ -4,7 +4,8 @@ import FeaturesSection from "@/components/about/FeaturesSection.astro";
 import ExploreLearnSection from "@/components/home/ExploreLearnSection.astro";
 import HeroSection from "@/components/home/HeroSection.astro";
 import KidsLoveSection from "@/components/home/KidsLoveSection.astro";
-import MobileSplash from "@/components/MobileSplash.astro";
+// import MobileSplash from "@/components/MobileSplash.astro";
+import TestimonialsSection from "@/components/home/TestimonialsSection.astro";
 import BaseLayout from "@/layouts/Base";
 const meta = {
   title: "Home"
@@ -12,10 +13,9 @@ const meta = {
 ---
 
 <BaseLayout meta={meta}>
-  <MobileSplash />
   <HeroSection appName="abcdkbd" />
   <ExploreLearnSection />
-  <!--<TestimonialsSection />-->
+  <TestimonialsSection />
   <KidsLoveSection />
   <FeaturesSection />
 </BaseLayout>

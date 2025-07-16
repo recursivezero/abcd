@@ -1,0 +1,58 @@
+<label for="toggleBg" class="control-item" data-tooltip="Toggle background">
+  <input type="checkbox" name="change_bg" id="toggleBg" class="visually-hidden hidden" />
+  <span class="control-button bg-toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle background">
+    <span class="bg-icon">🎨</span>
+  </span>
+</label>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const bgToggle = document.querySelector(".bg-toggle") as HTMLElement;
+    const toggleBackgroundSwitch = document.getElementById("toggleBg") as HTMLInputElement;
+
+    bgToggle.addEventListener("click", () => {
+      const isActive = bgToggle.classList.contains("active");
+      if (!isActive) {
+        document.dispatchEvent(new CustomEvent("resetImageToggle"));
+
+        bgToggle.classList.add("active");
+        bgToggle.setAttribute("aria-checked", "true");
+        if (toggleBackgroundSwitch) {
+          toggleBackgroundSwitch.checked = true;
+        }
+
+        document.dispatchEvent(
+          new CustomEvent("backgroundToggled", {
+            detail: {
+              isActive: true,
+              element: bgToggle
+            }
+          })
+        );
+      }
+    });
+
+    bgToggle.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        bgToggle.click();
+      }
+    });
+
+    document.addEventListener("resetBackgroundToggle", () => {
+      bgToggle.classList.remove("active");
+      bgToggle.setAttribute("aria-checked", "false");
+      if (toggleBackgroundSwitch) {
+        toggleBackgroundSwitch.checked = false;
+      }
+    });
+
+    document.addEventListener("keyboardReset", () => {
+      bgToggle.classList.remove("active");
+      bgToggle.setAttribute("aria-checked", "false");
+      if (toggleBackgroundSwitch) {
+        toggleBackgroundSwitch.checked = false;
+      }
+    });
+  });
+</script>
