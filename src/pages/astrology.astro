@@ -1,0 +1,174 @@
+---
+import "@/assets/styles/astrology.css";
+import "@/assets/styles/zodiac.css";
+import Back from "@/components/Back.astro";
+import Headers from "@/components/Header.astro";
+import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
+import BaseLayout from "@/layouts/Base";
+import ZodiacGrid from "@/components/ZodiacGrid.astro";
+---
+
+<BaseLayout meta={{ title: "Astrology" }}>
+  <Back />
+  <Fragment slot="header-right">
+    <SharePopover />
+    <Help title="Astrology" description="Explore Sun Signs and Nakshatras." />
+  </Fragment>
+
+  <div class="container__astrology">
+    <!-- Tab Buttons -->
+    <div class="tab-buttons">
+      <button class="tab-button active" data-tab="zodiacs">Zodiac Signs</button>
+      <button class="tab-button" data-tab="nakshatras">Nakshatra</button>
+    </div>
+
+    <!-- Zodiac Signs Tab Content -->
+    <div id="zodiacs-tab-content" class="tab-content active">
+        <Headers />
+      <div class="controls">
+        <!-- <LanguageSwitcher /> -->
+      </div>
+      <ZodiacGrid />
+    </div>
+
+    <!-- Nakshatra Tab Content (Placeholder) -->
+    <div id="nakshatras-tab-content" class="tab-content">
+      <div class="placeholder-content">
+        <h2>Nakshatras Coming Soon</h2>
+        <p>This section will display detailed information about Nakshatras.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- This is the Modal, NOT a popover -->
+  <div id="zodiacModal" class="modal">
+    <div class="modal-content">
+      <button class="close">&times;</button>
+      <img id="modalImage" src="" alt="Zodiac Image" />
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <ul id="modalPoints"></ul>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import type { Zodiac } from "@/types";
+  import type { Language } from "@/types/zodiac";
+
+  // --- Element Selectors ---
+  const modalImage = document.getElementById("modalImage") as HTMLImageElement | null;
+  const modalTitle = document.getElementById("modalTitle") as HTMLElement | null;
+  const modalDescription = document.getElementById("modalDescription") as HTMLElement | null;
+  const modalPoints = document.getElementById("modalPoints") as HTMLElement | null;
+  const zodiacModal = document.getElementById("zodiacModal") as HTMLElement | null;
+  const englishButton = document.getElementById("englishBtn") as HTMLElement | null;
+  const hindiButton = document.getElementById("hindiBtn") as HTMLElement | null;
+
+  // --- Language Function ---
+  function setLanguage(lang: string) {
+    localStorage.setItem("language", lang);
+    document.documentElement.lang = lang === "hindi" ? "hi" : "en";
+    if (englishButton) englishButton.classList.toggle("active", lang === "english");
+    if (hindiButton) hindiButton.classList.toggle("active", lang === "hindi");
+    window.dispatchEvent(new Event("languagechange"));
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // --- Initialize Language ---
+    const initialLang = localStorage.getItem("language") || "english";
+    setLanguage(initialLang);
+
+    // --- Setup Event Listeners ---
+    englishButton?.addEventListener("click", () => setLanguage("english"));
+    hindiButton?.addEventListener("click", () => setLanguage("hindi"));
+
+    // --- Tab Switching Logic ---
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        tabButtons.forEach((btn) => btn.classList.remove("active"));
+        tabContents.forEach((content) => content.classList.remove("active"));
+        button.classList.add("active");
+        const targetTab = (button as HTMLElement).dataset.tab;
+        if (targetTab) {
+          document.getElementById(`${targetTab}-tab-content`)?.classList.add("active");
+        }
+      });
+    });
+
+    // --- Zodiac Grid & Modal Logic (from original zodiac.astro) ---
+    fetch("/data/zodiacs.json")
+      .then((res) => res.json())
+      .then((zodiacs: Zodiac[]) => {
+        const zodiacsGrid = document.getElementById("zodiacsGrid");
+        let currentLang = (localStorage.getItem("language") || "english") as keyof Language;
+
+        function renderCards() {
+          if (!zodiacsGrid) return;
+          zodiacsGrid.innerHTML = "";
+          zodiacs.forEach((zodiac, i) => {
+            const card = document.createElement("div"); // Use a div for the card
+            card.className = "card";
+            card.setAttribute("data-index", String(i)); // Set data-index for click lookup
+            card.innerHTML = `
+              <h3>${zodiac.name[currentLang]}</h3>
+              <p>${zodiac.dates[currentLang]}</p>
+              <button class="info-btn" title="Show Info">
+                <span class="icon">🔍</span>
+              </button>
+            `;
+            zodiacsGrid.appendChild(card);
+          });
+        }
+
+        function openModal(index: number) {
+          if (!zodiacModal || !modalTitle || !modalDescription || !modalPoints) return;
+          const zodiac = zodiacs[index];
+          if (modalImage) modalImage.src = `/data/zodiac/${zodiac.image}`;
+          modalTitle.textContent = zodiac.name[currentLang];
+          modalDescription.textContent = zodiac.description[currentLang];
+          modalPoints.innerHTML = zodiac.points[currentLang]
+            .map((pt: string) => `<li>${pt}</li>`)
+            .join("");
+          zodiacModal.style.display = "block";
+          document.body.classList.add("page-no-scroll");
+        }
+
+        function closeModal() {
+          if (!zodiacModal) return;
+          zodiacModal.style.display = "none";
+          document.body.classList.remove("page-no-scroll");
+        }
+
+        // Event listener for the whole grid (delegation)
+        zodiacsGrid?.addEventListener("click", (e) => {
+          const card = (e.target as HTMLElement).closest(".card");
+          if (card) {
+            const index = card.getAttribute("data-index");
+            if (index !== null) {
+              openModal(parseInt(index, 10));
+            }
+          }
+        });
+
+        // Listeners to close the modal
+        document.querySelector(".close")?.addEventListener("click", closeModal);
+        zodiacModal?.addEventListener("click", (e) => {
+          if (e.target === zodiacModal) {
+            closeModal();
+          }
+        });
+
+        // Re-render cards when language changes
+        window.addEventListener("languagechange", () => {
+          currentLang = (localStorage.getItem("language") || "english") as keyof Language;
+          renderCards();
+        });
+
+        renderCards(); // Initial render
+      });
+  });
+</script>

@@ -1,0 +1,63 @@
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  gap: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-button {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--text-color);
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.tab-button:hover {
+  background-color: color-mix(in srgb, var(--card-bg) 90%, var(--text-color) 10%);
+}
+
+.tab-button.active {
+  background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color), #338aff, #3cf0c5);
+  background-size: 400% 400%;
+  animation: gradient 10s infinite;
+  color: white;
+  border-color: transparent;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.placeholder-content {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
