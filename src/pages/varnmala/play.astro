@@ -101,7 +101,7 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 
   function drawLetter(letter: string, isDoublePress: boolean) {
     letterDiv.innerHTML = letter;
-    letterDiv.style.color = isDoublePress ? "yellow" : "white";
+    letterDiv.style.color = isDoublePress ? "yellow" : "black";
     letterDiv.style.animation = "letterPop 0.3s ease-out";
     setTimeout(() => {
       letterDiv.style.animation = "";
@@ -129,7 +129,7 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
       if (isAlphabet(keyCode)) {
         const upperKey = key.toUpperCase();
         let isDouble = false;
-        let doublePress = false;
+        let doublePress;
         if (lastKey === upperKey) {
           // Double press detected
           isDouble = true;

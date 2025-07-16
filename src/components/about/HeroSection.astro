@@ -1,6 +1,6 @@
 ---
-import LogoImage from "@/assets/images/ABCD.png";
 import { Image } from "astro:assets";
+import LogoImage from "/public/assets/images/ABCD.png";
 
 interface Props {
   appName: string;
@@ -11,8 +11,7 @@ const { appName } = Astro.props;
 
 <section class="hero-section">
   <div class="hero-content">
-    <Image src={LogoImage} alt="Logo" width={400} height={300} loading="eager" class={"hero-logo"} />
-
+    <Image src={LogoImage} alt="ABCD logo" width={400} height={300} loading="eager" class="hero-logo" />
     <h1 class="hero-title">Learning Made <span class="text-highlight">Magical!</span></h1>
     <p class="hero-text">
       At {appName}, we transform education into captivating adventures that ignite young minds. Our interactive platform
@@ -21,7 +20,7 @@ const { appName } = Astro.props;
   </div>
   <div class="hero-bubbles">
     {
-      ["A", "B", "C", "D", "1", "2", "🎈", "📚", "🌈"].map((char, i) => (
+      ["A", "B", "C", "📚", "1", "2", "3", "🎈", "🌈"].map((char, i) => (
         <span class="bubble" style={`--i: ${i}; --size: ${Math.random() * 2 + 1}rem;`} aria-hidden="true">
           {char}
         </span>

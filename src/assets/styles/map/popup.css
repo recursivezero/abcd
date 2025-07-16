@@ -5,11 +5,21 @@
     position: absolute;
     anchor-name: --setting;
     display: flex;
-    top: 0.6rem;
-    right: 1.5rem;
+    top: 1rem;
+    right: 0.5rem;
     width: max-content;
     cursor: pointer;
-    font-size: 4rem;
+    font-size: 3.5rem;
+    background: none;
+    border: none;
+    color: #888;
+    z-index: 2;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #1976d2;
+      background-color: white;
+    }
   }
 
   .state-popup {
@@ -18,8 +28,7 @@
     top: calc(anchor(bottom) + 15px);
     right: calc(anchor(left) + 10px);
     justify-self: anchor-center;
-    width: 20rem;
-    height: 20rem;
+    height: 26rem;
     background-color: #fff;
     border-radius: 4px;
     padding: 0.74rem;
@@ -39,14 +48,12 @@
     }
 
     &[popover] {
-      position: fixed;
       inset: unset;
-      width: max-content;
-      /* height: fit-content; */
+      width: auto;
       right: 0;
       bottom: 0;
       margin: auto;
-      overflow: auto;
+      overflow-y: hidden;
       padding: 1rem;
       border: solid;
       border-radius: 1rem;
@@ -64,8 +71,6 @@
         visibility: visible;
         translate: 0 0;
         top: 40px;
-        bottom: 0;
-        translate: 0 0;
         min-height: 26rem;
         justify-content: center;
       }
@@ -78,44 +83,34 @@
   }
 }
 
-.state-popup {
-  border-radius: 1.1rem;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
-  width: 400px;
-  max-width: 95vw;
-  min-width: 260px;
-  color: #222;
-  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
-  border: none;
-  position: relative;
+.state-popup__header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.state-popup__close {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #888;
-  cursor: pointer;
-  z-index: 2;
-  transition: color 0.2s;
-}
-
-.state-popup__close:hover {
-  color: #1976d2;
-  background-color: white;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
 }
 
 .state-popup__name {
-  font-size: 2rem;
+  flex: 1 1 auto;
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: 1.7rem;
   font-weight: 700;
-  margin-bottom: 0.7rem;
   color: #222;
   text-align: left;
-  width: 100%;
+}
+
+.state-popup__close {
+  flex: 0 0 auto;
+  margin-left: 1rem;
+}
+
+.state-popup {
+  width: auto;
+  min-width: 260px;
+  max-width: 700px;
 }
 
 .state-popup__image {
@@ -127,17 +122,14 @@
 .state-popup__info {
   font-size: 1.15rem;
   color: #444;
-  margin-bottom: -1rem;
-  margin-right: 0rem;
-  margin-top: -1rem;
-  margin-left: 0rem;
+  margin: -1rem 0 -1rem 0;
   text-align: left;
   width: 100%;
-}
 
-.state-popup__info strong {
-  color: #222;
-  font-weight: 700;
+  strong {
+    color: #222;
+    font-weight: 700;
+  }
 }
 
 .state-popup__buttons {
@@ -189,10 +181,7 @@
 
       .state-popup__info {
         font-size: 1rem;
-        margin-bottom: -1rem;
-        margin-right: 0rem;
-        margin-top: -1rem;
-        margin-left: 0rem;
+        margin: -1rem 0;
       }
 
       .state-popup__name {
@@ -213,7 +202,7 @@
       .state-popup__close {
         font-size: 2rem;
         top: 0.9rem;
-        right: 0rem;
+        right: 0;
         width: 2.5rem;
         height: 2.5rem;
       }

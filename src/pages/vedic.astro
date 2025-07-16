@@ -55,6 +55,7 @@ const timeUnits = vedicData.time_units;
         <div class="form__group">
           <label for="from__unit">From</label>
           <select id="from__unit">
+            <option>Select Base Unit</option>
             {timeUnits.map((unit) => <option value={unit.name}>{unit.name}</option>)}
           </select>
         </div>
@@ -68,6 +69,7 @@ const timeUnits = vedicData.time_units;
         <div class="form__group">
           <label for="to__unit">To</label>
           <select id="to__unit">
+            <option>Select Conversion Unit</option>
             {timeUnits.map((unit) => <option value={unit.name}>{unit.name}</option>)}
           </select>
         </div>
