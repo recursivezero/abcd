@@ -3,7 +3,30 @@
   max-width: 1200px;
   margin: 0 auto;
 
-  & .list__alphabets {
+  &.varnmala__header {
+    text-align: center;
+    margin: 1rem;
+
+    &.title {
+      font-size: clamp(2.5rem, 4vw, 3rem);
+      font-weight: 800;
+      padding-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 0;
+    }
+
+    &.subtitle {
+      color: var(--secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  &.list__alphabets {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
@@ -11,7 +34,7 @@
     list-style: none;
   }
 
-  & .alphabets__header h1 {
+  &.alphabets__header h1 {
     font-size: clamp(2.5rem, 4vw, 3rem);
     font-weight: 800;
     padding-bottom: 2rem;
@@ -21,13 +44,13 @@
     color: transparent;
   }
 
-  & .card {
+  &.card {
     opacity: 0;
     animation: fadeInUp 0.6s ease forwards;
     transform: translateY(20px);
   }
 
-  & .card__link {
+  &.card__link {
     display: block;
     text-decoration: none;
     background: linear-gradient(145deg, var(--background), color-mix(in srgb, var(--background) 97%, var(--text) 3%));
@@ -38,18 +61,18 @@
     height: 100%;
   }
 
-  & .card__link:hover {
+  &.card__link:hover {
     transform: translateY(-5px);
     box-shadow:
       0 20px 30px rgba(0, 0, 0, 0.1),
       0 0 0 1px rgba(var(--primary-rgb, 44, 62, 80), 0.1);
   }
 
-  & .card__content {
+  &.card__content {
     position: relative;
   }
 
-  & .category__title {
+  &.category__title {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text);
@@ -57,14 +80,14 @@
     transition: color 0.3s ease;
   }
 
-  & .category__description {
+  &.category__description {
     color: var(--secondary);
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
   }
 
-  & .card__arrow {
+  &.card__arrow {
     position: absolute;
     top: 0;
     right: 0;
@@ -75,14 +98,14 @@
     transform: translateX(-10px);
   }
 
-  & .card__link:hover .category__title {
+  &.card__link:hover .category__title {
     background: linear-gradient(135deg, var(--primary), var(--primary-light));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  & .card__link:hover .card__arrow {
+  &.card__link:hover .card__arrow {
     opacity: 1;
     transform: translateX(0);
   }

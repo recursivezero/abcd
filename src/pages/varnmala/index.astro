@@ -35,12 +35,16 @@ const sections = [
     href: "play"
   }
 ];
+
+const title = "Varnmala";
 ---
 
 <BaseLayout meta={{ title: "Varnmala" }}>
   <Back />
-  <h2 class="txt__center m-0">Varnmala</h2>
   <div class="container__varnmala">
+    <div class="varnmala__header">
+      <h2 class="title">{title}</h2>
+    </div>
     <ul class="list__alphabets">
       {
         sections.map((section, index) => (
