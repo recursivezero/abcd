@@ -299,9 +299,9 @@ select:focus {
 
 .animated__result {
   width: 100%;
-  padding: 1.5rem;
   border-radius: 0.75rem;
-  background: conic-gradient(from 0deg at 50% 50%, #000080, #00bfff, #4682b4, #000080);
+  border: 2px solid pink;
+  height: max-content;
 }
 
 .result__display {

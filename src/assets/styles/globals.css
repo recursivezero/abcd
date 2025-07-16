@@ -149,43 +149,81 @@
     }
   }
 
-  /* Utilities */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+
+  mark {
+    margin-inline: 0.5rem;
+    padding-inline: 0.5rem;
   }
 
-  .link__active,
-  .text__active {
-    @apply text-customLight-active dark:text-customDark-active;
+  select {
+    width: 100%;
+    padding: 0.7rem 1.39rem 0.7rem 0.89rem;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    font-variant: small-caps;
+    letter-spacing: 2px;
+    border: 2px solid rgba(125, 211, 252, 0.3);
+    border-radius: 0.75rem;
+    color: light-dark(black, white);
+    cursor: pointer;
+    appearance: base-select;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    &::picker-icon {
+      color: #806df9;
+      transition: 0.4s rotate;
+    }
+
+    &:open::picker-icon {
+      rotate: 180deg;
+    }
+
+    &:hover {
+      border-color: #7dd3fc;
+      transform: translateY(-1px);
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #2dd4bf;
+      box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.3);
+    }
+
+    & option {
+      padding: 0.5rem 1.25rem 0.5rem 0.75rem;
+      font-variant: small-caps;
+      text-transform: capitalize;
+      letter-spacing: 2px;
+      background: light-dark(white, #1e293b);
+      color: light-dark(black, white);
+      border-bottom: 1px solid rgba(125, 211, 252, 0.1);
+
+      &:nth-of-type(odd) {
+        background-color: #b7c4dc80;
+      }
+
+      &:hover {
+        background-color: rgba(29, 78, 216, 0.5);
+        font-weight: 600;
+      }
+
+      &::checkmark {
+        order: 1;
+        margin-left: auto;
+        content: '✔';
+        color: #806df9;
+      }
+    }
   }
 
-  .content {
-    min-height: 100vh;
+  ::picker(select) {
+    appearance: base-select;
+    border: none;
   }
-
-  .layout {
-    height: fit-content;
-    max-height: 100dvh;
-  }
-}
-
-.txt__center {
-  text-align: center;
-}
-
-.m-0 {
-  margin: 0;
-}
-
-mark {
-  margin-inline: 0.5rem;
-  padding-inline: 0.5rem;
 }
