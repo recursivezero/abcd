@@ -18,6 +18,11 @@ Created Repo from template
 - fix minor bugs
 - Added About Page
 
+## [3.1.0] - 2025-07-16
+
+- Added Terms & Policy pages
+- Added Story Section
+
 ### [Unreleased]
 
 Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.
