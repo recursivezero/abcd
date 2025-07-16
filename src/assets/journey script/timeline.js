@@ -1,10 +1,5 @@
-(() => {
-  const saved = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
-})();
-
 document.addEventListener("DOMContentLoaded", () => {
+  // DOM Elements
   const addBtn = document.getElementById("addEventBtn");
   const formOverlay = document.getElementById("formOverlay");
   const eventForm = document.getElementById("eventForm");
@@ -12,30 +7,46 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyState = document.getElementById("emptyState");
   const timelineWrapper = document.getElementById("timelineWrapper");
   const timelineContainer = document.getElementById("timelineContainer");
-  const themeToggleBtn = document.getElementById("themeToggleBtn");
   const eventDate = document.getElementById("eventDate");
   const eventDesc = document.getElementById("eventDesc");
   const charCounter = document.getElementById("charCounter");
-
+  const expandCollapseBtn = document.getElementById("expandCollapseBtn");
   const deleteModal = document.getElementById("deleteModal");
   const cancelDeleteBtn = document.getElementById("cancelDelete");
   const confirmDeleteBtn = document.getElementById("confirmDelete");
 
+  // Constants
   const CHAR_LIMIT = 100;
   const DEFAULT_SPACING = 100;
   const EXPANDED_SPACING = 290;
 
+  // State
   let events = JSON.parse(localStorage.getItem("timelineEvents") || "[]");
-  let expandedIndexes = JSON.parse(localStorage.getItem("expandedLabels") || "[]");
   let editIndex = null;
   let deleteIndex = null;
+  let allExpanded = false;
+  let currentlyExpanded = new Set();
 
-  function save() {
-    localStorage.setItem("timelineEvents", JSON.stringify(events));
+  // Helper function to format dates
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
   }
 
-  function saveExpanded() {
-    localStorage.setItem("expandedLabels", JSON.stringify(expandedIndexes));
+  // Sort events chronologically (oldest first)
+  function sortEvents() {
+    events.sort((a, b) => new Date(a.date) - new Date(b.date));
+  }
+
+  // Initialize by sorting existing events
+  sortEvents();
+
+  function saveEvents() {
+    localStorage.setItem("timelineEvents", JSON.stringify(events));
   }
 
   function adjustSpacing() {
@@ -44,19 +55,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     allEvents.forEach((el, idx) => {
       el.style.top = `${currentTop}px`;
-      const isExpanded = expandedIndexes.includes(idx);
-      currentTop += isExpanded ? EXPANDED_SPACING : DEFAULT_SPACING;
+      currentTop += allExpanded || currentlyExpanded.has(idx) ? EXPANDED_SPACING : DEFAULT_SPACING;
     });
 
-    setTimeout(() => {
-      const line = document.querySelector(".timeline-line");
-      if (line) {
-        line.style.height = timelineContainer.scrollHeight + "px";
-      }
-    }, 0);
+    // Update timeline line height
+    const line = document.querySelector(".timeline-line");
+    if (line) {
+      line.style.height = `${currentTop}px`;
+    }
   }
 
-  function render() {
+  function toggleAllLabels() {
+    allExpanded = !allExpanded;
+    expandCollapseBtn.textContent = allExpanded ? "↕️ Collapse All" : "↕️ Expand All";
+
+    if (allExpanded) {
+      currentlyExpanded.clear();
+    }
+
+    renderTimeline();
+  }
+
+  function renderTimeline() {
     timelineContainer.innerHTML = '<div class="timeline-line"></div>';
 
     if (events.length === 0) {
@@ -68,17 +88,20 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyState.style.display = "none";
     timelineWrapper.style.display = "block";
 
-    events.forEach((ev, idx) => {
-      const el = document.createElement("div");
-      el.className = "timeline-event";
+    // Ensure events are sorted before rendering
+    sortEvents();
 
-      el.innerHTML = `
+    events.forEach((event, idx) => {
+      const eventElement = document.createElement("div");
+      eventElement.className = "timeline-event";
+
+      const isExpanded = allExpanded || currentlyExpanded.has(idx);
+
+      eventElement.innerHTML = `
         <div class="timeline-dot"></div>
-        <div class="timeline-label ${idx % 2 === 0 ? "left" : "right"} ${
-          expandedIndexes.includes(idx) ? "expanded" : ""
-        }">
-          <span class="event-date">${ev.date}</span>
-          <span class="event-description">${ev.description}</span>
+        <div class="timeline-label ${idx % 2 === 0 ? "left" : "right"} ${isExpanded ? "expanded" : ""}">
+          <span class="event-date">${formatDate(event.date)}</span>
+          <span class="event-description">${event.description}</span>
           <div class="event-actions">
             <button class="edit-btn">✏️ Edit</button>
             <button class="delete-btn">🗑️ Delete</button>
@@ -86,54 +109,57 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
-      const label = el.querySelector(".timeline-label");
-      label.title = "Click to expand";
+      const label = eventElement.querySelector(".timeline-label");
 
-      label.addEventListener("click", () => {
-        const isExpanded = label.classList.contains("expanded");
-
-        if (isExpanded) {
-          label.classList.remove("expanded");
-          expandedIndexes = expandedIndexes.filter((i) => i !== idx);
-        } else {
-          label.classList.add("expanded");
-          expandedIndexes.push(idx);
+      // Label click handler
+      label.addEventListener("click", (e) => {
+        if (e.target.closest(".edit-btn") || e.target.closest(".delete-btn")) {
+          return;
         }
 
-        saveExpanded();
+        if (allExpanded) return;
+
+        if (currentlyExpanded.has(idx)) {
+          currentlyExpanded.delete(idx);
+          label.classList.remove("expanded");
+        } else {
+          currentlyExpanded.add(idx);
+          label.classList.add("expanded");
+        }
+
         adjustSpacing();
       });
 
-      // Edit button logic
-      el.querySelector(".edit-btn").addEventListener("click", () => {
+      // Edit button
+      eventElement.querySelector(".edit-btn").addEventListener("click", () => {
         editIndex = idx;
-        eventDate.value = ev.date;
-        eventDesc.value = ev.description;
-        charCounter.textContent = `${ev.description.length} / ${CHAR_LIMIT}`;
+        eventDate.value = event.date;
+        eventDesc.value = event.description;
+        charCounter.textContent = `${event.description.length} / ${CHAR_LIMIT}`;
         formOverlay.classList.add("active");
       });
 
-      // Delete button logic (open modal)
-      el.querySelector(".delete-btn").addEventListener("click", () => {
+      // Delete button
+      eventElement.querySelector(".delete-btn").addEventListener("click", () => {
         deleteIndex = idx;
         deleteModal.classList.add("active");
       });
 
-      timelineContainer.appendChild(el);
+      timelineContainer.appendChild(eventElement);
     });
 
     adjustSpacing();
   }
 
   function updateCharCounter() {
-    const val = eventDesc.value;
-    if (val.length > CHAR_LIMIT) {
-      eventDesc.value = val.slice(0, CHAR_LIMIT);
+    const text = eventDesc.value;
+    if (text.length > CHAR_LIMIT) {
+      eventDesc.value = text.slice(0, CHAR_LIMIT);
     }
     charCounter.textContent = `${eventDesc.value.length} / ${CHAR_LIMIT}`;
   }
 
-  // Add New Event
+  // Event Listeners
   addBtn.addEventListener("click", () => {
     editIndex = null;
     eventForm.reset();
@@ -156,28 +182,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   eventForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const date = eventDate.value.trim();
-    const desc = eventDesc.value.trim();
+    let date = eventDate.value.trim();
+    const description = eventDesc.value.trim();
 
-    if (editIndex !== null) {
-      events[editIndex] = { date, description: desc };
-    } else {
-      events.push({ date, description: desc });
+    // Validate and format date
+    if (!date) {
+      alert("Please enter a date");
+      return;
     }
 
-    save();
+    // Ensure date is in YYYY-MM-DD format
+    if (!date.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      const dateObj = new Date(date);
+      if (isNaN(dateObj)) {
+        alert("Please enter a valid date");
+        return;
+      }
+      date = dateObj.toISOString().split("T")[0];
+    }
+
+    if (editIndex !== null) {
+      events[editIndex] = { date, description };
+    } else {
+      events.push({ date, description });
+    }
+
+    // Re-sort events after modification
+    sortEvents();
+    saveEvents();
     formOverlay.classList.remove("active");
-    render();
+    renderTimeline();
   });
 
-  themeToggleBtn.addEventListener("click", () => {
-    const current = document.documentElement.getAttribute("data-theme");
-    const next = current === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  });
+  expandCollapseBtn.addEventListener("click", toggleAllLabels);
 
-  // Confirm delete modal
   cancelDeleteBtn.addEventListener("click", () => {
     deleteModal.classList.remove("active");
     deleteIndex = null;
@@ -186,10 +224,9 @@ document.addEventListener("DOMContentLoaded", () => {
   confirmDeleteBtn.addEventListener("click", () => {
     if (deleteIndex !== null) {
       events.splice(deleteIndex, 1);
-      expandedIndexes = expandedIndexes.filter((i) => i !== deleteIndex);
-      save();
-      saveExpanded();
-      render();
+      currentlyExpanded.delete(deleteIndex);
+      saveEvents();
+      renderTimeline();
       deleteModal.classList.remove("active");
       deleteIndex = null;
     }
@@ -202,5 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  render();
+  // Initial render
+  renderTimeline();
 });

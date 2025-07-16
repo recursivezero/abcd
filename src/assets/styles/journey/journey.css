@@ -1,17 +1,17 @@
 /* Light Theme (Default) */
 :root {
   --bg-color: var(--gray-200);
-    --text-color: #1e1e1e;
-    --accent-color: #f43f5e;
-    --header-bg: linear-gradient(135deg, #f9fafb, #e5e7eb);
-    --timeline-bg: #f3f4f6;
-    --button-bg: linear-gradient(135deg, #3b82f6, #2563eb);
-    --dot-color: #22c55e;
-    --label-bg: #ffffff;
-    --label-border: #e0e0e0;
-    --date-bg: #f43f5e;
-    --date-text: white;
-    --timeline-bg: #eaeaea;
+  --text-color: #1e1e1e;
+  --accent-color: #f43f5e;
+  --header-bg: linear-gradient(135deg, #f9fafb, #e5e7eb);
+  --timeline-bg: #f3f4f6;
+  --button-bg: linear-gradient(135deg, #3b82f6, #2563eb);
+  --dot-color: #22c55e;
+  --label-bg: #ffffff;
+  --label-border: #e0e0e0;
+  --date-bg: #f43f5e;
+  --date-text: white;
+  --timeline-bg: #eaeaea;
 }
 
 /* Dark Theme */
@@ -79,13 +79,23 @@ body {
   opacity: 0.9;
   max-width: 600px;
   line-height: 1.6;
-  text-align: center; 
+  text-align: center;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
 }
 
 /* Buttons */
 .add-event-button,
 .print-pdf-button,
-.theme-toggle-button {
+.theme-toggle-button,
+.expand-collapse-button {
   background: var(--button-bg);
   color: white;
   border: none;
@@ -96,8 +106,6 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-  margin-bottom: 16px;
-  margin-right: 8px;
   position: relative;
   overflow: hidden;
 }
@@ -123,7 +131,8 @@ body {
 }
 
 .print-pdf-button:hover,
-.theme-toggle-button:hover {
+.theme-toggle-button:hover,
+.expand-collapse-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
@@ -136,8 +145,7 @@ body {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 10
-  00px;
+  max-width: 1000px;
   min-height: 600px;
   transform: translateY(20px);
   opacity: 0;
@@ -245,6 +253,29 @@ body {
   .empty-state p {
     font-size: 1.1rem;
   }
+
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .timeline-wrapper {
+    margin: 0 10px;
+    padding: 40px 20px;
+    border-radius: 20px;
+    min-height: 500px;
+  }
+
+  .add-event-button,
+  .print-pdf-button,
+  .theme-toggle-button,
+  .expand-collapse-button {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -267,34 +298,7 @@ body {
     padding: 12px 24px;
     font-size: 1rem;
   }
-}
 
-/* Responsive */
-@media (max-width: 768px) {
-  .page-title {
-    font-size: 2.5rem;
-  }
-
-  .page-subtitle {
-    font-size: 1.1rem;
-  }
-
-  .timeline-wrapper {
-    margin: 0 10px;
-    padding: 40px 20px;
-    border-radius: 20px;
-    min-height: 500px;
-  }
-
-  .add-event-button,
-  .print-pdf-button,
-  .theme-toggle-button {
-    padding: 12px 24px;
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 480px) {
   .page-title {
     font-size: 2rem;
   }
@@ -311,7 +315,8 @@ body {
 
   .add-event-button,
   .print-pdf-button,
-  .theme-toggle-button {
+  .theme-toggle-button,
+  .expand-collapse-button {
     padding: 10px 20px;
     font-size: 14px;
   }
@@ -375,13 +380,21 @@ body {
   .add-event-button,
   .print-pdf-button,
   .theme-toggle-button,
+  .expand-collapse-button,
   .empty-state,
   .form-overlay,
   .event-actions {
     display: none !important;
   }
 
-  /* Page settings */
+  .timeline-label:nth-child(odd) {
+    transform: translateX(-10px) !important;
+  }
+
+  .timeline-label:nth-child(even) {
+    transform: translateX(10px) !important;
+  }
+
   @page {
     size: auto;
     margin: 15mm;

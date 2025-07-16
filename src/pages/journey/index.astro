@@ -27,9 +27,11 @@ import Help from "@/components/Help.astro";
           <header>
             <h1 class="page-title">My Life Journey Timeline</h1>
             <p class="page-subtitle">Watch your life story grow like a beautiful plant</p>
-            <button class="add-event-button" id="addEventBtn">🌱 Add New Event</button>
-            <button class="print-pdf-button" onclick="window.print()">📄 Download as PDF</button>
-            <button class="theme-toggle-button" id="themeToggleBtn">🌓 Toggle Theme</button>
+            <div class="button-group">
+              <button class="add-event-button" id="addEventBtn">🌱 Add New Event</button>
+              <button class="print-pdf-button" onclick="window.print()">📄 Download as PDF</button>
+              <button class="expand-collapse-button" id="expandCollapseBtn">↕️ Expand All</button>
+            </div>
           </header>
 
           <!-- Timeline -->
