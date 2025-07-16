@@ -4,6 +4,8 @@ import GoogleIcon from "@/assets/icons/google.svg";
 import EyeIcon from "@/assets/icons/eye.svg";
 import XIcon from "@/assets/icons/x.svg";
 import LogoImage from "@/assets/images/ABCD.png";
+import SunIcon from "@/assets/icons/sun.svg";
+import MoonIcon from "@/assets/icons/moon.svg";
 import { Image } from "astro:assets";
 ---
 
@@ -55,6 +57,10 @@ import { Image } from "astro:assets";
     </div>
 
     <div class="signup-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <SunIcon id="theme-icon-sun" width={24} height={24} />
+        <MoonIcon id="theme-icon-moon" width={24} height={24} />
+      </button>
       <div class="form-container">
         <h1>Welcome back!</h1>
         <p class="signup-text">Don't have an account? <a href="/signup" class="signup-link">Sign up</a></p>
@@ -150,5 +156,28 @@ import { Image } from "astro:assets";
         window.location.href = "/about";
       });
     }
+
+    const themeToggleButton = document.getElementById("theme-toggle");
+
+    const applyTheme = (theme: "light" | "dark") => {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+    };
+
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedTheme === "dark" || savedTheme === "light") {
+      applyTheme(savedTheme);
+    } else if (prefersDark) {
+      applyTheme("dark");
+    } else {
+      applyTheme("light");
+    }
+
+    themeToggleButton?.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(newTheme);
+    });
   });
 </script>
