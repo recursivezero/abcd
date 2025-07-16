@@ -3,20 +3,8 @@ import "@/assets/styles/signup.css";
 import GoogleIcon from "@/assets/icons/google.svg";
 import EyeIcon from "@/assets/icons/eye.svg";
 import XIcon from "@/assets/icons/x.svg";
-import logoImage from "/public/assets/images/512x512.png";
-import { Picture } from "astro:assets";
-import SunIcon from "@/assets/icons/sun.svg";
-import MoonIcon from "@/assets/icons/moon.svg";
-import Base from "@/layouts/Base";
-
-const slideImages = [
-  { dark: "/assets/images/screenshots/dark/capital.png", light: "/assets/images/screenshots/light/capitalLight.png" },
-  { dark: "/assets/images/screenshots/dark/colors.png", light: "/assets/images/screenshots/light/colorsLight.png" },
-  { dark: "/assets/images/screenshots/dark/quote.png", light: "/assets/images/screenshots/light/quoteLight.png" },
-  { dark: "/assets/images/screenshots/dark/story.png", light: "/assets/images/screenshots/light/storyLight.png" },
-  { dark: "/assets/images/screenshots/dark/map.png", light: "/assets/images/screenshots/light/mapLight.png" },
-  { dark: "/assets/images/screenshots/dark/varnmala.png", light: "/assets/images/screenshots/light/varnmalaLight.png" },
-];
+import LogoImage from "@/assets/images/ABCD.png";
+import { Image } from "astro:assets";
 ---
 
 <head>
@@ -29,47 +17,29 @@ const slideImages = [
     <div class="signup-left">
       <div class="signup-header">
         <div class="logo">
-          <Picture src={logoImage} formats={["png", "webp"]} alt="template logo" height={50} width={50} class="logo" />
+          <Image src={LogoImage} alt="Logo" width={50} height={50} loading="eager" />
         </div>
         <a href="/" class="back-link">
           Back to website <span class="arrow">→</span>
         </a>
       </div>
 
-      <div class="slider-container" id="slider-wrapper">
+      <div class="slider-container">
         <div class="slider">
           <div class="slide active">
-            <img alt="Image 1" />
+            <img src="/assets/images/signup/capital.PNG" alt="Image 1" />
             <div class="slide-caption">
               <h2>Capturing Moments,<br />Creating Memories</h2>
             </div>
           </div>
           <div class="slide">
-            <img alt="Image 2" />
+            <img src="/assets/images/signup/colors.PNG" alt="Image 2" />
             <div class="slide-caption">
               <h2>Share Your Vision,<br />Express Your Style</h2>
             </div>
           </div>
           <div class="slide">
-            <img alt="Image 3" />
-            <div class="slide-caption">
-              <h2>Design Your World,<br />One Click at a Time</h2>
-            </div>
-          </div>
-          <div class="slide">
-            <img alt="Image 3" />
-            <div class="slide-caption">
-              <h2>Share Your Vision,<br />Express Your Style</h2>
-            </div>
-          </div>
-          <div class="slide">
-            <img alt="Image 4" />
-            <div class="slide-caption">
-              <h2>Share Your Vision,<br />Express Your Style</h2>
-            </div>
-          </div>
-          <div class="slide">
-            <img alt="Image 5" />
+            <img src="/assets/images/signup/quote.PNG" alt="Image 3" />
             <div class="slide-caption">
               <h2>Design Your World,<br />One Click at a Time</h2>
             </div>
@@ -80,18 +50,11 @@ const slideImages = [
           <span class="dot active" data-index="0"></span>
           <span class="dot" data-index="1"></span>
           <span class="dot" data-index="2"></span>
-          <span class="dot" data-index="3"></span>
-          <span class="dot" data-index="4"></span>
-          <span class="dot" data-index="5"></span>
         </div>
       </div>
     </div>
 
     <div class="signup-right">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-        <SunIcon id="theme-icon-sun" width={24} height={24} />
-        <MoonIcon id="theme-icon-moon" width={24} height={24} />
-      </button>
       <div class="form-container">
         <h1>Welcome back!</h1>
         <p class="signup-text">Don't have an account? <a href="/signup" class="signup-link">Sign up</a></p>
@@ -109,7 +72,7 @@ const slideImages = [
           </div>
 
           <div class="forgot-password" style="text-align: right; margin-top: 0.5rem; margin-bottom: 1rem;">
-            <a href="/forgot-password" class="terms-link">Forgot password?</a>
+            <a href="/coming-soon" class="terms-link">Forgot password?</a>
           </div>
 
           <button type="submit" class="create-account-btn">Log in</button>
@@ -135,16 +98,6 @@ const slideImages = [
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const slideImages = [
-      { dark: "/assets/images/screenshots/capital.PNG", light: "/assets/images/screenshots/capitalLight.png" },
-      { dark: "/assets/images/screenshots/colors.PNG", light: "/assets/images/screenshots/colorsLight.png" },
-      { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
-      { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
-      { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
-      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" }
-    ];
-    const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
-    const sliderWrapper = document.getElementById("slider-wrapper");
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     let currentSlide = 0;
@@ -194,42 +147,8 @@ const slideImages = [
       loginForm.addEventListener("submit", function (event) {
         event.preventDefault();
         alert("Login successful!");
-        window.location.href = "/dashboard";
+        window.location.href = "/about";
       });
     }
-
-    type Theme = "light" | "dark";
-    const themeToggleButton = document.getElementById("theme-toggle");
-
-    const updateSliderImages = (theme: Theme) => {
-      imageElements.forEach((imgElement, index) => {
-        if (slideImages[index]) {
-          imgElement.src = slideImages[index][theme];
-        }
-      });
-    };
-
-    const applyTheme = (theme: Theme) => {
-      document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
-      updateSliderImages(theme);
-      if (sliderWrapper) sliderWrapper.style.opacity = "1";
-    };
-
-    const savedTheme = localStorage.getItem("theme") as Theme | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (savedTheme) {
-      applyTheme(savedTheme);
-    } else if (prefersDark) {
-      applyTheme("dark");
-    } else {
-      applyTheme("light");
-    }
-
-    themeToggleButton?.addEventListener("click", () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme") as Theme;
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      applyTheme(newTheme);
-    });
   });
 </script>
