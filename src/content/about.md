@@ -1,28 +1,23 @@
 # About Us
 
+At **abcdkbd**, we transform education into captivating adventures that ignite young minds. Our interactive platform takes children on an unforgettable journey through letters, words, and diverse cultures.
+
 ## 🎯 Helping Children Learn, Play, and Grow
 
-We’re building a fun, engaging, and interactive learning platform  
-designed especially for elementary school children to explore,  
-understand, and love the world of letters, numbers, and basic concepts.
+We’re building a fun, engaging, and interactive learning platform designed especially for elementary school children to explore, understand, and love the world of letters, numbers, and basic concepts.
 
 ---
 
 ## 🚀 Our Mission
 
-To make early education joyful and accessible using simple,  
-child-friendly digital tools that inspire curiosity, creativity,  
-and confidence.
+To make early education joyful and accessible using simple, child-friendly digital tools that inspire curiosity, creativity, and confidence.
 
 ---
 
 ## 👨‍🏫 Who We Are
 
-We are a passionate group of educators, designers, and developers  
-who believe learning should be playful, meaningful, and rooted in  
-real understanding. Based in India, we aim to support teachers,  
-parents, and schools by providing high-quality,  
-curriculum-aligned educational content.
+We are a passionate group of educators, designers, and developers who believe learning should be playful, meaningful, and rooted in real understanding.
+Based in India, we aim to support teachers, parents, and schools by providing high-quality,curriculum-aligned educational content.
 
 ---
 
@@ -32,7 +27,7 @@ curriculum-aligned educational content.
 - Simple math & reading practice
 - Interactive storytelling
 - Coloring & memory activities
-- Multilingual (English + Hindi) word learning
+- Multilingual elementary learning
 - No distractions – ad-free, safe environment
 
 ---
@@ -44,17 +39,6 @@ curriculum-aligned educational content.
 - Works on mobile and desktop
 - Offline access available
 - Trusted by teachers and parents
-
----
-
-## 👩‍💻 Meet Our Team
-
-**Keshav Mohta** – Product Architect & Lead Developer  
-**[Name]** – Early Childhood Educator  
-**[Name]** – Illustrator & UI Designer  
-**[Name]** – Curriculum Advisor
-
-We bring together tech and teaching to build tools that really help.
 
 ---
 
@@ -71,7 +55,6 @@ We bring together tech and teaching to build tools that really help.
 ## Contact
 
 We’d love to hear from you! Please reach out to us at .
-
 We’re always looking to collaborate with educators and contributors  
 who believe in the power of playful learning. Got feedback or ideas?  
-👉 **[Get in touch with us →](#contact)**
+👉 **Get in touch with us → [abcdkbd@outlook.com](mailto:abcdkbd@outlook.com)**
