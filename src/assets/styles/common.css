@@ -26,7 +26,7 @@
 
 .link__active,
 .text__active {
-  color: hsl(from blue 80 10 10)
+  color: hsl(from blue 80 10 10);
 }
 
 .content {

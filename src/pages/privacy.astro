@@ -1,8 +1,14 @@
 ---
+import { Content } from "@/content/PRIVACY.md";
 import BaseLayout from "@/layouts/Base";
-import TitleLayout from "@/layouts/TitleLayout";
 ---
 
+<style is:inline>
+  article {
+    padding: 1rem 2rem;
+  }
+</style>
+
 <BaseLayout meta={{ title: "Privacy Policy" }}>
-  <TitleLayout title="Privacy Policy" />
+  <article><Content /></article>
 </BaseLayout>
