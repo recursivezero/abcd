@@ -45,13 +45,12 @@
   padding: 0.5rem 1rem;
   background-color: var(--bg-tertiary);
   color: var(--text-secondary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--primary);
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.2s ease;
-  border-style: solid;
 }
 
 .footer-theme-toggle:hover {
@@ -167,7 +166,6 @@
 @media (prefers-color-scheme: dark) {
   .footer__nav {
     color: #6b7280;
-    /* text-gray-500 */
   }
 }
 
@@ -179,13 +177,11 @@
 
 .footer__nav--item:hover {
   color: #3b82f6;
-  /* blue-500 */
 }
 
 @media (prefers-color-scheme: dark) {
   .footer__nav--item:hover {
     color: #60a5fa;
-    /* blue-400 */
   }
 }
 

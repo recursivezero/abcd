@@ -1,8 +1,14 @@
 ---
+import { Content } from "@/content/terms-and-conditions.md";
 import BaseLayout from "@/layouts/Base";
-import TitleLayout from "@/layouts/TitleLayout";
 ---
 
+<style is:inline>
+  article {
+    padding: 1rem 2rem;
+  }
+</style>
+
 <BaseLayout meta={{ title: "Terms and Condition" }}>
-  <TitleLayout title="Terms and Conditions" />
+  <article><Content /></article>
 </BaseLayout>

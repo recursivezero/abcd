@@ -146,6 +146,7 @@
     "prettier.trailingComma": "none",
     "scss.lint.emptyRules": "ignore",
     "search.exclude": {
+      ".github/**": true,
       "dist/**": true,
       "package-lock.json": true
     },
