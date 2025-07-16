@@ -1,3 +1,8 @@
+import { ACTION_DATASETS } from "@/mappers/actions";
+import { PROFESSION_DATASETS } from "@/mappers/profession";
+import { VEHICLE_DATASETS } from "@/mappers/vehicles";
+import type { AlphabetDataset } from "@/types/alphabet";
+
 /** Body Parts */
 const bodyPartData = [
   { letter: "A", text: "Arm", description: "Arm (Upper limb)", emoji: "💪" },
@@ -38,22 +43,6 @@ export const BODYPART_DATASETS: AlphabetDataset = {
     ...item
   }))
 };
-
-type DataType = {
-  id: string | number;
-  code: string | number;
-  letter: string;
-  description: string;
-  text: string;
-  [key: string]: any;
-};
-
-interface AlphabetDataset {
-  category: string;
-  description: string;
-  icon: string;
-  data: Array<DataType>;
-}
 
 const animalData = [
   { letter: "A", description: "A animal lives in water", text: "Alligator" },
@@ -942,7 +931,10 @@ export const DATASET: { [key: string]: AlphabetDataset } = {
   fruits: FRUITS_DATASETS,
   flowers: FLOWER_DATASETS,
   colors: COLORS_DATASETS,
-  body: BODYPART_DATASETS
+  body: BODYPART_DATASETS,
+  vehicles: VEHICLE_DATASETS,
+  profession: PROFESSION_DATASETS,
+  actions: ACTION_DATASETS
 };
 
 export type AlphabetsData = typeof DATASET;
