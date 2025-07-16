@@ -1,0 +1,154 @@
+---
+import "@/assets/styles/signup.css";
+import GoogleIcon from "@/assets/icons/google.svg";
+import EyeIcon from "@/assets/icons/eye.svg";
+import XIcon from "@/assets/icons/x.svg";
+import LogoImage from "@/assets/images/ABCD.png";
+import { Image } from "astro:assets";
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In to Your Account</title>
+</head>
+<body>
+  <div class="signup-container">
+    <div class="signup-left">
+      <div class="signup-header">
+        <div class="logo">
+          <Image src={LogoImage} alt="Logo" width={50} height={50} loading="eager" />
+        </div>
+        <a href="/" class="back-link">
+          Back to website <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="slider-container">
+        <div class="slider">
+          <div class="slide active">
+            <img src="/assets/images/signup/capital.PNG" alt="Image 1" />
+            <div class="slide-caption">
+              <h2>Capturing Moments,<br />Creating Memories</h2>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="/assets/images/signup/colors.PNG" alt="Image 2" />
+            <div class="slide-caption">
+              <h2>Share Your Vision,<br />Express Your Style</h2>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="/assets/images/signup/quote.PNG" alt="Image 3" />
+            <div class="slide-caption">
+              <h2>Design Your World,<br />One Click at a Time</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="signup-right">
+      <div class="form-container">
+        <h1>Welcome back!</h1>
+        <p class="signup-text">Don't have an account? <a href="/signup" class="signup-link">Sign up</a></p>
+
+        <form class="signup-form">
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+
+          <div class="input-group password-group">
+            <input type="password" id="password" placeholder="Enter your password" required />
+            <button type="button" class="toggle-password">
+              <EyeIcon />
+            </button>
+          </div>
+
+          <div class="forgot-password" style="text-align: right; margin-top: 0.5rem; margin-bottom: 1rem;">
+            <a href="/coming-soon" class="terms-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="create-account-btn">Log in</button>
+
+          <div class="divider">
+            <span>Or log in with</span>
+          </div>
+          <div class="social-buttons">
+            <button type="button" class="google-btn">
+              <GoogleIcon />
+              Google
+            </button>
+            <button type="button" class="X-btn">
+              <XIcon />
+              X
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    let currentSlide = 0;
+    let slideInterval: number | undefined;
+
+    function startSlider(): void {
+      slideInterval = window.setInterval(nextSlide, 5000);
+    }
+
+    function showSlide(index: number): void {
+      slides.forEach((slide) => slide.classList.remove("active"));
+      dots.forEach((dot) => dot.classList.remove("active"));
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add("active");
+      dots[currentSlide].classList.add("active");
+    }
+
+    function nextSlide(): void {
+      showSlide(currentSlide + 1);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        if (slideInterval) {
+          clearInterval(slideInterval);
+        }
+        showSlide(index);
+        startSlider();
+      });
+    });
+
+    showSlide(0);
+    startSlider();
+
+    const togglePasswordBtn = document.querySelector(".toggle-password");
+    const passwordInput = document.getElementById("password") as HTMLInputElement | null;
+
+    if (togglePasswordBtn && passwordInput) {
+      togglePasswordBtn.addEventListener("click", function () {
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput.setAttribute("type", type);
+      });
+    }
+
+    const loginForm = document.querySelector(".signup-form");
+    if (loginForm) {
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        alert("Login successful!");
+        window.location.href = "/about";
+      });
+    }
+  });
+</script>
