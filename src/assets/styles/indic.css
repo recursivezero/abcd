@@ -95,7 +95,7 @@
     border: 2px solid rgba(125, 211, 252, 0.3);
     border-radius: 0.75rem;
     background: linear-gradient(145deg, #1d4ed8, #123085);
-    color: light-dark (black, white);
+    color: light-dark(black, white);
     cursor: pointer;
     appearance: base-select;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -160,7 +160,7 @@
 }
 
 .toggle-button {
-  background: light-dark (var(--navy-blue), var(--text-primary));
+  background: light-dark(var(--navy-blue), var(--text-primary));
   border: 1px solid rgba(125, 211, 252, 0.3);
   border-radius: 0.75rem;
   width: 48px;
@@ -170,7 +170,7 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: light-dark (black, white);
+  color: light-dark(black, white);
   font-size: 1.5rem;
   margin: 0 0.5rem;
   align-self: center;
@@ -181,7 +181,7 @@
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
   &:hover {
-    background: light-dark (var(--navy-blue), var(--text-primary));
+    background: light-dark(var(--navy-blue), var(--text-primary));
     transform: scale(1.1);
     border-color: #7dd3fc;
     box-shadow:

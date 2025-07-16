@@ -168,7 +168,6 @@ import MobileSplash from "@/components/MobileSplash.astro";
     #emitEvent() {
       document.addEventListener("keyup", (e: KeyboardEvent) => {
         const { charCode, code, keyCode, key } = e;
-        console.log({ charCode, code, keyCode, key });
         this.onKeyChange(keyCode);
       });
 

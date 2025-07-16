@@ -21,7 +21,7 @@ const { appName } = Astro.props;
   </div>
   <div class="hero-bubbles">
     {
-      ["A", "B", "C", "D", "1", "2", "🎈", "📚", "🌈"].map((char, i) => (
+      ["A", "B", "C", "D", "1", "2", "3", "🎈", "📚", "🌈"].map((char, i) => (
         <span class="bubble" style={`--i: ${i}; --size: ${Math.random() * 2 + 1}rem;`} aria-hidden="true">
           {char}
         </span>

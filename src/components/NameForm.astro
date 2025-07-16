@@ -48,7 +48,6 @@ import "@/assets/styles/nameform.css";
 
   formDialog.addEventListener("close", () => {
     const rv = formDialog.returnValue;
-    console.log({ rv });
     outputBox.value = rv === "default" ? "No return value." : rv;
   });
 </script>
