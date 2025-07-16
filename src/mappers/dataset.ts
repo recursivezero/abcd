@@ -1,5 +1,6 @@
 import { ACTION_DATASETS } from "@/mappers/actions";
 import { PROFESSION_DATASETS } from "@/mappers/profession";
+import { TOY_DATASETS } from "@/mappers/toys";
 import { VEHICLE_DATASETS } from "@/mappers/vehicles";
 import type { AlphabetDataset } from "@/types/alphabet";
 
@@ -925,7 +926,7 @@ export const DATASET: { [key: string]: AlphabetDataset } = {
   greek: GREEK_DATASETS,
   morse: MORSE_DATASETS,
   countries: COUNTRIES_DATASETS,
-  geek: GEEK_DATASETS,
+  toys: TOY_DATASETS,
   animals: ANIMAL_DATASETS,
   birds: BIRDS_DATASETS,
   fruits: FRUITS_DATASETS,
