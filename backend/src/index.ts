@@ -3,18 +3,23 @@ import { swaggerUI } from '@hono/swagger-ui'
 import { serve } from "@hono/node-server";
 import {connectDB} from './config/db'
 import userRoutes from './routes/userRoutes'
+import subscriptionRouter from './routes/subscriptionRoutes';
 import dotenv from 'dotenv'
+import {cors } from "hono/cors";
 
 dotenv.config();
 
+
 const app = new OpenAPIHono();
+app.use(cors());
 
 app.route('/', userRoutes);
+app.route('/', subscriptionRouter);
 app.doc('/openapi.json', {
   openapi: '3.0.0',
   info: {
-    title: 'User API',
-    version: '1.0.0',
+    title: 'User APIs & Subscription APIs',
+    version: '1.1.0',
   },
   components: {
     securitySchemes: {

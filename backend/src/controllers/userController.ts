@@ -83,3 +83,147 @@ export const toggleStatus = async (c: Context) => {
         return c.json({ error: 'Error toggling status' }, 500);
     }
 }
+
+
+export const builkUsersAdd = async (c: Context) => {
+  try {
+    const users = await c.req.json();
+    if (!Array.isArray(users) || users.length === 0) {
+      return c.json({ message: "Users not found" }, 400);
+    }
+    //hashed pass
+    const hashedUsers = await Promise.all(users.map(async (user) => {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      return {
+        ...user,
+        password: hashedPassword,
+      };
+    }));
+
+    const result = await User.insertMany(hashedUsers, { ordered: false });
+    return c.json({ message: "Users created successfully", users: result }, 201);
+  } catch (err) {
+    return c.json({ message: "Server error", error: err }, 500);
+  }
+}
+
+export const getPaginatedUsers = async (c: Context) => {
+    try {
+        const pageNumber = parseInt(c.req.query('pn') || '1', 10) == 0 ? 1 : parseInt(c.req.query('pn') || '1', 10);
+        const pageSize = parseInt(c.req.query('ps') || '5', 10) == 0 ? 1 : parseInt(c.req.query('ps') || '5', 10);
+
+        if (isNaN(pageNumber) || isNaN(pageSize)) {
+            return c.json({ message: 'Page number and size must be valid numbers' }, 400);
+        }
+    
+
+        const skip = (pageNumber - 1) * pageSize;
+        
+        const [users, total] = await Promise.all([
+            User.find().skip(skip).limit(pageSize),
+            User.countDocuments()
+        ]);
+        if (skip >= total) {
+            return c.json({
+              message: "Page number exceeds available data.",
+              users: [],
+              total,
+              pageNumber,
+              pageSize
+            }, 400); 
+          }
+
+
+        return c.json({
+            users,
+            pagination: {
+                page: pageNumber,
+                pageSize,
+                totalUsers: total,
+                totalPages: Math.ceil(total / pageSize)
+            }
+        });
+    } catch (err) {
+        return c.json({ error: 'Failed to get paginated users', details: err }, 500);
+    }
+}
+
+const parseDate = (dateStr: string): Date | null => {
+    let d = new Date(dateStr);
+    if (!isNaN(d.getTime())) return d;
+    const match = dateStr.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+    if (match) {
+        const [_, dd, mm, yyyy] = match;
+        d = new Date(`${yyyy}-${mm}-${dd}T00:00:00.000Z`);
+        if (!isNaN(d.getTime())) return d;
+    }
+    return null;
+}
+
+const parseDay = (from: string) => {
+    const days = parseInt(from, 10);
+    const fromDate = new Date();
+    fromDate.setDate(fromDate.getDate() - days);
+    return fromDate;
+}
+
+export const getUsersByTimeRange = async (c: Context) => {
+    try {
+        const from = c.req.query('from');
+        const to = c.req.query('to') || new Date().toISOString();
+        if (!from || !to) {
+            return c.json({ message: 'Both from and to query parameters are required.' }, 400);
+        }
+        const fromDate = /^\d+$/.test(from) ? parseDay(from) : parseDate(from);
+        const toDate = parseDate(to);
+        if (!fromDate || !toDate) {
+            return c.json({ message: 'Invalid date format for from or to. Use DD-MM-YYYY or ISO.' }, 400);
+        }
+        if (fromDate > toDate) {
+            return c.json({ message: 'From date must be before to date.' }, 400);
+        }
+        const users = await User.find({
+            'timestamp.createdOn': {
+                $gte: fromDate,
+                $lte: toDate
+            }
+        }).sort({ 'timestamp.createdOn': 1 });
+        return c.json({ users, from: fromDate, to: toDate }, 200);
+    } catch (err) {
+        return c.json({ error: 'Failed to get users by time range', details: err }, 500);
+    }
+}
+
+export const getUsersSince = async (c: Context, since: string) => {
+    try {
+        const sinceDate = /^\d+$/.test(since) ? parseDay(since) : parseDate(since);
+        if (!sinceDate) {
+            return c.json({ message: 'Invalid date format for since. Use DD-MM-YYYY, ISO, or a number for days.' }, 400);
+        }
+        const users = await User.find({ 'timestamp.createdOn': { $gte: sinceDate } }).sort({ 'timestamp.createdOn': 1 });
+        return c.json({ users, since: sinceDate }, 200);
+    } catch (err){ 
+        return c.json({message:"Server Error", error: err}, 500);
+    }
+}
+
+export const queryUsers = async (c: Context) => {
+    try {
+        const { from, to, since, pn, ps } = c.req.query();
+        console.log(from, to, since, pn, ps);
+        // Paginated (pn or ps present)
+        if (pn || ps) {
+            return await getPaginatedUsers(c);
+        }
+        else if (from || to) {    // Time range (from and to present)
+            return await getUsersByTimeRange(c);
+        }
+        else if (since) { // Since (since present)
+            return await getUsersSince(c, since);
+        }
+        // Default: all users
+        return await getAllUsers(c);
+    } catch (err) {
+        return c.json({ error: 'Query failed', details: err }, 500);
+    }
+}

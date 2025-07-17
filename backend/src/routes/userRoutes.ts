@@ -22,12 +22,15 @@ import {
   toggleStatus,
   updateUser,
   userDelete,
+  builkUsersAdd,
+  queryUsers
 } from '../controllers/userController';
 import {
   createUserSchema,
   updateUserSchema,
 } from '../validators/userSchema';
 import { authMiddleware } from '../middleware/authMiddleware';
+// import { zValidator } from '@hono/zod-validator';
 
 const userRouter = new OpenAPIHono();
 
@@ -66,7 +69,38 @@ userRouter.openapi(
     tags: ['User'],
     security: [{ bearerAuth: [] }],
   },
-  withAuth(addUser)
+  // withAuth(addUser),
+  addUser
+);
+
+// 🔁 POST /users/add
+userRouter.openapi(
+  {
+  method: 'post',
+  path:'/users/bulk',
+  request: {
+    body: {
+      content: {
+        'application/json': {
+          schema: createUserSchema,
+        },
+      },
+    },
+  },
+  responses: {
+    201: {
+      description: 'Users created successfully',
+    },
+    401: {
+      description: 'Unauthorized',
+    },
+  },
+  summary: 'Create a new users',
+  tags: ['User'],
+  security: [{ bearerAuth: [] }],
+},
+// withAuth(builkUsersAdd),
+builkUsersAdd
 );
 
 // 🔁 PUT /user/update/:_id
@@ -124,6 +158,7 @@ userRouter.openapi(
     security: [{ bearerAuth: [] }],
   },
   withAuth(getUser)
+  // getUser
 );
 
 // 🔁 GET /users
@@ -143,7 +178,41 @@ userRouter.openapi(
     tags: ['User'],
     security: [{ bearerAuth: [] }],
   },
-  withAuth(getAllUsers)
+  // withAuth(getAllUsers)
+  getAllUsers
+);
+
+// 🔁 GET /users/query
+userRouter.openapi(
+  {
+    method: 'get',
+    path: '/users/query',
+    request: {
+      query: z.object({
+        from: z.string().optional().openapi({ example: '01-09-2024', description: 'Start date (DD-MM-YYYY, ISO, or days ago as number)' }),
+        to: z.string().optional().openapi({ example: '10-09-2024', description: 'End date (DD-MM-YYYY, ISO, or days ago as number)' }),
+        since: z.string().optional().openapi({ example: '7', description: 'Since date (DD-MM-YYYY, ISO, or days ago as number, e.g., since=7 for last 7 days)' }),
+        pn: z.string().optional().openapi({ example: '1', description: 'Page number (for pagination)' }),
+        ps: z.string().optional().openapi({ example: '5', description: 'Page size (for pagination)' })
+      })
+    },
+    responses: {
+      200: {
+        description: 'Users fetched by query',
+      },
+      400: {
+        description: 'Invalid or missing parameters',
+      },
+      401: {
+        description: 'Unauthorized',
+      },
+    },
+    summary: 'Unified user query (pagination, time range, since, all)',
+    tags: ['User'],
+    security: [{ bearerAuth: [] }],
+  },
+  // withAuth(queryUsers)
+  queryUsers
 );
 
 // 🔁 PATCH /user/status/:_id
@@ -193,7 +262,8 @@ userRouter.openapi(
     tags: ['User'],
     security: [{ bearerAuth: [] }],
   },
-  withAuth(userDelete)
+  // withAuth(userDelete)
+  userDelete
 );
 
 export default userRouter;
