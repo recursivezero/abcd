@@ -3,10 +3,10 @@ import "@/assets/styles/signup.css";
 import GoogleIcon from "@/assets/icons/google.svg";
 import EyeIcon from "@/assets/icons/eye.svg";
 import XIcon from "@/assets/icons/x.svg";
-import LogoImage from "@/assets/images/ABCD.png";
+import logoImage from "/public/assets/images/512x512.png";
+import { Picture } from "astro:assets";
 import SunIcon from "@/assets/icons/sun.svg";
 import MoonIcon from "@/assets/icons/moon.svg";
-import { Image } from "astro:assets";
 ---
 
 <head>
@@ -19,31 +19,49 @@ import { Image } from "astro:assets";
     <div class="signup-left">
       <div class="signup-header">
         <div class="logo">
-          <Image src={LogoImage} alt="Logo" width={50} height={50} loading="eager" />
+          <Picture src={logoImage} formats={["png", "webp"]} alt="template logo" height = {50} width = {50} class="logo" />
         </div>
         <a href="/" class="back-link">
           Back to website <span class="arrow">→</span>
         </a>
       </div>
 
-      <div class="slider-container">
+      <div class="slider-container" id="slider-wrapper">
         <div class="slider">
           <div class="slide active">
-            <img src="/assets/images/signup/capital.PNG" alt="Image 1" />
+            <img alt="Image 1" />
             <div class="slide-caption">
               <h2>Capturing Moments,<br />Creating Memories</h2>
             </div>
           </div>
           <div class="slide">
-            <img src="/assets/images/signup/colors.PNG" alt="Image 2" />
+            <img alt="Image 2" />
             <div class="slide-caption">
               <h2>Share Your Vision,<br />Express Your Style</h2>
             </div>
           </div>
           <div class="slide">
-            <img src="/assets/images/signup/quote.PNG" alt="Image 3" />
+            <img alt="Image 3" />
             <div class="slide-caption">
               <h2>Design Your World,<br />One Click at a Time</h2>
+            </div>
+          </div>
+          <div class="slide">
+            <img alt="Image 3" />
+            <div class="slide-caption">
+              <h2>Share Your Vision,<br />Express Your Style</h2>
+            </div>
+          </div>
+          <div class="slide">
+            <img alt="Image 4" />
+            <div class="slide-caption">
+              <h2>Share Your Vision,<br />Express Your Style</h2>
+            </div>
+          </div>
+          <div class="slide">
+            <img alt="Image 5" />
+            <div class="slide-caption">
+              <h2>Share Your Vision,<br />Express Your Style</h2>
             </div>
           </div>
         </div>
@@ -52,6 +70,9 @@ import { Image } from "astro:assets";
           <span class="dot active" data-index="0"></span>
           <span class="dot" data-index="1"></span>
           <span class="dot" data-index="2"></span>
+          <span class="dot" data-index="3"></span>
+          <span class="dot" data-index="4"></span>
+          <span class="dot" data-index="5"></span>
         </div>
       </div>
     </div>
@@ -114,6 +135,17 @@ import { Image } from "astro:assets";
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    const slideImages = [
+      { dark: "/assets/images/screenshots/capital.PNG", light: "/assets/images/screenshots/capitalLight.png" },
+      { dark: "/assets/images/screenshots/colors.PNG",  light: "/assets/images/screenshots/colorsLight.png" },
+      { dark: "/assets/images/screenshots/quote.PNG",   light: "/assets/images/screenshots/quoteLight.png" },
+      { dark: "/assets/images/screenshots/story.png",  light: "/assets/images/screenshots/storyLight.png" },
+      { dark: "/assets/images/screenshots/map.png",  light: "/assets/images/screenshots/mapLight.png" },
+      { dark: "/assets/images/screenshots/varnmala.png",  light: "/assets/images/screenshots/varnmalaLight.png" }
+    ];
+    const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
+    const sliderWrapper = document.getElementById("slider-wrapper");
+
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     let currentSlide = 0;
@@ -158,26 +190,36 @@ import { Image } from "astro:assets";
       });
     }
 
-    const url = "/";
     const signupForm = document.querySelector(".signup-form");
     if (signupForm) {
       signupForm.addEventListener("submit", function (event) {
         event.preventDefault();
         alert("Account created successfully!");
-        window.location.href = url;
+        window.location.href = "/dashboard";
       });
     }
 
+    type Theme = "light" | "dark";
     const themeToggleButton = document.getElementById("theme-toggle");
 
-    const applyTheme = (theme: "light" | "dark") => {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
+    const updateSliderImages = (theme: Theme) => {
+      imageElements.forEach((imgElement, index) => {
+        if (slideImages[index]) {
+          imgElement.src = slideImages[index][theme];
+        }
+      });
     };
 
-    const savedTheme = localStorage.getItem("theme");
+    const applyTheme = (theme: Theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateSliderImages(theme);
+      if (sliderWrapper) sliderWrapper.style.opacity = '1';
+    };
+
+    const savedTheme = localStorage.getItem("theme") as Theme | null;
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (savedTheme === "dark" || savedTheme === "light") {
+    if (savedTheme) {
       applyTheme(savedTheme);
     } else if (prefersDark) {
       applyTheme("dark");
@@ -186,7 +228,7 @@ import { Image } from "astro:assets";
     }
 
     themeToggleButton?.addEventListener("click", () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const currentTheme = document.documentElement.getAttribute("data-theme") as Theme;
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       applyTheme(newTheme);
     });
