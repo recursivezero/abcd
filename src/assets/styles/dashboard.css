@@ -1,12 +1,12 @@
 :root {
-  --background: #221f2e;
-  --background-secondary: #4a455b;
-  --text-primary: #eeeff1;
-  --text-secondary: #a3a1a8;
-  --primary: #7b5ede;
-  --primary-hover: #6a4ecc;
-  --border: rgba(255, 255, 255, 0.1);
-  --header-h: 60px;
+  --dashboard-bg: #4a455b;
+  --dashboard-text: #eeeff1;
+  --dashboard-card-bg: #221f2e;
+  --dashboard-card-shadow: rgba(0, 0, 0, 0.1);
+  --dashboard-accent: #7b5ede;
+  --dashboard-button-bg: #7b5ede;
+  --dashboard-button-text: white;
+  --dashboard-button-hover-bg: #6a4ecc;
 }
 
 * {
@@ -17,24 +17,20 @@
 }
 
 body {
-  background-color: var(--background-secondary);
-  color: var(--text-primary);
-}
-
-main.dashboard-page {
+  background-color: var(--dashboard-bg);
+  color: var(--dashboard-text);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - var(--header-h));
+  min-height: 100vh;
   padding: 1rem;
 }
 
 .dashboard-container {
-  background-color: var(--background);
+  background-color: var(--dashboard-card-bg);
   padding: 3rem;
   border-radius: 16px;
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px var(--dashboard-card-shadow);
   text-align: center;
   max-width: 600px;
   width: 100%;
@@ -44,19 +40,17 @@ main.dashboard-page {
   font-size: 2.5rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: var(--text-primary);
 }
 
 .dashboard-info {
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
   line-height: 1.6;
-  color: var(--text-secondary);
 }
 
-.dashboard-action-btn {
-  background-color: var(--primary);
-  color: white;
+.logout-btn {
+  background-color: var(--dashboard-button-bg);
+  color: var(--dashboard-button-text);
   border: none;
   border-radius: 8px;
   padding: 1rem 2rem;
@@ -66,23 +60,6 @@ main.dashboard-page {
   transition: background-color 0.3s;
 }
 
-.dashboard-action-btn:hover {
-  background-color: var(--primary-hover);
-}
-
-.header-logout-btn {
-  color: var(--text-primary);
-  background-color: rgba(255, 255, 255, 0.1);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.2s ease;
-}
-
-.header-logout-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.logout-btn:hover {
+  background-color: var(--dashboard-button-hover-bg);
 }
