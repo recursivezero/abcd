@@ -73,11 +73,11 @@ userRouter.openapi(
   addUser
 );
 
-// 🔁 POST /users/add
+// 🔁 POST /users/builk
 userRouter.openapi(
   {
   method: 'post',
-  path:'/users/bulk',
+  path:'/users/builk',
   request: {
     body: {
       content: {
@@ -95,7 +95,7 @@ userRouter.openapi(
       description: 'Unauthorized',
     },
   },
-  summary: 'Create a new users',
+  summary: 'Create new users',
   tags: ['User'],
   security: [{ bearerAuth: [] }],
 },
