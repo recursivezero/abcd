@@ -10,3 +10,46 @@
   padding: 1rem;
   outline-offset: 0.5rem;
 }
+
+/* Utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.link__active,
+.text__active {
+  color: hsl(from blue 80 10 10);
+}
+
+.content {
+  min-height: 100vh;
+}
+
+.layout {
+  height: fit-content;
+  max-height: 100dvh;
+}
+
+.txt__center {
+  text-align: center;
+}
+
+.hide {
+  content-visibility: hidden;
+}
+
+::disabled {
+  pointer-events: none;
+}
+
+.no__link {
+  text-decoration: none;
+}

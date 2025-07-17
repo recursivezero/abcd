@@ -6,9 +6,11 @@ import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import ZodiacGrid from "@/components/ZodiacGrid.astro";
+import MobileSplash from "@/components/MobileSplash.astro";
 ---
 
 <BaseLayout meta={{ title: "Nakshtra Nexus" }}>
+  <MobileSplash stay={true} />
   <Back />
   <Fragment slot="header-right">
     <SharePopover />
@@ -70,10 +72,12 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
             zodiacs.forEach((zodiac, i) => {
               const card = document.createElement("div");
               card.className = "card";
+              // Add the data-index to the card itself
+              card.setAttribute("data-index", String(i));
               card.innerHTML = `
               <h3>${zodiac.name[currentLang as keyof Language]}</h3>
               <p>${zodiac.dates[currentLang as keyof Language]}</p>
-              <button class="info-btn" title="Show Info" data-index="${i}">
+              <button class="info-btn" title="Show Info">
                 <span class="icon">🔍</span>
               </button>
             `;
@@ -105,9 +109,9 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
             renderCards();
           });
           zodiacsGrid.addEventListener("click", (e: any) => {
-            const btn = e.target.closest(".info-btn");
-            if (btn) {
-              const idx = btn.getAttribute("data-index");
+            const card = e.target.closest(".card");
+            if (card) {
+              const idx = card.getAttribute("data-index");
               openModal(Number(idx));
             }
           });

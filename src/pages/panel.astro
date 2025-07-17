@@ -12,7 +12,7 @@ import MobileSplash from "@/components/MobileSplash.astro";
 
 <BaseLayout meta={{ title: "Panel" }}>
   <Back />
-  <MobileSplash />
+  <MobileSplash stay={true} />
   <Fragment slot="header-right">
     <div class="right-header-buttons">
       <div class="settings-button-container">
@@ -168,7 +168,6 @@ import MobileSplash from "@/components/MobileSplash.astro";
     #emitEvent() {
       document.addEventListener("keyup", (e: KeyboardEvent) => {
         const { charCode, code, keyCode, key } = e;
-        console.log({ charCode, code, keyCode, key });
         this.onKeyChange(keyCode);
       });
 

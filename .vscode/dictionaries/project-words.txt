@@ -23,6 +23,7 @@ Deepavali
 dhaga
 Dhaivat
 dogri
+DPDP
 Dussehra
 ensurepip
 fontsource
@@ -40,6 +41,7 @@ Jaati
 Jayanti
 jsonify
 Jyeshtha
+Karnataka
 Kartika
 kmeans
 Kolkata

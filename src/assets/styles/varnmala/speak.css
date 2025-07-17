@@ -100,7 +100,7 @@
     text-align: center;
     margin: 0;
     padding: 0;
-    color: var(--letter__txt--2);
+    color: black;
     transition: color 0.5s ease-in;
   }
 

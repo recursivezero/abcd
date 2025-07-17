@@ -1,12 +1,12 @@
 ---
 import "@/assets/styles/tile.css";
 import BackButton from "@/components/BackButton.astro";
+import Help from "@/components/Help.astro";
 import LetterCard from "@/components/LetterCard.astro";
+import SharePopover from "@/components/ShareButton.astro";
 import glossaryData from "@/data/numbers.json";
 import BaseLayout from "@/layouts/Base";
-import type { AlphabetEntry } from "@/types/alphabet";
-import Help from "@/components/Help.astro";
-import SharePopover from "@/components/ShareButton.astro";
+import type { AlphabetDataItem } from "@/types/alphabet";
 
 export async function getStaticPaths() {
   return Object.keys(glossaryData).map((value) => ({
@@ -36,7 +36,7 @@ if (!categoryData) {
     </div>
     <div class="page__content">
       <div class="page__grid">
-        {data.map((entry: AlphabetEntry) => <LetterCard item={entry} category={category} />)}
+        {data.map((entry: AlphabetDataItem) => <LetterCard item={entry} category={category} />)}
       </div>
     </div>
   </div>

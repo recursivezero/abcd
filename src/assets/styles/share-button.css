@@ -51,7 +51,7 @@
   transform: translateX(-50%);
   margin-top: 22px;
   padding: 4px 8px;
-  color: white;
+  color: var(--text);
   border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 500;

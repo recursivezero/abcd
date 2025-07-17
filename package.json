@@ -1,6 +1,6 @@
 {
   "name": "@recursivezero/abcd",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "A website for our kids trial phase of abcdkbd.com",
   "homepage": "https://parixan.xyz",
   "displayName": "abcd",
@@ -27,43 +27,69 @@
   "contributors": [
     {
       "name": "Keshav Mohta",
-      "email": "xkeshav@gmail.com"
+      "email": "xkeshav@gmail.com",
+      "github": "xkeshav",
+      "role": "UI Engineer"
     },
     {
       "name": "Aditya Kumar Singh",
-      "email": "adityakumarsingh710@gmail.com"
+      "email": "adityakumarsingh710@gmail.com",
+      "github": "adityasingh-7",
+      "role": "UI Engineer"
     },
     {
       "name": "Vansh Raj",
-      "email": "ciphrox@gmail.com"
+      "email": "ciphrox@gmail.com",
+      "github": "ciphrox",
+      "role": "UI Engineer"
     },
     {
       "name": "Vamil Porwal",
-      "email": "vamililporwal@gmail.com"
+      "email": "vamililporwal@gmail.com",
+      "github": "vamilP",
+      "role": "UI Engineer"
     },
     {
       "name": "Ayush Tyagi",
-      "email": "aytyagi.btech2023@iujaipur.edu.in"
+      "email": "aytyagi.btech2023@iujaipur.edu.in",
+      "github": "ayu-ty",
+      "role": "UI Engineer"
     },
     {
       "name": "Azmat Raza",
-      "email": "12613120az@gmail.com"
+      "email": "12613120az@gmail.com",
+      "github": "azmat01",
+      "role": "UI Engineer"
     },
     {
       "name": "Chhavi Sharma",
-      "email": "sharmachhavi519@gmail.com"
+      "email": "sharmachhavi519@gmail.com",
+      "github": "chhaviS04",
+      "role": "UI Engineer"
     },
     {
       "name": "Prakash Raj",
-      "email": "1046prt@gmail.com"
+      "email": "1046prt@gmail.com",
+      "github": "1046prt",
+      "role": "UI Engineer"
     },
     {
-      "name": "Rupesh",
-      "email": "rupesh010903@gmail.com"
+      "name": "Rupesh Rathore",
+      "email": "rupesh010903@gmail.com",
+      "github": "rupesh-rathore",
+      "role": "UI Engineer"
     },
     {
       "name": "Suresh Chelani",
-      "email": "sureshc.btech2022@iujaipur.edu.in"
+      "email": "sureshc.btech2022@iujaipur.edu.in",
+      "github": "suresh-chelani",
+      "role": "UI Engineer"
+    },
+    {
+      "name": "Harsh Saini",
+      "email": "harsh.btech2022@iujaipur.edu.in",
+      "github": "harsh01234s",
+      "role": "UX Engineer"
     }
   ],
   "keywords": [
