@@ -30,7 +30,53 @@
 [data-theme="light"] .tab-button {
   color: #333;
 }
-
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    grid-auto-rows: 1fr;
+  }
+  .nakshatra-note {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1rem;
+    max-width: 800px;
+    background-color: rgba(var(--card-bg), 0.5);
+    border-left: 4px solid var(--primary-color);
+    opacity: 0.8;
+  }
+  .card .nakshatra-card {
+    aspect-ratio: auto; 
+    cursor: default;
+    text-align: left;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nakshatra-card .nakshatra-symbol-img {
+    width: 270px;
+    height: 270px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
+  .nakshatra-card h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .nakshatra-card .nakshatra-details {
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+    width: 100%;
+    text-align: left;
+  }
+  .nakshatra-card .nakshatra-details {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
 .tab-button:hover {
   background-color: color-mix(in srgb, var(--card-bg) 90%, var(--text-color) 10%);
 }

@@ -87,7 +87,7 @@ article {
 }
 
 .card {
-  background-color: var(--card-bg);
+  /* background-color: var(--card-bg); */
   border-radius: 8px;
   padding: 1rem;
   text-align: center;
@@ -104,6 +104,12 @@ article {
   /* max-height: 350px; */
 }
 
+.card h3{
+  font-size: 2rem;
+  margin: 0.5rem;
+  color: var(--primary-color);
+  
+}
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 25px 75px var(--primary-color);

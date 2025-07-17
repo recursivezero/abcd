@@ -84,7 +84,7 @@
     "name": { "english": "Purva Phalguni", "hindi": "पूर्व फाल्गुनी" },
     "ruling_planet": { "english": "Venus", "hindi": "शुक्र" },
     "deity": { "english": "Bhaga", "hindi": "भग" },
-    "symbol": { "english": "Hammock / front legs of a bed", "hindi": "झूला / बिस्तर के अगले पैर" },
+    "symbol": { "english": "front legs of a bed", "hindi": "बिस्तर के अगले पैर" },
     "image": "11.png"
   },
   {
@@ -116,7 +116,7 @@
     "name": { "english": "Swati", "hindi": "स्वाति" },
     "ruling_planet": { "english": "Rahu", "hindi": "राहु" },
     "deity": { "english": "Vayu", "hindi": "वायु" },
-    "symbol": { "english": "Shoot of a plant or coral", "hindi": "पौधे का अंकुर या मूंगा" },
+    "symbol": { "english": "Shoot of a plant", "hindi": "पौधे का अंकुर" },
     "image": "15.png"
   },
   {
@@ -172,7 +172,7 @@
     "name": { "english": "Shravana", "hindi": "श्रवण" },
     "ruling_planet": { "english": "Moon", "hindi": "चंद्रमा" },
     "deity": { "english": "Vishnu", "hindi": "विष्णु" },
-    "symbol": { "english": "Ear or three footprints", "hindi": "कान या तीन पदचिह्न" },
+    "symbol": { "english": "Ear or footprints", "hindi": "कान या तीन पदचिह्न" },
     "image": "22.png"
   },
   {

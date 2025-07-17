@@ -12,6 +12,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 <BaseLayout meta={{ title: "Astrology" }}>
   <Back />
   <Fragment slot="header-right">
+    <LanguageSwitcher />
     <SharePopover />
     <Help title="Astrology" description="Explore Sun Signs and Nakshatras." />
   </Fragment>
@@ -27,16 +28,14 @@ import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
     <div id="zodiacs-tab-content" class="tab-content active">
       <h1>Explore the Zodiac</h1>
       <div class="controls">
-        <LanguageSwitcher />
       </div>
       <ZodiacGrid />
     </div>
 
     <!-- Nakshatra Tab Content -->
-     <h1>Explore the Nakshatras</h1>
     <div id="nakshatras-tab-content" class="tab-content">
+      <h1>Explore the Nakshatras</h1>
       <div class="controls">
-        <LanguageSwitcher />
       </div>
       <div id="nakshatrasGrid" class="grid-container"></div>
       <div class="nakshatra-note">
@@ -61,56 +60,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 </BaseLayout>
 
 <style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-    /* This ensures all cards in a row have the same height */
-    grid-auto-rows: 1fr;
-  }
-  .nakshatra-note {
-    text-align: center;
-    margin: 2rem auto;
-    padding: 1rem;
-    max-width: 800px;
-    background-color: rgba(var(--card-bg), 0.5);
-    border-left: 4px solid var(--primary-color);
-    opacity: 0.8;
-  }
-  /* Styles for the Nakshatra card layout */
-  .nakshatra-card {
-    aspect-ratio: auto; /* Let content define height */
-    cursor: default;
-    text-align: left;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .nakshatra-card .nakshatra-symbol-img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 1rem;
-  }
-  .nakshatra-card h3 {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  .nakshatra-card .nakshatra-details {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0.95rem;
-    width: 100%;
-  }
-  .nakshatra-card .nakshatra-details li {
-    margin-bottom: 0.5rem;
-  }
-  .nakshatra-card .nakshatra-details li strong {
-    color: var(--primary-color);
-  }
+  
 </style>
 
 <script>
@@ -205,11 +155,11 @@ import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
           card.innerHTML = `
             <img src="/data/nakshatra/${nakshatra.image}" alt="${nakshatra.name.english}" class="nakshatra-symbol-img">
             <h3>${nakshatra.name[currentLang]}</h3>
-            <ul class="nakshatra-details">
-              <li><strong>Ruling Planet:</strong> ${nakshatra.ruling_planet[currentLang]}</li>
-              <li><strong>Deity:</strong> ${nakshatra.deity[currentLang]}</li>
-              <li><strong>Symbol:</strong> ${nakshatra.symbol[currentLang]}</li>
-            </ul>
+            <div class="nakshatra-details">
+              <p><strong>Ruling Planet:</strong> ${nakshatra.ruling_planet[currentLang]}</p>
+              <p><strong>Deity:</strong> ${nakshatra.deity[currentLang]}</p>
+              <p><strong>Symbol:</strong> ${nakshatra.symbol[currentLang]}</p>
+            </div>
           `;
           nakshatrasGrid.appendChild(card);
         });
