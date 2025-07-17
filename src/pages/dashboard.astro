@@ -1,0 +1,26 @@
+---
+import "@/assets/styles/dashboard.css";
+---
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1 class="welcome-message">Hello there!</h1>
+    <p class="dashboard-info">
+      This is your personal dashboard. From here you can manage your account, view your activity, and much more.
+    </p>
+    <button id="logout-btn" class="logout-btn">Logout</button>
+  </div>
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.getElementById("logout-btn");
+    logoutButton?.addEventListener("click", () => {
+      window.location.href = "/login";
+    });
+  });
+</script>
