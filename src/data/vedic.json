@@ -1,6 +1,7 @@
 {
-  "-comment": "'seconds' field is only used for unit conversion and is not displayed in Vedic Time Journey.",
-  "time_units": [
+  "comment": "'seconds' field is only used for unit conversion and is not displayed in Vedic Time Journey.",
+  "disclaimer": "The tithi (lunar day) and paksha (lunar phase) displayed here are calculated based on a numeric logic following the Gregorian calendar.Due to technical limitations, this may not always match the exact tithi according to traditional Hindu calendar calculations which consider actual astronomical positions of the sun and moon. For precise religious observances, please consult authoritative panchang sources.",
+  "units": [
     {
       "name": "त्रुटि",
       "seconds": 0.0000003086,

@@ -91,18 +91,78 @@
     "title": "Basic Crops",
     "description": "A collection of basic crops with their names and descriptions.",
     "data": [
-      { "emoji": "🌾", "description": "A staple grain crop, used for making flour and bread.", "letter": "Wheat", "text": "गेहूं" },
-      { "emoji": "🍚", "description": "A major cereal grain, primary food for much of the world.", "letter": "Rice", "text": "चावल" },
-      { "emoji": "🌽", "description": "Also known as corn, used as food and fodder.", "letter": "Maize", "text": "मक्का" },
-      { "emoji": "🌱", "description": "A cereal grain used for food, animal feed, and brewing.", "letter": "Barley", "text": "जौ" },
-      { "emoji": "🌾", "description": "A group of small-seeded grasses, important in arid regions.", "letter": "Millet", "text": "बाजरा" },
-      { "emoji": "🥔", "description": "A starchy tuber, widely used as a vegetable.", "letter": "Potato", "text": "आलू" },
-      { "emoji": "🍅", "description": "A red fruit used as a vegetable in cooking.", "letter": "Tomato", "text": "टमाटर" },
-      { "emoji": "🥜", "description": "Also called peanut, an oilseed and snack crop.", "letter": "Groundnut", "text": "मूंगफली" },
-      { "emoji": "🥕", "description": "An orange root vegetable, eaten raw or cooked.", "letter": "Carrot", "text": "गाजर" },
-      { "emoji": "🥒", "description": "A green, refreshing vegetable, often eaten raw.", "letter": "Cucumber", "text": "खीरा" },
-      { "emoji": "🍆", "description": "Also called eggplant, a purple vegetable.", "letter": "Brinjal", "text": "बैंगन" },
-      { "emoji": "🥬", "description": "A leafy green vegetable, rich in iron.", "letter": "Spinach", "text": "पालक" }
+      {
+        "emoji": "🌾",
+        "description": "A staple grain crop, used for making flour and bread.",
+        "letter": "Wheat",
+        "text": "गेहूं"
+      },
+      {
+        "emoji": "🍚",
+        "description": "A major cereal grain, primary food for much of the world.",
+        "letter": "Rice",
+        "text": "चावल"
+      },
+      {
+        "emoji": "🌽",
+        "description": "Also known as corn, used as food and fodder.",
+        "letter": "Maize",
+        "text": "मक्का"
+      },
+      {
+        "emoji": "🌱",
+        "description": "A cereal grain used for food, animal feed, and brewing.",
+        "letter": "Barley",
+        "text": "जौ"
+      },
+      {
+        "emoji": "🌾",
+        "description": "A group of small-seeded grasses, important in arid regions.",
+        "letter": "Millet",
+        "text": "बाजरा"
+      },
+      {
+        "emoji": "🥔",
+        "description": "A starchy tuber, widely used as a vegetable.",
+        "letter": "Potato",
+        "text": "आलू"
+      },
+      {
+        "emoji": "🍅",
+        "description": "A red fruit used as a vegetable in cooking.",
+        "letter": "Tomato",
+        "text": "टमाटर"
+      },
+      {
+        "emoji": "🥜",
+        "description": "Also called peanut, an oilseed and snack crop.",
+        "letter": "Groundnut",
+        "text": "मूंगफली"
+      },
+      {
+        "emoji": "🥕",
+        "description": "An orange root vegetable, eaten raw or cooked.",
+        "letter": "Carrot",
+        "text": "गाजर"
+      },
+      {
+        "emoji": "🥒",
+        "description": "A green, refreshing vegetable, often eaten raw.",
+        "letter": "Cucumber",
+        "text": "खीरा"
+      },
+      {
+        "emoji": "🍆",
+        "description": "Also called eggplant, a purple vegetable.",
+        "letter": "Brinjal",
+        "text": "बैंगन"
+      },
+      {
+        "emoji": "🥬",
+        "description": "A leafy green vegetable, rich in iron.",
+        "letter": "Spinach",
+        "text": "पालक"
+      }
     ]
   },
   "currency": {

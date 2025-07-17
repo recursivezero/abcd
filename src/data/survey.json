@@ -6,49 +6,84 @@
       "id": 1,
       "questionText": "Do you have a handwritten sample of your child's first letters (A, B, C, etc.)?",
       "type": "singleChoice",
-      "options": ["Yes", "No", "Not yet, but I plan to"]
+      "options": [
+        "Yes",
+        "No",
+        "Not yet, but I plan to"
+      ]
     },
     {
       "id": 2,
       "questionText": "Have you captured your child’s first attempts at saying letters (A, B, C, etc.)?",
       "type": "singleChoice",
-      "options": ["Yes", "No", "Not yet, but I plan to"]
+      "options": [
+        "Yes",
+        "No",
+        "Not yet, but I plan to"
+      ]
     },
     {
       "id": 3,
       "questionText": "When did your child start writing or speaking their first letters?",
       "type": "singleChoice",
-      "options": ["Less than a month ago", "1-3 months ago", "More than 3 months ago"]
+      "options": [
+        "Less than a month ago",
+        "1-3 months ago",
+        "More than 3 months ago"
+      ]
     },
     {
       "id": 4,
       "questionText": "How long does your child spend practicing writing letters each day?",
       "type": "singleChoice",
-      "options": ["Less than 15 minutes", "15-30 minutes", "30-60 minutes", "More than 60 minutes"]
+      "options": [
+        "Less than 15 minutes",
+        "15-30 minutes",
+        "30-60 minutes",
+        "More than 60 minutes"
+      ]
     },
     {
       "id": 5,
       "questionText": "Would you be interested in setting your child’s handwriting as a personalized font for educational materials or keepsakes?",
       "type": "singleChoice",
-      "options": ["Yes", "No", "Not sure"]
+      "options": [
+        "Yes",
+        "No",
+        "Not sure"
+      ]
     },
     {
       "id": 6,
       "questionText": "Do you think that learning methods affect handwriting quality? For instance, if a child practices incorrectly, can it impact their writing?",
       "type": "singleChoice",
-      "options": ["Yes, it can affect handwriting quality.", "No, I don’t think it has a big impact.", "Not sure"]
+      "options": [
+        "Yes, it can affect handwriting quality.",
+        "No, I don’t think it has a big impact.",
+        "Not sure"
+      ]
     },
     {
       "id": 7,
       "questionText": "What resources or tools have been most useful for your child’s early writing and speaking?",
       "type": "multiChoice",
-      "options": ["Interactive apps or websites", "Handwriting practice sheets", "Educational toys", "Other (please specify)"]
+      "options": [
+        "Interactive apps or websites",
+        "Handwriting practice sheets",
+        "Educational toys",
+        "Other (please specify)"
+      ]
     },
     {
       "id": 8,
       "questionText": "How often does your child practice writing or speaking letters?",
       "type": "singleChoice",
-      "options": ["Daily", "Several times a week", "Weekly", "Occasionally"]
+      "options": [
+        "Daily",
+        "Several times a week",
+        "Weekly",
+        "Occasionally"
+      ]
     },
     {
       "id": 9,
