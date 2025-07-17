@@ -191,7 +191,7 @@ export const NavbarLinks: LinkProps[] = [
   {
     name: "Zodiac",
     title: "zodiac",
-    path: "/astrology",
+    path: "/zodiac",
     isActive: true
   },
   {
