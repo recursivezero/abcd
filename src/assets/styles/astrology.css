@@ -32,7 +32,7 @@
 }
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
     grid-auto-rows: 1fr;
@@ -46,19 +46,18 @@
     border-left: 4px solid var(--primary-color);
     opacity: 0.8;
   }
-  .card .nakshatra-card {
+  /* Corrected selector for an element with BOTH classes */
+  .card.nakshatra-card {
     aspect-ratio: auto; 
     cursor: default;
-    text-align: left;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   .nakshatra-card .nakshatra-symbol-img {
-    width: 270px;
-    height: 270px;
-    object-fit: contain;
+    width: 320px;
+    height: 320px;
     margin-bottom: 1rem;
   }
   .nakshatra-card h3 {
@@ -73,7 +72,7 @@
     width: 100%;
     text-align: left;
   }
-  .nakshatra-card .nakshatra-details {
+  .nakshatra-card .nakshatra-details p {
     margin-bottom: 0.5rem;
     font-size: 1rem;
   }
@@ -134,8 +133,22 @@
   }
 
   .grid-container {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
+  }
+
+  /* Responsive styles for Nakshatra cards on tablets */
+  .nakshatra-card .nakshatra-symbol-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .nakshatra-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .nakshatra-card .nakshatra-details p {
+    font-size: 0.9rem;
   }
 }
 
@@ -151,16 +164,23 @@
   }
 
   .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    /* Switch to a single column on small mobile screens */
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .card h3 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .card p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  /* Specific Nakshatra card adjustments for small mobile */
+  .nakshatra-card .nakshatra-symbol-img {
+    width: 120px;
+    height: 120px;
   }
 
   .nakshatra-note {
