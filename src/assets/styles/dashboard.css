@@ -1,0 +1,65 @@
+:root {
+  --dashboard-bg: #4a455b;
+  --dashboard-text: #eeeff1;
+  --dashboard-card-bg: #221f2e;
+  --dashboard-card-shadow: rgba(0, 0, 0, 0.1);
+  --dashboard-accent: #7b5ede;
+  --dashboard-button-bg: #7b5ede;
+  --dashboard-button-text: white;
+  --dashboard-button-hover-bg: #6a4ecc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: var(--dashboard-bg);
+  color: var(--dashboard-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.dashboard-container {
+  background-color: var(--dashboard-card-bg);
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px var(--dashboard-card-shadow);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.welcome-message {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-info {
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.logout-btn {
+  background-color: var(--dashboard-button-bg);
+  color: var(--dashboard-button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: var(--dashboard-button-hover-bg);
+}
