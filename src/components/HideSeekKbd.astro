@@ -22,7 +22,6 @@ const letterRows = [
     ))
   }
 </article>
-
 <style>
   :root {
     --primary-bg: #1a1a1a;
@@ -92,6 +91,22 @@ const letterRows = [
       width: 2rem;
       height: 2rem;
       font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container__keyboard {
+      position: absolute;
+      top: 31%;
+      transform: rotate(90deg) scale(1.3);
+    }
+  }
+
+  @media (max-width: 380px) {
+    .container__keyboard {
+      position: absolute;
+      top: 31%;
+      transform: rotate(90deg) scale(1.1);
     }
   }
 </style>

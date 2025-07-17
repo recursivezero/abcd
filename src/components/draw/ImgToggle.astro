@@ -1,0 +1,69 @@
+---
+import ImageIcon from "@/assets/icons/image.svg";
+---
+
+<label for="toggleImg" class="control-item" data-tooltip="Toggle Image">
+  <input type="checkbox" name="toggle_img" id="toggleImg" class="visually-hidden hidden" />
+  <span
+    id="img"
+    class="control-button img-toggle"
+    role="switch"
+    aria-checked="false"
+    tabindex="0"
+    aria-label="Toggle Image"
+  >
+    <ImageIcon class="img-icon" />
+  </span>
+</label>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const imgToggle = document.querySelector(".img-toggle") as HTMLElement;
+    const toggleImgSwitch = document.getElementById("toggleImg") as HTMLInputElement;
+
+    imgToggle.addEventListener("click", () => {
+      const isActive = imgToggle.classList.contains("active");
+      if (!isActive) {
+        document.dispatchEvent(new CustomEvent("resetBackgroundToggle"));
+
+        imgToggle.classList.add("active");
+        imgToggle.setAttribute("aria-checked", "true");
+        if (toggleImgSwitch) {
+          toggleImgSwitch.checked = true;
+        }
+
+        document.dispatchEvent(
+          new CustomEvent("imageToggled", {
+            detail: {
+              isActive: true,
+              element: imgToggle
+            }
+          })
+        );
+      }
+    });
+
+    imgToggle.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        imgToggle.click();
+      }
+    });
+
+    document.addEventListener("resetImageToggle", () => {
+      imgToggle.classList.remove("active");
+      imgToggle.setAttribute("aria-checked", "false");
+      if (toggleImgSwitch) {
+        toggleImgSwitch.checked = false;
+      }
+    });
+
+    document.addEventListener("keyboardReset", () => {
+      imgToggle.classList.remove("active");
+      imgToggle.setAttribute("aria-checked", "false");
+      if (toggleImgSwitch) {
+        toggleImgSwitch.checked = false;
+      }
+    });
+  });
+</script>

@@ -3,6 +3,8 @@ import "@/assets/styles/varnmala/speak.css";
 import BaseLayout from "@/layouts/Base";
 import Help from "@/components/Help.astro";
 import BackButton from "@/components/BackButton.astro";
+import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 ---
 
 <BaseLayout meta={{ title: "Hear and Play" }}>
@@ -40,6 +42,8 @@ import BackButton from "@/components/BackButton.astro";
         <button type="button" title="click audio" id="muteBtn" class="mute-button mute-button-audio"></button>
       </div>
     </div>
+    <KeyboardTrigger />
+    <SharePopover />
     <Help
       title="English Playground"
       description="Press any letter from the keyboard to display it. Use the controls to customize the background, font, and color."
@@ -97,7 +101,7 @@ import BackButton from "@/components/BackButton.astro";
 
   function drawLetter(letter: string, isDoublePress: boolean) {
     letterDiv.innerHTML = letter;
-    letterDiv.style.color = isDoublePress ? "yellow" : "white";
+    letterDiv.style.color = isDoublePress ? "yellow" : "black";
     letterDiv.style.animation = "letterPop 0.3s ease-out";
     setTimeout(() => {
       letterDiv.style.animation = "";
@@ -125,7 +129,7 @@ import BackButton from "@/components/BackButton.astro";
       if (isAlphabet(keyCode)) {
         const upperKey = key.toUpperCase();
         let isDouble = false;
-        let doublePress = false;
+        let doublePress;
         if (lastKey === upperKey) {
           // Double press detected
           isDouble = true;

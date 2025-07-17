@@ -80,11 +80,9 @@ import HintIcon from "@/assets/icons/hint.svg";
 
     document.addEventListener("DOMContentLoaded", async () => {
       const crosswordData = await fetchCrosswordData();
-      console.log({ crosswordData });
 
       // Use the imported JSON data for word sets.
       const wordSets = crosswordData;
-      console.log({ wordSets });
       let currentWordSetIndex = 0;
 
       // Function to generate random colors with good contrast
@@ -117,8 +115,6 @@ import HintIcon from "@/assets/icons/hint.svg";
         solutionColors: new Map(), // Map of word -> color
         wordColors: new Map() // Track colors assigned to found words
       };
-
-      console.log({ state });
 
       function generateRandomLetter() {
         return String.fromCharCode(65 + Math.floor(Math.random() * 26));

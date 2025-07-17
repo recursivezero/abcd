@@ -2,7 +2,7 @@ import HomeIcon from "@/assets/icons/home.svg";
 import RecordIcon from "@/assets/icons/record.svg";
 import type { LinkProps } from "@/types/index.ts";
 
-export const APP_NAME = "Parixan";
+export const APP_NAME = "abcdkbd";
 
 let BASE_URL = "http://localhost:4321";
 let IMAGE_DIR = "/assets/images/background";
@@ -177,22 +177,34 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Cards",
-    title: "Cards",
-    path: "/cards",
+    name: "Gallery",
+    title: "Gallery",
+    path: "/gallery",
+    isActive: true
+  },
+  {
+    name: "Survey",
+    title: "Survey",
+    path: "/survey",
     isActive: true
   },
   {
     name: "Zodiac",
     title: "zodiac",
     path: "/zodiac",
-    isActive: false
+    isActive: true
   },
   {
     name: "Societree",
     title: "Clan Explorer",
     path: "/clan",
     isActive: false
+  },
+  {
+    name: "Stories",
+    title: "Stories",
+    path: "/stories",
+    isActive: true
   }
 ];
 
@@ -203,12 +215,12 @@ export const FooterLinks: LinkProps[] = [
     isActive: true
   },
   {
-    title: "Terms and Condition",
+    title: "Terms and Conditions",
     path: "/terms",
     isActive: true
   },
   {
-    title: "Blogs",
+    title: "Blog",
     path: "/blog",
     isActive: true
   }

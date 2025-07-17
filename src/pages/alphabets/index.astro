@@ -2,8 +2,8 @@
 import "@/assets/styles/board.css";
 import Back from "@/components/Back.astro";
 import CardLayout from "@/components/CardLayout.astro";
+import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
-
 import { DATASET } from "@/mappers/dataset";
 
 const title = "Alphabet Categories";
@@ -24,7 +24,11 @@ const categoryList = categories.map((category, index) => ({
 ---
 
 <BaseLayout meta={{ title: "Alphabets Explorer" }}>
+  <Fragment slot="header-right">
+    <SharePopover />
+  </Fragment>
   <Back />
+
   <section class="container__board">
     <div class="board__header">
       <h2 class="title">{title}</h2>

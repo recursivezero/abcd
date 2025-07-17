@@ -1,6 +1,7 @@
 ---
 import "@/assets/styles/about.css";
 ---
+
 <section class="tech-section">
   <div class="tech-content">
     <h2 class="section-title">Built for <span class="text-highlight">Young Minds</span> with Joy & Purpose</h2>
@@ -10,14 +11,14 @@ import "@/assets/styles/about.css";
     </p>
     <div class="tech-icons">
       {
-        ["🔡", "🌍", "🎨", "📖", "🗣️","🧮","🎲","🚀"].map((icon, i) => (
+        ["🔡", "🌍", "🎨", "📖", "🗣️", "🧮", "🎲", "🚀"].map((icon, i) => (
           <span class="tech-icon" style={`--i: ${i}`} aria-hidden="true">
             {icon}
           </span>
         ))
       }
     </div>
-    <a href="https://abcdkbd.com" class="btn btn-primary">Start Your Learning Adventure</a>
+    <a href="https://parixan.xyz" class="btn btn-primary">Start your learning adventure</a>
   </div>
 </section>
 
@@ -57,7 +58,7 @@ import "@/assets/styles/about.css";
     animation-delay: calc(var(--i) * 0.2s);
   }
 
-    .btn {
+  .btn {
     display: inline-block;
     padding: 0.65rem 1.5rem;
     border-radius: 2rem;
@@ -68,9 +69,9 @@ import "@/assets/styles/about.css";
   }
 
   .btn-primary {
-    background-color:  #3b82f6;
+    background-color: #3b82f6;
     color: white;
-    border: 2px solid  #3b82f6;
+    border: 2px solid #3b82f6;
   }
 
   .btn-primary:hover {
@@ -93,11 +94,11 @@ import "@/assets/styles/about.css";
     .tech-section {
       padding: 3rem 2rem;
     }
-    
+
     .tech-text {
       font-size: 1.1rem;
     }
-    
+
     .tech-icon {
       font-size: 2rem;
     }
@@ -107,12 +108,12 @@ import "@/assets/styles/about.css";
     .tech-section {
       padding: 2.5rem 1.5rem;
     }
-    
+
     .tech-text {
       font-size: 1rem;
       margin-bottom: 1.5rem;
     }
-    
+
     .tech-icons {
       gap: 1.5rem;
     }
@@ -120,18 +121,18 @@ import "@/assets/styles/about.css";
     .btn {
       padding: 0.6rem 1.2rem;
       font-size: 0.9rem;
-  }
+    }
   }
 
   @media (max-width: 480px) {
     .tech-section {
       padding: 2rem 1rem;
     }
-    
+
     .tech-icons {
       gap: 1rem;
     }
-    
+
     .tech-icon {
       font-size: 1.8rem;
     }

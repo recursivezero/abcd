@@ -3,6 +3,7 @@ import CanvasIcon from "@/assets/icons/canvas.svg";
 import QuoteIcon from "@/assets/icons/quote.svg";
 import "@/assets/styles/cards/main.css";
 import Back from "@/components/Back.astro";
+import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 
 const meta = {
@@ -13,6 +14,9 @@ const meta = {
 
 <BaseLayout meta={meta}>
   <Back />
+  <Fragment slot="header-right">
+    <SharePopover />
+  </Fragment>
   <div class="selection-container">
     <h1 class="selection-title">Select a creative mode</h1>
     <div class="selection-buttons-grid">

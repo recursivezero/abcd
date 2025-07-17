@@ -1,18 +1,49 @@
-type DataType = {
-  id: string | number;
-  code: string | number;
-  letter: string;
-  description: string;
-  text: string;
-  [key: string]: any;
-};
+import { ACTION_DATASETS } from "@/mappers/actions";
+import { PROFESSION_DATASETS } from "@/mappers/profession";
+import { TOY_DATASETS } from "@/mappers/toys";
+import { VEHICLE_DATASETS } from "@/mappers/vehicles";
+import type { AlphabetDataset } from "@/types/alphabet";
 
-interface AlphabetDataset {
-  category: string;
-  description: string;
-  icon: string;
-  data: Array<DataType>;
-}
+/** Body Parts */
+const bodyPartData = [
+  { letter: "A", text: "Arm", description: "Arm (Upper limb)", emoji: "💪" },
+  { letter: "B", text: "Belly", description: "Belly (Stomach area)", emoji: "🤰" },
+  { letter: "C", text: "Cheek", description: "Cheek (Side of the face)", emoji: "😊" },
+  { letter: "D", text: "Diaphragm", description: "Muscle that helps you breathe!", emoji: "🌬️" },
+  { letter: "E", text: "Ear", description: "Ear (Hearing organ)", emoji: "👂" },
+  { letter: "F", text: "Finger", description: "Finger (Digit of the hand)", emoji: "☝️" },
+  { letter: "G", text: "Gum", description: "Gum (Mouth tissue)", emoji: "🦷" },
+  { letter: "H", text: "Hand", description: "Hand (End of the arm)", emoji: "✍" },
+  { letter: "I", text: "Iris", description: "Iris (Colored part of the eye)", emoji: "👁️" },
+  { letter: "J", text: "Jaw", description: "Jaw (Lower part of the face)", emoji: "🦷" },
+  { letter: "K", text: "Knee", description: "Knee (Leg joint)", emoji: "🦵" },
+  { letter: "L", text: "Lip", description: "Lip (Mouth part)", emoji: "👄" },
+  { letter: "M", text: "Mouth", description: "Mouth (Opening in the face)", emoji: "👄" },
+  { letter: "N", text: "Nose", description: "Nose (Smelling organ)", emoji: "👃" },
+  { letter: "O", text: "Organ", description: "Organ (Internal body part)", emoji: "❤️" },
+  { letter: "P", text: "Palm", description: "Palm (Inner hand)", emoji: "✋" },
+  { letter: "Q", text: "Quick feet", description: "Quick feet (Movement for Q)", emoji: "🏃" },
+  { letter: "R", text: "Rib", description: "Rib (Chest bone)", emoji: "🦴" },
+  { letter: "S", text: "Shoulder", description: "Shoulder (Upper body)", emoji: "🤷" },
+  { letter: "T", text: "Toe", description: "Toe (Foot digit)", emoji: "🦶" },
+  { letter: "U", text: "Underarm", description: "Underarm (Armpit)", emoji: "🙆" },
+  { letter: "V", text: "Voice", description: "Voice (Vocal cords)", emoji: "🗣️" },
+  { letter: "W", text: "Waist", description: "Waist (Midsection)", emoji: "🩳" },
+  { letter: "X", text: "X marks the spot", description: "X marks the spot (Belly button)", emoji: "❌" },
+  { letter: "Y", text: "Yawn", description: "Yawn (Open mouth wide)", emoji: "🥱" },
+  { letter: "Z", text: "Zzz", description: "Zzz (Pretend to sleep)", emoji: "😴" }
+];
+
+export const BODYPART_DATASETS: AlphabetDataset = {
+  category: "body",
+  description: "Common body parts for each letter of the alphabet.",
+  icon: "🧍",
+  data: bodyPartData.map((item, index) => ({
+    id: index + 1,
+    code: item.letter.charCodeAt(0),
+    ...item
+  }))
+};
 
 const animalData = [
   { letter: "A", description: "A animal lives in water", text: "Alligator" },
@@ -606,7 +637,7 @@ export const COUNTRIES_DATASETS: AlphabetDataset = {
   }))
 };
 
-/* Brailee */
+/* Brail */
 
 const brailleData = [
   { letter: "A", text: "⠁", description: "Braille pattern dots-1" },
@@ -712,21 +743,201 @@ export const HINDI_DATASETS: AlphabetDataset = {
   }))
 };
 
+/** Flowers  */
+
+const flowerData = [
+  {
+    letter: "A",
+    text: "Azalea",
+    emoji: "🌸",
+    description: "Pink spring-blooming shrub flower"
+  },
+  {
+    letter: "B",
+    text: "Bluebell",
+    emoji: "🔵",
+    description: "Tiny blue bell-shaped forest flowers"
+  },
+  {
+    letter: "C",
+    text: "Carnation",
+    emoji: "🌺",
+    description: "Ruffled petals with spicy fragrance"
+  },
+  {
+    letter: "D",
+    text: "Daisy",
+    emoji: "🌼",
+    description: "White petals with yellow center"
+  },
+  {
+    letter: "E",
+    text: "Echinacea",
+    emoji: "🟣",
+    description: "Purple cone-shaped medicinal flower"
+  },
+  {
+    letter: "F",
+    text: "Forget-Me-Not",
+    emoji: "💙",
+    description: "Tiny blue symbolic remembrance flowers"
+  },
+  {
+    letter: "G",
+    text: "Gardenia",
+    emoji: "⚪",
+    description: "Creamy white highly fragrant blossoms"
+  },
+  {
+    letter: "H",
+    text: "Hibiscus",
+    emoji: "🌺",
+    description: "Tropical trumpet-shaped colorful flowers"
+  },
+  {
+    letter: "I",
+    text: "Iris",
+    emoji: "⚜️",
+    description: "Tall purple fleur-de-lis flower"
+  },
+  {
+    letter: "J",
+    text: "Jasmine",
+    emoji: "✨",
+    description: "Small white night-blooming fragrant flowers"
+  },
+  {
+    letter: "K",
+    text: "Kangaroo Paw",
+    emoji: "🦘",
+    description: "Fuzzy Australian claw-shaped bloom"
+  },
+  {
+    letter: "L",
+    text: "Lavender",
+    emoji: "🟣",
+    description: "Purple spikes with calming scent"
+  },
+  {
+    letter: "M",
+    text: "Marigold",
+    emoji: "🌼",
+    description: "Cheerful orange-yellow festival flowers"
+  },
+  {
+    letter: "N",
+    text: "Nasturtium",
+    emoji: "🔶",
+    description: "Edible orange-red peppery blooms"
+  },
+  {
+    letter: "O",
+    text: "Orchid",
+    emoji: "🌸",
+    description: "Exotic delicate tropical houseplant flower"
+  },
+  {
+    letter: "P",
+    text: "Poppy",
+    emoji: "🌺",
+    description: "Red papery Memorial Day flower"
+  },
+  {
+    letter: "Q",
+    text: "Queen Anne's Lace",
+    emoji: "⚪",
+    description: "Lacy white wild carrot flower"
+  },
+  {
+    letter: "R",
+    text: "Rose",
+    emoji: "🌹",
+    description: "Classic fragrant Valentine's Day bloom"
+  },
+  {
+    letter: "S",
+    text: "Sunflower",
+    emoji: "🌻",
+    description: "Tall yellow sun-tracking bloom"
+  },
+  {
+    letter: "T",
+    text: "Tulip",
+    emoji: "🌷",
+    description: "Cup-shaped spring garden flower"
+  },
+  {
+    letter: "U",
+    text: "Ursinia",
+    emoji: "🟠",
+    description: "Bright orange daisy-like flower"
+  },
+  {
+    letter: "V",
+    text: "Violet",
+    emoji: "🟣",
+    description: "Small purple early spring flower"
+  },
+  {
+    letter: "W",
+    text: "Water Lily",
+    emoji: "💧",
+    description: "Floating pond flower with pads"
+  },
+  {
+    letter: "X",
+    text: "Xeranthemum",
+    emoji: "☀️",
+    description: "Purple everlasting papery bloom"
+  },
+  {
+    letter: "Y",
+    text: "Yarrow",
+    emoji: "⚪",
+    description: "Cluster of tiny white flowers"
+  },
+  {
+    letter: "Z",
+    text: "Zinnia",
+    emoji: "🌈",
+    description: "Colorful long-stemmed summer bloom"
+  }
+];
+
+export const FLOWER_DATASETS: AlphabetDataset = {
+  category: "hindi",
+  description: "Alphabetical flower list of worldwide.",
+  icon: "🎕",
+  data: flowerData.map((item, index) => ({
+    id: index + 1,
+    code: item.letter.charCodeAt(0),
+    ...item
+  }))
+};
+
 /** TODO: add others from alphabets.json */
 
 export const DATASET: { [key: string]: AlphabetDataset } = {
+  english: GENERAL_DATASETS,
+  nato: NATO_DATASETS,
+  braille: BRAILLE_DATASETS,
+  hindi: HINDI_DATASETS,
+  indian: INDIAN_DATASETS,
+  greek: GREEK_DATASETS,
+  morse: MORSE_DATASETS,
+  countries: COUNTRIES_DATASETS,
+  toys: TOY_DATASETS,
   animals: ANIMAL_DATASETS,
   birds: BIRDS_DATASETS,
-  nato: NATO_DATASETS,
-  morse: MORSE_DATASETS,
-  indian: INDIAN_DATASETS,
-  general: GENERAL_DATASETS,
-  greek: GREEK_DATASETS,
-  geek: GEEK_DATASETS,
   fruits: FRUITS_DATASETS,
+  flowers: FLOWER_DATASETS,
   colors: COLORS_DATASETS,
-  countries: COUNTRIES_DATASETS,
-  braille: BRAILLE_DATASETS,
-  hindi: HINDI_DATASETS
+  body: BODYPART_DATASETS,
+  vehicles: VEHICLE_DATASETS,
+  profession: PROFESSION_DATASETS,
+  actions: ACTION_DATASETS
 };
+
 export type AlphabetsData = typeof DATASET;
+
+/** Body Parts  */

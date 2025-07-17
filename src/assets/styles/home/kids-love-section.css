@@ -1,0 +1,62 @@
+.kids-will-love .split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.content-column > div {
+  margin-bottom: 2rem;
+  padding-inline-start: 2rem;
+}
+
+.image-column img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  margin-top: 5rem;
+  margin-bottom: 6rem;
+}
+
+.content-column h3 {
+  font-size: 1.8rem;
+}
+
+.content-column p {
+  font-size: 1rem;
+}
+
+.section.kids-will-love {
+  /* background-color: #ecf6f7;  */
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+@media (max-width: 900px) {
+  .split-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .image-column {
+    display: none;
+  }
+
+  .content-column {
+    text-align: center;
+  }
+
+  .kids-will-love .split-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .image-column {
+    display: none;
+  }
+
+  .content-column {
+    text-align: center;
+  }
+}

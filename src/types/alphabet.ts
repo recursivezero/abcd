@@ -3,45 +3,20 @@ export type LetterEntity = {
   code: string | number;
 };
 
-export interface AlphabetEntry {
-  id?: number | string;
-  description?: string;
+export type AlphabetDataItem = {
+  id?: string | number;
+  code: string | number;
   letter: string;
+  description?: string;
   text: string;
-  emoji?: string;
-  image?: string;
-  englishSound?: string;
-  code?: string | number;
-}
+  [key: string]: any;
+};
 
-export interface AlphabetCategory {
+export interface AlphabetDataset {
+  category: string;
   description: string;
   icon: string;
-  data: AlphabetEntry[];
-}
-
-export interface AlphabetsData {
-  general: AlphabetCategory;
-  nato: AlphabetCategory;
-  braille: AlphabetCategory;
-  fruits: AlphabetCategory;
-  animals: AlphabetCategory;
-  countries: AlphabetCategory;
-}
-
-export interface GreekAlphabetEntry {
-  id: number;
-  letter: string;
-  text: string;
-  code: number;
-  englishSound: string;
-  description: string;
-}
-export interface GeekAlphabetEntry {
-  id: string;
-  letter: string;
-  name: string;
-  representations: string[];
+  data: Array<AlphabetDataItem>;
 }
 
 export type CardSectionType = {

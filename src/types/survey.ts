@@ -1,8 +1,13 @@
-// types/survey.ts
+export enum QuestionTypeEnum {
+  SINGLE = "singleChoice",
+  MULTI = "multiChoice",
+  OPEN = "openEnded"
+}
+
 export type Question = {
   id: number;
   questionText: string;
-  type: "singleChoice" | "multiChoice" | "openEnded";
+  type: QuestionTypeEnum;
   options: string[];
 };
 
@@ -11,3 +16,8 @@ export type SurveyData = {
   description: string;
   questions: Question[];
 };
+
+export interface SurveyResponse {
+  timestamp: string;
+  responses: Record<string, string | string[]>;
+}

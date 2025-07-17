@@ -223,9 +223,6 @@ const letterData = letterMap[currentLetter];
 <!-- Pass data to client script -->
 <script define:vars={{ currentLetter, letterMap }} is:inline>
   document.addEventListener("DOMContentLoaded", function () {
-    console.log("LetterAnimation loaded. Current letter:", currentLetter);
-    console.log("Available letters in map:", Object.keys(letterMap));
-
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     let current = currentLetter;
     const svg = document.getElementById("letter-svg");

@@ -19,24 +19,17 @@
   color: var(--text);
 }
 
-.explore-header {
-  margin-bottom: 2rem;
-}
-
-.explore-header h1 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--text);
-}
-
 .explore-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
   gap: 1.5rem;
+  padding: 1rem;
 }
 
 .explore-card {
-  width: 25rem;
+  width: 45vw;
   height: auto;
   display: block;
   text-decoration: none;
@@ -47,6 +40,7 @@
   transition: box-shadow 0.2s ease;
   border-top-left-radius: 10%;
   border-top-right-radius: 10%;
+  flex-shrink: 0;
 }
 
 .explore-card:hover {
@@ -58,13 +52,11 @@
   width: 100%;
   aspect-ratio: 16/9;
   overflow: hidden;
-  border-top-left-radius: 10%;
-  border-top-right-radius: 10%;
 }
 
 .card-image img {
   width: 100%;
-  height: 100%;
+  height: 140%;
   object-fit: cover;
 }
 
@@ -98,15 +90,18 @@
   color: #ffffff;
   margin: 0;
   line-height: 1.5;
+  text-align: left;
 }
 
 @media (max-width: 768px) {
   .explore-container {
     padding: 1rem;
   }
-  .explore-card{
-    width: 18rem;
+
+  .explore-card {
+    width: 20rem;
   }
+
   .explore-grid {
     grid-template-columns: 1fr;
   }
@@ -115,7 +110,7 @@
     font-size: 1.13rem;
     font-weight: 500;
   }
-  
+
   .card-content p {
     font-size: 0.975rem;
     font-weight: 100;
@@ -156,7 +151,7 @@
       margin-top: -15px;
     }
   }
- 
+
   @media screen and (min-width: 1200px) {
     .tooltip {
       transform: translate(-15vw, -20vh);

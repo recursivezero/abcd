@@ -1,16 +1,96 @@
 ---
 import "@/assets/styles/footer.css";
-import { FooterLinks } from "@/utils/constants";
+import ToggleIcon from "@/assets/icons/toggle.svg";
 ---
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 <div class="container__footer">
-  <div class="footer__nav">
-    {
-      FooterLinks.map((menu) => (
-        <span class="footer__nav--item">
-          <a href={menu.path}>{menu.title}</a>
-        </span>
-      ))
-    }
+  <div class="footer__main-content">
+    <!-- Brand and description -->
+    <div class="footer__brand-section">
+      <div class="brand">
+        abcd<span class="kbd">kbd</span>
+      </div>
+      <p>Making learning fun and engaging for young minds everywhere.</p>
+      <div class="social hide">
+        <a href="https://twitter.com/" aria-label="X" target="_blank" rel="noopener noreferrer"
+          ><i class="fa-brands fa-x-twitter"></i></a
+        >
+        <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"
+          ><i class="fa-brands fa-facebook"></i></a
+        >
+        <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"
+          ><i class="fa-brands fa-instagram"></i></a
+        >
+        <a href="https://youtube.com/" aria-label="YouTube" target="_blank" rel="noopener noreferrer"
+          ><i class="fa-brands fa-youtube"></i></a
+        >
+      </div>
+      <!-- Theme Toggle Button -->
+      <button class="footer-theme-toggle" aria-label="Toggle theme">
+        <ToggleIcon width={30} height={30} />
+        <span>Toggle Theme</span>
+      </button>
+    </div>
+    <!-- Navigation columns -->
+    <div class="footer__nav">
+      <details class="footer__nav--item" open>
+        <summary class="footer__nav--title">
+          <span>Learning</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="footer__nav--links">
+          <a href="/alphabets">Reading</a>
+          <a href="/math">Math</a>
+          <a href="/crossword">Games</a>
+          <a href="/draw">Creativity</a>
+          <a href="/map">India Map</a>
+        </div>
+      </details>
+      <details class="footer__nav--item" open>
+        <summary class="footer__nav--title">
+          <span>For Parents</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="footer__nav--links">
+          <a href="/varnmala">Getting Started</a>
+          <a href="/parent">Parent Resources</a>
+          <a href="/faq">FAQs</a>
+          <a href="/support">Support</a>
+          <a href="/blog">Blog</a>
+        </div>
+      </details>
+      <details class="footer__nav--item" open>
+        <summary class="footer__nav--title">
+          <span>For Schools</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="footer__nav--links">
+          <a href="/school">School Programs</a>
+          <a href="/classroom">Classroom Tools</a>
+          <a href="/teacher">Teacher Resources</a>
+          <a href="/contact">Contact Us</a>
+          <a href="/gallery">Gallery</a>
+        </div>
+      </details>
+    </div>
+  </div>
+  <div class="copyright">
+    © 2025 recursivezero.com. All rights reserved.
+    <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms and Conditions</a> | <a href="/cookies">Cookies</a>
   </div>
 </div>
+
+<script>
+  const themeBtn = document.querySelector(".footer-theme-toggle");
+
+  themeBtn?.addEventListener("click", () => {
+    const current = document.documentElement.dataset.theme || "system";
+    const themes = ["system", "light", "dark"];
+    const currentIndex = themes.indexOf(current);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    const next = themes[nextIndex];
+    // Dispatch the same event your ThemeProvider listens for
+    document.dispatchEvent(new CustomEvent("theme-change", { detail: { theme: next } }));
+  });
+</script>

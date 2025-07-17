@@ -4,12 +4,18 @@ import BackIcon from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/vedic.css";
 import vedicData from "@/data/vedic.json";
+import SharePopover from "@/components/ShareButton.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 
 const timeUnits = vedicData.time_units;
 ---
 
 <BaseLayout meta={{ title: "Vedic Time" }}>
   <BackIcon />
+  <Fragment slot="header-right">
+    <KeyboardTrigger />
+    <SharePopover />
+  </Fragment>
   <div class="container__vedic">
     <div class="tab-buttons">
       <button class="tab-button active" data-tab="tithi">Tithi</button>
@@ -49,6 +55,7 @@ const timeUnits = vedicData.time_units;
         <div class="form__group">
           <label for="from__unit">From</label>
           <select id="from__unit">
+            <option>Select Base Unit</option>
             {timeUnits.map((unit) => <option value={unit.name}>{unit.name}</option>)}
           </select>
         </div>
@@ -62,6 +69,7 @@ const timeUnits = vedicData.time_units;
         <div class="form__group">
           <label for="to__unit">To</label>
           <select id="to__unit">
+            <option>Select Conversion Unit</option>
             {timeUnits.map((unit) => <option value={unit.name}>{unit.name}</option>)}
           </select>
         </div>

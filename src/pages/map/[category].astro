@@ -1,9 +1,11 @@
 ---
 import "@/assets/styles/map/map.css";
+import Help from "@/components/Help.astro";
 import IndiaMap from "@/components/IndiaMap.astro";
 import Popup from "@/components/Popup.astro";
-import BaseLayout from "@/layouts/Base";
+import SharePopover from "@/components/ShareButton.astro";
 import categoryData from "@/data/categories.json";
+import BaseLayout from "@/layouts/Base";
 
 export async function getStaticPaths() {
   return Object.values(categoryData.categories).map((value) => ({
@@ -20,6 +22,10 @@ const data = Object.values(categoryData.categories).find((cat) => cat.route === 
 ---
 
 <BaseLayout meta={{ title: data.title }}>
+  <Fragment slot="header-right">
+    <SharePopover />
+    <Help title="Map" description="An Interactive Journey Through India's States and Territories. " />
+  </Fragment>
   <IndiaMap />
   <Popup />
 </BaseLayout>
