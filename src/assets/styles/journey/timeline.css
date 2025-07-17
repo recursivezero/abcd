@@ -1,5 +1,16 @@
+:root {
+  --timeline-bg-color: #e0f7fa;
+  --timeline-bg-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E %3CradialGradient id='sun' cx='10%25' cy='15%25' r='20%25' %3E %3Cstop offset='0%25' stop-color='%23fffde7' /%3E %3Cstop offset='100%25' stop-color='%23fbc02d' /%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='100%25' height='100%25' fill='%23e0f7fa' /%3E %3Ccircle cx='120' cy='80' r='80' fill='url(%23sun)' /%3E %3Cpath d='M0,320L160,290L320,340L480,280L640,360L800,300L960,370L1120,290L1280,330L1440,310L1440,500L0,500Z' fill='%2391c788' /%3E %3Cpath d='M0,370L180,340L360,390L540,330L720,400L900,350L1080,410L1260,340L1440,380L1440,500L0,500Z' fill='%2368b684' /%3E %3C/svg%3E");
+}
+
+.dark {
+  --timeline-bg-color: #0b0f1c;
+  --timeline-bg-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E %3CradialGradient id='moon' cx='10%25' cy='15%25' r='15%25' %3E %3Cstop offset='0%25' stop-color='%23ffffff' /%3E %3Cstop offset='100%25' stop-color='%23888' /%3E %3C/radialGradient%3E %3C/defs%3E %3Crect width='100%25' height='100%25' fill='%230b0f1c' /%3E %3Ccircle cx='120' cy='80' r='70' fill='url(%23moon)' /%3E %3Cg fill='%23ffffff' opacity='0.8' %3E %3Ccircle cx='50' cy='30' r='1.5' /%3E %3Ccircle cx='100' cy='100' r='1' /%3E %3Ccircle cx='200' cy='60' r='1.3' /%3E %3Ccircle cx='300' cy='20' r='1.7' /%3E %3Ccircle cx='400' cy='120' r='1.2' /%3E %3Ccircle cx='500' cy='50' r='1.6' /%3E %3Ccircle cx='600' cy='70' r='1.3' /%3E %3Ccircle cx='700' cy='40' r='1.5' /%3E %3Ccircle cx='800' cy='80' r='1.4' /%3E %3Ccircle cx='900' cy='30' r='1.6' /%3E %3Ccircle cx='1000' cy='60' r='1.2' /%3E %3Ccircle cx='1100' cy='90' r='1.7' /%3E %3Ccircle cx='1300' cy='50' r='1.5' /%3E %3C/g%3E %3Cpath d='M0,320L160,290L320,340L480,280L640,360L800,300L960,370L1120,290L1280,330L1440,310L1440,500L0,500Z' fill='%233b4d61' /%3E %3Cpath d='M0,370L180,340L360,390L540,330L720,400L900,350L1080,410L1260,340L1440,380L1440,500L0,500Z' fill='%232b3a4d' /%3E %3C/svg%3E");
+}
+
 .timeline-wrapper {
-  background-attachment: local;
+  background: var(--timeline-bg-color) var(--timeline-bg-image) center/cover no-repeat fixed;
+  background-blend-mode: normal;
   border-radius: 25px;
   padding: 60px 40px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -12,11 +23,81 @@
   transform: translateY(20px);
   opacity: 0;
   transition: all 0.8s ease;
+  position: relative;
 }
 
 .timeline-wrapper:has(.timeline-event) {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* 🌠 Shooting Star */
+.dark .timeline-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 60px;
+  left: -100px;
+  width: 2px;
+  height: 2px;
+  background: white;
+  box-shadow: 0 0 6px 2px white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: shootingStar 6s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  40% {
+    transform: translate(400px, 150px);
+    opacity: 0.8;
+  }
+
+  80% {
+    transform: translate(800px, 300px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(1000px, 400px);
+    opacity: 0;
+  }
+}
+
+.timeline-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 120px;
+  left: 100px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 2;
+  background: radial-gradient(circle at center,
+      #fffde7 0%,
+      #fff176 40%,
+      #fbc02d 70%,
+      transparent 100%);
+  box-shadow: 0 0 30px 10px rgba(255, 223, 0, 0.4);
+  transition: all 0.5s ease;
+}
+
+.dark .timeline-wrapper::before {
+  background: radial-gradient(circle at center,
+      #f0f0f0 0%,
+      #ccc 50%,
+      #888 80%,
+      transparent 100%);
+  box-shadow: 0 0 25px 8px rgba(255, 255, 255, 0.2);
 }
 
 .timeline-container {
@@ -87,7 +168,9 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s ease, height 0.3s ease, width 0.3s ease;}
+  transition: all 0.3s ease, height 0.3s ease, width 0.3s ease;
+  margin-top: -10px;
+}
 
 .timeline-label.left {
   left: 80px;
@@ -99,20 +182,19 @@
   transform: translateX(20px);
 }
 
-/* 🔽 Arrow and tooltip */
 .event-date {
-    font-weight: 700;
-    font-size: 16px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: relative;
-  }
+  font-weight: 700;
+  font-size: 16px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
 
 .event-date::after {
   content: "▼";
@@ -121,7 +203,6 @@
   transition: transform 0.9s ease;
 }
 
-/* ✅ Expanded label style on click */
 .timeline-label.expanded {
   width: 350px;
   height: 275px;
@@ -131,7 +212,6 @@
   overflow: visible;
 }
 
-/* ✅ Show extra content only when expanded */
 .timeline-label .event-description,
 .timeline-label .event-actions {
   display: none;
@@ -142,7 +222,6 @@
   display: block;
 }
 
-/* 🔼 Flip arrow when expanded */
 .timeline-label.expanded .event-date::after {
   transform: rotate(180deg);
 }
@@ -174,7 +253,6 @@
   background: rgba(255, 255, 255, 0.4);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .timeline-label {
     width: 84px;
