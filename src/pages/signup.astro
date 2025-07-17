@@ -19,7 +19,7 @@ import MoonIcon from "@/assets/icons/moon.svg";
     <div class="signup-left">
       <div class="signup-header">
         <div class="logo">
-          <Picture src={logoImage} formats={["png", "webp"]} alt="template logo" height = {50} width = {50} class="logo" />
+          <Picture src={logoImage} formats={["png", "webp"]} alt="template logo" height={50} width={50} class="logo" />
         </div>
         <a href="/" class="back-link">
           Back to website <span class="arrow">→</span>
@@ -137,11 +137,11 @@ import MoonIcon from "@/assets/icons/moon.svg";
   document.addEventListener("DOMContentLoaded", function () {
     const slideImages = [
       { dark: "/assets/images/screenshots/capital.PNG", light: "/assets/images/screenshots/capitalLight.png" },
-      { dark: "/assets/images/screenshots/colors.PNG",  light: "/assets/images/screenshots/colorsLight.png" },
-      { dark: "/assets/images/screenshots/quote.PNG",   light: "/assets/images/screenshots/quoteLight.png" },
-      { dark: "/assets/images/screenshots/story.png",  light: "/assets/images/screenshots/storyLight.png" },
-      { dark: "/assets/images/screenshots/map.png",  light: "/assets/images/screenshots/mapLight.png" },
-      { dark: "/assets/images/screenshots/varnmala.png",  light: "/assets/images/screenshots/varnmalaLight.png" }
+      { dark: "/assets/images/screenshots/colors.PNG", light: "/assets/images/screenshots/colorsLight.png" },
+      { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
+      { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
+      { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
+      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" }
     ];
     const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
     const sliderWrapper = document.getElementById("slider-wrapper");
@@ -211,10 +211,10 @@ import MoonIcon from "@/assets/icons/moon.svg";
     };
 
     const applyTheme = (theme: Theme) => {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
       updateSliderImages(theme);
-      if (sliderWrapper) sliderWrapper.style.opacity = '1';
+      if (sliderWrapper) sliderWrapper.style.opacity = "1";
     };
 
     const savedTheme = localStorage.getItem("theme") as Theme | null;
