@@ -1,0 +1,154 @@
+/* Help Menu Styles */
+
+.help-popup {
+  display: none;
+  /* You can add modal overlay styles here if needed */
+}
+.help-popup.is-open {
+  display: flex;
+}
+
+.container__shortcut {
+  /* container: shortcut/inline-size; */
+
+  .help-menu {
+    position: fixed;
+    top: 15px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s ease-out;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+
+    .help-menu-container {
+      background-color: white;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 600px;
+      max-height: 80vh;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      animation: slideUp 0.2s ease-out;
+    }
+
+    .help-menu-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid #e1e4e8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .help-menu-header h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 4px 8px;
+      color: #586069;
+    }
+
+    .close-button:hover {
+      color: #24292e;
+    }
+
+    .help-menu-search {
+      padding: 16px 24px;
+      border-bottom: 1px solid #e1e4e8;
+    }
+
+    .help-menu-search input {
+      width: 100%;
+      padding: 8px 4px;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .help-menu-content {
+      padding: 16px 24px;
+      overflow-y: auto;
+      max-height: calc(80vh - 150px);
+    }
+
+    .help-menu-section {
+      margin-bottom: 24px;
+    }
+
+    .help-menu-section h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #24292e;
+    }
+
+    .help-menu-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .help-menu-links li {
+      padding: 6px 0;
+    }
+
+    .help-menu-links a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+
+    .help-menu-links a:hover {
+      text-decoration: underline;
+    }
+
+    .help-menu-links kbd {
+      display: inline-block;
+      padding: 3px 5px;
+      font-size: 11px;
+      line-height: 10px;
+      color: #444d56;
+      vertical-align: middle;
+      background-color: #fafbfc;
+      border: 1px solid #d1d5da;
+      border-radius: 3px;
+      box-shadow: inset 0 -1px 0 #d1d5da;
+    }
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container__shortcut {
+    .help-menu {
+      .help-menu-container {
+        width: 90%;
+      }
+    }
+  }
+}

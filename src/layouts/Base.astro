@@ -5,6 +5,7 @@ import Footer from "@/layouts/common/Footer";
 import Header from "@/layouts/common/Header";
 import Menu from "@/layouts/common/Menu";
 import { siteConfig } from "@/site-config";
+import Shortcut from "@/components/shortcut.astro";
 
 const {
   meta: { title, description = siteConfig.description, ogImage, articleDate }
@@ -21,6 +22,7 @@ const {
       <slot name="header-left" slot="left" />
       <slot name="header-right" slot="right" />
     </Header>
+    <Shortcut/>
     <main id="main" class="main">
       <div class="sidebar"><Menu /></div>
       <div class="content">

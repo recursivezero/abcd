@@ -1,0 +1,91 @@
+---
+import "@/assets/styles/shortcut.css";
+---
+
+<div class="container__shortcut">
+  <button id="help-popover-btn" style="display:none"></button>
+  <div id="help-popup" class="help-popup">
+      <div id="help-menu" class="help-menu">
+          <div class="help-menu-container">
+              <div class="help-menu-header">
+                  <h2>Help</h2>
+                  <button id="close-help" class="close-button" aria-label="Close help menu">×</button>
+              </div>
+              <div class="help-menu-search">
+                  <input type="text" placeholder="Search help..." id="help-search">
+              </div>
+              <div class="help-menu-content">
+                  <div class="help-menu-section">
+                      <h3>Places to Go</h3>
+                      <ul class="help-menu-links">
+                          <li><a href="/documentation">Documentation</a></li>
+                          <li><a href="/api">API Reference</a></li>
+                          <li><a href="/community">Community Forum</a></li>
+                          <li><a href="/support">Support Center</a></li>
+                      </ul>
+                  </div>
+                  <div class="help-menu-section">
+                      <h3>Keyboard Shortcuts</h3>
+                      <ul class="help-menu-links">
+                          <li><kbd>?</kbd> - Show this help menu</li>
+                          <li><kbd>ESC</kbd> - Close help menu</li>
+                          <li><kbd>/</kbd> - Focus search</li>
+                          <li><kbd>G</kbd> + <kbd>H</kbd> - Go to Home</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('help-popup');
+    const openBtn = document.getElementById('help-popover-btn');
+    const closeBtn = document.getElementById('close-help');
+    const helpSearch = document.getElementById('help-search');
+    let gPressed = false;
+
+    function openPopup() {
+      popup?.classList.add('is-open');
+    }
+    function closePopup() {
+      popup?.classList.remove('is-open');
+    }
+
+    openBtn?.addEventListener('click', openPopup);
+    closeBtn?.addEventListener('click', closePopup);
+
+    document.addEventListener('keydown', function(e) {
+      // Open popup on "?" key
+      if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
+        e.preventDefault();
+        openPopup();
+      }
+      // Close popup on ESC
+      if (e.key === 'Escape' && popup?.classList.contains('is-open')) {
+        closePopup();
+      }
+      // Focus search on "/"
+      if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
+        e.preventDefault();
+        if (helpSearch) helpSearch.focus();
+      }
+      // G + H shortcut
+      if (!['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
+        if (gPressed && (e.key === 'h' || e.key === 'H')) {
+          e.preventDefault();
+          window.location.href = '/about';
+          gPressed = false;
+          return;
+        }
+        if (e.key === 'g' || e.key === 'G') {
+          gPressed = true;
+          setTimeout(() => { gPressed = false; }, 1000);
+          return;
+        }
+      }
+    });
+  });
+</script>
