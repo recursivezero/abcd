@@ -76,7 +76,7 @@
 }
 
 .blog-title {
-  font-size: 45px;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   background: var(--primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -90,7 +90,7 @@
   margin: 0 auto;
   margin-top: 1rem;
   max-width: 42rem;
-  font-size: 20px;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
   line-height: 1.5;
   text-align: center;
@@ -133,7 +133,7 @@
   margin-top: 2rem;
   max-width: min(90vw, 90%);
   margin-inline: auto;
-  font-size: 3vh;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
   line-height: 1.7;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
   animation: fadeIn 1s ease-out 0.3s both;
@@ -142,7 +142,7 @@
 }
 
 .markdown-content h2:first-of-type {
-  font-size: 2.25rem;
+  font-size: clamp(1.25rem, 3vw, 2rem);
   margin-top: 2.5rem;
   margin-left: 0px;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
@@ -155,7 +155,7 @@
 }
 
 .markdown-content h2:not(:first-of-type) {
-  font-size: 2.25rem;
+  font-size: clamp(1.25rem, 3vw, 2rem);
   margin-top: 2.5rem;
   margin-left: 0px;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
@@ -177,7 +177,7 @@
 }
 
 .markdown-content h3 {
-  font-size: 1.85rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   margin-top: 2.25rem;
   margin-left: 0px;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
@@ -198,7 +198,7 @@
 }
 
 .markdown-content h4 {
-  font-size: 1.55rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   margin-top: 2rem;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
   font-weight: 600;
@@ -210,7 +210,7 @@
 }
 
 .markdown-content h5 {
-  font-size: 1em;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   margin-top: 1.75rem;
   color: light-dark(var(--text-primary-light), var(--text-primary-dark));
   font-weight: 600;

@@ -7,9 +7,51 @@ export const setLang = `(lang) => {
 }`;
 ---
 
-<div class="language-buttons">
-  <button class="language-btn" id="englishBtn">English</button>
-  <button class="language-btn" id="hindiBtn">हिंदी</button>
+<style>
+  .controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Language Selector Buttons */
+  .language-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  /* Default button style for LIGHT MODE */
+  .language-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--card-bg);
+    color: var(--text,black)
+    transition: all 0.3s ease;
+  }
+
+  [data-theme="dark"] .language-btn {
+    color: #f5f5f5;
+  }
+
+  [data-theme="light"] .language-btn {
+    color: #333;
+  }
+
+  .language-btn.active {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-color: transparent;
+  }
+</style>
+<div class="controls">
+  <div class="language-buttons">
+    <button class="language-btn" id="englishBtn">English</button>
+    <button class="language-btn" id="hindiBtn">हिंदी</button>
+  </div>
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function () {

@@ -290,7 +290,6 @@
 
 .settings-button:hover {
   transform: scale(1.05);
-  color: var(--text-dark);
 }
 
 .settings-button:active {
@@ -304,6 +303,32 @@
   fill: currentColor;
   transition: fill var(--transition-speed) ease;
   flex-shrink: 0;
+  pointer-events: none;
+}
+
+.settings-button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -27px;
+  background-color: none;
+  color: var(--text);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.settings-button:hover::after,
+.settings-button:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
 }
 
 .panel-tools-popover {
