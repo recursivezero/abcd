@@ -1,0 +1,72 @@
+---
+import "@/assets/styles/nakshtra.css";
+import BackIcon from "@/components/Back.astro";
+import Help from "@/components/Help.astro";
+import NakshtraCard, { type Nakshtra } from "@/components/NakshtraCard.astro";
+import SharePopover from "@/components/ShareButton.astro";
+import { data } from "@/data/nakshtra.json";
+import BaseLayout from "@/layouts/Base";
+var currentLang = "hindi";
+---
+
+<style>
+  .legend-container {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: end;
+    margin-right: 2rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #444;
+    background: #f7f7f7;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e0e0e0;
+  }
+
+  .legend-icon {
+    display: inline-block;
+  }
+</style>
+
+<BaseLayout meta={{ title: "Nakshtra" }}>
+  <BackIcon />
+  <Fragment slot="header-right">
+    <SharePopover />
+    <Help
+      title="Nakshtra"
+      description="In Hindu astrology, Nakshatra (नक्षत्र) refers to a constellation or lunar mansion, specifically a division of the zodiac used to determine the position of the moon."
+    />
+  </Fragment>
+
+  <h1>Nakshatra Nexus</h1>
+  <div class="legend-container">
+    <div class="legend-item">
+      <span class="legend-icon">🪐</span> Ruling Planet
+    </div>
+    <div class="legend-item">
+      <span class="legend-icon">📿</span> Deity
+    </div>
+    <div class="legend-item">
+      <span class="legend-icon">࿊</span> Symbol
+    </div>
+  </div>
+  <div class="container__nakshtra">
+    <div class="card__list">
+      {(data as any)[currentLang].map((nakshtra: Nakshtra) => <NakshtraCard {nakshtra} />)}
+    </div>
+  </div>
+  <div class="note">
+    <p>
+      <strong>Note on Abhijit Nakshatra:</strong> A 28th Nakshatra, Abhijit, is mentioned in some texts (between Uttara Ashadha
+      and Shravana), but it is not commonly used in mainstream astrology.
+    </p>
+  </div>
+</BaseLayout>

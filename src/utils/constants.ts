@@ -195,6 +195,12 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
+    name: "Nakshtra",
+    title: "nakshtra",
+    path: "/nakshtra",
+    isActive: true
+  },
+  {
     name: "Societree",
     title: "Clan Explorer",
     path: "/clan",
@@ -337,4 +343,5 @@ const tithiNames = [
 
 export { BASE_URL, englishConsonants, englishVowels, fullEnglish, fullHindi, IMAGE_DIR, styleOption, tithiNames };
 
-export { colorBox, fontBox, fontColor, numberBox };
+  export { colorBox, fontBox, fontColor, numberBox };
+
