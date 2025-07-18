@@ -738,7 +738,7 @@
     "icon": "☀️",
     "title": "Sun Sign",
     "description": "A collection of sun signs with their date range.",
-    "data":  [
+    "data": [
       {
         "description": "April 14 - May 14",
         "id": "aries",
