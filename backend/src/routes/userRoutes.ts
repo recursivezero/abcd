@@ -43,11 +43,11 @@ function withAuth(handler: any) {
   };
 }
 
-// 🔁 POST /user/add
+// 🔁 POST /users/add
 userRouter.openapi(
     {
     method: 'post',
-    path:'/user/add',
+    path:'/users/add',
     request: {
       body: {
         content: {
@@ -107,7 +107,7 @@ builkUsersAdd
 userRouter.openapi(
     {
     method: 'put',
-    path: '/user/update/{_id}',
+    path: '/users/update/{_id}',
     request: {
       params: z.object({
         _id: z.string().openapi({ example: '686ce21742d2ac4499f9af5a' }),
@@ -139,7 +139,7 @@ userRouter.openapi(
 userRouter.openapi(
   {
     method: 'get',
-    path: '/user/{_id}',
+    path: '/users/{_id}',
     request: {
       params: z.object({
         _id: z.string().openapi({ example: '686ce21742d2ac4499f9af5a' }),
@@ -182,32 +182,59 @@ userRouter.openapi(
   getAllUsers
 );
 
-// 🔁 GET /users/query
+// 🔁 GET /query/users
 userRouter.openapi(
   {
     method: 'get',
-    path: '/users/query',
+    path: '/query/users',
     request: {
       query: z.object({
-        from: z.string().optional().openapi({ example: '01-09-2024', description: 'Start date (DD-MM-YYYY, ISO, or days ago as number)' }),
-        to: z.string().optional().openapi({ example: '10-09-2024', description: 'End date (DD-MM-YYYY, ISO, or days ago as number)' }),
-        since: z.string().optional().openapi({ example: '7', description: 'Since date (DD-MM-YYYY, ISO, or days ago as number, e.g., since=7 for last 7 days)' }),
-        pn: z.string().optional().openapi({ example: '1', description: 'Page number (for pagination)' }),
-        ps: z.string().optional().openapi({ example: '5', description: 'Page size (for pagination)' })
+        from: z.string().optional().openapi({ 
+          example: '01-09-2024', 
+          description: 'Start date (DD-MM-YYYY, YYYY-MM-DD, or days ago as number). If a number, interpreted as days ago. Used with `to` for time range filtering.' 
+        }),
+        to: z.string().optional().openapi({ 
+          example: '10-09-2024', 
+          description: 'End date (DD-MM-YYYY, YYYY-MM-DD, or days ago as number). Defaults to today if not provided. Used with `from` for time range filtering.' 
+        }),
+        since: z.string().optional().openapi({ 
+          example: '7', 
+          description: 'Since date (DD-MM-YYYY, YYYY-MM-DD, or days ago as number, e.g., since=7 for last 7 days). Mutually exclusive with `from`/`to`.' 
+        }),
+        pn: z.string().optional().openapi({ 
+          example: '1', 
+          description: 'Page number (for pagination, default 1). Applies to all query modes.' 
+        }),
+        ps: z.string().optional().openapi({ 
+          example: '5', 
+          description: 'Page size (for pagination, default 5). Applies to all query modes.' 
+        }),
+        order: z.string().optional().openapi({
+          example: 'desc',
+          description: 'Sort order by creation date. "asc" for ascending, "desc" for descending. Default is ascending.'
+        })
       })
     },
     responses: {
       200: {
-        description: 'Users fetched by query',
+        description: 'Users fetched by query. Response includes users and pagination info.',
       },
       400: {
-        description: 'Invalid or missing parameters',
+        description: 'Invalid or missing parameters. Returned if date formats are wrong, or if from > to, or if page number/size is invalid.',
       },
       401: {
         description: 'Unauthorized',
       },
     },
     summary: 'Unified user query (pagination, time range, since, all)',
+    description: `
+      Query users with flexible filters:
+      - Time range: Use 'from' and 'to' (DD-MM-YYYY, YYYY-MM-DD, or days ago as number)
+      - Since: Use 'since' (DD-MM-YYYY, YYYY-MM-DD, or days ago as number)
+      - Pagination: Use 'pn' (page number) and 'ps' (page size)
+      - Order: Use 'order' ('asc' or 'desc')
+      - If no filters are provided, returns all users paginated.
+      \nExamples:\n- /query/users?from=01-09-2024&to=10-09-2024\n- /query/users?since=7\n- /query/users?pn=2&ps=10\n- /query/users?order=desc\n`,
     tags: ['User'],
     security: [{ bearerAuth: [] }],
   },
@@ -219,7 +246,7 @@ userRouter.openapi(
 userRouter.openapi(
   {
     method: 'patch',
-    path: '/user/status/{_id}',
+    path: '/users/status/{_id}',
     request: {
       params: z.object({
         _id: z.string().openapi({ example: '686ce21742d2ac4499f9af5a' }),
@@ -244,7 +271,7 @@ userRouter.openapi(
 userRouter.openapi(
   {
     method: 'delete',
-    path: '/user/delete/{_id}',
+    path: '/users/delete/{_id}',
     request: {
       params: z.object({
         _id: z.string().openapi({ example: '686ce21742d2ac4499f9af5a' }),
