@@ -95,70 +95,70 @@
       {
         "id": 0,
         "letter": "0",
-        "text": "0",
+        "text": "−−−−−",
         "description": "Zero",
         "emoji": "−−−−−"
       },
       {
         "id": 1,
         "letter": "1",
-        "text": "1",
+        "text": "•−−−−",
         "description": "One",
         "emoji": "•−−−−"
       },
       {
         "id": 2,
         "letter": "2",
-        "text": "2",
+        "text": "••−−−",
         "description": "Two",
         "emoji": "••−−−"
       },
       {
         "id": 3,
         "letter": "3",
-        "text": "3",
+        "text": "•••−−",
         "description": "Three",
         "emoji": "•••−−"
       },
       {
         "id": 4,
         "letter": "4",
-        "text": "4",
+        "text": "••••−",
         "description": "Four",
         "emoji": "••••−"
       },
       {
         "id": 5,
         "letter": "5",
-        "text": "5",
+        "text": "•••••",
         "description": "Five",
         "emoji": "•••••"
       },
       {
         "id": 6,
         "letter": "6",
-        "text": "6",
+        "text": "−••••",
         "description": "Six",
         "emoji": "−••••"
       },
       {
         "id": 7,
         "letter": "7",
-        "text": "7",
+        "text": "−−•••",
         "description": "Seven",
         "emoji": "−−•••"
       },
       {
         "id": 8,
         "letter": "8",
-        "text": "8",
+        "text": "−−−••",
         "description": "Eight",
         "emoji": "−−−••"
       },
       {
         "id": 9,
         "letter": "9",
-        "text": "9",
+        "text": "−−−−•",
         "description": "Nine",
         "emoji": "−−−−•"
       }
