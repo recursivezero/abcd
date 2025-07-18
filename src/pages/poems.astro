@@ -1,11 +1,11 @@
 ---
-import { Debug } from 'astro:components';
 import BackIcon from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import poem from "@/data/poem.json";
 import PoemCard from "@/components/PoemCard.astro";
+import SquareBubble from "@/components/SquareBubble.astro";
 import "@/assets/styles/poems.css";
 import {sortBy} from "@/utils/common.ts"
 const { poems } = poem;
@@ -23,28 +23,7 @@ sortBy(poems,"title");
     />
   </Fragment>
   <div class="Container__poems">
-    <div class="home_outer">
-      <div class="home_start">
-        <div class="context">
-          <div>Welcome to Poem World!</div>
-          <div>Hello, little reader!</div>
-        </div>
-        <div class="area">
-          <ul class="circles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <SquareBubble/>
     <div class="outer__poem">
       <div class="container__PoemCard">
 
