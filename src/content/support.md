@@ -37,7 +37,7 @@ If something isn’t working:
 
 - Make sure your internet connection is active.
 - Try refreshing the page.
-- Use a modern browser like **Chrome**, **Firefox**, or **Edge**.
+- Use a modern browser like &nbsp; **Chrome**, **Firefox**, or &nbsp; **Edge**.
 - If you're using a school device, check for any firewall or content blockers.
 
 ---
