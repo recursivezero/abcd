@@ -21,9 +21,6 @@ import MoonIcon from "@/assets/icons/moon.svg";
         <div class="logo">
           <Picture src={logoImage} formats={["png", "webp"]} alt="template logo" height={50} width={50} class="logo" />
         </div>
-        <a href="/" class="back-link">
-          Back to website <span class="arrow">→</span>
-        </a>
       </div>
 
       <div class="slider-container" id="slider-wrapper">
@@ -78,6 +75,9 @@ import MoonIcon from "@/assets/icons/moon.svg";
     </div>
 
     <div class="signup-right">
+      <a href="/" class="back-link">
+        <span class="arrow">←</span> Back to website
+      </a>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
         <SunIcon id="theme-icon-sun" width={24} height={24} />
         <MoonIcon id="theme-icon-moon" width={24} height={24} />
@@ -141,7 +141,7 @@ import MoonIcon from "@/assets/icons/moon.svg";
       { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
       { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
       { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
-      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" }
+      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" },
     ];
     const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
     const sliderWrapper = document.getElementById("slider-wrapper");
