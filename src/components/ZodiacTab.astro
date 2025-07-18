@@ -21,7 +21,7 @@ import "@/assets/styles/zodiac.css";
   import type { Language } from "@/types/zodiac";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const zodiacsPromise = fetch("/src/data/zodiac.json").then((res) => res.json());
+    const zodiacsPromise = fetch("src/data/zodiac.json").then((res) => res.json());
 
     zodiacsPromise.then((zodiacs) => {
       const zodiacsGrid = document.getElementById("zodiacsGrid");
