@@ -1,40 +1,20 @@
 ---
-import "@/assets/styles/astrology.css";
-import "@/assets/styles/zodiac.css";
 import Back from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 import ZodiacTab from "@/components/ZodiacTab.astro";
-import NakshatraTab from "@/components/NakshatraTab.astro";
 ---
 
 <BaseLayout meta={{ title: "Zodiac" }}>
   <Back />
   <Fragment slot="header-right">
-    <LanguageSwitcher />
     <SharePopover />
     <Help title="Zodiac" description="Explore Zodiacs and Nakshtras." />
   </Fragment>
-
-  <div class="container__astrology">
-    <!-- Tab Buttons -->
-    <div class="tab-buttons">
-      <button class="tab-button active" data-tab="zodiac">Zodiac Signs</button>
-      <button class="tab-button" data-tab="nakshtra">Nakshtra</button>
-    </div>
-
-    <!-- Zodiac Signs Tab Content -->
-    <div id="zodiac-tab-content" class="tab-content active">
-      <ZodiacTab />
-    </div>
-
-    <!-- Nakshatra Tab Content -->
-    <div id="nakshtra-tab-content" class="tab-content">
-      <NakshatraTab />
-    </div>
-  </div>
+  <LanguageSwitcher />
+  <ZodiacTab />
 </BaseLayout>
 
 <script is:inline>
@@ -63,22 +43,5 @@ import NakshatraTab from "@/components/NakshatraTab.astro";
     englishButtons.forEach((btn) => btn.addEventListener("click", () => setLanguage("english")));
     hindiButtons.forEach((btn) => btn.addEventListener("click", () => setLanguage("hindi")));
     setLanguage(initialLang); // Set initial language on page load
-
-    // Tab switching logic
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const tabContents = document.querySelectorAll(".tab-content");
-
-    tabButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        tabButtons.forEach((btn) => btn.classList.remove("active"));
-        tabContents.forEach((content) => content.classList.remove("active"));
-
-        button.classList.add("active");
-        const targetTab = button.dataset.tab;
-        if (targetTab) {
-          document.getElementById(`${targetTab}-tab-content`)?.classList.add("active");
-        }
-      });
-    });
   });
 </script>

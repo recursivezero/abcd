@@ -22,6 +22,10 @@ export default defineConfig({
   style: {
     global: true // Ensure global styles are applied
   },
+  //redirects: {
+  //  "/en/nakshtra": "/nakshtra",
+  //  "/blog": "https://xkeshav.com/blog"
+  //},
   vite: {
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"]
