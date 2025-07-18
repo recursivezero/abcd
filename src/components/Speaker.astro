@@ -18,156 +18,11 @@ declare global {
 */
 ---
 
-<div class="speaker-controls">
-  <div class="voices-dropdown">
-    <button type="button" class="voices-btn" id="voices-btn" title="Choose Voice">
-      <span class="selected-voice-text">Voice: </span> ▼
-    </button>
-    <div class="voices-options" id="voices-options">
-      <div data-name="" class="voice-option">🔽 Choose</div>
-      <div data-name="mudra" class="voice-option">👦 Mudra</div>
-      <div data-name="rutvi" class="voice-option">👧 Rutvi</div>
-    </div>
-  </div>
-
-  <button type="button" class="mute-button" id="mute-button" aria-pressed="false" title="Mute">
-    <span class="mute-icon">🔊</span>
-  </button>
-</div>
-
-<script is:inline>
-  let currentAudio = null;
-  let isMuted = false;
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const voicesBtn = document.getElementById("voices-btn");
-    const voicesOptions = document.getElementById("voices-options");
-    const voiceOptions = document.querySelectorAll(".voice-option");
-    const muteBtn = document.getElementById("mute-button");
-    const muteIcon = muteBtn.querySelector(".mute-icon");
-    const selectedVoiceText = document.querySelector(".selected-voice-text");
-
-    let currentVoice = "";
-    function stopAudio() {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio = null;
-      }
-    }
-
-    function updateButtonText() {
-        const isMobile = window.matchMedia("(max-width: 480px)").matches;
-        if (isMobile) {
-            if (currentVoice === 'mudra') {
-                selectedVoiceText.textContent = '👦';
-            } else if (currentVoice === 'rutvi') {
-                selectedVoiceText.textContent = '👧';
-            } else {
-                selectedVoiceText.textContent = 'Voice: ';
-            }
-        } else {
-            selectedVoiceText.textContent = currentVoice ? `Voice: ${currentVoice}` : "Voice: ";
-        }
-    }
-
-    // Voice selection
-    voiceOptions.forEach((option) => {
-      option.addEventListener("click", (e) => {
-        currentVoice = e.currentTarget.dataset.name;
-        updateButtonText();
-        closeDropdown();
-      });
-    });
-
-    // Mute toggle
-    muteBtn.addEventListener("click", () => {
-      isMuted = !isMuted;
-      muteIcon.textContent = isMuted ? "🔇" : "🔊";
-      muteBtn.setAttribute("aria-pressed", isMuted);
-
-      if (isMuted) {
-        stopAudio();
-      }
-    });
-
-    voicesBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      voicesOptions.classList.toggle("show");
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener("click", closeDropdown);
-
-    function closeDropdown() {
-      voicesOptions.classList.remove("show");
-    }
-
-    window.playLetterSound = (letter) => {
-      if (isMuted || !currentVoice) return;
-
-      stopAudio();
-
-      try {
-        currentAudio = new Audio(`/assets/media/alphabets/${currentVoice}/${letter.toLowerCase()}.ogg`);
-        currentAudio.play().catch((e) => console.log("Audio play failed:", e));
-      } catch (error) {
-        console.error("Error playing sound:", error);
-      }
-    };
-    window.addEventListener('resize', updateButtonText);
-  });
-</script>
-
 <style>
-  .speaker-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  select {
+    width: max-content;
   }
-  .voices-dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  .voices-btn {
-    background: transparent;
-    color: var(--color-text);
-    border: 1px solid var(--primary);
-    padding: 15px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-    margin-left: 5px;
-  }
-  .voices-btn:hover {
-    background: var(--primary);
-    color: #ffffff;
-  }
-  .voices-options {
-    display: none;
-    position: absolute;
-    right: 0px;
-    background: transparent;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    z-index: 100;
-    min-width: 90px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  .voices-options.show {
-    display: block;
-  }
-  .voice-option {
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-  .voice-option:hover {
-    background: var(--primary);
-    color: #ffffff;
-  }
+
   .mute-button {
     background: var(--color-bg-secondary);
     color: #ffffff;
@@ -188,35 +43,64 @@ declare global {
   .mute-icon {
     font-size: 1.8rem;
   }
-
-  @media (max-width: 480px) {
-    .speaker-controls {
-      padding: 0.25rem;
-      gap: 0.5rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
-    .mute-button {
-      width: 3.1rem;
-      height: 3.1rem;
-      padding: 14px;
-    }
-
-    .mute-icon {
-      font-size: 1.2rem;
-    }
-
-    .voices-btn {
-      padding: 12px 14px;
-      font-size: 0.75rem;
-    }
-
-
-    .voice-option {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.65rem;
-    }
-  }
 </style>
+
+<div class="speaker-controls">
+  <select id="voice-dropdown">
+    <option disabled>Select Voice</option>
+    <option value="mudra">Mudra</option>
+    <option value="rutvi">Rutvi</option>
+  </select>
+
+  <button type="button" class="mute-button" id="mute-button" aria-pressed="false" title="Mute">
+    <span class="mute-icon">🔊</span>
+  </button>
+</div>
+
+<script is:inline>
+  let currentAudio = null;
+  let isMuted = false;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const voicesSelection = document.getElementById("voice-dropdown");
+    const muteBtn = document.getElementById("mute-button");
+    const muteIcon = muteBtn.querySelector(".mute-icon");
+
+    let currentVoice = "";
+    const stopAudio = () => {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+      }
+    };
+
+    const playLetterSound = (letter) => {
+      if (isMuted || !currentVoice) return;
+
+      stopAudio();
+
+      try {
+        currentAudio = new Audio(`/assets/media/alphabets/${currentVoice}/${letter.toLowerCase()}.ogg`);
+        currentAudio.play().catch((e) => console.log("Audio play failed:", e));
+      } catch (error) {
+        console.error("Error playing sound:", error);
+      }
+    };
+
+    // Mute toggle
+    muteBtn.addEventListener("click", () => {
+      isMuted = !isMuted;
+      muteIcon.textContent = isMuted ? "🔇" : "🔊";
+      muteBtn.setAttribute("aria-pressed", isMuted);
+
+      if (isMuted) {
+        stopAudio();
+      }
+    });
+
+    voicesSelection.addEventListener("change", (e) => {
+      console.log(e.target.value);
+      currentVoice = e.target.value;
+    });
+  });
+</script>
