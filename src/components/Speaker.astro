@@ -19,7 +19,13 @@ declare global {
 ---
 
 <style>
-  select {
+  .speaker-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  #voice-dropdown {
     width: max-content;
   }
 
@@ -29,8 +35,8 @@ declare global {
     border: 1px solid var(--primary);
     border-radius: 100px;
     cursor: pointer;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,13 +47,13 @@ declare global {
     color: var(--primary);
   }
   .mute-icon {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 </style>
 
 <div class="speaker-controls">
   <select id="voice-dropdown">
-    <option disabled>Select Voice</option>
+    <option selected disabled>Select Voice</option>
     <option value="mudra">Mudra</option>
     <option value="rutvi">Rutvi</option>
   </select>
@@ -74,7 +80,7 @@ declare global {
       }
     };
 
-    const playLetterSound = (letter) => {
+    window.playLetterSound = (letter) => {
       if (isMuted || !currentVoice) return;
 
       stopAudio();
@@ -99,7 +105,6 @@ declare global {
     });
 
     voicesSelection.addEventListener("change", (e) => {
-      console.log(e.target.value);
       currentVoice = e.target.value;
     });
   });
