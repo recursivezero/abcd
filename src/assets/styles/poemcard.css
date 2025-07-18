@@ -50,6 +50,10 @@
   filter: brightness(0.95);
   transform: scale(1.03);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  color: var(--primary);
+  .open-indicator{
+  fill: var(--primary);
+}
 }
 
 /* Target every Nth .poem-card inside .container__PoemCard */
@@ -157,7 +161,7 @@ text-shadow: 0 -8px 18px rgba(0, 0, 0, 0.15);
     color: #cf485a;
     font-size: 2rem;
     font-weight: 600;
-    /* background: #fff8f0; */
+    background: #fff8f0;
     padding: 2rem;
     border-radius: 1rem;
     height: 85%;
