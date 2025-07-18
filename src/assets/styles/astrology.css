@@ -1,0 +1,192 @@
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  gap: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-button {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  color: #f5f5f5;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+[data-theme="dark"] .tab-button {
+  color: #f5f5f5;
+}
+
+[data-theme="light"] .tab-button {
+  color: #333;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  grid-auto-rows: 1fr;
+}
+.nakshatra-note {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 800px;
+  background-color: rgba(var(--card-bg), 0.5);
+  border-left: 4px solid var(--primary-color);
+  opacity: 0.8;
+}
+/* Corrected selector for an element with BOTH classes */
+.card.nakshatra-card {
+  aspect-ratio: auto; 
+  cursor: default;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.nakshatra-card .nakshatra-symbol-img {
+  width: 320px;
+  height: 320px;
+  margin-bottom: 1rem;
+}
+.nakshatra-card h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+.nakshatra-card .nakshatra-details {
+  padding: 0;
+  margin: 0;
+  font-size: 0.95rem;
+  width: 100%;
+  text-align: left;
+}
+.nakshatra-card .nakshatra-details p {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  gap: 0.5rem;
+}
+.tab-button:hover {
+  background-color: color-mix(in srgb, var(--card-bg) 90%, var(--text-color) 10%);
+}
+
+.tab-button.active {
+  background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color), #338aff, #3cf0c5);
+  background-size: 400% 400%;
+  animation: gradient 10s infinite;
+  color: white;
+  border-color: transparent;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.placeholder-content {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --- Responsive Styles --- */
+
+@media (max-width: 768px) {
+  .container__astrology {
+    padding: 1rem;
+  }
+
+  .tab-buttons {
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .tab-button {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  /* Responsive styles for Nakshatra cards on tablets */
+  .nakshatra-card .nakshatra-symbol-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .nakshatra-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .nakshatra-card .nakshatra-details p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-buttons {
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+  }
+
+  .grid-container {
+    /* Switch to a single column on small mobile screens */
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  /* Specific Nakshatra card adjustments for small mobile */
+  .nakshatra-card .nakshatra-symbol-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .nakshatra-note {
+    margin: 1.5rem auto;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}

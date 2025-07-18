@@ -1,0 +1,28 @@
+---
+export interface Nakshtra {
+  id: number;
+  name: string;
+  ruling_planet: string;
+  deity: string;
+  symbol: string;
+  image: string;
+}
+
+interface Props {
+  nakshtra: Nakshtra;
+}
+
+const {
+  nakshtra: { name, deity, ruling_planet, symbol, image }
+} = Astro.props;
+---
+
+<div class="card nakshatra-card">
+  <img src=`/data/nakshatra/${image}` alt={name} class="nakshatra-symbol-img" />
+  <h3>{name}</h3>
+  <div class="nakshatra-details">
+    <p><strong>Ruling Planet:</strong> {ruling_planet}</p>
+    <p><strong>Deity:</strong> {deity}</p>
+    <p><strong>Symbol:</strong> {symbol}</p>
+  </div>
+</div>

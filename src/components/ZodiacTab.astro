@@ -1,0 +1,90 @@
+---
+
+---
+
+<h1>Explore the Zodiac</h1>
+<div class="container__zodiac" id="zodiacsGrid"></div>
+
+<!-- Modal for Zodiacs -->
+<div id="zodiacModal" class="modal">
+  <div class="modal-content">
+    <button class="close">&times;</button>
+    <img id="modalImage" src="" alt="Zodiac Image" />
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+    <ul id="modalPoints"></ul>
+  </div>
+</div>
+
+<script>
+  import type { Zodiac } from "@/types";
+  import type { Language } from "@/types/zodiac";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const zodiacsPromise = fetch("/data/zodiac.json").then((res) => res.json());
+
+    zodiacsPromise.then((zodiacs) => {
+      const zodiacsGrid = document.getElementById("zodiacsGrid");
+      const zodiacModal = document.getElementById("zodiacModal");
+      const modalImage = document.getElementById("modalImage") as HTMLImageElement | null;
+      const modalTitle = document.getElementById("modalTitle");
+      const modalDescription = document.getElementById("modalDescription");
+      const modalPoints = document.getElementById("modalPoints");
+      const closeButton = zodiacModal?.querySelector(".close");
+
+      let currentLang = (localStorage.getItem("language") || "english") as keyof Language;
+
+      function renderZodiacCards() {
+        if (!zodiacsGrid) return;
+        zodiacsGrid.innerHTML = "";
+        zodiacs.forEach((zodiac: Zodiac, i: number) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.setAttribute("data-zodiac-index", String(i));
+          card.innerHTML = `
+            <h3>${zodiac.name[currentLang]}</h3>
+            <p>${zodiac.dates[currentLang]}</p>
+            <button class="info-btn" title="Show Info"><span class="icon">🔍</span></button>
+          `;
+          zodiacsGrid.appendChild(card);
+        });
+      }
+
+      function openZodiacModal(index: number) {
+        if (!zodiacModal || !modalTitle || !modalDescription || !modalPoints) return;
+        const zodiac = zodiacs[index];
+        if (modalImage) modalImage.src = `/data/zodiac/${zodiac.image}`;
+        modalTitle.textContent = zodiac.name[currentLang];
+        modalDescription.textContent = zodiac.description[currentLang];
+        modalPoints.innerHTML = zodiac.points[currentLang].map((pt: string) => `<li>${pt}</li>`).join("");
+        zodiacModal.style.display = "block";
+        document.body.classList.add("page-no-scroll");
+      }
+
+      function closeModal() {
+        if (zodiacModal) zodiacModal.style.display = "none";
+        document.body.classList.remove("page-no-scroll");
+      }
+
+      zodiacsGrid?.addEventListener("click", (e) => {
+        const card = (e.target as HTMLElement).closest(".card");
+        if (card) {
+          const index = card.getAttribute("data-zodiac-index");
+          if (index !== null) openZodiacModal(parseInt(index, 10));
+        }
+      });
+
+      closeButton?.addEventListener("click", closeModal);
+      zodiacModal?.addEventListener("click", (e) => {
+        if (e.target === zodiacModal) closeModal();
+      });
+
+      window.addEventListener("languagechange", () => {
+        currentLang = (localStorage.getItem("language") || "english") as keyof Language;
+        renderZodiacCards();
+      });
+
+      renderZodiacCards();
+    });
+  });
+</script>
