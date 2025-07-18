@@ -21,7 +21,7 @@
   import type { Language } from "@/types/zodiac";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const zodiacsPromise = fetch("/data/zodiac.json").then((res) => res.json());
+    const zodiacsPromise = fetch("/src/data/zodiac.json").then((res) => res.json());
 
     zodiacsPromise.then((zodiacs) => {
       const zodiacsGrid = document.getElementById("zodiacsGrid");
@@ -53,7 +53,7 @@
       function openZodiacModal(index: number) {
         if (!zodiacModal || !modalTitle || !modalDescription || !modalPoints) return;
         const zodiac = zodiacs[index];
-        if (modalImage) modalImage.src = `/data/zodiac/${zodiac.image}`;
+        if (modalImage) modalImage.src = `/assets/images/zodiac/${zodiac.image}`;
         modalTitle.textContent = zodiac.name[currentLang];
         modalDescription.textContent = zodiac.description[currentLang];
         modalPoints.innerHTML = zodiac.points[currentLang].map((pt: string) => `<li>${pt}</li>`).join("");
