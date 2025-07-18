@@ -217,7 +217,7 @@ export const NavbarLinks: LinkProps[] = [
     title: "Poems",
     path: "/poems",
     isActive: true
-  }
+  },
 ];
 
 export const FooterLinks: LinkProps[] = [
