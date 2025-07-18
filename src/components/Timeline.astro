@@ -1,0 +1,76 @@
+---
+import vedicData from "@/data/vedic.json";
+const { units } = vedicData;
+---
+
+<div class="units__timeline-container">
+  <!-- Parallax starfield layers -->
+  <div class="units__parallax-layer units__parallax-layer--back">
+    <div class="units__starfield">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="units__parallax-layer units__parallax-layer--back2">
+    <div class="units__starfield">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="units__parallax-layer units__parallax-layer--back3">
+    <div class="units__starfield">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="units__parallax-layer units__parallax-layer--base">
+    <div class="units__starfield">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- Original content with timeline -->
+  <h2 class="units__title">Vedic Time Journey</h2>
+  <div class="timeline-wrapper">
+    {
+      units.map((unit) => (
+        <div class="timeline-node">
+          <div class="timeline-card">
+            <div class="unit__header">
+              <h3>{unit.name}</h3>
+            </div>
+            <div class="unit__details">
+              <div class="unit__value">{unit.firstEquivalent.toLocaleString()}</div>
+              <div class="unit__value">{unit.secondEquivalent.toLocaleString()}</div>
+              <div class="unit__value">{unit.thirdEquivalent.toLocaleString()}</div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const timelineContainer = document.querySelector(".units__timeline-container");
+  const title = document.querySelector(".units__title");
+
+  if (timelineContainer && title) {
+    timelineContainer.addEventListener("scroll", () => {
+      if (timelineContainer.scrollTop > 10) {
+        title.classList.add("scrolled");
+      } else {
+        title.classList.remove("scrolled");
+      }
+    });
+  }
+</script>

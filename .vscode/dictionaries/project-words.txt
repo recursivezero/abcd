@@ -1,4 +1,5 @@
 abcdkbd
+Abhijit
 argmax
 argmin
 Ashadha
@@ -56,8 +57,11 @@ Margashirsha
 matra
 matras
 moonsign
+Nakshatra
 Nakshtra
+Nakshtras
 nameform
+nanostores
 Nishad
 nodownload
 odia
@@ -94,6 +98,7 @@ threadzip
 Threazip
 tithi
 uncategorized
+Uttara
 Vaishakha
 Valmiki
 varnmala

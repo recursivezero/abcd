@@ -7,13 +7,14 @@ import Menu from "@/layouts/common/Menu";
 import { siteConfig } from "@/site-config";
 
 const {
-  meta: { title, description = siteConfig.description, ogImage, articleDate }
+  meta: { title, description = siteConfig.description, ogImage },
+  sidebar = true
 } = Astro.props;
 ---
 
 <html lang={siteConfig.lang} data-theme="system">
   <head>
-    <BaseHead title={title} description={description} ogImage={ogImage} date={articleDate} />
+    <BaseHead title={title} description={description} ogImage={ogImage} />
   </head>
   <body id="body" class="body__container">
     <ThemeProvider />
@@ -22,7 +23,7 @@ const {
       <slot name="header-right" slot="right" />
     </Header>
     <main id="main" class="main">
-      <div class="sidebar"><Menu /></div>
+      <div class="sidebar">{sidebar && <Menu />}</div>
       <div class="content">
         <slot><p>This is my fallback content, if there is no child passed into slot</p></slot>
       </div>
