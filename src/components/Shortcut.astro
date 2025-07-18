@@ -5,37 +5,45 @@ import "@/assets/styles/shortcut.css";
 <div class="container__shortcut">
   <button id="help-popover-btn" style="display:none"></button>
   <div id="help-popup" class="help-popup">
-      <div id="help-menu" class="help-menu">
-          <div class="help-menu-container">
-              <div class="help-menu-header">
-                  <h2>Help</h2>
-                  <button id="close-help" class="close-button" aria-label="Close help menu">×</button>
-              </div>
-              <div class="help-menu-search">
-                  <input type="text" placeholder="Search help..." id="help-search">
-              </div>
-              <div class="help-menu-content">
-                  <div class="help-menu-section">
-                      <h3>Places to Go</h3>
-                      <ul class="help-menu-links">
-                          <li><a href="/documentation">Documentation</a></li>
-                          <li><a href="/api">API Reference</a></li>
-                          <li><a href="/community">Community Forum</a></li>
-                          <li><a href="/support">Support Center</a></li>
-                      </ul>
-                  </div>
-                  <div class="help-menu-section">
-                      <h3>Keyboard Shortcuts</h3>
-                      <ul class="help-menu-links">
-                          <li><kbd>?</kbd> - Show this help menu</li>
-                          <li><kbd>ESC</kbd> - Close help menu</li>
-                          <li><kbd>/</kbd> - Focus search</li>
-                          <li><kbd>G</kbd> + <kbd>H</kbd> - Go to Home</li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
+    <div class="help-menu">
+      <div class="help-menu-header">
+        <h2>Keyboard Shortcuts</h2>
+        <button id="close-help" class="close-button" aria-label="Close help menu">×</button>
       </div>
+      <div class="help-menu-content grid">
+        <div class="shortcut-section">
+          <h3>Repositories</h3>
+          <ul>
+            <li><span class="desc">Open in codespace</span> <span class="keys"><kbd>Ctrl</kbd>+<kbd>.</kbd></span></li>
+            <li><span class="desc">Open in github.dev editor</span> <span class="keys"><kbd>Alt</kbd>+<kbd>.</kbd></span></li>
+            <li><span class="desc">Open github.dev editor in a new tab</span> <span class="keys"><kbd>&gt;</kbd></span></li>
+            <li><span class="desc">Go to Code</span> <span class="keys"><kbd>G</kbd> <kbd>C</kbd></span></li>
+            <li><span class="desc">Go to Issues</span> <span class="keys"><kbd>G</kbd> <kbd>I</kbd></span></li>
+            <li><span class="desc">Go to Pull Requests</span> <span class="keys"><kbd>G</kbd> <kbd>P</kbd></span></li>
+            <li><span class="desc">Go to Actions</span> <span class="keys"><kbd>G</kbd> <kbd>A</kbd></span></li>
+            <li><span class="desc">Go to Projects</span> <span class="keys"><kbd>G</kbd> <kbd>B</kbd></span></li>
+            <li><span class="desc">Go to Wiki</span> <span class="keys"><kbd>G</kbd> <kbd>W</kbd></span></li>
+            <li><span class="desc">Go to Discussions</span> <span class="keys"><kbd>G</kbd> <kbd>G</kbd></span></li>
+          </ul>
+        </div>
+        <div class="shortcut-section">
+          <h3>Site-wide shortcuts</h3>
+          <ul>
+            <li><span class="desc">Open search bar</span> <span class="keys"><kbd>S</kbd> or <kbd>/</kbd></span></li>
+            <li><span class="desc">Go to notifications</span> <span class="keys"><kbd>G</kbd> <kbd>N</kbd></span></li>
+            <li><span class="desc">Go to dashboard</span> <span class="keys"><kbd>G</kbd> <kbd>D</kbd></span></li>
+            <li><span class="desc">Go to your issues</span> <span class="keys"><kbd>G</kbd> <kbd>I</kbd></span></li>
+            <li><span class="desc">Go to your pull requests</span> <span class="keys"><kbd>G</kbd> <kbd>P</kbd></span></li>
+            <li><span class="desc">Bring up this help dialog</span> <span class="keys"><kbd>?</kbd></span></li>
+            <li><span class="desc">Move selection down</span> <span class="keys"><kbd>J</kbd></span></li>
+            <li><span class="desc">Move selection up</span> <span class="keys"><kbd>K</kbd></span></li>
+            <li><span class="desc">Toggle selection</span> <span class="keys"><kbd>X</kbd></span></li>
+            <li><span class="desc">Open selection</span> <span class="keys"><kbd>O</kbd> or <kbd>Enter</kbd></span></li>
+            <li><span class="desc">Expand and move focus into focused link's hovercard</span> <span class="keys"><kbd>Alt</kbd> <kbd>↑</kbd></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -44,7 +52,6 @@ import "@/assets/styles/shortcut.css";
     const popup = document.getElementById('help-popup');
     const openBtn = document.getElementById('help-popover-btn');
     const closeBtn = document.getElementById('close-help');
-    const helpSearch = document.getElementById('help-search');
     let gPressed = false;
 
     function openPopup() {
@@ -66,11 +73,6 @@ import "@/assets/styles/shortcut.css";
       // Close popup on ESC
       if (e.key === 'Escape' && popup?.classList.contains('is-open')) {
         closePopup();
-      }
-      // Focus search on "/"
-      if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
-        e.preventDefault();
-        if (helpSearch) helpSearch.focus();
       }
       // G + H shortcut
       if (!['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {

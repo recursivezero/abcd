@@ -2,153 +2,131 @@
 
 .help-popup {
   display: none;
-  /* You can add modal overlay styles here if needed */
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
 }
 .help-popup.is-open {
   display: flex;
 }
-
-.container__shortcut {
-  /* container: shortcut/inline-size; */
-
-  .help-menu {
-    position: fixed;
-    top: 15px;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.2s ease-out;
-    padding: 0;
-    margin: 0;
-    border-radius: 0;
-    box-shadow: none;
-    overflow: hidden;
-
-    .help-menu-container {
-      background-color: white;
-      border-radius: 8px;
-      width: 80%;
-      max-width: 600px;
-      max-height: 80vh;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      animation: slideUp 0.2s ease-out;
-    }
-
-    .help-menu-header {
-      padding: 16px 24px;
-      border-bottom: 1px solid #e1e4e8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .help-menu-header h2 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    .close-button {
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      padding: 4px 8px;
-      color: #586069;
-    }
-
-    .close-button:hover {
-      color: #24292e;
-    }
-
-    .help-menu-search {
-      padding: 16px 24px;
-      border-bottom: 1px solid #e1e4e8;
-    }
-
-    .help-menu-search input {
-      width: 100%;
-      padding: 8px 4px;
-      border: 1px solid #e1e4e8;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    .help-menu-content {
-      padding: 16px 24px;
-      overflow-y: auto;
-      max-height: calc(80vh - 150px);
-    }
-
-    .help-menu-section {
-      margin-bottom: 24px;
-    }
-
-    .help-menu-section h3 {
-      margin: 0 0 12px 0;
-      font-size: 16px;
-      font-weight: 600;
-      color: #24292e;
-    }
-
-    .help-menu-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .help-menu-links li {
-      padding: 6px 0;
-    }
-
-    .help-menu-links a {
-      color: #0366d6;
-      text-decoration: none;
-    }
-
-    .help-menu-links a:hover {
-      text-decoration: underline;
-    }
-
-    .help-menu-links kbd {
-      display: inline-block;
-      padding: 3px 5px;
-      font-size: 11px;
-      line-height: 10px;
-      color: #444d56;
-      vertical-align: middle;
-      background-color: #fafbfc;
-      border: 1px solid #d1d5da;
-      border-radius: 3px;
-      box-shadow: inset 0 -1px 0 #d1d5da;
-    }
+.help-menu {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  width: 90vw;
+  max-width: 700px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.help-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px 12px 28px;
+  border-bottom: 1px solid #e1e4e8;
+}
+.help-menu-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+.close-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #586069;
+}
+.help-menu-content.grid {
+  display: flex;
+  gap: 0;
+  padding: 24px 28px;
+  overflow-y: auto;
+  border-top: 1px solid #e1e4e8;
+}
+.shortcut-section {
+  flex: 1;
+  height: 100%;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  margin: 0 12px;
+  padding: 18px 20px 12px 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.shortcut-section:first-child {
+  margin-left: 0;
+}
+.shortcut-section:last-child {
+  margin-right: 0;
+}
+.shortcut-section h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e1e4e8;
+  padding-bottom: 8px;
+  color: #24292e;
+}
+.shortcut-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.shortcut-section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 4px 0;
+}
+.keys kbd {
+  display: inline-block;
+  background: #f6f8fa;
+  border: 1px solid #d1d5da;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-size: 13px;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-family: inherit;
+  box-shadow: 0 1px 0 #d1d5da;
+}
+/* .help-menu-content.grid::before {
+  content: "";
+  display: block;
+  width: 1px;
+  background: #e1e4e8;
+  margin: 0 0.5rem;
+  align-self: stretch;
+} */
+.help-menu-content.grid {
+  position: relative;
+}
+.help-menu-content.grid > .shortcut-section:first-child {
+  margin-right: 16px;
+}
+.help-menu-content.grid > .shortcut-section:last-child {
+  margin-left: 16px;
+}
+@media (max-width: 600px) {
+  .help-menu-content.grid {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 8px;
   }
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .container__shortcut {
-    .help-menu {
-      .help-menu-container {
-        width: 90%;
-      }
-    }
+  .shortcut-section {
+    margin: 0 0 16px 0;
+    border-radius: 8px;
+  }
+  .help-menu-content.grid::before {
+    display: none;
   }
 }
