@@ -4,13 +4,12 @@
 :root {
   --container-bg: #0f172a;
 --color:#cbeafe;
-  --poem-bg-1: #19134e;  /* red-700 */
-  --poem-bg-2: #4e2513;  /* blue-700 */
-  --poem-bg-3: #134e4a;  /* green-700 */
-  /*--poem-bg-4: #3e4e13; */
-    --poem-bg-4: #13444e;  /* yellow-700 */
-  --poem-bg-5: #13324e;  /* orange-600 */
-  --poem-bg-6: #131f4e;  /* purple-700 */
+  --poem-bg-1: #19134e; 
+  --poem-bg-2: #4e2513;  
+  --poem-bg-3: #134e4a;
+    --poem-bg-4: #13444e;  
+  --poem-bg-5: #13324e; 
+  --poem-bg-6: #131f4e;
 
   --poem-text-color: #ffffff;
 }
@@ -18,12 +17,11 @@
 [data-theme="dark"] {
   --container-bg: #0f172a;
 --color:#cbeafe;
-  --poem-bg-1: #19134e;  /* red-700 */
-  --poem-bg-2: #4e2513;  /* blue-700 */
-  --poem-bg-3: #134e4a;  /* green-700 */
-  /*--poem-bg-4: #3e4e13;*/
-    --poem-bg-4: #13444e;  /* yellow-700 */
-  --poem-bg-5: #13324e;  /* orange-600 */
+  --poem-bg-1: #19134e;
+  --poem-bg-2: #4e2513;  
+  --poem-bg-3: #134e4a;  
+    --poem-bg-4: #13444e; 
+  --poem-bg-5: #13324e;  
   --poem-bg-6: #131f4e;
 
   --poem-text-color: #ffffff;
@@ -32,18 +30,17 @@
 [data-theme="light"] {
   --container-bg: #fefcfb;
 --color:#1a237e;
-  --poem-bg-1: #fecaca;  /* pastel red */
-  --poem-bg-2: #bfdbfe;  /* pastel blue */
-  --poem-bg-3: #bbf7d0;  /* pastel green */
-  --poem-bg-4: #fef08a;  /* pastel yellow */
-  --poem-bg-5: #fed7aa;  /* pastel orange */
-  --poem-bg-6: #ddd6fe;  /* pastel purple */
+  --poem-bg-1: #fecaca; 
+  --poem-bg-2: #bfdbfe;  
+  --poem-bg-3: #bbf7d0;  
+  --poem-bg-4: #fef08a; 
+  --poem-bg-5: #fed7aa;  
+  --poem-bg-6: #ddd6fe;  
 
   --poem-text-color: #222;
 }
 .Container__poems{
   font-family: "Poppins", sans-serif;
-  /*color:#1a237e;*/
   color:var(--color);
 }
 
