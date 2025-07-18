@@ -55,7 +55,14 @@
   fill: var(--primary);
 }
 }
-
+  @media (max-width: 480px){
+.container__PoemCard{
+  grid-template-columns: repeat(auto-fit, 300px)
+}
+.poem-card{
+    width: 280px;
+}
+  }
 /* Target every Nth .poem-card inside .container__PoemCard */
 .container__PoemCard > .card-wrapper:nth-child(6n + 1) .poem-card , .card-wrapper:nth-child(6n + 1) .poem-card .emoji-content .overlay::after{
     background-color: var(--poem-bg-1);
