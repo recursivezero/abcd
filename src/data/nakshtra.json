@@ -1,0 +1,443 @@
+{
+  "title": "Explore the Nakshatra",
+  "description": "Nakshtra list in the same order",
+  "link": "",
+  "data": {
+    "english": [
+      {
+        "id": 1,
+        "name": "Ashwini",
+        "ruling_planet": "Ketu",
+        "deity": "Ashwini Kumaras",
+        "symbol": "Horse’s head",
+        "image": "1.png"
+      },
+      {
+        "id": 2,
+        "name": "Bharani",
+        "ruling_planet": "Venus",
+        "deity": "Yama",
+        "symbol": "Yoni (womb)",
+        "image": "2.png"
+      },
+      {
+        "id": 3,
+        "name": "Krittika",
+        "ruling_planet": "Sun",
+        "deity": "Agni",
+        "symbol": "Razor or flame",
+        "image": "3.png"
+      },
+      {
+        "id": 4,
+        "name": "Rohini",
+        "ruling_planet": "Moon",
+        "deity": "Brahma",
+        "symbol": "Chariot or temple",
+        "image": "4.png"
+      },
+      {
+        "id": 5,
+        "name": "Mrigashira",
+        "ruling_planet": "Mars",
+        "deity": "Soma",
+        "symbol": "Deer’s head",
+        "image": "5.png"
+      },
+      {
+        "id": 6,
+        "name": "Ardra",
+        "ruling_planet": "Rahu",
+        "deity": "Rudra",
+        "symbol": "Teardrop or diamond",
+        "image": "6.png"
+      },
+      {
+        "id": 7,
+        "name": "Punarvasu",
+        "ruling_planet": "Jupiter",
+        "deity": "Aditi",
+        "symbol": "Bow and quiver",
+        "image": "7.png"
+      },
+      {
+        "id": 8,
+        "name": "Pushya",
+        "ruling_planet": "Saturn",
+        "deity": "Brihaspati",
+        "symbol": "Cow’s udder",
+        "image": "8.png"
+      },
+      {
+        "id": 9,
+        "name": "Ashlesha",
+        "ruling_planet": "Mercury",
+        "deity": "Nagas",
+        "symbol": "Serpent",
+        "image": "9.png"
+      },
+      {
+        "id": 10,
+        "name": "Magha",
+        "ruling_planet": "Ketu",
+        "deity": "Pitris (ancestors)",
+        "symbol": "Royal throne",
+        "image": "10.png"
+      },
+      {
+        "id": 11,
+        "name": "Purva Phalguni",
+        "ruling_planet": "Venus",
+        "deity": "Bhaga",
+        "symbol": "front legs of a bed",
+        "image": "11.png"
+      },
+      {
+        "id": 12,
+        "name": "Uttara Phalguni",
+        "ruling_planet": "Sun",
+        "deity": "Aryaman",
+        "symbol": "Back legs of a bed",
+        "image": "12.png"
+      },
+      {
+        "id": 13,
+        "name": "Hasta",
+        "ruling_planet": "Moon",
+        "deity": "Savitur",
+        "symbol": "Hand or fist",
+        "image": "13.png"
+      },
+      {
+        "id": 14,
+        "name": "Chitra",
+        "ruling_planet": "Mars",
+        "deity": "Vishwakarma",
+        "symbol": "Bright jewel or pearl",
+        "image": "14.png"
+      },
+      {
+        "id": 15,
+        "name": "Swati",
+        "ruling_planet": "Rahu",
+        "deity": "Vayu",
+        "symbol": "Shoot of a plant",
+        "image": "15.png"
+      },
+      {
+        "id": 16,
+        "name": "Vishakha",
+        "ruling_planet": "Jupiter",
+        "deity": "Indra-Agni",
+        "symbol": "Triumphal arch",
+        "image": "16.png"
+      },
+      {
+        "id": 17,
+        "name": "Anuradha",
+        "ruling_planet": "Saturn",
+        "deity": "Mitra",
+        "symbol": "Lotus flower",
+        "image": "17.png"
+      },
+      {
+        "id": 18,
+        "name": "Jyeshtha",
+        "ruling_planet": "Mercury",
+        "deity": "Indra",
+        "symbol": "Circular amulet",
+        "image": "18.png"
+      },
+      {
+        "id": 19,
+        "name": "Mula",
+        "ruling_planet": "Ketu",
+        "deity": "Nirriti",
+        "symbol": "Lion’s tail or roots",
+        "image": "19.png"
+      },
+      {
+        "id": 20,
+        "name": "Purva Ashadha",
+        "ruling_planet": "Venus",
+        "deity": "Apah (Water)",
+        "symbol": "Elephant tusk or fan",
+        "image": "20.png"
+      },
+      {
+        "id": 21,
+        "name": "Uttara Ashadha",
+        "ruling_planet": "Sun",
+        "deity": "Vishvedevas",
+        "symbol": "Elephant tusk",
+        "image": "21.png"
+      },
+      {
+        "id": 22,
+        "name": "Shravana",
+        "ruling_planet": "Moon",
+        "deity": "Vishnu",
+        "symbol": "Ear or footprints",
+        "image": "22.png"
+      },
+      {
+        "id": 23,
+        "name": "Dhanishta",
+        "ruling_planet": "Mars",
+        "deity": "Vasus",
+        "symbol": "Drum or flute",
+        "image": "23.png"
+      },
+      {
+        "id": 24,
+        "name": "Shatabhisha",
+        "ruling_planet": "Rahu",
+        "deity": "Varuna",
+        "symbol": "Empty circle or 100 stars",
+        "image": "24.png"
+      },
+      {
+        "id": 25,
+        "name": "Purva Bhadrapada",
+        "ruling_planet": "Jupiter",
+        "deity": "Ajaikapada",
+        "symbol": "Front legs of a funeral cot",
+        "image": "25.png"
+      },
+      {
+        "id": 26,
+        "name": "Uttara Bhadrapada",
+        "ruling_planet": "Saturn",
+        "deity": "Ahirbudhnya",
+        "symbol": "Back legs of a funeral cot",
+        "image": "26.png"
+      },
+      {
+        "id": 27,
+        "name": "Revati",
+        "ruling_planet": "Mercury",
+        "deity": "Pushan",
+        "symbol": "Fish or drum",
+        "image": "27.png"
+      }
+    ],
+    "hindi": [
+      {
+        "id": 1,
+        "name": "अश्विनी",
+        "ruling_planet": "केतु",
+        "deity": "अश्विनी कुमार",
+        "symbol": "घोड़े का सिर",
+        "image": "1.png"
+      },
+      {
+        "id": 2,
+        "name": "भरणी",
+        "ruling_planet": "शुक्र",
+        "deity": "यम",
+        "symbol": "योनि (गर्भ)",
+        "image": "2.png"
+      },
+      {
+        "id": 3,
+        "name": "कृत्तिका",
+        "ruling_planet": "सूर्य",
+        "deity": "अग्नि",
+        "symbol": "उस्तरा या ज्वाला",
+        "image": "3.png"
+      },
+      {
+        "id": 4,
+        "name": "रोहिणी",
+        "ruling_planet": "चंद्रमा",
+        "deity": "ब्रह्मा",
+        "symbol": "रथ या मंदिर",
+        "image": "4.png"
+      },
+      {
+        "id": 5,
+        "name": "मृगशिरा",
+        "ruling_planet": "मंगल",
+        "deity": "सोम",
+        "symbol": "हिरण का सिर",
+        "image": "5.png"
+      },
+      {
+        "id": 6,
+        "name": "आर्द्रा",
+        "ruling_planet": "राहु",
+        "deity": "रुद्र",
+        "symbol": "आंसू या हीरा",
+        "image": "6.png"
+      },
+      {
+        "id": 7,
+        "name": "पुनर्वसु",
+        "ruling_planet": "बृहस्पति",
+        "deity": "अदिति",
+        "symbol": "धनुष और तरकश",
+        "image": "7.png"
+      },
+      {
+        "id": 8,
+        "name": "पुष्य",
+        "ruling_planet": "शनि",
+        "deity": "बृहस्पति",
+        "symbol": "गाय का थन",
+        "image": "8.png"
+      },
+      {
+        "id": 9,
+        "name": "आश्लेषा",
+        "ruling_planet": "बुध",
+        "deity": "नाग",
+        "symbol": "सर्प",
+        "image": "9.png"
+      },
+      {
+        "id": 10,
+        "name": "मघा",
+        "ruling_planet": "केतु",
+        "deity": "पितर (पूर्वज)",
+        "symbol": "राज सिंहासन",
+        "image": "10.png"
+      },
+      {
+        "id": 11,
+        "name": "पूर्व फाल्गुनी",
+        "ruling_planet": "शुक्र",
+        "deity": "भग",
+        "symbol": "बिस्तर के अगले पैर",
+        "image": "11.png"
+      },
+      {
+        "id": 12,
+        "name": "उत्तर फाल्गुनी",
+        "ruling_planet": "सूर्य",
+        "deity": "अर्यमन",
+        "symbol": "बिस्तर के पिछले पैर",
+        "image": "12.png"
+      },
+      {
+        "id": 13,
+        "name": "हस्त",
+        "ruling_planet": "चंद्रमा",
+        "deity": "सवितुर",
+        "symbol": "हाथ या मुट्ठी",
+        "image": "13.png"
+      },
+      {
+        "id": 14,
+        "name": "चित्रा",
+        "ruling_planet": "मंगल",
+        "deity": "विश्वकर्मा",
+        "symbol": "चमकीला गहना या मोती",
+        "image": "14.png"
+      },
+      {
+        "id": 15,
+        "name": "स्वाति",
+        "ruling_planet": "राहु",
+        "deity": "वायु",
+        "symbol": "पौधे का अंकुर",
+        "image": "15.png"
+      },
+      {
+        "id": 16,
+        "name": "विशाखा",
+        "ruling_planet": "बृहस्पति",
+        "deity": "इंद्र-अग्नि",
+        "symbol": "विजय द्वार",
+        "image": "16.png"
+      },
+      {
+        "id": 17,
+        "name": "अनुराधा",
+        "ruling_planet": "शनि",
+        "deity": "मित्र",
+        "symbol": "कमल का फूल",
+        "image": "17.png"
+      },
+      {
+        "id": 18,
+        "name": "ज्येष्ठा",
+        "ruling_planet": "बुध",
+        "deity": "इंद्र",
+        "symbol": "गोलाकार ताबीज",
+        "image": "18.png"
+      },
+      {
+        "id": 19,
+        "name": "मूल",
+        "ruling_planet": "केतु",
+        "deity": "निरृति",
+        "symbol": "शेर की पूंछ या जड़ें",
+        "image": "19.png"
+      },
+      {
+        "id": 20,
+        "name": "पूर्वाषाढ़ा",
+        "ruling_planet": "शुक्र",
+        "deity": "आपः (जल)",
+        "symbol": "हाथी दांत या पंखा",
+        "image": "20.png"
+      },
+      {
+        "id": 21,
+        "name": "उत्तराषाढ़ा",
+        "ruling_planet": "सूर्य",
+        "deity": "विश्वेदेव",
+        "symbol": "हाथी दांत",
+        "image": "21.png"
+      },
+      {
+        "id": 22,
+        "name": "श्रवण",
+        "ruling_planet": "चंद्रमा",
+        "deity": "विष्णु",
+        "symbol": "कान या तीन पदचिह्न",
+        "image": "22.png"
+      },
+      {
+        "id": 23,
+        "name": "धनिष्ठा",
+        "ruling_planet": "मंगल",
+        "deity": "वसु",
+        "symbol": "ढोल या बांसुरी",
+        "image": "23.png"
+      },
+      {
+        "id": 24,
+        "name": "शतभिषा",
+        "ruling_planet": "राहु",
+        "deity": "वरुण",
+        "symbol": "खाली वृत्त या 100 तारे",
+        "image": "24.png"
+      },
+      {
+        "id": 25,
+        "name": "पूर्व भाद्रपद",
+        "ruling_planet": "बृहस्पति",
+        "deity": "अजैकपाद",
+        "symbol": "चिता के अगले पैर",
+        "image": "25.png"
+      },
+      {
+        "id": 26,
+        "name": "उत्तर भाद्रपद",
+        "ruling_planet": "शनि",
+        "deity": "अहिर्बुध्न्य",
+        "symbol": "चिता के पिछले पैर",
+        "image": "26.png"
+      },
+      {
+        "id": 27,
+        "name": "रेवती",
+        "ruling_planet": "बुध",
+        "deity": "पूषन",
+        "symbol": "मछली या ढोल",
+        "image": "27.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+---
+import "@/assets/styles/astrology.css";
+import "@/assets/styles/zodiac.css";
+import BaseLayout from "@/layouts/Base";
+
+import NakshtraCard, { type Nakshtra } from "@/components/NakshtraCard.astro";
+import { data } from "@/data/nakshtra.json";
+var currentLang = "english";
+---
+
+<style>
+  .container__nakshtra {
+    padding-inline: 1rem;
+    margin-inline: 1rem;
+  }
+</style>
+<BaseLayout meta={{ title: "Zodiac" }}>
+  <div class="container__nakshtra">
+    <h1>Explore the Nakshatra</h1>
+    <div id="nakshatraGrid" class="grid-container">
+      {(data as any)[currentLang].map((nakshtra: Nakshtra) => <NakshtraCard {nakshtra} />)}
+    </div>
+    <div class="nakshatra-note">
+      <p>
+        <strong>Note on Abhijit Nakshatra:</strong> A 28th Nakshatra, Abhijit, is mentioned in some texts (between Uttara
+        Ashadha and Shravana), but it is not commonly used in mainstream astrology.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

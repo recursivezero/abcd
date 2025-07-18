@@ -1,8 +1,9 @@
 ---
-import ZodiacGrid from "@/components/ZodiacGrid.astro";
+
 ---
+
 <h1>Explore the Zodiac</h1>
-<ZodiacGrid />
+<div class="container__zodiac" id="zodiacsGrid"></div>
 
 <!-- Modal for Zodiacs -->
 <div id="zodiacModal" class="modal">
@@ -20,7 +21,7 @@ import ZodiacGrid from "@/components/ZodiacGrid.astro";
   import type { Language } from "@/types/zodiac";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const zodiacsPromise = fetch("/data/zodiacs.json").then((res) => res.json());
+    const zodiacsPromise = fetch("/data/zodiac.json").then((res) => res.json());
 
     zodiacsPromise.then((zodiacs) => {
       const zodiacsGrid = document.getElementById("zodiacsGrid");

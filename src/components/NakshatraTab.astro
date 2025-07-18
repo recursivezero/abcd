@@ -1,58 +1,33 @@
-<h1>Explore the Nakshatra</h1>
-<div id="nakshatrasGrid" class="grid-container"></div>
-<div class="nakshatra-note">
-  <p>
-    <strong>Note on Abhijit Nakshatra:</strong> A 28th Nakshatra, Abhijit, is mentioned in some texts (between
-    Uttara Ashadha and Shravana), but it is not commonly used in mainstream astrology.
-  </p>
+---
+import NakshtraCard, { type Nakshtra } from "@/components/NakshtraCard.astro";
+import { data } from "@/data/nakshtra.json";
+var currentLang = "hindi";
+---
+
+<style>
+  .container__nakshtra {
+    padding-inline: 1rem;
+    margin-inline: 1rem;
+  }
+</style>
+
+<div class="container__nakshtra">
+  <h1>Explore the Nakshatra</h1>
+  <div id="nakshatraGrid" class="grid-container">
+    {(data as any)[currentLang].map((nakshtra: Nakshtra) => <NakshtraCard {nakshtra} />)}
+  </div>
+  <div class="nakshatra-note">
+    <p>
+      <strong>Note on Abhijit Nakshatra:</strong> A 28th Nakshatra, Abhijit, is mentioned in some texts (between Uttara Ashadha
+      and Shravana), but it is not commonly used in mainstream astrology.
+    </p>
+  </div>
 </div>
 
-<script>
-  import type { Language } from "@/types/zodiac";
-
-  type LangProperty = { english: string; hindi: string };
-
-  interface Nakshatra {
-    id: number;
-    name: LangProperty;
-    ruling_planet: LangProperty;
-    deity: LangProperty;
-    symbol: LangProperty;
-    image: string;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const nakshatrasPromise = fetch("/data/nakshatras.json").then((res) => res.json());
-
-    nakshatrasPromise.then((nakshatras) => {
-      const nakshatrasGrid = document.getElementById("nakshatrasGrid");
-      let currentLang = (localStorage.getItem("language") || "english") as keyof Language;
-
-      function renderNakshatraCards() {
-        if (!nakshatrasGrid) return;
-        nakshatrasGrid.innerHTML = "";
-        nakshatras.forEach((nakshatra: Nakshatra) => {
-          const card = document.createElement("div");
-          card.className = "card nakshatra-card";
-          card.innerHTML = `
-            <img src="/data/nakshatra/${nakshatra.image}" alt="${nakshatra.name.english}" class="nakshatra-symbol-img">
-            <h3>${nakshatra.name[currentLang]}</h3>
-            <div class="nakshatra-details">
-              <p><strong>Ruling Planet:</strong> ${nakshatra.ruling_planet[currentLang]}</p>
-              <p><strong>Deity:</strong> ${nakshatra.deity[currentLang]}</p>
-              <p><strong>Symbol:</strong> ${nakshatra.symbol[currentLang]}</p>
-            </div>
-          `;
-          nakshatrasGrid.appendChild(card);
-        });
-      }
-
-      window.addEventListener("languagechange", () => {
-        currentLang = (localStorage.getItem("language") || "english") as keyof Language;
-        renderNakshatraCards();
-      });
-
-      renderNakshatraCards();
-    });
+<script define:vars={{ currentLang }}>
+  window.addEventListener("languagechange", (e) => {
+    console.log({ e });
+    //localStorage.setItem("language") || "english");
+    //currentLang = "english";
   });
 </script>

@@ -15,23 +15,23 @@ import NakshatraTab from "@/components/NakshatraTab.astro";
   <Fragment slot="header-right">
     <LanguageSwitcher />
     <SharePopover />
-    <Help title="Astrology" description="Explore Sun Signs and Nakshatras." />
+    <Help title="Zodiac" description="Explore Zodiacs and Nakshtras." />
   </Fragment>
 
   <div class="container__astrology">
     <!-- Tab Buttons -->
     <div class="tab-buttons">
-      <button class="tab-button active" data-tab="zodiacs">Zodiac Signs</button>
-      <button class="tab-button" data-tab="nakshatras">Nakshatra</button>
+      <button class="tab-button active" data-tab="zodiac">Zodiac Signs</button>
+      <button class="tab-button" data-tab="nakshtra">Nakshtra</button>
     </div>
 
     <!-- Zodiac Signs Tab Content -->
-    <div id="zodiacs-tab-content" class="tab-content active">
+    <div id="zodiac-tab-content" class="tab-content active">
       <ZodiacTab />
     </div>
 
     <!-- Nakshatra Tab Content -->
-    <div id="nakshatras-tab-content" class="tab-content">
+    <div id="nakshtra-tab-content" class="tab-content">
       <NakshatraTab />
     </div>
   </div>
@@ -42,15 +42,15 @@ import NakshatraTab from "@/components/NakshatraTab.astro";
   function setLanguage(lang) {
     localStorage.setItem("language", lang);
     document.documentElement.lang = lang === "hindi" ? "hi" : "en";
-    
+
     const englishButtons = document.querySelectorAll("#englishBtn");
     const hindiButtons = document.querySelectorAll("#hindiBtn");
 
-    englishButtons.forEach(btn => btn.classList.toggle("active", lang === "english"));
-    hindiButtons.forEach(btn => btn.classList.toggle("active", lang === "hindi"));
-    
+    englishButtons.forEach((btn) => btn.classList.toggle("active", lang === "english"));
+    hindiButtons.forEach((btn) => btn.classList.toggle("active", lang === "hindi"));
+
     // Dispatch a custom event that the components can listen for
-    window.dispatchEvent(new Event("languagechange"));
+    window.dispatchEvent(new CustomEvent("languagechange", { detail: { language: localStorage.getItem("language") } }));
   }
 
   // --- Tab Switching and Initialization Logic ---
@@ -60,8 +60,8 @@ import NakshatraTab from "@/components/NakshatraTab.astro";
     const englishButtons = document.querySelectorAll("#englishBtn");
     const hindiButtons = document.querySelectorAll("#hindiBtn");
 
-    englishButtons.forEach(btn => btn.addEventListener("click", () => setLanguage("english")));
-    hindiButtons.forEach(btn => btn.addEventListener("click", () => setLanguage("hindi")));
+    englishButtons.forEach((btn) => btn.addEventListener("click", () => setLanguage("english")));
+    hindiButtons.forEach((btn) => btn.addEventListener("click", () => setLanguage("hindi")));
     setLanguage(initialLang); // Set initial language on page load
 
     // Tab switching logic
