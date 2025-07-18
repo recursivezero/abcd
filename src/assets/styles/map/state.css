@@ -1,13 +1,8 @@
 /* CSS Reset and Variables */
 :root {
   --primary-bg: #ffffff;
-  --secondary-bg: #f8f9fa;
-  --primary-text: #2d3748;
   --accent-color: #4a90e2;
-  --border-color: #e2e8f0;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
   --spacing-unit: 1rem;
 }
 
@@ -112,14 +107,15 @@
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  border: 3px solid var(--primary);
+  border: 3px solid var(--accent-color);
   transition: all 0.3s ease;
 }
 
 .info-card:hover {
-  background-color: #cfe3fde7;
+  background-color: #6da4ece7;
   transform: scale(1.02);
-  border-color: var(--primary);
+  border-color: var(--accent-color);
+  color: var(--text);
 }
 
 .info-card h4 {
@@ -130,7 +126,6 @@
 
 .info-card p {
   margin: 0;
-  color: var(--secondary);
   font-size: 0.9rem;
 }
 
@@ -139,7 +134,7 @@
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: 3px solid var(--primary);
+  border: 3px solid var(--accent-color);
 }
 
 .quick-facts h4 {
@@ -151,13 +146,12 @@
 .description {
   font-size: 0.9rem;
   line-height: 1.5;
-  color: var(--secondary);
 }
 
 .read-more {
   background: none;
   border: none;
-  color: var(--primary);
+  color: var(--accent-color);
   cursor: pointer;
   padding: 0;
   margin-left: 0.25rem;
@@ -177,7 +171,7 @@
 .link-button {
   display: inline-block;
   padding: 10px 20px;
-  background: var(--primary);
+  background: var(--accent-color);
   color: #ffffff;
   text-decoration: none;
   border-radius: 25px;
@@ -196,7 +190,7 @@
 }
 
 .back-button {
-  background-color: var(--primary);
+  background-color: var(--accent-color);
   color: var(--text);
   border: none;
   padding: 12px 20px;
@@ -291,7 +285,7 @@
   padding: 15px;
   background: var(--card-bg);
   border-radius: 15px;
-  border: 3px solid var(--primary);
+  border: 3px solid var(--accent-color);
 }
 
 .fun-fact-item {
@@ -317,7 +311,7 @@
   padding: 20px;
   border-radius: 15px;
   margin: 20px 0;
-  border: 3px solid var(--primary);
+  border: 3px solid var(--accent-color);
 }
 
 .statistics-section h3 {
@@ -386,7 +380,7 @@
 }
 
 .tag {
-  background: var(--primary);
+  background: var(--accent-color);
   color: #ffffff;
   padding: 5px 15px;
   border-radius: 20px;

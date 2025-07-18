@@ -1,0 +1,21 @@
+---
+import "@/assets/styles/coming-soon.css";
+import Countdown from "@/components/home/Countdown.astro";
+import BaseLayout from "@/layouts/Base";
+import { APP_NAME } from "@/utils/constants";
+import { Picture } from "astro:assets";
+import logoImage from "/public/assets/images/ABCD-blue.png";
+---
+
+<BaseLayout meta={{ title: "Coming Soon" }}>
+  <div class="page-container">
+    <!-- Section 1: Heading -->
+    <div class="heading-container">
+      <Picture src={logoImage} formats={["png", "webp"]} alt={APP_NAME} class="logo" />
+      <h1>Something Amazing is Coming</h1>
+      <p class="subtitle">We're working hard to bring you the best experience.</p>
+    </div>
+    <!-- Section 2: Countdown -->
+    <Countdown date="2025-08-15" />
+  </div>
+</BaseLayout>

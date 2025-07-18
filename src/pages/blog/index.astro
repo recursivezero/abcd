@@ -1,20 +1,21 @@
 ---
 import "@/assets/styles/blogs/index.css";
 import "@/assets/styles/page.css";
+import BackArrow from "@/components/Back.astro";
 import BlogCard from "@/components/BlogCard.astro";
+import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 import { blogPostSchema, type BlogPost } from "@/types/blog";
 import { getCollection } from "astro:content";
 
 const blogs = await getCollection("blogs");
-
-// Transform and validate blog posts
 const blogPosts = blogs.map((entry) => {
   const post: BlogPost = blogPostSchema.parse({
     url: `/blog/${entry.id}`,
     title: entry.data.title,
     description: entry.data.description,
     author: entry.data.author,
+    image: entry.data.image,
     date: entry.data.publishDate?.toLocaleDateString()
   });
   return post;
@@ -22,18 +23,26 @@ const blogPosts = blogs.map((entry) => {
 ---
 
 <BaseLayout meta={{ title: "Blogs" }}>
+  <BackArrow />
+  <Fragment slot="header-right">
+    <Help
+      title="Blog"
+      description="Stay updated with the latest in technology, development trends, and digital innovation."
+    />
+  </Fragment>
   <div class="container__blog">
-    <header class="mb-12 text-center">
-      <h1
-        class="mb-4 text-4xl font-bold md:text-6xl"
-        style="background: linear-gradient(90deg, var(--text), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
-      >
-        Our Blog
+    <header class="blog-header">
+      <h1 class="blog-title">
+        Our <span class="title-accent">Blog</span>
       </h1>
-      <p class="mx-auto max-w-2xl text-lg text-[var(--secondary)] md:text-xl">
-        Discover stories, thinking, and expertise from writers on any topic.
-      </p>
+      <p class="blog-subtitle">Discover stories, thinking, and expertise from writers on any topic.</p>
+      <div class="header-decoration">
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+      </div>
     </header>
+
     <div class="blog-grid">
       {blogPosts.map((post) => <BlogCard post={post} height="240px" />)}
     </div>

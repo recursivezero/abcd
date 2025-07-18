@@ -1,0 +1,200 @@
+---
+import { alphabetMapper } from "@/mappers/alphabet";
+import { IMAGE_DIR } from "@/utils/constants";
+import BaseLayout from "@/layouts/Base";
+import BackButton from "@/components/BackButton.astro";
+import Help from "@/components/Help.astro";
+import "@/assets/styles/cards/slider.css";
+import SharePopover from "@/components/ShareButton.astro";
+
+const pageTitle = "Slider | Interactive Alphabet";
+const pageDescription = "Explore the alphabet through interactive images. Click or use arrow keys to slide.";
+
+const pageMeta = {
+  title: pageTitle,
+  description: pageDescription
+};
+
+interface AlphabetItem {
+  key: string;
+  value: string;
+  desc: string;
+}
+
+const items: Record<string, AlphabetItem> = alphabetMapper.reduce(
+  (acc, { key, value }) => {
+    acc[key.toUpperCase()] = {
+      key: key.toUpperCase(),
+      value,
+      desc: `${value} representing the letter ${key.toUpperCase()}`
+    };
+    return acc;
+  },
+  {} as Record<string, AlphabetItem>
+);
+
+const entries = Object.entries(items);
+---
+
+<BaseLayout meta={pageMeta}>
+  <Fragment slot="header-right">
+    <div class="header-tools-wrapper"></div>
+    <SharePopover />
+    <Help
+      title="Alphabet Gallery"
+      description="Click images or use arrow keys to navigate. Active item shows details."
+    />
+  </Fragment>
+  <BackButton />
+
+  <main class="gallery-page">
+    <div class="gallery-wrapper">
+      <section class="gallery-container">
+        <header class="gallery-header">
+          <h1 class="gallery-title">Interactive Alphabet</h1>
+        </header>
+
+        <div class="gallery-controls">
+          <button class="nav-button prev-button" aria-label="Previous items" id="prevBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
+            </svg>
+          </button>
+
+          <div class="gallery-scroller" id="scroller">
+            <div class="gallery-track">
+              {
+                entries.map(([key, item], index) => (
+                  <div class="gallery-item-container">
+                    <article class="gallery-item" data-letter={key} data-index={index} tabindex="0">
+                      <div class="item-image-container">
+                        <img src={`${IMAGE_DIR}/${item.value}.jpg`} alt={item.desc} loading="lazy" class="item-image" />
+                      </div>
+                    </article>
+                    <div class="item-details">
+                      <h2 class="letter">{key}</h2>
+                      <p class="item-desc">{item.value}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <button class="nav-button next-button" aria-label="Next items" id="nextBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+            </svg>
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<script is:inline>
+  const sounds = {
+    snap: new Audio("https://assets.codepen.io/2585/snap.mp3"),
+    pop: new Audio("https://assets.codepen.io/2585/pop.m4a")
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const scroller = document.getElementById("scroller");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const items = Array.from(document.querySelectorAll(".gallery-item"));
+    const details = Array.from(document.querySelectorAll(".item-details"));
+    let activeIndex = 0;
+
+    // Initialize first item as active
+    items[activeIndex].classList.add("active");
+    details[activeIndex].style.opacity = "1";
+    details[activeIndex].style.transform = "translateY(0)";
+
+    // Navigation functions
+    const navigateTo = (index) => {
+      // Validate index
+      index = Math.max(0, Math.min(index, items.length - 1));
+
+      // Play sound based on navigation direction
+      if (index < activeIndex) {
+        sounds.snap.play().catch((error) => console.error("Error playing snap sound:", error));
+      } else if (index > activeIndex) {
+        sounds.pop.play().catch((error) => console.error("Error playing pop sound:", error));
+      }
+
+      // Update active state
+      items[activeIndex].classList.remove("active");
+      details[activeIndex].style.opacity = "0";
+      details[activeIndex].style.transform = "translateY(20px)";
+
+      activeIndex = index;
+
+      items[activeIndex].classList.add("active");
+      details[activeIndex].style.opacity = "1";
+      details[activeIndex].style.transform = "translateY(0)";
+
+      // Center the item
+      items[activeIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center"
+      });
+    };
+
+    // Navigation buttons
+    prevBtn.addEventListener("click", () => navigateTo(activeIndex - 1));
+    nextBtn.addEventListener("click", () => navigateTo(activeIndex + 1));
+
+    // Keyboard navigation for buttons
+    prevBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        navigateTo(activeIndex - 1);
+      }
+    });
+
+    nextBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        navigateTo(activeIndex + 1);
+      }
+    });
+
+    // Click on items
+    items.forEach((item, index) => {
+      item.addEventListener("click", () => navigateTo(index));
+
+      // Keyboard navigation for items
+      item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          navigateTo(index);
+        }
+      });
+    });
+
+    // Global keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        navigateTo(activeIndex - 1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        navigateTo(activeIndex + 1);
+      }
+    });
+
+    // Convert vertical scroll to horizontal
+    scroller.addEventListener(
+      "wheel",
+      (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+          scroller.scrollLeft += e.deltaY;
+        }
+      },
+      { passive: false }
+    );
+  });
+</script>

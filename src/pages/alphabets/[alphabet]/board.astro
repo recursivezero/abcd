@@ -4,6 +4,8 @@ import BackButton from "@/components/BackButton.astro";
 import LetterCard from "@/components/LetterCard.astro";
 import BaseLayout from "@/layouts/Base";
 import { DATASET } from "@/mappers/dataset";
+import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
 
 export const prerender = true;
 
@@ -19,6 +21,10 @@ const data = DATASET[alphabet].data;
 ---
 
 <BaseLayout meta={{ title: `Alphabets - ${alphabet.charAt(0).toUpperCase() + alphabet.slice(1)}` }}>
+  <Fragment slot="header-left">
+    <SharePopover />
+    <Help title="Board" description="Learn new information from the selected alphabet category!" />
+  </Fragment>
   <article class="container__page">
     <div class="page__header">
       <BackButton />

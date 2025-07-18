@@ -1,0 +1,111 @@
+---
+declare global {
+  interface Window {
+    playLetterSound: (letter: string) => void;
+  }
+}
+
+//Append this to script section where you want to add this feature:
+/*    
+    document.addEventListener('keydown', (event) => {
+    const key = event.key;
+    if (key.length === 1 && key.match(/[a-z]/i)) {
+      if (window.playLetterSound) {
+        window.playLetterSound(key.toLowerCase());
+      }
+    }
+  });
+*/
+---
+
+<style>
+  .speaker-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  #voice-dropdown {
+    width: max-content;
+  }
+
+  .mute-button {
+    background: var(--color-bg-secondary);
+    color: #ffffff;
+    border: 1px solid var(--primary);
+    border-radius: 100px;
+    cursor: pointer;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 25px;
+  }
+  .mute-button:hover,
+  .mute-button[aria-pressed="true"] {
+    color: var(--primary);
+  }
+  .mute-icon {
+    font-size: 1.5rem;
+  }
+</style>
+
+<div class="speaker-controls">
+  <select id="voice-dropdown">
+    <option selected disabled>Select Voice</option>
+    <option value="mudra">Mudra</option>
+    <option value="rutvi">Rutvi</option>
+  </select>
+
+  <button type="button" class="mute-button" id="mute-button" aria-pressed="false" title="Mute">
+    <span class="mute-icon">🔊</span>
+  </button>
+</div>
+
+<script is:inline>
+  let currentAudio = null;
+  let isMuted = false;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const voicesSelection = document.getElementById("voice-dropdown");
+    const muteBtn = document.getElementById("mute-button");
+    const muteIcon = muteBtn.querySelector(".mute-icon");
+
+    let currentVoice = "";
+    const stopAudio = () => {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+      }
+    };
+
+    window.playLetterSound = (letter) => {
+      if (isMuted || !currentVoice) return;
+
+      stopAudio();
+
+      try {
+        currentAudio = new Audio(`/assets/media/alphabets/${currentVoice}/${letter.toLowerCase()}.ogg`);
+        currentAudio.play().catch((e) => console.log("Audio play failed:", e));
+      } catch (error) {
+        console.error("Error playing sound:", error);
+      }
+    };
+
+    // Mute toggle
+    muteBtn.addEventListener("click", () => {
+      isMuted = !isMuted;
+      muteIcon.textContent = isMuted ? "🔇" : "🔊";
+      muteBtn.setAttribute("aria-pressed", isMuted);
+
+      if (isMuted) {
+        stopAudio();
+      }
+    });
+
+    voicesSelection.addEventListener("change", (e) => {
+      currentVoice = e.target.value;
+    });
+  });
+</script>

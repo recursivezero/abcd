@@ -45,14 +45,6 @@
   padding: 3rem 1.5rem;
 }
 
-.vedic__layout {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
 /* Tab Styles */
 .tab-buttons {
   display: flex;
@@ -99,222 +91,6 @@
 
 .tab-content {
   height: 110vh;
-}
-
-/* Tithi Header Styles */
-.tithi-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  width: 100%;
-}
-
-.tithi-title-wrapper {
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 600px;
-}
-
-.tithi-title {
-  color: var(--text);
-  font-size: 2rem;
-  font-weight: 600;
-  margin: 1rem;
-}
-
-.date-display {
-  width: 100%;
-  max-width: 900px;
-}
-
-.date-format {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--border);
-  background-color: var(--background);
-  border-left: 4px solid color-mix(in srgb, var(--primary) 60%, transparent 40%);
-  text-align: center;
-  font-size: 1.8rem;
-  word-spacing: 6px;
-}
-
-.disclaimer {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1.25rem 1.5rem;
-  border-radius: 0.75rem;
-  background-color: color-mix(in srgb, var(--background) 92%, var(--text) 8%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  font-size: 1rem;
-  line-height: 1.7;
-  color: grey;
-  position: relative;
-}
-
-.disclaimer p {
-  margin: 0;
-}
-
-.disclaimer strong {
-  color: color-mix(in srgb, var(--primary) 80%, var(--text) 20%);
-}
-
-/* Add a subtle fade-in animation */
-@keyframes gentleAppear {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.disclaimer {
-  animation: gentleAppear 0.6s ease-out forwards;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .disclaimer {
-    margin: 1.5rem;
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .disclaimer {
-    margin: 1rem 0.5rem;
-    padding: 0.8rem;
-    font-size: 0.85rem;
-  }
-}
-
-/* Converter Horizontal Layout */
-.converter__horizontal {
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
-  width: 100%;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  margin-bottom: 2.5rem;
-  border: 2px solid var(--border);
-  background-color: color-mix(in srgb, var(--background) 97%, var(--text) 3%);
-
-  & input {
-    padding: 1rem;
-  }
-}
-
-.converter__title {
-  color: var(--text);
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 2.5rem;
-  text-align: center;
-  position: relative;
-  /* Not sticky anymore if container scrolls, but good for z-index */
-  z-index: 2;
-  padding: 0 2rem;
-  /* Add padding to title to prevent it from hugging the edge */
-}
-
-.form__group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  flex: 1;
-}
-
-.form__group label {
-  color: var(--text);
-  font-size: 1.25rem;
-  font-weight: 500;
-  padding: 0.5rem;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--border);
-  background-color: var(--background);
-  color: var(--text);
-  font-size: 1.25rem;
-}
-
-input:focus,
-select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 30%, transparent);
-}
-
-.swap-button {
-  width: 50px;
-  height: 50px;
-  border-radius: 0.75rem;
-  background-color: var(--background);
-  border: 2px solid var(--border);
-  display: flex;
-  margin-bottom: 4px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  transform: rotate(90deg);
-}
-
-.swap-button:hover {
-  background-color: color-mix(in srgb, var(--background) 90%, var(--text) 10%);
-}
-
-.swap-button.active {
-  background: linear-gradient(45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
-  background-size: 400% 400%;
-  animation: gradient 10s infinite;
-}
-
-.swap-icon {
-  width: 20px;
-  height: 20px;
-  fill: var(--text);
-  transition: transform 0.3s ease;
-}
-
-.swap-button.active .swap-icon {
-  fill: var(--background);
-  transform: rotate(180deg);
-}
-
-.animated__result {
-  width: 100%;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  background: conic-gradient(from 0deg at 50% 50%, #000080, #00bfff, #4682b4, #000080);
-}
-
-.result__display {
-  width: 99%;
-  margin-left: 0.5%;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  background-color: color-mix(in srgb, var(--background) 95%, var(--text) 5%);
-  color: var(--text);
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 500;
-  display: none;
 }
 
 /* Units Reference Card */
@@ -397,7 +173,6 @@ select:focus {
 }
 
 .units__title {
-  margin-top: 11rem;
   position: relative;
   z-index: 10;
   text-shadow:
@@ -407,7 +182,6 @@ select:focus {
   color: white;
   font-size: clamp(3rem, 7.5vw, 9rem);
   font-weight: 600;
-  margin-bottom: 10rem;
   text-align: center;
   animation: fadeInScale 2s ease-out forwards;
   transform: scale(0.8);
@@ -423,16 +197,11 @@ select:focus {
 .timeline-wrapper {
   display: flex;
   flex-direction: column;
-  /* Changed to vertical column */
   align-items: center;
-  /* Horizontally center items in the column */
   padding: 0;
-  /* Let individual nodes handle spacing with transforms/margins */
   position: relative;
   gap: 80px;
   padding-bottom: 2rem;
-  /* Add some padding at bottom */
-  /* Remove min-height: 800px */
 }
 
 .timeline-node {
@@ -453,7 +222,7 @@ select:focus {
   border-radius: 1.25rem;
   padding: 1.5rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 2px solid rgb(193 56 227);
   min-height: 160px;
   width: 100%;
   display: flex;
@@ -484,14 +253,6 @@ select:focus {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.unit__details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  color: var(--text);
-  font-size: 1.5rem;
-}
-
 .unit__value {
   display: flex;
   align-items: center;
@@ -500,60 +261,11 @@ select:focus {
   font-weight: 500;
 }
 
-/* Animations */
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes timelineGradientVertical {
-  0% {
-    background-position: 50% 0%;
-  }
-
-  100% {
-    background-position: 50% 200%;
-  }
-}
-
-@keyframes anime {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .container__vedic {
     padding: 1.5rem;
-  }
-
-  .converter__horizontal {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
-  .swap-button {
-    margin: 0.5rem 0;
-    align-self: center;
+    padding-bottom: 4rem;
   }
 
   .tithi-title {
@@ -576,12 +288,10 @@ select:focus {
   }
 
   .timeline-wrapper {
-    /* Add padding-top for mobile */
     padding-top: 1.5rem;
-    /* Compensate for the removed margin-bottom on title */
     flex-direction: column;
     align-items: center;
-    gap: 60px;
+    gap: 3rem;
     min-height: auto;
   }
 
@@ -601,13 +311,13 @@ select:focus {
     font-size: 2rem;
   }
 
-  .unit__details {
-    font-size: 1.2rem;
-    gap: 0.4rem;
-  }
-
   .unit__value .icon {
     font-size: 1.1em;
+  }
+
+  .tab-content {
+    height: auto;
+    min-height: 60vh;
   }
 }
 
@@ -617,8 +327,6 @@ select:focus {
   }
 
   .units__title {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
     font-size: 3rem;
   }
 
@@ -626,9 +334,13 @@ select:focus {
     font-size: 1.5rem;
   }
 
-  .unit__details {
-    font-size: 0.9rem;
-    gap: 0.4rem;
+  .container__vedic {
+    padding-bottom: 4rem;
+  }
+
+  .tab-content {
+    height: auto;
+    min-height: 50vh;
   }
 }
 
@@ -649,4 +361,21 @@ select:focus {
 
 .units__timeline-container::-webkit-scrollbar-thumb:hover {
   background: color-mix(in srgb, var(--unit-title-card-shadow-2) 80%, black 20%);
+}
+
+.progress {
+  animation-timeline: scroll(root);
+  animation-name: scaleProgress;
+  animation-duration: auto;
+  animation-timing-function: linear;
+}
+
+@keyframes scaleProgress {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
 }

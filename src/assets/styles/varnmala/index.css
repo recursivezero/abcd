@@ -3,6 +3,29 @@
   max-width: 1200px;
   margin: 0 auto;
 
+  & .varnmala__header {
+    text-align: center;
+    margin: 1rem;
+
+    & .title {
+      font-size: clamp(2.5rem, 4vw, 3rem);
+      font-weight: 800;
+      padding-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 0;
+    }
+
+    & .subtitle {
+      color: var(--secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
   & .list__alphabets {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

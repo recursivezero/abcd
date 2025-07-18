@@ -91,18 +91,78 @@
     "title": "Basic Crops",
     "description": "A collection of basic crops with their names and descriptions.",
     "data": [
-      { "emoji": "🌾", "description": "A staple grain crop, used for making flour and bread.", "letter": "Wheat", "text": "गेहूं" },
-      { "emoji": "🍚", "description": "A major cereal grain, primary food for much of the world.", "letter": "Rice", "text": "चावल" },
-      { "emoji": "🌽", "description": "Also known as corn, used as food and fodder.", "letter": "Maize", "text": "मक्का" },
-      { "emoji": "🌱", "description": "A cereal grain used for food, animal feed, and brewing.", "letter": "Barley", "text": "जौ" },
-      { "emoji": "🌾", "description": "A group of small-seeded grasses, important in arid regions.", "letter": "Millet", "text": "बाजरा" },
-      { "emoji": "🥔", "description": "A starchy tuber, widely used as a vegetable.", "letter": "Potato", "text": "आलू" },
-      { "emoji": "🍅", "description": "A red fruit used as a vegetable in cooking.", "letter": "Tomato", "text": "टमाटर" },
-      { "emoji": "🥜", "description": "Also called peanut, an oilseed and snack crop.", "letter": "Groundnut", "text": "मूंगफली" },
-      { "emoji": "🥕", "description": "An orange root vegetable, eaten raw or cooked.", "letter": "Carrot", "text": "गाजर" },
-      { "emoji": "🥒", "description": "A green, refreshing vegetable, often eaten raw.", "letter": "Cucumber", "text": "खीरा" },
-      { "emoji": "🍆", "description": "Also called eggplant, a purple vegetable.", "letter": "Brinjal", "text": "बैंगन" },
-      { "emoji": "🥬", "description": "A leafy green vegetable, rich in iron.", "letter": "Spinach", "text": "पालक" }
+      {
+        "emoji": "🌾",
+        "description": "A staple grain crop, used for making flour and bread.",
+        "letter": "Wheat",
+        "text": "गेहूं"
+      },
+      {
+        "emoji": "🍚",
+        "description": "A major cereal grain, primary food for much of the world.",
+        "letter": "Rice",
+        "text": "चावल"
+      },
+      {
+        "emoji": "🌽",
+        "description": "Also known as corn, used as food and fodder.",
+        "letter": "Maize",
+        "text": "मक्का"
+      },
+      {
+        "emoji": "🌱",
+        "description": "A cereal grain used for food, animal feed, and brewing.",
+        "letter": "Barley",
+        "text": "जौ"
+      },
+      {
+        "emoji": "🌾",
+        "description": "A group of small-seeded grasses, important in arid regions.",
+        "letter": "Millet",
+        "text": "बाजरा"
+      },
+      {
+        "emoji": "🥔",
+        "description": "A starchy tuber, widely used as a vegetable.",
+        "letter": "Potato",
+        "text": "आलू"
+      },
+      {
+        "emoji": "🍅",
+        "description": "A red fruit used as a vegetable in cooking.",
+        "letter": "Tomato",
+        "text": "टमाटर"
+      },
+      {
+        "emoji": "🥜",
+        "description": "Also called peanut, an oilseed and snack crop.",
+        "letter": "Groundnut",
+        "text": "मूंगफली"
+      },
+      {
+        "emoji": "🥕",
+        "description": "An orange root vegetable, eaten raw or cooked.",
+        "letter": "Carrot",
+        "text": "गाजर"
+      },
+      {
+        "emoji": "🥒",
+        "description": "A green, refreshing vegetable, often eaten raw.",
+        "letter": "Cucumber",
+        "text": "खीरा"
+      },
+      {
+        "emoji": "🍆",
+        "description": "Also called eggplant, a purple vegetable.",
+        "letter": "Brinjal",
+        "text": "बैंगन"
+      },
+      {
+        "emoji": "🥬",
+        "description": "A leafy green vegetable, rich in iron.",
+        "letter": "Spinach",
+        "text": "पालक"
+      }
     ]
   },
   "currency": {
@@ -680,76 +740,76 @@
     "description": "A collection of sun signs with their date range.",
     "data": [
       {
-        "description": "March 21 - April 19",
+        "description": "April 14 - May 14",
         "id": "aries",
         "letter": "♈︎",
-        "text": "Aries (मेष)"
+        "text": "Mesha (मेष)"
       },
       {
-        "description": "April 20 - May 20",
+        "description": "May 15 - June 14",
         "id": "taurus",
         "letter": "♉︎",
-        "text": "Taurus (वृषभ)"
+        "text": "Vrishabha (वृषभ)"
       },
       {
-        "description": "May 21 - June 20",
+        "description": "June 15 - July 14",
         "id": "gemini",
         "letter": "♊︎",
-        "text": "Gemini (मिथुन)"
+        "text": "Mithuna (मिथुन)"
       },
       {
-        "description": "June 21 - July 22",
+        "description": "July 15 - August 14",
         "id": "cancer",
         "letter": "♋︎",
-        "text": "Cancer (कर्क)"
+        "text": "Karka (कर्क)"
       },
       {
-        "description": "July 23 - August 22",
+        "description": "August 15 - September 15",
         "id": "leo",
         "letter": "♌︎",
-        "text": "Leo (सिंह)"
+        "text": "Simha (सिंह)"
       },
       {
-        "description": "August 23 - September 22",
+        "description": "September 16 - October 15",
         "id": "virgo",
         "letter": "♍︎",
-        "text": "Virgo (कन्या)"
+        "text": "Kanya (कन्या)"
       },
       {
-        "description": "September 23 - October 22",
+        "description": "October 16 - November 14",
         "id": "libra",
         "letter": "♎︎",
-        "text": "Libra (तुला)"
+        "text": "Tula (तुला)"
       },
       {
-        "description": "October 23 - November 21",
+        "description": "November 15 - December 14",
         "id": "scorpio",
         "letter": "♏︎",
-        "text": "Scorpio (वृश्चिक)"
+        "text": "Vrishchika (वृश्चिक)"
       },
       {
-        "description": "November 22 - December 21",
+        "description": "December 15 - January 13",
         "id": "sagittarius",
         "letter": "♐︎",
-        "text": "Sagittarius (धनु)"
+        "text": "Dhanu (धनु)"
       },
       {
-        "description": "December 22 - January 19",
+        "description": "January 14 - February 11",
         "id": "capricorn",
         "letter": "♑︎",
-        "text": "Capricorn (मकर)"
+        "text": "Makara (मकर)"
       },
       {
-        "description": "January 20 - February 18",
+        "description": "February 12 - March 12",
         "id": "aquarius",
         "letter": "♒︎",
-        "text": "Aquarius (कुंभ)"
+        "text": "Kumbha (कुंभ)"
       },
       {
-        "description": "February 19 - March 20",
+        "description": "March 13 - April 13",
         "id": "pisces",
         "letter": "♓︎",
-        "text": "Pisces (मीन)"
+        "text": "Meena (मीन)"
       }
     ]
   },

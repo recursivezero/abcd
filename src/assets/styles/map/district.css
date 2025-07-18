@@ -30,7 +30,7 @@
 .zoom-button {
   background-color: var(--card-bg);
   color: var(--text);
-  border: 2px solid var(--primary-light);
+  border: 2px solid #4a90e2;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -50,7 +50,7 @@
 .view-button {
   background-color: var(--card-bg);
   color: var(--text);
-  border: 3px solid var(--primary-light);
+  border: 3px solid #4a90e2;
   padding: 8px 16px;
   border-radius: 16px;
   font-family: "Comic Sans MS", cursive, sans-serif;
@@ -63,11 +63,12 @@
 .view-button:hover {
   transform: scale(1.05);
   opacity: 90%;
-  background-color: #cfe3fde7;
+  background-color: #6da4ece7;
 }
 
 .view-button.active {
-  background-color: var(--primary-light);
+  background-color: #4a90e2;
+  color: white;
 }
 
 .district {

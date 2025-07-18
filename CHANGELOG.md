@@ -15,8 +15,16 @@ Created Repo from template
 
 ## [2.1.0] - 2025-07-01
 
-- fix minor bugs 
+- fix minor bugs
 - Added About Page
+
+## [3.1.0] - 2025-07-16
+
+- Added Terms & Privacy pages
+- New header and Footer added
+- Added Story Section
+- Added Nakshtra Page
+- Home Page Redesign
 
 ### [Unreleased]
 

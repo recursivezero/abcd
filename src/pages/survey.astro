@@ -1,0 +1,15 @@
+---
+import "@/assets/styles/survey.css";
+import SharePopover from "@/components/ShareButton.astro";
+import SurveyComponent from "@/components/survey.astro";
+import surveyJson from "@/data/survey.json";
+import BaseLayout from "@/layouts/Base";
+import type { SurveyData } from "@/types";
+---
+
+<BaseLayout meta={{ title: "Survey Form" }}>
+  <Fragment slot="header-right">
+    <SharePopover />
+  </Fragment>
+  <SurveyComponent data={surveyJson as SurveyData} />
+</BaseLayout>

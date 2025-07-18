@@ -1,22 +1,18 @@
 ---
-import contributors from "@/data/contributor.json";
 import GitHub from "@/assets/icons/github.svg";
+import Avatar from "@/components/Avatar.astro";
 
 interface TeamMember {
   name: string;
   role: string;
-  description: string;
   github: string;
 }
 
-const getInitials = (name: string): string => {
-  const names = name.split(" ").filter((n) => n.length > 0);
-  return names
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-};
+interface Props {
+  members: TeamMember[];
+}
+
+const { members } = Astro.props;
 ---
 
 <section class="section team-section">
@@ -26,19 +22,14 @@ const getInitials = (name: string): string => {
   </p>
   <div class="team-grid">
     {
-      contributors.map((member: TeamMember) => {
-        const initials = getInitials(member.name);
+      members.map((member) => {
         return (
           <div class="team-card">
             <div class="team-image-container">
-              <div class="team-avatar" style={`background-color: ${member.name}`}>
-                {initials}
-              </div>
-              <div class="team-image-border" />
+              <Avatar name={member.name} backgroundColor="#10b981" />
             </div>
             <h3 class="team-name">{member.name}</h3>
             <p class="team-role">{member.role}</p>
-            <p class="team-desc">{member.description}</p>
             <a
               href={`https://github.com/${member.github}`}
               target="_blank"
@@ -46,7 +37,7 @@ const getInitials = (name: string): string => {
               class="team-github-link"
               aria-label={`${member.name}'s GitHub profile`}
             >
-              @{member.github} <GitHub class="github-icon" />
+              <GitHub class="github-icon" /> @{member.github}
             </a>
           </div>
         );
@@ -56,9 +47,8 @@ const getInitials = (name: string): string => {
 </section>
 
 <style>
-  /* Team Section */
   .team-section {
-    margin-bottom: 4rem;
+    margin-top: -30px;
   }
 
   .team-grid {
@@ -95,6 +85,7 @@ const getInitials = (name: string): string => {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    margin-bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,7 +103,7 @@ const getInitials = (name: string): string => {
     right: -5px;
     bottom: -5px;
     border-radius: 50%;
-    background: linear-gradient(45deg, var(--primary), var(--accent));
+    background: linear-gradient(135deg, #3b82f6, #5a8ddf, #7193c9);
     z-index: 1;
     animation: rotate-border 4s linear infinite;
   }
@@ -121,17 +112,23 @@ const getInitials = (name: string): string => {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: var(--primary-light);
+    margin-top: 0;
+    margin-bottom: 5px;
   }
 
   .team-role {
     color: light-dark(var(--bg-dark), var(--text-main));
     font-style: italic;
     margin-bottom: 1rem;
+    margin-bottom: 4px;
+    margin-top: 0;
   }
 
   .team-desc {
-    color: light-dark(var(--bg-dark), var(--text-primary));
+    color: grey;
     line-height: 1.6;
+    margin-bottom: 5px;
+    margin-top: 0;
   }
 
   .team-github-link {
@@ -142,6 +139,8 @@ const getInitials = (name: string): string => {
     color: var(--primary-light);
     text-decoration: none;
     transition: color 0.3s ease;
+    margin-bottom: 5px;
+    margin-top: 0;
   }
 
   .team-github-link:hover {
@@ -162,10 +161,59 @@ const getInitials = (name: string): string => {
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     .team-image-container {
       width: 120px;
       height: 120px;
+    }
+
+    .team-name {
+      font-size: 1.3rem;
+    }
+
+    .team-desc {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      padding: 1.5rem;
+    }
+
+    .team-image-container {
+      width: 100px;
+      height: 100px;
+    }
+
+    .team-avatar {
+      font-size: 2rem;
+    }
+  }
+
+  /* Small Mobile */
+  @media (max-width: 480px) {
+    .team-card {
+      padding: 1.25rem;
+    }
+
+    .team-name {
+      font-size: 1.2rem;
+    }
+
+    .team-desc {
+      font-size: 0.85rem;
     }
   }
 </style>

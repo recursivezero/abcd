@@ -1,0 +1,58 @@
+---
+import { storyCardSchema } from "@/types/stories";
+
+const props = storyCardSchema.parse(Astro.props);
+const { post } = props;
+const { url, title, description, image, author, date, category, readingTime, featured } = post;
+const socialImageURL = new URL(`/assets/images/stories/${image}`, Astro.url);
+---
+
+<style is:inline>
+  figure {
+    height: 15rem;
+  }
+  figcaption {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+</style>
+<meta property="og:image" content={socialImageURL} />
+<article class="story-card">
+  <a href={url}>
+    <div class="story-card-content">
+      <div class="story-card-image">
+        <figure>
+          <img src={`/assets/images/stories/${image}`} alt={title ?? "story image"} loading="lazy" />
+          <figcaption style={{ "background-color": featured ? "blueviolet" : "" }} data-category={category}>
+            <span>{featured ? "🪶 " : ""}</span>
+            <span class="category">{category}</span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="story-card-details">
+        <h3 class="story-card-title">
+          {title}
+        </h3>
+
+        {description && <p class="story-card-description">{description}</p>}
+
+        <div class="story-card-meta">
+          <div>
+            {author && <p>By {author}</p>}
+            {readingTime && <span class="reading-time">{readingTime} minutes read</span>}
+          </div>
+          {date && <time datetime={date.toString()}>{date}</time>}
+        </div>
+      </div>
+    </div>
+  </a>
+</article>

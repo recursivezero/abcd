@@ -5,14 +5,17 @@ import BaseLayout from "@/layouts/Base";
 import "@/assets/styles/common.css";
 import SettingIcon from "@/assets/icons/settings.svg";
 import Back from "@/components/Back.astro";
+import SharePopover from "@/components/ShareButton.astro";
+import MobileSplash from "@/components/MobileSplash.astro";
 ---
 
 <BaseLayout meta={{ title: "Panel" }}>
   <Back />
+  <MobileSplash stay={true} />
   <Fragment slot="header-right">
     <div class="right-header-buttons">
       <div class="settings-button-container">
-        <button id="settingsButton" class="settings-button" aria-label="Open panel settings">
+        <button id="settingsButton" class="settings-button" aria-label="Open panel settings" data-tooltip="Settings">
           <SettingIcon class="settings-icon" />
         </button>
         <div id="panelToolsPopover" class="panel-tools-popover" aria-hidden="true">
@@ -97,6 +100,7 @@ import Back from "@/components/Back.astro";
         </div>
       </div>
     </div>
+    <SharePopover />
     <Help
       title="Panel"
       description="Use arrow keys to navigate through letters/numbers. Up/down for vertical orientation, left/right for horizontal. Type any letter or number to jump to it. Adjust panel size with the slider."
@@ -162,7 +166,6 @@ import Back from "@/components/Back.astro";
     #emitEvent() {
       document.addEventListener("keyup", (e: KeyboardEvent) => {
         const { charCode, code, keyCode, key } = e;
-        console.log({ charCode, code, keyCode, key });
         this.onKeyChange(keyCode);
       });
 

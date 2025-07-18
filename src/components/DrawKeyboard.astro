@@ -1,7 +1,6 @@
 ---
 import { alphabetMapper } from "@/mappers/alphabet";
 import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/constants";
-import Keyboard from "@/components/Keyboard.astro";
 ---
 
 <div class="container">
@@ -20,7 +19,6 @@ import Keyboard from "@/components/Keyboard.astro";
       </div>
     </section>
   </main>
-  <Keyboard />
 </div>
 
 <script
@@ -420,8 +418,6 @@ import Keyboard from "@/components/Keyboard.astro";
     });
   }
 
-  console.log("Welcome to abcdkbd.com - Enhanced Interactive Learning");
-
   document.addEventListener("keyboardReset", () => {
     currentFontIndex = 0;
     currentFontColorIndex = 0;
@@ -485,7 +481,7 @@ import Keyboard from "@/components/Keyboard.astro";
     width: 100%;
     max-width: 1500px;
     gap: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     position: relative;
   }
 

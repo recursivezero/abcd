@@ -36,3 +36,19 @@ export const sortById = (a: any, b: any) => {
   }
   return String(a.id).localeCompare(String(b.id));
 };
+
+export const getInitials = (name: string): string => {
+  let initials = "";
+  let prevChar = " ";
+
+  for (let i = 0; i < name.length; i++) {
+    const char = name[i];
+    if (prevChar === " " && char !== " ") {
+      initials += char.toUpperCase();
+      if (initials.length === 2) break; // Stop early if we have 2 initials
+    }
+    prevChar = char;
+  }
+
+  return initials;
+};

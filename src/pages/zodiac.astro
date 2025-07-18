@@ -1,16 +1,47 @@
 ---
-import "@/assets/styles/zodiac.css";
 import Back from "@/components/Back.astro";
-import Headers from "@/components/Header.astro";
-import ZodiacGrid from "@/components/ZodiacGrid.astro";
+import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
+import ZodiacTab from "@/components/ZodiacTab.astro";
 ---
 
-<BaseLayout meta={{ title: "Nakshtra Nexus" }}>
+<BaseLayout meta={{ title: "Zodiac" }}>
   <Back />
-  <Headers />
-  <article>
-    <ZodiacGrid />
-  </article>
-  <script type="module" src="/js/main.js" is:inline></script></BaseLayout
->
+  <Fragment slot="header-right">
+    <SharePopover />
+    <Help title="Zodiac" description="Explore Zodiacs and Nakshtras." />
+  </Fragment>
+  <LanguageSwitcher />
+  <ZodiacTab />
+</BaseLayout>
+
+<script is:inline>
+  // --- Language Switching Logic ---
+  function setLanguage(lang) {
+    localStorage.setItem("language", lang);
+    document.documentElement.lang = lang === "hindi" ? "hi" : "en";
+
+    const englishButtons = document.querySelectorAll("#englishBtn");
+    const hindiButtons = document.querySelectorAll("#hindiBtn");
+
+    englishButtons.forEach((btn) => btn.classList.toggle("active", lang === "english"));
+    hindiButtons.forEach((btn) => btn.classList.toggle("active", lang === "hindi"));
+
+    // Dispatch a custom event that the components can listen for
+    window.dispatchEvent(new CustomEvent("languagechange", { detail: { language: localStorage.getItem("language") } }));
+  }
+
+  // --- Tab Switching and Initialization Logic ---
+  document.addEventListener("DOMContentLoaded", () => {
+    // Initialize language switcher
+    const initialLang = localStorage.getItem("language") || "english";
+    const englishButtons = document.querySelectorAll("#englishBtn");
+    const hindiButtons = document.querySelectorAll("#hindiBtn");
+
+    englishButtons.forEach((btn) => btn.addEventListener("click", () => setLanguage("english")));
+    hindiButtons.forEach((btn) => btn.addEventListener("click", () => setLanguage("hindi")));
+    setLanguage(initialLang); // Set initial language on page load
+  });
+</script>

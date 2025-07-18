@@ -1,0 +1,154 @@
+---
+import { fullEnglish, fullHindi, styleOption, tithiNames } from "@/utils/constants.ts";
+const disclaimer = `The tithi (lunar day) and paksha (lunar phase) displayed here are calculated based on a numeric logic following the Gregorian calendar.
+  Due to technical limitations, this may not always match the exact tithi according to traditional Hindu calendar calculations 
+  which consider actual astronomical positions of the sun and moon. For precise religious observances, 
+  please consult authoritative panchang sources.`;
+---
+
+<style>
+  .tithi-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .tithi-title-wrapper {
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .tithi-title {
+    color: var(--text);
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 1rem;
+  }
+
+  .date-display {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .date-format {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    background-color: var(--background);
+    border-left: 4px solid color-mix(in srgb, var(--primary) 60%, transparent 40%);
+    text-align: center;
+    font-size: 1.8rem;
+    word-spacing: 6px;
+  }
+
+  .disclaimer {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    background-color: color-mix(in srgb, var(--background) 92%, var(--text) 8%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: grey;
+    position: relative;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .disclaimer {
+      margin: 1.5rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .disclaimer {
+      margin: 1rem 0.5rem;
+      padding: 0.8rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<div class="tithi-header">
+  <div class="tithi-title-wrapper">
+    <h1 class="tithi-title">Tithi</h1>
+  </div>
+  <time id="today" class="date-display">
+    <p data-id="hindu" class="date-format"></p>
+    <p data-id="hindi" class="date-format"></p>
+    <p data-id="english" class="date-format"></p>
+  </time>
+  <div class="disclaimer">
+    <p>
+      <strong>Note:</strong>{disclaimer}
+    </p>
+  </div>
+</div>
+
+<script is:inline define:vars={{ fullEnglish, fullHindi, styleOption, tithiNames }}>
+  const dateInEnglish = new Intl.DateTimeFormat("en-us", fullEnglish);
+  const samay = new Intl.DateTimeFormat("hi", fullHindi);
+  const dateInHindi = new Intl.DateTimeFormat("hi", styleOption);
+  const getLunarDate = (gregorianDate) => {
+    const day = gregorianDate.getDate();
+    const lunarDay = ((day - 1) % 15) + 1;
+    const paksha = day <= 15 ? "शुक्ल पक्ष" : "कृष्ण पक्ष";
+    const tithi = tithiNames[lunarDay - 1];
+    return { paksha, tithi };
+  };
+
+  const hindu = document.querySelector('[data-id="hindu"]');
+  const hindi = document.querySelector('[data-id="hindi"]');
+  const english = document.querySelector('[data-id="english"]');
+
+  const modifyHinduDateString = ({ tithi, paksha }) => {
+    // Split the formatted date string into parts
+    const parts = samay.formatToParts(new Date());
+
+    // Reconstruct the string with modifications
+    let result = "";
+    let monthFound = false;
+
+    for (const part of parts) {
+      if (part.type === "day") {
+        // Replace numeric day with tithi
+        result += tithi;
+      } else if (part.type === "month" && !monthFound) {
+        // Add month then paksha
+        result += part.value + " " + paksha;
+        monthFound = true;
+      } else {
+        // Keep all other parts as-is
+        result += part.value;
+      }
+    }
+
+    return result;
+  };
+
+  const renderClock = () => {
+    const today = new Date();
+    const { paksha, tithi } = getLunarDate(today);
+
+    // Format dates
+    const eng = dateInEnglish.format(today);
+    const hi = dateInHindi.format(today);
+    const hinduDateStr = modifyHinduDateString({ tithi, paksha });
+
+    // Update displays
+    hindi.innerHTML = hi;
+    hindu.innerHTML = hinduDateStr;
+    english.innerHTML = eng;
+  };
+  renderClock();
+  setInterval(renderClock, 1000);
+</script>

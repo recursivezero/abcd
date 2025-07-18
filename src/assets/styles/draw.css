@@ -304,6 +304,21 @@
 }
 
 @media (max-width: 480px) {
+  #keyboard-trigger {
+    height: 32px !important;
+    width: 32px !important;
+  }
+
+  .share-trigger-button {
+    height: 32px !important;
+    width: 32px !important;
+  }
+
+  .share-trigger-button svg {
+    height: 12px !important;
+    width: 12px !important;
+  }
+
   .controls {
     right: 0;
     padding: 0.25rem;

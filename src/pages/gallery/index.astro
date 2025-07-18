@@ -1,0 +1,48 @@
+---
+import Queue from "@/assets/icons/queue.svg";
+import Stack from "@/assets/icons/stack.svg";
+import "@/assets/styles/cards/main.css";
+import Back from "@/components/Back.astro";
+import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
+import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Alphabet Gallery: Learn with Motion",
+  description: "Choose your display mode to explore the world of cards"
+};
+---
+
+<BaseLayout meta={meta}>
+  <Back />
+  <Fragment slot="header-right">
+    <SharePopover />
+    <Help title="Gallery" description="Different Gallery layout of stack of alphabetcards." />
+  </Fragment>
+  <div class="selection-container">
+    <h1 class="selection-title">Explore Alphabet Gallery</h1>
+    <div class="selection-buttons-grid">
+      <a href="/gallery/stack" class="selection-card">
+        <div class="card-icon">
+          <Stack />
+        </div>
+        <h2 class="card-title">Stack Display</h2>
+        <p class="card-description">Craft Your Alphabet Tower</p>
+      </a>
+      <a href="/gallery/queue" class="selection-card">
+        <div class="card-icon">
+          <Queue />
+        </div>
+        <h2 class="card-title">Queue Display</h2>
+        <p class="card-description">Customize Your Alphabet Flow</p>
+      </a>
+      <a href="/gallery/slider" class="selection-card">
+        <div class="card-icon">
+          <Queue />
+        </div>
+        <h2 class="card-title">Slider Display</h2>
+        <p class="card-description">Customize Your Alphabet Flow</p>
+      </a>
+    </div>
+  </div>
+</BaseLayout>
