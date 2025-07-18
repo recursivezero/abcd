@@ -1,5 +1,5 @@
 ---
-import { Debug } from 'astro:components';
+import { Debug } from "astro:components";
 import BackIcon from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
@@ -7,7 +7,6 @@ import BaseLayout from "@/layouts/Base";
 import poem from "@/data/poem.json";
 import PoemCard from "@/components/PoemCard.astro";
 import "@/assets/styles/poems.css";
-import {sortBy} from "@/utils/common.ts"
 const { poems } = poem;
 sortBy(poems,"title");
 
@@ -61,7 +60,7 @@ sortBy(poems,"title");
       </div>
     </div>
   </div>
-  <script type="module" is:inline>
+  <script type="module">
     const modal = document.getElementById("poem-modal");
     const closeBtn = document.getElementById("close-modal");
     const titleEl = document.getElementById("modal-title");
@@ -70,6 +69,7 @@ sortBy(poems,"title");
 
     let isMuted = true;
     let currentText = "";
+    let currentLang = "en-US";
     let availableVoices = [];
     let voicesLoadedPromise = null;
 
