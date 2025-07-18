@@ -1,26 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
   --container-bg: #0f172a;
-  --color: #cbeafe;
-  --poem-bg-1: #19134e;
-  --poem-bg-2: #4e2513;
-  --poem-bg-3: #134e4a;
-  --poem-bg-4: #13444e;
-  --poem-bg-5: #13324e;
-  --poem-bg-6: #131f4e;
+--color:#cbeafe;
+  --poem-bg-1: #19134e;  /* red-700 */
+  --poem-bg-2: #4e2513;  /* blue-700 */
+  --poem-bg-3: #134e4a;  /* green-700 */
+  /*--poem-bg-4: #3e4e13; */
+    --poem-bg-4: #13444e;  /* yellow-700 */
+  --poem-bg-5: #13324e;  /* orange-600 */
+  --poem-bg-6: #131f4e;  /* purple-700 */
 
   --poem-text-color: #ffffff;
 }
 
 [data-theme="dark"] {
   --container-bg: #0f172a;
-  --color: #cbeafe;
-  --poem-bg-1: #19134e;
-  --poem-bg-2: #4e2513;
-  --poem-bg-3: #134e4a;
-  --poem-bg-4: #13444e;
-  --poem-bg-5: #13324e;
+--color:#cbeafe;
+  --poem-bg-1: #19134e;  /* red-700 */
+  --poem-bg-2: #4e2513;  /* blue-700 */
+  --poem-bg-3: #134e4a;  /* green-700 */
+  /*--poem-bg-4: #3e4e13;*/
+    --poem-bg-4: #13444e;  /* yellow-700 */
+  --poem-bg-5: #13324e;  /* orange-600 */
   --poem-bg-6: #131f4e;
 
   --poem-text-color: #ffffff;
@@ -28,24 +31,95 @@
 
 [data-theme="light"] {
   --container-bg: #fefcfb;
-  --color: #1a237e;
-  --poem-bg-1: #fecaca;
-  --poem-bg-2: #bfdbfe;
-  --poem-bg-3: #bbf7d0;
-  --poem-bg-4: #fef08a;
-  --poem-bg-5: #fed7aa;
-  --poem-bg-6: #ddd6fe;
+--color:#1a237e;
+  --poem-bg-1: #fecaca;  /* pastel red */
+  --poem-bg-2: #bfdbfe;  /* pastel blue */
+  --poem-bg-3: #bbf7d0;  /* pastel green */
+  --poem-bg-4: #fef08a;  /* pastel yellow */
+  --poem-bg-5: #fed7aa;  /* pastel orange */
+  --poem-bg-6: #ddd6fe;  /* pastel purple */
 
   --poem-text-color: #222;
 }
-.Container__poems {
+.Container__poems{
   font-family: "Poppins", sans-serif;
+<<<<<<< HEAD
 <<<<<<< HEAD
   /*color:#1a237e;*/
   color:var(--color);
 }
 
 <<<<<<< HEAD
+=======
+  /*color:#1a237e;*/
+  color:var(--color);
+}
+.home_outer{
+  margin: 0;padding: 0;
+  box-sizing: border-box;
+}
+  .home_start{
+    border-radius: 0.75rem;
+    width: 100%;
+    height: 85vh;
+    /*background-color: brown;*/
+    position: relative;
+  }
+  .context{
+    border-radius: inherit;
+    position: absolute;
+        z-index: 10;
+    width:  100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    /*background: #000;*/
+  }
+  .context > div{
+    font-size: 5rem;
+    position: relative;
+    font-weight: 600;
+  }
+  .area{
+    border-radius: inherit;
+    background: var(--container-bg);
+    width: 100%;
+    height: 100%;
+  }
+.circles{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;padding: 0;
+  overflow: hidden;
+}
+.circles li{
+  position: absolute;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: #ffffff33;
+  bottom: -150px;
+  animation: animate 25s linear infinite;
+}
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(var(--container-bg) , var(--container-bg), var(--container-bg))
+    padding-box,
+    linear-gradient(45deg ,#5d069b , #09009f ,#00ff95)
+    border-box;
+    border: 8px solid transparent;
+    animation-delay: 0s;
+}
+
+>>>>>>> 9d281b19 (new page poem)
 /* copy code from here */
 .circles li:nth-child(2){
     left: 10%;
@@ -363,10 +437,13 @@ text-shadow: 0 -8px 18px rgba(0, 0, 0, 0.15);
     border: none;
     font-size: 3rem;
     cursor: pointer;
+<<<<<<< HEAD
 }
 =======
 >>>>>>> 397cf8d3 (CREATED COMPONENTS)
 =======
   color: var(--color);
+=======
+>>>>>>> 9d281b19 (new page poem)
 }
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
