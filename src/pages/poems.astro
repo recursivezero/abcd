@@ -7,10 +7,8 @@ import poem from "@/data/poem.json";
 import PoemCard from "@/components/PoemCard.astro";
 import SquareBubble from "@/components/SquareBubble.astro";
 import "@/assets/styles/poems.css";
-import {sortBy} from "@/utils/common.ts"
 const { poems } = poem;
-sortBy(poems,"title");
-
+poems.sortBy("title");
 ---
 
 <BaseLayout meta={{ title: "Poems" }}>
@@ -23,10 +21,9 @@ sortBy(poems,"title");
     />
   </Fragment>
   <div class="Container__poems">
-    <SquareBubble/>
+    <SquareBubble />
     <div class="outer__poem">
       <div class="container__PoemCard">
-
         {poems.map((poem) => <PoemCard title={poem.title} lines={poem.lines} cute_emoji={poem.cute_emoji} />)}
       </div>
     </div>
