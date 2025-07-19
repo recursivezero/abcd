@@ -6,8 +6,9 @@ import BaseLayout from "@/layouts/Base";
 import poem from "@/data/poem.json";
 import PoemCard from "@/components/PoemCard.astro";
 import SquareBubble from "@/components/SquareBubble.astro";
+import CloseCard from "@/assets/icons/closecard.svg";
 import "@/assets/styles/poems.css";
-import  "@/utils/common";
+import "@/utils/common";
 const { poems } = poem;
 poems.sortBy("title");
 ---
@@ -31,8 +32,13 @@ poems.sortBy("title");
 
     <dialog id="poem-modal" class="poem-dialog">
       <div class="modal-content">
-        <button id="close-modal" class="close" aria-label="Close">&times;</button>
-        <button id="audio-toggle" class="speaker-btn" title="Play Poem">🔇</button>
+        <div class="model-buttons">
+          <button id="audio-toggle" class="speaker-btn" title="Play Poem">
+          </button>
+          <button id="close-modal" class="close" aria-label="Close">
+            <CloseCard/>
+          </button>
+        </div>
         <h2 id="modal-title"></h2>
         <p id="modal-lines"></p>
       </div>
@@ -51,9 +57,30 @@ poems.sortBy("title");
     let availableVoices = [];
     let voicesLoadedPromise = null;
 
+const svgMuted = `
+<svg id="audio-icon" class="audio-icon" xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <path d="M13 3L7 8H5C3.895 8 3 8.895 3 10V14C3 15.105 3.895 16 5 16H7L13 21V3Z" 
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 9L22 15M22 9L16 15" 
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+const svgUnmuted = `
+<svg id="audio-icon" class="audio-icon" xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <path d="M13 3L7 8H5C3.895 8 3 8.895 3 10V14C3 15.105 3.895 16 5 16H7L13 21V3Z" 
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 9C16.5 9.5 17 10.5 17 12C17 13.5 16.5 14.5 16 15" 
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M19 6C20.5 7.5 21 10 21 12C21 14 20.5 16.5 19 18" 
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+
     function resetSpeakerButton() {
       isMuted = true;
-      audioToggle.textContent = "🔇";
+      audioToggle.innerHTML = svgMuted;
       window.speechSynthesis.cancel();
     }
 
@@ -118,7 +145,7 @@ poems.sortBy("title");
 
     audioToggle.onclick = () => {
       isMuted = !isMuted;
-      audioToggle.textContent = isMuted ? "🔇" : "🔊";
+      audioToggle.innerHTML = isMuted ? svgMuted : svgUnmuted;
       if (!isMuted) {
         speakPoem();
       } else {
