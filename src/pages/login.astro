@@ -6,31 +6,13 @@ import XIcon from "@/assets/icons/x.svg";
 import SunIcon from "@/assets/icons/sun.svg";
 import MoonIcon from "@/assets/icons/moon.svg";
 import Base from "@/layouts/Base";
-
-const slideImages = [
-  { dark: "/assets/images/screenshots/dark/capital.png", light: "/assets/images/screenshots/light/capitalLight.png" },
-  { dark: "/assets/images/screenshots/dark/colors.png", light: "/assets/images/screenshots/light/colorsLight.png" },
-  { dark: "/assets/images/screenshots/dark/quote.png", light: "/assets/images/screenshots/light/quoteLight.png" },
-  { dark: "/assets/images/screenshots/dark/story.png", light: "/assets/images/screenshots/light/storyLight.png" },
-  { dark: "/assets/images/screenshots/dark/map.png", light: "/assets/images/screenshots/light/mapLight.png" },
-  { dark: "/assets/images/screenshots/dark/varnmala.png", light: "/assets/images/screenshots/light/varnmalaLight.png" }
-];
 ---
-
-<script is:inline>
-  const getTheme = () => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) return savedTheme;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
-  const theme = getTheme();
-  document.documentElement.setAttribute("data-theme", theme);
-</script>
 
 <Base meta={{ title: "Log In to Your Account" }} sidebar={false}>
   <div class="signup-container">
     <div class="signup-left">
-      <div class="signup-header"></div>
+      <div class="signup-header">
+      </div>
 
       <div class="slider-container" id="slider-wrapper">
         <div class="slider">
@@ -120,6 +102,14 @@ const slideImages = [
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    const slideImages = [
+      { dark: "/assets/images/screenshots/capital.PNG", light: "/assets/images/screenshots/capitalLight.png" },
+      { dark: "/assets/images/screenshots/colors.PNG", light: "/assets/images/screenshots/colorsLight.png" },
+      { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
+      { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
+      { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
+      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" },
+    ];
     const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
     const sliderWrapper = document.getElementById("slider-wrapper");
     const slides = document.querySelectorAll(".slide");
