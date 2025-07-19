@@ -140,7 +140,7 @@
   left: 0;
   width: 100%;
   padding: 0 clamp(1.5rem, 5vw, 3rem);
-  color: var(--signup-text-primary);
+  color: #000;
   text-align: center;
 }
 
@@ -163,7 +163,7 @@
 .dot {
   width: 30px;
   height: 4px;
-  background-color: var(--signup-dots-bg);
+  background-color: #000;
   border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.3s;
