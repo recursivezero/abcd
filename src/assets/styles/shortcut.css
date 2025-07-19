@@ -3,11 +3,8 @@
 .help-popup {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
   z-index: 1000;
   justify-content: center;
   align-items: center;
@@ -16,68 +13,53 @@
   display: flex;
 }
 .help-menu {
-  color: #222;
+  color: black;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
-  width: 95vw;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  width: 90vw;
   max-width: 700px;
   max-height: 80vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1.5px solid #e1e4e8;
 }
 .help-menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px 8px 20px;
+  padding: 20px 28px 12px 28px;
   border-bottom: 1px solid #e1e4e8;
-  background: #f6f8fa;
 }
 .help-menu-header h2 {
   margin: 0;
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 700;
 }
 .close-button {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
   color: #586069;
-  padding: 0 4px;
-  border-radius: 4px;
-  transition: background 0.15s;
-}
-.close-button:hover {
-  background: #eaecef;
 }
 .help-menu-content.grid {
   display: flex;
   gap: 0;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  padding: 16px 12px;
+  padding: 24px 28px;
   overflow-y: auto;
   border-top: 1px solid #e1e4e8;
-  background: #f6f8fa;
-  position: relative;
 }
 .shortcut-section {
   flex: 1;
-  min-width: 0;
-  background: #e1e4e8;
-  border: 1.5px solid #e1e4e8;
+  height: 100%;
+  border: 1px solid #e1e4e8;
   border-radius: 8px;
-  margin: 0 8px;
-  padding: 12px 8px 8px 8px;
+  margin: 0 12px;
+  padding: 18px 20px 12px 20px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  font-size: 15px;
-  max-width: 320px;
+  min-width: 0;
 }
 .shortcut-section:first-child {
   margin-left: 0;
@@ -86,79 +68,66 @@
   margin-right: 0;
 }
 .shortcut-section h3 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   border-bottom: 1px solid #e1e4e8;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   color: #24292e;
-  border-radius: 6px 6px 0 0;
 }
-.shortcut-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: none;
-  margin-bottom: 0.5rem;
-  overflow: hidden;
-  font-size: 14px;
+.shortcut-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.shortcut-table td {
-  border-bottom: 1px solid #e1e4e8;
-  padding: 0.35rem 0.7rem;
-  font-size: 14px;
-  background: transparent;
-  transition: background 0.15s;
+.shortcut-section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 4px 0;
 }
-.shortcut-table tr:last-child td {
-  border-bottom: none;
-}
-.shortcut-table tr:hover td {
-  background: #f0f3f6;
-}
-.shortcut-table kbd {
+.keys kbd {
+  display: inline-block;
   background: #f6f8fa;
   border: 1px solid #d1d5da;
   border-radius: 5px;
-  padding: 2px 7px;
+  padding: 3px 8px;
   font-size: 13px;
   margin-left: 2px;
   margin-right: 2px;
   font-family: inherit;
   box-shadow: 0 1px 0 #d1d5da;
 }
+/* .help-menu-content.grid::before {
+  content: "";
+  display: block;
+  width: 1px;
+  background: #e1e4e8;
+  margin: 0 0.5rem;
+  align-self: stretch;
+} */
+.help-menu-content.grid {
+  position: relative;
+}
+.help-menu-content.grid > .shortcut-section:first-child {
+  margin-right: 16px;
+}
+.help-menu-content.grid > .shortcut-section:last-child {
+  margin-left: 16px;
+}
 @media (max-width: 600px) {
   .help-menu-content.grid {
     flex-direction: column;
-    gap: 12px;
-    padding: 10px 2px;
+    gap: 16px;
+    padding: 16px 8px;
   }
   .shortcut-section {
-    margin: 0 0 12px 0;
+    margin: 0 0 16px 0;
     border-radius: 8px;
-    max-width: 100%;
   }
-}
-
-.keys {
-  text-align: end;
-}
-.view-all-btn {
-  background: #f6f8fa;
-  border: 1px solid #d1d5da;
-  color: #222;
-  border-radius: 6px;
-  font-size: 13px;
-  padding: 5px 14px;
-  margin-top: 8px;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    border 0.15s;
-}
-.view-all-btn:hover {
-  background: #eaecef;
-  border-color: #bfc8d1;
+  .help-menu-content.grid::before {
+    display: none;
+  }
 }
