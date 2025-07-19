@@ -2,6 +2,7 @@ export const siteConfig = {
   author: "Recursive Zero",
   title: "parixan.xyz",
   description: "A testing pad for recursivezero",
+  ogImage: "abcd.png",
   lang: "en-GB",
   ogLocale: "en_GB",
   date: {

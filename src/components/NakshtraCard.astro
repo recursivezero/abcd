@@ -1,0 +1,85 @@
+---
+export interface Nakshtra {
+  id: number;
+  name: string;
+  ruling_planet: string;
+  deity: string;
+  symbol: string;
+  image: string;
+}
+
+interface Props {
+  nakshtra: Nakshtra;
+}
+
+const {
+  nakshtra: { name, deity, ruling_planet, symbol, image }
+} = Astro.props;
+---
+
+<style>
+  .card {
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+    box-shadow: 0 2px 5px var(--primary-color);
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 75px var(--primary-color);
+  }
+
+  .nakshatra-card {
+    aspect-ratio: auto;
+    cursor: default;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 320px;
+      height: 320px;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: brown;
+    }
+
+    .nakshatra-details {
+      padding: 0;
+      margin: 0;
+      font-size: 0.95rem;
+      width: 100%;
+      text-align: left;
+      p {
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+        gap: 0.5rem;
+      }
+    }
+  }
+</style>
+
+<div class="card nakshatra-card">
+  <img src=`/assets/images/nakshatra/${image}` alt={name} />
+  <h3>{name}</h3>
+  <div class="nakshatra-details">
+    <p><span title="ruling planet">🪐</span> {ruling_planet}</p>
+    <p><span title="deity">📿</span> {deity}</p>
+    <p><span title="symbol">࿊</span> {symbol}</p>
+  </div>
+</div>
