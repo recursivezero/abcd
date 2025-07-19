@@ -9,7 +9,7 @@ publishDate: "19 July 2025"
 
 From student to developer, my recent internship experience has been nothing short of transformative.
 I'm **Chhavi Sharma**, an enthusiastic web developer currently pursuing my B.Tech in Computer Science from **The ICFAI University, Jaipur**.
-Over the past two months, I had the incredible opportunity to intern as a **Software Developer Trainee** at **Recursive Zero Pvt. Ltd**.
+Over the past two months, I had the incredible opportunity to intern as a **Software Developer Trainee** at **RecursiveZero Pvt. Ltd**.
 
 This journey was far more than just writing code; it was a deep dive into modern frontend technologies, understanding the nuances of a corporate work environment, and embracing professional development practices.
 Under the exceptional guidance of **Mr. Keshav Mohta**, I truly began to grasp the essence of frontend engineering.
@@ -19,38 +19,38 @@ This blog is a reflection of what I’ve worked on, the skills I’ve gained, an
 
 ## 🚧 Projects I Worked On
 
-During my internship, I contributed to multiple key pages and features:
+I contributed to the following key pages and features for the **abcdkbd** project:
 
-### 🏠 Home Page
+### 🏠 [Home Page](/)
 
 I designed and structured the home page to ensure a smooth user experience with a responsive layout and clean navigation.
 
-### 🪔 Varnmala Page
+### 🪔 [Varnmala Page](/varnmala/)
 
 I developed a rich, multi-section learning space for learners. The **Varnmala** section was broken down into six interactive subpages:
 
-*   **Hindi** – Displayed *स्वर* and *व्यंजन*.
-*   **English** – Offered a comparative look at English alphabet letters.
-*   **Barahkhadi** – Showcased combinations of consonants and matras visually.
-*   **Listen** – Implemented **Text-to-Speech** functionality for hearing pronunciation.
-*   **Write** – Guided users on how to write letters through animated stroke visuals.
-*   **Play** – Created interactive games/activities to reinforce what users learned.
+*   [**Hindi**](/varnmala/hindi) – Displayed *स्वर* and *व्यंजन*.
+*   [**English**](/varnmala/english/) – Offered a comparative look at English alphabet letters.
+*   [**Barahkhadi**](/varnmala/barahkhadi/) – Showcased combinations of consonants and matras visually.
+*   [**Listen**](/varnmala/listen/) – Implemented **Text-to-Speech** functionality for hearing pronunciation.
+*   [**Write**](/varnmala/write/) – Guided users on how to write letters through animated stroke visuals.
+*   [**Play**](/varnmala/play/) – Created interactive games/activities to reinforce what users learned.
 
 This section focused on clean layouts, intuitive navigation, and accessibility for early learners.
 
-### 🔤 Alphabets Page
+### 🔤 [Alphabets Page](/alphabets/)
 
 I developed a separate alphabets section with **animated SVG letter drawings** and **reset/play controls** — making learning fun and interactive.
 
-### 🔢 Numbers Page
+### 🔢 [Numbers Page](/math/)
 
 I created an interactive number page featuring content for English, Hindi, Morse code, and Roman numerals.
 
-### 📚 Glossary Page
+### 📚 [Glossary Page](/glossary/)
 
 I structured glossary terms across themes like **Months**, **Days**, and **Geometrical Shapes**, using **dynamic JSON rendering** and category-based filtering.
 
-### 🔮 Nakshatra Page
+### 🔮 [Nakshatra Page](/nakshtra/)
 
 I designed and developed a **visual representation of Nakshatras**, using reusable components and clean layouts for better scalability.
 
@@ -69,7 +69,7 @@ I implemented **layouts, partial hydration, and slot usage**, building fast and 
 
 I used **file-based routing** in Astro for dynamic glossary and category pages, passing route parameters to generate content on-the-fly.
 
-### 🗣️ Web Speech API
+### 🗣️ [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
 
 I integrated **Text-to-Speech (TTS)** features using the Web Speech API, enabling **audio feedback** for alphabets — improving accessibility and user engagement.
 
@@ -78,13 +78,13 @@ I integrated **Text-to-Speech (TTS)** features using the Web Speech API, enablin
 While working on UI/UX, I explored several modern CSS features, including:
 
 *   **CSS Grid & Subgrid** – For complex, responsive layout designs.
-*   **Container Queries** – Made components respond to container size.
+*   [**Container Queries**](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries) – Made components respond to container size.
 *   **CSS Variables (`--var`)** – Maintained design consistency and simplified theming.
 *   **Clamp Function (`clamp()`)** – Created fluid responsive typography and spacing.
 *   **Backdrop Filter** – Applied glassmorphism-style blur effects.
 *   **Scroll Snap** – Added smoother section-based scrolling on mobile.
 *   **Animations** using `@keyframes` & `transition` – For SVG letter drawings, button hovers, and more.
-*   **Popover API** – Learned to use the new native Popover API for creating lightweight contextual overlays without external libraries.
+*   [**Popover API**](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) – Learned to use the new native Popover API for creating lightweight contextual overlays without external libraries.
 
 ### 💻 Git & GitHub
 
@@ -103,7 +103,7 @@ I also leveraged helpful extensions like **Prettier**, **ESLint**, and **Astro L
 ## 💡 What I Learned Beyond Code
 
 *   **Communication** – I learned to share updates clearly, discuss blockers effectively, and contribute meaningfully to team decisions.
-*   **Problem-solving** – I sharpened my debugging skills, fixing layout bugs and animation sync issues, and gaining experience working with APIs.
+*   **Problem-solving** – I sharpened my debugging skills by fixing layout bugs and animation sync issues, and gained experience working with modern Browser APIs.
 *   **Responsibility** – I delivered features independently and tracked my progress efficiently using GitHub project tools.
 
 ---
