@@ -7,6 +7,7 @@ import poem from "@/data/poem.json";
 import PoemCard from "@/components/PoemCard.astro";
 import SquareBubble from "@/components/SquareBubble.astro";
 import "@/assets/styles/poems.css";
+import  "@/utils/common";
 const { poems } = poem;
 poems.sortBy("title");
 ---
@@ -28,14 +29,14 @@ poems.sortBy("title");
       </div>
     </div>
 
-    <div id="poem-modal" class="modal hidden">
+    <dialog id="poem-modal" class="poem-dialog">
       <div class="modal-content">
-        <span id="close-modal" class="close">&times;</span>
+        <button id="close-modal" class="close" aria-label="Close">&times;</button>
         <button id="audio-toggle" class="speaker-btn" title="Play Poem">🔇</button>
         <h2 id="modal-title"></h2>
         <p id="modal-lines"></p>
       </div>
-    </div>
+    </dialog>
   </div>
   <script type="module">
     const modal = document.getElementById("poem-modal");
@@ -107,12 +108,12 @@ poems.sortBy("title");
     window.showPoem = async (title, lines) => {
       titleEl.innerText = title;
       linesEl.innerText = lines.join("\n");
-      modal.classList.remove("hidden");
 
       resetSpeakerButton();
       currentText = lines.join(" ");
       currentLang = "en-US";
       await ensureVoicesLoaded();
+      modal.showModal();
     };
 
     audioToggle.onclick = () => {
@@ -126,16 +127,16 @@ poems.sortBy("title");
     };
 
     closeBtn.onclick = () => {
-      modal.classList.add("hidden");
+      modal.close();
       resetSpeakerButton();
     };
 
-    window.onclick = (e) => {
+    window.addEventListener("click", (e) => {
       if (e.target === modal) {
-        modal.classList.add("hidden");
+        modal.close();
         resetSpeakerButton();
       }
-    };
+    });
 
     ensureVoicesLoaded();
   </script>
