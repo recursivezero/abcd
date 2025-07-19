@@ -670,7 +670,6 @@
   }
 }
 
-
 .option-label:has(input:checked) {
   background-color: var(--primary);
   color: var(--text);
