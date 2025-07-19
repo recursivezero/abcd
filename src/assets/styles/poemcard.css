@@ -1,50 +1,3 @@
-<<<<<<< HEAD
-.outer__poem {
-  width: 100%;
-  position: relative;
-}
-
-.container__PoemCard {
-  width: 100%;
-  position: relative;
-  background-color: var(--container-bg);
-  /*transition: background-color 0.4s ease;*/
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 320px);
-  gap: 1rem;
-  row-gap: 2rem;
-  padding: 5rem 1rem;
-  margin-top: 0.5rem;
-  /*padding: 8rem 0 ;*/
-  justify-content: space-evenly;
-  align-content: center;
-  border-radius: 0.75rem;
-}
-
-.card-wrapper {
-  /*background-color: red;*/
-  /*box-sizing: border-box;*/
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.poem-card {
-  position: relative;
-  height: 100%;
-  width: 300px;
-  border-radius: 25px;
-  /*background-color: pink;*/
-  display: flex;
-  flex-direction: column;
-  /*justify-content: space-between;*/
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
-  transition:
-      /*background-color 0.5s ease,*/
-      /*color 0.5s ease,*/
-=======
   .outer__poem{
     width:100%;        
     position: relative;
@@ -56,7 +9,7 @@
     /*transition: background-color 0.4s ease;*/
     box-sizing: border-box;
     display: grid;
-        grid-template-columns: repeat(auto-fit, 320px);
+    grid-template-columns: repeat(auto-fit, 320px);
     gap: 1rem;
     row-gap: 2rem;
     padding: 5rem 1rem;
@@ -84,20 +37,15 @@
     /*background-color: pink;*/
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
       transition:
     /*background-color 0.5s ease,*/
     /*color 0.5s ease,*/
->>>>>>> 397cf8d3 (CREATED COMPONENTS)
     transform 0.3s ease,
     box-shadow 0.3s ease;
   cursor: pointer;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 397cf8d3 (CREATED COMPONENTS)
 .poem-card:hover {
   filter: brightness(0.95);
   transform: scale(1.03);
@@ -394,11 +342,14 @@ text-shadow: 0 -8px 18px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 .card-indicator{
-  align-self: flex-end;
+  position: absolute;
+  top :0;
+  right: 0;
 }
 .open-indicator{
   fill: var(--color);
 }
+<<<<<<< HEAD
     .modal {
     display: flex;
     align-items: center;
@@ -458,3 +409,6 @@ text-shadow: 0 -8px 18px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
 >>>>>>> 397cf8d3 (CREATED COMPONENTS)
+=======
+
+>>>>>>> d403bdbb (integrated opo over api to card poem modal)
