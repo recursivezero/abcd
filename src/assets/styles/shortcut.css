@@ -62,13 +62,12 @@
   padding: 16px 12px;
   overflow-y: auto;
   border-top: 1px solid #e1e4e8;
-  background: #f6f8fa;
+  /* background: #f6f8fa; */
   position: relative;
 }
 .shortcut-section {
   flex: 1;
   min-width: 0;
-  background: #e1e4e8;
   border: 1.5px solid #e1e4e8;
   border-radius: 8px;
   margin: 0 8px;
@@ -105,7 +104,13 @@
   overflow: hidden;
   font-size: 14px;
 }
+.shortcut-table tr {
+  height: 2.2em;         /* or use min-height if you prefer */
+}
+
 .shortcut-table td {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
   border-bottom: 1px solid #e1e4e8;
   padding: 0.35rem 0.7rem;
   font-size: 14px;
@@ -129,6 +134,9 @@
   font-family: inherit;
   box-shadow: 0 1px 0 #d1d5da;
 }
+.shortcut-table tr:not(:last-child) {
+  border-bottom: 1px solid #eee; /* optional: adds a subtle divider */
+}
 @media (max-width: 600px) {
   .help-menu-content.grid {
     flex-direction: column;
@@ -145,20 +153,6 @@
 .keys {
   text-align: end;
 }
-.view-all-btn {
-  background: #f6f8fa;
-  border: 1px solid #d1d5da;
-  color: #222;
-  border-radius: 6px;
-  font-size: 13px;
-  padding: 5px 14px;
-  margin-top: 8px;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    border 0.15s;
-}
-.view-all-btn:hover {
-  background: #eaecef;
-  border-color: #bfc8d1;
+.rows{
+  margin:3px
 }
