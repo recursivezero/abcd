@@ -11,33 +11,31 @@ import "@/assets/styles/shortcut.css";
         <button id="close-help" class="close-button" aria-label="Close help menu">×</button>
       </div>
       <div class="help-menu-content grid">
-        <div class="shortcut-section">
-          <h3>Repositories</h3>
-          <ul>
-            <li><span class="desc">Open in codespace</span> <span class="keys"><kbd>Ctrl</kbd>+<kbd>.</kbd></span></li>
-            <li><span class="desc">Open in github.dev editor</span> <span class="keys"><kbd>Alt</kbd>+<kbd>.</kbd></span></li>
-            <li><span class="desc">Go to Code</span> <span class="keys"><kbd>G</kbd> <kbd>C</kbd></span></li>
-            <li><span class="desc">Go to Issues</span> <span class="keys"><kbd>G</kbd> <kbd>I</kbd></span></li>
-            <li><span class="desc">Go to Pull Requests</span> <span class="keys"><kbd>G</kbd> <kbd>P</kbd></span></li>
-            <li><span class="desc">Go to Actions</span> <span class="keys"><kbd>G</kbd> <kbd>A</kbd></span></li>
-            <li><span class="desc">Go to Projects</span> <span class="keys"><kbd>G</kbd> <kbd>B</kbd></span></li>
-            <li><span class="desc">Go to Wiki</span> <span class="keys"><kbd>G</kbd> <kbd>W</kbd></span></li>
-            <li><span class="desc">Go to Discussions</span> <span class="keys"><kbd>G</kbd> <kbd>G</kbd></span></li>
-          </ul>
+        <div class="shortcut-section" id="main-shortcut-section">
+          <h3>Main Navigation</h3>
+          <div id="main-shortcut-table-wrapper" style="max-height:none;overflow:visible;transition:max-height 0.2s;">
+            <table class="shortcut-table" id="main-shortcut-table">
+              <tbody id="main-shortcut-tbody">
+                <!-- Shortcuts will be rendered here by script -->
+              </tbody>
+            </table>
+          </div>
+          <button id="view-all-shortcuts-btn" class="view-all-btn" style="margin:0.5rem auto 0 auto;display:block;"
+            >View All Shortcut Keys</button
+          >
         </div>
         <div class="shortcut-section">
-          <h3>Site-wide shortcuts</h3>
-          <ul>
-            <li><span class="desc">Open home page</span> <span class="keys"><kbd>H</kbd> or <kbd>/</kbd></span></li>
-            <li><span class="desc">Go to about</span> <span class="keys"><kbd>G</kbd> + <kbd>H</kbd></span></li>
-            <li><span class="desc">Go to dashboard</span> <span class="keys"><kbd>G</kbd> <kbd>D</kbd></span></li>
-            <li><span class="desc">Go to your issues</span> <span class="keys"><kbd>G</kbd> <kbd>I</kbd></span></li>
-            <li><span class="desc">Go to your pull requests</span> <span class="keys"><kbd>G</kbd> <kbd>P</kbd></span></li>
-            <li><span class="desc">Bring up this help dialog</span> <span class="keys"><kbd>?</kbd></span></li>
-            <li><span class="desc">Move selection down</span> <span class="keys"><kbd>J</kbd></span></li>
-            <li><span class="desc">Move selection up</span> <span class="keys"><kbd>K</kbd></span></li>
-            <li><span class="desc">Toggle selection</span> <span class="keys"><kbd>X</kbd></span></li>
-          </ul>
+          <h3>General & Other</h3>
+          <table class="shortcut-table">
+            <tbody>
+              <tr><td>Go to FAQ</td><td class="keys"><kbd>F</kbd> <kbd>Q</kbd></td></tr>
+              <tr><td>Go to Blog</td><td class="keys"><kbd>B</kbd> <kbd>L</kbd></td></tr>
+              <tr><td>Open Contact</td><td class="keys"><kbd>C</kbd> <kbd>T</kbd></td></tr>
+              <tr><td>Open Support</td><td class="keys"><kbd>S</kbd> <kbd>P</kbd></td></tr>
+              <tr><td>Show this help</td><td class="keys"><kbd>?</kbd></td></tr>
+              <tr><td>Close this help</td><td class="keys"><kbd>Esc</kbd></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -45,49 +43,176 @@ import "@/assets/styles/shortcut.css";
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const popup = document.getElementById('help-popup');
-    const openBtn = document.getElementById('help-popover-btn');
-    const closeBtn = document.getElementById('close-help');
-    let gPressed = false;
+  document.addEventListener("DOMContentLoaded", function () {
+    // Each shortcut is now a two-key sequence
+    const mainShortcuts = [
+      { label: "Go to Home", keys: ["H", "O"], path: "/" },
+      { label: "About this site", keys: ["A", "B"], path: "/about" },
+      { label: "Open Varnmala", keys: ["V", "M"], path: "/varnmala" },
+      { label: "Open Panel", keys: ["P", "N"], path: "/panel" },
+      { label: "View Records", keys: ["R", "C"], path: "/record" },
+      { label: "Explore Alphabets", keys: ["A", "L"], path: "/alphabets" },
+      { label: "See Numbers", keys: ["N", "B"], path: "/numbers" },
+      { label: "Browse Glossary", keys: ["G", "L"], path: "/glossary" },
+      { label: "Show Map/Capital", keys: ["M", "P"], path: "/map" },
+      { label: "Vedic Tools", keys: ["V", "D"], path: "/vedic" },
+      { label: "Play Crossword", keys: ["C", "W"], path: "/crossword" },
+      { label: "Play HideNSeek", keys: ["H", "S"], path: "/hidenseek" },
+      { label: "Open Canvas", keys: ["C", "A"], path: "/canvas" },
+      { label: "Go to Math", keys: ["M", "T"], path: "/math" },
+      { label: "Indic Explorer", keys: ["I", "N"], path: "/indic" },
+      { label: "Draw Something", keys: ["D", "R"], path: "/draw" },
+      { label: "View Gallery", keys: ["G", "Y"], path: "/gallery" },
+      { label: "See Nakshtra", keys: ["N", "K"], path: "/nakshtra" },
+      { label: "Read Stories", keys: ["S", "T"], path: "/stories" }
+    ];
+    const initialCount = 7;
+    const popup = document.getElementById("help-popup");
+    const openBtn = document.getElementById("help-popover-btn");
+    const closeBtn = document.getElementById("close-help");
+    const mainShortcutTbody = document.getElementById("main-shortcut-tbody");
+    const viewAllBtn = document.getElementById("view-all-shortcuts-btn");
+    const mainShortcutTableWrapper = document.getElementById("main-shortcut-table-wrapper");
+    let showingAll = false;
+    let firstKey: any = null;
+    let keyTimeout: any = null;
+    function renderShortcuts(showAll: any) {
+      /** @type {boolean} */ showAll = showAll;
+      if (!mainShortcutTbody) return;
+      mainShortcutTbody.innerHTML = "";
+      const arr = showAll ? mainShortcuts : mainShortcuts.slice(0, initialCount);
+      arr.forEach(function (shortcut) {
+        const tr = document.createElement("tr");
+        const tdLabel = document.createElement("td");
+        tdLabel.textContent = shortcut.label;
+        const tdKeys = document.createElement("td");
+        tdKeys.classList.add("keys");
+        shortcut.keys.forEach(function (k) {
+          const kbd = document.createElement("kbd");
+          kbd.textContent = k;
+          tdKeys.appendChild(kbd);
+        });
+        tr.appendChild(tdLabel);
+        tr.appendChild(tdKeys);
+        mainShortcutTbody.appendChild(tr);
+      });
+    }
+
+    renderShortcuts(false);
+    if (mainShortcutTableWrapper) {
+      mainShortcutTableWrapper.style.maxHeight = "none";
+      mainShortcutTableWrapper.style.overflow = "visible";
+    }
+    if (viewAllBtn) {
+      viewAllBtn.style.display = mainShortcuts.length > initialCount ? "block" : "none";
+      viewAllBtn.addEventListener("click", function () {
+        if (!showingAll) {
+          renderShortcuts(true);
+          if (mainShortcutTableWrapper) {
+            mainShortcutTableWrapper.style.maxHeight = "275px";
+            mainShortcutTableWrapper.style.overflow = "auto";
+          }
+          viewAllBtn.style.display = "none";
+          showingAll = true;
+        }
+      });
+    }
 
     function openPopup() {
-      popup?.classList.add('is-open');
+      if (popup) popup.classList.add("is-open");
     }
     function closePopup() {
-      popup?.classList.remove('is-open');
+      if (popup) popup.classList.remove("is-open");
     }
-
-    openBtn?.addEventListener('click', openPopup);
-    closeBtn?.addEventListener('click', closePopup);
-
-    document.addEventListener('keydown', function(e) {
-      // Open popup on "?" key
-      if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
+    if (openBtn) openBtn.addEventListener("click", openPopup);
+    if (closeBtn) closeBtn.addEventListener("click", closePopup);
+    document.addEventListener("keydown", function (e) {
+      const tag = document.activeElement?.tagName || "";
+      if (["INPUT", "TEXTAREA"].includes(tag)) return;
+      if (e.key === "?") {
         e.preventDefault();
         openPopup();
+        return;
       }
-      if ((e.key === '/') || (e.key === 'h' || e.key === 'H') && !['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
-        e.preventDefault();
-        window.location.href = '/';
-      }
-      // Close popup on ESC
-      if (e.key === 'Escape' && popup?.classList.contains('is-open')) {
-        closePopup();
-      }
-      // G + H shortcut
-      if (!['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
-        if (gPressed && (e.key === 'h' || e.key === 'H')) {
-          e.preventDefault();
-          window.location.href = '/about';
-          gPressed = false;
+      // Two-key sequence logic
+      if (!firstKey) {
+        // Wait for first key
+        for (const shortcut of mainShortcuts) {
+          if (e.key.toUpperCase() === shortcut.keys[0]) {
+            firstKey = shortcut.keys[0];
+            if (keyTimeout) clearTimeout(keyTimeout);
+            keyTimeout = setTimeout(() => {
+              firstKey = null;
+            }, 1000);
+            return;
+          }
+        }
+        // General & Other shortcuts
+        if (e.key.toUpperCase() === "F") {
+          firstKey = "F";
+          keyTimeout = setTimeout(() => {
+            firstKey = null;
+          }, 1000);
           return;
         }
-        if (e.key === 'g' || e.key === 'G') {
-          gPressed = true;
-          setTimeout(() => { gPressed = false; }, 1000);
+        if (e.key.toUpperCase() === "B") {
+          firstKey = "B";
+          keyTimeout = setTimeout(() => {
+            firstKey = null;
+          }, 1000);
           return;
         }
+        if (e.key.toUpperCase() === "C") {
+          firstKey = "C";
+          keyTimeout = setTimeout(() => {
+            firstKey = null;
+          }, 1000);
+          return;
+        }
+        if (e.key.toUpperCase() === "S") {
+          firstKey = "S";
+          keyTimeout = setTimeout(() => {
+            firstKey = null;
+          }, 1000);
+          return;
+        }
+      } else {
+        // Wait for second key
+        for (const shortcut of mainShortcuts) {
+          if (firstKey === shortcut.keys[0] && e.key.toUpperCase() === shortcut.keys[1]) {
+            window.location.href = shortcut.path;
+            firstKey = null;
+            if (keyTimeout) clearTimeout(keyTimeout);
+            return;
+          }
+        }
+        // General & Other shortcuts
+        if (firstKey === "F" && e.key.toUpperCase() === "Q") {
+          window.location.href = "/faq";
+          firstKey = null;
+          if (keyTimeout) clearTimeout(keyTimeout);
+          return;
+        }
+        if (firstKey === "B" && e.key.toUpperCase() === "L") {
+          window.location.href = "/blog";
+          firstKey = null;
+          if (keyTimeout) clearTimeout(keyTimeout);
+          return;
+        }
+        if (firstKey === "C" && e.key.toUpperCase() === "T") {
+          window.location.href = "/contact";
+          firstKey = null;
+          if (keyTimeout) clearTimeout(keyTimeout);
+          return;
+        }
+        if (firstKey === "S" && e.key.toUpperCase() === "P") {
+          window.location.href = "/support";
+          firstKey = null;
+          if (keyTimeout) clearTimeout(keyTimeout);
+          return;
+        }
+        firstKey = null;
+        if (keyTimeout) clearTimeout(keyTimeout);
       }
     });
   });
