@@ -3,25 +3,15 @@ import "@/assets/styles/signup.css";
 import GoogleIcon from "@/assets/icons/google.svg";
 import EyeIcon from "@/assets/icons/eye.svg";
 import XIcon from "@/assets/icons/x.svg";
-import LogoImage from "@/assets/images/ABCD.png";
-import { Image } from "astro:assets";
+import SunIcon from "@/assets/icons/sun.svg";
+import MoonIcon from "@/assets/icons/moon.svg";
+import Base from "@/layouts/Base";
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Log In to Your Account</title>
-</head>
-<body>
+<Base meta={{ title: "Log In to Your Account" }} sidebar={false}>
   <div class="signup-container">
     <div class="signup-left">
       <div class="signup-header">
-        <div class="logo">
-          <Image src={LogoImage} alt="Logo" width={50} height={50} loading="eager" />
-        </div>
-        <a href="/" class="back-link">
-          Back to website <span class="arrow">→</span>
-        </a>
       </div>
 
       <div class="slider-container">
@@ -94,20 +84,32 @@ import { Image } from "astro:assets";
       </div>
     </div>
   </div>
-</body>
+</Base>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    const slideImages = [
+      { dark: "/assets/images/screenshots/capital.PNG", light: "/assets/images/screenshots/capitalLight.png" },
+      { dark: "/assets/images/screenshots/colors.PNG", light: "/assets/images/screenshots/colorsLight.png" },
+      { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
+      { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
+      { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
+      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" },
+    ];
+    const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
+    const sliderWrapper = document.getElementById("slider-wrapper");
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     let currentSlide = 0;
     let slideInterval: number | undefined;
 
     function startSlider(): void {
+      if (!slides.length) return;
       slideInterval = window.setInterval(nextSlide, 5000);
     }
 
     function showSlide(index: number): void {
+      if (!slides.length) return;
       slides.forEach((slide) => slide.classList.remove("active"));
       dots.forEach((dot) => dot.classList.remove("active"));
       currentSlide = (index + slides.length) % slides.length;

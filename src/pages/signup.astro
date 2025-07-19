@@ -3,55 +3,15 @@ import "@/assets/styles/signup.css";
 import GoogleIcon from "@/assets/icons/google.svg";
 import EyeIcon from "@/assets/icons/eye.svg";
 import XIcon from "@/assets/icons/x.svg";
-import LogoImage from "@/assets/images/ABCD.png";
-import { Image } from "astro:assets";
+import SunIcon from "@/assets/icons/sun.svg";
+import MoonIcon from "@/assets/icons/moon.svg";
+import Base from "@/layouts/Base";
 ---
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create an Account</title>
-  </head>
-  <body>
-    <div class="signup-container">
-      <div class="signup-left">
-        <div class="signup-header">
-          <div class="logo">
-            <Image src={LogoImage} alt="Logo" width={50} height={50} loading="eager" />
-          </div>
-          <a href="/" class="back-link">
-            Back to website <span class="arrow">→</span>
-          </a>
-        </div>
-
-        <div class="slider-container">
-          <div class="slider">
-            <div class="slide active">
-              <img src="/assets/images/signup/capital.PNG" alt="Image 1" />
-              <div class="slide-caption">
-                <h2>Capturing Moments,<br />Creating Memories</h2>
-              </div>
-            </div>
-            <div class="slide">
-              <img src="/assets/images/signup/colors.PNG" alt="Image 2" />
-              <div class="slide-caption">
-                <h2>Share Your Vision,<br />Express Your Style</h2>
-              </div>
-            </div>
-            <div class="slide">
-              <img src="/assets/images/signup/quote.PNG" alt="Image 3" />
-              <div class="slide-caption">
-                <h2>Design Your World,<br />One Click at a Time</h2>
-              </div>
-            </div>
-          </div>
-
-          <div class="slider-dots">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-          </div>
-        </div>
+<Base meta={{ title: "Create an Account" }} sidebar={false}>
+  <div class="signup-container">
+    <div class="signup-left">
+      <div class="signup-header">
       </div>
 
       <div class="signup-right">
@@ -104,21 +64,88 @@ import { Image } from "astro:assets";
         </div>
       </div>
     </div>
-  </body>
-</html>
+
+    <div class="signup-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <SunIcon id="theme-icon-sun" width={24} height={24} />
+        <MoonIcon id="theme-icon-moon" width={24} height={24} />
+      </button>
+      <div class="form-container">
+        <h1>Create an account</h1>
+        <p class="signup-text">Already have an account? <a href="/login" class="signup-link">Log in</a></p>
+
+        <form class="signup-form">
+          <div class="input-row">
+            <div class="input-group">
+              <input type="text" id="firstName" placeholder="First name" required />
+            </div>
+            <div class="input-group">
+              <input type="text" id="lastName" placeholder="Last name" required />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+
+          <div class="input-group password-group">
+            <input type="password" id="password" placeholder="Enter your password" required />
+            <button type="button" class="toggle-password">
+              <EyeIcon />
+            </button>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" required />
+            <label for="terms">I agree to the <a href="/terms" class="terms-link">Terms & Conditions</a></label>
+          </div>
+
+          <button type="submit" class="create-account-btn">Create account</button>
+
+          <div class="divider">
+            <span>Or register with</span>
+          </div>
+          <div class="social-buttons">
+            <button type="button" class="google-btn">
+              <GoogleIcon />
+              Google
+            </button>
+            <button type="button" class="X-btn">
+              <XIcon />
+              X
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</Base>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    const slideImages = [
+      { dark: "/assets/images/screenshots/capital.PNG", light: "/assets/images/screenshots/capitalLight.png" },
+      { dark: "/assets/images/screenshots/colors.PNG", light: "/assets/images/screenshots/colorsLight.png" },
+      { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
+      { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
+      { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
+      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" },
+    ];
+    const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
+    const sliderWrapper = document.getElementById("slider-wrapper");
+
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     let currentSlide = 0;
     let slideInterval: number | undefined;
 
     function startSlider(): void {
+      if (!slides.length) return;
       slideInterval = window.setInterval(nextSlide, 5000);
     }
 
     function showSlide(index: number): void {
+      if (!slides.length) return;
       slides.forEach((slide) => slide.classList.remove("active"));
       dots.forEach((dot) => dot.classList.remove("active"));
       currentSlide = (index + slides.length) % slides.length;
