@@ -70,11 +70,15 @@
     border-radius: 0.75rem;
     width: 100%;
 <<<<<<< HEAD
+<<<<<<< HEAD
     height: 65vh;
     /*background-color: brown;*/
 =======
     height: 30vh;
 >>>>>>> d403bdbb (integrated opo over api to card poem modal)
+=======
+    height: 30vh;
+>>>>>>> 5c41c34a (integrated opo over api to card poem modal)
     position: relative;
   }
   .context{
@@ -130,9 +134,16 @@
 }
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
 
+<<<<<<< HEAD
 @media (max-width: 768px) {
   .context > div {
     font-size: 2.5rem;
+=======
+  @media (max-width: 768px){
+            .context > div{
+      font-size: 2.5rem;
+    }
+>>>>>>> 5c41c34a (integrated opo over api to card poem modal)
   }
 }
 @media (max-width: 480px) {

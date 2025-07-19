@@ -15,27 +15,26 @@ const { title, lines, cute_emoji } = Astro.props;
   </div>
 </div>-->
 <div class="card-wrapper">
-    <div class="poem-card" onclick={`showPoem("${title}", ${JSON.stringify(lines)})`}>
-      <div class="emoji-content">
-        <span class="overlay"></span>
+      <div class="poem-card" onclick={`showPoem("${title}", ${JSON.stringify(lines)})`}>
+        <div class="emoji-content">
+          <span class="overlay"></span>
 
-        <div class="card-emoji">
-          <div class="card-emo">{cute_emoji}</div>
+          <div class="card-indicator">
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 512 512" class="open-indicator"
+  ><path
+    d="M224,304a16,16,0,0,1-11.31-27.31L370.63,118.75A55.7,55.7,0,0,0,344,112H104a56.06,56.06,0,0,0-56,56V408a56.06,56.06,0,0,0,56,56H344a56.06,56.06,0,0,0,56-56V168a55.7,55.7,0,0,0-6.75-26.63L235.31,299.31A15.92,15.92,0,0,1,224,304Z"
+  ></path><path
+    d="M448,48H336a16,16,0,0,0,0,32h73.37l-38.74,38.75a56.35,56.35,0,0,1,22.62,22.62L432,102.63V176a16,16,0,0,0,32,0V64A16,16,0,0,0,448,48Z"
+  ></path></svg>
+</div>
+          <div class="card-emoji">
+            <div class="card-emo">{cute_emoji}</div>
+          </div>
         </div>
-      </div>
       <div class="card-content">
         <h2 class="name">
           {title}
         </h2>
       </div>
-      <div class="card-indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 512 512" class="open-indicator"
-          ><path
-            d="M224,304a16,16,0,0,1-11.31-27.31L370.63,118.75A55.7,55.7,0,0,0,344,112H104a56.06,56.06,0,0,0-56,56V408a56.06,56.06,0,0,0,56,56H344a56.06,56.06,0,0,0,56-56V168a55.7,55.7,0,0,0-6.75-26.63L235.31,299.31A15.92,15.92,0,0,1,224,304Z"
-          ></path><path
-            d="M448,48H336a16,16,0,0,0,0,32h73.37l-38.74,38.75a56.35,56.35,0,0,1,22.62,22.62L432,102.63V176a16,16,0,0,0,32,0V64A16,16,0,0,0,448,48Z"
-          ></path></svg
-        >
-        </div>
       </div>
 </div>

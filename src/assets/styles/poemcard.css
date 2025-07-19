@@ -1,6 +1,24 @@
-.outer__poem {
-  width: 100%;
-  position: relative;
+  .outer__poem{
+    width:100%;        
+    position: relative;
+  }
+.container__PoemCard{
+    width:100%;        
+    position: relative;
+    background-color:var(--container-bg);
+    /*transition: background-color 0.4s ease;*/
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 320px);
+    gap: 1rem;
+    row-gap: 2rem;
+    padding: 5rem 1rem;
+    margin-top: 0.5rem;
+    /*padding: 8rem 0 ;*/
+    justify-content: space-evenly;
+    align-content: center;
+    border-radius: 0.75rem;
+
 }
 
 .container__PoemCard {
@@ -441,6 +459,7 @@ text-shadow: 0 -8px 18px rgba(0, 0, 0, 0.15);
   fill: var(--color);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
     .modal {
     display: flex;
     align-items: center;
@@ -657,3 +676,5 @@ text-shadow: 0 -8px 18px rgba(0, 0, 0, 0.15);
 =======
 }
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
+=======
+>>>>>>> 5c41c34a (integrated opo over api to card poem modal)
