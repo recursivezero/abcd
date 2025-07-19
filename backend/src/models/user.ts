@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
   username: { type: String, required: true },
-  phoneNumber: { type: String, required: true },
+  phoneNumber: { type: String, required: false },
   password: { type: String, required: true },
   isActive: { type: Boolean, default: true },
   timestamp: {
