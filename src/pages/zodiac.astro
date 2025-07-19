@@ -1,122 +1,47 @@
 ---
-import "@/assets/styles/zodiac.css";
 import Back from "@/components/Back.astro";
-import Headers from "@/components/Header.astro";
 import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
-import ZodiacGrid from "@/components/ZodiacGrid.astro";
-import MobileSplash from "@/components/MobileSplash.astro";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
+import ZodiacTab from "@/components/ZodiacTab.astro";
 ---
 
-<BaseLayout meta={{ title: "Nakshtra Nexus" }}>
-  <MobileSplash stay={true} />
+<BaseLayout meta={{ title: "Zodiac" }}>
   <Back />
   <Fragment slot="header-right">
     <SharePopover />
-    <Help title="Zodiac" description="Explore our Sunsign and moonsign with extensive details." />
+    <Help title="Zodiac" description="Explore Zodiacs and Nakshtras." />
   </Fragment>
-  <Headers />
-  <ZodiacGrid />
+  <LanguageSwitcher />
+  <ZodiacTab />
 </BaseLayout>
 
-<script>
-  import type { Zodiac } from "@/types";
-  import type { Language } from "@/types/zodiac";
-
-  const modalImage = document.getElementById("modalImage") as HTMLImageElement | null;
-  const modalTitle = document.getElementById("modalTitle") as HTMLElement | null;
-  const modalDescription = document.getElementById("modalDescription") as HTMLElement | null;
-  const modalPoints = document.getElementById("modalPoints") as HTMLElement | null;
-  const zodiacModal = document.getElementById("zodiacModal") as HTMLElement | null;
-  const englishButton = document.getElementById("englishBtn") as HTMLElement;
-  const hindiButton = document.getElementById("hindiBtn") as HTMLElement;
-
-  const translations = {
-    english: {
-      zodiacsBtn: "Indian Sun Signs"
-    },
-    hindi: {
-      zodiacsBtn: "भारतीय राशियाँ"
-    }
-  };
-  function setLanguage(lang: string) {
+<script is:inline>
+  // --- Language Switching Logic ---
+  function setLanguage(lang) {
     localStorage.setItem("language", lang);
     document.documentElement.lang = lang === "hindi" ? "hi" : "en";
-    document.body.classList.toggle("hindi", lang === "hindi");
-    englishButton?.classList.toggle("active", lang === "english");
-    hindiButton?.classList.toggle("active", lang === "hindi");
-    // Update homepage button if present
-    const zodiacsBtn = document.getElementById("zodiacsBtn");
-    if (zodiacsBtn) zodiacsBtn.textContent = (translations as any)[lang].zodiacsBtn;
-    window.dispatchEvent(new Event("languagechange"));
+
+    const englishButtons = document.querySelectorAll("#englishBtn");
+    const hindiButtons = document.querySelectorAll("#hindiBtn");
+
+    englishButtons.forEach((btn) => btn.classList.toggle("active", lang === "english"));
+    hindiButtons.forEach((btn) => btn.classList.toggle("active", lang === "hindi"));
+
+    // Dispatch a custom event that the components can listen for
+    window.dispatchEvent(new CustomEvent("languagechange", { detail: { language: localStorage.getItem("language") } }));
   }
 
+  // --- Tab Switching and Initialization Logic ---
   document.addEventListener("DOMContentLoaded", () => {
-    const lang = localStorage.getItem("language") || "english";
-    setLanguage(lang);
+    // Initialize language switcher
+    const initialLang = localStorage.getItem("language") || "english";
+    const englishButtons = document.querySelectorAll("#englishBtn");
+    const hindiButtons = document.querySelectorAll("#hindiBtn");
 
-    // Attach event listeners
-    englishButton?.addEventListener("click", () => setLanguage("english"));
-    hindiButton?.addEventListener("click", () => setLanguage("hindi"));
-
-    // Zodiac page logic
-    if (window.location.pathname.includes("zodiac")) {
-      fetch("/data/zodiacs.json")
-        .then((res) => res.json())
-        .then((zodiacs: Zodiac[]) => {
-          let currentLang = localStorage.getItem("language") || "english";
-          const zodiacsGrid = document.getElementById("zodiacsGrid") as HTMLElement;
-          function renderCards() {
-            zodiacsGrid.innerHTML = "";
-            zodiacs.forEach((zodiac, i) => {
-              const card = document.createElement("div");
-              card.className = "card";
-              // Add the data-index to the card itself
-              card.setAttribute("data-index", String(i));
-              card.innerHTML = `
-              <h3>${zodiac.name[currentLang as keyof Language]}</h3>
-              <p>${zodiac.dates[currentLang as keyof Language]}</p>
-              <button class="info-btn" title="Show Info">
-                <span class="icon">🔍</span>
-              </button>
-            `;
-              zodiacsGrid.appendChild(card);
-            });
-          }
-          function openModal(i: number) {
-            const zodiac = zodiacs[i];
-
-            if (modalImage) {
-              modalImage.src = `/data/zodiac/${zodiac.image}`;
-            }
-            modalTitle!.textContent = zodiac.name[currentLang as keyof typeof zodiac.name];
-            modalDescription!.textContent = zodiac.description[currentLang as keyof typeof zodiac.description];
-            modalPoints!.innerHTML = zodiac.points[currentLang as keyof typeof zodiac.points]
-              .map((pt: string) => `<li>${pt}</li>`)
-              .join("");
-            zodiacModal!.style.display = "block";
-          }
-          function closeModal() {
-            zodiacModal!.style.display = "none";
-          }
-          document.querySelector(".close")?.addEventListener("click", closeModal);
-          document.getElementById("zodiacModal")?.addEventListener("click", (e: any) => {
-            if (e.target.id === "zodiacModal") closeModal();
-          });
-          window.addEventListener("languagechange", () => {
-            currentLang = localStorage.getItem("language") || "english";
-            renderCards();
-          });
-          zodiacsGrid.addEventListener("click", (e: any) => {
-            const card = e.target.closest(".card");
-            if (card) {
-              const idx = card.getAttribute("data-index");
-              openModal(Number(idx));
-            }
-          });
-          renderCards();
-        });
-    }
+    englishButtons.forEach((btn) => btn.addEventListener("click", () => setLanguage("english")));
+    hindiButtons.forEach((btn) => btn.addEventListener("click", () => setLanguage("hindi")));
+    setLanguage(initialLang); // Set initial language on page load
   });
 </script>

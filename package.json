@@ -1,6 +1,6 @@
 {
   "name": "@recursivezero/abcd",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A website for our kids trial phase of abcdkbd.com",
   "homepage": "https://parixan.xyz",
   "displayName": "abcd",
@@ -26,27 +26,9 @@
   },
   "contributors": [
     {
-      "name": "Keshav Mohta",
-      "email": "xkeshav@gmail.com",
-      "github": "xkeshav",
-      "role": "UI Engineer"
-    },
-    {
       "name": "Aditya Kumar Singh",
       "email": "adityakumarsingh710@gmail.com",
       "github": "adityasingh-7",
-      "role": "UI Engineer"
-    },
-    {
-      "name": "Vansh Raj",
-      "email": "ciphrox@gmail.com",
-      "github": "ciphrox",
-      "role": "UI Engineer"
-    },
-    {
-      "name": "Vamil Porwal",
-      "email": "vamililporwal@gmail.com",
-      "github": "vamilP",
       "role": "UI Engineer"
     },
     {
@@ -68,6 +50,18 @@
       "role": "UI Engineer"
     },
     {
+      "name": "Harsh Saini",
+      "email": "harsh.btech2022@iujaipur.edu.in",
+      "github": "harsh01234s",
+      "role": "UX Engineer"
+    },
+    {
+      "name": "Keshav Mohta",
+      "email": "xkeshav@gmail.com",
+      "github": "xkeshav",
+      "role": "Founder"
+    },
+    {
       "name": "Prakash Raj",
       "email": "1046prt@gmail.com",
       "github": "1046prt",
@@ -86,10 +80,16 @@
       "role": "UI Engineer"
     },
     {
-      "name": "Harsh Saini",
-      "email": "harsh.btech2022@iujaipur.edu.in",
-      "github": "harsh01234s",
-      "role": "UX Engineer"
+      "name": "Vamil Porwal",
+      "email": "vamililporwal@gmail.com",
+      "github": "vamilP",
+      "role": "UI Engineer"
+    },
+    {
+      "name": "Vansh Raj",
+      "email": "ciphrox@gmail.com",
+      "github": "ciphrox",
+      "role": "UI Engineer"
     }
   ],
   "keywords": [
@@ -120,6 +120,7 @@
     "clsx": "2.1.0",
     "dotenv": "16.4.5",
     "dotenv-expand": "11.0.6",
+    "nanostores": "1.0.1",
     "tailwind-merge": "2.2.0",
     "typescript": "5.6.2",
     "zod": "3.25.67"

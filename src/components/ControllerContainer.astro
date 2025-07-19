@@ -8,20 +8,21 @@ import ResetButton from "@/components/draw/ResetButton.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import Help from "@/components/Help.astro";
 import Speak from "@/components/Speaker.astro";
+import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 ---
 
 <div class="controls-container">
   <div class="controls">
-    <Speak />
     <CaseToggle />
     <FontToggle />
     <ImageToggle />
     <ColorToggle />
     <BackgroundToggle />
     <ResetButton />
+    <KeyboardTrigger />
+    <SharePopover />
   </div>
-
-  <SharePopover />
+  <Speak />
   <Help
     title="Draw Keyboard"
     description="Draw letters by sliding your finger across the keys! Try the buttons to change the style, make it BIG or small, change the images, pick cool backgrounds, and customize font colors!"

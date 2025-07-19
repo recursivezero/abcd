@@ -82,7 +82,7 @@ export const NavbarLinks: LinkProps[] = [
     name: "About",
     title: "About",
     path: "/about",
-    isActive: true
+    isActive: false
   },
   {
     name: "Varnmala",
@@ -186,12 +186,18 @@ export const NavbarLinks: LinkProps[] = [
     name: "Survey",
     title: "Survey",
     path: "/survey",
-    isActive: true
+    isActive: false
   },
   {
     name: "Zodiac",
     title: "zodiac",
     path: "/zodiac",
+    isActive: false
+  },
+  {
+    name: "Nakshtra",
+    title: "nakshtra",
+    path: "/nakshtra",
     isActive: true
   },
   {

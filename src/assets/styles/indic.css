@@ -94,7 +94,6 @@
     letter-spacing: 2px;
     border: 2px solid rgba(125, 211, 252, 0.3);
     border-radius: 0.75rem;
-    background: linear-gradient(145deg, #1d4ed8, #123085);
     color: light-dark(black, white);
     cursor: pointer;
     appearance: base-select;
@@ -160,7 +159,6 @@
 }
 
 .toggle-button {
-  background: light-dark(var(--navy-blue), var(--text-primary));
   border: 1px solid rgba(125, 211, 252, 0.3);
   border-radius: 0.75rem;
   width: 48px;

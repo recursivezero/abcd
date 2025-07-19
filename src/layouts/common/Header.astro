@@ -7,18 +7,21 @@ import logoImage from "/public/assets/images/512x512.png";
 const { hasBack = true } = Astro.props;
 ---
 
+
 <header class="header">
   <div class="header__brand">
     <Picture src={logoImage} formats={["png", "webp"]} alt="template logo" class="logo" />
     <span title={APP_NAME}>{APP_NAME}</span>
   </div>
 
-  <div class="caption">
+  <div class="title">Welcome to the world of learning</div>
+
+  <!--<div class="caption">
     <a href="/" class:list={{ "is-active": Astro.url.pathname === "/home" || Astro.url.pathname === "/" }}>Home</a>
     <a href="/about" class:list={{ "is-active": Astro.url.pathname.startsWith("/about") }}>About</a>
     <a href="/parent" class:list={{ "is-active": Astro.url.pathname.startsWith("/parent") }}>Parents</a>
     <a href="/teacher" class:list={{ "is-active": Astro.url.pathname.startsWith("/teacher") }}>Teachers</a>
-  </div>
+  </div>-->
 
   <div class="action-group">
     <slot name="left">
