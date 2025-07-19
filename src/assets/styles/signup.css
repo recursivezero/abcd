@@ -58,7 +58,6 @@
 .signup-container {
   display: flex;
   width: 100%;
-  max-width: 1200px;
   margin: 2rem auto;
   min-height: 70vh;
   background-color: var(--signup-container-bg);
@@ -69,7 +68,6 @@
 
 .signup-container.form-only {
   display: block;
-  max-width: 550px;
   min-height: auto;
   padding: clamp(1rem, 5vw, 3rem);
 }
