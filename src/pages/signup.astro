@@ -13,63 +13,72 @@ const slideImages = [
   { dark: "/assets/images/screenshots/dark/quote.PNG", light: "/assets/images/screenshots/light/quoteLight.png" },
   { dark: "/assets/images/screenshots/dark/story.png", light: "/assets/images/screenshots/light/storyLight.png" },
   { dark: "/assets/images/screenshots/dark/map.png", light: "/assets/images/screenshots/light/mapLight.png" },
-  { dark: "/assets/images/screenshots/dark/varnmala.png", light: "/assets/images/screenshots/light/varnmalaLight.png" },
+  { dark: "/assets/images/screenshots/dark/varnmala.png", light: "/assets/images/screenshots/light/varnmalaLight.png" }
 ];
 ---
 
 <Base meta={{ title: "Create an Account" }} sidebar={false}>
   <div class="signup-container">
     <div class="signup-left">
-      <div class="signup-header">
-      </div>
+      <div class="signup-header"></div>
 
-      <div class="signup-right">
-        <div class="form-container">
-          <h1>Create an account</h1>
-          <p class="signup-text">Already have an account? <a href="/login" class="signup-link">Log in</a></p>
-
-          <form class="signup-form">
-            <div class="input-row">
-              <div class="input-group">
-                <input type="text" id="firstName" placeholder="First name" required />
+      <div class="slider-container" id="slider-wrapper">
+        <div class="slider">
+          {
+            slideImages.map((image, index) => (
+              <div class:list={["slide", { active: index === 0 }]}>
+                <img alt={`Image ${index + 1}`} data-dark-src={image.dark} data-light-src={image.light} />
+                <div class="slide-caption">
+                  {index === 0 && (
+                    <h2>
+                      Capturing Moments,
+                      <br />
+                      Creating Memories
+                    </h2>
+                  )}
+                  {index === 1 && (
+                    <h2>
+                      Share Your Vision,
+                      <br />
+                      Express Your Style
+                    </h2>
+                  )}
+                  {index === 2 && (
+                    <h2>
+                      Design Your World,
+                      <br />
+                      One Click at a Time
+                    </h2>
+                  )}
+                  {index === 3 && (
+                    <h2>
+                      Share Your Vision,
+                      <br />
+                      Express Your Style
+                    </h2>
+                  )}
+                  {index === 4 && (
+                    <h2>
+                      Share Your Vision,
+                      <br />
+                      Express Your Style
+                    </h2>
+                  )}
+                  {index === 5 && (
+                    <h2>
+                      Design Your World,
+                      <br />
+                      One Click at a Time
+                    </h2>
+                  )}
+                </div>
               </div>
-              <div class="input-group">
-                <input type="text" id="lastName" placeholder="Last name" required />
-              </div>
-            </div>
+            ))
+          }
+        </div>
 
-            <div class="input-group">
-              <input type="email" id="email" placeholder="Email" required />
-            </div>
-
-            <div class="input-group password-group">
-              <input type="password" id="password" placeholder="Enter your password" required />
-              <button type="button" class="toggle-password">
-                <EyeIcon />
-              </button>
-            </div>
-
-            <div class="checkbox-group">
-              <input type="checkbox" id="terms" required />
-              <label for="terms">I agree to the <a href="/terms" class="terms-link">Terms & Conditions</a></label>
-            </div>
-
-            <button type="submit" class="create-account-btn">Create account</button>
-
-            <div class="divider">
-              <span>Or register with</span>
-            </div>
-            <div class="social-buttons">
-              <button type="button" class="google-btn">
-                <GoogleIcon />
-                Google
-              </button>
-              <button type="button" class="X-btn">
-                <XIcon />
-                X
-              </button>
-            </div>
-          </form>
+        <div class="slider-dots">
+          {slideImages.map((_, index) => <span class:list={["dot", { active: index === 0 }]} data-index={index} />)}
         </div>
       </div>
     </div>
@@ -198,5 +207,33 @@ const slideImages = [
         window.location.href = url;
       });
     }
+
+    type Theme = "light" | "dark";
+    const themeToggleButton = document.getElementById("theme-toggle");
+
+    const updateSliderImages = (theme: Theme) => {
+      imageElements.forEach((imgElement) => {
+        imgElement.src = (theme === "dark" ? imgElement.dataset.darkSrc : imgElement.dataset.lightSrc) || "";
+      });
+    };
+
+    const applyTheme = (theme: Theme) => {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      updateSliderImages(theme);
+      if (sliderWrapper) sliderWrapper.style.opacity = "1";
+    };
+
+    const initialTheme = (document.documentElement.getAttribute("data-theme") as Theme) || "light";
+    applyTheme(initialTheme);
+
+    showSlide(0);
+    startSlider();
+
+    themeToggleButton?.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme") as Theme;
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(newTheme);
+    });
   });
 </script>
