@@ -52,3 +52,5 @@ export const getInitials = (name: string): string => {
 
   return initials;
 };
+
+export const capitalizeThis = (text: string) => text?.charAt(0).toUpperCase() + text?.slice(1);
