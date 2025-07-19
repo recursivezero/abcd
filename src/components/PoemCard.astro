@@ -1,6 +1,6 @@
 ---
-import "@/assets/styles/poemcard.css";
 import OpenCard from "@/assets/icons/opencard.svg";
+import "@/assets/styles/poemcard.css";
 export interface Props {
   title: string;
   lines: string[];
@@ -10,21 +10,21 @@ const { title, lines, cute_emoji } = Astro.props;
 ---
 
 <div class="card-wrapper">
-      <div class="poem-card" onclick={`showPoem("${title}", ${JSON.stringify(lines)})`}>
-        <div class="emoji-content">
-          <span class="overlay"></span>
+  <div class="poem-card" onclick={`showPoem("${title}", ${JSON.stringify(lines)})`}>
+    <div class="emoji-content">
+      <span class="overlay"></span>
 
-          <div class="card-indicator">
-<OpenCard/>
-</div>
-          <div class="card-emoji">
-            <div class="card-emo">{cute_emoji}</div>
-          </div>
-        </div>
-      <div class="card-content">
-        <h2 class="name">
-          {title}
-        </h2>
+      <div class="card-indicator">
+        <OpenCard />
       </div>
+      <div class="card-emoji">
+        <div class="card-emo">{cute_emoji}</div>
       </div>
+    </div>
+    <div class="card-content">
+      <h2 class="name">
+        {title}
+      </h2>
+    </div>
+  </div>
 </div>
