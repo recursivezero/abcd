@@ -68,7 +68,7 @@ sortBy(poems,"title");
       </div>
     </dialog>
   </div>
-  <script type="module">
+  <script type="module" is:inline>
     const modal = document.getElementById("poem-modal");
     const closeBtn = document.getElementById("close-modal");
     const titleEl = document.getElementById("modal-title");
@@ -77,7 +77,6 @@ sortBy(poems,"title");
 
     let isMuted = true;
     let currentText = "";
-    let currentLang = "en-US";
     let availableVoices = [];
     let voicesLoadedPromise = null;
 

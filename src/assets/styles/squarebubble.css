@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .home_outer {
   margin: 0;
   padding: 0;
@@ -107,6 +108,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+=======
+.home_outer {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
 .home_start {
   border-radius: 0.75rem;
   width: 100%;
@@ -132,6 +140,7 @@
   font-weight: 700;
   color: var(--primary);
 }
+<<<<<<< HEAD
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
 
 <<<<<<< HEAD
@@ -144,6 +153,12 @@
       font-size: 2.5rem;
     }
 >>>>>>> 5c41c34a (integrated opo over api to card poem modal)
+=======
+
+@media (max-width: 768px) {
+  .context > div {
+    font-size: 2.5rem;
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
   }
 }
 @media (max-width: 480px) {
@@ -171,11 +186,15 @@
   overflow: hidden;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .circles li{
 >>>>>>> 397cf8d3 (CREATED COMPONENTS)
 =======
 .circles li {
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
+=======
+.circles li {
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
   position: absolute;
   list-style: none;
   width: 20px;
@@ -187,8 +206,11 @@
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
+=======
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
 .circles li:nth-child(1) {
   left: 25%;
   width: 80px;
@@ -198,6 +220,7 @@
     linear-gradient(45deg, #5d069b, #09009f, #00ff95) border-box;
   border: 8px solid transparent;
   animation-delay: 0s;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
@@ -317,6 +340,8 @@
     animation-delay: 0s;
 =======
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
+=======
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
 }
 
 /* copy code from here */
@@ -413,6 +438,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .circles li:nth-child(10){
     left: 85%;
     width: 150px;
@@ -426,6 +452,8 @@
     animation-duration: 11s;
 >>>>>>> 397cf8d3 (CREATED COMPONENTS)
 =======
+=======
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
 .circles li:nth-child(10) {
   left: 85%;
   width: 150px;
@@ -436,7 +464,10 @@
   border: 15px solid transparent;
   animation-delay: 0s;
   animation-duration: 11s;
+<<<<<<< HEAD
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
+=======
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
 }
 
 /* copy code till here */
@@ -444,13 +475,17 @@
 @keyframes animate {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 853b6ffb ([RZA-250145]: lint and build issue fix)
+=======
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
   0% {
     transform: translateY(0) rotate(0deg);
     /*opacity: 1;*/
     border-radius: 0;
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   100% {
@@ -460,19 +495,14 @@
   }
 }
 =======
+=======
+>>>>>>> a53eaf6f ([RZA-250145]: lint and build issue fix)
 
-    0%{
-        transform: translateY(0) rotate(0deg);
-        /*opacity: 1;*/
-        border-radius: 0;
-    }
-
-    100%{
-        transform: translateY(-1000px) rotate(720deg);
-        /*opacity: 0;*/
-        border-radius: 50%;
-    }
-
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    /*opacity: 0;*/
+    border-radius: 50%;
+  }
 }
 >>>>>>> 397cf8d3 (CREATED COMPONENTS)
 =======
