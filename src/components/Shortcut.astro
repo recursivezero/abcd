@@ -16,7 +16,6 @@ import "@/assets/styles/shortcut.css";
           <ul>
             <li><span class="desc">Open in codespace</span> <span class="keys"><kbd>Ctrl</kbd>+<kbd>.</kbd></span></li>
             <li><span class="desc">Open in github.dev editor</span> <span class="keys"><kbd>Alt</kbd>+<kbd>.</kbd></span></li>
-            <li><span class="desc">Open github.dev editor in a new tab</span> <span class="keys"><kbd>&gt;</kbd></span></li>
             <li><span class="desc">Go to Code</span> <span class="keys"><kbd>G</kbd> <kbd>C</kbd></span></li>
             <li><span class="desc">Go to Issues</span> <span class="keys"><kbd>G</kbd> <kbd>I</kbd></span></li>
             <li><span class="desc">Go to Pull Requests</span> <span class="keys"><kbd>G</kbd> <kbd>P</kbd></span></li>
@@ -29,8 +28,8 @@ import "@/assets/styles/shortcut.css";
         <div class="shortcut-section">
           <h3>Site-wide shortcuts</h3>
           <ul>
-            <li><span class="desc">Open search bar</span> <span class="keys"><kbd>S</kbd> or <kbd>/</kbd></span></li>
-            <li><span class="desc">Go to notifications</span> <span class="keys"><kbd>G</kbd> <kbd>N</kbd></span></li>
+            <li><span class="desc">Open home page</span> <span class="keys"><kbd>H</kbd> or <kbd>/</kbd></span></li>
+            <li><span class="desc">Go to about</span> <span class="keys"><kbd>G</kbd> + <kbd>H</kbd></span></li>
             <li><span class="desc">Go to dashboard</span> <span class="keys"><kbd>G</kbd> <kbd>D</kbd></span></li>
             <li><span class="desc">Go to your issues</span> <span class="keys"><kbd>G</kbd> <kbd>I</kbd></span></li>
             <li><span class="desc">Go to your pull requests</span> <span class="keys"><kbd>G</kbd> <kbd>P</kbd></span></li>
@@ -38,8 +37,6 @@ import "@/assets/styles/shortcut.css";
             <li><span class="desc">Move selection down</span> <span class="keys"><kbd>J</kbd></span></li>
             <li><span class="desc">Move selection up</span> <span class="keys"><kbd>K</kbd></span></li>
             <li><span class="desc">Toggle selection</span> <span class="keys"><kbd>X</kbd></span></li>
-            <li><span class="desc">Open selection</span> <span class="keys"><kbd>O</kbd> or <kbd>Enter</kbd></span></li>
-            <li><span class="desc">Expand and move focus into focused link's hovercard</span> <span class="keys"><kbd>Alt</kbd> <kbd>↑</kbd></span></li>
           </ul>
         </div>
       </div>
@@ -69,6 +66,10 @@ import "@/assets/styles/shortcut.css";
       if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
         e.preventDefault();
         openPopup();
+      }
+      if ((e.key === '/') || (e.key === 'h' || e.key === 'H') && !['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) {
+        e.preventDefault();
+        window.location.href = '/';
       }
       // Close popup on ESC
       if (e.key === 'Escape' && popup?.classList.contains('is-open')) {
