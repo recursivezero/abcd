@@ -33,14 +33,13 @@ poems.sortBy("title");
     <dialog id="poem-modal" class="poem-dialog">
       <div class="modal-content">
         <div class="model-buttons">
-          <button id="audio-toggle" class="speaker-btn" title="Play Poem">
-          </button>
+          <button id="audio-toggle" class="speaker-btn" title="Play Poem"> </button>
           <button id="close-modal" class="close" aria-label="Close">
-            <CloseCard/>
+            <CloseCard />
           </button>
         </div>
         <h2 id="modal-title"></h2>
-        <p id="modal-lines"></p>
+        <p id="modal-lines" class="highlight-line"></p>
       </div>
     </dialog>
   </div>
@@ -51,13 +50,18 @@ poems.sortBy("title");
     const linesEl = document.getElementById("modal-lines");
     const audioToggle = document.getElementById("audio-toggle");
 
+    //const line = document.querySelector(".highlight-line");
+    //const words = line.dataset.text.split(" ");
+
+    //line.innerHTML = words.map((word, i) => `<span style="--index:${i}">${word}</span>`).join(" ");
+
     let isMuted = true;
     let currentText = "";
     let currentLang = "en-US";
     let availableVoices = [];
     let voicesLoadedPromise = null;
 
-const svgMuted = `
+    const svgMuted = `
 <svg id="audio-icon" class="audio-icon" xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 24 24" width="24" height="24" fill="none">
   <path d="M13 3L7 8H5C3.895 8 3 8.895 3 10V14C3 15.105 3.895 16 5 16H7L13 21V3Z" 
@@ -66,7 +70,7 @@ const svgMuted = `
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
-const svgUnmuted = `
+    const svgUnmuted = `
 <svg id="audio-icon" class="audio-icon" xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 24 24" width="24" height="24" fill="none">
   <path d="M13 3L7 8H5C3.895 8 3 8.895 3 10V14C3 15.105 3.895 16 5 16H7L13 21V3Z" 
@@ -76,7 +80,6 @@ const svgUnmuted = `
   <path d="M19 6C20.5 7.5 21 10 21 12C21 14 20.5 16.5 19 18" 
         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
-
 
     function resetSpeakerButton() {
       isMuted = true;
