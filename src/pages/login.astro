@@ -1,0 +1,205 @@
+---
+import "@/assets/styles/signup.css";
+import GoogleIcon from "@/assets/icons/google.svg";
+import EyeIcon from "@/assets/icons/eye.svg";
+import XIcon from "@/assets/icons/x.svg";
+import SunIcon from "@/assets/icons/sun.svg";
+import MoonIcon from "@/assets/icons/moon.svg";
+import Base from "@/layouts/Base";
+
+const slideImages = [
+  { dark: "/assets/images/screenshots/dark/capital.png", light: "/assets/images/screenshots/light/capitalLight.png" },
+  { dark: "/assets/images/screenshots/dark/colors.png", light: "/assets/images/screenshots/light/colorsLight.png" },
+  { dark: "/assets/images/screenshots/dark/quote.png", light: "/assets/images/screenshots/light/quoteLight.png" },
+  { dark: "/assets/images/screenshots/dark/story.png", light: "/assets/images/screenshots/light/storyLight.png" },
+  { dark: "/assets/images/screenshots/dark/map.png", light: "/assets/images/screenshots/light/mapLight.png" },
+  { dark: "/assets/images/screenshots/dark/varnmala.png", light: "/assets/images/screenshots/light/varnmalaLight.png" }
+];
+---
+
+<script is:inline>
+  const getTheme = () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) return savedTheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  };
+  const theme = getTheme();
+  document.documentElement.setAttribute("data-theme", theme);
+</script>
+
+<Base meta={{ title: "Log In to Your Account" }} sidebar={false}>
+  <div class="signup-container">
+    <div class="signup-left">
+      <div class="signup-header"></div>
+
+      <div class="slider-container" id="slider-wrapper">
+        <div class="slider">
+          {
+            slideImages.map((image, index) => (
+              <div class:list={["slide", { active: index === 0 }]}>
+                <img alt={`Image ${index + 1}`} data-dark-src={image.dark} data-light-src={image.light} />
+                <div class="slide-caption">
+                  {index === 0 && (
+                    <h2>
+                      Capturing Moments,
+                      <br />
+                      Creating Memories
+                    </h2>
+                  )}
+                  {(index === 1 || index === 3 || index === 4) && (
+                    <h2>
+                      Share Your Vision,
+                      <br />
+                      Express Your Style
+                    </h2>
+                  )}
+                  {(index === 2 || index === 5) && (
+                    <h2>
+                      Design Your World,
+                      <br />
+                      One Click at a Time
+                    </h2>
+                  )}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="slider-dots">
+          {slideImages.map((_, index) => <span class:list={["dot", { active: index === 0 }]} data-index={index} />)}
+        </div>
+      </div>
+    </div>
+
+    <div class="signup-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <SunIcon id="theme-icon-sun" width={24} height={24} />
+        <MoonIcon id="theme-icon-moon" width={24} height={24} />
+      </button>
+      <div class="form-container">
+        <h1>Welcome back!</h1>
+        <p class="signup-text">Don't have an account? <a href="/signup" class="signup-link">Sign up</a></p>
+
+        <form class="signup-form">
+          <div class="input-group">
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+
+          <div class="input-group password-group">
+            <input type="password" id="password" placeholder="Enter your password" required />
+            <button type="button" class="toggle-password">
+              <EyeIcon />
+            </button>
+          </div>
+
+          <div class="forgot-password" style="text-align: right; margin-top: 0.5rem; margin-bottom: 1rem;">
+            <a href="/forgot-password" class="terms-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="create-account-btn">Log in</button>
+
+          <div class="divider">
+            <span>Or log in with</span>
+          </div>
+          <div class="social-buttons">
+            <button type="button" class="google-btn">
+              <GoogleIcon />
+              Google
+            </button>
+            <button type="button" class="X-btn">
+              <XIcon />
+              X
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
+    const sliderWrapper = document.getElementById("slider-wrapper");
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    let currentSlide = 0;
+    let slideInterval: number | undefined;
+
+    function startSlider(): void {
+      if (!slides.length) return;
+      slideInterval = window.setInterval(nextSlide, 5000);
+    }
+
+    function showSlide(index: number): void {
+      if (!slides.length) return;
+      slides.forEach((slide) => slide.classList.remove("active"));
+      dots.forEach((dot) => dot.classList.remove("active"));
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].classList.add("active");
+      dots[currentSlide].classList.add("active");
+    }
+
+    function nextSlide(): void {
+      showSlide(currentSlide + 1);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        if (slideInterval) {
+          clearInterval(slideInterval);
+        }
+        showSlide(index);
+        startSlider();
+      });
+    });
+
+    const togglePasswordBtn = document.querySelector(".toggle-password");
+    const passwordInput = document.getElementById("password") as HTMLInputElement | null;
+
+    if (togglePasswordBtn && passwordInput) {
+      togglePasswordBtn.addEventListener("click", function () {
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput.setAttribute("type", type);
+      });
+    }
+
+    const loginForm = document.querySelector(".signup-form");
+    if (loginForm) {
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        alert("Login successful!");
+        window.location.href = "/dashboard";
+      });
+    }
+
+    type Theme = "light" | "dark";
+    const themeToggleButton = document.getElementById("theme-toggle");
+
+    const updateSliderImages = (theme: Theme) => {
+      imageElements.forEach((imgElement) => {
+        imgElement.src = (theme === "dark" ? imgElement.dataset.darkSrc : imgElement.dataset.lightSrc) || "";
+      });
+    };
+
+    const applyTheme = (theme: Theme) => {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      updateSliderImages(theme);
+      if (sliderWrapper) sliderWrapper.style.opacity = "1";
+    };
+
+    const initialTheme = (document.documentElement.getAttribute("data-theme") as Theme) || "light";
+    applyTheme(initialTheme);
+
+    showSlide(0);
+    startSlider();
+
+    themeToggleButton?.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme") as Theme;
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(newTheme);
+    });
+  });
+</script>

@@ -3,14 +3,13 @@ import "@/assets/styles/header.css";
 import { APP_NAME } from "@/utils/constants";
 import { Picture } from "astro:assets";
 import logoImage from "/public/assets/images/512x512.png";
-
-const { hasBack = true } = Astro.props;
 ---
 
 <style>
   .logo__link {
     display: flex;
     align-items: center;
+    text-decoration: none;
     & span {
       margin-inline: 1rem;
     }
