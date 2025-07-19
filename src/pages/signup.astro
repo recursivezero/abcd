@@ -13,7 +13,7 @@ const slideImages = [
   { dark: "/assets/images/screenshots/dark/quote.PNG", light: "/assets/images/screenshots/light/quoteLight.png" },
   { dark: "/assets/images/screenshots/dark/story.png", light: "/assets/images/screenshots/light/storyLight.png" },
   { dark: "/assets/images/screenshots/dark/map.png", light: "/assets/images/screenshots/light/mapLight.png" },
-  { dark: "/assets/images/screenshots/dark/varnmala.png", light: "/assets/images/screenshots/light/varnmalaLight.png" },
+  { dark: "/assets/images/screenshots/dark/varnmala.png", light: "/assets/images/screenshots/light/varnmalaLight.png" }
 ];
 ---
 
@@ -30,30 +30,65 @@ const slideImages = [
 <Base meta={{ title: "Create an Account" }} sidebar={false}>
   <div class="signup-container">
     <div class="signup-left">
-      <div class="signup-header">
-      </div>
+      <div class="signup-header"></div>
 
       <div class="slider-container" id="slider-wrapper">
         <div class="slider">
-          {slideImages.map((image, index) => (
-            <div class:list={["slide", { active: index === 0 }]}>
-              <img alt={`Image ${index + 1}`} data-dark-src={image.dark} data-light-src={image.light} />
-              <div class="slide-caption">
-                {index === 0 && <h2>Capturing Moments,<br />Creating Memories</h2>}
-                {index === 1 && <h2>Share Your Vision,<br />Express Your Style</h2>}
-                {index === 2 && <h2>Design Your World,<br />One Click at a Time</h2>}
-                {index === 3 && <h2>Share Your Vision,<br />Express Your Style</h2>}
-                {index === 4 && <h2>Share Your Vision,<br />Express Your Style</h2>}
-                {index === 5 && <h2>Design Your World,<br />One Click at a Time</h2>}
+          {
+            slideImages.map((image, index) => (
+              <div class:list={["slide", { active: index === 0 }]}>
+                <img alt={`Image ${index + 1}`} data-dark-src={image.dark} data-light-src={image.light} />
+                <div class="slide-caption">
+                  {index === 0 && (
+                    <h2>
+                      Capturing Moments,
+                      <br />
+                      Creating Memories
+                    </h2>
+                  )}
+                  {index === 1 && (
+                    <h2>
+                      Share Your Vision,
+                      <br />
+                      Express Your Style
+                    </h2>
+                  )}
+                  {index === 2 && (
+                    <h2>
+                      Design Your World,
+                      <br />
+                      One Click at a Time
+                    </h2>
+                  )}
+                  {index === 3 && (
+                    <h2>
+                      Share Your Vision,
+                      <br />
+                      Express Your Style
+                    </h2>
+                  )}
+                  {index === 4 && (
+                    <h2>
+                      Share Your Vision,
+                      <br />
+                      Express Your Style
+                    </h2>
+                  )}
+                  {index === 5 && (
+                    <h2>
+                      Design Your World,
+                      <br />
+                      One Click at a Time
+                    </h2>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
 
         <div class="slider-dots">
-          {slideImages.map((_, index) => (
-            <span class:list={["dot", { active: index === 0 }]} data-index={index}></span>
-          ))}
+          {slideImages.map((_, index) => <span class:list={["dot", { active: index === 0 }]} data-index={index} />)}
         </div>
       </div>
     </div>
@@ -175,7 +210,7 @@ const slideImages = [
 
     const updateSliderImages = (theme: Theme) => {
       imageElements.forEach((imgElement) => {
-        imgElement.src = (theme === 'dark' ? imgElement.dataset.darkSrc : imgElement.dataset.lightSrc) || '';
+        imgElement.src = (theme === "dark" ? imgElement.dataset.darkSrc : imgElement.dataset.lightSrc) || "";
       });
     };
 
@@ -186,9 +221,9 @@ const slideImages = [
       if (sliderWrapper) sliderWrapper.style.opacity = "1";
     };
 
-    const initialTheme = document.documentElement.getAttribute("data-theme") as Theme || 'light';
+    const initialTheme = (document.documentElement.getAttribute("data-theme") as Theme) || "light";
     applyTheme(initialTheme);
-    
+
     showSlide(0);
     startSlider();
 
