@@ -1,43 +1,45 @@
-import { OpenAPIHono  } from "@hono/zod-openapi";
-import { swaggerUI } from '@hono/swagger-ui'
 import { serve } from "@hono/node-server";
-import {connectDB} from './config/db'
-import userRoutes from './routes/userRoutes'
-import subscriptionRouter from './routes/subscriptionRoutes';
-import dotenv from 'dotenv'
-import {cors } from "hono/cors";
+import { swaggerUI } from "@hono/swagger-ui";
+import { OpenAPIHono } from "@hono/zod-openapi";
+import dotenv from "dotenv";
+import { cors } from "hono/cors";
+import { connectDB } from "./config/db";
+import subscriptionRouter from "./routes/subscription";
+import userRoutes from "./routes/user";
 
 dotenv.config();
-
 
 const app = new OpenAPIHono();
 app.use(cors());
 
-app.route('/', userRoutes);
-app.route('/', subscriptionRouter);
-app.doc('/openapi.json', {
-  openapi: '3.0.0',
+app.route("/", userRoutes);
+app.route("/", subscriptionRouter);
+
+app.doc("/openapi.json", {
+  openapi: "3.0.0",
   info: {
-    title: 'User APIs & Subscription APIs',
-    version: '1.1.0',
+    title: "User APIs & Subscription APIs",
+    version: "1.1.0"
   },
   components: {
     securitySchemes: {
       bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
-    },
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT"
+      }
+    }
   },
-  security: [{ bearerAuth: [] }],
+  security: [{ bearerAuth: [] }]
 } as any);
 
-app.get('/docs', swaggerUI({ url: '/openapi.json' }));
+app.get("/docs", swaggerUI({ url: "/openapi.json" }));
 
-const port = Number(process.env.PORT) || 3000;
+const port = 3000;
+
+console.log("Mongo URI:", process.env.PORT);
 
 connectDB().then(() => {
-    serve({fetch: app.fetch, port});
-    console.log(`Server running at http://localhost:${port}`);
+  serve({ fetch: app.fetch, port });
+  console.log(`Server running at http://localhost:${port}`);
 });
