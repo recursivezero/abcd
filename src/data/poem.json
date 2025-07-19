@@ -1,0 +1,274 @@
+{
+  "poems": [
+    {
+      "id": "mary_lamb",
+      "cute_emoji": "🐑",
+      "title": "Mary Had a Little Lamb",
+      "lines": ["Mary had a little lamb,", "Its fleece was white as snow;", "And everywhere that Mary went,", "The lamb was sure to go."]
+    },
+    {
+      "id": "baa_baa_black_sheep",
+      "cute_emoji": "🧶",
+      "title": "Baa Baa Black Sheep",
+      "lines": ["Baa, baa, black sheep, have you any wool?", "Yes sir, yes sir, three bags full.", "One for the master, one for the dame,", "And one for the little boy who lives down the lane."]
+    },
+    {
+      "id": "humpty_dumpty",
+      "cute_emoji": "🥚",
+      "title": "Humpty Dumpty",
+      "lines": ["Humpty Dumpty sat on a wall,", "Humpty Dumpty had a great fall.", "All the king’s horses and all the king’s men", "Couldn’t put Humpty together again."]
+    },
+    {
+      "id": "jack_and_jill",
+      "cute_emoji": "🪣",
+      "title": "Jack and Jill",
+      "lines": ["Jack and Jill went up the hill", "To fetch a pail of water;", "Jack fell down and broke his crown,", "And Jill came tumbling after."]
+    },
+    {
+      "id": "rain_rain_go_away",
+      "cute_emoji": "🌧️",
+      "title": "Rain, Rain, Go Away",
+      "lines": ["Rain, rain, go away,", "Come again another day,", "Little Johnny wants to play.", "Rain, rain, go away."]
+    },
+    {
+      "id": "roses_are_red",
+      "cute_emoji": "🌹",
+      "title": "Roses are Red",
+      "lines": ["Roses are red,", "Violets are blue,", "Sugar is sweet,", "And so are you."]
+    },
+    {
+      "id": "little_miss_muffet",
+      "cute_emoji": "🕷️",
+      "title": "Little Miss Muffet",
+      "lines": ["Little Miss Muffet sat on a tuffet,", "Eating her curds and whey;", "Along came a spider who sat down beside her,", "And frightened Miss Muffet away."]
+    },
+    {
+      "id": "hickory_dickory_dock",
+      "cute_emoji": "🐭",
+      "title": "Hickory Dickory Dock",
+      "lines": ["Hickory dickory dock,", "The mouse ran up the clock;", "The clock struck one,", "The mouse ran down,", "Hickory dickory dock."]
+    },
+    {
+      "id": "old_macdonald",
+      "cute_emoji": "🐄",
+      "title": "Old MacDonald Had a Farm",
+      "lines": ["Old MacDonald had a farm, E-I-E-I-O,", "And on that farm he had a cow, E-I-E-I-O,", "With a moo moo here and a moo moo there,", "Here a moo, there a moo, everywhere a moo moo."]
+    },
+    {
+      "id": "twinkle",
+      "cute_emoji": "✨",
+      "title": "Twinkle Twinkle Little Star",
+      "lines": ["Twinkle, twinkle, little star,", "How I wonder what you are!", "Up above the world so high,", "Like a diamond in the sky."]
+    },
+    {
+      "id": "the_itsy_bitsy_spider",
+      "cute_emoji": "🕸️",
+      "title": "The Itsy Bitsy Spider",
+      "lines": ["The itsy bitsy spider climbed up the waterspout;", "Down came the rain and washed the spider out;", "Out came the sun and dried up all the rain;", "And the itsy bitsy spider climbed up the spout again."]
+    },
+    {
+      "id": "hey_diddle_diddle",
+      "cute_emoji": "🐄",
+      "title": "Hey Diddle Diddle",
+      "lines": ["Hey diddle diddle, the cat and the fiddle,", "The cow jumped over the moon;", "The little dog laughed to see such fun,", "And the dish ran away with the spoon."]
+    },
+    {
+      "id": "pat_a_cake",
+      "cute_emoji": "🎂",
+      "title": "Pat-a-Cake",
+      "lines": ["Pat-a-cake, pat-a-cake, baker's man.", "Bake me a cake as fast as you can.", "Pat it and prick it and mark it with B,", "And put it in the oven for baby and me."]
+    },
+    {
+      "id": "row_row_your_boat",
+      "cute_emoji": "🚤",
+      "title": "Row, Row, Row Your Boat",
+      "lines": ["Row, row, row your boat,", "Gently down the stream.", "Merrily, merrily, merrily, merrily,", "Life is but a dream."]
+    },
+    {
+      "id": "this_little_piggy",
+      "cute_emoji": "🐷",
+      "title": "This Little Piggy",
+      "lines": ["This little piggy went to market,", "This little piggy stayed home,", "This little piggy had roast beef,", "This little piggy had none.", "This little piggy cried 'wee wee wee' all the way home."]
+    },
+    {
+      "id": "london_bridge",
+      "cute_emoji": "🌉",
+      "title": "London Bridge",
+      "lines": ["London Bridge is falling down,", "Falling down, falling down,", "London Bridge is falling down,", "My fair lady."]
+    },
+    {
+      "id": "three_blind_mice",
+      "cute_emoji": "🐁",
+      "title": "Three Blind Mice",
+      "lines": ["Three blind mice, three blind mice,", "See how they run, see how they run!", "They all ran after the farmer's wife,", "Who cut off their tails with a carving knife."]
+    },
+    {
+      "id": "yankee_doodle",
+      "cute_emoji": "🎖️",
+      "title": "Yankee Doodle",
+      "lines": ["Yankee Doodle went to town,", "Riding on a pony;", "He stuck a feather in his cap,", "And called it macaroni."]
+    },
+    {
+      "id": "abc_song",
+      "cute_emoji": "🔤",
+      "title": "ABC Song",
+      "lines": ["A B C D E F G,", "H I J K L M N O P,", "Q R S, T U V,", "W X, Y and Z.", "Now I know my ABCs,", "Next time won't you sing with me?"]
+    },
+    {
+      "id": "ding_dong_bell",
+      "cute_emoji": "🔔",
+      "title": "Ding Dong Bell",
+      "lines": ["Ding dong bell, Pussy’s in the well.", "Who put her in? Little Johnny Flynn.", "Who pulled her out? Little Tommy Stout.", "What a naughty boy was that,", "To try to drown poor pussy cat!"]
+    },
+    {
+      "id": "one_two_buckle",
+      "cute_emoji": "👞",
+      "title": "One, Two, Buckle My Shoe",
+      "lines": ["One, two, buckle my shoe;", "Three, four, knock at the door;", "Five, six, pick up sticks;", "Seven, eight, lay them straight;", "Nine, ten, a big fat hen."]
+    },
+    {
+      "id": "georgie_porgie",
+      "cute_emoji": "😗",
+      "title": "Georgie Porgie",
+      "lines": ["Georgie Porgie, pudding and pie,", "Kissed the girls and made them cry.", "When the boys came out to play,", "Georgie Porgie ran away."]
+    },
+    {
+      "id": "hot_cross_buns",
+      "cute_emoji": "🥯",
+      "title": "Hot Cross Buns",
+      "lines": ["Hot cross buns! Hot cross buns!", "One a penny, two a penny, hot cross buns!", "If you have no daughters, give them to your sons.", "One a penny, two a penny, hot cross buns!"]
+    },
+    {
+      "id": "peter_piper",
+      "cute_emoji": "🌶️",
+      "title": "Peter Piper",
+      "lines": ["Peter Piper picked a peck of pickled peppers;", "A peck of pickled peppers Peter Piper picked;", "If Peter Piper picked a peck of pickled peppers,", "Where’s the peck of pickled peppers Peter Piper picked?"]
+    },
+    {
+      "id": "little_boy_blue",
+      "cute_emoji": "📯",
+      "title": "Little Boy Blue",
+      "lines": ["Little Boy Blue, come blow your horn,", "The sheep’s in the meadow, the cow’s in the corn.", "Where is the boy who looks after the sheep?", "He’s under the haystack, fast asleep."]
+    },
+    {
+      "id": "rock_a_bye_baby",
+      "cute_emoji": "🍼",
+      "title": "Rock-a-bye Baby",
+      "lines": ["Rock-a-bye baby, on the treetop,", "When the wind blows, the cradle will rock;", "When the bough breaks, the cradle will fall,", "And down will come baby, cradle and all."]
+    },
+    {
+      "id": "baa_baa_white_sheep",
+      "cute_emoji": "🐑",
+      "title": "Baa Baa White Sheep",
+      "lines": ["Baa baa white sheep, have you any wool?", "Yes sir, yes sir, bags full.", "Some for my blanket, some for my bed,", "Some for the little boy who lives in the shed."]
+    },
+    {
+      "id": "there_was_a_crooked_man",
+      "cute_emoji": "👞",
+      "title": "There Was a Crooked Man",
+      "lines": ["There was a crooked man, and he walked a crooked mile.", "He found a crooked sixpence upon a crooked stile.", "He bought a crooked cat, which caught a crooked mouse,", "And they all lived together in a little crooked house."]
+    },
+    {
+      "id": "little_bo_peep",
+      "cute_emoji": "🐏",
+      "title": "Little Bo-Peep",
+      "lines": ["Little Bo-Peep has lost her sheep,", "And doesn't know where to find them;", "Leave them alone, and they'll come home,", "Wagging their tails behind them."]
+    },
+    {
+      "id": "tom_tom_piper",
+      "cute_emoji": "🎶",
+      "title": "Tom, Tom, the Piper's Son",
+      "lines": ["Tom, Tom, the piper's son,", "Stole a pig and away he run;", "The pig was eat and Tom was beat,", "And Tom went crying down the street."]
+    },
+    {
+      "id": "ring_a_ring_o_roses",
+      "cute_emoji": "🌸",
+      "title": "Ring a Ring o' Roses",
+      "lines": ["Ring-a-ring o' roses,", "A pocket full of posies,", "A-tishoo! A-tishoo!", "We all fall down."]
+    },
+    {
+      "id": "simple_simon",
+      "cute_emoji": "🥧",
+      "title": "Simple Simon",
+      "lines": ["Simple Simon met a pieman", "Going to the fair;", "Says Simple Simon to the pieman,", "‘Let me taste your ware.’"]
+    },
+    {
+      "id": "solomon_grundy",
+      "cute_emoji": "📅",
+      "title": "Solomon Grundy",
+      "lines": ["Solomon Grundy,", "Born on a Monday,", "Christened on Tuesday,", "Married on Wednesday...", "Died on Sunday.", "That was the end of Solomon Grundy."]
+    },
+    {
+      "id": "the_wheels_on_the_bus",
+      "cute_emoji": "🚌",
+      "title": "The Wheels on the Bus",
+      "lines": ["The wheels on the bus go round and round,", "Round and round, round and round,", "The wheels on the bus go round and round,", "All through the town."]
+    },
+    {
+      "id": "ten_little_indians",
+      "cute_emoji": "🔟",
+      "title": "Ten Little Indians",
+      "lines": ["One little, two little, three little Indians,", "Four little, five little, six little Indians,", "Seven little, eight little, nine little Indians,", "Ten little Indian boys."]
+    },
+    {
+      "id": "goosey_goosey_gander",
+      "cute_emoji": "🦢",
+      "title": "Goosey Goosey Gander",
+      "lines": ["Goosey, goosey, gander,", "Whither shall I wander?", "Upstairs and downstairs,", "And in my lady’s chamber."]
+    },
+    {
+      "id": "curly_locks",
+      "cute_emoji": "👧",
+      "title": "Curly Locks",
+      "lines": ["Curly Locks, Curly Locks, will you be mine?", "You shall not wash dishes, nor yet feed the swine;", "But sit on a cushion and sew a fine seam,", "And feed upon strawberries, sugar, and cream."]
+    },
+    {
+      "id": "one_two_three_four",
+      "cute_emoji": "🔢",
+      "title": "One, Two, Three, Four, Five",
+      "lines": ["One, two, three, four, five,", "Once I caught a fish alive,", "Six, seven, eight, nine, ten,", "Then I let it go again."]
+    },
+    {
+      "id": "who_has_seen_the_wind",
+      "cute_emoji": "🌬️",
+      "title": "Who Has Seen the Wind?",
+      "lines": ["Who has seen the wind?", "Neither I nor you:", "But when the leaves hang trembling,", "The wind is passing through."]
+    },
+    {
+      "id": "polly_put_the_kettle_on",
+      "cute_emoji": "☕",
+      "title": "Polly Put the Kettle On",
+      "lines": ["Polly, put the kettle on,", "Polly, put the kettle on,", "Polly, put the kettle on,", "We'll all have tea."]
+    },
+    {
+      "id": "teddy_bear_teddy_bear",
+      "cute_emoji": "🧸",
+      "title": "Teddy Bear, Teddy Bear",
+      "lines": ["Teddy bear, teddy bear, turn around,", "Teddy bear, teddy bear, touch the ground.", "Teddy bear, teddy bear, polish your shoes,", "Teddy bear, teddy bear, off to school!"]
+    },
+    {
+      "id": "five_little_ducks",
+      "cute_emoji": "🦆",
+      "title": "Five Little Ducks",
+      "lines": ["Five little ducks went out one day,", "Over the hill and far away.", "Mother duck said, 'Quack, quack, quack, quack,'", "But only four little ducks came back."]
+    },
+    {
+      "id": "little_jack_horner",
+      "cute_emoji": "🥧",
+      "title": "Little Jack Horner",
+      "lines": ["Little Jack Horner sat in a corner,", "Eating his Christmas pie;", "He put in his thumb, and pulled out a plum,", "And said, 'What a good boy am I!'"]
+    },
+    {
+      "id": "see_saw_marjory_daw",
+      "cute_emoji": "⚖️",
+      "title": "See Saw Margery Daw",
+      "lines": ["See saw, Margery Daw,", "Jack shall have a new master;", "He shall earn but a penny a day,", "Because he can't work any faster."]
+    },
+    {
+      "id": "what_are_little_boys",
+      "cute_emoji": "🧒",
+      "title": "What Are Little Boys Made Of?",
+      "lines": ["What are little boys made of?", "Snips and snails, and puppy dogs’ tails;", "That’s what little boys are made of."]
+    }
+  ]
+}
