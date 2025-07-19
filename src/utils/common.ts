@@ -65,4 +65,3 @@ Array.prototype.sortBy = function <T, K extends keyof T>(this: T[], key: K): T[]
   });
 };
 export const capitalizeThis = (text: string) => text?.charAt(0).toUpperCase() + text?.slice(1);
-
