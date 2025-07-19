@@ -3,16 +3,16 @@ import "@/assets/styles/signup.css";
 import GoogleIcon from "@/assets/icons/google.svg";
 import EyeIcon from "@/assets/icons/eye.svg";
 import XIcon from "@/assets/icons/x.svg";
-import LogoImage from "@/assets/images/ABCD.png";
 import SunIcon from "@/assets/icons/sun.svg";
 import MoonIcon from "@/assets/icons/moon.svg";
-import { Image } from "astro:assets";
+import Base from "@/layouts/Base";
 ---
 
 <Base meta={{ title: "Log In to Your Account" }} sidebar={false}>
   <div class="signup-container">
     <div class="signup-left">
-      <div class="signup-header"></div>
+      <div class="signup-header">
+      </div>
 
       <div class="slider-container" id="slider-wrapper">
         <div class="slider">
@@ -108,7 +108,7 @@ import { Image } from "astro:assets";
       { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
       { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
       { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
-      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" }
+      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" },
     ];
     const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
     const sliderWrapper = document.getElementById("slider-wrapper");
