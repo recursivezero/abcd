@@ -3,24 +3,15 @@ import "@/assets/styles/signup.css";
 import GoogleIcon from "@/assets/icons/google.svg";
 import EyeIcon from "@/assets/icons/eye.svg";
 import XIcon from "@/assets/icons/x.svg";
-import logoImage from "/public/assets/images/512x512.png";
-import { Picture } from "astro:assets";
 import SunIcon from "@/assets/icons/sun.svg";
 import MoonIcon from "@/assets/icons/moon.svg";
+import Base from "@/layouts/Base";
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create an Account</title>
-</head>
-<body>
+<Base meta={{ title: "Create an Account" }} sidebar={false}>
   <div class="signup-container">
     <div class="signup-left">
       <div class="signup-header">
-        <div class="logo">
-          <Picture src={logoImage} formats={["png", "webp"]} alt="template logo" height={50} width={50} class="logo" />
-        </div>
       </div>
 
       <div class="slider-container" id="slider-wrapper">
@@ -75,9 +66,6 @@ import MoonIcon from "@/assets/icons/moon.svg";
     </div>
 
     <div class="signup-right">
-      <a href="/" class="back-link">
-        <span class="arrow">←</span> Back to website
-      </a>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
         <SunIcon id="theme-icon-sun" width={24} height={24} />
         <MoonIcon id="theme-icon-moon" width={24} height={24} />
@@ -131,7 +119,7 @@ import MoonIcon from "@/assets/icons/moon.svg";
       </div>
     </div>
   </div>
-</body>
+</Base>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -141,7 +129,7 @@ import MoonIcon from "@/assets/icons/moon.svg";
       { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
       { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
       { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
-      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" }
+      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" },
     ];
     const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
     const sliderWrapper = document.getElementById("slider-wrapper");
@@ -152,10 +140,12 @@ import MoonIcon from "@/assets/icons/moon.svg";
     let slideInterval: number | undefined;
 
     function startSlider(): void {
+      if (!slides.length) return;
       slideInterval = window.setInterval(nextSlide, 5000);
     }
 
     function showSlide(index: number): void {
+      if (!slides.length) return;
       slides.forEach((slide) => slide.classList.remove("active"));
       dots.forEach((dot) => dot.classList.remove("active"));
       currentSlide = (index + slides.length) % slides.length;
