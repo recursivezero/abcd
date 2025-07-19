@@ -53,14 +53,14 @@ export const getInitials = (name: string): string => {
   return initials;
 };
 
-export const sortBy = (arr:any, key:string)=>{
-return  arr.sort((a:any,b:any)=>{
-  if(a[key] < b[key]){
-    return -1;
-  }
-  if(a[key] > b[key]){
-    return 1;
-  }
-  return 0;
-});
-}
+/* sort an array of object based on its key */
+Array.prototype.sortBy = function <T, K extends keyof T>(this: T[], key: K): T[] {
+  return this.slice().sort((a, b) => {
+    const valA = a[key];
+    const valB = b[key];
+
+    if (valA < valB) return -1;
+    if (valA > valB) return 1;
+    return 0;
+  });
+};
