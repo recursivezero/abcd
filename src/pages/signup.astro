@@ -17,6 +17,17 @@ const slideImages = [
 ];
 ---
 
+
+<script is:inline>
+  const getTheme = () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) return savedTheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  };
+  const theme = getTheme();
+  document.documentElement.setAttribute("data-theme", theme);
+</script>
+
 <Base meta={{ title: "Create an Account" }} sidebar={false}>
   <div class="signup-container">
     <div class="signup-left">
@@ -141,17 +152,9 @@ const slideImages = [
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const slideImages = [
-      { dark: "/assets/images/screenshots/capital.PNG", light: "/assets/images/screenshots/capitalLight.png" },
-      { dark: "/assets/images/screenshots/colors.PNG", light: "/assets/images/screenshots/colorsLight.png" },
-      { dark: "/assets/images/screenshots/quote.PNG", light: "/assets/images/screenshots/quoteLight.png" },
-      { dark: "/assets/images/screenshots/story.png", light: "/assets/images/screenshots/storyLight.png" },
-      { dark: "/assets/images/screenshots/map.png", light: "/assets/images/screenshots/mapLight.png" },
-      { dark: "/assets/images/screenshots/varnmala.png", light: "/assets/images/screenshots/varnmalaLight.png" },
-    ];
+
     const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
     const sliderWrapper = document.getElementById("slider-wrapper");
-
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
     let currentSlide = 0;
@@ -185,8 +188,6 @@ const slideImages = [
       });
     });
 
-    showSlide(0);
-    startSlider();
 
     const togglePasswordBtn = document.querySelector(".toggle-password");
     const passwordInput = document.getElementById("password") as HTMLInputElement | null;
@@ -198,13 +199,13 @@ const slideImages = [
       });
     }
 
-    const url = "/";
+
     const signupForm = document.querySelector(".signup-form");
     if (signupForm) {
       signupForm.addEventListener("submit", function (event) {
         event.preventDefault();
         alert("Account created successfully!");
-        window.location.href = url;
+        window.location.href = "/dashboard";
       });
     }
 

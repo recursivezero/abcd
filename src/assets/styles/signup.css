@@ -55,16 +55,62 @@
   --signup-button-social-bg-hover: #f0f2f5;
 }
 
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+}
+
+[data-theme="dark"] {
+  --signup-body-bg: #4a455b;
+  --signup-container-bg: #221f2e;
+  --signup-container-shadow: rgba(0, 0, 0, 0.3);
+  --signup-left-bg: #311d5a;
+  --signup-text-primary: white;
+  --signup-text-secondary: #a3a1a8;
+  --signup-text-placeholder: #8a8692;
+  --signup-back-link-bg: rgba(255, 255, 255, 0.2);
+  --signup-back-link-bg-hover: rgba(255, 255, 255, 0.3);
+  --signup-dots-bg: rgba(255, 255, 255, 0.4);
+  --signup-dots-active-bg: white;
+  --signup-input-bg: #322d3d;
+  --signup-input-border: #3d3748;
+  --signup-button-primary-bg: #7b5ede;
+  --signup-button-primary-bg-hover: #6a4ecc;
+  --signup-button-social-bg-hover: #322d3d;
+}
+
+[data-theme="light"] {
+  --signup-body-bg: #f0f2f5;
+  --signup-container-bg: #ffffff;
+  --signup-container-shadow: rgba(0, 0, 0, 0.1);
+  --signup-left-bg: #e9e9f2;
+  --signup-text-primary: #1c1e21;
+  --signup-text-secondary: #555;
+  --signup-text-placeholder: #8a8692;
+  --signup-back-link-bg: rgba(0, 0, 0, 0.05);
+  --signup-back-link-bg-hover: rgba(0, 0, 0, 0.1);
+  --signup-dots-bg: rgba(0, 0, 0, 0.3);
+  --signup-dots-active-bg: #000;
+  --signup-input-bg: #f0f2f5;
+  --signup-input-border: #ddd;
+  --signup-button-primary-bg: #7b5ede;
+  --signup-button-primary-bg-hover: #6a4ecc;
+  --signup-button-social-bg-hover: #f0f2f5;
+}
+
 .signup-container {
   display: flex;
   width: 100%;
-  max-width: 1200px;
   margin: 2rem auto;
   min-height: 70vh;
   background-color: var(--signup-container-bg);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px var(--signup-container-shadow);
 }
 
 .signup-container.form-only {
@@ -82,6 +128,11 @@
   border-radius: 25px;
 }
 
+
+.form-only .signup-left {
+  display: none;
+}
+
 .signup-header {
   display: flex;
   justify-content: space-between;
@@ -95,13 +146,19 @@
 }
 
 .arrow {
-  margin-left: 5px;
-}
-
 .slider-container {
   position: relative;
   width: 100%;
   height: 100%;
+  margin-right: 5px;
+}
+
+.slider-container {
+  opacity: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.4s ease-in;
 }
 
 .slider {
@@ -136,7 +193,6 @@
   left: 0;
   width: 100%;
   padding: 0 clamp(1.5rem, 5vw, 3rem);
-  color: var(--signup-text-primary);
   text-align: center;
 }
 
@@ -159,14 +215,14 @@
 .dot {
   width: 30px;
   height: 4px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: #000;
   border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .dot.active {
-  background-color: white;
+  background-color: var(--signup-dots-active-bg);
 }
 
 .signup-right {
@@ -175,6 +231,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .form-only .signup-right {
@@ -202,7 +259,7 @@ h1 {
 
 .signup-link,
 .terms-link {
-  color: white;
+  color: var(--signup-text-primary);
   text-decoration: none;
 }
 
@@ -242,10 +299,6 @@ input[type="password"] {
   font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
-input::placeholder {
-  color: #8a8692;
-}
-
 .password-group {
   position: relative;
 }
@@ -257,7 +310,7 @@ input::placeholder {
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: #8a8692;
+  color: var(--signup-text-placeholder);
   cursor: pointer;
 }
 
@@ -271,7 +324,7 @@ input::placeholder {
 input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: #7b5ede;
+  accent-color: var(--signup-button-primary-bg);
 }
 
 .checkbox-group label {
@@ -284,7 +337,7 @@ input[type="checkbox"] {
   padding: clamp(0.9rem, 2vw, 1.2rem);
   border: none;
   border-radius: 6px;
-  background-color: #7b5ede;
+  background-color: var(--signup-button-primary-bg);
   color: white;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   cursor: pointer;
@@ -293,23 +346,23 @@ input[type="checkbox"] {
 }
 
 .create-account-btn:hover {
-  background-color: #6a4ecc;
+  background-color: var(--signup-button-primary-bg-hover);
 }
 
 .divider {
   display: flex;
   align-items: center;
   text-align: center;
-  color: #8a8692;
+  color: var(--signup-text-placeholder);
   font-size: 0.9rem;
   margin: clamp(1rem, 3vw, 1.5rem) 0;
 }
 
 .divider::before,
 .divider::after {
-  content: '';
+  content: "";
   flex: 1;
-  border-bottom: 1px solid #3d3748;
+  border-bottom: 1px solid var(--signup-input-border);
 }
 
 .divider span {
@@ -340,7 +393,7 @@ input[type="checkbox"] {
 
 .google-btn:hover,
 .X-btn:hover {
-  background-color: #322d3d;
+  background-color: var(--signup-button-social-bg-hover);
 }
 
 .google-btn svg,
