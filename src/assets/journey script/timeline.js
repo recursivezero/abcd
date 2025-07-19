@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // DOM Elements
   const addBtn = document.getElementById("addEventBtn");
   const formOverlay = document.getElementById("formOverlay");
   const eventForm = document.getElementById("eventForm");
@@ -16,17 +17,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelDeleteBtn = document.getElementById("cancelDelete");
   const confirmDeleteBtn = document.getElementById("confirmDelete");
 
+  // Constants
   const CHAR_LIMIT = 150;
   const TITLE_LIMIT = 20;
   const DEFAULT_SPACING = 100;
   const EXPANDED_SPACING = 290;
 
+  // State
   let events = JSON.parse(localStorage.getItem("timelineEvents") || "[]");
   let editIndex = null;
   let deleteIndex = null;
   let allExpanded = false;
   let currentlyExpanded = new Set();
 
+  // Initialize
+  emptyState.style.display = events.length === 0 ? "block" : "none";
+  timelineWrapper.style.display = events.length === 0 ? "none" : "block";
+
+  // Functions
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -39,8 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function sortEvents() {
     events.sort((a, b) => new Date(a.date) - new Date(b.date));
   }
-
-  sortEvents();
 
   function saveEvents() {
     localStorage.setItem("timelineEvents", JSON.stringify(events));
@@ -148,6 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     titleCounter.textContent = `${eventTitle.value.length} / ${TITLE_LIMIT}`;
   }
 
+  // Event Listeners
   addBtn.addEventListener("click", () => {
     editIndex = null;
     eventForm.reset();
@@ -227,5 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Initial render
   renderTimeline();
 });

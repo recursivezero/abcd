@@ -6,13 +6,13 @@
   --header-bg: linear-gradient(135deg, #f9fafb, #e5e7eb);
   --timeline-bg: #f3f4f6;
   --button-bg: linear-gradient(135deg, #7c3aed, #a78bfa);
-    /* violet-purple gradient */  --dot-color: #7c3aed;
+  --dot-color: #7c3aed;
   --label-bg: #ffffff;
   --label-border: #e0e0e0;
   --date-bg: #f43f5e;
   --date-text: white;
   --timeline-bg: #eaeaea;
-}
+  --empty-state-bg: #ffffff;}
 
 /* Dark Theme */
 [data-theme="dark"] {
@@ -23,7 +23,8 @@
   --timeline-bg: #1e1e1e;
   --button-bg: linear-gradient(135deg, #7c3aed, #a78bfa);
   --timeline-bg: #3b3c3c;
-}
+  --empty-state-bg: #1e1e1e;
+  --empty-state-border: rgba(255, 255, 255, 0.1);}
 
 /* Reset and base */
 * {
@@ -94,7 +95,6 @@ body {
 /* Buttons */
 .add-event-button,
 .print-pdf-button,
-.theme-toggle-button,
 .expand-collapse-button {
   background: var(--button-bg);
   color: white;
@@ -145,6 +145,14 @@ body {
   transform: translateY(20px);
   opacity: 0;
   transition: all 0.8s ease;
+  display: none;
+  /* Initially hidden */
+}
+
+.timeline-wrapper:has(.timeline-event) {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .timeline-wrapper::before {
@@ -169,17 +177,20 @@ body {
 
 /* Empty State Styles */
 .empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 60px 40px;
   margin: 40px auto;
   max-width: 600px;
   border-radius: 16px;
-  background: #fff;
+  background: var(--empty-state-bg);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--empty-state-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.6s ease-out forwards;
-  opacity: 0;
 }
 
 .empty-state h2 {
@@ -201,19 +212,6 @@ body {
   line-height: 1.6;
 }
 
-.empty-state .add-event-button {
-  margin-top: 24px;
-  padding: 14px 32px;
-  font-size: 1.1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.empty-state .add-event-button::before {
-  content: '🌱';
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -224,13 +222,6 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* Dark mode adjustments */
-[data-theme="dark"] .empty-state {
-  background: #1e1e1e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive adjustments */
@@ -258,18 +249,8 @@ body {
   }
 
   .timeline-wrapper {
-    margin: 0 10px;
     padding: 40px 20px;
-    border-radius: 20px;
     min-height: 500px;
-  }
-
-  .add-event-button,
-  .print-pdf-button,
-  .theme-toggle-button,
-  .expand-collapse-button {
-    padding: 12px 24px;
-    font-size: 15px;
   }
 }
 
@@ -286,34 +267,11 @@ body {
 
   .empty-state p {
     font-size: 1rem;
-    margin-bottom: 24px;
-  }
-
-  .empty-state .add-event-button {
-    padding: 12px 24px;
-    font-size: 1rem;
-  }
-
-  .page-title {
-    font-size: 2rem;
-  }
-
-  .page-subtitle {
-    font-size: 1rem;
   }
 
   .timeline-wrapper {
     padding: 30px 15px;
-    border-radius: 16px;
     min-height: 450px;
-  }
-
-  .add-event-button,
-  .print-pdf-button,
-  .theme-toggle-button,
-  .expand-collapse-button {
-    padding: 10px 20px;
-    font-size: 14px;
   }
 }
 
@@ -344,7 +302,6 @@ body {
     padding: 0 !important;
     border: none !important;
     margin-top: 100px !important;
-
   }
 
   /* Header styling */
@@ -352,14 +309,14 @@ body {
   .page-subtitle {
     text-align: center;
     color: black !important;
-    margin-top: 10px !important;  
-    margin-bottom: 20px !important;}
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+  }
 
   /* Timeline elements */
   .timeline-container {
     height: auto !important;
     overflow: visible !important;
-
   }
 
   /* Expanded labels */
@@ -370,18 +327,18 @@ body {
     margin-top: -80px !important;
   }
 
-    body,
-    .timeline-wrapper {
-      overflow: visible !important;
-      height: auto !important;
-    }
-  
-    .timeline-container,
-    .timeline-event,
-    .timeline-label {
-      page-break-inside: avoid; 
-      break-inside: avoid;
-    }
+  body,
+  .timeline-wrapper {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .timeline-container,
+  .timeline-event,
+  .timeline-label {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
 
   .event-description {
     display: block !important;
