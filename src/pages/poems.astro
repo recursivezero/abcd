@@ -1,16 +1,19 @@
 ---
+
 import BackIcon from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import poem from "@/data/poem.json";
 import PoemCard from "@/components/PoemCard.astro";
+
 import SquareBubble from "@/components/SquareBubble.astro";
 import CloseCard from "@/assets/icons/closecard.svg";
 import "@/assets/styles/poems.css";
 import "@/utils/common";
 const { poems } = poem;
 poems.sortBy("title");
+
 ---
 
 <BaseLayout meta={{ title: "Poems" }}>
@@ -29,6 +32,7 @@ poems.sortBy("title");
         {poems.map((poem) => <PoemCard title={poem.title} lines={poem.lines} cute_emoji={poem.cute_emoji} />)}
       </div>
     </div>
+
 
     <dialog id="poem-modal" class="poem-dialog">
       <div class="modal-content">
@@ -55,10 +59,12 @@ poems.sortBy("title");
 
     //line.innerHTML = words.map((word, i) => `<span style="--index:${i}">${word}</span>`).join(" ");
 
+
     let isMuted = true;
     let currentText = "";
     let availableVoices = [];
     let voicesLoadedPromise = null;
+
 
     const svgMuted = `
 <svg id="audio-icon" class="audio-icon" xmlns="http://www.w3.org/2000/svg" 
@@ -138,11 +144,11 @@ poems.sortBy("title");
       titleEl.innerText = title;
       linesEl.innerText = lines.join("\n");
 
+
       resetSpeakerButton();
       currentText = lines.join(" ");
       currentLang = "en-US";
       await ensureVoicesLoaded();
-      modal.showModal();
     };
 
     audioToggle.onclick = () => {
@@ -156,6 +162,7 @@ poems.sortBy("title");
     };
 
     closeBtn.onclick = () => {
+
       modal.close();
       resetSpeakerButton();
     };

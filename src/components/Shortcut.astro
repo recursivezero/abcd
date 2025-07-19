@@ -1,0 +1,184 @@
+---
+import "@/assets/styles/shortcut.css";
+---
+
+<div class="container__shortcut">
+  <button id="help-popover-btn" style="display:none"></button>
+  <div id="help-popup" class="help-popup">
+    <div class="help-menu">
+      <div class="help-menu-header">
+        <h2>Keyboard Shortcuts</h2>
+        <button id="close-help" class="close-button" aria-label="Close help menu">×</button>
+      </div>
+      <div class="help-menu-content grid">
+        <div class="shortcut-section" id="main-shortcut-section">
+          <h3>Main Navigation</h3>
+          <div id="main-shortcut-table-wrapper" style="max-height:unset;overflow:unset;transition:none;">
+            <table class="shortcut-table" id="main-shortcut-table">
+              <tbody id="main-shortcut-tbody">
+                <!-- Shortcuts will be rendered here by script -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="shortcut-section">
+          <h3>General & Other</h3>
+          <table class="shortcut-table">
+            <tbody id="other-shortcut-tbody">
+              <!-- Other shortcuts will be rendered here by script -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Balanced, limited shortcuts for a clean, non-scrollable popup
+    const mainShortcuts = [
+      { label: "Go to Home", keys: ["G", "H"], path: "/" },
+      { label: "Go to About", keys: ["G", "A"], path: "/about" },
+      { label: "Go to Varnmala", keys: ["G", "V"], path: "/varnmala" },
+      { label: "Go to Panel", keys: ["G", "P"], path: "/panel" },
+      { label: "Go to Alphabets", keys: ["G", "L"], path: "/alphabets" },
+      { label: "Go to Numbers", keys: ["G", "N"], path: "/numbers" },
+      { label: "Go to Game", keys: ["G", "G"], path: "/crossword" },
+      { label: "Go to Map", keys: ["G", "M"], path: "/map" },
+      { label: "Go to Glossary", keys: ["G", "R"], path: "/glossary" },       
+    ];
+    const otherShortcuts = [
+      { label: "Go to FAQ", keys: ["G", "Q"], path: "/faq" },
+      { label: "Go to Blog", keys: ["G", "B"], path: "/blog" },
+      { label: "Go to Contact", keys: ["C", "I"], path: "/contact" },
+      { label: "Go to Support", keys: ["G", "S"], path: "/support" },
+      { label: "Go to Canvas", keys: ["G", "C"], path: "/canvas" },
+      { label: "Go to Math", keys: ["G", "T"], path: "/math" },
+      { label: "Go to Nakshtra", keys: ["G", "K"], path: "/nakshtra" }, 
+      { label: "Show this help", keys: ["?"], path: null },
+      { label: "Close this help", keys: ["Esc"], path: null },
+    ]
+    const popup = document.getElementById("help-popup");
+    const openBtn = document.getElementById("help-popover-btn");
+    const closeBtn = document.getElementById("close-help");
+    const mainShortcutTbody = document.getElementById("main-shortcut-tbody");
+    const mainShortcutTableWrapper = document.getElementById("main-shortcut-table-wrapper");
+    let firstKey: any = null;
+    let keyTimeout: any = null;
+    function renderShortcuts() {
+      if (!mainShortcutTbody) return;
+      mainShortcutTbody.innerHTML = "";
+      mainShortcuts.forEach(function (shortcut) {
+        const tr = document.createElement("tr");
+        const tdLabel = document.createElement("td");
+        tdLabel.textContent = shortcut.label;
+        const tdKeys = document.createElement("td");
+        tdKeys.classList.add("keys");
+        shortcut.keys.forEach(function (k) {
+          const kbd = document.createElement("kbd");
+          kbd.textContent = k;
+          tdKeys.appendChild(kbd);
+        });
+        tr.appendChild(tdLabel);
+        tr.appendChild(tdKeys);
+        mainShortcutTbody.appendChild(tr);
+      });
+      // Render other shortcuts
+      const otherTbody = document.getElementById("other-shortcut-tbody");
+      if (otherTbody) {
+        otherTbody.innerHTML = "";
+        otherShortcuts.forEach(function (shortcut) {
+          const tr = document.createElement("tr");
+          const tdLabel = document.createElement("td");
+          tdLabel.textContent = shortcut.label;
+          const tdKeys = document.createElement("td");
+          tdKeys.classList.add("keys");
+          shortcut.keys.forEach(function (k) {
+            const kbd = document.createElement("kbd");
+            kbd.textContent = k;
+            tdKeys.appendChild(kbd);
+          });
+          tr.appendChild(tdLabel);
+          tr.appendChild(tdKeys);
+          otherTbody.appendChild(tr);
+        });
+      }
+    }
+
+    renderShortcuts();
+    if (mainShortcutTableWrapper) {
+      mainShortcutTableWrapper.style.maxHeight = "100%";
+      mainShortcutTableWrapper.style.overflow = "auto";
+    }
+
+    function openPopup() {
+      if (popup) popup.classList.add("is-open");
+    }
+    function closePopup() {
+      if (popup) popup.classList.remove("is-open");
+    }
+    if (openBtn) openBtn.addEventListener("click", openPopup);
+    if (closeBtn) closeBtn.addEventListener("click", closePopup);
+    document.addEventListener("keydown", function (e) {
+      const tag = document.activeElement?.tagName || "";
+      if (["INPUT", "TEXTAREA"].includes(tag)) return;
+      if (e.key === "?") {
+        e.preventDefault();
+        openPopup();
+        return;
+      }
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closePopup();
+        return;
+      }
+      
+      // Two-key sequence logic
+      if (!firstKey) {
+        // Wait for first key
+        for (const shortcut of mainShortcuts) {
+          if (e.key.toUpperCase() === shortcut.keys[0]) {
+            firstKey = shortcut.keys[0];
+            if (keyTimeout) clearTimeout(keyTimeout);
+            keyTimeout = setTimeout(() => {
+              firstKey = null;
+            }, 1000);
+            return;
+          }
+        }
+
+        for (const shortcut of otherShortcuts) {
+          if (e.key.toUpperCase() === shortcut.keys[0]) {
+            firstKey = shortcut.keys[0];
+            if (keyTimeout) clearTimeout(keyTimeout);
+            keyTimeout = setTimeout(() => {
+              firstKey = null;
+            }, 1000);
+            return;
+          }
+        }
+      } else {
+        // Wait for second key
+        for (const shortcut of mainShortcuts) {
+          if (firstKey === shortcut.keys[0] && e.key.toUpperCase() === shortcut.keys[1]) {
+            window.location.href = shortcut.path;
+            firstKey = null;
+            if (keyTimeout) clearTimeout(keyTimeout);
+            return;
+          }
+        }
+        for (const shortcut of otherShortcuts) {
+          if (firstKey === shortcut.keys[0] && e.key.toUpperCase() === shortcut.keys[1]) {
+            if (shortcut.path) window.location.href = shortcut.path;
+            firstKey = null;
+            if (keyTimeout) clearTimeout(keyTimeout);
+            return;
+          }
+        }
+        firstKey = null;
+        if (keyTimeout) clearTimeout(keyTimeout);
+      }
+    });
+  });
+</script>

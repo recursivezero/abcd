@@ -1,4 +1,5 @@
 ---
+
 import OpenCard from "@/assets/icons/opencard.svg";
 import "@/assets/styles/poemcard.css";
 export interface Props {
@@ -8,6 +9,7 @@ export interface Props {
 }
 const { title, lines, cute_emoji } = Astro.props;
 ---
+
 
 <div class="card-wrapper">
   <div class="poem-card" onclick={`showPoem("${title}", ${JSON.stringify(lines)})`}>
