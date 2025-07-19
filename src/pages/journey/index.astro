@@ -34,14 +34,12 @@ import Help from "@/components/Help.astro";
             </div>
           </header>
 
-          <!-- Timeline -->
           <main class="timeline-wrapper" id="timelineWrapper" style="display: none;">
             <div class="timeline-container" id="timelineContainer">
               <div class="timeline-line"></div>
             </div>
           </main>
 
-          <!-- Empty State -->
           <div class="empty-state" id="emptyState">
             <h2>Start Your Journey</h2>
             <p>Add your first life event to begin creating your timeline</p>
@@ -51,6 +49,12 @@ import Help from "@/components/Help.astro";
           <div class="form-overlay" id="formOverlay">
             <form class="event-form" id="eventForm">
               <h2 class="form-title">Add / Edit Life Event</h2>
+
+              <div class="form-group">
+                <label for="eventTitle">Title</label>
+                <input type="text" id="eventTitle" maxlength="30" placeholder="Enter a short title..." required />
+                <div class="char-counter" id="titleCounter">0 / 20</div>
+              </div>
 
               <div class="form-group">
                 <label for="eventDate">Date</label>

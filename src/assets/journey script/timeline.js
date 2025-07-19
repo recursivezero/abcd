@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // DOM Elements
   const addBtn = document.getElementById("addEventBtn");
   const formOverlay = document.getElementById("formOverlay");
   const eventForm = document.getElementById("eventForm");
@@ -9,25 +8,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const timelineContainer = document.getElementById("timelineContainer");
   const eventDate = document.getElementById("eventDate");
   const eventDesc = document.getElementById("eventDesc");
+  const eventTitle = document.getElementById("eventTitle");
   const charCounter = document.getElementById("charCounter");
+  const titleCounter = document.getElementById("titleCounter");
   const expandCollapseBtn = document.getElementById("expandCollapseBtn");
   const deleteModal = document.getElementById("deleteModal");
   const cancelDeleteBtn = document.getElementById("cancelDelete");
   const confirmDeleteBtn = document.getElementById("confirmDelete");
 
-  // Constants
-  const CHAR_LIMIT = 100;
+  const CHAR_LIMIT = 150;
+  const TITLE_LIMIT = 20;
   const DEFAULT_SPACING = 100;
   const EXPANDED_SPACING = 290;
 
-  // State
   let events = JSON.parse(localStorage.getItem("timelineEvents") || "[]");
   let editIndex = null;
   let deleteIndex = null;
   let allExpanded = false;
   let currentlyExpanded = new Set();
 
-  // Helper function to format dates
   function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -37,12 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Sort events chronologically (oldest first)
   function sortEvents() {
     events.sort((a, b) => new Date(a.date) - new Date(b.date));
   }
 
-  // Initialize by sorting existing events
   sortEvents();
 
   function saveEvents() {
@@ -58,21 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
       currentTop += allExpanded || currentlyExpanded.has(idx) ? EXPANDED_SPACING : DEFAULT_SPACING;
     });
 
-    // Update timeline line height
     const line = document.querySelector(".timeline-line");
-    if (line) {
-      line.style.height = `${currentTop}px`;
-    }
+    if (line) line.style.height = `${currentTop}px`;
   }
 
   function toggleAllLabels() {
     allExpanded = !allExpanded;
     expandCollapseBtn.textContent = allExpanded ? "↕️ Collapse All" : "↕️ Expand All";
-
-    if (allExpanded) {
-      currentlyExpanded.clear();
-    }
-
+    if (allExpanded) currentlyExpanded.clear();
     renderTimeline();
   }
 
@@ -87,8 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     emptyState.style.display = "none";
     timelineWrapper.style.display = "block";
-
-    // Ensure events are sorted before rendering
     sortEvents();
 
     events.forEach((event, idx) => {
@@ -101,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="timeline-dot"></div>
         <div class="timeline-label ${idx % 2 === 0 ? "left" : "right"} ${isExpanded ? "expanded" : ""}">
           <span class="event-date">${formatDate(event.date)}</span>
+          <span class="event-title"><strong>${event.title || "Untitled"}</strong></span>
           <span class="event-description">${event.description}</span>
           <div class="event-actions">
             <button class="edit-btn">✏️ Edit</button>
@@ -111,12 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const label = eventElement.querySelector(".timeline-label");
 
-      // Label click handler
       label.addEventListener("click", (e) => {
-        if (e.target.closest(".edit-btn") || e.target.closest(".delete-btn")) {
-          return;
-        }
-
+        if (e.target.closest(".edit-btn") || e.target.closest(".delete-btn")) return;
         if (allExpanded) return;
 
         if (currentlyExpanded.has(idx)) {
@@ -130,16 +115,16 @@ document.addEventListener("DOMContentLoaded", () => {
         adjustSpacing();
       });
 
-      // Edit button
       eventElement.querySelector(".edit-btn").addEventListener("click", () => {
         editIndex = idx;
+        eventTitle.value = event.title || "";
         eventDate.value = event.date;
         eventDesc.value = event.description;
+        titleCounter.textContent = `${event.title?.length || 0} / ${TITLE_LIMIT}`;
         charCounter.textContent = `${event.description.length} / ${CHAR_LIMIT}`;
         formOverlay.classList.add("active");
       });
 
-      // Delete button
       eventElement.querySelector(".delete-btn").addEventListener("click", () => {
         deleteIndex = idx;
         deleteModal.classList.add("active");
@@ -153,17 +138,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateCharCounter() {
     const text = eventDesc.value;
-    if (text.length > CHAR_LIMIT) {
-      eventDesc.value = text.slice(0, CHAR_LIMIT);
-    }
+    if (text.length > CHAR_LIMIT) eventDesc.value = text.slice(0, CHAR_LIMIT);
     charCounter.textContent = `${eventDesc.value.length} / ${CHAR_LIMIT}`;
   }
 
-  // Event Listeners
+  function updateTitleCounter() {
+    const text = eventTitle.value;
+    if (text.length > TITLE_LIMIT) eventTitle.value = text.slice(0, TITLE_LIMIT);
+    titleCounter.textContent = `${eventTitle.value.length} / ${TITLE_LIMIT}`;
+  }
+
   addBtn.addEventListener("click", () => {
     editIndex = null;
     eventForm.reset();
+    eventTitle.value = "";
+    eventDesc.value = "";
     eventDate.valueAsDate = new Date();
+    titleCounter.textContent = `0 / ${TITLE_LIMIT}`;
     charCounter.textContent = `0 / ${CHAR_LIMIT}`;
     formOverlay.classList.add("active");
   });
@@ -173,25 +164,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   formOverlay.addEventListener("click", (e) => {
-    if (e.target === formOverlay) {
-      formOverlay.classList.remove("active");
-    }
+    if (e.target === formOverlay) formOverlay.classList.remove("active");
   });
 
   eventDesc.addEventListener("input", updateCharCounter);
+  eventTitle.addEventListener("input", updateTitleCounter);
 
   eventForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    const title = eventTitle.value.trim();
     let date = eventDate.value.trim();
     const description = eventDesc.value.trim();
 
-    // Validate and format date
     if (!date) {
       alert("Please enter a date");
       return;
     }
 
-    // Ensure date is in YYYY-MM-DD format
     if (!date.match(/^\d{4}-\d{2}-\d{2}$/)) {
       const dateObj = new Date(date);
       if (isNaN(dateObj)) {
@@ -202,12 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (editIndex !== null) {
-      events[editIndex] = { date, description };
+      events[editIndex] = { title, date, description };
     } else {
-      events.push({ date, description });
+      events.push({ title, date, description });
     }
 
-    // Re-sort events after modification
     sortEvents();
     saveEvents();
     formOverlay.classList.remove("active");
@@ -239,6 +227,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initial render
   renderTimeline();
 });
