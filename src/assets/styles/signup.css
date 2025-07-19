@@ -69,7 +69,7 @@
 
 .signup-container.form-only {
   display: block;
-  max-width: 550px;
+  width: 60%;
   min-height: auto;
   padding: clamp(1rem, 5vw, 3rem);
 }
