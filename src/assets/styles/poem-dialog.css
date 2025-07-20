@@ -1,0 +1,96 @@
+.poem-dialog {
+  width: 540px;
+  max-width: 90%;
+  height: 600px;
+  border: 3px solid var(--color);
+  border-radius: 24px;
+  background-color: var(--container-bg);
+  padding: 1.5rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  color: var(--color);
+}
+
+/* === Modal Content === */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  position: relative;
+}
+
+/* === Top bar: speaker + close === */
+.modal-content > .model-buttons > button.speaker-btn,
+.modal-content > .model-buttons > button.close {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+}
+
+.modal-content > .model-buttons > button svg {
+  width: 44px;
+  height: 44px;
+  stroke: var(--color);
+  fill: none;
+}
+
+.modal-content > .model-buttons > button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.modal-content .model-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* === Title & Lines === */
+.modal-title {
+  margin-top: 3.2rem;
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.lines {
+  white-space: pre-line;
+  line-height: 1.6;
+  padding: 0 1rem;
+  overflow-y: auto;
+  flex-grow: 1;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* === Scroll styling (optional) === */
+.lines::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lines::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* === Responsive === */
+@media (max-width: 480px) {
+  .poem-dialog {
+    width: 90%;
+    height: 400px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .lines {
+    font-size: 0.95rem;
+  }
+}

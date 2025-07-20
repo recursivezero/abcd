@@ -26,6 +26,11 @@ Created Repo from template
 - Added Nakshtra Page
 - Home Page Redesign
 
+## [3.2.0] - 2025-07-20
+
+- Added Poem section
+- update CNAME
+
 ### [Unreleased]
 
 Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.
