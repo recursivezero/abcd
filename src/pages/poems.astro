@@ -8,9 +8,9 @@ import SharePopover from "@/components/ShareButton.astro";
 import SquareBubble from "@/components/SquareBubble.astro";
 import poem from "@/data/poem.json";
 import BaseLayout from "@/layouts/Base";
+import "@/utils/common"; /* for sortBy method */
 const { poems } = poem;
 poems.sortBy("title");
-
 const title = "Poems";
 ---
 
