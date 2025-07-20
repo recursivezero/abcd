@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://parixan.xyz",
+  site: "https://abcdkbd.com",
   output: "static",
   build: {
     format: "directory"
@@ -22,10 +22,6 @@ export default defineConfig({
   style: {
     global: true // Ensure global styles are applied
   },
-  //redirects: {
-  //  "/en/nakshtra": "/nakshtra",
-  //  "/blog": "https://xkeshav.com/blog"
-  //},
   vite: {
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"]
