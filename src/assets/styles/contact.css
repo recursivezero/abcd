@@ -1,113 +1,52 @@
-.contact__info {
-  margin-inline-start: 1rem;
-}
-
 .container__contact {
   box-sizing: border-box;
   padding: 4rem 1.5rem;
-  background-color: var(--bg-alt);
-  color: var(--text-main);
 }
 
-.contact__message {
-  /* @apply text-sm md:p-[1rem]; */
-  margin-top: 4px;
-}
-
-/* .custom__input {
-  @apply md:tracking-widest;
-} */
-
-.container__form {
-  /* @apply flex flex-grow items-center justify-start max-sm:justify-center md:mr-36; */
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.contact-wrapper {
+.contact__wrapper {
   max-width: 700px;
   margin: 2rem auto 0 auto;
   border-radius: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  background-color: var(--bg-main);
 }
 
-/* --- Top Section: Contact Info --- */
-.contact-info {
+.contact__info {
   background: linear-gradient(135deg, var(--c-primary, #3b82f6) 0%, #60a5fa 100%);
-  color: #ffffff;
   padding: 1rem;
+
+  & h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: khaki;
+  }
 }
-.contact-info h3 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #ffffff;
-}
-.info-item {
+
+.info__item {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
-}
-.info-item i {
-  font-size: 1.2rem;
-  color: var(--c-primary);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.info-item a,
-.info-item span {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.8rem;
-}
 
-.copy-btn {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  padding: 0 0.5rem 0 0.2rem;
-  font-size: 1rem;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
+  & a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
 
-.copy-btn:hover {
-  opacity: 1;
-}
+    & span {
+      display: inline;
+      margin-inline: 0.5rem;
+      color: #f19292;
+    }
 
-.info-item .underline-text {
-  text-decoration: underline;
-}
+    .social {
+      width: 24px;
+      height: 24px;
 
-/* --- Dark Theme Override for Contact Info --- */
-[data-theme="dark"] .contact-info {
-  background: #1f2937;
-}
-
-[data-theme="dark"] .contact-info h3,
-[data-theme="dark"] .contact-info a {
-  color: #d1d5db;
-}
-
-[data-theme="dark"] .info-item i {
-  color: #1f2937;
-  background-color: #d1d5db;
-}
-
-@media (max-width: 768px) {
-  .contact-info,
-  .container__form {
-    padding: 2rem;
+      & svg {
+        height: 24px;
+        width: 24px;
+        margin-inline: 0.4rem;
+      }
+    }
   }
 }

@@ -3,10 +3,19 @@ import stateJson from "@/data/state.json";
 import BackButton from "@/components/BackButton.astro";
 ---
 
+<style>
+  .info {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+</style>
 <BackButton />
 <div class="container__map">
+  <span class="info">Click on any state on map to see more details</span>
   <svg id="india-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1800" height="90vh" width="90vw">
-    <!-- States will be loaded dynamically -->
+    <!-- Map will be loaded dynamically here -->
   </svg>
   <div id="state-tooltip" class="tooltip"></div>
 </div>
