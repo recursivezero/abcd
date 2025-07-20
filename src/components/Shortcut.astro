@@ -46,7 +46,7 @@ import "@/assets/styles/shortcut.css";
       { label: "Go to Numbers", keys: ["G", "N"], path: "/numbers" },
       { label: "Go to Game", keys: ["G", "G"], path: "/crossword" },
       { label: "Go to Map", keys: ["G", "M"], path: "/map" },
-      { label: "Go to Glossary", keys: ["G", "R"], path: "/glossary" },       
+      { label: "Go to Glossary", keys: ["G", "R"], path: "/glossary" }
     ];
     const otherShortcuts = [
       { label: "Go to FAQ", keys: ["G", "Q"], path: "/faq" },
@@ -55,10 +55,10 @@ import "@/assets/styles/shortcut.css";
       { label: "Go to Support", keys: ["G", "S"], path: "/support" },
       { label: "Go to Canvas", keys: ["G", "C"], path: "/canvas" },
       { label: "Go to Math", keys: ["G", "T"], path: "/math" },
-      { label: "Go to Nakshtra", keys: ["G", "K"], path: "/nakshtra" }, 
+      { label: "Go to Nakshtra", keys: ["G", "K"], path: "/nakshtra" },
       { label: "Show this help", keys: ["?"], path: null },
-      { label: "Close this help", keys: ["Esc"], path: null },
-    ]
+      { label: "Close this help", keys: ["Esc"], path: null }
+    ];
     const popup = document.getElementById("help-popup");
     const openBtn = document.getElementById("help-popover-btn");
     const closeBtn = document.getElementById("close-help");
@@ -133,7 +133,7 @@ import "@/assets/styles/shortcut.css";
         closePopup();
         return;
       }
-      
+
       // Two-key sequence logic
       if (!firstKey) {
         // Wait for first key

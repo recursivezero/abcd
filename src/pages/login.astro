@@ -17,7 +17,6 @@ const slideImages = [
 ];
 ---
 
-
 <script is:inline>
   const getTheme = () => {
     const savedTheme = localStorage.getItem("theme");
@@ -74,7 +73,6 @@ const slideImages = [
     </div>
 
     <div class="signup-right">
-
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
         <SunIcon id="theme-icon-sun" width={24} height={24} />
         <MoonIcon id="theme-icon-moon" width={24} height={24} />
@@ -96,7 +94,6 @@ const slideImages = [
           </div>
 
           <div class="forgot-password" style="text-align: right; margin-top: 0.5rem; margin-bottom: 1rem;">
-
             <a href="/forgot-password" class="terms-link">Forgot password?</a>
           </div>
 
@@ -123,7 +120,6 @@ const slideImages = [
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-
     const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
     const sliderWrapper = document.getElementById("slider-wrapper");
     const slides = document.querySelectorAll(".slide");
@@ -158,7 +154,6 @@ const slideImages = [
         startSlider();
       });
     });
-
 
     const togglePasswordBtn = document.querySelector(".toggle-password");
     const passwordInput = document.getElementById("password") as HTMLInputElement | null;

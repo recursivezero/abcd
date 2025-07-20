@@ -55,7 +55,6 @@
   --signup-button-social-bg-hover: #f0f2f5;
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -128,7 +127,6 @@
   border-radius: 25px;
 }
 
-
 .form-only .signup-left {
   display: none;
 }
@@ -151,7 +149,6 @@
   height: 100%;
   margin-right: 5px;
 }
-
 
 .slider {
   width: 100%;

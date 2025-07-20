@@ -53,7 +53,6 @@ export const getInitials = (name: string): string => {
   return initials;
 };
 
-
 /* sort an array of object based on its key */
 Array.prototype.sortBy = function <T, K extends keyof T>(this: T[], key: K): T[] {
   return this.slice().sort((a, b) => {
