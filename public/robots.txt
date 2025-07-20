@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.parixan.xyz/sitemap-index.xml
+Sitemap: https://www.abcdkbd.com/sitemap-index.xml
