@@ -151,6 +151,7 @@ const slideImages = [
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+
     const imageElements = document.querySelectorAll<HTMLImageElement>(".slide img");
     const sliderWrapper = document.getElementById("slider-wrapper");
     const slides = document.querySelectorAll(".slide");
@@ -185,6 +186,7 @@ const slideImages = [
         startSlider();
       });
     });
+
 
     const togglePasswordBtn = document.querySelector(".toggle-password");
     const passwordInput = document.getElementById("password") as HTMLInputElement | null;
