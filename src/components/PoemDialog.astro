@@ -30,6 +30,7 @@ import "@/assets/styles/poem-dialog.css";
 
   let isMuted = true;
   let currentText = "";
+  let currentLang = "en_GB";
   let availableVoices = [];
   let voicesLoadedPromise = null;
 
@@ -107,7 +108,6 @@ import "@/assets/styles/poem-dialog.css";
     speechSynthesis.speak(utterance);
   }
 
-  let currentLang;
 
   window.showPoem = async (title, lines) => {
     titleEl.innerText = title;
