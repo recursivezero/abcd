@@ -53,3 +53,12 @@
 .no__link {
   text-decoration: none;
 }
+
+.text__balance {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-size-adjust: auto;
+  text-shadow: #fc0 1px 0 10px;
+  text-wrap-style: balance;
+}
