@@ -1,7 +1,7 @@
 ---
 title: "My Internship Journey"
 description: "A summary of my learnings and contributions during my recent internship."
-image: "/assets/images/blog/blog-5.png"
+image: "/assets/images/blog/blog-6.png"
 publishDate: "20 July 2025"
 ---
 
