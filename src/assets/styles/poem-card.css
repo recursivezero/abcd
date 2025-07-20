@@ -63,32 +63,32 @@
 }
 
 /* Target every Nth .poem-card inside .container__card */
-.container__card>.card-wrapper:nth-child(6n + 1) .poem-card,
+.container__card > .card-wrapper:nth-child(6n + 1) .poem-card,
 .card-wrapper:nth-child(6n + 1) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-1);
 }
 
-.container__card>.card-wrapper:nth-child(6n + 2) .poem-card,
+.container__card > .card-wrapper:nth-child(6n + 2) .poem-card,
 .card-wrapper:nth-child(6n + 2) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-2);
 }
 
-.container__card>.card-wrapper:nth-child(6n + 3) .poem-card,
+.container__card > .card-wrapper:nth-child(6n + 3) .poem-card,
 .card-wrapper:nth-child(6n + 3) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-3);
 }
 
-.container__card>.card-wrapper:nth-child(6n + 4) .poem-card,
+.container__card > .card-wrapper:nth-child(6n + 4) .poem-card,
 .card-wrapper:nth-child(6n + 4) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-4);
 }
 
-.container__card>.card-wrapper:nth-child(6n + 5) .poem-card,
+.container__card > .card-wrapper:nth-child(6n + 5) .poem-card,
 .card-wrapper:nth-child(6n + 5) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-5);
 }
 
-.container__card>.card-wrapper:nth-child(6n) .poem-card,
+.container__card > .card-wrapper:nth-child(6n) .poem-card,
 .card-wrapper:nth-child(6n) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-6);
 }

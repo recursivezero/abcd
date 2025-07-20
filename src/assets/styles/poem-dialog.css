@@ -23,8 +23,8 @@
 }
 
 /* === Top bar: speaker + close === */
-.modal-content>.model-buttons>button.speaker-btn,
-.modal-content>.model-buttons>button.close {
+.modal-content > .model-buttons > button.speaker-btn,
+.modal-content > .model-buttons > button.close {
   background: none;
   border: none;
   padding: 0;
@@ -33,14 +33,14 @@
   height: 48px;
 }
 
-.modal-content>.model-buttons>button svg {
+.modal-content > .model-buttons > button svg {
   width: 44px;
   height: 44px;
   stroke: var(--color);
   fill: none;
 }
 
-.modal-content>.model-buttons>button:focus {
+.modal-content > .model-buttons > button:focus {
   outline: none;
   box-shadow: none;
 }
