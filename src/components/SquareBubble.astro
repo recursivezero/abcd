@@ -1,25 +1,13 @@
 ---
-import "@/assets/styles/squarebubble.css";
+import "@/assets/styles/bubble.css";
 ---
 
-<div class="home_outer">
-  <div class="home_start">
-    <div class="context">
-      <div>Welcome to Poem World!</div>
-      <div>Hello, little reader!</div>
-    </div>
-    <div class="area">
-      <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+<div class="bubble__container">
+  <div class="bubble__board">
+    <div class="slot"><slot name="bobble-context" /></div>
+    <div class="bubble__area">
+      <ul class="bubble_square">
+        {Array.from({ length: 10 }, (_, i) => <li data-id={i + 1} />)}
       </ul>
     </div>
   </div>

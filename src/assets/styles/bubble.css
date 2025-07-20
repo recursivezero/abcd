@@ -1,54 +1,51 @@
-.home_outer {
+.bubble__container {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  container-type: inline-size;
+  container-name: bubble
 }
-.home_start {
+
+.bubble__board {
   border-radius: 0.75rem;
   width: 100%;
   height: 30vh;
   position: relative;
 }
-.context {
-  border-radius: inherit;
-  position: absolute;
+
+.slot {
+  height: 100%;
+  border-radius: 4px;
   z-index: 10;
   width: 100%;
-  height: 100%;
   display: flex;
   box-sizing: border-box;
-  /*padding-top: 5vh;*/
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-.context > div {
+
+.slot>div {
   font-size: 3rem;
   position: relative;
   font-weight: 700;
   color: var(--primary);
 }
 
-@media (max-width: 768px) {
-  .context > div {
-    font-size: 2.5rem;
-  }
-}
-@media (max-width: 480px) {
-  .context > div {
-    font-size: 2.5rem;
-  }
-  .home_start {
+@container bubble (max-width: 480px) {
+  .bubble__board {
     height: 65vh;
   }
 }
-.area {
+
+.bubble__area {
   border-radius: inherit;
   background: var(--container-bg);
   width: 100%;
   height: 100%;
 }
-.circles {
+
+.bubble_square {
   position: absolute;
   top: 0;
   left: 0;
@@ -58,7 +55,8 @@
   padding: 0;
   overflow: hidden;
 }
-.circles li {
+
+.bubble_square li {
   position: absolute;
   list-style: none;
   width: 20px;
@@ -68,7 +66,8 @@
   bottom: -150px;
   animation: animate 25s linear infinite;
 }
-.circles li:nth-child(1) {
+
+.bubble_square li:nth-child(1) {
   left: 25%;
   width: 80px;
   height: 80px;
@@ -80,7 +79,7 @@
 }
 
 /* copy code from here */
-.circles li:nth-child(2) {
+.bubble_square li:nth-child(2) {
   left: 10%;
   width: 20px;
   height: 20px;
@@ -92,7 +91,7 @@
   animation-duration: 12s;
 }
 
-.circles li:nth-child(3) {
+.bubble_square li:nth-child(3) {
   left: 70%;
   width: 20px;
   height: 20px;
@@ -103,7 +102,7 @@
   animation-delay: 4s;
 }
 
-.circles li:nth-child(4) {
+.bubble_square li:nth-child(4) {
   left: 40%;
   width: 60px;
   height: 60px;
@@ -115,7 +114,7 @@
   animation-duration: 18s;
 }
 
-.circles li:nth-child(5) {
+.bubble_square li:nth-child(5) {
   left: 65%;
   width: 20px;
   height: 20px;
@@ -126,7 +125,7 @@
   animation-delay: 0s;
 }
 
-.circles li:nth-child(6) {
+.bubble_square li:nth-child(6) {
   left: 75%;
   width: 110px;
   height: 110px;
@@ -137,7 +136,7 @@
   animation-delay: 3s;
 }
 
-.circles li:nth-child(7) {
+.bubble_square li:nth-child(7) {
   left: 35%;
   width: 150px;
   height: 150px;
@@ -148,7 +147,7 @@
   animation-delay: 7s;
 }
 
-.circles li:nth-child(8) {
+.bubble_square li:nth-child(8) {
   left: 50%;
   width: 25px;
   height: 25px;
@@ -160,7 +159,7 @@
   animation-duration: 45s;
 }
 
-.circles li:nth-child(9) {
+.bubble_square li:nth-child(9) {
   left: 20%;
   width: 15px;
   height: 15px;
@@ -172,7 +171,7 @@
   animation-duration: 35s;
 }
 
-.circles li:nth-child(10) {
+.bubble_square li:nth-child(10) {
   left: 85%;
   width: 150px;
   height: 150px;
@@ -189,13 +188,11 @@
 @keyframes animate {
   0% {
     transform: translateY(0) rotate(0deg);
-    /*opacity: 1;*/
     border-radius: 0;
   }
 
   100% {
     transform: translateY(-1000px) rotate(720deg);
-    /*opacity: 0;*/
     border-radius: 50%;
   }
 }

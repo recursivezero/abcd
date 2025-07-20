@@ -19,11 +19,11 @@ const {
   </head>
   <body id="body" class="body__container">
     <ThemeProvider />
+    <Shortcut />
     <Header title={title}>
       <slot name="header-left" slot="left" />
       <slot name="header-right" slot="right" />
     </Header>
-    <Shortcut />
     <main id="main" class="main">
       <div class="sidebar">{sidebar && <Menu />}</div>
       <div class="content">

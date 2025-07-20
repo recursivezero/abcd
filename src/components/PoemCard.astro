@@ -1,26 +1,24 @@
 ---
+import OpenIcon from "@/assets/icons/open.svg";
+import "@/assets/styles/poem-card.css";
 
-import OpenCard from "@/assets/icons/opencard.svg";
-import "@/assets/styles/poemcard.css";
 export interface Props {
   title: string;
   lines: string[];
-  cute_emoji: string;
+  emoji: string;
 }
-const { title, lines, cute_emoji } = Astro.props;
+const { title, lines, emoji } = Astro.props;
 ---
-
 
 <div class="card-wrapper">
   <div class="poem-card" onclick={`showPoem("${title}", ${JSON.stringify(lines)})`}>
     <div class="emoji-content">
       <span class="overlay"></span>
-
       <div class="card-indicator">
-        <OpenCard />
+        <OpenIcon />
       </div>
       <div class="card-emoji">
-        <div class="card-emo">{cute_emoji}</div>
+        <div class="card-emo">{emoji}</div>
       </div>
     </div>
     <div class="card-content">
