@@ -3,11 +3,10 @@
   position: relative;
 }
 
-.container__PoemCard {
+.container__card {
   width: 100%;
   position: relative;
   background-color: var(--container-bg);
-  /*transition: background-color 0.4s ease;*/
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(auto-fit, 320px);
@@ -22,8 +21,6 @@
 }
 
 .card-wrapper {
-  /*background-color: red;*/
-  /*box-sizing: border-box;*/
   padding: 4px;
   display: flex;
   align-items: center;
@@ -35,14 +32,10 @@
   height: 100%;
   width: 300px;
   border-radius: 25px;
-  /*background-color: pink;*/
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
   transition:
-      /*background-color 0.5s ease,*/
-      /*color 0.5s ease,*/
     transform 0.3s ease,
     box-shadow 0.3s ease;
   cursor: pointer;
@@ -60,7 +53,7 @@
 }
 
 @media (max-width: 480px) {
-  .container__PoemCard {
+  .container__card {
     grid-template-columns: repeat(auto-fit, 300px);
   }
 
@@ -69,40 +62,39 @@
   }
 }
 
-/* Target every Nth .poem-card inside .container__PoemCard */
-.container__PoemCard > .card-wrapper:nth-child(6n + 1) .poem-card,
+/* Target every Nth .poem-card inside .container__card */
+.container__card>.card-wrapper:nth-child(6n + 1) .poem-card,
 .card-wrapper:nth-child(6n + 1) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-1);
 }
 
-.container__PoemCard > .card-wrapper:nth-child(6n + 2) .poem-card,
+.container__card>.card-wrapper:nth-child(6n + 2) .poem-card,
 .card-wrapper:nth-child(6n + 2) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-2);
 }
 
-.container__PoemCard > .card-wrapper:nth-child(6n + 3) .poem-card,
+.container__card>.card-wrapper:nth-child(6n + 3) .poem-card,
 .card-wrapper:nth-child(6n + 3) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-3);
 }
 
-.container__PoemCard > .card-wrapper:nth-child(6n + 4) .poem-card,
+.container__card>.card-wrapper:nth-child(6n + 4) .poem-card,
 .card-wrapper:nth-child(6n + 4) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-4);
 }
 
-.container__PoemCard > .card-wrapper:nth-child(6n + 5) .poem-card,
+.container__card>.card-wrapper:nth-child(6n + 5) .poem-card,
 .card-wrapper:nth-child(6n + 5) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-5);
 }
 
-.container__PoemCard > .card-wrapper:nth-child(6n) .poem-card,
+.container__card>.card-wrapper:nth-child(6n) .poem-card,
 .card-wrapper:nth-child(6n) .poem-card .emoji-content .overlay::after {
   background-color: var(--poem-bg-6);
 }
 
 .emoji-content,
-.card-content,
-.card-indicator {
+.card-content {
   padding: 10px 14px;
   display: flex;
   flex-direction: column;
@@ -163,107 +155,8 @@
 }
 
 .card-indicator {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.open-indicator {
-  fill: var(--color);
-}
-
-/* === Modal Layout === */
-.poem-dialog {
-  width: 540px;
-  max-width: 90%;
-  height: 600px;
-  border: 3px solid var(--color);
-  border-radius: 24px;
-  background-color: var(--container-bg);
-  padding: 1.5rem;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  position: fixed;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
-  color: var(--color);
-}
-
-/* === Modal Content === */
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
   position: relative;
-}
-
-/* === Top bar: speaker + close === */
-.modal-content > .model-buttons > button.speaker-btn,
-.modal-content > .model-buttons > button.close {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  width: 48px;
-  height: 48px;
-}
-
-.modal-content > .model-buttons > button svg {
-  width: 44px;
-  height: 44px;
-  stroke: var(--color);
-  fill: none;
-}
-
-.modal-content > .model-buttons > button:focus {
-  outline: none;
-  box-shadow: none;
-}
-.modal-content .model-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-/* === Title & Lines === */
-#modal-title {
-  margin-top: 3.2rem;
-  font-size: 3rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-#modal-lines {
-  white-space: pre-line;
-  line-height: 1.6;
-  padding: 0 1rem;
-  overflow-y: auto;
-  flex-grow: 1;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-/* === Scroll styling (optional) === */
-#modal-lines::-webkit-scrollbar {
-  width: 6px;
-}
-
-#modal-lines::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
-/* === Responsive === */
-@media (max-width: 480px) {
-  .poem-dialog {
-    width: 90%;
-    height: 400px;
-  }
-
-  #modal-title {
-    font-size: 1.25rem;
-  }
-
-  #modal-lines {
-    font-size: 0.95rem;
-  }
+  margin-left: auto;
+  right: 1rem;
+  height: 24px;
 }
