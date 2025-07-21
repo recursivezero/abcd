@@ -36,20 +36,6 @@
   color: var(--color-text);
 }
 
-/*.header {
-  width: 100%;
-  padding: 0.75rem 2rem;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  box-shadow: var(--box-shadow-md);
-}*/
-
 .score-next-container {
   display: flex;
   flex-direction: row;
@@ -99,7 +85,7 @@
 }
 
 .operator-btn span {
-  font-size: 5.8rem;
+  font-size: clamp(3rem, 4vw, 5.8rem);
   line-height: 1;
 }
 

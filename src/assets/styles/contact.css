@@ -35,7 +35,9 @@
     & span {
       display: inline;
       margin-inline: 0.5rem;
-      color: #f19292;
+      letter-spacing: 1px;
+      font-style: italic;
+      color: #4e0a0a;
     }
 
     .social {
