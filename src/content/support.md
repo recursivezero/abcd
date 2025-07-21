@@ -11,23 +11,19 @@ Whether you're a parent, teacher, or student — we’ve got you covered.
 
 ### ❓ How do I start learning?
 
-Just visit the [Home](/) and click on any topic.  
-No login or registration is required.
+Just visit the [Home](/home) and click on any topic. No login or registration is required.
 
 ### ❓ Does this work on mobile?
 
-Yes! Our website is fully responsive and works on desktops, tablets,  
-and smartphones.
+Yes! Our website is almost responsive but best works on desktop and tablets.
 
 ### ❓ Is this app safe for children?
 
-Absolutely. We are ad-free and designed with child safety and  
-simplicity in mind.
+Absolutely. We are ad-free and designed with child safety and simplicity in mind.
 
 ### ❓ Can I use it offline?
 
-Some activities support offline mode _(coming soon)_.  
-Stay tuned for updates!
+Some activities support offline mode _(coming soon)_. Stay tuned for updates!
 
 ---
 
@@ -37,7 +33,7 @@ If something isn’t working:
 
 - Make sure your internet connection is active.
 - Try refreshing the page.
-- Use a modern browser like &nbsp; **Chrome**, **Firefox**, or &nbsp; **Edge**.
+- Use a modern browser like **Chrome**, **Firefox**, or **Edge**.
 - If you're using a school device, check for any firewall or content blockers.
 
 ---
@@ -46,7 +42,7 @@ If something isn’t working:
 
 Still facing issues? Have suggestions or ideas?
 
-📧 Email us at [abcdkbd@outlook.com](mailto:abcdkbd@outlook.com)
+📬 Please drop an E-mail us at [abcdkbd@outlook.com](mailto:abcdkbd@outlook.com)
 
 ---
 
@@ -61,5 +57,6 @@ Want to use **ABCDKBD** in your classroom or curriculum?
 
 ## 🙌 Thank You
 
-We appreciate your support and feedback.  
+We appreciate your support and feedback.
+
 Together, let’s make learning joyful and impactful for every child.
