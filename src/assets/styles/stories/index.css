@@ -171,7 +171,7 @@
   color: #ffffff;
   border: 2px solid #000000;
   outline: 3px dotted #866e6e;
-  outline-offset: 5px;
+  outline-offset: 3px;
 }
 
 .chip:hover {

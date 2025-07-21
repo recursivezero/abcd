@@ -1,0 +1,16 @@
+<svg id="confetti" width='600' height='90' viewBox='0 0 600 90' fill='none'
+  xmlns='http://www.w3.org/2000/svg'>
+  <rect x='42' y='-10' width='6' height='10' />
+  <rect x='84' y='-10' width='6' height='10' />
+  <rect x='126' y='-13' width='5' height='13' />
+  <rect x='168' y='-13' width='5' height='13' />
+  <rect x='210' y='-10' width='6' height='10' />
+  <rect x='252' y='-13' width='5' height='13' />
+  <rect x='294' y='-10' width='6' height='10' />
+  <rect x='336' y='-13' width='5' height='13' />
+  <rect x='378' y='-13' width='5' height='13' />
+  <rect x='420' y='-10' width='6' height='10' />
+  <rect x='462' y='-10' width='6' height='10' />
+  <rect x='504' y='-13' width='5' height='13' />
+  <rect x='546' y='-10' width='6' height='10' />
+</svg>

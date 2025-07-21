@@ -24,14 +24,26 @@ const socialImageURL = new URL(`/assets/images/stories/${image}`, Astro.url);
     text-transform: uppercase;
     z-index: 2;
   }
+  .lazy-img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+  }
+  .lazy-img.loaded {
+    opacity: 1;
+  }
 </style>
 <meta property="og:image" content={socialImageURL} />
 <article class="story-card">
   <a href={url}>
     <div class="story-card-content">
       <div class="story-card-image">
-        <figure>
-          <img src={`/assets/images/stories/${image}`} alt={title ?? "story image"} loading="lazy" />
+        <figure class="story__image">
+          <img
+            data-src={`/assets/images/stories/${image}`}
+            alt={title ?? "story image"}
+            loading="lazy"
+            class="lazy-img"
+          />
           <figcaption style={{ "background-color": featured ? "blueviolet" : "" }} data-category={category}>
             <span>{featured ? "🪶 " : ""}</span>
             <span class="category">{category}</span>
@@ -42,9 +54,7 @@ const socialImageURL = new URL(`/assets/images/stories/${image}`, Astro.url);
         <h3 class="story-card-title">
           {title}
         </h3>
-
         {description && <p class="story-card-description">{description}</p>}
-
         <div class="story-card-meta">
           <div>
             {author && <p>By {author}</p>}
@@ -56,3 +66,24 @@ const socialImageURL = new URL(`/assets/images/stories/${image}`, Astro.url);
     </div>
   </a>
 </article>
+
+<script type="module" is:inline>
+  const images = document.querySelectorAll(".lazy-img");
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.loading = "eager";
+          img.onload = () => img.classList.add("loaded");
+          obs.unobserve(img);
+        }
+      });
+    },
+    { rootMargin: "0px", threshold: 0.1 }
+  );
+
+  images.forEach((img) => observer.observe(img));
+</script>

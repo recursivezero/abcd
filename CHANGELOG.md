@@ -29,7 +29,13 @@ Created Repo from template
 ## [3.2.0] - 2025-07-20
 
 - Added Poem section
-- update CNAME
+
+
+## [3.2.2] - 2025-07-21
+
+- Update Storey page images issues
+- Mobile view fixed for pages 
+- FAQs updated
 
 ### [Unreleased]
 
