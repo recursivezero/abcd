@@ -88,8 +88,5 @@ This internship was about more than just technology. It was a masterclass in the
 
 ## Conclusion
 
-My internship at RecursiveZero was an incredibly impactful experience. It provided me with a clear window into the corporate world and taught me how development teams collaborate to build amazing products. I am immensely grateful to the entire team for their guidance and support over these two months. I’ve learned a great deal and look forward to applying these skills in future endeavors.
-
-**Thank you for reading!**
-
-`~Suresh Chelani`
+My internship at RecursiveZero was an incredibly impactful experience. It provided me with a clear window into the corporate world and taught me how development teams collaborate to build amazing products. I am immensely grateful to [Keshav](https://www.linkedin.com/in/xkeshav/) sir, and the entire team for their guidance and support over these two months. I’ve learned a great deal, and I’m excited to apply these skills in my future endeavors.
+I’ve learned a great deal and look forward to applying these skills in future endeavors.
