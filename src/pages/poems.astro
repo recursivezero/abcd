@@ -1,5 +1,4 @@
 ---
-
 import BackIcon from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
 import SharePopover from "@/components/ShareButton.astro";
@@ -13,7 +12,6 @@ import "@/assets/styles/poems.css";
 import "@/utils/common";
 const { poems } = poem;
 poems.sortBy("title");
-
 ---
 
 <BaseLayout meta={{ title: "Poems" }}>
@@ -62,7 +60,6 @@ poems.sortBy("title");
     let currentText = "";
     let availableVoices = [];
     let voicesLoadedPromise = null;
-
 
     const svgMuted = `
 <svg id="audio-icon" class="audio-icon" xmlns="http://www.w3.org/2000/svg" 
@@ -142,12 +139,10 @@ poems.sortBy("title");
       titleEl.innerText = title;
       linesEl.innerText = lines.join("\n");
 
-
       resetSpeakerButton();
       currentText = lines.join(" ");
       currentLang = "en-US";
       await ensureVoicesLoaded();
-
     };
 
     audioToggle.onclick = () => {
@@ -161,7 +156,6 @@ poems.sortBy("title");
     };
 
     closeBtn.onclick = () => {
-
       modal.close();
       resetSpeakerButton();
     };

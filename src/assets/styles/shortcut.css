@@ -105,7 +105,7 @@
   font-size: 14px;
 }
 .shortcut-table tr {
-  height: 2.2em;         /* or use min-height if you prefer */
+  height: 2.2em; /* or use min-height if you prefer */
 }
 
 .shortcut-table td {
@@ -153,6 +153,6 @@
 .keys {
   text-align: end;
 }
-.rows{
-  margin:3px
+.rows {
+  margin: 3px;
 }

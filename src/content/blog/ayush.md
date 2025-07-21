@@ -24,8 +24,8 @@ I designed and structured header of the panel page, and added new fetures.
 
 The canvas section was broken down into two interactive subpages. Both designed for creating quotes with unique features:
 
-*   [**Text**](/src/pages/canvas/text.astro/) – This subpage allows users to create and display quotes, including the current time.
-*   [**Quote**](/src/pages/canvas/quote.astro/) – This subpage allows user to create, style, and download custom quotes.
+- [**Text**](/src/pages/canvas/text.astro/) – This subpage allows users to create and display quotes, including the current time.
+- [**Quote**](/src/pages/canvas/quote.astro/) – This subpage allows user to create, style, and download custom quotes.
 
 This section is feature rich and can be used to create cool designs!
 

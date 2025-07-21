@@ -29,12 +29,12 @@ I designed and structured the home page to ensure a smooth user experience with 
 
 I developed a rich, multi-section learning space for learners. The **Varnmala** section was broken down into six interactive subpages:
 
-*   [**Hindi**](/varnmala/hindi) – Displayed *स्वर* and *व्यंजन*.
-*   [**English**](/varnmala/english/) – Offered a comparative look at English alphabet letters.
-*   [**Barahkhadi**](/varnmala/barahkhadi/) – Showcased combinations of consonants and matras visually.
-*   [**Listen**](/varnmala/listen/) – Implemented **Text-to-Speech** functionality for hearing pronunciation.
-*   [**Write**](/varnmala/write/) – Guided users on how to write letters through animated stroke visuals.
-*   [**Play**](/varnmala/play/) – Created interactive games/activities to reinforce what users learned.
+- [**Hindi**](/varnmala/hindi) – Displayed _स्वर_ and _व्यंजन_.
+- [**English**](/varnmala/english/) – Offered a comparative look at English alphabet letters.
+- [**Barahkhadi**](/varnmala/barahkhadi/) – Showcased combinations of consonants and matras visually.
+- [**Listen**](/varnmala/listen/) – Implemented **Text-to-Speech** functionality for hearing pronunciation.
+- [**Write**](/varnmala/write/) – Guided users on how to write letters through animated stroke visuals.
+- [**Play**](/varnmala/play/) – Created interactive games/activities to reinforce what users learned.
 
 This section focused on clean layouts, intuitive navigation, and accessibility for early learners.
 
@@ -77,14 +77,14 @@ I integrated **Text-to-Speech (TTS)** features using the Web Speech API, enablin
 
 While working on UI/UX, I explored several modern CSS features, including:
 
-*   **CSS Grid & Subgrid** – For complex, responsive layout designs.
-*   [**Container Queries**](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries) – Made components respond to container size.
-*   **CSS Variables (`--var`)** – Maintained design consistency and simplified theming.
-*   **Clamp Function (`clamp()`)** – Created fluid responsive typography and spacing.
-*   **Backdrop Filter** – Applied glassmorphism-style blur effects.
-*   **Scroll Snap** – Added smoother section-based scrolling on mobile.
-*   **Animations** using `@keyframes` & `transition` – For SVG letter drawings, button hovers, and more.
-*   [**Popover API**](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) – Learned to use the new native Popover API for creating lightweight contextual overlays without external libraries.
+- **CSS Grid & Subgrid** – For complex, responsive layout designs.
+- [**Container Queries**](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries) – Made components respond to container size.
+- **CSS Variables (`--var`)** – Maintained design consistency and simplified theming.
+- **Clamp Function (`clamp()`)** – Created fluid responsive typography and spacing.
+- **Backdrop Filter** – Applied glassmorphism-style blur effects.
+- **Scroll Snap** – Added smoother section-based scrolling on mobile.
+- **Animations** using `@keyframes` & `transition` – For SVG letter drawings, button hovers, and more.
+- [**Popover API**](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) – Learned to use the new native Popover API for creating lightweight contextual overlays without external libraries.
 
 ### 💻 Git & GitHub
 
@@ -102,9 +102,9 @@ I also leveraged helpful extensions like **Prettier**, **ESLint**, and **Astro L
 
 ## 💡 What I Learned Beyond Code
 
-*   **Communication** – I learned to share updates clearly, discuss blockers effectively, and contribute meaningfully to team decisions.
-*   **Problem-solving** – I sharpened my debugging skills by fixing layout bugs and animation sync issues, and gained experience working with modern Browser APIs.
-*   **Responsibility** – I delivered features independently and tracked my progress efficiently using GitHub project tools.
+- **Communication** – I learned to share updates clearly, discuss blockers effectively, and contribute meaningfully to team decisions.
+- **Problem-solving** – I sharpened my debugging skills by fixing layout bugs and animation sync issues, and gained experience working with modern Browser APIs.
+- **Responsibility** – I delivered features independently and tracked my progress efficiently using GitHub project tools.
 
 ---
 
@@ -115,10 +115,10 @@ From Astro and GitHub workflows to Speech APIs and modern CSS — I’ve picked 
 
 I now feel confident in:
 
-*   Building **accessible**, **responsive** UIs from scratch.
-*   Creating **animated and interactive** web components.
-*   Using **modern CSS** for elegant and maintainable design.
-*   Collaborating on real-world projects using **GitHub**.
+- Building **accessible**, **responsive** UIs from scratch.
+- Creating **animated and interactive** web components.
+- Using **modern CSS** for elegant and maintainable design.
+- Collaborating on real-world projects using **GitHub**.
 
 ---
 
@@ -129,6 +129,6 @@ The lessons learned, both technical and soft skills, have been invaluable.
 This experience has solidified my passion for software development and I'm excited to apply this knowledge in future internships and personal projects.
 The journey has just begun — and I’m loving every part of it!
 
-**Special Thanks**: Mr. Keshav Mohta and for making this journey memorable and enriching! 
+**Special Thanks**: Mr. Keshav Mohta and for making this journey memorable and enriching!
 
 **Thank you for reading!**
