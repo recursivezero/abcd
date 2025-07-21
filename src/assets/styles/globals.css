@@ -138,6 +138,11 @@
     align-items: center;
   }
 
+  li {
+    text-align: left;
+    padding-left: 12px;
+  }
+
   @container thread (max-width: 768px) {
     main {
       grid-template-areas: "content";
