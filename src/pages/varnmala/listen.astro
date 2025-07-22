@@ -34,7 +34,7 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
     
     <div class="info">Press a key to see the magic</div>
     <article id="container__reader" class="container__reader">
-      <div class="letter">a🍎</div>
+      <div id="letter" class="letter">a🍎</div>
     </article>
     <section class="section--audio hide">
       <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
@@ -45,7 +45,7 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
     import { emojiList } from "@/mappers/alphabet";
     import { getRandomValue, isAlphabet, isNumber } from "@/utils/index";
 
-    const mainBlock = document.querySelector("#container__reader") as HTMLElement;
+    const mainBlock = document.querySelector("#letter") as HTMLElement;
     const muteButton = document.querySelector("#mute") as HTMLButtonElement;
     const audioPlayer = document.querySelector("#audioPlayer") as HTMLAudioElement;
 
