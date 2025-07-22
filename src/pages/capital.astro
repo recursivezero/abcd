@@ -19,7 +19,7 @@ const utList = locations.filter((loc) => !loc.isState);
 <BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover title={meta.title} description={meta.description} />
     <Help title="Capital" description="Capital of India's States and Territories. " />
   </Fragment>
   <CapitalComponent stateList={stateList} utList={utList} />

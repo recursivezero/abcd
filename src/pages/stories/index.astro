@@ -46,10 +46,19 @@ const allCategories = storyPosts
 const categories = allCategories;
 ---
 
-<BaseLayout meta={{ title: "Stories" }}>
+<BaseLayout
+  meta={{
+    title: "Stories",
+    description:
+      "Explore our collection of stories, tales, and creative writing from various authors. Discover tales, narratives, and creative works from talented writers."
+  }}
+>
   <BackArrow />
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover
+      title="Stories"
+      description="Explore our collection of stories, tales, and creative writing from various authors. Discover tales, narratives, and creative works from talented writers."
+    />
     <Help
       title="Stories"
       description="Explore our collection of stories, tales, and creative writing from various authors."

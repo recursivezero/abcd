@@ -19,11 +19,16 @@ const data = Object.values(categoryData.categories).find((cat) => cat.route === 
   title: "Category Not Found",
   description: "This category is not available"
 };
+
+const meta = {
+  title: data.title,
+  description: data.description
+};
 ---
 
-<BaseLayout meta={{ title: data.title }}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover title={meta.title} description={meta.description} />
     <Help title="Map" description="An Interactive Journey Through India's States and Territories. " />
   </Fragment>
   <IndiaMap />

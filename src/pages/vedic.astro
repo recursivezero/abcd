@@ -6,12 +6,17 @@ import SharePopover from "@/components/ShareButton.astro";
 import Today from "@/components/Today.astro";
 import DateConvertor from "@/components/DateConvertor.astro";
 import Timeline from "@/components/Timeline.astro";
+
+const meta = {
+  title: "Vedic Time",
+  description: "Learn about Vedic timekeeping, tithi, and traditional Indian calendars."
+};
 ---
 
-<BaseLayout meta={{ title: "Vedic Time" }}>
+<BaseLayout meta={meta}>
   <BackIcon />
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover title={meta.title} description={meta.description} />
   </Fragment>
   <div class="container__vedic">
     <div class="tab-buttons">

@@ -7,10 +7,18 @@ import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 import ZodiacTab from "@/components/ZodiacTab.astro";
 ---
 
-<BaseLayout meta={{ title: "Zodiac" }}>
+<BaseLayout
+  meta={{
+    title: "Zodiac",
+    description: "Explore all zodiac signs and nakshatras in Indian astrology. Discover traits, symbols, and more!"
+  }}
+>
   <Back />
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover
+      title="Zodiac"
+      description="Explore all zodiac signs and nakshatras in Indian astrology. Discover traits, symbols, and more!"
+    />
     <Help title="Zodiac" description="Explore Zodiacs and Nakshtras." />
   </Fragment>
   <LanguageSwitcher />

@@ -23,9 +23,14 @@ if (!categoryData) {
 }
 ---
 
-<BaseLayout meta={{ title }}>
+<BaseLayout
+  meta={{
+    title,
+    description: `Learn about the number ${title} with fun facts and activities!`
+  }}
+>
   <Fragment slot="header-left">
-    <SharePopover />
+    <SharePopover title={title} description={`Learn about the number ${title} with fun facts and activities!`} />
     <Help title="Numbers" description="Learn new information from the selected number category!" />
   </Fragment>
   <div class="container__page">

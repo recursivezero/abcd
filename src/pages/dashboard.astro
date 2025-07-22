@@ -1,16 +1,14 @@
 ---
 import "@/assets/styles/dashboard.css";
-import Header from "@/layouts/common/Header";
+import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Dashboard",
+  description: "abcdkbd.com dashboard to manage your account, view activity, and access learning resources."
+};
 ---
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-</head>
-<body>
-  <Header hasBack={false}>
-    <button id="logout-btn" class="header-logout-btn" slot="right">Logout</button>
-  </Header>
+<BaseLayout meta={meta}>
   <main class="dashboard-page">
     <div class="dashboard-container">
       <h1 class="welcome-message">Hello there!</h1>
@@ -20,7 +18,7 @@ import Header from "@/layouts/common/Header";
       <button id="add-voice-btn" class="dashboard-action-btn">Add Voice</button>
     </div>
   </main>
-</body>
+</BaseLayout>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
