@@ -34,9 +34,14 @@ const { Content } = await render(entry);
 if (!Content) {
   throw new Error(`Content could not be rendered for blog`);
 }
+
+const meta = {
+  title: "Stories",
+  description: validatedData.description
+};
 ---
 
-<BaseLayout meta={{ title: "Stories", description: validatedData.description }}>
+<BaseLayout meta={meta}>
   <Back />
   <article class="container__blog">
     <header class="blog-post-header">
