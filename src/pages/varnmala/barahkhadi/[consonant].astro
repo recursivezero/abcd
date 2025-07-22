@@ -1,8 +1,8 @@
 ---
 import "@/assets/styles/varnmala/consonant.css";
 import BackButton from "@/components/BackButton.astro";
-import BaseLayout from "@/layouts/Base";
 import SharePopover from "@/components/ShareButton.astro";
+import BaseLayout from "@/layouts/Base";
 
 import { hindiConsonants as consonants, matras } from "@/utils/characters";
 export const prerender = true;
@@ -14,9 +14,14 @@ export function getStaticPaths() {
 const { consonant } = Astro.params;
 
 const combinations = [consonant, ...Object.values(matras).map((matra) => consonant + matra)];
+
+const meta = {
+  title: `Barahkhadi - ${consonant}`,
+  description: `Learn the barahkhadi combinations of the Hindi consonant "${consonant}" with different matras.`
+};
 ---
 
-<BaseLayout meta={{ title: `Barahkhadi - ${consonant}` }}>
+<BaseLayout meta={meta}>
   <BackButton />
   <Fragment slot="header-left">
     <SharePopover />

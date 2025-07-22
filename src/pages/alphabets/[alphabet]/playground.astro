@@ -26,10 +26,15 @@ const defaultCategory = {
 const { alphabet } = Astro.params;
 const currentCategory = DATASET[alphabet] || defaultCategory;
 
-const title = `${capitalizeThis(alphabet)} - Playground`;
+const meta = {
+  title: `${capitalizeThis(alphabet)} - Playground`,
+  description: `Type or navigate to interactively explore the "${capitalizeThis(
+    alphabet
+  )}" alphabet set using keyboard or arrows.`
+};
 ---
 
-<BaseLayout meta={{ title }}>
+<BaseLayout meta={meta}>
   <div class="container__heading">
     <BackButton />
     <span class="info">Press a key to see the magic</span>
@@ -38,7 +43,7 @@ const title = `${capitalizeThis(alphabet)} - Playground`;
     <KeyboardTrigger />
     <SharePopover />
     <Help
-      title={title}
+      title={meta.title}
       description="Press Next Arrow >  to get next letter. navigate through < and > from your keyboard"
     />
   </Fragment>
