@@ -4,7 +4,12 @@ import { Content, frontmatter } from "@/content/article/cookies.md";
 import "@/assets/styles/cookies.css";
 ---
 
-<BaseLayout meta={{ title: frontmatter.title }}>
+<BaseLayout
+  meta={{
+    title: frontmatter.title,
+    description: frontmatter.description || "Read about our cookie policy and how we use cookies on abcdkbd.com."
+  }}
+>
   <article class="article-container">
     <header class="article-header">
       <h1>{frontmatter.title}</h1>

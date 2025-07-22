@@ -6,13 +6,17 @@ import IndicLanguageGrid from "@/components/IndicLanguageGrid.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 
-const title = "Indic Alphabets";
+const meta = {
+  title: "Indic Alphabets",
+  description:
+    "Learn Indian culture and diversity through Indian languages. Learn alphabets of different Indian languages by alphabet comparison, their pronunciation and examples."
+};
 ---
 
-<BaseLayout meta={{ title }}>
+<BaseLayout meta={meta}>
   <BackIcon />
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover title={meta.title} description={meta.description} />
     <Help
       title="Indic Alphabets"
       description="Learn Indian culture and diversity through Indian languages. Learn alphabets of different Indian languages by alphabet comparison , their pronunciation and examples."

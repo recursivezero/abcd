@@ -23,9 +23,14 @@ if (!categoryData) {
 }
 ---
 
-<BaseLayout meta={{ title }}>
+<BaseLayout
+  meta={{
+    title,
+    description: `Explore glossary term: ${title}. Learn definitions and examples!`
+  }}
+>
   <Fragment slot="header-left">
-    <SharePopover />
+    <SharePopover title={title} description={`Explore glossary term: ${title}. Learn definitions and examples!`} />
     <Help title="Glossary" description="Learn new information from the selected category!" />
   </Fragment>
   <div class="container__page">

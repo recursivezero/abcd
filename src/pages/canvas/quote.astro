@@ -7,18 +7,15 @@ import ResetIcon from "@/assets/icons/reset.svg";
 import "@/assets/styles/quote-designer.css";
 import SharePopover from "@/components/ShareButton.astro";
 
-const pageTitle = "Quote Designer";
-const pageDescription = "Design beautiful quotes with our advanced tool.";
-
-const pageMeta = {
-  title: pageTitle,
-  description: pageDescription
+const meta = {
+  title: "Quote Designer",
+  description: "Design beautiful quotes with our advanced tool."
 };
 ---
 
-<BaseLayout meta={pageMeta}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover title={meta.title} description={meta.description} />
     <Help
       title="Quote designer"
       description="Design beautiful quotes through this intuitive visual editor. You can customize the text, font, and background color. You can also change the alignment of the text."

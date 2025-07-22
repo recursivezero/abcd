@@ -4,7 +4,13 @@ import "@/assets/styles/record.css";
 import Help from "@/components/Help.astro";
 ---
 
-<BaseLayout meta={{ title: "Record" }}>
+<BaseLayout
+  meta={{
+    title: "Record",
+    description:
+      "Record and save audio clips for learning pronunciation. Use the intuitive controls to record, pause, and manage your audio recordings."
+  }}
+>
   <Fragment slot="header-right">
     <Help
       title="Record"

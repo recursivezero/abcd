@@ -1,9 +1,9 @@
 ---
 import "@/assets/styles/about.css";
+import BackIcon from "@/components/Back.astro";
 import HeroSection from "@/components/about/HeroSection.astro";
 import TeamSection from "@/components/about/TeamSection.astro";
 import TechSection from "@/components/about/TechSection.astro";
-import BackIcon from "@/components/Back.astro";
 import BaseLayout from "@/layouts/Base";
 import pkg from "../../package.json";
 
@@ -14,7 +14,8 @@ const appName = "abcdkbd";
 
 // Meta data
 const meta = {
-  title: "About Us"
+  title: "About Us",
+  description: "Learn more about our mission and the team behind abcdkbd."
 };
 ---
 
