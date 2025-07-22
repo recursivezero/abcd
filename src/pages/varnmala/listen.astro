@@ -23,20 +23,21 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
         <div data-name="mudra" class="voice-option">👧 Mudra</div>
         <div data-name="rutvi" class="voice-option">👧 Rutvi</div>
       </div>
+      </div>
       <KeyboardTrigger />
       <SharePopover />
       <Help
         title="Reader"
         description="Press any letter key (A-Z) to display it with a related emoji. Use the Voices dropdown to change voices, and use the audio button to mute/unmute sounds."
       />
-    </div>
-
+    </Fragment>
+    
     <article id="container__reader" class="container__reader">a🍎</article>
     <section class="section--audio hide">
       <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
     </section>
-  </Fragment>
-
+    </BaseLayout>
+    
   <script>
     import { emojiList } from "@/mappers/alphabet";
     import { getRandomValue, isAlphabet, isNumber } from "@/utils/index";
@@ -184,4 +185,3 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
       }
     });
   </script>
-</BaseLayout>

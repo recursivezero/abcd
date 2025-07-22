@@ -16,7 +16,7 @@
   will-change: contents;
   line-height: 1;
   gap: 0.5rem;
-  height: 80%;
+  height: max-content;
 }
 
 .hide {
