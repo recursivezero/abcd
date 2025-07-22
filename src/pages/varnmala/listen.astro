@@ -49,7 +49,7 @@ const meta = {
 
 <script>
   import { emojiList } from "@/mappers/alphabet";
-  import { getRandomValue, isAlphabet, isNumber } from "@/utils/index";
+  import { getRandomValue } from "@/utils/index";
 
   const mainBlock = document.querySelector("#letter") as HTMLElement;
   const muteButton = document.querySelector("#mute") as HTMLButtonElement;
@@ -176,15 +176,15 @@ const meta = {
   };
 
   document.addEventListener("keydown", (e: KeyboardEvent) => {
-    const { key, keyCode, which, code } = e;
+    const { key, code } = e;
     if (!mainBlock) return;
 
     if (!isNonPrintingKey(e)) {
-      if (isAlphabet(which)) {
+      if (/^[A-Z]$/i.test(key)) {
         const emoji = getEmoji(key);
         mainBlock.innerHTML = key + emoji;
         if (muteButton) attachAudio(code);
-      } else if (isNumber(keyCode)) {
+      } else if (/^[0-9]$/.test(key)) {
         mainBlock.innerHTML = key;
         if (muteButton) attachAudio(code, true);
       } else {
