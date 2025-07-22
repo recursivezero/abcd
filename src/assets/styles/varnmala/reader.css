@@ -18,7 +18,12 @@
   gap: 0.5rem;
   height: max-content;
 }
-
+.container__reader > .letter{
+  width: 100%;
+    box-sizing: border-box;
+    margin-left: 4rem;
+    text-align: center;
+}
 .hide {
   display: none;
 }
@@ -168,8 +173,10 @@
   .container__reader {
     font-size: min(200rem, 70vw);
   }
-
+.container__reader > .letter{
+  margin-left: auto;
+}
   .mute-button {
-    font-size: min(2.5rem, 8vw);
+    font-size: min(1.5rem, 6vw);
   }
 }
