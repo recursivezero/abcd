@@ -44,21 +44,18 @@ const allCategories = storyPosts
   .sort(); // Sort alphabetically
 
 const categories = allCategories;
+
+const meta = {
+  title: "Stories",
+  description:
+    "Explore our collection of stories, discover tales, narratives, and creative works from talented writers."
+};
 ---
 
-<BaseLayout
-  meta={{
-    title: "Stories",
-    description:
-      "Explore our collection of stories, tales, and creative writing from various authors. Discover tales, narratives, and creative works from talented writers."
-  }}
->
+<BaseLayout meta={meta}>
   <BackArrow />
   <Fragment slot="header-right">
-    <SharePopover
-      title="Stories"
-      description="Explore our collection of stories, tales, and creative writing from various authors. Discover tales, narratives, and creative works from talented writers."
-    />
+    <SharePopover />
     <Help
       title="Stories"
       description="Explore our collection of stories, tales, and creative writing from various authors."

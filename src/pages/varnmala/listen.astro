@@ -5,9 +5,15 @@ import BaseLayout from "@/layouts/Base";
 import BackButton from "@/components/BackButton.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
+
+const meta = {
+  title: "Listen",
+  description:
+    "Press a letter or number key to hear its pronunciation and view it with an emoji. Includes voice options."
+};
 ---
 
-<BaseLayout meta={{ title: "Listen the Letter" }}>
+<BaseLayout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
     <div class="action">

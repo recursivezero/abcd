@@ -4,16 +4,22 @@ import BackButton from "@/components/BackButton.astro";
 import Help from "@/components/Help.astro";
 import BaseLayout from "@/layouts/Base";
 
-import { varnmala_english } from "@/utils/characters";
 import SharePopover from "@/components/ShareButton.astro";
+import { varnmala_english } from "@/utils/characters";
+
+const meta = {
+  title: "English",
+  description:
+    "A fun and visual English alphabet collection to help kids learn language basics in an engaging and simple format."
+};
 ---
 
-<BaseLayout meta={{ title: "English" }}>
+<BaseLayout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
     <SharePopover />
     <Help
-      title="English "
+      title="English"
       description="It is a collection of alphabets in English. It is used to teach kids the basics of language."
     />
   </Fragment>

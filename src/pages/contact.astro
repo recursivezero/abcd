@@ -5,6 +5,12 @@ import TitleLayout from "@/layouts/TitleLayout";
 import Back from "@/components/Back.astro";
 import CopyIcon from "@/assets/icons/copy.svg";
 import GitHubIcon from "@/assets/icons/github.svg";
+
+const meta = {
+  title: "Contact Us",
+  description:
+    "Reach out to the abcdkbd team via email or connect with us on GitHub to collaborate or provide feedback."
+};
 ---
 
 <style>
@@ -12,7 +18,7 @@ import GitHubIcon from "@/assets/icons/github.svg";
     width: 24px;
   }
 </style>
-<BaseLayout meta={{ title: "Contact Us" }}>
+<BaseLayout meta={meta}>
   <Back />
   <TitleLayout title="Get in Touch" />
   <div class="container__contact">

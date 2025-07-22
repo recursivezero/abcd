@@ -2,14 +2,14 @@
 import "@/assets/styles/support.css";
 import { Content } from "@/content/support.md";
 import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Support & Help Center",
+  description: "Get help, support, and answers to your questions about abcdkbd.com."
+};
 ---
 
-<BaseLayout
-  meta={{
-    title: "Support & Help Center",
-    description: "Get help, support, and answers to your questions about abcdkbd.com."
-  }}
->
+<BaseLayout meta={meta}>
   <div class="support-container">
     <Content />
   </div>
