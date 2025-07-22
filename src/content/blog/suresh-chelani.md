@@ -16,7 +16,7 @@ I joined this program to tackle real-world problems, learn to work effectively i
 
 A significant portion of my internship was dedicated to the frontend, where I primarily worked on an interactive [India Map page](https://abcdkbd.com/map). My goal was to create a highly engaging and performant user experience.
 
-### Key Accomplishments
+### Frontend: Key Accomplishments
 
 - **Interactive Maps:** I built interactive maps of India and its states using SVGs, bringing a visual and dynamic element to the application.
 - **Performance Optimization:** I focused heavily on optimizing load times. By leveraging efficient DOM manipulation, asynchronous programming, and making the interface fully responsive, I significantly improved the user experience.
@@ -38,7 +38,7 @@ Astro's architecture, which supports integrating multiple frameworks and using s
 
 I also had the opportunity to work on the backend for another project called "threadzip." This is where I dove into building robust and secure server-side applications.
 
-### Key Accomplishments
+### Backend: Key Accomplishments
 
 - **API and Model Development:** I designed and implemented the `UserModel` and `SubscriptionModel`, complete with full CRUD (Create, Read, Update, Delete) operations.
   This included endpoints for user management, follow/unfollow functionality and more.

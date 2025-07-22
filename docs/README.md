@@ -120,11 +120,11 @@ npm run preview
 
 ## Home Page
 
-### Description
+> Description
 
 The landing page for abcdkbd, introducing the platform and its key features for interactive learning.
 
-### Screenshots
+> Screenshots
 
 - **Light Mode:** ![Home Light](/public/assets/images/screenshots/light/home.png)
 - **Dark Mode:** ![Home Dark](/public/assets/images/screenshots/dark/home.png)
@@ -133,11 +133,7 @@ The landing page for abcdkbd, introducing the platform and its key features for 
 
 ## About Page
 
-### Description
-
 This page introduces the mission, team, and values behind abcdkbd. It provides an overview of the platform's goals, core values, and contact information for contributors and educators.
-
-### Screenshots
 
 - **Light Mode:** ![About Light](/public/assets/images/screenshots/light/about.png)
 - **Dark Mode:** ![About Dark](/public/assets/images/screenshots/dark/about.png)
@@ -145,8 +141,6 @@ This page introduces the mission, team, and values behind abcdkbd. It provides a
 ---
 
 ## Varnmala Page
-
-### Description
 
 Explore the vowels and consonants of different Indian languages. Compare scripts and sounds across regions in a simple, visual way.
 
