@@ -88,12 +88,11 @@
     width: 80%;
     height: max-content;
     box-sizing: border-box;
-    margin: auto
-    
+    margin: auto;
   }
 
   .modal-title {
-    font-size: 1.50rem;
+    font-size: 1.5rem;
   }
 
   .lines {
@@ -101,11 +100,12 @@
   }
 
   .modal-content > .model-buttons > button.speaker-btn,
-.modal-content > .model-buttons > button.close{
+  .modal-content > .model-buttons > button.close {
     width: 36px;
-  height: 36px;
-}
-.modal-content > .model-buttons > button svg {
-  width: 32px;
-  height: 32px;}
+    height: 36px;
+  }
+  .modal-content > .model-buttons > button svg {
+    width: 32px;
+    height: 32px;
+  }
 }

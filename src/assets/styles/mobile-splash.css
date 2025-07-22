@@ -10,7 +10,8 @@
   align-items: center;
   padding: 1rem;
   transition: background-color 0.3s ease;
-  content-visibility: visible;
+  display: none;
+  content-visibility: hidden;
 }
 
 @container splash (max-width: 768px) {

@@ -6,6 +6,7 @@ import LetterCard from "@/components/LetterCard.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import { DATASET } from "@/mappers/dataset";
+import { capitalizeThis } from "@/utils/common";
 
 export const prerender = true;
 
@@ -20,7 +21,7 @@ const { alphabet } = Astro.params;
 const data = DATASET[alphabet].data;
 
 const meta = {
-  title: "Alphabets",
+  title: `Board • ${capitalizeThis(alphabet)}`,
   description: `Explore the "${alphabet}" category with interactive flashcards to learn associated words and objects.`
 };
 ---
