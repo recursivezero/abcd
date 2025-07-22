@@ -32,7 +32,7 @@ const games = {
 <BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover title={meta.title} description={meta.description} />
   </Fragment>
   <div class="selection-container">
     <div class="header-content">

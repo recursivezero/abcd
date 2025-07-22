@@ -15,7 +15,7 @@ const meta = {
 <BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover title={meta.title} description={meta.description} />
   </Fragment>
   <div class="selection-container">
     <h1 class="selection-title">Select a creative mode</h1>

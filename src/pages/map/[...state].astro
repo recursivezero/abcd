@@ -41,9 +41,9 @@ const languages = stateInfo.languages || [];
 const major_rivers = stateInfo.major_rivers || [];
 ---
 
-<BaseLayout meta={{ title: `${name} - ${dance}` }}>
+<BaseLayout meta={{ title: `${name} - ${dance}`, description }}>
   <Fragment slot="header-left">
-    <SharePopover />
+    <SharePopover title={`${name} - ${dance}`} description={description} />
     <Help title="India" description="Learn new information about the selected state!" />
   </Fragment>
   <section class="state-page">

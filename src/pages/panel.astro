@@ -9,7 +9,13 @@ import SharePopover from "@/components/ShareButton.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
 ---
 
-<BaseLayout meta={{ title: "Panel" }}>
+<BaseLayout
+  meta={{
+    title: "Panel",
+    description:
+      "Interactive 3D panel for learning letters and numbers. Navigate using arrow keys or type to find specific characters."
+  }}
+>
   <Back />
   <MobileSplash stay={true} />
   <Fragment slot="header-right">
@@ -100,7 +106,10 @@ import MobileSplash from "@/components/MobileSplash.astro";
         </div>
       </div>
     </div>
-    <SharePopover />
+    <SharePopover
+      title="Panel"
+      description="Interactive 3D panel for learning letters and numbers. Navigate using arrow keys or type to find specific characters."
+    />
     <Help
       title="Panel"
       description="Use arrow keys to navigate through letters/numbers. Up/down for vertical orientation, left/right for horizontal. Type any letter or number to jump to it. Adjust panel size with the slider."
