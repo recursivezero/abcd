@@ -51,11 +51,15 @@ function isBranch(data: any): data is Branch {
     data.surnames.every((surname: any) => surname && typeof surname.hi === "string" && typeof surname.en === "string")
   );
 }
-
 const validClanData = Array.isArray(clanJson) ? clanJson.filter(isBranch) : [];
+const meta = {
+  title: "Clan Explorer",
+  description:
+    "Search and explore your family's heritage by gotra, deity, caste, and location using this organized clan directory."
+};
 ---
 
-<BaseLayout meta={{ title: "Clan Explorer" }}>
+<BaseLayout meta={meta}>
   <Back />
   <article class="container__clan">
     <div class="clan__header">

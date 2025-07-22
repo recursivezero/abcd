@@ -18,15 +18,14 @@ const categories: Category[] = Object.values(categoryData.categories);
 
 const meta = {
   title: "Explore India | Interactive States & Capitals Map | abcdkbd",
-  description:
-    "Explore India's states, capitals, and regions with an interactive map. Click on any state to discover more details, fun facts, and learn geography in a playful way!"
+  description: "Explore India's states, capitals, and regions with an interactive map."
 };
 ---
 
 <BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
-    <SharePopover title={meta.title} description={meta.description} />
+    <SharePopover />
     <Help
       title="Capital"
       description="An Interactive Journey Through India's States and Territories,click on any state to see more details"

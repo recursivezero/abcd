@@ -21,20 +21,16 @@ const blogPosts = blogs.map((entry) => {
   });
   return post;
 });
+const meta = {
+  title: "Blog",
+  description: "Read the latest articles, updates, and educational insights from abcdkbd.com."
+};
 ---
 
-<BaseLayout
-  meta={{
-    title: "Blog",
-    description: "Read the latest articles, updates, and educational insights from abcdkbd.com."
-  }}
->
+<BaseLayout meta={meta}>
   <BackArrow />
   <Fragment slot="header-right">
-    <SharePopover
-      title="Blog"
-      description="Read the latest articles, updates, and educational insights from abcdkbd.com."
-    />
+    <SharePopover />
     <Help
       title="Blog"
       description="Stay updated with the latest in technology, development trends, and digital innovation."
