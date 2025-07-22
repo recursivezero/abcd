@@ -3,11 +3,15 @@ title: "Internship at RecursiveZero as a SDE intern"
 description: "A deep dive into my two-month internship experience, working with Astro.js and growing as a frontend developer."
 publishDate: 2025-07-21
 author: "Azmat Raza"
+image: "/assets/images/blog/blog-4.jpg"
 ---
 
-## Internship Experience at RecursiveZero Pvt. Ltd.
+## Internship Experience at RecursiveZero Pvt. Ltd
 
-My name is **Azmat Raza**, a frontend developer with interest in building cool and useful web apps. During my two-month internship at RecursiveZero Pvt. Ltd., I worked mainly with **Astro.js** to create interactive, responsive pages that focused on both functionality and user experience. I worked on projects like **Crossword**, **Societree**, and **Journey Timeline**, and each one helped me grow in different ways. I joined this internship to learn from real projects, and I ended up learning a lot more than expected.
+My name is **Azmat Raza**, a frontend developer with interest in building cool and useful web apps.
+During my two-month internship at RecursiveZero Pvt. Ltd., I worked mainly with **Astro.js** to create interactive,responsive pages that focused on both functionality and user experience.
+I worked on projects like **Crossword**, **Societree**, and **Journey Timeline**, and each one helped me grow in different ways.
+I joined this internship to learn from real projects, and I ended up learning a lot more than expected.
 
 ## Frontend Adventures with Astro.js
 
@@ -32,7 +36,9 @@ A big part of my internship was frontend development. I created pages from scrat
 
 ### Why Astro.js?
 
-Astro.js was something I hadn’t used before this internship, but it ended up being super helpful. It lets you build static sites that load really fast, and it doesn't add too much JavaScript unless you really need it. I could write plain HTML, CSS, and JS, and still make the pages look and work really well. Astro also makes it easy to split code into components and manage local data without extra complexity. It’s great for content-heavy and design-focused pages like the ones I worked on.
+Astro.js was something I hadn’t used before this internship, but it ended up being super helpful. It lets you build static sites that load really fast, and it doesn't add too much JavaScript unless you really need it.
+I could write plain HTML, CSS, and JS, and still make the pages look and work really well. Astro also makes it easy to split code into components and manage local data without extra complexity.
+It’s great for content-heavy and design-focused pages like the ones I worked on.
 
 **Technologies Used:** Astro.js, HTML, CSS, JavaScript
 
@@ -40,24 +46,18 @@ Astro.js was something I hadn’t used before this internship, but it ended up b
 
 As part of the [ABCD](https://abcdkbd.com/) project, I worked on key frontend pages aimed at helping children learn in fun and interactive ways.
 
-- **Crossword Page:** A game where kids can solve puzzles using keyboard and touch. I handled the full interaction logic and UI responsiveness.
+- **[Crossword Page](/crossword)**: A game where kids can solve puzzles using keyboard and touch. I handled the full interaction logic and UI responsiveness.
 
-- **Societree Page:** A dynamic, searchable listing for clans and families. The design was made print-ready and easy to navigate.
+- **[Societree Page](/clan)**: A dynamic, searchable listing for clans and families. The design was made print-ready and easy to navigate.
 
 - **Journey Timeline:** A visual timeline where events could be added with descriptions and images. I styled it with animations, day/night background, and fixed printing issues.
 
 All the pages were designed to be mobile-friendly, responsive, and usable across devices. You can check out the live site and source code here:
 
-- **Official Website:** [abcdkbd.com](https://abcdkbd.com/)
-- **Project Repository:** [github.com/recursivezero/abcd](https://github.com/recursivezero/abcd)
-- **Crossword Page:** [abcdkbd.com/crossword/](https://abcdkbd.com/crossword/)
-- **Timeline Page:** [abcdkbd.com/timeline/](https://abcdkbd.com/timeline/)
-
-## Challenges Faced & Solutions
-
-### Technical Challenges
+## Technical Challenges
 
 **Problem:** Merging Git branches
+**Solution:** Learn how to resolve conflicts using VS code inbuilt git support
 
 **Problem:** Print layout breaking or getting cut across pages  
 **Solution:** Used `break-inside: avoid`, adjusted margins, and wrote custom media queries to handle layout on paper
@@ -75,8 +75,10 @@ All the pages were designed to be mobile-friendly, responsive, and usable across
 
 ## Beyond the Code: Growth and Learning
 
-This internship also helped me improve soft skills. I got more confident in communicating with the team, asking for help, and explaining my work. I understood how to keep my code clean so others could understand it easily. Working on live projects gave me experience I couldn’t get from just tutorials or courses. I also explored open-source workflows and how small commits and good messages make a big difference in a team environment.
+This internship also helped me improve soft skills. I got more confident in communicating with the team, asking for help, and explaining my work. I understood how to keep my code clean so others could understand it easily.
+Working on live projects gave me experience I couldn’t get from just tutorials or courses. I also explored open-source workflows and how small commits and good messages make a big difference in a team environment.
 
 ## Conclusion
 
-My internship at RecursiveZero was a great learning journey. I didn’t just write code — I learned to think about how things look, how they behave, and how users will interact with them. I'm thankful to **Keshav Sir** and the whole team for giving me the space to build, break, and fix real things. This experience has made me more confident as a frontend developer, and I’m excited to use what I’ve learned in future projects.
+My internship at RecursiveZero was a great learning journey. I didn’t just write code — I learned to think about how things look, how they behave, and how users will interact with them. I'm thankful to **Keshav Sir** and the whole team for
+giving me the space to build, break, and fix real things. This experience has made me more confident as a frontend developer, and I’m excited to use what I’ve learned in future projects.

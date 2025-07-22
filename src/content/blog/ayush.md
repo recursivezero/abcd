@@ -2,6 +2,7 @@
 title: "My Internship Journey"
 description: "A summary of my learnings and contributions during my recent internship."
 image: "/assets/images/blog/blog-6.png"
+author: "Ayush Tyagi"
 publishDate: "20 July 2025"
 ---
 
@@ -16,24 +17,24 @@ It provided me with a practical glimpse into the corporate world. Our mentor was
 
 I worked on the following things during the internship:
 
-### 🏠 [Panel Page](/src/pages/panel.astro/)
+### 🏠 [Panel](/panel)
 
-I designed and structured header of the panel page, and added new fetures.
+I designed and structured header of the panel page, and added new features.
 
 ### 🗺️ [Canvas]
 
-The canvas section was broken down into two interactive subpages. Both designed for creating quotes with unique features:
+The canvas section was broken down into two interactive sub-pages. Both designed for creating quotes with unique features:
 
-- [**Text**](/src/pages/canvas/text.astro/) – This subpage allows users to create and display quotes, including the current time.
-- [**Quote**](/src/pages/canvas/quote.astro/) – This subpage allows user to create, style, and download custom quotes.
+- [**Text**](/canvas/text) – This subpage allows users to create and display quotes, including the current time.
+- [**Quote**](/canvas/quote) – This subpage allows user to create, style, and download custom quotes.
 
 This section is feature rich and can be used to create cool designs!
 
-### 🔤 [Hidenseek](/src/pages/hidenseek/grid.astro/)
+### 🔤 [HidenSeek](/hidenseek/grid)
 
 I improved the style and layout of the grid, index and kbd pages.My goal was to make them look a lot better and feel more polished.
 
-### 🔢 [Login](/src/pages/login.astro)
+### 🔢 [Login]
 
 I created a login page complete with an image slider that gave users a glimpse of the website. I also created the front end for signup, forgot-password and dashboard.
 
@@ -65,7 +66,7 @@ This is a js library that takes the screenshot of the page, it was implemented i
 
 ### 🗣️ Focus/Blur
 
-Focus() and blur() are methods used to show and hide the keyboard. This is an useful and important feature for mobile and ipad users.
+`focus()` and `blur()` are methods used to show and hide the keyboard. This is an useful and important feature for mobile and ipad users.
 
 ### 📚 BetterAuth
 

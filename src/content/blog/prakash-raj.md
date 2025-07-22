@@ -1,7 +1,8 @@
 ---
 title: "My Internship Journey with RecursiveZero Pvt. Ltd"
 description: "A transformative internship experience that shaped my frontend development career"
-image: "/assets/images/blog/blog-4.png"
+image: "/assets/images/blog/internship.png"
+author: "Prakash Raj"
 publishDate: "18 July 2025"
 ---
 
@@ -77,11 +78,11 @@ Under the exceptional guidance of **Mr. Keshav Mohta**, I discovered the true es
 
 - **CSS Techniques**:
   - Utilized CSS custom properties (variables) for theming and dynamic styling `(e.g. --item-width, --card-color, --t for transitions)`.
-  - Designed layouts using Flexbox and CSS Grid for responsive, adaptive interfaces `(e.g., gallery and capital page grids)`.
-  - Applied gradients, background-clip, and text-shadow for visually appealing headings and cards.
-  - Used object-fit, border-radius, and box-shadow to enhance image presentation and card aesthetics.
+  - Designed layouts using flexbox and CSS Grid for responsive, adaptive interfaces `(e.g., gallery and capital page grids)`.
+  - Applied gradients, `background-clip`, and `text-shadow` for visually appealing headings and cards.
+  - Used `object-fit`, `border-radius`, and `box-shadow` to enhance image presentation and card aesthetics.
   - Leveraged transitions and transforms for smooth interactive effects `(e.g. hover/active states in gallery and draw controls)`.
-  - Learn about advanced CSS properties like object-fit for images, custom properties for dynamic sizing, and transitions/transforms for animated gallery navigation and item focus effects.
+  - Learn about advanced CSS properties like `object-fit` for images, custom properties for dynamic sizing, and `transition` , `transform` for animated gallery navigation and item focus effects.
 
 ### Git & Version Control Mastery
 
@@ -104,4 +105,4 @@ With hands-on practice and great support, I feel ready to take on new projects, 
 
 **Thank you for reading!**
 
-`Prakash Raj`
+> Prakash Raj

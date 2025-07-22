@@ -2,6 +2,7 @@
 title: "🌟 My Internship Journey: What I’ve Learned So Far"
 description: "Reflections on my journey as a Software Developer Trainee "
 image: "/assets/images/blog/blog-5.png"
+author: "Chhavi Sharma"
 publishDate: "19 July 2025"
 ---
 
@@ -38,21 +39,21 @@ I developed a rich, multi-section learning space for learners. The **Varnmala** 
 
 This section focused on clean layouts, intuitive navigation, and accessibility for early learners.
 
-### 🔤 [Alphabets Page](/alphabets/)
+### 🔤 [Alphabets Page](/alphabets)
 
 I developed a separate alphabets section with **animated SVG letter drawings** and **reset/play controls** — making learning fun and interactive.
 
-### 🔢 [Numbers Page](/math/)
+### 🔢 [Numbers Page](/math)
 
 I created an interactive number page featuring content for English, Hindi, Morse code, and Roman numerals.
 
-### 📚 [Glossary Page](/glossary/)
+### 📚 [Glossary Page](/glossary)
 
 I structured glossary terms across themes like **Months**, **Days**, and **Geometrical Shapes**, using **dynamic JSON rendering** and category-based filtering.
 
-### 🔮 [Nakshatra Page](/nakshtra/)
+### 🔮 [Nakshatra Page](/nakshtra)
 
-I designed and developed a **visual representation of Nakshatras**, using reusable components and clean layouts for better scalability.
+I designed and developed a **visual representation of Nakshatra**, using reusable components and clean layouts for better scalability.
 
 ---
 
