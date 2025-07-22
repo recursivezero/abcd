@@ -5,7 +5,7 @@
   --card-green-bg: linear-gradient(135deg, #059669 0%, #10b981 100%);
   --card-red-text: #fff;
   --card-blue-text: #fff;
-  --card-yellow-text: #fff;
+  --card-yellow-text: #542929;
   --card-green-text: #fff;
   --card-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.18);
   --hero-heading: #f3f4f6;
@@ -23,10 +23,6 @@
   --card-blue-bg: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
   --card-yellow-bg: linear-gradient(135deg, #f59e42 0%, #fbbf24 100%);
   --card-green-bg: linear-gradient(135deg, #059669 0%, #10b981 100%);
-  --card-red-text: #fff;
-  --card-blue-text: #fff;
-  --card-yellow-text: #fff;
-  --card-green-text: #fff;
   --card-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.18);
   --hero-heading: #f3f4f6;
   --section-divider: #23304a;
@@ -52,10 +48,6 @@
   --card-blue-bg: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
   --card-yellow-bg: linear-gradient(135deg, #fbbf24 0%, #fcd34d 100%);
   --card-green-bg: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-  --card-red-text: #fff;
-  --card-blue-text: #fff;
-  --card-yellow-text: #fff;
-  --card-green-text: #fff;
   --card-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
   --section-divider: #e5e7eb;
   --section-bg: #ffffff;
