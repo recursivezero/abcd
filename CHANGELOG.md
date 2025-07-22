@@ -30,11 +30,10 @@ Created Repo from template
 
 - Added Poem section
 
-
 ## [3.2.2] - 2025-07-21
 
 - Update Storey page images issues
-- Mobile view fixed for pages 
+- Mobile view fixed for pages
 - FAQs updated
 
 ### [Unreleased]
