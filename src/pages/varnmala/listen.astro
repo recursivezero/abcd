@@ -29,168 +29,168 @@ const meta = {
         <div data-name="mudra" class="voice-option">👧 Mudra</div>
         <div data-name="rutvi" class="voice-option">👧 Rutvi</div>
       </div>
-      </div>
-      <KeyboardTrigger />
-      <SharePopover />
-      <Help
-        title="Reader"
-        description="Press any letter key (A-Z) to display it with a related emoji. Use the Voices dropdown to change voices, and use the audio button to mute/unmute sounds."
-      />
-    </Fragment>
-    
-    <div class="info">Press a key to see the magic</div>
-    <article id="container__reader" class="container__reader">
-      <div id="letter" class="letter">a🍎</div>
-    </article>
-    <section class="section--audio hide">
-      <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
-    </section>
-    </BaseLayout>
-    
-  <script>
-    import { emojiList } from "@/mappers/alphabet";
-    import { getRandomValue, isAlphabet, isNumber } from "@/utils/index";
+    </div>
+    <KeyboardTrigger />
+    <SharePopover />
+    <Help
+      title="Reader"
+      description="Press any letter key (A-Z) to display it with a related emoji. Use the Voices dropdown to change voices, and use the audio button to mute/unmute sounds."
+    />
+  </Fragment>
 
-    const mainBlock = document.querySelector("#letter") as HTMLElement;
-    const muteButton = document.querySelector("#mute") as HTMLButtonElement;
-    const audioPlayer = document.querySelector("#audioPlayer") as HTMLAudioElement;
+  <div class="info">Press a key to see the magic</div>
+  <article id="container__reader" class="container__reader">
+    <div id="letter" class="letter">a🍎</div>
+  </article>
+  <section class="section--audio hide">
+    <audio id="audioPlayer" controlslist="nodownload" controls autoplay></audio>
+  </section>
+</BaseLayout>
 
-    const voicesButton = document.querySelector("#voices-btn") as HTMLButtonElement;
-    const selectedVoiceText = document.querySelector("#selected-voice-text") as HTMLSpanElement;
-    const voicesOptionsContainer = document.querySelector("#voices-options") as HTMLElement;
-    const voiceOptionElements = Array.from(voicesOptionsContainer.querySelectorAll(".voice-option")) as HTMLElement[];
+<script>
+  import { emojiList } from "@/mappers/alphabet";
+  import { getRandomValue, isAlphabet, isNumber } from "@/utils/index";
 
-    let speakerName: string | null = null;
-    let isMuted = false;
+  const mainBlock = document.querySelector("#letter") as HTMLElement;
+  const muteButton = document.querySelector("#mute") as HTMLButtonElement;
+  const audioPlayer = document.querySelector("#audioPlayer") as HTMLAudioElement;
 
-    function setSpeaker(name: string | null | undefined, displayText: string) {
-      speakerName = name ?? null;
-      selectedVoiceText.textContent = displayText;
+  const voicesButton = document.querySelector("#voices-btn") as HTMLButtonElement;
+  const selectedVoiceText = document.querySelector("#selected-voice-text") as HTMLSpanElement;
+  const voicesOptionsContainer = document.querySelector("#voices-options") as HTMLElement;
+  const voiceOptionElements = Array.from(voicesOptionsContainer.querySelectorAll(".voice-option")) as HTMLElement[];
 
-      voiceOptionElements.forEach((opt) => {
-        opt.classList.toggle("active", opt.dataset.name === name);
-      });
-      if (voicesOptionsContainer) {
-        voicesOptionsContainer.classList.remove("show");
-      }
+  let speakerName: string | null = null;
+  let isMuted = false;
+
+  function setSpeaker(name: string | null | undefined, displayText: string) {
+    speakerName = name ?? null;
+    selectedVoiceText.textContent = displayText;
+
+    voiceOptionElements.forEach((opt) => {
+      opt.classList.toggle("active", opt.dataset.name === name);
+    });
+    if (voicesOptionsContainer) {
+      voicesOptionsContainer.classList.remove("show");
+    }
+  }
+
+  // Initially set the active voice (e.g., the first one)
+  if (voiceOptionElements.length > 0) {
+    //setActiveVoice(voiceOptionElements[0].dataset.name);
+  } else {
+    setSpeaker(null, "Choose Voice");
+  }
+
+  if (voicesButton) {
+    voicesButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      voicesOptionsContainer?.classList.toggle("show");
+    });
+  }
+
+  voiceOptionElements.forEach((option) => {
+    option.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const target = e.currentTarget as HTMLElement;
+      setSpeaker(target.dataset.name, target.textContent || "Voice");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      voicesButton &&
+      !voicesButton.contains(e.target as Node) &&
+      voicesOptionsContainer &&
+      !voicesOptionsContainer.contains(e.target as Node)
+    ) {
+      voicesOptionsContainer.classList.remove("show");
+    }
+  });
+
+  if (muteButton) {
+    muteButton.addEventListener("click", (e: MouseEvent) => {
+      isMuted = !isMuted;
+      audioPlayer.muted = isMuted;
+      const target = e.target as HTMLButtonElement;
+      target.classList.toggle("mute");
+    });
+  }
+
+  const getEmoji = (letter: string): string => {
+    type List = { [key: string]: number[] };
+    const upperCase = letter.toUpperCase();
+    const list = (emojiList as List)[upperCase];
+    if (list && list.length) {
+      const codePoint = getRandomValue(list);
+      return String.fromCodePoint(codePoint);
+    }
+    return "";
+  };
+
+  const attachAudio = (key: string, isNumberSound = false) => {
+    if (!speakerName) {
+      console.warn("No speaker selected. Cannot play audio.");
+      return;
     }
 
-    // Initially set the active voice (e.g., the first one)
-    if (voiceOptionElements.length > 0) {
-      //setActiveVoice(voiceOptionElements[0].dataset.name);
+    let keyName;
+    let location = "/assets/media/";
+    if (isNumberSound) {
+      keyName = key.replace("Digit", "");
+      location += "numbers";
     } else {
-      setSpeaker(null, "Choose Voice");
+      keyName = key.replace("Key", "").toLowerCase();
+      location += "alphabets";
     }
+    const source = `${location}/${speakerName}/${keyName}.ogg`;
 
-    if (voicesButton) {
-      voicesButton.addEventListener("click", (e) => {
-        e.stopPropagation();
-        voicesOptionsContainer?.classList.toggle("show");
-      });
-    }
-
-    voiceOptionElements.forEach((option) => {
-      option.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const target = e.currentTarget as HTMLElement;
-        setSpeaker(target.dataset.name, target.textContent || "Voice");
-      });
-    });
-
-    document.addEventListener("click", (e) => {
-      if (
-        voicesButton &&
-        !voicesButton.contains(e.target as Node) &&
-        voicesOptionsContainer &&
-        !voicesOptionsContainer.contains(e.target as Node)
-      ) {
-        voicesOptionsContainer.classList.remove("show");
-      }
-    });
-
-    if (muteButton) {
-      muteButton.addEventListener("click", (e: MouseEvent) => {
-        isMuted = !isMuted;
-        audioPlayer.muted = isMuted;
-        const target = e.target as HTMLButtonElement;
-        target.classList.toggle("mute");
-      });
-    }
-
-    const getEmoji = (letter: string): string => {
-      type List = { [key: string]: number[] };
-      const upperCase = letter.toUpperCase();
-      const list = (emojiList as List)[upperCase];
-      if (list && list.length) {
-        const codePoint = getRandomValue(list);
-        return String.fromCodePoint(codePoint);
-      }
-      return "";
-    };
-
-    const attachAudio = (key: string, isNumberSound = false) => {
-      if (!speakerName) {
-        console.warn("No speaker selected. Cannot play audio.");
-        return;
-      }
-
-      let keyName;
-      let location = "/assets/media/";
-      if (isNumberSound) {
-        keyName = key.replace("Digit", "");
-        location += "numbers";
-      } else {
-        keyName = key.replace("Key", "").toLowerCase();
-        location += "alphabets";
-      }
-      const source = `${location}/${speakerName}/${keyName}.ogg`;
-
-      if (audioPlayer) {
-        audioPlayer.src = source;
-        audioPlayer.load();
-        audioPlayer.oncanplaythrough = async () => {
-          if (!isMuted) {
-            try {
-              await audioPlayer.play();
-            } catch (playError: unknown) {
-              if (
-                playError instanceof Error &&
-                (playError.name === "NotAllowedError" || playError.name === "NotSupportedError")
-              ) {
-                console.error(`Audio play error for ${source}: ${playError.name}. User interaction might be required.`);
-              } else {
-                console.error(`Audio play error for ${source}:`, playError);
-              }
+    if (audioPlayer) {
+      audioPlayer.src = source;
+      audioPlayer.load();
+      audioPlayer.oncanplaythrough = async () => {
+        if (!isMuted) {
+          try {
+            await audioPlayer.play();
+          } catch (playError: unknown) {
+            if (
+              playError instanceof Error &&
+              (playError.name === "NotAllowedError" || playError.name === "NotSupportedError")
+            ) {
+              console.error(`Audio play error for ${source}: ${playError.name}. User interaction might be required.`);
+            } else {
+              console.error(`Audio play error for ${source}:`, playError);
             }
           }
-        };
-        audioPlayer.onerror = () => {
-          console.error(`Error loading audio source: ${source}`, audioPlayer.error);
-        };
-      }
-    };
-
-    const isNonPrintingKey = (e: KeyboardEvent): boolean => {
-      const { altKey, ctrlKey, metaKey, shiftKey } = e;
-      return metaKey || ctrlKey || shiftKey || altKey;
-    };
-
-    document.addEventListener("keydown", (e: KeyboardEvent) => {
-      const { key, keyCode, which, code } = e;
-      if (!mainBlock) return;
-
-      if (!isNonPrintingKey(e)) {
-        if (isAlphabet(which)) {
-          const emoji = getEmoji(key);
-          mainBlock.innerHTML = key + emoji;
-          if (muteButton) attachAudio(code);
-        } else if (isNumber(keyCode)) {
-          mainBlock.innerHTML = key;
-          if (muteButton) attachAudio(code, true);
-        } else {
-          const x = String.fromCodePoint(112080);
-          mainBlock.innerHTML = x;
         }
+      };
+      audioPlayer.onerror = () => {
+        console.error(`Error loading audio source: ${source}`, audioPlayer.error);
+      };
+    }
+  };
+
+  const isNonPrintingKey = (e: KeyboardEvent): boolean => {
+    const { altKey, ctrlKey, metaKey, shiftKey } = e;
+    return metaKey || ctrlKey || shiftKey || altKey;
+  };
+
+  document.addEventListener("keydown", (e: KeyboardEvent) => {
+    const { key, keyCode, which, code } = e;
+    if (!mainBlock) return;
+
+    if (!isNonPrintingKey(e)) {
+      if (isAlphabet(which)) {
+        const emoji = getEmoji(key);
+        mainBlock.innerHTML = key + emoji;
+        if (muteButton) attachAudio(code);
+      } else if (isNumber(keyCode)) {
+        mainBlock.innerHTML = key;
+        if (muteButton) attachAudio(code, true);
+      } else {
+        const x = String.fromCodePoint(112080);
+        mainBlock.innerHTML = x;
       }
-    });
-  </script>
+    }
+  });
+</script>

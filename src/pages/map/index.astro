@@ -37,7 +37,7 @@ const meta = {
         categories.map((category: Category) => (
           <a href={`/map/${category.id}`} class="explore-card">
             <div class="card-image">
-              <Image src={category.image} alt={category.title} width={400} height={225} />
+              <Image src={category.image} alt={category.title} width={400} height={225} loading={"eager"} />
             </div>
             <div class="card-content">
               <div class="card-header">
