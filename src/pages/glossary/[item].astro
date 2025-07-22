@@ -21,16 +21,16 @@ const { title, data, category } = categoryData || {};
 if (!categoryData) {
   throw new Error("Glossary category not found");
 }
+
+const meta = {
+  title,
+  description: `Explore glossary term: ${title}. Learn definitions and examples!`
+};
 ---
 
-<BaseLayout
-  meta={{
-    title,
-    description: `Explore glossary term: ${title}. Learn definitions and examples!`
-  }}
->
+<BaseLayout meta={meta}>
   <Fragment slot="header-left">
-    <SharePopover title={title} description={`Explore glossary term: ${title}. Learn definitions and examples!`} />
+    <SharePopover />
     <Help title="Glossary" description="Learn new information from the selected category!" />
   </Fragment>
   <div class="container__page">

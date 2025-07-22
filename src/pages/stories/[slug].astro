@@ -50,9 +50,14 @@ if (!Content) {
   Astro.redirect("/404");
   return;
 }
+
+const meta = {
+  title: "Stories",
+  description: validatedData.description
+};
 ---
 
-<BaseLayout meta={{ title: "Stories", description: validatedData.description }}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-left">
     <SharePopover />
     <Help title="Stories" description="Read and learn! 😄" />

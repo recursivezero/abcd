@@ -8,13 +8,9 @@ import "@/assets/styles/cards/queue.css";
 import SharePopover from "@/components/ShareButton.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 
-const pageTitle = "Queue | Interactive Alphabet";
-const pageDescription =
-  "Explore the interactive alphabet with images and descriptions for each letter in a queue format.";
-
-const pageMeta = {
-  title: pageTitle,
-  description: pageDescription
+const meta = {
+  title: "Queue Alphabet",
+  description: "Explore the interactive alphabet with images and descriptions for each letter in a queue format."
 };
 
 interface AlphabetItem {
@@ -45,7 +41,7 @@ function randomAngle(max: number, min: number): number {
 let currentIndex = 0;
 ---
 
-<BaseLayout meta={pageMeta}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-right">
     <KeyboardTrigger />
     <SharePopover />

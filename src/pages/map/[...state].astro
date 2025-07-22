@@ -39,11 +39,16 @@ const population = stateInfo.population || 0;
 const literacy_rate = stateInfo.literacy_rate || 0;
 const languages = stateInfo.languages || [];
 const major_rivers = stateInfo.major_rivers || [];
+
+const meta = {
+  title: `${name} - ${dance}`,
+  description: `${name} is known for its vibrant ${dance} dance form and rich cultural heritage.`
+};
 ---
 
-<BaseLayout meta={{ title: `${name} - ${dance}`, description }}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-left">
-    <SharePopover title={`${name} - ${dance}`} description={description} />
+    <SharePopover />
     <Help title="India" description="Learn new information about the selected state!" />
   </Fragment>
   <section class="state-page">
