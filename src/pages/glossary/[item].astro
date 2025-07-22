@@ -15,15 +15,11 @@ export async function getStaticPaths() {
 }
 
 const { item } = Astro.params;
-const categoryData = item ? (glossaryData as any)[item] : undefined;
+const categoryData = item ? (glossaryData as any)[item] : {};
 const { title, data, category } = categoryData || {};
 
-if (!categoryData) {
-  throw new Error("Glossary category not found");
-}
-
 const meta = {
-  title,
+  title: `Glossary • ${title}`,
   description: `Explore glossary term: ${title}. Learn definitions and examples!`
 };
 ---

@@ -28,7 +28,7 @@
   padding: 0.5rem;
 }
 
-.container__reader>.letter {
+.container__reader > .letter {
   width: 100%;
   box-sizing: border-box;
   margin-left: 4rem;
@@ -187,7 +187,7 @@
     font-size: min(200rem, 70vw);
   }
 
-  .container__reader>.letter {
+  .container__reader > .letter {
     justify-content: center;
     margin-left: auto;
   }
