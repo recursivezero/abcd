@@ -36,20 +36,18 @@ const sections = [
   }
 ];
 
-const title = "Varnmala";
+const meta = {
+  title: "Varnmala",
+  description:
+    "Explore the vowels and consonants of different Indian languages. Compare scripts and sounds across regions in a simple, visual way."
+};
 ---
 
-<BaseLayout
-  meta={{
-    title: "Varnmala",
-    description:
-      "Explore the vowels and consonants of different Indian languages. Compare scripts and sounds across regions in a simple, visual way."
-  }}
->
+<BaseLayout meta={meta}>
   <Back />
   <div class="container__varnmala">
     <div class="varnmala__header">
-      <h2 class="title">{title}</h2>
+      <h2 class="title">{meta.title}</h2>
     </div>
     <ul class="list__alphabets">
       {

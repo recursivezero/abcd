@@ -1,15 +1,15 @@
 ---
-import BaseLayout from "@/layouts/Base";
-import { Content, frontmatter } from "@/content/article/cookies.md";
 import "@/assets/styles/cookies.css";
+import { Content, frontmatter } from "@/content/article/cookies.md";
+import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: frontmatter.title,
+  description: frontmatter.description || "Read about our cookie policy and how we use cookies on abcdkbd.com."
+};
 ---
 
-<BaseLayout
-  meta={{
-    title: frontmatter.title,
-    description: frontmatter.description || "Read about our cookie policy and how we use cookies on abcdkbd.com."
-  }}
->
+<BaseLayout meta={meta}>
   <article class="article-container">
     <header class="article-header">
       <h1>{frontmatter.title}</h1>

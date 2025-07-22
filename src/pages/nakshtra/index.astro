@@ -7,6 +7,11 @@ import SharePopover from "@/components/ShareButton.astro";
 import { data } from "@/data/nakshtra.json";
 import BaseLayout from "@/layouts/Base";
 var currentLang = "hindi";
+
+const meta = {
+  title: "Nakshtra",
+  description: "Explore all 27 Nakshatras (lunar mansions) in Vedic astrology."
+};
 ---
 
 <style>
@@ -36,19 +41,10 @@ var currentLang = "hindi";
   }
 </style>
 
-<BaseLayout
-  meta={{
-    title: "Nakshatra Nexus",
-    description:
-      "Explore all 27 Nakshatras (lunar mansions) in Vedic astrology. Learn their meanings, symbols, and ruling deities."
-  }}
->
+<BaseLayout meta={meta}>
   <BackIcon />
   <Fragment slot="header-right">
-    <SharePopover
-      title="Nakshatra Nexus"
-      description="Explore all 27 Nakshatras (lunar mansions) in Vedic astrology. Learn their meanings, symbols, and ruling deities."
-    />
+    <SharePopover />
     <Help
       title="Nakshtra"
       description="In Hindu astrology, Nakshatra (नक्षत्र) refers to a constellation or lunar mansion, specifically a division of the zodiac used to determine the position of the moon."
