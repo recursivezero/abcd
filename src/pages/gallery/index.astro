@@ -8,8 +8,9 @@ import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 
 const meta = {
-  title: "Alphabet Gallery: Learn with Motion",
-  description: "Choose your display mode to explore the world of cards"
+  title: "Gallery",
+  description:
+    "Discover interactive ways to learn alphabets with Stack, Queue, and Slider gallery layouts. Choose your favorite mode to visualize and play with alphabet cards."
 };
 ---
 
@@ -17,30 +18,33 @@ const meta = {
   <Back />
   <Fragment slot="header-right">
     <SharePopover />
-    <Help title="Gallery" description="Different Gallery layout of stack of alphabetcards." />
+    <Help title="Gallery" description="Different Gallery layout of stack of alphabet cards." />
   </Fragment>
   <div class="selection-container">
-    <h1 class="selection-title">Explore Alphabet Gallery</h1>
+    <h1 class="selection-title">Alphabet Gallery</h1>
+    <p class="gallery-subtitle">
+      Discover interactive ways to learn alphabets: Stack, Queue, and Slider layouts for playful exploration.
+    </p>
     <div class="selection-buttons-grid">
       <a href="/gallery/stack" class="selection-card">
         <div class="card-icon">
           <Stack />
         </div>
-        <h2 class="card-title">Stack Display</h2>
+        <h2 class="card-title">Stack</h2>
         <p class="card-description">Craft Your Alphabet Tower</p>
       </a>
       <a href="/gallery/queue" class="selection-card">
         <div class="card-icon">
           <Queue />
         </div>
-        <h2 class="card-title">Queue Display</h2>
+        <h2 class="card-title">Queue</h2>
         <p class="card-description">Customize Your Alphabet Flow</p>
       </a>
       <a href="/gallery/slider" class="selection-card">
         <div class="card-icon">
           <Queue />
         </div>
-        <h2 class="card-title">Slider Display</h2>
+        <h2 class="card-title">Slider</h2>
         <p class="card-description">Customize Your Alphabet Flow</p>
       </a>
     </div>

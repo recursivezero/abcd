@@ -32,7 +32,6 @@
       "@/components/*": ["src/components/*"],
       "@/layouts/*": ["src/layouts/*.astro"],
       "@/utils/*": ["src/utils/*"],
-      "@/libs": ["src/libs/index.ts"],
       "@/hooks/*": ["src/hooks/*"],
       "@/types": ["src/types/index.ts"],
       "@/mocks/*": ["src/mocks/*"],

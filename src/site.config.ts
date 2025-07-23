@@ -1,8 +1,8 @@
 export const siteConfig = {
   author: "Recursive Zero",
-  title: "parixan.xyz",
-  description: "A testing pad for recursivezero",
-  ogImage: "abcd.png",
+  title: "abcdkbd.com",
+  description: "A learning pad for kids",
+  ogImage: "/assets/images/abcd.png",
   lang: "en-GB",
   ogLocale: "en_GB",
   date: {

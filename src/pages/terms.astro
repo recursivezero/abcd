@@ -1,6 +1,12 @@
 ---
 import { Content } from "@/content/terms-and-conditions.md";
 import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Terms and Conditions",
+  description:
+    "Read our terms and conditions to understand the rules and guidelines for using abcdkbd's learning platform."
+};
 ---
 
 <style is:inline>
@@ -9,6 +15,6 @@ import BaseLayout from "@/layouts/Base";
   }
 </style>
 
-<BaseLayout meta={{ title: "Terms and Condition" }}>
+<BaseLayout meta={meta}>
   <article><Content /></article>
 </BaseLayout>

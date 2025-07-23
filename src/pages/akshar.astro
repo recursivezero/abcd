@@ -1,0 +1,22 @@
+---
+import "@/assets/styles/indic.css";
+import BackIcon from "@/components/Back.astro";
+import Help from "@/components/Help.astro";
+import IndicLanguageGrid from "@/components/IndicLanguageGrid.astro";
+import SharePopover from "@/components/ShareButton.astro";
+import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Akshar",
+  description: "Learn alphabets of different Indian languages by alphabet comparison."
+};
+---
+
+<BaseLayout meta={meta}>
+  <BackIcon />
+  <Fragment slot="header-right">
+    <SharePopover />
+    <Help title="Indic Alphabets" description="Learn alphabets of different Indian languages by alphabet comparison." />
+  </Fragment>
+  <IndicLanguageGrid primary="hi" secondary="kn" />
+</BaseLayout>

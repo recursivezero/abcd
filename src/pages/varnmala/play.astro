@@ -5,9 +5,14 @@ import Help from "@/components/Help.astro";
 import BackButton from "@/components/BackButton.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
+
+const meta = {
+  title: "Varnmala • Hear & Play",
+  description: "Press any letter key to display and hear it. Customize the voice which you like."
+};
 ---
 
-<BaseLayout meta={{ title: "Hear and Play" }}>
+<BaseLayout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
     <div class="controls" id="controls">

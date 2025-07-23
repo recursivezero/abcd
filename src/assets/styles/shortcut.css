@@ -1,0 +1,158 @@
+/* Help Menu Styles */
+
+.help-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+.help-popup.is-open {
+  display: flex;
+}
+.help-menu {
+  color: #222;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+  width: 95vw;
+  max-width: 700px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1.5px solid #e1e4e8;
+}
+.help-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 8px 20px;
+  border-bottom: 1px solid #e1e4e8;
+  background: #f6f8fa;
+}
+.help-menu-header h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+}
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #586069;
+  padding: 0 4px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.close-button:hover {
+  background: #eaecef;
+}
+.help-menu-content.grid {
+  display: flex;
+  gap: 0;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 16px 12px;
+  overflow-y: auto;
+  border-top: 1px solid #e1e4e8;
+  /* background: #f6f8fa; */
+  position: relative;
+}
+.shortcut-section {
+  flex: 1;
+  min-width: 0;
+  border: 1.5px solid #e1e4e8;
+  border-radius: 8px;
+  margin: 0 8px;
+  padding: 12px 8px 8px 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  font-size: 15px;
+  max-width: 320px;
+}
+.shortcut-section:first-child {
+  margin-left: 0;
+}
+.shortcut-section:last-child {
+  margin-right: 0;
+}
+.shortcut-section h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e1e4e8;
+  padding-bottom: 6px;
+  color: #24292e;
+  border-radius: 6px 6px 0 0;
+}
+.shortcut-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: none;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  font-size: 14px;
+}
+.shortcut-table tr {
+  height: 2.2em; /* or use min-height if you prefer */
+}
+
+.shortcut-table td {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 0.35rem 0.7rem;
+  font-size: 14px;
+  background: transparent;
+  transition: background 0.15s;
+}
+.shortcut-table tr:last-child td {
+  border-bottom: none;
+}
+.shortcut-table tr:hover td {
+  background: #f0f3f6;
+}
+.shortcut-table kbd {
+  background: #f6f8fa;
+  border: 1px solid #d1d5da;
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 13px;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-family: inherit;
+  box-shadow: 0 1px 0 #d1d5da;
+}
+.shortcut-table tr:not(:last-child) {
+  border-bottom: 1px solid #eee; /* optional: adds a subtle divider */
+}
+@media (max-width: 600px) {
+  .help-menu-content.grid {
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 2px;
+  }
+  .shortcut-section {
+    margin: 0 0 12px 0;
+    border-radius: 8px;
+    max-width: 100%;
+  }
+}
+
+.keys {
+  text-align: end;
+}
+.rows {
+  margin: 3px;
+}

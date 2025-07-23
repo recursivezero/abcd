@@ -7,6 +7,8 @@ import { DATASET } from "@/mappers/dataset";
 import SharePopover from "@/components/ShareButton.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 
+import { capitalizeThis } from "@/utils/common";
+
 export const prerender = true;
 
 export async function getStaticPaths() {
@@ -23,9 +25,16 @@ const defaultCategory = {
 };
 const { alphabet } = Astro.params;
 const currentCategory = DATASET[alphabet] || defaultCategory;
+
+const meta = {
+  title: `Playground • ${capitalizeThis(alphabet)}`,
+  description: `Type or navigate to interactively explore the "${capitalizeThis(
+    alphabet
+  )}" alphabet set using keyboard or arrows.`
+};
 ---
 
-<BaseLayout meta={{ title: `${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} - Playground` }}>
+<BaseLayout meta={meta}>
   <div class="container__heading">
     <BackButton />
     <span class="info">Press a key to see the magic</span>
@@ -34,8 +43,8 @@ const currentCategory = DATASET[alphabet] || defaultCategory;
     <KeyboardTrigger />
     <SharePopover />
     <Help
-      title={`${alphabet?.charAt(0).toUpperCase() + alphabet?.slice(1)} Playground`}
-      description="Press any letter key (A-Z) or number key (0-9) to see the corresponding information from the selected alphabet category."
+      title={meta.title}
+      description="Press Next Arrow >  to get next letter. navigate through < and > from your keyboard"
     />
   </Fragment>
   <div class="container__main">

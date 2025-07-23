@@ -351,7 +351,6 @@
   z-index: 100;
 }
 
-*:focus {
-  outline: none;
-  box-shadow: none;
+select {
+  color: white;
 }

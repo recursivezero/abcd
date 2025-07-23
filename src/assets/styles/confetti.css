@@ -1,0 +1,122 @@
+#confetti rect {
+  opacity: 0;
+}
+
+#confetti rect:nth-child(1) {
+  transform-origin: 45px 5px;
+  transform: rotate(-145deg);
+  animation: blast 631ms 88ms infinite ease-out;
+}
+
+#confetti rect:nth-child(2) {
+  transform-origin: 87px 5px;
+  transform: rotate(164deg);
+  animation: blast 442ms 131ms infinite ease-out;
+}
+
+#confetti rect:nth-child(3) {
+  transform-origin: 128px 6px;
+  transform: rotate(4deg);
+  animation: blast 662ms 92ms infinite ease-out;
+}
+
+#confetti rect:nth-child(4) {
+  transform-origin: 170px 6px;
+  transform: rotate(-175deg);
+  animation: blast 593ms 17ms infinite ease-out;
+}
+
+#confetti rect:nth-child(5) {
+  transform-origin: 213px 5px;
+  transform: rotate(-97deg);
+  animation: blast 476ms 122ms infinite ease-out;
+}
+
+#confetti rect:nth-child(6) {
+  transform-origin: 255px 6px;
+  transform: rotate(57deg);
+  animation: blast 381ms 271ms infinite ease-out;
+}
+
+#confetti rect:nth-child(7) {
+  transform-origin: 297px 5px;
+  transform: rotate(-46deg);
+  animation: blast 619ms 131ms infinite ease-out;
+}
+
+#confetti rect:nth-child(8) {
+  transform-origin: 338px 6px;
+  transform: rotate(-65deg);
+  animation: blast 668ms 85ms infinite ease-out;
+}
+
+#confetti rect:nth-child(9) {
+  transform-origin: 380px 6px;
+  transform: rotate(13deg);
+  animation: blast 377ms 128ms infinite ease-out;
+}
+
+#confetti rect:nth-child(10) {
+  transform-origin: 423px 5px;
+  transform: rotate(176deg);
+  animation: blast 508ms 311ms infinite ease-out;
+}
+
+#confetti rect:nth-child(11) {
+  transform-origin: 465px 5px;
+  transform: rotate(108deg);
+  animation: blast 595ms 108ms infinite ease-out;
+}
+
+#confetti rect:nth-child(12) {
+  transform-origin: 506px 6px;
+  transform: rotate(62deg);
+  animation: blast 375ms 105ms infinite ease-out;
+}
+
+#confetti rect:nth-child(13) {
+  transform-origin: 549px 5px;
+  transform: rotate(16deg);
+  animation: blast 491ms 149ms infinite ease-out;
+}
+
+/* pattern-based styling */
+#confetti rect:nth-child(odd) {
+  fill: #65bb5c;
+}
+
+#confetti rect:nth-child(even) {
+  fill: #33aaff;
+}
+
+#confetti rect:nth-child(4n) {
+  fill: #f23b14;
+  animation-duration: 1400ms !important;
+}
+
+#confetti rect:nth-child(3n) {
+  animation-duration: 1750ms !important;
+  animation-delay: 700ms !important;
+}
+
+#confetti rect:nth-child(4n-7) {
+  fill: #2a2f6a;
+}
+
+#confetti rect:nth-child(6n) {
+  fill: #fbba23;
+}
+
+@keyframes blast {
+  from {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(90px);
+  }
+}

@@ -1,5 +1,6 @@
 abcdkbd
 Abhijit
+Akshar
 argmax
 argmin
 Ashadha
@@ -48,6 +49,7 @@ kmeans
 Kolkata
 letterpad
 linalg
+lintify
 lucide
 LXXX
 Madhyam

@@ -669,3 +669,12 @@
     min-height: 1500px;
   }
 }
+
+.option-label:has(input:checked) {
+  background-color: var(--primary);
+  color: var(--text);
+}
+
+.question-card:has(input:checked) {
+  border-style: solid;
+}

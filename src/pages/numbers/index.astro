@@ -49,19 +49,21 @@ Object.entries(NumberData)
     }
   });
 
-const title = "Numbers";
-const subtitle = "Explore various categories of numbers";
+const meta = {
+  title: "Numbers",
+  description: "Explore various categories of numbers"
+};
 ---
 
-<BaseLayout meta={{ title: "Numbers" }}>
+<BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
     <SharePopover />
   </Fragment>
   <section class="container__board">
     <div class="board__header">
-      <h1 class="title">{title}</h1>
-      <p class="subtitle">{subtitle}</p>
+      <h1 class="title">{meta.title}</h1>
+      <p class="subtitle">Explore various categories of numbers</p>
     </div>
     <ul class="board__list">
       {

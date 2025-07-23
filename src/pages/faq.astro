@@ -1,26 +1,30 @@
 ---
+import "@/assets/styles/faq.css";
+import faqData from "@/data/faq.json";
 import BaseLayout from "@/layouts/Base";
 import TitleLayout from "@/layouts/TitleLayout";
-import faqData from "@/data/faq.json";
-import "@/assets/styles/faq.css";
+
+const meta = {
+  title: "FAQs",
+  description:
+    "Find answers to frequently asked questions about abcdkbd's learning platform, features, and educational resources."
+};
 ---
 
-<BaseLayout meta={{ title: "Frequently Asked Questions" }}>
+<BaseLayout meta={meta}>
   <TitleLayout title="Frequently Asked Questions" />
-
-  <div class="faq-container">
+  <section class="faq-container">
     {
       faqData.map((item) => (
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span>{item.question}</span>
-            <i class="fa-solid fa-chevron-down icon" />
-          </summary>
-          <div class="faq-answer">
-            <p>{item.answer}</p>
-          </div>
-        </details>
+        <article>
+          <details class="faq-item">
+            <summary class="faq-question">{item.question}</summary>
+            <div class="faq-answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        </article>
       ))
     }
-  </div>
+  </section>
 </BaseLayout>

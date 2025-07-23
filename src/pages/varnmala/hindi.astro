@@ -2,9 +2,9 @@
 import AlphabetComponent from "@/components/Alphabet.astro";
 import BackButton from "@/components/BackButton.astro";
 import Help from "@/components/Help.astro";
+import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import { hindiVowelList, varnmala_hindi } from "@/utils/characters";
-import SharePopover from "@/components/ShareButton.astro";
 
 // Vowels to be excluded
 const vowelsToRemove = ["ऌ", "ऎ", "ऒ"];
@@ -13,24 +13,31 @@ const vowelsToRemove = ["ऌ", "ऎ", "ऒ"];
 const formattedVowelList = hindiVowelList
   .filter((vowel) => !vowelsToRemove.includes(vowel.value))
   .map((vowel) => ({
-    letter: vowel.value, // Using the 'value' property which holds the character
-    code: vowel.key // Using the 'key' property for the 'code'
+    letter: vowel.value,
+    code: vowel.key
   }));
+
+const meta = {
+  title: "Varnmala • Hindi",
+  description:
+    "Learn Hindi alphabets with vowels and consonants in a clean, interactive format designed especially for young learners and beginners."
+};
 ---
 
-<BaseLayout meta={{ title: "Hindi" }}>
+<BaseLayout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
     <SharePopover />
     <Help
       title="Hindi"
-      description="It is a collection of alphabets in Hindi. It is used to teach kids the basics of language."
+      description="It is a collection of alphabets in Hindi. It is used to teach kids the basics of Hindi language."
     />
   </Fragment>
 
   <article class="container__varnmala">
     {/* Section for Hindi Vowels */}
     <AlphabetComponent list={formattedVowelList} title="Hindi Vowels (स्वर)" />
+
     {/* Section for Hindi Consonants */}
     <AlphabetComponent list={varnmala_hindi} title="Hindi Consonants (व्यंजन)" />
   </article>

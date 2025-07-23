@@ -15,13 +15,21 @@ type Category = {
 };
 
 const categories: Category[] = Object.values(categoryData.categories);
+
+const meta = {
+  title: "Explore India",
+  description: "Explore India's states, capitals, and regions with an interactive map."
+};
 ---
 
-<BaseLayout meta={{ title: "Explore India" }}>
+<BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
     <SharePopover />
-    <Help title="Capital" description="An Interactive Journey Through India's States and Territories. " />
+    <Help
+      title="Capital"
+      description="An Interactive Journey Through India's States and Territories,click on any state to see more details"
+    />
   </Fragment>
   <main class="explore-container">
     <div class="explore-grid">
@@ -29,7 +37,7 @@ const categories: Category[] = Object.values(categoryData.categories);
         categories.map((category: Category) => (
           <a href={`/map/${category.id}`} class="explore-card">
             <div class="card-image">
-              <Image src={category.image} alt={category.title} width={400} height={225} />
+              <Image src={category.image} alt={category.title} width={400} height={225} loading={"eager"} />
             </div>
             <div class="card-content">
               <div class="card-header">

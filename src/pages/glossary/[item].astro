@@ -15,15 +15,16 @@ export async function getStaticPaths() {
 }
 
 const { item } = Astro.params;
-const categoryData = item ? (glossaryData as any)[item] : undefined;
+const categoryData = item ? (glossaryData as any)[item] : {};
 const { title, data, category } = categoryData || {};
 
-if (!categoryData) {
-  throw new Error("Glossary category not found");
-}
+const meta = {
+  title: `Glossary • ${title}`,
+  description: `Explore glossary term: ${title}. Learn definitions and examples!`
+};
 ---
 
-<BaseLayout meta={{ title }}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-left">
     <SharePopover />
     <Help title="Glossary" description="Learn new information from the selected category!" />

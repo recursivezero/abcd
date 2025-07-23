@@ -6,6 +6,11 @@ import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import { DATASET } from "@/mappers/dataset";
 
+const meta = {
+  title: "Alphabets Explorer",
+  description: "Choose a category to discover different alphabet representations"
+};
+
 const title = "Alphabet Categories";
 const subtitle = "Choose a category to discover different alphabet representations";
 
@@ -23,7 +28,7 @@ const categoryList = categories.map((category, index) => ({
 }));
 ---
 
-<BaseLayout meta={{ title: "Alphabets Explorer" }}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-right">
     <SharePopover />
   </Fragment>

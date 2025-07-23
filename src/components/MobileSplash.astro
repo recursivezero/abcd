@@ -1,11 +1,11 @@
 ---
-import "@/assets/styles/MobileSplash.css";
+import "@/assets/styles/mobile-splash.css";
 import { Image } from "astro:assets";
-import logoImage from "public/assets/images/ABCD.png";
+import logoImage from "public/assets/images/abcd.png";
 const { stay } = Astro.props;
 ---
 
-<div id="mobile-splash-wrapper" class="container_splash">
+<div id="mobile-splash-wrapper" class="container__splash">
   <div class="container_splash_card">
     <Image src={logoImage} alt="logo of abcd" width="50" height="50" />
     <h1 class="container_splash_heading"><strong>This page is best experienced on desktop</strong></h1>

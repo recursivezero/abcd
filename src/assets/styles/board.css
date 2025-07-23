@@ -1,4 +1,6 @@
 .container__board {
+  container-type: inline-size;
+  container-name: board;
   max-width: 80vw;
   margin: 0 auto;
   min-height: 100vh;
@@ -50,7 +52,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1470px) {
   .container__board {
     & .board__list {
       grid-template-columns: repeat(2, 1fr);

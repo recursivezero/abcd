@@ -82,7 +82,7 @@ export const NavbarLinks: LinkProps[] = [
     name: "About",
     title: "About",
     path: "/about",
-    isActive: false
+    isActive: true
   },
   {
     name: "Varnmala",
@@ -165,9 +165,9 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   },
   {
-    name: "Indic",
-    title: "Indic",
-    path: "/indic",
+    name: "Akshar",
+    title: "Akshar",
+    path: "/akshar",
     isActive: true
   },
   {
@@ -210,6 +210,12 @@ export const NavbarLinks: LinkProps[] = [
     name: "Stories",
     title: "Stories",
     path: "/stories",
+    isActive: true
+  },
+  {
+    name: "Poems",
+    title: "Poems",
+    path: "/poems",
     isActive: true
   }
 ];

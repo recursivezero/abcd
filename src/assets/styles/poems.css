@@ -1,0 +1,43 @@
+:root {
+  --container-bg: #0f172a;
+  --color: #cbeafe;
+  --poem-bg-1: #19134e;
+  --poem-bg-2: #4e2513;
+  --poem-bg-3: #134e4a;
+  --poem-bg-4: #13444e;
+  --poem-bg-5: #13324e;
+  --poem-bg-6: #131f4e;
+
+  --poem-text-color: #ffffff;
+}
+
+[data-theme="dark"] {
+  --container-bg: #0f172a;
+  --color: #cbeafe;
+  --poem-bg-1: #19134e;
+  --poem-bg-2: #4e2513;
+  --poem-bg-3: #134e4a;
+  --poem-bg-4: #13444e;
+  --poem-bg-5: #13324e;
+  --poem-bg-6: #131f4e;
+
+  --poem-text-color: #ffffff;
+}
+
+[data-theme="light"] {
+  --container-bg: #fefcfb;
+  --color: #1a237e;
+  --poem-bg-1: #fecaca;
+  --poem-bg-2: #bfdbfe;
+  --poem-bg-3: #bbf7d0;
+  --poem-bg-4: #fef08a;
+  --poem-bg-5: #fed7aa;
+  --poem-bg-6: #ddd6fe;
+
+  --poem-text-color: #222;
+}
+
+.container__poems {
+  font-family: "roboto", sans-serif;
+  color: var(--color);
+}

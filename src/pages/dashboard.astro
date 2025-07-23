@@ -1,0 +1,35 @@
+---
+import "@/assets/styles/dashboard.css";
+import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Dashboard",
+  description: "abcdkbd.com dashboard to manage your account, view activity, and access learning resources."
+};
+---
+
+<BaseLayout meta={meta}>
+  <main class="dashboard-page">
+    <div class="dashboard-container">
+      <h1 class="welcome-message">Hello there!</h1>
+      <p class="dashboard-info">
+        This is your personal dashboard. From here you can manage your account, view your activity, and much more.
+      </p>
+      <button id="add-voice-btn" class="dashboard-action-btn">Add Voice</button>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.getElementById("logout-btn");
+    logoutButton?.addEventListener("click", () => {
+      window.location.href = "/login";
+    });
+
+    const addVoiceButton = document.getElementById("add-voice-btn");
+    addVoiceButton?.addEventListener("click", () => {
+      window.location.href = "/record";
+    });
+  });
+</script>

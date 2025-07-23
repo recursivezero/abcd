@@ -26,6 +26,16 @@ Created Repo from template
 - Added Nakshtra Page
 - Home Page Redesign
 
+## [3.2.0] - 2025-07-20
+
+- Added Poem section
+
+## [3.2.2] - 2025-07-21
+
+- Update Storey page images issues
+- Mobile view fixed for pages
+- FAQs updated
+
 ### [Unreleased]
 
 Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.

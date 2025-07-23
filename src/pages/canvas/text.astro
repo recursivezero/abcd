@@ -2,19 +2,19 @@
 import BackButton from "@/components/BackButton.astro";
 import CanvasGenerator from "@/components/CanvasGenerator.astro";
 import Help from "@/components/Help.astro";
-import BaseLayout from "@/layouts/Base";
 import SharePopover from "@/components/ShareButton.astro";
+import BaseLayout from "@/layouts/Base";
 
 const meta = {
-  title: "Canvas Image Generator",
+  title: "Canvas Generator",
   description: "Generate custom canvas images with text or time"
 };
 ---
 
-<BaseLayout {meta}>
+<BaseLayout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
-    <SharePopover />
+    <SharePopover title={meta.title} description={meta.description} />
     <Help
       title="Canvas Image Generator"
       description="Generate custom canvas images with text or time. You can customize the text, font, and background color. You can also add the current time to the image."

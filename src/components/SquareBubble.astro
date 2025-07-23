@@ -1,0 +1,16 @@
+---
+import "@/assets/styles/bubble.css";
+---
+
+<div class="bubble__container">
+  <div class="bubble__board">
+    <div class="slot">
+      <slot name="bobble-context" />
+    </div>
+    <div class="bubble__area">
+      <ul class="bubble_square">
+        {Array.from({ length: 10 }, (_, i) => <li data-id={i + 1} />)}
+      </ul>
+    </div>
+  </div>
+</div>

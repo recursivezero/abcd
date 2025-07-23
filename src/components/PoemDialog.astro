@@ -1,0 +1,138 @@
+---
+import CloseIcon from "@/assets/icons/close.svg";
+import "@/assets/styles/poem-dialog.css";
+---
+
+<dialog id="poem-modal" class="poem-dialog">
+  <div class="modal-content">
+    <div class="model-buttons">
+      <button id="audio-toggle" class="speaker-btn" title="Play Poem"> </button>
+      <button id="close-modal" class="close" aria-label="Close">
+        <CloseIcon />
+      </button>
+    </div>
+    <h2 class="modal-title" id="modal-title"></h2>
+    <p id="modal-lines" class="lines highlight-line"></p>
+  </div>
+</dialog>
+
+<script type="module" is:inline>
+  const modal = document.getElementById("poem-modal");
+  const closeBtn = document.getElementById("close-modal");
+  const titleEl = document.getElementById("modal-title");
+  const linesEl = document.getElementById("modal-lines");
+  const audioToggle = document.getElementById("audio-toggle");
+
+  //const line = document.querySelector(".highlight-line");
+  //const words = line.dataset.text.split(" ");
+
+  //line.innerHTML = words.map((word, i) => `<span style="--index:${i}">${word}</span>`).join(" ");
+
+  let isMuted = true;
+  let currentText = "";
+  let currentLang = "en_GB";
+  let availableVoices = [];
+  let voicesLoadedPromise = null;
+
+  const svgMuted = `
+<svg id="audio-icon" class="audio-icon" xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <path d="M13 3L7 8H5C3.895 8 3 8.895 3 10V14C3 15.105 3.895 16 5 16H7L13 21V3Z" 
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 9L22 15M22 9L16 15" 
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+  const svgUnmuted = `
+<svg id="audio-icon" class="audio-icon" xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <path d="M13 3L7 8H5C3.895 8 3 8.895 3 10V14C3 15.105 3.895 16 5 16H7L13 21V3Z" 
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 9C16.5 9.5 17 10.5 17 12C17 13.5 16.5 14.5 16 15" 
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M19 6C20.5 7.5 21 10 21 12C21 14 20.5 16.5 19 18" 
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+  function resetSpeakerButton() {
+    isMuted = true;
+    audioToggle.innerHTML = svgMuted;
+    window.speechSynthesis.cancel();
+  }
+
+  function ensureVoicesLoaded() {
+    if (availableVoices.length > 0) return Promise.resolve();
+    if (voicesLoadedPromise) return voicesLoadedPromise;
+
+    voicesLoadedPromise = new Promise((resolve) => {
+      const voicesNow = speechSynthesis.getVoices();
+      if (voicesNow.length > 0) {
+        availableVoices = voicesNow;
+        resolve();
+      } else {
+        speechSynthesis.onvoiceschanged = () => {
+          availableVoices = speechSynthesis.getVoices();
+          resolve();
+        };
+      }
+    });
+    return voicesLoadedPromise;
+  }
+
+  async function speakPoem() {
+    if (!currentText || isMuted) return;
+    window.speechSynthesis.cancel();
+    await ensureVoicesLoaded();
+
+    if (availableVoices.length === 0) {
+      audioToggle.innerHTML = `<svg id="audio-icon"viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 9.3345 19.8412 6.93964 18 5.29168M5.63605 5.63605L18.364 18.364" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>`;
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(currentText);
+    let selectedVoice =
+      availableVoices.find(
+        (v) => v.lang === "en-US" && (v.name.includes("Google") || v.name.includes("Microsoft Zira"))
+      ) ||
+      availableVoices.find((v) => v.lang === "en-US") ||
+      availableVoices[0];
+
+    if (!selectedVoice) {
+      audioToggle.innerHTML = `<svg id="audio-icon"viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 9.3345 19.8412 6.93964 18 5.29168M5.63605 5.63605L18.364 18.364" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>`;
+      return;
+    }
+
+    utterance.voice = selectedVoice;
+    utterance.lang = "en-US";
+    utterance.onerror = (event) => console.error("Speech error:", event.error);
+    speechSynthesis.speak(utterance);
+  }
+
+  window.showPoem = async (title, lines) => {
+    titleEl.innerText = title;
+    linesEl.innerText = lines.join("\n");
+
+    resetSpeakerButton();
+    currentText = lines.join(" ");
+    currentLang = "en-US";
+    await ensureVoicesLoaded();
+    modal.showModal();
+  };
+
+  audioToggle.onclick = () => {
+    isMuted = !isMuted;
+    audioToggle.innerHTML = isMuted ? svgMuted : svgUnmuted;
+    if (!isMuted) {
+      speakPoem();
+    } else {
+      speechSynthesis.cancel();
+    }
+  };
+
+  closeBtn.onclick = () => {
+    modal.close();
+    resetSpeakerButton();
+  };
+
+  ensureVoicesLoaded();
+</script>
