@@ -26,53 +26,58 @@ Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 .
+├── abcd.code-workspace
 ├── astro.config.mjs
 ├── astro-i18next.config.mjs
-├── CHANGELOG.MD
-├── components.json
+├── CHANGELOG.md
+├── CNAME
 ├── docs
-│   ├── README.md
-│   └── pages.md        # Documentation for all pages and their functionality
+│   ├── index.html
+│   └── README.md
+├── guide
+│   ├── pages.md
+│   ├── style-guide.md
+│   └── todo.md
 ├── jsconfig.json
 ├── LICENSE
 ├── package.json
 ├── package-lock.json
-├── postcss.config.js
 ├── public
-│   ├── 192x192.png
-│   ├── 512x512.png
-│   ├── android-chrome-192x192.png
-│   ├── android-chrome-512x512.png
-│   ├── apple-touch-icon.png
-│   ├── favicon.svg
-│   ├── logo-white.svg
-│   ├── manifest.webmanifest
-│   ├── profile-placeholder.jpg
-│   ├── robots.txt
-│   ├── sitemap-index.html
-├── README.md
-├── src
 │   ├── assets
-│   ├── components
-│   ├── content
+│   ├── humans.txt
+│   ├── manifest.webmanifest
+│   ├── map
+│   ├── responses
+│   ├── robots.txt
+│   ├── service-worker.js
+│   ├── sitemap-index.html
+│   └── sounds
+├── README.md
+├── setup-hooks.sh
+├── src
+├── assets
+│      ├── icons
+│      ├── screenshots
+│      └── styles
+├── components
+├── content
+│     ├── article
+│     ├── blog
+│     ├── stories
+│   └── terms-and-conditions.md
+│   ├── content.config.ts
+│   ├── data
 │   ├── env.d.ts
-│   ├── hooks
-│   ├── icons
+│   ├── env.patch.ts
 │   ├── layouts
-│   ├── libs
-│   ├── locales
-│   ├── mocks
-│   ├── models
+│   ├── mappers
 │   ├── pages
-│   ├── postcss.config.cjs
 │   ├── site.config.ts
-│   ├── types.ts
+│   ├── types
 │   └── utils
-├── tailwind.config.ts
-├── todo.md
 ├── tsconfig.eslint.json
-├── tsconfig.json
-└── <project>.code-workspace
+└── tsconfig.json
+
 ```
 
 and src
