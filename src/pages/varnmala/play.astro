@@ -75,10 +75,6 @@ const meta = {
   let lastKey: string | null = null; // Store the last key pressed
   let isMuted = false; // Flag to track mute state
 
-  function isAlphabet(keyCode: number): boolean {
-    return keyCode >= 65 && keyCode <= 90;
-  }
-
   function speak(text: string) {
     if (isMuted) return; // Do not speak if muted
 
@@ -129,9 +125,9 @@ const meta = {
     "keydown",
     (e) => {
       e.preventDefault();
-      const { key, keyCode } = e;
+      const { key } = e;
 
-      if (isAlphabet(keyCode)) {
+      if (/^[0-9]$/.test(key)) {
         const upperKey = key.toUpperCase();
         let isDouble = false;
         let doublePress;
