@@ -44,14 +44,20 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── package-lock.json
 ├── public
 │   ├── assets
-│   ├── humans.txt
-│   ├── manifest.webmanifest
-│   ├── map
-│   ├── responses
-│   ├── robots.txt
-│   ├── service-worker.js
-│   ├── sitemap-index.html
-│   └── sounds
+│     ├── 512x512.png
+│     ├── apple-touch-icon.png
+│     ├── favicon.ico
+│     ├── favicon.svg
+│     ├── fonts
+│     ├── icons
+│     ├── images
+│     ├── json
+│     ├── media
+│     ├── site.webmanifest
+│   ├── robots.txt
+│   ├── service-worker.js
+│   ├── sitemap-index.html
+│   └── sounds
 ├── README.md
 ├── setup-hooks.sh
 ├── src
@@ -64,7 +70,6 @@ Inside of your Astro project, you'll see the following folders and files:
 │     ├── article
 │     ├── blog
 │     ├── stories
-│   └── terms-and-conditions.md
 │   ├── content.config.ts
 │   ├── data
 │   ├── env.d.ts
