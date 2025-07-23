@@ -43,7 +43,7 @@ I also had the opportunity to work on the backend for another project called "th
 - **API and Model Development:** I designed and implemented the `UserModel` and `SubscriptionModel`, complete with full CRUD (Create, Read, Update, Delete) operations.
   This included endpoints for user management, follow/unfollow functionality and more.
 - **Advanced Filtering:** I built sophisticated filtering capabilities for our APIs, including pagination, sorting, time-based searching, and date parsing. I also developed bulk APIs to handle large data operations efficiently.
-- **Robust Validation:** I ensured data integrity by implementing comprehensive server-side validation using [Zod](https://zod.dev/).
+- **Error Handling and Validation:** I implemented proper error handling and server-side validation (using [Zod](https://zod.dev/)) to ensure data integrity and gracefully handle edge cases and invalid inputs.
 - **API Documentation:** I created clear and detailed API documentation using the [OpenAPI](https://www.openapis.org/) standard, making it easy for the team to understand and use the services I built. To further enhance the developer experience,
   I integrated [Swagger UI](https://swagger.io/tools/swagger-ui/) as a visual interface, allowing the team to browse, test, and interact with the APIs directly from the browser.
 - **Security:** I implemented protected routes using authorization middleware and custom headers to add an extra layer of security, ensuring that only authorized users could access sensitive endpoints.
@@ -76,7 +76,7 @@ It also leverages Progressive Web App (PWA) technology to provide a seamless exp
 **Solution:** Separated code logic and created modular components for different use cases
 
 **Problem:** Backend edge cases in API endpoints
-**Solution:** Implemented comprehensive test cases and resolved issues systematically
+**Solution:** Identified and resolved edge case issues through manual testing and systematic debugging
 
 **Problem:** Initial difficulty understanding project requirements
 **Solution:** Improved communication with team members and clarified requirements regularly
@@ -94,8 +94,7 @@ This internship was about more than just technology. It was a masterclass in the
 - **Communication:** I learned how to effectively participate in meetings, frame questions clearly, and articulate my ideas.
 - **Teamwork:** I experienced firsthand how to collaborate within a team, use [Git](https://git-scm.com/) and [GitHub](https://github.com/) for version control on shared branches, and contribute to a collective goal.
   This was a fantastic introduction to open-source workflows.
-- **Problem-Solving:** I faced my share of challenges. Debugging complex errors taught me to refine my approach and isolate issues, like when I separated overlapping logic for multiple popover APIs. On the backend,
-  I learned to anticipate and handle edge cases by writing thorough test cases.
+- **Working Smart:** I learned how to use VS Code shortcuts to speed up my workflow and navigate projects more efficiently.
 
 ## Conclusion
 
