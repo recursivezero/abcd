@@ -2,6 +2,7 @@
 title: "Project Technology Stack Documentation"
 description: "The tech stack we work with and why we choose it."
 image: "/assets/images/blog/blog-1.png"
+author: "Admin"
 publishDate: "24 December 2024"
 ---
 

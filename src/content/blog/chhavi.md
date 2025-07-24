@@ -28,7 +28,7 @@ I designed and structured the home page to ensure a smooth user experience with 
 
 ### 🪔 [Varnmala Page](/varnmala/)
 
-I developed a rich, multi-section learning space for learners. The **Varnmala** section was broken down into six interactive subpages:
+I developed a rich, multi-section learning space for learners. The **Varnmala** section was broken down into six interactive sub-pages:
 
 - [**Hindi**](/varnmala/hindi) – Displayed _स्वर_ and _व्यंजन_.
 - [**English**](/varnmala/english/) – Offered a comparative look at English alphabet letters.
@@ -133,3 +133,5 @@ The journey has just begun — and I’m loving every part of it!
 **Special Thanks**: Mr. Keshav Mohta and for making this journey memorable and enriching!
 
 **Thank you for reading!**
+
+> Chhavi Sharma

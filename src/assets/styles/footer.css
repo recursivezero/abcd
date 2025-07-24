@@ -4,7 +4,7 @@
   --footer-text-secondary: #9ca3af;
   --footer-text-hover: #9ee0e7;
   --footer-brand-text: #ffffff;
-  --footer-brand-highlight: #fbbf24;
+  --footer-brand-highlight: #2ed729;
   --footer-social-hover: #0ea5e9;
   --footer-copyright-link: #9ca3af;
   --footer-copyright-link-hover: #0ea5e9;
@@ -30,7 +30,7 @@
   --footer-text-secondary: gray;
   --footer-text-hover: #eb5d9d;
   --footer-brand-text: #0f0f10;
-  --footer-brand-highlight: #fbbf24;
+  --footer-brand-highlight: #c13595;
   --footer-social-hover: #0ea5e9;
   --footer-copyright-link: #58250b;
   --footer-copyright-link-hover: #178bb9;
@@ -274,7 +274,7 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  .footer__nav--item[open] > summary .fa-chevron-down {
+  .footer__nav--item[open]>summary .fa-chevron-down {
     transform: rotate(180deg);
   }
 

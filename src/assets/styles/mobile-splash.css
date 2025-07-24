@@ -11,7 +11,6 @@
   padding: 1rem;
   transition: background-color 0.3s ease;
   display: none;
-  content-visibility: hidden;
 }
 
 @container splash (max-width: 768px) {

@@ -82,3 +82,5 @@ Working on live projects gave me experience I couldn’t get from just tutorials
 
 My internship at RecursiveZero was a great learning journey. I didn’t just write code — I learned to think about how things look, how they behave, and how users will interact with them. I'm thankful to **Keshav Sir** and the whole team for
 giving me the space to build, break, and fix real things. This experience has made me more confident as a frontend developer, and I’m excited to use what I’ve learned in future projects.
+
+> Azamt Raza
