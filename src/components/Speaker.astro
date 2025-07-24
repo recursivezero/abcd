@@ -5,15 +5,16 @@ declare global {
   }
 }
 
-//Append this to script section where you want to add this feature:
+//Append this to script on keydown section where you want to add this feature:
 /*    
-    document.addEventListener('keydown', (event) => {
-    const key = event.key;
-    if (key.length === 1 && key.match(/[a-z]/i)) {
-      if (window.playLetterSound) {
-        window.playLetterSound(key.toLowerCase());
-      }
+  const attachAudio = (key: string) => {
+    if (/[A-Z]/i.test(key)) {
+      window?.playLetterSound(key.toLowerCase());
     }
+  };
+  document.addEventListener("keydown", (event) => {
+    const {key} =event;
+    attachAudio(key)
   });
 */
 ---

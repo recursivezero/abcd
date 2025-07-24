@@ -31,7 +31,6 @@
 .container__reader > .letter {
   width: 100%;
   box-sizing: border-box;
-  margin-left: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
