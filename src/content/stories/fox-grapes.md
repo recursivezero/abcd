@@ -3,7 +3,7 @@ title: "The Fox and the Grapes"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A clever little tale of a hungry fox who learns that not everything is within reach — and that’s okay."
-image: "fox-grapes.png"
+image: "fox-grapes.webp"
 category: "Fictional"
 readingTime: 3
 draft: false

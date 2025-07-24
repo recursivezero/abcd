@@ -1,4 +1,13 @@
 :root {
+  --hue: 230;
+  --bg: hsl(var(--hue), 100%, 95%);
+  --border: hsl(var(--hue), 100%, 60%);
+  --text: hsl(var(--hue), 100%, 30%);
+  --text-lightness: 40%;
+  --hover-lightness: 20%;
+}
+
+:root {
   --footer-bg: #1f2937;
   --footer-text-main: #d1d5db;
   --footer-text-secondary: #9ca3af;
@@ -25,9 +34,9 @@
 }
 
 [data-theme="light"] {
-  --footer-bg: #c7f3ef;
+  --footer-bg: #bbb;
   --footer-text-main: #22223b;
-  --footer-text-secondary: gray;
+  --footer-text-secondary: #560072;
   --footer-text-hover: #eb5d9d;
   --footer-brand-text: #0f0f10;
   --footer-brand-highlight: #c13595;
@@ -36,6 +45,7 @@
   --footer-copyright-link-hover: #178bb9;
   --footer-border-color: #e5e7eb;
 }
+
 
 .footer-theme-toggle {
   display: inline-flex;
@@ -188,7 +198,7 @@
 
 .footer__nav--item {
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 24x;
   transition: color 0.2s;
 }
 
@@ -203,14 +213,16 @@
 }
 
 .footer__nav--links a {
-  color: var(--footer-text-secondary);
+  /*color: var(--footer-text-secondary);*/
+  color: hsl(var(--hue), 100%, var(--text-lightness));
   text-decoration: none;
   font-size: 1.2rem;
   transition: color 0.2s;
 }
 
 .footer__nav--links a:hover {
-  color: var(--footer-text-hover);
+  /*color: var(--footer-text-hover);*/
+  color: hsl(var(--hue), 100%, var(--hover-lightness));
   text-decoration: underline;
 }
 
@@ -274,7 +286,7 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  .footer__nav--item[open] > summary .fa-chevron-down {
+  .footer__nav--item[open]>summary .fa-chevron-down {
     transform: rotate(180deg);
   }
 

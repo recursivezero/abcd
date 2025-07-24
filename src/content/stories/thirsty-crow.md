@@ -3,7 +3,7 @@ title: "The Thirsty Crow"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A clever little crow teaches us how patience and smart thinking can solve any problem."
-image: "thirsty-crow.png"
+image: "thirsty-crow.webp"
 category: "Short"
 readingTime: 3
 draft: false

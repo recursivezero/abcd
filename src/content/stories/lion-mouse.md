@@ -3,7 +3,7 @@ title: "The Lion and The Mouse"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A heartwarming forest tale of kindness and how even the smallest can help the mighty."
-image: "lion-mouse.png"
+image: "lion-mouse.webp"
 category: "Humorous"
 readingTime: 4
 draft: false

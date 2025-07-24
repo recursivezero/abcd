@@ -16,7 +16,7 @@ const { primary, secondary } = Astro.props;
   <div class="main-header">
     <div class="toggle-container">
       <div class="dropdown-wrapper">
-        <label id="lang1Label" class="dropdown-label language-label active"> PRIMARY LANGUAGE </label>
+        <label for="primaryDropdown" class="dropdown-label language-label active"> PRIMARY LANGUAGE </label>
         <select id="primaryDropdown">
           <option disabled aria-disabled="true" aria-readonly="true">Select Primary Language</option>
           {
@@ -36,7 +36,7 @@ const { primary, secondary } = Astro.props;
       </button>
 
       <div class="dropdown-wrapper">
-        <label id="lang2Label" class="dropdown-label language-label"> SECONDARY LANGUAGE </label>
+        <label for="secondaryDropdown" class="dropdown-label language-label"> SECONDARY LANGUAGE </label>
         <select id="secondaryDropdown">
           <option disabled aria-disabled="true" aria-readonly="true">Select Secondary Language</option>
           {
