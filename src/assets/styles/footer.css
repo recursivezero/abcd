@@ -274,7 +274,7 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  .footer__nav--item[open]>summary .fa-chevron-down {
+  .footer__nav--item[open] > summary .fa-chevron-down {
     transform: rotate(180deg);
   }
 
