@@ -51,14 +51,10 @@ const meta = {
           .writeText(emailText)
           .then(() => {
             // Success feedback
-            copyIcon.classList.remove("fa-copy");
-            copyIcon.classList.add("fa-check");
             copyButton.title = "Copied!";
 
             // Revert back after 2 seconds
             setTimeout(() => {
-              copyIcon.classList.remove("fa-check");
-              copyIcon.classList.add("fa-copy");
               copyButton.title = "Copy email";
             }, 2000);
           })

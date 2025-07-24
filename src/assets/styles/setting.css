@@ -19,23 +19,15 @@
     transition: transform 330ms ease-in-out;
 
     &::after {
-      /*content: '🕸';*/
       outline: 1px solid slateblue;
     }
-
-    /*&:hover {
-        transform: scale(1.05) rotate(45deg);
-      }*/
   }
 
   @media (max-width: 480px) {
     .setting__trigger {
       font-size: 0.6rem;
-      /* Adjust font size for smaller screens */
       width: 2.5rem;
-      /* Adjust width for smaller screens */
       height: 2.5rem;
-      /* Adjust height for smaller screens */
       margin-top: 12px;
     }
   }

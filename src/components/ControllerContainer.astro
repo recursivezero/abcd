@@ -7,7 +7,7 @@ import BackgroundToggle from "@/components/draw/BgToggle.astro";
 import ResetButton from "@/components/draw/ResetButton.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import Help from "@/components/Help.astro";
-import Speak from "@/components/Speaker.astro";
+import AudioToggle from "@/components/Speaker.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
 ---
 
@@ -22,7 +22,7 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
     <KeyboardTrigger />
     <SharePopover />
   </div>
-  <Speak />
+  <AudioToggle />
   <Help
     title="Draw Keyboard"
     description="Draw letters by sliding your finger across the keys! Try the buttons to change the style, make it BIG or small, change the images, pick cool backgrounds, and customize font colors!"
@@ -57,6 +57,7 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
       isKeyboardNav = false;
       controlButtons.forEach((btn) => btn.classList.remove("keyboard-focus"));
     });
+    //for the audio feature
     document.addEventListener("keydown", (event) => {
       const e = event as KeyboardEvent;
       if (e.key === "Tab") {
