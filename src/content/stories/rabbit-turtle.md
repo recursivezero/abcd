@@ -3,7 +3,7 @@ title: "The Great Forest Race"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A playful retelling of the classic race between a speedy rabbit and a slow but steady turtle."
-image: "rabbit-turtle.png"
+image: "rabbit-turtle.webp"
 category: "Humorous"
 readingTime: 5
 draft: false

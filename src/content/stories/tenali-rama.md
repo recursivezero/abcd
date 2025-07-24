@@ -3,7 +3,7 @@ title: "Tenali and the Talking Parrot"
 publishDate: "2025-07-10"
 author: "Folk Traditions"
 description: "A witty tale of Tenali Rama who outsmarts a greedy merchant and teaches the king a clever lesson about truth."
-image: "tenali-rama.png"
+image: "tenali-rama.webp"
 category: "Short"
 readingTime: 5
 draft: false
