@@ -38,7 +38,8 @@ I learned so much :
 
 - I developed its whole new UI with CSS, used many CSS features like Grid, color-gradients, CSS-animations, gradient animation and many more things.
 
-- Now it allows users to explore the vowels and consonants of various Indian languages, providing a simple and visual way to compare scripts and sounds across different regions.A comprehensive hub for learning and practicing alphabets, offering tools for reading and learning.
+- Now it allows users to explore the vowels and consonants of various Indian languages, providing a simple and visual way to compare scripts and sounds across different regions.
+  A comprehensive hub for learning and practicing alphabets, offering tools for reading and learning.
 
 ### [Vedic Page](/vedic) ⏳🕰️
 
@@ -122,7 +123,8 @@ I learned so much :
 
 ### Git & Version Control Mastery
 
-Learn about branching strategies, merging, and conflict resolution and learned to work with multiple developers on the same codebase and understand the significance of proper commit messages, pull requests, and code with GitHub workflows and project organization.
+Learn about branching strategies, merging, and conflict resolution and learned to work with multiple developers on the same codebase and
+understand the significance of proper commit messages, pull requests, and code with GitHub workflows and project organization.
 
 ### VS Code - The Developer's Best Friend
 

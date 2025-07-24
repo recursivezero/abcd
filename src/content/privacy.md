@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last Updated: July 16,2025**
+## Last Updated: July 16, 2025
 
 Welcome to **abcdkbd.com**! Your child’s privacy and safety are our highest priority.
 This Privacy Policy outlines how we handle personal data in compliance with the **Digital Personal Data Protection Act, 2023 (India)** and international child privacy standards.

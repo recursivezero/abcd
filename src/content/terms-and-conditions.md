@@ -1,6 +1,6 @@
 # Terms & Conditions
 
-**Last Updated: July 16,2025**
+## **Last Updated: July 16,2025**
 
 Welcome to [**abcdkbd.com**](https://abcdkbd.com). By accessing or using our platform, you agree to comply with and be bound by the following Terms and Conditions.
 

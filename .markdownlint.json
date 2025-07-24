@@ -5,7 +5,11 @@
   },
   "MD029": false,
   "MD033": {
-    "allowed_elements": ["summary", "details", "mark"]
+    "allowed_elements": [
+      "summary",
+      "details",
+      "mark"
+    ]
   },
   "MD007": {
     "indent": 2
@@ -16,5 +20,8 @@
     "tables": false
   },
   "no-hard-tabs": false,
-  "whitespace": false
+  "whitespace": false,
+  "no-duplicate-heading": {
+    "siblings_only": true
+  }
 }
