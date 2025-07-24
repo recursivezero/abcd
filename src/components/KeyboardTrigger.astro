@@ -2,11 +2,17 @@
 import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
 ---
 
-<button id="keyboard-trigger" aria-label="Toggle virtual keyboard">
+<button id="keyboard-trigger" class="show_on_touch" aria-label="Toggle virtual keyboard">
   <KeyboardIcon />
 </button>
 
 <style>
+  @media (hover: none), (pointer: coarse) {
+    .show_on_touch {
+      display: flex !important;
+    }
+  }
+
   #keyboard-trigger {
     background-color: transparent;
     color: var(--primary);
@@ -14,7 +20,6 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
     border-radius: 50%;
     width: 49px;
     height: 49px;
-    display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -33,6 +38,9 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
 </style>
 
 <script>
+  const showOnTouchElement = document.querySelector(".show_on_touch");
+  const isTouchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  (showOnTouchElement as HTMLElement).style.display = isTouchDevice ? "flex" : "none";
   let currentHiddenInput: HTMLInputElement | null = null;
   let isKeyboardForcedOpen: boolean = false;
 

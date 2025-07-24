@@ -2,7 +2,7 @@
 import "@/assets/styles/draw.css";
 import Back from "@/components/Back.astro";
 import ControlsContainer from "@/components/ControllerContainer.astro";
-import Keyboard from "@/components/DrawKeyboard.astro";
+import DrawComponent from "@/components/DrawKeyboard.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
 import BaseLayout from "@/layouts/Base";
 
@@ -19,5 +19,5 @@ const meta = {
   <Fragment slot="header-right">
     <ControlsContainer />
   </Fragment>
-  <Keyboard />
+  <DrawComponent />
 </BaseLayout>
