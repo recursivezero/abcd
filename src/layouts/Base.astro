@@ -38,7 +38,7 @@ const {
           .getRegistrations()
           .then((registrations) => {
             // Unregister all existing service workers
-            const unregisterPromises = registrations.map((registration) => {
+            const unregisterPromises = registrations.map(async (registration) => {
               return registration.unregister().then((success) => {
                 if (success) {
                   console.log("Successfully unregistered service worker:", registration.scope);

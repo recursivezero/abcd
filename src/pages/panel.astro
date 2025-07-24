@@ -7,9 +7,15 @@ import SettingIcon from "@/assets/icons/settings.svg";
 import Back from "@/components/Back.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
+
+const meta = {
+  title: "Panel",
+  description:
+    "Interactive 3D panel for learning letters and numbers. Navigate using arrow keys or type to find specific characters."
+};
 ---
 
-<BaseLayout meta={{ title: "Panel" }}>
+<BaseLayout meta={meta}>
   <Back />
   <MobileSplash stay={true} />
   <Fragment slot="header-right">
@@ -117,10 +123,10 @@ import MobileSplash from "@/components/MobileSplash.astro";
 </BaseLayout>
 <script>
   enum ArrowKeys {
-    LEFT = 37,
-    UP = 38,
-    RIGHT = 39,
-    DOWN = 40
+    LEFT = "ArrowLeft",
+    UP = "ArrowUp",
+    RIGHT = "ArrowRight",
+    DOWN = "ArrowDown"
   }
 
   enum ContentType {
@@ -165,8 +171,8 @@ import MobileSplash from "@/components/MobileSplash.astro";
 
     #emitEvent() {
       document.addEventListener("keyup", (e: KeyboardEvent) => {
-        const { charCode, code, keyCode, key } = e;
-        this.onKeyChange(keyCode);
+        const { key } = e;
+        this.onKeyChange(key);
       });
 
       this.#orientationPanel.forEach((radio) => {
@@ -322,12 +328,12 @@ import MobileSplash from "@/components/MobileSplash.astro";
       this.#panel.style.transform = transformString;
     }
 
-    onKeyChange(code: number) {
+    onKeyChange(key: string) {
       const VerticalButton = this.#orientationPanel[0] as HTMLInputElement;
       const horizontalButton = this.#orientationPanel[1] as HTMLInputElement;
       const currentPanelSize = Number(this.#cellRange.value);
 
-      switch (code) {
+      switch (key) {
         case ArrowKeys.RIGHT: {
           if (this.#orientation === "Y") {
             this.#selectedIndex--;
@@ -362,22 +368,23 @@ import MobileSplash from "@/components/MobileSplash.astro";
         }
         default: {
           // Handle character input (alphabets and numbers)
+          const char = key.toUpperCase();
           if (this.#contentType === ContentType.ALPHABET) {
-            if (code >= 65 && code <= 90) {
+            if (/^[A-Z]$/.test(key)) {
               // A-Z (uppercase)
-              this.#selectedIndex = (65 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to A
-            } else if (code >= 97 && code <= 122) {
+              this.#selectedIndex = (65 - char.charCodeAt(0) + currentPanelSize) % currentPanelSize; // Calculate index relative to A
+            } else if (/^[a-z]$/.test(key)) {
               // a-z (lowercase)
-              this.#selectedIndex = (97 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to a
+              this.#selectedIndex = (97 - char.charCodeAt(0) + currentPanelSize) % currentPanelSize; // Calculate index relative to a
             } else {
               // If not an alphabet, just move forward
               this.#selectedIndex++;
             }
           } else {
             // ContentType.NUMBERS
-            if (code >= 48 && code <= 57) {
+            if (/^[0-9]$/.test(key)) {
               // 0-9
-              this.#selectedIndex = (48 - code + currentPanelSize) % currentPanelSize; // Calculate index relative to 0
+              this.#selectedIndex = (48 - char.charCodeAt(0) + currentPanelSize) % currentPanelSize; // Calculate index relative to 0
             } else {
               // If not a number, just move forward
               this.#selectedIndex++;

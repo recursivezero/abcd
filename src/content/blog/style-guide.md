@@ -2,6 +2,7 @@
 title: "The style guide the must know to start the code"
 description: "The full guid on file structure , css naming convention , tailwind usage and , css classes naming convention . "
 image: "/assets/images/blog/blog-2.png"
+author: "Keshav Mohta"
 publishDate: "26 December 2024"
 ---
 
@@ -14,46 +15,29 @@ This document outlines the style guide we follow to maintain consistency and rea
 ## File Structure
 
 - Use a clear and consistent folder structure.
-- Place CSS files for components inside the `assets/styles` folder, named according to the component (e.g., `result-products.css` for `ResultProducts` component).
-- Keep reusable styles in a `globals.css` file.
+- Place CSS files for components inside the `assets/styles` folder, named according to the component (e.g., `common-product.css` for `COmmonProduct` component).
+- Keep reusable styles in a `global.css` file.
+- Keep common style in `common.css`
 
 ---
 
 ## CSS Naming Convention
 
-- Use `kebab-case` for CSS class names.
+- Use BEM for CSS class names.
   Example: `card__image`, `container__card`
 
 - For component-specific styles, use the format:
   `componentName__element` (e.g., `card__image` for an image in the `Card` component)
 
-- Use utility classes from Tailwind CSS wherever possible for common properties
-  (e.g., margins, padding, colors)
-
----
-
-## Tailwind CSS Usage
-
-- Use Tailwind utilities for common tasks like spacing, typography, and colors:
-
-  ```html
-  <div class="rounded-lg bg-white p-4 text-gray-800"></div>
-  ```
-
-- Avoid redundancy: Don't add CSS rules for properties already provided by Tailwind classes.
-- Create custom styles only when:
-  - Tailwind utilities cannot achieve the desired layout or behavior.
-  - Styles are specific to a particular component.
-
 ---
 
 ## Component-Specific CSS
 
-- For each React component, create a corresponding CSS file if it requires custom styles.
+- For each component, create a corresponding CSS file if it requires custom styles.
 - CSS file naming: Use the same name as the component, in lowercase and hyphen-separated.
   - Example:
-    - Component: `ResultProducts.tsx`
-    - CSS File: `result-products.css`
+    - Component: `CommonProduct.astro`
+    - CSS File: `common-product.css`
 - Limit the use of global styles to prevent style conflicts.
 
 ---
@@ -71,46 +55,41 @@ This document outlines the style guide we follow to maintain consistency and rea
 
 ---
 
-## JSX Structure
-
-- Keep JSX clean and readable:
-  - Use meaningful class names.
-  - Avoid inline styles unless absolutely necessary.
-- Wrap component logic (e.g., filtering, sorting) in separate functions for clarity.
-
----
-
 ## Example: Component and CSS Pair
 
-- React Component (`ResultProducts.tsx`)
+### CommonProduct.astro
 
-  ```tsx
-  <div className="container__card">
-    <CardBase className="card__base">
-      <img className="card__image" src={imageSrc} alt="Product Image" />
-      <CardContent>
-        <CardTitle className="card__content">Product Name</CardTitle>
-      </CardContent>
-    </CardBase>
-  </div>
-  ```
+```html
+<div class="container__card">
+  <CardBase class="card__base">
+    <img class="card__image" src="{imageSrc}" alt="Product Image" />
+    <CardContent>
+      <CardTitle class="card__content">Product Name</CardTitle>
+    </CardContent>
+  </CardBase>
+</div>
+```
 
-- CSS File (`result-products.css`)
+- CSS File (`common-product.css`)
 
   ```css
   .container__card {
-    @apply rounded-lg border bg-white p-4 shadow-md;
-  }
+    container-size: inline-size;
+    container-name: card;
 
-  .card__base {
-    @apply flex flex-col items-center;
-  }
+    & .card__base {
+      display: flex;
 
-  .card__image {
-    @apply h-40 w-full rounded-md object-cover;
-  }
+      & .card__image {
+        object-fit: cover;
+        height: 2rem;
+      }
+    }
 
-  .card__content {
-    @apply text-lg font-semibold text-gray-800;
+    &.card__content {
+      font-size: large;
+      font-style: italic;
+      color: var(--text);
+    }
   }
   ```

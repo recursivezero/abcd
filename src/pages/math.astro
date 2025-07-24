@@ -2,13 +2,16 @@
 import Back from "@/components/Back.astro";
 import Help from "@/components/Help.astro";
 import MathPractice from "@/components/MathPractice.astro";
-import BaseLayout from "@/layouts/Base";
 import SharePopover from "@/components/ShareButton.astro";
+import BaseLayout from "@/layouts/Base";
 
-const pageDescription = "Practice basic math operations like addition, subtraction, and multiplication.";
+const meta = {
+  title: "Maths",
+  description: "Practice basic math arithmetic operations like addition, subtraction, and multiplication."
+};
 ---
 
-<BaseLayout meta={{ title: "Basic Arithmetic" }} description={pageDescription}>
+<BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
     <SharePopover />

@@ -5,9 +5,14 @@ import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
 import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 import ZodiacTab from "@/components/ZodiacTab.astro";
+
+const meta = {
+  title: "Zodiac",
+  description: "Explore all zodiac signs and nakshatras in Indian astrology. Discover traits, symbols, and more!"
+};
 ---
 
-<BaseLayout meta={{ title: "Zodiac" }}>
+<BaseLayout meta={meta}>
   <Back />
   <Fragment slot="header-right">
     <SharePopover />

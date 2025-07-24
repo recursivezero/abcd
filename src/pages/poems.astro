@@ -11,10 +11,14 @@ import BaseLayout from "@/layouts/Base";
 import "@/utils/common"; /* for sortBy method */
 const { poems } = poem;
 poems.sortBy("title");
-const title = "Poems";
+
+const meta = {
+  title: "Poems",
+  description: "Read and listen to fun, educational poems for kids. Bright, playful, and easy to navigate!"
+};
 ---
 
-<BaseLayout meta={{ title }}>
+<BaseLayout meta={meta}>
   <BackIcon />
   <Fragment slot="header-right">
     <SharePopover />

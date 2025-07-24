@@ -5,9 +5,14 @@ import SurveyComponent from "@/components/survey.astro";
 import surveyJson from "@/data/survey.json";
 import BaseLayout from "@/layouts/Base";
 import type { SurveyData } from "@/types";
+
+const meta = {
+  title: "Survey Form",
+  description: "Participate in our survey and help us improve your learning experience!"
+};
 ---
 
-<BaseLayout meta={{ title: "Survey Form" }}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-right">
     <SharePopover />
   </Fragment>

@@ -9,4 +9,5 @@ runs:
         --config './.markdownlint.json' \
         --ignore '.github/CONTRIBUTING.md' \
         --ignore '.github/CODE_OF_CONDUCT.md'\
-        --ignore 'CHANGELOG.md'
+        --ignore 'CHANGELOG.md'\
+        --ignore 'docs/README.md'

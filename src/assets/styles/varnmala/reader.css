@@ -16,7 +16,25 @@
   will-change: contents;
   line-height: 1;
   gap: 0.5rem;
-  height: 80%;
+  height: max-content;
+}
+
+.info {
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 500;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.container__reader > .letter {
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .hide {
@@ -169,7 +187,12 @@
     font-size: min(200rem, 70vw);
   }
 
+  .container__reader > .letter {
+    justify-content: center;
+    margin-left: auto;
+  }
+
   .mute-button {
-    font-size: min(2.5rem, 8vw);
+    font-size: min(1.5rem, 6vw);
   }
 }

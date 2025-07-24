@@ -200,10 +200,10 @@
 
 @media (max-width: 1024px) {
   .controls {
-    position: absolute;
-    right: 0.6rem !important;
+    position: fixed;
+    right: 0.6rem;
     top: 0;
-    margin-top: 11rem !important;
+    margin-top: 10rem;
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.5rem 0;
@@ -349,9 +349,4 @@
 
 .controls {
   z-index: 100;
-}
-
-*:focus {
-  outline: none;
-  box-shadow: none;
 }

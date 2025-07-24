@@ -1,7 +1,8 @@
 .poem-dialog {
   width: 540px;
   max-width: 90%;
-  height: 600px;
+  height: max-content;
+  max-height: 600px;
   border: 3px solid var(--color);
   border-radius: 24px;
   background-color: var(--container-bg);
@@ -53,14 +54,16 @@
 
 /* === Title & Lines === */
 .modal-title {
-  margin-top: 3.2rem;
+  margin-top: 1.2rem;
   font-size: 3rem;
   font-weight: 600;
   text-align: center;
+  color: var(--primary);
+  margin-bottom: 0;
 }
 
 .lines {
-  white-space: pre-line;
+  /*white-space: pre-line;*/
   line-height: 1.6;
   padding: 0 1rem;
   overflow-y: auto;
@@ -82,15 +85,27 @@
 /* === Responsive === */
 @media (max-width: 480px) {
   .poem-dialog {
-    width: 90%;
-    height: 400px;
+    width: 80%;
+    height: max-content;
+    box-sizing: border-box;
+    margin: auto;
   }
 
-  .title {
-    font-size: 1.25rem;
+  .modal-title {
+    font-size: 1.5rem;
   }
 
   .lines {
-    font-size: 0.95rem;
+    font-size: 1rem;
+  }
+
+  .modal-content > .model-buttons > button.speaker-btn,
+  .modal-content > .model-buttons > button.close {
+    width: 36px;
+    height: 36px;
+  }
+  .modal-content > .model-buttons > button svg {
+    width: 32px;
+    height: 32px;
   }
 }

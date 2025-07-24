@@ -5,9 +5,14 @@ import Help from "@/components/Help.astro";
 import BackButton from "@/components/BackButton.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
+
+const meta = {
+  title: "Varnmala • Hear & Play",
+  description: "Press any letter key to display and hear it. Customize the voice which you like."
+};
 ---
 
-<BaseLayout meta={{ title: "Hear and Play" }}>
+<BaseLayout meta={meta}>
   <BackButton />
   <Fragment slot="header-right">
     <div class="controls" id="controls">
@@ -70,10 +75,6 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
   let lastKey: string | null = null; // Store the last key pressed
   let isMuted = false; // Flag to track mute state
 
-  function isAlphabet(keyCode: number): boolean {
-    return keyCode >= 65 && keyCode <= 90;
-  }
-
   function speak(text: string) {
     if (isMuted) return; // Do not speak if muted
 
@@ -124,9 +125,9 @@ import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
     "keydown",
     (e) => {
       e.preventDefault();
-      const { key, keyCode } = e;
+      const { key } = e;
 
-      if (isAlphabet(keyCode)) {
+      if (/^[0-9]$/.test(key)) {
         const upperKey = key.toUpperCase();
         let isDouble = false;
         let doublePress;

@@ -16,6 +16,12 @@ const consonants = [
   hindiConsonants.slice(29, 33), // श, ष, स, ह
   hindiConsonants.slice(33, 36) // क्ष , त्र , ज्ञ
 ];
+
+const meta = {
+  title: "Varnmala • Barahkhadi",
+  description:
+    "Explore Hindi consonants with matra combinations through an interactive and visually organized Barahkhadi learning interface."
+};
 ---
 
 <style>
@@ -23,7 +29,7 @@ const consonants = [
     text-decoration: none;
   }
 </style>
-<BaseLayout meta={{ title: "Barahkhadi" }}>
+<BaseLayout meta={meta}>
   <BackButton />
   <Fragment slot="header-left">
     <SharePopover />

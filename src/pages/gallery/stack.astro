@@ -7,13 +7,10 @@ import Help from "@/components/Help.astro";
 import "@/assets/styles/cards/stack.css";
 import SharePopover from "@/components/ShareButton.astro";
 
-const pageTitle = "Stack | Interactive Alphabet";
-const pageDescription =
-  "Explore the interactive alphabet with images and descriptions for each letter in a stack display format.";
-
-const pageMeta = {
-  title: pageTitle,
-  description: pageDescription
+const meta = {
+  title: "Stack Alphabet",
+  description:
+    "Explore the interactive alphabet with images and descriptions for each letter in a stack display format."
 };
 
 interface AlphabetItem {
@@ -44,7 +41,7 @@ function randomAngle(max: number, min: number): number {
 let currentIndex = 0;
 ---
 
-<BaseLayout meta={pageMeta}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-right">
     <div class="header-tools-wrapper"></div>
     <SharePopover />

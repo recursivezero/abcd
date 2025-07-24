@@ -5,9 +5,13 @@ import BaseLayout from "@/layouts/Base";
 import { APP_NAME } from "@/utils/constants";
 import { Picture } from "astro:assets";
 import logoImage from "/public/assets/images/ABCD-blue.png";
+
+const meta = {
+  title: "coming soon"
+};
 ---
 
-<BaseLayout meta={{ title: "Coming Soon" }}>
+<BaseLayout meta={meta}>
   <div class="page-container">
     <!-- Section 1: Heading -->
     <div class="heading-container">

@@ -3,11 +3,17 @@ import "@/assets/styles/draw.css";
 import Back from "@/components/Back.astro";
 import ControlsContainer from "@/components/ControllerContainer.astro";
 import Keyboard from "@/components/DrawKeyboard.astro";
-import BaseLayout from "@/layouts/Base";
 import MobileSplash from "@/components/MobileSplash.astro";
+import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Draw",
+  description:
+    "Practice drawing letters and shapes using your keyboard. An interactive tool for learning letter formation and improving skills."
+};
 ---
 
-<BaseLayout meta={{ title: "Draw by Keyboard" }}>
+<BaseLayout meta={meta}>
   <MobileSplash stay={true} />
   <Back />
   <Fragment slot="header-right">

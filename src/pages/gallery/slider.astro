@@ -7,12 +7,9 @@ import Help from "@/components/Help.astro";
 import "@/assets/styles/cards/slider.css";
 import SharePopover from "@/components/ShareButton.astro";
 
-const pageTitle = "Slider | Interactive Alphabet";
-const pageDescription = "Explore the alphabet through interactive images. Click or use arrow keys to slide.";
-
-const pageMeta = {
-  title: pageTitle,
-  description: pageDescription
+const meta = {
+  title: "Slider Alphabet",
+  description: "Explore the alphabet through interactive images."
 };
 
 interface AlphabetItem {
@@ -36,7 +33,7 @@ const items: Record<string, AlphabetItem> = alphabetMapper.reduce(
 const entries = Object.entries(items);
 ---
 
-<BaseLayout meta={pageMeta}>
+<BaseLayout meta={meta}>
   <Fragment slot="header-right">
     <div class="header-tools-wrapper"></div>
     <SharePopover />

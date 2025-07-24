@@ -1,6 +1,11 @@
 ---
-import { Content } from "@/content/PRIVACY.md";
+import { Content } from "@/content/privacy.md";
 import BaseLayout from "@/layouts/Base";
+
+const meta = {
+  title: "Privacy Policy",
+  description: "Read our privacy policy to understand how we handle your data and protect your privacy."
+};
 ---
 
 <style is:inline>
@@ -9,6 +14,6 @@ import BaseLayout from "@/layouts/Base";
   }
 </style>
 
-<BaseLayout meta={{ title: "Privacy Policy" }}>
+<BaseLayout meta={meta}>
   <article><Content /></article>
 </BaseLayout>

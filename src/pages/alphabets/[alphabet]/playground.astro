@@ -26,10 +26,15 @@ const defaultCategory = {
 const { alphabet } = Astro.params;
 const currentCategory = DATASET[alphabet] || defaultCategory;
 
-const title = `${capitalizeThis(alphabet)} - Playground`;
+const meta = {
+  title: `Playground • ${capitalizeThis(alphabet)}`,
+  description: `Type or navigate to interactively explore the "${capitalizeThis(
+    alphabet
+  )}" alphabet set using keyboard or arrows.`
+};
 ---
 
-<BaseLayout meta={{ title }}>
+<BaseLayout meta={meta}>
   <div class="container__heading">
     <BackButton />
     <span class="info">Press a key to see the magic</span>
@@ -38,7 +43,7 @@ const title = `${capitalizeThis(alphabet)} - Playground`;
     <KeyboardTrigger />
     <SharePopover />
     <Help
-      title={title}
+      title={meta.title}
       description="Press Next Arrow >  to get next letter. navigate through < and > from your keyboard"
     />
   </Fragment>
@@ -175,17 +180,20 @@ const title = `${capitalizeThis(alphabet)} - Playground`;
         }
       } else {
         // Default behavior for other alphabets (A-Z, 0-9)
-        const { key, keyCode } = e;
-        const isAlphabet = keyCode >= 65 && keyCode <= 90;
-        const isNumber = keyCode >= 48 && keyCode <= 57;
+        const { key } = e;
+        const isAlphabet = /^[A-Za-z]$/.test(key);
+        console.log({ isAlphabet });
+        const isNumber = /^[0-9]$/.test(key);
+        console.log({ isNumber });
         if (isAlphabet) {
           const keyCapital = key.toUpperCase();
           const info = alphabetData.find((item) => item.letter.toUpperCase() === keyCapital || item.letter === key);
           if (info) drawInfo(info, random(colorBox));
-        } else if (isNumber) {
-          const info = alphabetData.find((item) => item.letter === key);
-          if (info) drawInfo(info, random(colorBox));
         }
+        //else if (isNumber) {
+        //  const info = alphabetData.find((item) => item.letter === key);
+        //  if (info) drawInfo(info, random(colorBox));
+        //}
       }
     },
     false

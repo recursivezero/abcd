@@ -12,7 +12,9 @@ audiorec
 audiorecorder
 avgrah
 Barahkhadi
+betterauth
 Bhadrapada
+bhartiya
 bincount
 BODYPART
 Chaitra
@@ -28,6 +30,7 @@ dogri
 DPDP
 Dussehra
 ensurepip
+flexbox
 fontsource
 frontmatter
 Gandhar
@@ -37,6 +40,7 @@ heroicons
 hidenseek
 Holi
 hookform
+ICFAI
 imread
 imwrite
 Jaati
