@@ -1,0 +1,15 @@
+---
+const GA_ID = "G-GV20S7JE8Q";
+---
+
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} is:inline></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    {
+      dataLayer.push(arguments);
+    }
+  }
+  gtag("js", new Date());
+  gtag("config", "{GA_ID}");
+</script>
