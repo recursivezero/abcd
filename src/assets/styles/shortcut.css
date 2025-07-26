@@ -1,4 +1,7 @@
 /* Help Menu Styles */
+.container__shortcut {
+  border: 2px dotted red;
+}
 
 .help-popup {
   display: none;
@@ -11,10 +14,14 @@
   z-index: 1000;
   justify-content: center;
   align-items: center;
+  content-visibility: none;
 }
+
 .help-popup.is-open {
   display: flex;
+  content-visibility: visible;
 }
+
 .help-menu {
   color: #222;
   background: #fff;
@@ -28,6 +35,7 @@
   overflow: hidden;
   border: 1.5px solid #e1e4e8;
 }
+
 .help-menu-header {
   display: flex;
   justify-content: space-between;
@@ -36,11 +44,13 @@
   border-bottom: 1px solid #e1e4e8;
   background: #f6f8fa;
 }
+
 .help-menu-header h2 {
   margin: 0;
   font-size: 19px;
   font-weight: 700;
 }
+
 .close-button {
   background: none;
   border: none;
@@ -51,9 +61,11 @@
   border-radius: 4px;
   transition: background 0.15s;
 }
+
 .close-button:hover {
   background: #eaecef;
 }
+
 .help-menu-content.grid {
   display: flex;
   gap: 0;
@@ -65,6 +77,7 @@
   /* background: #f6f8fa; */
   position: relative;
 }
+
 .shortcut-section {
   flex: 1;
   min-width: 0;
@@ -78,12 +91,15 @@
   font-size: 15px;
   max-width: 320px;
 }
+
 .shortcut-section:first-child {
   margin-left: 0;
 }
+
 .shortcut-section:last-child {
   margin-right: 0;
 }
+
 .shortcut-section h3 {
   font-size: 15px;
   font-weight: 700;
@@ -93,6 +109,7 @@
   color: #24292e;
   border-radius: 6px 6px 0 0;
 }
+
 .shortcut-table {
   width: 100%;
   border-collapse: separate;
@@ -104,8 +121,10 @@
   overflow: hidden;
   font-size: 14px;
 }
+
 .shortcut-table tr {
-  height: 2.2em; /* or use min-height if you prefer */
+  height: 2.2em;
+  /* or use min-height if you prefer */
 }
 
 .shortcut-table td {
@@ -117,12 +136,15 @@
   background: transparent;
   transition: background 0.15s;
 }
+
 .shortcut-table tr:last-child td {
   border-bottom: none;
 }
+
 .shortcut-table tr:hover td {
   background: #f0f3f6;
 }
+
 .shortcut-table kbd {
   background: #f6f8fa;
   border: 1px solid #d1d5da;
@@ -134,15 +156,19 @@
   font-family: inherit;
   box-shadow: 0 1px 0 #d1d5da;
 }
+
 .shortcut-table tr:not(:last-child) {
-  border-bottom: 1px solid #eee; /* optional: adds a subtle divider */
+  border-bottom: 1px solid #eee;
+  /* optional: adds a subtle divider */
 }
+
 @media (max-width: 600px) {
   .help-menu-content.grid {
     flex-direction: column;
     gap: 12px;
     padding: 10px 2px;
   }
+
   .shortcut-section {
     margin: 0 0 12px 0;
     border-radius: 8px;
@@ -153,6 +179,7 @@
 .keys {
   text-align: end;
 }
+
 .rows {
   margin: 3px;
 }
