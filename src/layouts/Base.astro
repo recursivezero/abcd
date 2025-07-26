@@ -5,7 +5,7 @@ import Footer from "@/layouts/common/Footer";
 import Header from "@/layouts/common/Header";
 import Menu from "@/layouts/common/Menu";
 import { siteConfig } from "@/site-config";
-import Shortcut from "@/components/Shortcut.astro";
+//import Shortcut from "@/components/Shortcut.astro";
 
 const {
   meta: { title, description = siteConfig.description, ogImage },
@@ -19,7 +19,7 @@ const {
   </head>
   <body id="body" class="body__container">
     <ThemeProvider />
-    <Shortcut />
+    <!--<Shortcut />-->
     <Header title={title}>
       <slot name="header-left" slot="left" />
       <slot name="header-right" slot="right" />
