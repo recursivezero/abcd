@@ -1,7 +1,7 @@
 {
   "background_color": "#1d1f21",
   "category": "education",
-  "description": "A learning pad for ABCD keyboard layout enthusiasts.",
+  "description": "A learning pad for ABCD keyboard.",
   "display": "standalone",
   "icons": [
     {
@@ -30,8 +30,8 @@
   "screenshots": [
     {
       "label": "abcdkbd",
-      "sizes": "196x196",
-      "src": "/assets/icons/192x192.png",
+      "sizes": "192x192",
+      "src": "/assets/images/192x192.png",
       "type": "image/png"
     }
   ],
