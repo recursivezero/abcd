@@ -28,6 +28,10 @@
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--primary);
+
+      & em {
+        color: #6d8c3d;
+      }
     }
   }
 
