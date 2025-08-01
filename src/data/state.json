@@ -31,8 +31,17 @@
     "capital": "Amaravati",
     "population": 53903393,
     "literacy_rate": 67.35,
-    "languages": ["Telugu", "Urdu", "Hindi"],
-    "major_rivers": ["Krishna", "Godavari", "Penna", "Vamsadhara"]
+    "languages": [
+      "Telugu",
+      "Urdu",
+      "Hindi"
+    ],
+    "major_rivers": [
+      "Krishna",
+      "Godavari",
+      "Penna",
+      "Vamsadhara"
+    ]
   },
   {
     "id": "assam",
@@ -66,8 +75,18 @@
     "capital": "Dispur",
     "population": 31205576,
     "literacy_rate": 72.19,
-    "languages": ["Assamese", "Boro", "Bengali", "Meitei"],
-    "major_rivers": ["Brahmaputra", "Barak", "Subansiri", "Manas"]
+    "languages": [
+      "Assamese",
+      "Boro",
+      "Bengali",
+      "Meitei"
+    ],
+    "major_rivers": [
+      "Brahmaputra",
+      "Barak",
+      "Subansiri",
+      "Manas"
+    ]
   },
   {
     "id": "arunachalpradesh",
@@ -101,8 +120,21 @@
     "capital": "Itanagar",
     "population": 1383727,
     "literacy_rate": 65.38,
-    "languages": ["Nyishi", "Apatani", "Bokar", "Galo", "Tagin", "Adi"],
-    "major_rivers": ["Kameng", "Subansiri", "Siang", "Dibang", "Lohit"]
+    "languages": [
+      "Nyishi",
+      "Apatani",
+      "Bokar",
+      "Galo",
+      "Tagin",
+      "Adi"
+    ],
+    "major_rivers": [
+      "Kameng",
+      "Subansiri",
+      "Siang",
+      "Dibang",
+      "Lohit"
+    ]
   },
   {
     "id": "bihar",
@@ -136,8 +168,18 @@
     "capital": "Patna",
     "population": 104099452,
     "literacy_rate": 61.8,
-    "languages": ["Hindi", "Bhojpuri", "Maithili", "Magahi"],
-    "major_rivers": ["Ganges", "Son", "Gandak", "Kosi"]
+    "languages": [
+      "Hindi",
+      "Bhojpuri",
+      "Maithili",
+      "Magahi"
+    ],
+    "major_rivers": [
+      "Ganges",
+      "Son",
+      "Gandak",
+      "Kosi"
+    ]
   },
   {
     "id": "telangana",
@@ -171,8 +213,17 @@
     "capital": "Hyderabad",
     "population": "35,190,000",
     "literacy_rate": "66.54%",
-    "languages": ["Telugu", "Urdu"],
-    "major_rivers": ["Godavari", "Krishna", "Musi", "Bhima", "Manjira"]
+    "languages": [
+      "Telugu",
+      "Urdu"
+    ],
+    "major_rivers": [
+      "Godavari",
+      "Krishna",
+      "Musi",
+      "Bhima",
+      "Manjira"
+    ]
   },
   {
     "id": "gujarat",
@@ -206,8 +257,17 @@
     "capital": "Gandhinagar",
     "population": 63872399,
     "literacy_rate": 78.03,
-    "languages": ["Gujarati", "Hindi", "English"],
-    "major_rivers": ["Narmada", "Tapi", "Sabarmati", "Mahi"]
+    "languages": [
+      "Gujarati",
+      "Hindi",
+      "English"
+    ],
+    "major_rivers": [
+      "Narmada",
+      "Tapi",
+      "Sabarmati",
+      "Mahi"
+    ]
   },
   {
     "id": "chhattisgarh",
@@ -241,8 +301,18 @@
     "capital": "Raipur",
     "population": 25540196,
     "literacy_rate": 70.28,
-    "languages": ["Chhattisgarhi", "Hindi"],
-    "major_rivers": ["Mahanadi", "Indravati", "Arpa", "Pairi", "Hasdo", "Shivnath"]
+    "languages": [
+      "Chhattisgarhi",
+      "Hindi"
+    ],
+    "major_rivers": [
+      "Mahanadi",
+      "Indravati",
+      "Arpa",
+      "Pairi",
+      "Hasdo",
+      "Shivnath"
+    ]
   },
   {
     "id": "goa",
@@ -276,8 +346,18 @@
     "capital": "Panaji",
     "population": 1458545,
     "literacy_rate": 88.7,
-    "languages": ["Konkani", "Marathi", "English", "Hindi"],
-    "major_rivers": ["Mandovi", "Zuari", "Terekhol", "Chapor"]
+    "languages": [
+      "Konkani",
+      "Marathi",
+      "English",
+      "Hindi"
+    ],
+    "major_rivers": [
+      "Mandovi",
+      "Zuari",
+      "Terekhol",
+      "Chapor"
+    ]
   },
   {
     "id": "delhi",
@@ -311,8 +391,16 @@
     "capital": "New Delhi",
     "population": 16753235,
     "literacy_rate": 86.21,
-    "languages": ["Hindi", "English", "Punjabi", "Urdu"],
-    "major_rivers": ["Yamuna", "Hindon"]
+    "languages": [
+      "Hindi",
+      "English",
+      "Punjabi",
+      "Urdu"
+    ],
+    "major_rivers": [
+      "Yamuna",
+      "Hindon"
+    ]
   },
   {
     "id": "dadraandnagarhavelianddamananddiu",
@@ -346,8 +434,15 @@
     "capital": "Daman",
     "population": 585764,
     "literacy_rate": 87.8,
-    "languages": ["Gujarati", "Hindi", "Marathi", "English"],
-    "major_rivers": ["Daman Ganga"]
+    "languages": [
+      "Gujarati",
+      "Hindi",
+      "Marathi",
+      "English"
+    ],
+    "major_rivers": [
+      "Daman Ganga"
+    ]
   },
   {
     "id": "kerala",
@@ -381,8 +476,17 @@
     "capital": "Thiruvananthapuram",
     "population": 35699443,
     "literacy_rate": 94.0,
-    "languages": ["Malayalam", "Tamil", "English"],
-    "major_rivers": ["Periyar", "Bharathapuzha", "Pamba", "Chaliyar"]
+    "languages": [
+      "Malayalam",
+      "Tamil",
+      "English"
+    ],
+    "major_rivers": [
+      "Periyar",
+      "Bharathapuzha",
+      "Pamba",
+      "Chaliyar"
+    ]
   },
   {
     "id": "karnataka",
@@ -416,8 +520,19 @@
     "capital": "Bengaluru",
     "population": 67562686,
     "literacy_rate": 75.36,
-    "languages": ["Kannada", "Tulu", "Konkani", "Urdu", "English"],
-    "major_rivers": ["Krishna", "Cauvery (Kaveri)", "Tungabhadra", "Sharavathi"]
+    "languages": [
+      "Kannada",
+      "Tulu",
+      "Konkani",
+      "Urdu",
+      "English"
+    ],
+    "major_rivers": [
+      "Krishna",
+      "Cauvery (Kaveri)",
+      "Tungabhadra",
+      "Sharavathi"
+    ]
   },
   {
     "id": "maharashtra",
@@ -448,11 +563,21 @@
     "surface_area": 307713,
     "districts_count": 36,
     "largest_city": "Mumbai",
-    "capital": "Mumbai",
+    "capital": "Mumbai ( in summer ), Nagpur ( in winter )",
     "population": 123144223,
     "literacy_rate": 82.34,
-    "languages": ["Marathi", "Hindi", "English", "Konkani"],
-    "major_rivers": ["Godavari", "Krishna", "Bhima", "Tapi"]
+    "languages": [
+      "Marathi",
+      "Hindi",
+      "English",
+      "Konkani"
+    ],
+    "major_rivers": [
+      "Godavari",
+      "Krishna",
+      "Bhima",
+      "Tapi"
+    ]
   },
   {
     "id": "madhyapradesh",
@@ -486,8 +611,20 @@
     "capital": "Bhopal",
     "population": 86484569,
     "literacy_rate": 70.63,
-    "languages": ["Hindi", "Bundeli", "Malvi", "Nimadi", "Gondi"],
-    "major_rivers": ["Narmada", "Tapi", "Chambal", "Betwa", "Son"]
+    "languages": [
+      "Hindi",
+      "Bundeli",
+      "Malvi",
+      "Nimadi",
+      "Gondi"
+    ],
+    "major_rivers": [
+      "Narmada",
+      "Tapi",
+      "Chambal",
+      "Betwa",
+      "Son"
+    ]
   },
   {
     "id": "odisha",
@@ -521,8 +658,19 @@
     "capital": "Bhubaneswar",
     "population": 46356334,
     "literacy_rate": 72.87,
-    "languages": ["Odia", "Hindi", "English", "Sambalpuri", "Santali"],
-    "major_rivers": ["Mahanadi", "Brahmani", "Baitarani", "Rushikulya"]
+    "languages": [
+      "Odia",
+      "Hindi",
+      "English",
+      "Sambalpuri",
+      "Santali"
+    ],
+    "major_rivers": [
+      "Mahanadi",
+      "Brahmani",
+      "Baitarani",
+      "Rushikulya"
+    ]
   },
   {
     "id": "westbengal",
@@ -556,8 +704,19 @@
     "capital": "Kolkata",
     "population": 101174280,
     "literacy_rate": 77.08,
-    "languages": ["Bengali", "Hindi", "English", "Nepali", "Urdu"],
-    "major_rivers": ["Ganges", "Hooghly", "Teesta", "Subarnarekha"]
+    "languages": [
+      "Bengali",
+      "Hindi",
+      "English",
+      "Nepali",
+      "Urdu"
+    ],
+    "major_rivers": [
+      "Ganges",
+      "Hooghly",
+      "Teesta",
+      "Subarnarekha"
+    ]
   },
   {
     "id": "jharkhand",
@@ -591,8 +750,19 @@
     "capital": "Ranchi",
     "population": 38471377,
     "literacy_rate": 67.63,
-    "languages": ["Hindi", "Nagpuri", "Santhali", "Khortha", "Kurukh"],
-    "major_rivers": ["Damodar", "Subarnarekha", "Koel", "Barakar"]
+    "languages": [
+      "Hindi",
+      "Nagpuri",
+      "Santhali",
+      "Khortha",
+      "Kurukh"
+    ],
+    "major_rivers": [
+      "Damodar",
+      "Subarnarekha",
+      "Koel",
+      "Barakar"
+    ]
   },
   {
     "id": "uttarpradesh",
@@ -626,8 +796,20 @@
     "capital": "Lucknow",
     "population": 241066874,
     "literacy_rate": 73.0,
-    "languages": ["Hindi", "Urdu", "Awadhi", "Bhojpuri", "English"],
-    "major_rivers": ["Ganga", "Yamuna", "Ghaghra", "Gomti", "Sarayu"]
+    "languages": [
+      "Hindi",
+      "Urdu",
+      "Awadhi",
+      "Bhojpuri",
+      "English"
+    ],
+    "major_rivers": [
+      "Ganga",
+      "Yamuna",
+      "Ghaghra",
+      "Gomti",
+      "Sarayu"
+    ]
   },
   {
     "id": "nagaland",
@@ -661,8 +843,19 @@
     "capital": "Kohima",
     "population": 2249695,
     "literacy_rate": 80.11,
-    "languages": ["Nagamese", "English", "Ao", "Konyak", "Lotha"],
-    "major_rivers": ["Doyang", "Dhansiri", "Tizu", "Zungki"]
+    "languages": [
+      "Nagamese",
+      "English",
+      "Ao",
+      "Konyak",
+      "Lotha"
+    ],
+    "major_rivers": [
+      "Doyang",
+      "Dhansiri",
+      "Tizu",
+      "Zungki"
+    ]
   },
   {
     "id": "manipur",
@@ -696,8 +889,18 @@
     "capital": "Imphal",
     "population": 2855794,
     "literacy_rate": 79.85,
-    "languages": ["Meitei", "English", "Hindi", "Tangkhul", "Thadou"],
-    "major_rivers": ["Imphal River", "Iril River", "Thoubal River"]
+    "languages": [
+      "Meitei",
+      "English",
+      "Hindi",
+      "Tangkhul",
+      "Thadou"
+    ],
+    "major_rivers": [
+      "Imphal River",
+      "Iril River",
+      "Thoubal River"
+    ]
   },
   {
     "id": "meghalaya",
@@ -731,8 +934,18 @@
     "capital": "Shillong",
     "population": 3366710,
     "literacy_rate": 75.48,
-    "languages": ["Khasi", "Garo", "English", "Hindi"],
-    "major_rivers": ["Umiam", "Myntdu", "Kynshi", "Simsang"]
+    "languages": [
+      "Khasi",
+      "Garo",
+      "English",
+      "Hindi"
+    ],
+    "major_rivers": [
+      "Umiam",
+      "Myntdu",
+      "Kynshi",
+      "Simsang"
+    ]
   },
   {
     "id": "mizoram",
@@ -766,8 +979,17 @@
     "capital": "Aizawl",
     "population": 1091014,
     "literacy_rate": 91.58,
-    "languages": ["Mizo", "English", "Hindi"],
-    "major_rivers": ["Tlawng", "Tuirial", "Chhimtuipui", "Serchhip"]
+    "languages": [
+      "Mizo",
+      "English",
+      "Hindi"
+    ],
+    "major_rivers": [
+      "Tlawng",
+      "Tuirial",
+      "Chhimtuipui",
+      "Serchhip"
+    ]
   },
   {
     "id": "rajasthan",
@@ -800,8 +1022,18 @@
     "capital": "Jaipur",
     "population": 68548437,
     "literacy_rate": 66.11,
-    "languages": ["Rajasthani", "Hindi", "Marwari", "Mewari"],
-    "major_rivers": ["Chambal", "Luni", "Banas", "Mahi"]
+    "languages": [
+      "Rajasthani",
+      "Hindi",
+      "Marwari",
+      "Mewari"
+    ],
+    "major_rivers": [
+      "Chambal",
+      "Luni",
+      "Banas",
+      "Mahi"
+    ]
   },
   {
     "id": "sikkim",
@@ -835,8 +1067,17 @@
     "capital": "Gangtok",
     "population": 610577,
     "literacy_rate": 81.42,
-    "languages": ["Nepali", "Bhutia", "Lepcha", "English", "Hindi"],
-    "major_rivers": ["Teesta", "Rangit"]
+    "languages": [
+      "Nepali",
+      "Bhutia",
+      "Lepcha",
+      "English",
+      "Hindi"
+    ],
+    "major_rivers": [
+      "Teesta",
+      "Rangit"
+    ]
   },
   {
     "id": "tamilnadu",
@@ -870,8 +1111,19 @@
     "capital": "Chennai",
     "population": 72147030,
     "literacy_rate": 80.33,
-    "languages": ["Tamil", "Telugu", "Urdu", "Malayalam", "English"],
-    "major_rivers": ["Kaveri", "Vaigai", "Palar", "Thamirabarani"]
+    "languages": [
+      "Tamil",
+      "Telugu",
+      "Urdu",
+      "Malayalam",
+      "English"
+    ],
+    "major_rivers": [
+      "Kaveri",
+      "Vaigai",
+      "Palar",
+      "Thamirabarani"
+    ]
   },
   {
     "id": "tripura",
@@ -905,8 +1157,18 @@
     "capital": "Agartala",
     "population": 4169794,
     "literacy_rate": 87.22,
-    "languages": ["Bengali", "Kokborok", "Hindi", "English"],
-    "major_rivers": ["Gomati", "Manu", "Khowai", "Dhalai"]
+    "languages": [
+      "Bengali",
+      "Kokborok",
+      "Hindi",
+      "English"
+    ],
+    "major_rivers": [
+      "Gomati",
+      "Manu",
+      "Khowai",
+      "Dhalai"
+    ]
   },
   {
     "id": "haryana",
@@ -940,8 +1202,19 @@
     "capital": "Chandigarh",
     "population": 28900000,
     "literacy_rate": 76.64,
-    "languages": ["Haryanvi", "Hindi", "Punjabi", "English"],
-    "major_rivers": ["Yamuna", "Ghaggar", "Sarasvati", "Markanda", "Tangri"]
+    "languages": [
+      "Haryanvi",
+      "Hindi",
+      "Punjabi",
+      "English"
+    ],
+    "major_rivers": [
+      "Yamuna",
+      "Ghaggar",
+      "Sarasvati",
+      "Markanda",
+      "Tangri"
+    ]
   },
   {
     "id": "punjab",
@@ -975,8 +1248,16 @@
     "capital": "Chandigarh",
     "population": 27743338,
     "literacy_rate": 76.68,
-    "languages": ["Punjabi", "Hindi", "English"],
-    "major_rivers": ["Sutlej", "Beas", "Ravi"]
+    "languages": [
+      "Punjabi",
+      "Hindi",
+      "English"
+    ],
+    "major_rivers": [
+      "Sutlej",
+      "Beas",
+      "Ravi"
+    ]
   },
   {
     "id": "uttarakhand",
@@ -1010,8 +1291,19 @@
     "capital": "Dehradun, Gairsain",
     "population": 11250000,
     "literacy_rate": 78.82,
-    "languages": ["Hindi", "Garhwali", "Kumaoni", "Jaunsari", "English"],
-    "major_rivers": ["Ganga", "Yamuna", "Alaknanda", "Bhagirathi"]
+    "languages": [
+      "Hindi",
+      "Garhwali",
+      "Kumaoni",
+      "Jaunsari",
+      "English"
+    ],
+    "major_rivers": [
+      "Ganga",
+      "Yamuna",
+      "Alaknanda",
+      "Bhagirathi"
+    ]
   },
   {
     "id": "himachalpradesh",
@@ -1045,8 +1337,19 @@
     "capital": "Shimla (Summer), Dharamshala (Winter)",
     "population": 7300000,
     "literacy_rate": 83.78,
-    "languages": ["Hindi", "Pahari", "Punjabi", "Kinnauri"],
-    "major_rivers": ["Sutlej", "Beas", "Chenab", "Ravi", "Yamuna"]
+    "languages": [
+      "Hindi",
+      "Pahari",
+      "Punjabi",
+      "Kinnauri"
+    ],
+    "major_rivers": [
+      "Sutlej",
+      "Beas",
+      "Chenab",
+      "Ravi",
+      "Yamuna"
+    ]
   },
   {
     "id": "jammuandkashmir",
@@ -1080,8 +1383,19 @@
     "capital": "Srinagar (Summer), Jammu (Winter)",
     "population": 13600000,
     "literacy_rate": 68.74,
-    "languages": ["Kashmiri", "Urdu", "Dogri", "Hindi", "English"],
-    "major_rivers": ["Jhelum", "Chenab", "Tawi", "Ravi"]
+    "languages": [
+      "Kashmiri",
+      "Urdu",
+      "Dogri",
+      "Hindi",
+      "English"
+    ],
+    "major_rivers": [
+      "Jhelum",
+      "Chenab",
+      "Tawi",
+      "Ravi"
+    ]
   },
   {
     "id": "andamanandnicobarislands",
@@ -1115,8 +1429,18 @@
     "capital": "Port Blair",
     "population": 380520,
     "literacy_rate": 86.27,
-    "languages": ["Hindi", "Tamil", "Telugu", "Bengali", "Nicobarese", "English"],
-    "major_rivers": ["Kalpong River", "Galathea River"]
+    "languages": [
+      "Hindi",
+      "Tamil",
+      "Telugu",
+      "Bengali",
+      "Nicobarese",
+      "English"
+    ],
+    "major_rivers": [
+      "Kalpong River",
+      "Galathea River"
+    ]
   },
   {
     "id": "chandigarh",
@@ -1150,7 +1474,11 @@
     "capital": "Chandigarh",
     "population": 1158473,
     "literacy_rate": 86.05,
-    "languages": ["Hindi", "Punjabi", "English"],
+    "languages": [
+      "Hindi",
+      "Punjabi",
+      "English"
+    ],
     "major_rivers": []
   },
   {
@@ -1185,8 +1513,15 @@
     "capital": "Kavaratti",
     "population": 64473,
     "literacy_rate": 91.85,
-    "languages": ["Malayalam", "Jeseri", "Dhawari", "English"],
-    "major_rivers": ["N/A"]
+    "languages": [
+      "Malayalam",
+      "Jeseri",
+      "Dhawari",
+      "English"
+    ],
+    "major_rivers": [
+      "N/A"
+    ]
   },
   {
     "id": "ladakh",
@@ -1220,8 +1555,18 @@
     "capital": "Leh, Kargil",
     "population": 274289,
     "literacy_rate": 77.2,
-    "languages": ["Ladakhi", "Balti", "Urdu", "Hindi", "English"],
-    "major_rivers": ["Indus", "Zanskar", "Shyok"]
+    "languages": [
+      "Ladakhi",
+      "Balti",
+      "Urdu",
+      "Hindi",
+      "English"
+    ],
+    "major_rivers": [
+      "Indus",
+      "Zanskar",
+      "Shyok"
+    ]
   },
   {
     "id": "puducherry",
@@ -1255,7 +1600,17 @@
     "capital": "Puducherry",
     "population": 1394467,
     "literacy_rate": 86.55,
-    "languages": ["Tamil", "French", "English", "Telugu", "Malayalam"],
-    "major_rivers": ["Sankaraparani", "Pennaiyar", "Arasalar"]
+    "languages": [
+      "Tamil",
+      "French",
+      "English",
+      "Telugu",
+      "Malayalam"
+    ],
+    "major_rivers": [
+      "Sankaraparani",
+      "Pennaiyar",
+      "Arasalar"
+    ]
   }
 ]
