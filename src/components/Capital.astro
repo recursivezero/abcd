@@ -58,7 +58,14 @@ function getColorClass(index: number) {
             >
               <details>
                 <summary title={state.name}>{state.name}</summary>
-                <p title={state.capital}>{state.capital}</p>
+                <p title={state.capital}>
+                  {state.capital}
+                  {state.multiple && (
+                    <span style={{ color: "grey" }} aria-label="capital in winter">
+                      | ❄️ {state.multiple.winter}
+                    </span>
+                  )}
+                </p>
               </details>
             </article>
           ))
@@ -82,7 +89,14 @@ function getColorClass(index: number) {
             >
               <details>
                 <summary title={ut.name}>{ut.name}</summary>
-                <p title={ut.capital}>{ut.capital}</p>
+                <p title={ut.capital}>
+                  {ut.capital}
+                  {ut.multiple && (
+                    <span style={{ color: "grey" }} aria-label="capital in winter">
+                      | ❄️ {ut.multiple.winter}
+                    </span>
+                  )}
+                </p>
               </details>
             </article>
           ))

@@ -156,7 +156,7 @@
 .location-grid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   align-items: start;
 }
 
@@ -369,7 +369,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .location-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
   }
 
   .section-header {

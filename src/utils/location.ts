@@ -2,6 +2,7 @@ export interface Location {
   name: string;
   capital: string;
   isState: boolean;
+  multiple?: { summer: string; winter: string };
 }
 
 export const locations: Location[] = [
@@ -14,12 +15,17 @@ export const locations: Location[] = [
   { name: "Goa", capital: "Panaji", isState: true },
   { name: "Gujarat", capital: "Gandhinagar", isState: true },
   { name: "Haryana", capital: "Chandigarh", isState: true },
-  { name: "Himachal Pradesh", capital: "Shimla", isState: true },
+  { name: "Himachal Pradesh", capital: "Shimla", isState: true, multiple: { summer: "Shimla", winter: "Dharmshala" } },
   { name: "Jharkhand", capital: "Ranchi", isState: true },
   { name: "Karnataka", capital: "Bengaluru", isState: true },
   { name: "Kerala", capital: "Thiruvananthapuram", isState: true },
   { name: "Madhya Pradesh", capital: "Bhopal", isState: true },
-  { name: "Maharashtra", capital: "Mumbai", isState: true },
+  {
+    name: "Maharashtra",
+    capital: "Mumbai",
+    isState: true,
+    multiple: { summer: "Mumbai", winter: "Nagpur" }
+  },
   { name: "Manipur", capital: "Imphal", isState: true },
   { name: "Meghalaya", capital: "Shillong", isState: true },
   { name: "Mizoram", capital: "Aizawl", isState: true },
@@ -39,7 +45,12 @@ export const locations: Location[] = [
   { name: "Andaman and Nicobar Islands", capital: "Port Blair", isState: false },
   { name: "Chandigarh", capital: "Chandigarh", isState: false },
   { name: "Dadra and Nagar Haveli and Daman and Diu", capital: "Daman", isState: false },
-  { name: "Jammu & Kashmir", capital: "Srinagar", isState: false },
+  {
+    name: "Jammu and Kashmir",
+    capital: "Srinagar",
+    isState: false,
+    multiple: { summer: "Srinagar", winter: "Jammu" }
+  },
   { name: "Ladakh", capital: "Leh", isState: false },
   { name: "Lakshadweep", capital: "Kavaratti", isState: false },
   { name: "Delhi", capital: "New Delhi", isState: false },
