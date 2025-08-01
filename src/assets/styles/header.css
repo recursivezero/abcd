@@ -24,12 +24,13 @@
       height: 3rem;
     }
 
-    span {
+    p {
       font-size: 1.5rem;
       font-weight: 600;
+      margin-inline-start: 1rem;
       color: var(--primary);
 
-      & em {
+      & span {
         color: #6d8c3d;
       }
     }
@@ -39,10 +40,6 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-
-    & span {
-      margin-inline: 1rem;
-    }
   }
 
   .title {
