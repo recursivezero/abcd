@@ -13,6 +13,25 @@ const meta = {
 };
 ---
 
+<style>
+  .quote-text {
+    height: auto;
+    &::after {
+      content: "";
+      width: 5px;
+      height: 20px;
+      background: #ec7fff;
+      display: inline-block;
+      animation: cursor-blink 1.5s steps(2) infinite;
+    }
+  }
+  @keyframes cursor-blink {
+    0% {
+      opacity: 0;
+    }
+  }
+</style>
+
 <BaseLayout meta={meta}>
   <Fragment slot="header-right">
     <SharePopover title={meta.title} description={meta.description} />
@@ -86,7 +105,7 @@ const meta = {
       <div class="preview-container" id="previewContainer">
         <div id="aspectRatioWrapper" class="aspect-ratio-free">
           <div id="quotePreview">
-            <div class="quote-text"></div>
+            <div class="quote-text" contenteditable="plaintext-only"></div>
             <div class="author-name"></div>
           </div>
         </div>
@@ -444,7 +463,7 @@ const meta = {
       if (!preview || !quoteData || !quoteTextEl || !authorNameEl) return;
       quoteTextEl.textContent = quoteData.quote || "";
       authorNameEl.textContent = quoteData.author ? `- ${quoteData.author}` : "";
-      const selectedTextColor = controls.textColor?.value || "#000000";
+      const selectedTextColor = controls.textColor?.value || "white";
       quoteTextEl.style.color = selectedTextColor;
       authorNameEl.style.color = selectedTextColor;
       preview.style.fontFamily = controls.fontFamily?.value || "'Space Mono', monospace";

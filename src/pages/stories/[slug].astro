@@ -59,6 +59,40 @@ const meta = {
 };
 ---
 
+<style>
+  .audio-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+
+    &button {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      line-height: 1;
+      border: 1px solid #ccc;
+      background: #d79999;
+      cursor: pointer;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background-color 0.2s,
+        transform 0.1s;
+    }
+
+    button:hover {
+      background: #e0e0e0;
+    }
+
+    button:active {
+      background: #d0d0d0;
+      transform: scale(0.96);
+    }
+  }
+</style>
+
 <BaseLayout meta={meta}>
   <Fragment slot="header-left">
     <SharePopover />
@@ -71,6 +105,12 @@ const meta = {
       <button id="fontDecrease" title="Decrease font size">A-</button>
       <button id="fontIncrease" title="Increase font size">A+</button>
       <button id="fontReset" title="Reset font size">↺</button>
+    </div>
+    <div class="audio-controls">
+      <button id="play" title="play or resume">▶&#x25B6;</button>
+      <button id="pause" title="pause">&#10074;&#10074;</button>
+      <!--<button id="resume" title="resume">&#8635;</button>-->
+      <button id="stop" title="stop">&#9632;</button>
     </div>
   </div>
   <article class="container__story">
@@ -129,7 +169,7 @@ const meta = {
       }
     </header>
 
-    <div class="story-content">
+    <div class="story-content" id="storyContent">
       <Content />
     </div>
   </article>
@@ -141,6 +181,14 @@ const meta = {
       const fontIncrease = document.getElementById("fontIncrease") as HTMLButtonElement;
       const fontReset = document.getElementById("fontReset") as HTMLButtonElement;
       const storyContent = document.querySelector(".story-content") as HTMLElement;
+
+      const speakButton = document.getElementById("play") as HTMLElement;
+      const pauseButton = document.getElementById("pause") as HTMLElement;
+      const stopButton = document.getElementById("stop") as HTMLElement;
+
+      //playButton.addEventListener("click", speak);
+      //pauseButton.addEventListener("click", pause);
+      //stopButton.addEventListener("click", stop);
 
       const updateFontSize = (size: number) => {
         slider.value = size.toString();
@@ -173,6 +221,62 @@ const meta = {
       fontReset.addEventListener("click", () => {
         updateFontSize(18);
       });
+
+      / * audio options */;
+      let utterance;
+      let isPausedManually = false;
+      const storyText = document.getElementById("storyContent")?.textContent || "";
+      const isSpeaking = () => speechSynthesis.speaking && !speechSynthesis.paused;
+      const isPaused = () => speechSynthesis.paused || isPausedManually;
+
+      const speak = () => {
+        if (isPaused()) {
+          speechSynthesis.resume();
+          isPausedManually = false;
+          return;
+        }
+
+        if (isSpeaking()) {
+          // Already speaking, pause
+          speechSynthesis.pause();
+          isPausedManually = true;
+          return;
+        }
+
+        speechSynthesis.cancel();
+        utterance = new SpeechSynthesisUtterance(storyText);
+        utterance.onend = () => {
+          isPausedManually = false;
+        };
+
+        utterance.onpause = () => {
+          isPausedManually = true;
+        };
+
+        utterance.onresume = () => {
+          isPausedManually = false;
+        };
+        speechSynthesis.speak(utterance);
+      };
+
+      const pause = () => {
+        if (isSpeaking()) speechSynthesis.pause();
+      };
+
+      const stop = () => speechSynthesis.cancel();
+
+      speakButton.addEventListener("click", () => {
+        if (isPaused()) {
+          speechSynthesis.resume();
+        } else if (isSpeaking()) {
+          speechSynthesis.pause();
+        } else {
+          speak();
+        }
+      });
+
+      pauseButton.addEventListener("click", pause);
+      stopButton.addEventListener("click", stop);
     });
   </script>
 </BaseLayout>
