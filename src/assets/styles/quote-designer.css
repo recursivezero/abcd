@@ -244,7 +244,8 @@ textarea.metallic-textarea {
 .right-header-buttons {
   display: flex;
   align-items: center;
-  gap: 0.7rem; /* Gap between buttons */
+  gap: 0.7rem;
+  /* Gap between buttons */
 }
 
 .design-container {
@@ -511,24 +512,26 @@ textarea.metallic-textarea {
 }
 
 /* Quote Preview Specific Styles */
-#quotePreview .quote-text {
+.quote-text {
   width: 100%;
   font-weight: normal;
   font-style: normal;
   color: light-dark(#000000, #ffffff);
   text-decoration: none;
   transition: all var(--transition-speed) ease;
+  min-height: 4rem;
+  border-bottom: 1px solid red;
 }
 
-#quotePreview .quote-text.bold {
+.bold {
   font-weight: bold;
 }
 
-#quotePreview .quote-text.italic {
+.italic {
   font-style: italic !important;
 }
 
-#quotePreview .quote-text.underline {
+.quote-text.underline {
   text-decoration: underline;
 }
 
@@ -619,7 +622,7 @@ textarea.metallic-textarea {
   transform: rotate(45deg);
 }
 
-.popover-details[open] > div {
+.popover-details[open]>div {
   padding: 0 1rem 1rem 1rem;
   margin-top: 0.5rem;
 }
@@ -664,7 +667,7 @@ textarea.metallic-textarea {
   transform: rotate(45deg);
 }
 
-.control-section[open] > div {
+.control-section[open]>div {
   padding: 0 1rem 1rem 1rem;
   margin-top: 0.5rem;
 }

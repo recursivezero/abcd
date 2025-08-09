@@ -2,6 +2,7 @@
   --shade: light-dark(#fff, #25354fcc);
   --box: light-dark(#f5deb3, #0f172acc);
 }
+
 /* Global Styles for the Canvas Generator */
 .canvas-generator {
   min-height: 100vh;
@@ -38,7 +39,7 @@
   font-size: 1.2rem;
   width: 100%;
   background: var(--box);
-  color: #e2e8f0;
+  color: #4d6f9e;
   transition: border-color 0.3s ease;
   outline: none;
   box-sizing: border-box;
@@ -88,7 +89,8 @@
 /* New Styles for Combined Label and Checkbox */
 .canvas-generator .label-checkbox-container {
   display: flex;
-  justify-content: space-between; /* Pushes label to left and checkbox to right */
+  justify-content: space-between;
+  /* Pushes label to left and checkbox to right */
   align-items: center;
   width: 100%;
   margin-bottom: 1rem;

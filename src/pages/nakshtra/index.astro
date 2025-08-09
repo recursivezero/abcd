@@ -15,29 +15,38 @@ const meta = {
 ---
 
 <style>
-  .legend-container {
+  .legend__list {
     display: flex;
-    gap: 1rem;
-    font-size: 0.9rem;
     align-items: center;
-    flex-wrap: wrap;
-    justify-content: end;
-    margin-right: 2rem;
+    div {
+      flex: 1;
+      text-align: right;
+      font-style: italic;
+    }
+    .legend {
+      font-size: large;
+      color: rgb(44, 45, 42);
+      margin-inline-end: 4px;
+      &::before {
+        content: attr(data-icon);
+        font-size: 1.75rem;
+      }
+    }
   }
 
-  .legend-item {
+  dl {
     display: flex;
+    margin: 3px 4px;
     align-items: center;
-    gap: 0.4rem;
-    color: #444;
-    background: #f7f7f7;
+    padding-inline: 1rem;
+    border: 3px dotted #b2c3d9;
+  }
+
+  dd {
+    margin: 0;
     padding: 0.3rem 0.6rem;
     border-radius: 0.5rem;
-    border: 1px solid #e0e0e0;
-  }
-
-  .legend-icon {
-    display: inline-block;
+    font-size: 1.25rem;
   }
 </style>
 
@@ -52,22 +61,26 @@ const meta = {
   </Fragment>
 
   <h1>Nakshatra Nexus</h1>
-  <div class="legend-container">
-    <div class="legend-item">
-      <span class="legend-icon">🪐</span> Ruling Planet
-    </div>
-    <div class="legend-item">
-      <span class="legend-icon">📿</span> Deity
-    </div>
-    <div class="legend-item">
-      <span class="legend-icon">࿊</span> Symbol
-    </div>
+  <div class="legend__list">
+    <div>Legends:</div>
+    <dl>
+      <dt class="legend" data-icon="🪐"></dt>
+      <dd>Ruling Planet</dd>
+    </dl>
+    <dl>
+      <dt class="legend" data-icon="📿"></dt>
+      <dd>Deity</dd>
+    </dl>
+    <dl>
+      <dt class="legend" data-icon="࿊"></dt>
+      <dd>Symbol</dd>
+    </dl>
   </div>
-  <div class="container__nakshtra">
+  <dt class="container__nakshtra">
     <div class="card__list">
       {(data as any)[currentLang].map((nakshtra: Nakshtra) => <NakshtraCard {nakshtra} />)}
     </div>
-  </div>
+  </dt>
   <div class="note">
     <p>
       <strong>Note on Abhijit Nakshatra:</strong> A 28th Nakshatra, Abhijit, is mentioned in some texts (between Uttara Ashadha

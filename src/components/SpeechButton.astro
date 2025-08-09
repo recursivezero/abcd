@@ -1,0 +1,75 @@
+---
+// SpeechButtons.astro
+---
+
+<div class="controls">
+  <button id="startBtn" title="Start">&#x25B6;</button>
+  <button id="pauseBtn" title="Pause">&#10074;&#10074;</button>
+  <button id="resumeBtn" title="Resume">&#8635;</button>
+  <button id="stopBtn" title="Stop">&#9632;</button>
+</div>
+
+<style>
+  .controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  button {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 1;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      background-color 0.2s,
+      transform 0.1s;
+  }
+  button:hover {
+    background: #e0e0e0;
+  }
+  button:active {
+    background: #d0d0d0;
+    transform: scale(0.96);
+  }
+  textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+</style>
+
+<script type="module" is:inline>
+  let utterance;
+
+  document.getElementById("startBtn")?.addEventListener("click", () => {
+    const text = document.getElementById("text").value;
+    utterance = new SpeechSynthesisUtterance(text);
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+  });
+
+  document.getElementById("pauseBtn")?.addEventListener("click", () => {
+    if (speechSynthesis.speaking && !speechSynthesis.paused) {
+      speechSynthesis.pause();
+    }
+  });
+
+  document.getElementById("resumeBtn")?.addEventListener("click", () => {
+    if (speechSynthesis.paused) {
+      speechSynthesis.resume();
+    }
+  });
+
+  document.getElementById("stopBtn")?.addEventListener("click", () => {
+    speechSynthesis.cancel();
+  });
+</script>

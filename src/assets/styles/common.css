@@ -11,6 +11,15 @@
   outline-offset: 0.5rem;
 }
 
+.rdb {
+  border: 1px solid red;
+}
+
+.odb {
+  outline: 1px solid red;
+}
+
+
 /* Utilities */
 .sr-only {
   position: absolute;
