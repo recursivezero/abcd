@@ -4,22 +4,61 @@
   padding-inline: 1rem;
 }
 
+.legend__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  div {
+    flex: 1;
+    text-align: right;
+    font-style: italic;
+  }
+
+  .legend {
+    font-size: large;
+    color: rgb(44, 45, 42);
+    margin-inline-end: 4px;
+
+    &::before {
+      content: attr(data-icon);
+      font-size: 1.75rem;
+    }
+  }
+
+  dl {
+    display: flex;
+    margin: 3px 4px;
+    align-items: center;
+    padding-inline: 1rem;
+    border: 3px dotted #b2c3d9;
+  }
+
+  dd {
+    margin: 0;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+  }
+}
+
 .card__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
   gap: 1rem;
-  margin: 1rem;
-}
+  margin-block: 1rem;
 
-@container nakshtra (width <=700px) {
-  .card__list {
-    grid-template-columns: repeat(2, 1fr);
+
+  @container nakshtra (width <=700px) {
+    .card__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
-}
 
-@container nakshtra (width <=468px) {
-  .card__list {
-    grid-template-columns: 1fr;
+  @container nakshtra (width <=468px) {
+    .card__list {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
@@ -31,4 +70,71 @@
   background-color: rgba(var(--card-bg), 0.5);
   border-left: 4px solid var(--primary-color);
   opacity: 0.8;
+}
+
+
+
+
+/* Nakshtra card */
+.card {
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 5px var(--primary-color);
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 75px var(--primary-color);
+}
+
+.nakshatra-card {
+  aspect-ratio: auto;
+  cursor: default;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  h3 {
+    font-size: 2rem;
+    color: #df9f9f;
+    margin: 0;
+  }
+
+  .nakshatra-details {
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+    width: 100%;
+    text-align: left;
+
+    p {
+      padding: 0.5rem 1rem;
+      margin: 0;
+      font-size: 1.5rem;
+
+      &:nth-child(even) {
+        border-block: 1px dashed light-dark(#78818d, #123456);
+      }
+
+      & span {
+        padding-inline: 0.5rem;
+      }
+    }
+  }
 }
