@@ -108,6 +108,7 @@ import "@/assets/styles/map/district.css";
               });
               texts.forEach((text) => {
                 text.style.display = "block";
+                text.style.stroke = "#5417dcb0";
                 text.style.fill = getComputedStyle(document.documentElement).getPropertyValue("--text");
               });
               break;
@@ -238,6 +239,7 @@ import "@/assets/styles/map/district.css";
 
           const mouseX = e.clientX;
           const mouseY = e.clientY;
+          tooltip.style.color = "green";
 
           tooltip.style.left = `${mouseX - 250}px`;
           tooltip.style.top = `${mouseY - 120}px`;

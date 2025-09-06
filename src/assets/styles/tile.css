@@ -61,3 +61,10 @@
     display: none;
   }
 }
+
+[data-category="scripture"] .page__grid {
+  .character {
+    margin-top: 8px;
+    font-size: clamp(1rem, 4vw, 2rem);
+  }
+}

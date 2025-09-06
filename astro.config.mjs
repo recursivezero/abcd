@@ -1,4 +1,5 @@
 import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
@@ -18,7 +19,16 @@ export default defineConfig({
   experimental: {
     svg: true
   },
-  integrations: [sitemap(), mdx()],
+  integrations: [
+    partytown({
+      // https://partytown.qwik.dev/google-tag-manager/#google-analytics-4-ga4
+      config: {
+        forward: ["dataLayer.push"]
+      }
+    }),
+    sitemap(),
+    mdx()
+  ],
   style: {
     global: true // Ensure global styles are applied
   },

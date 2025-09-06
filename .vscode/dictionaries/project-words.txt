@@ -26,6 +26,7 @@ datetime
 Deepavali
 dhaga
 Dhaivat
+Disha
 dogri
 DPDP
 Dussehra
@@ -59,6 +60,7 @@ LXXX
 Madhyam
 Magha
 maithili
+Majeure
 Margashirsha
 matra
 matras

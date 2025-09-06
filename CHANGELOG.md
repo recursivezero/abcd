@@ -36,6 +36,11 @@ Created Repo from template
 - Mobile view fixed for pages
 - FAQs updated
 
+## [3.2.3] - 2025-09-07
+
+- Added Google Analytics with partytown
+- Added Disha and Purana names in Glossary
+
 ### [Unreleased]
 
 Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.

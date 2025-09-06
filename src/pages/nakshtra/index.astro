@@ -10,45 +10,9 @@ var currentLang = "hindi";
 
 const meta = {
   title: "Nakshtra",
-  description: "Explore all 27 Nakshatras (lunar mansions) in Vedic astrology."
+  description: "Explore all 27 Nakshatra (lunar mansions) in Vedic astrology."
 };
 ---
-
-<style>
-  .legend__list {
-    display: flex;
-    align-items: center;
-    div {
-      flex: 1;
-      text-align: right;
-      font-style: italic;
-    }
-    .legend {
-      font-size: large;
-      color: rgb(44, 45, 42);
-      margin-inline-end: 4px;
-      &::before {
-        content: attr(data-icon);
-        font-size: 1.75rem;
-      }
-    }
-  }
-
-  dl {
-    display: flex;
-    margin: 3px 4px;
-    align-items: center;
-    padding-inline: 1rem;
-    border: 3px dotted #b2c3d9;
-  }
-
-  dd {
-    margin: 0;
-    padding: 0.3rem 0.6rem;
-    border-radius: 0.5rem;
-    font-size: 1.25rem;
-  }
-</style>
 
 <BaseLayout meta={meta}>
   <BackIcon />
@@ -59,28 +23,28 @@ const meta = {
       description="In Hindu astrology, Nakshatra (नक्षत्र) refers to a constellation or lunar mansion."
     />
   </Fragment>
+  <div class="container__nakshtra">
+    <h1>Nakshatra Nexus</h1>
+    <div class="legend__list">
+      <div>Legends:</div>
+      <dl>
+        <dt class="legend" data-icon="🪐"></dt>
+        <dd>Ruling Planet</dd>
+      </dl>
+      <dl>
+        <dt class="legend" data-icon="📿"></dt>
+        <dd>Deity</dd>
+      </dl>
+      <dl>
+        <dt class="legend" data-icon="࿊"></dt>
+        <dd>Symbol</dd>
+      </dl>
+    </div>
 
-  <h1>Nakshatra Nexus</h1>
-  <div class="legend__list">
-    <div>Legends:</div>
-    <dl>
-      <dt class="legend" data-icon="🪐"></dt>
-      <dd>Ruling Planet</dd>
-    </dl>
-    <dl>
-      <dt class="legend" data-icon="📿"></dt>
-      <dd>Deity</dd>
-    </dl>
-    <dl>
-      <dt class="legend" data-icon="࿊"></dt>
-      <dd>Symbol</dd>
-    </dl>
-  </div>
-  <dt class="container__nakshtra">
     <div class="card__list">
       {(data as any)[currentLang].map((nakshtra: Nakshtra) => <NakshtraCard {nakshtra} />)}
     </div>
-  </dt>
+  </div>
   <div class="note">
     <p>
       <strong>Note on Abhijit Nakshatra:</strong> A 28th Nakshatra, Abhijit, is mentioned in some texts (between Uttara Ashadha

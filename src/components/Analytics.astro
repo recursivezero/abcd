@@ -8,8 +8,8 @@ const gtagScript = `
 `;
 ---
 
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} is:inline></script>
-<script define:vars={{ gtagScript }} is:inline>
+<script async type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} is:inline></script>
+<script type="text/partytown" define:vars={{ gtagScript }} is:inline>
   {
     gtagScript;
   }
