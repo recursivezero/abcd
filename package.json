@@ -1,6 +1,6 @@
 {
   "name": "@recursivezero/abcd",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "A website for our kids trial phase of abcdkbd.com",
   "homepage": "https://abcdkbd.com",
   "displayName": "abcd",
@@ -112,6 +112,7 @@
     "@astrojs/check": "0.9.4",
     "@astrojs/mdx": "4.0.3",
     "@astrojs/node": "9.1.2",
+    "@astrojs/partytown": "2.1.4",
     "@astrojs/sitemap": "3.4.1",
     "@fontsource/roboto": "5.1.0",
     "astro": "5.4.1",
@@ -135,5 +136,8 @@
     "prettier": "3.1.0",
     "prettier-plugin-astro": "0.14.1",
     "shx": "0.3.4"
+  },
+  "engines": {
+    "node": "^20"
   }
 }

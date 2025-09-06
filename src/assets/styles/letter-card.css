@@ -29,16 +29,14 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    font-size: clamp(3rem, 6vw, 4rem);
+    font-size: clamp(3rem, 6vw, 3.25rem);
     font-weight: 800;
     margin: 0;
     line-height: 1.2;
     /* Adjusted line-height */
-    background: linear-gradient(
-      135deg,
-      var(--character-gradient-start, var(--primary)) 0%,
-      var(--character-gradient-end, var(--primary-light)) 100%
-    );
+    background: linear-gradient(135deg,
+        var(--character-gradient-start, var(--primary)) 0%,
+        var(--character-gradient-end, var(--primary-light)) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -194,11 +192,9 @@
   & .card__glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      color-mix(in srgb, var(--primary) 10%, transparent) 0%,
-      transparent 60%
-    );
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        color-mix(in srgb, var(--primary) 10%, transparent) 0%,
+        transparent 60%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;

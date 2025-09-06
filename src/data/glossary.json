@@ -893,5 +893,197 @@
         "text": "देर रात"
       }
     ]
+  },
+  "disha": {
+    "id": 14,
+    "category": "dimension",
+    "icon": "📏",
+    "title": "Disha (Dimensions)",
+    "description": "A collection of 10 dimensions in Hindi and English.",
+    "data": [
+      {
+        "description": "Abode of gods and enlightenment.",
+        "emoji": "⬆",
+        "letter": "Up",
+        "text": "ऊर्ध्व, ऊपर"
+      },
+      {
+        "description": "Realm of ancestors and netherworld.",
+        "emoji": "⬇",
+        "letter": "Down",
+        "text": "अधः, नीचे"
+      },
+      {
+        "description": "Direction of the gods.",
+        "emoji": "➡️",
+        "letter": "East",
+        "text": "पूर्व"
+      },
+      {
+        "description": "Direction of the ancestors.",
+        "emoji": "⬅️",
+        "letter": "West",
+        "text": "पश्चिम"
+      },
+      {
+        "description": "Home of wealth and prosperity.",
+        "emoji": "⬆️",
+        "letter": "North",
+        "text": "उत्तर"
+      },
+      {
+        "description": "Domain of death and change.",
+        "emoji": "⬇️",
+        "letter": "South",
+        "text": "दक्षिण"
+      },
+      {
+        "description": "Corner of Shiva and wisdom.",
+        "emoji": "↗️",
+        "letter": "Northeast",
+        "text": "ईशान्य"
+      },
+      {
+        "description": "Corner of Agni and energy.",
+        "emoji": "↘️",
+        "letter": "Southeast",
+        "text": "आग्नेय"
+      },
+      {
+        "description": "Corner of Vayu and winds.",
+        "emoji": "↖️",
+        "letter": "Northwest",
+        "text": "वायव्य"
+      },
+      {
+        "description": "Corner of Nirriti (निरृति ) and dissolution.",
+        "emoji": "↙️",
+        "letter": "Southwest",
+        "text": "नैर्ऋत्य"
+      }
+    ]
+  },
+  "purana": {
+    "id": 15,
+    "category": "scripture",
+    "icon": "📜",
+    "title": "Purana",
+    "description": "A collection of the 18 Mahapuranas in Hinduism.",
+    "data": [
+      {
+        "description": "Describes creation and time cycles.",
+        "emoji": "🕉️",
+        "letter": "Brahma Purana",
+        "text": "ब्रह्म पुराण"
+      },
+      {
+        "description": "Focuses on Lord Vishnu's avatars.",
+        "emoji": "🐚",
+        "letter": "Padma Purana",
+        "text": "पद्म पुराण"
+      },
+      {
+        "description": "Glorifies Lord Shiva and rituals.",
+        "emoji:": "🔱",
+        "letter": "Vishnu Purana",
+        "text": "विष्णु पुराण"
+      },
+      {
+        "description": "A vast encyclopedia of knowledge.",
+        "emoji": "🌌",
+        "letter": "Shiva Purana",
+        "text": "शिव पुराण"
+      },
+      {
+        "description": "Tales of Lord Vishnu's incarnations.",
+        "emoji": "🎭",
+        "letter": "Bhagavata Purana",
+        "text": "भागवत पुराण"
+      },
+      {
+        "description": "Details about the universe's structure.",
+        "emoji": "🗺️",
+        "letter": "Narada Purana",
+        "text": "नारद पुराण"
+      },
+      {
+        "description": "Story of Markandeya's immortality.",
+        "emoji": "🧓",
+        "letter": "Markandeya Purana",
+        "text": "मार्कण्डेय पुराण"
+      },
+      {
+        "description": "Worship of Goddess Agni (Fire).",
+        "emoji": "🔥",
+        "letter": "Agni Purana",
+        "text": "अग्नि पुराण"
+      },
+      {
+        "description": "A dialogue between Shiva and Parvati.",
+        "emoji": "👫",
+        "letter": "Bhavishya Purana",
+        "text": "भविष्य पुराण"
+      },
+      {
+        "description": "Glorifies the Linga form of Shiva.",
+        "emoji": "⃰",
+        "letter": "Linga Purana",
+        "text": "लिंग पुराण"
+      },
+      {
+        "description": "Story of the Varaha avatar (boar).",
+        "emoji": "🐗",
+        "letter": "Varaha Purana",
+        "text": "वराह पुराण"
+      },
+      {
+        "description": "The story of the Vamana avatar (dwarf).",
+        "emoji": "👣",
+        "letter": "Vamana Purana",
+        "text": "वामन पुराण"
+      },
+      {
+        "description": "The greatness of the Skanda (Kartikeya).",
+        "emoji": "🦚",
+        "letter": "Skanda Purana",
+        "text": "स्कन्द पुराण"
+      },
+      {
+        "description": "The story of the Vamana avatar (dwarf).",
+        "emoji": "👣",
+        "letter": "Vamana Purana",
+        "text": "वामन पुराण"
+      },
+      {
+        "description": "The story of the Kurma avatar (tortoise).",
+        "emoji": "🐢",
+        "letter": "Kurma Purana",
+        "text": "कूर्म पुराण"
+      },
+      {
+        "description": "The story of the Matsya avatar (fish).",
+        "emoji": "🐠",
+        "letter": "Matsya Purana",
+        "text": "मत्स्य पुराण"
+      },
+      {
+        "description": "The story of the Garuda (divine eagle).",
+        "emoji": "🦅",
+        "letter": "Garuda Purana",
+        "text": "गरुड़ पुराण"
+      },
+      {
+        "description": "The story of the Brahmanda (cosmic egg).",
+        "emoji": "🥚",
+        "letter": "Brahmanda Purana",
+        "text": "ब्रह्माण्ड पुराण"
+      }
+    ],
+    "mnemonic": {
+      "description": "A Sanskrit mnemonic verse for memorizing the 18 Puranas; explained in the work of a highly influential 12th-century scholar:Nārāyaṇa (नारायण)",
+      "verse": "मद्वयं भद्वयं चैव ब्रत्रयं वचतुष्टयम्। अनापलिंगकूस्कानि पुराणानि प्रचक्षते।।",
+      "explanation": "This verse is a code where each syllable hints at the beginning of a Purana's name (e.g., 'Ma' for Matsya, 'Dvaya' for two, implying two Puranas starting with 'Ma' - Matsya and Markandeya).",
+      "author": "explained in the work of a highly influential 12th-century scholar:Nārāyaṇa (नारायण)"
+    }
   }
 }

@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 
 const { item } = Astro.params;
 const categoryData = item ? (glossaryData as any)[item] : {};
-const { title, data, category } = categoryData || {};
+const { id, title, data, category, mnemonic } = categoryData || {};
 
 const meta = {
   title: `Glossary • ${title}`,
@@ -24,21 +24,48 @@ const meta = {
 };
 ---
 
+<style>
+  .disclaimer {
+    max-width: 40vw;
+    margin: 2rem auto;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background-color: color-mix(in srgb, var(--background) 92%, var(--text) 8%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #6c3535;
+    position: relative;
+  }
+</style>
+
 <BaseLayout meta={meta}>
   <Fragment slot="header-left">
     <SharePopover />
     <Help title="Glossary" description="Learn new information from the selected category!" />
   </Fragment>
-  <div class="container__page">
+  <div class="container__page" id=`glossary-${id}`>
     <div class="page__header">
       <BackButton href="/glossary" />
       <h2 class="page__title">{title}</h2>
       <button id="flip-all-button" class="btn__flip__all">Flip All Cards</button>
     </div>
-    <div class="page__content">
+    <div class="page__content" data-category={category}>
       <div class="page__grid">
         {data.map((entry: AlphabetDataItem) => <LetterCard item={entry} category={category} />)}
       </div>
+      {
+        mnemonic && (
+          <div class="disclaimer">
+            <p>
+              <strong>Note:</strong>
+              {mnemonic.description}
+            </p>
+            <p>{mnemonic.verse}</p>
+            <p>{mnemonic.explanation}</p>
+          </div>
+        )
+      }
     </div>
   </div>
 </BaseLayout>
