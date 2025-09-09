@@ -79,6 +79,7 @@ paksha
 Pancham
 panchang
 parixan
+partytown
 Pausha
 Peina
 Phalguna
