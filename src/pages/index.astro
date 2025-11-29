@@ -1,12 +1,9 @@
 ---
-import "@/assets/styles/index.css";
-import FeaturesSection from "@/components/about/FeaturesSection.astro";
-import ExploreLearnSection from "@/components/home/ExploreLearnSection.astro";
-import HeroSection from "@/components/home/HeroSection.astro";
-import KidsLoveSection from "@/components/home/KidsLoveSection.astro";
+//import "@/assets/styles/index.css";
 import MobileSplash from "@/components/MobileSplash.astro";
 // import TestimonialsSection from "@/components/home/TestimonialsSection.astro";
 import BaseLayout from "@/layouts/Base";
+import Landing from "@/pages/landing.astro";
 
 const meta = {
   title: "ABCDKBD - A learning corner for little learners.",
@@ -14,11 +11,12 @@ const meta = {
 };
 ---
 
-<BaseLayout meta={meta}>
+<BaseLayout meta={meta} sidebar={false}>
   <MobileSplash stay={true} />
-  <HeroSection appName="abcdkbd" />
-  <ExploreLearnSection />
+  <!--<HeroSection appName="abcdkbd" />-->
+  <!--<ExploreLearnSection />-->
   <!-- <TestimonialsSection /> -->
-  <KidsLoveSection />
-  <FeaturesSection />
+  <!--<KidsLoveSection />-->
+  <!--<FeaturesSection />-->
+  <Landing />
 </BaseLayout>
