@@ -3,6 +3,10 @@ import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
+const isProd = process.env.NODE_ENV === 'production';
+
+console.log({ isProd })
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://abcdkbd.com",
@@ -20,12 +24,12 @@ export default defineConfig({
     svg: true
   },
   integrations: [
-    partytown({
+    isProd ? partytown({
       // https://partytown.qwik.dev/google-tag-manager/#google-analytics-4-ga4
       config: {
         forward: ["dataLayer.push"]
       }
-    }),
+    }) : null,
     sitemap(),
     mdx()
   ],

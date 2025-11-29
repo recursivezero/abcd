@@ -30,25 +30,15 @@
   --header-bg: rgba(30, 30, 30, 0.95);
 }
 
-/* Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-html {
-  scroll-behavior: smooth;
-  font-size: clamp(14px, 1.5vw, 16px);
-}
-
-body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
+.container__landing {
   color: var(--text);
   background-color: var(--bg);
   transition: var(--transition);
+  min-height: 100vh;
+  overflow-y: auto;
 }
+
 
 /* Layout */
 .container__hero {
@@ -83,6 +73,7 @@ body {
   object-fit: cover;
   background-repeat: no-repeat;
   opacity: 0.23;
+  pointer-events: none;
 }
 
 .hero-content {
@@ -400,4 +391,70 @@ footer {
 
 .mt-2 {
   margin-top: 2rem;
+}
+
+.animated-button {
+  /* Basic Button Styling */
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  /* Primary Blue */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  /* Remove outline on focus */
+  position: relative;
+  /* For pseudo-elements */
+  overflow: hidden;
+  /* Hide overflowing animation */
+
+  /* Smooth Transitions for Hover */
+  transition: all 0.3s ease-in-out;
+}
+
+.animated-button:hover {
+  background-color: #0056b3;
+  /* Darker Blue on hover */
+  transform: translateY(-2px);
+  /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow */
+}
+
+.animated-button:active {
+  background-color: #004085;
+  /* Even darker blue on click */
+  transform: translateY(0);
+  /* Return to original position */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Smaller shadow on click */
+}
+
+/* Click Animation (using pseudo-element for a ripple effect) */
+.animated-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  /* White ripple */
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.animated-button:active::before {
+  width: 200%;
+  /* Expand ripple */
+  height: 200%;
+  /* Expand ripple */
+  opacity: 1;
+  transition: 0s;
+  /* Reset transition for immediate effect */
 }

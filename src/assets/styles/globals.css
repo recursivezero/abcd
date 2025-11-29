@@ -111,31 +111,6 @@
     color: light-dark(#151414, white);
   }
 
-  @media (prefers-color-scheme: dark) {
-    html[data-theme="system"] {
-      select {
-        color: white;
-        background-color: #333;
-      }
-
-      a {
-        color: brown;
-      }
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    html[data-theme="system"] {
-      select {
-        color: black;
-        background-color: #fff;
-      }
-
-      a {
-        color: brown;
-      }
-    }
-  }
 
   h1 {
     font-size: 3rem;

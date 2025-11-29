@@ -1,6 +1,7 @@
 ---
 import "@/assets/styles/landing.css";
 
+import Back from "@/components/Back.astro";
 import GamesGrid from "@/components/GamesGrid.astro";
 import { gamesData, getAgeGroupDisplayName } from "@/data/gamesData";
 import BaseLayout from "@/layouts/Base";
@@ -30,10 +31,7 @@ const meta = {
   <div class="games-page">
     <div class="container--game">
       <div class="page-header">
-        <a href="/#categories" class="back-button">
-          <i class="fas fa-arrow-left"></i>
-          Back to Categories
-        </a>
+        <Back />
         <h2>Games for {displayName}</h2>
       </div>
 

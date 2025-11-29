@@ -119,11 +119,11 @@ export const gamesData: Record<AgeKey, Game[]> = {
     },
     {
       title: "Our India",
-      description: "Solve historical mysteries by researching and connecting clues.",
+      description: "Learn about india state by dance.",
       image:
         "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["History", "Mystery", "Research"],
-      link: "/india"
+      link: "/map"
     },
     {
       title: "Nakshtra",

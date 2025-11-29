@@ -5,9 +5,25 @@ import Hero from "@/components/Hero.astro";
 ---
 
 <!-- Landing Page -->
-<div id="landingPage">
+<section id="landingPage" class="container__landing">
   <Hero />
   <Categories />
-</div>
+</section>
 
-<!-- Games Page -->
+<script is:inline>
+  const btn = document.querySelector("#categoryAnchor");
+  const target = document.querySelector("#categories");
+
+  if (!btn || !target) {
+    console.warn("[DEBUG] Button or target NOT found");
+  } else {
+    console.log("[DEBUG] Button & target found, wiring click…");
+
+    btn.addEventListener("click", () => {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+  }
+</script>

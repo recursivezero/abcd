@@ -2,11 +2,7 @@
 import BackIcon from "@/assets/icons/back.svg";
 ---
 
-<a href="/" class="back">
-  <BackIcon />
-</a>
-
-<style>
+<style is:global>
   .back {
     display: flex;
     cursor: pointer;
@@ -17,3 +13,7 @@ import BackIcon from "@/assets/icons/back.svg";
     color: var(--primary);
   }
 </style>
+
+<a href="/" class="back">
+  <BackIcon />
+</a>
