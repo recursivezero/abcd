@@ -1,0 +1,496 @@
+---
+import Settings from "@/components/Settings.astro";
+import HintIcon from "@/assets/icons/hint.svg";
+---
+
+<div class="puzzle-container">
+  <Settings />
+  <details open>
+    <summary>Word List</summary>
+    <div class="word-list" id="wordList"></div>
+  </details>
+
+  <div class="stats-container">
+    <div class="stats-button">
+      <span>Clicks: <span id="clickCount">0</span></span>
+    </div>
+    <div class="stats-button">
+      <span>Found: <span id="foundCount">0</span>/<span id="totalWords"></span></span>
+    </div>
+    <button id="solutionBtn" class="hint-button" aria-label="Toggle hints">
+      <div style="width: 28px; height: 28px;">
+        <HintIcon />
+      </div>
+    </button>
+  </div>
+
+  <div id="grid" class="grid__puzzle"></div>
+
+  <script type="module" is:inline>
+    const getRandomColor = () => {
+      const hue = Math.floor(Math.random() * 360);
+      const saturation = 80 + Math.floor(Math.random() * 15);
+      const lightness = 70 + Math.floor(Math.random() * 15);
+      const alpha = 0.7;
+      return `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha})`;
+    };
+
+    async function fetchCrosswordData() {
+      try {
+        const response = await fetch("/assets/json/cross.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch crossword data");
+        }
+        return await response.json();
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const crosswordData = await fetchCrosswordData();
+      const wordSets = crosswordData;
+      let currentWordSetIndex = 0;
+
+      const colorClasses = [
+        "word-color-1",
+        "word-color-2",
+        "word-color-3",
+        "word-color-4",
+        "word-color-5",
+        "word-color-6",
+        "word-color-7",
+        "word-color-8"
+      ];
+
+      let state = {
+        difficulty: "easy",
+        grid: [],
+        size: 8,
+        selectedCells: [],
+        foundWords: [],
+        isDragging: false,
+        showSolution: false,
+        solutions: [],
+        clickCount: 0,
+        matchedCells: new Map(),
+        currentWordSet: wordSets[0],
+        solutionColors: new Map(),
+        wordColors: new Map()
+      };
+
+      function generateRandomLetter() {
+        return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+      }
+
+      function getWordDirection(cells) {
+        const [[r1, c1], [r2, c2]] = [cells[0], cells[cells.length - 1]];
+        return r1 === r2 ? "horizontal" : c1 === c2 ? "vertical" : "diagonal";
+      }
+
+      // Check if selection is in a valid straight line (horizontal, vertical, or diagonal)
+      function isValidLine(cells) {
+        if (cells.length < 2) return true;
+
+        const [[r1, c1]] = [cells[0]];
+        const [[r2, c2]] = [cells[1]];
+
+        // Calculate direction from first two cells
+        const rowDiff = r2 - r1;
+        const colDiff = c2 - c1;
+
+        // Check if it's a valid direction (horizontal, vertical, or diagonal)
+        if (Math.abs(rowDiff) > 1 || Math.abs(colDiff) > 1) return false;
+        if (rowDiff === 0 && colDiff === 0) return false;
+
+        // Check if all subsequent cells follow the same direction
+        for (let i = 2; i < cells.length; i++) {
+          const expectedRow = r1 + rowDiff * i;
+          const expectedCol = c1 + colDiff * i;
+
+          if (cells[i][0] !== expectedRow || cells[i][1] !== expectedCol) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      function canPlaceWord(grid, word, row, col, dRow, dCol) {
+        if (row + dRow * (word.length - 1) >= state.size || row + dRow * (word.length - 1) < 0) return false;
+        if (col + dCol * (word.length - 1) >= state.size || col + dCol * (word.length - 1) < 0) return false;
+
+        for (let i = 0; i < word.length; i++) {
+          const currentCell = grid[row + dRow * i][col + dCol * i];
+          if (currentCell && currentCell !== word[i]) return false;
+        }
+        return true;
+      }
+
+      function placeWord(grid, word) {
+        const directions = [
+          [0, 1], // horizontal
+          [1, 0], // vertical
+          [1, 1], // diagonal down-right
+          [1, -1] // diagonal down-left
+        ];
+        for (let attempt = 0; attempt < 200; attempt++) {
+          const [dRow, dCol] = directions[Math.floor(Math.random() * directions.length)];
+          const row = Math.floor(Math.random() * state.size);
+          const col = Math.floor(Math.random() * state.size);
+
+          if (canPlaceWord(grid, word, row, col, dRow, dCol)) {
+            const wordCells = [];
+            for (let i = 0; i < word.length; i++) {
+              const r = row + dRow * i;
+              const c = col + dCol * i;
+              grid[r][c] = word[i];
+              wordCells.push([r, c]);
+            }
+            return { placed: true, cells: wordCells, direction: getWordDirection(wordCells) };
+          }
+        }
+        return { placed: false, cells: [], direction: null };
+      }
+
+      function generateRandomColors() {
+        state.solutionColors.clear();
+
+        const helpColorPalette = [
+          "hsla(10, 90%, 75%, 0.75)",
+          "hsla(40, 90%, 75%, 0.75)",
+          "hsla(60, 90%, 75%, 0.75)",
+          "hsla(120, 90%, 75%, 0.75)",
+          "hsla(180, 90%, 75%, 0.75)",
+          "hsla(210, 90%, 75%, 0.75)",
+          "hsla(270, 90%, 75%, 0.75)",
+          "hsla(300, 90%, 75%, 0.75)",
+          "hsla(330, 90%, 75%, 0.75)",
+          "hsla(150, 90%, 75%, 0.75)",
+          "hsla(30, 90%, 75%, 0.75)",
+          "hsla(240, 90%, 75%, 0.75)"
+        ];
+
+        let colorIndex = 0;
+        state.solutions.forEach((solution) => {
+          state.solutionColors.set(solution.word, helpColorPalette[colorIndex % helpColorPalette.length]);
+          colorIndex++;
+        });
+      }
+
+      function resetPuzzle() {
+        generatePuzzleWithCurrentWordSet();
+      }
+
+      function generatePuzzleWithCurrentWordSet() {
+        switch (state.difficulty) {
+          case "easy":
+            state.size = 8;
+            break;
+          case "medium":
+            state.size = 8;
+            break;
+          case "hard":
+            state.size = 8;
+            break;
+        }
+
+        const newGrid = Array(state.size)
+          .fill()
+          .map(() => Array(state.size).fill(""));
+        const words = state.currentWordSet[state.difficulty];
+        state.solutions = [];
+        state.wordColors.clear();
+        state.matchedCells.clear();
+        state.solutionColors.clear();
+
+        words.forEach((word) => {
+          const result = placeWord(newGrid, word);
+          if (result.placed) {
+            state.solutions.push({ word, cells: result.cells, direction: result.direction });
+            state.solutionColors.set(word, getRandomColor());
+          }
+        });
+
+        for (let i = 0; i < state.size; i++) {
+          for (let j = 0; j < state.size; j++) {
+            newGrid[i][j] = newGrid[i][j] || generateRandomLetter();
+          }
+        }
+
+        state.grid = newGrid;
+        state.foundWords = [];
+        state.showSolution = false;
+        state.selectedCells = [];
+        state.clickCount = 0;
+
+        updateDOM();
+      }
+
+      function generateNewPuzzle() {
+        currentWordSetIndex = (currentWordSetIndex + 1) % wordSets.length;
+        state.currentWordSet = wordSets[currentWordSetIndex];
+        generatePuzzleWithCurrentWordSet();
+      }
+
+      function isValidNextCell(current, next) {
+        const [r1, c1] = current;
+        const [r2, c2] = next;
+        return Math.abs(r1 - r2) <= 1 && Math.abs(c1 - c2) <= 1;
+      }
+
+      function checkForWord(selection) {
+        if (selection.length < 3) return false;
+
+        // Validate that selection forms a straight line
+        if (!isValidLine(selection)) {
+          return false;
+        }
+
+        const word = selection.map(([r, c]) => state.grid[r][c]).join("");
+        const reverseWord = word.split("").reverse().join("");
+        const currentWords = state.currentWordSet[state.difficulty];
+
+        let foundWord = null;
+        if (currentWords.includes(word) && !state.foundWords.includes(word)) {
+          foundWord = word;
+        } else if (currentWords.includes(reverseWord) && !state.foundWords.includes(reverseWord)) {
+          foundWord = reverseWord;
+        }
+
+        if (foundWord) {
+          state.foundWords.push(foundWord);
+          if (!state.wordColors.has(foundWord)) {
+            const colorIndex = state.wordColors.size % colorClasses.length;
+            state.wordColors.set(foundWord, colorClasses[colorIndex]);
+          }
+          state.matchedCells.set(foundWord, [...selection]);
+          return true;
+        }
+        return false;
+      }
+
+      function getCellCoordinates(element) {
+        if (!element?.dataset?.coords) return null;
+        return element.dataset.coords.split("-").map(Number);
+      }
+
+      function updateDOM() {
+        const gridElement = document.getElementById("grid");
+        gridElement.innerHTML = "";
+        gridElement.style.gridTemplateColumns = `repeat(${state.size}, 1fr)`;
+
+        state.grid.forEach((row, i) =>
+          row.forEach((cell, j) => {
+            const cellElement = document.createElement("div");
+            cellElement.className = "cell";
+            cellElement.textContent = cell;
+            cellElement.dataset.coords = `${i}-${j}`;
+
+            const isSelected = state.selectedCells.some(([r, c]) => r === i && c === j);
+
+            let matchedWord = null;
+            for (const [word, cells] of state.matchedCells.entries()) {
+              if (cells.some(([r, c]) => r === i && c === j)) {
+                matchedWord = word;
+                break;
+              }
+            }
+
+            if (state.showSolution) {
+              for (const solution of state.solutions) {
+                if (solution.cells.some(([r, c]) => r === i && c === j)) {
+                  const wordColor = state.solutionColors.get(solution.word);
+                  if (wordColor) {
+                    cellElement.style.backgroundColor = wordColor;
+                  }
+                  break;
+                }
+              }
+            }
+
+            if (isSelected) cellElement.classList.add("selected");
+            if (matchedWord) {
+              cellElement.classList.add("match");
+              const colorClass = state.wordColors.get(matchedWord);
+              if (colorClass) {
+                cellElement.classList.add(colorClass);
+              }
+            }
+
+            gridElement.appendChild(cellElement);
+          })
+        );
+
+        document.getElementById("clickCount").textContent = state.clickCount;
+        document.getElementById("foundCount").textContent = state.foundWords.length;
+        document.getElementById("totalWords").textContent = state.currentWordSet[state.difficulty].length;
+
+        const wordList = document.getElementById("wordList");
+        wordList.innerHTML = state.currentWordSet[state.difficulty]
+          .map((word) => {
+            const isFound = state.foundWords.includes(word);
+            const colorClass = state.wordColors.get(word) || "";
+
+            let style = "";
+            if (state.showSolution) {
+              const solutionColor = state.solutionColors.get(word);
+              if (solutionColor) {
+                style = `style="background-color: ${solutionColor};"`;
+              }
+            }
+
+            return `<span class="word ${isFound ? "found " + colorClass : ""}" ${style}>${word}</span>`;
+          })
+          .join("");
+
+        // Update hint button visual state
+        const hintBtn = document.getElementById("solutionBtn");
+        if (state.showSolution) {
+          hintBtn.classList.add("active");
+        } else {
+          hintBtn.classList.remove("active");
+        }
+      }
+
+      function handleCellClick(e) {
+        const coords = getCellCoordinates(e.target);
+        if (!coords) return;
+
+        const isAlreadySelected = state.selectedCells.some(([r, c]) => r === coords[0] && c === coords[1]);
+
+        if (isAlreadySelected) {
+          return;
+        }
+
+        state.selectedCells.push(coords);
+        state.clickCount++;
+
+        updateDOM();
+      }
+
+      function handleDragStart(e) {
+        const coords = getCellCoordinates(e.target);
+        if (!coords) return;
+
+        state.isDragging = true;
+        state.selectedCells = [coords];
+        state.clickCount++;
+        updateDOM();
+      }
+
+      function handleDragMove(e) {
+        if (!state.isDragging) return;
+
+        // Get the correct coordinates for both mouse and touch events
+        let clientX, clientY;
+        if (e.type.includes("touch")) {
+          if (e.touches && e.touches.length > 0) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+          } else {
+            return;
+          }
+        } else {
+          clientX = e.clientX;
+          clientY = e.clientY;
+        }
+
+        const element = document.elementFromPoint(clientX, clientY);
+        const coords = getCellCoordinates(element);
+        if (!coords) return;
+
+        const lastCell = state.selectedCells[state.selectedCells.length - 1];
+        if (!lastCell || !isValidNextCell(lastCell, coords)) return;
+
+        if (!state.selectedCells.some(([r, c]) => r === coords[0] && c === coords[1])) {
+          state.selectedCells.push(coords);
+          updateDOM();
+        }
+      }
+
+      function handleDragEnd() {
+        if (!state.isDragging) return;
+
+        const wasWordFound = checkForWord(state.selectedCells);
+        state.isDragging = false;
+
+        if (!wasWordFound) {
+          state.selectedCells = [];
+        }
+
+        updateDOM();
+      }
+
+      function handleHelpButtonClick() {
+        generateRandomColors();
+        state.showSolution = !state.showSolution;
+        updateDOM();
+      }
+
+      function handleClearButtonClick() {
+        state.selectedCells = [];
+        state.foundWords = [];
+        state.matchedCells.clear();
+        state.wordColors.clear();
+        state.isDragging = false;
+
+        updateDOM();
+      }
+
+      function handleDifficultyChange(e) {
+        state.difficulty = e.target.value;
+        generatePuzzleWithCurrentWordSet();
+      }
+
+      const gridElement = document.getElementById("grid");
+
+      // Click handler for sequential selection
+      gridElement.addEventListener("click", handleCellClick);
+
+      // Mouse events for desktop
+      gridElement.addEventListener("mousedown", handleDragStart);
+      gridElement.addEventListener("mousemove", handleDragMove);
+      document.addEventListener("mouseup", handleDragEnd);
+
+      // Touch events for mobile - with improved handling
+      gridElement.addEventListener(
+        "touchstart",
+        (e) => {
+          e.preventDefault(); // Prevent scrolling
+          handleDragStart(e);
+        },
+        { passive: false }
+      );
+
+      gridElement.addEventListener(
+        "touchmove",
+        (e) => {
+          e.preventDefault(); // Prevent scrolling
+          handleDragMove(e);
+        },
+        { passive: false }
+      );
+
+      gridElement.addEventListener(
+        "touchend",
+        (e) => {
+          e.preventDefault(); // Prevent scrolling
+          handleDragEnd();
+        },
+        { passive: false }
+      );
+
+      // Controls
+      document.getElementById("level").addEventListener("change", handleDifficultyChange);
+      document.getElementById("new").addEventListener("click", generateNewPuzzle);
+      document.getElementById("shuffle").addEventListener("click", resetPuzzle);
+      document.getElementById("solutionBtn").addEventListener("click", handleHelpButtonClick);
+      document.getElementById("clear").addEventListener("click", handleClearButtonClick);
+
+      // Initialize the first puzzle
+      generatePuzzleWithCurrentWordSet();
+    });
+  </script>
+</div>

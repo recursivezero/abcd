@@ -12,16 +12,15 @@ import logoImage from "/public/assets/images/48x48.png";
       <p title={APP_NAME}>abcd<span class="kbd">kbd</span></p>
     </a>
   </div>
-  <div class="title text__balance">Happy Learning Spot</div>
 
-  <!--<div class="caption">
+  <div class="nav__links">
     <a href="/" class:list={{ "is-active": Astro.url.pathname === "/home" || Astro.url.pathname === "/" }}>Home</a>
     <a href="/about" class:list={{ "is-active": Astro.url.pathname.startsWith("/about") }}>About</a>
     <a href="/parent" class:list={{ "is-active": Astro.url.pathname.startsWith("/parent") }}>Parents</a>
     <a href="/teacher" class:list={{ "is-active": Astro.url.pathname.startsWith("/teacher") }}>Teachers</a>
-  </div>-->
+  </div>
 
-  <div class="action-group">
+  <div class="action__group">
     <slot name="left" />
     <slot name="right" />
   </div>

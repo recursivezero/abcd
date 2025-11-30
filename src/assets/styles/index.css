@@ -24,6 +24,7 @@
   --card-yellow-bg: linear-gradient(135deg, #f59e42 0%, #fbbf24 100%);
   --card-green-bg: linear-gradient(135deg, #059669 0%, #10b981 100%);
   --card-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.18);
+  --accent: #ff6b6b;
   --hero-heading: #f3f4f6;
   --section-divider: #23304a;
   --section-bg: #0f172a;

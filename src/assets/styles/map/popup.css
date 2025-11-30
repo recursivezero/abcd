@@ -121,7 +121,6 @@
 .state-popup__info {
   font-size: 1.15rem;
   color: #444;
-  margin: -1rem 0 -1rem 0;
   text-align: left;
   width: 100%;
 
@@ -180,7 +179,6 @@
 
       .state-popup__info {
         font-size: 1rem;
-        margin: -1rem 0;
       }
 
       .state-popup__name {

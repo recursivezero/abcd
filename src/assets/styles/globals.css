@@ -15,6 +15,7 @@
     --header-h: 4rem;
     --footer-h: 4rem;
     --sidebar-w: 16rem;
+    --transition: all 0.3s ease;
   }
 
   [data-theme="dark"] {
@@ -40,6 +41,8 @@
   html {
     color-scheme: dark light;
     height: 100%;
+    scroll-behavior: smooth;
+    font-size: clamp(14px, 1.5vw, 16px);
   }
 
   [data-theme="light"] {
@@ -53,6 +56,8 @@
   *,
   *:after,
   *:before {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
   }
 
@@ -60,13 +65,16 @@
     container-type: inline-size;
     container-name: thread;
     box-sizing: border-box;
+    line-height: 1.6;
     min-height: 100vh;
-    font-family: "Roboto", "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif,
+    font-family: "Roboto", 'Segoe UI',
+      system-ui,
+      -apple-system,
+      sans-serif,
       system-ui;
     font-size: 16px;
-    margin: 0;
     background-color: var(--background);
-    color: var(--text);
+    transition: var(--transition);
   }
 
   body::before {
@@ -94,37 +102,15 @@
     grid-template-columns: var(--sidebar-w) 1fr;
     grid-template-rows: var(--header-h) 1fr var(--footer-h);
     min-height: 100vh;
+    width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1rem;
   }
 
   a {
     color: light-dark(#151414, white);
   }
 
-  @media (prefers-color-scheme: dark) {
-    html[data-theme="system"] {
-      select {
-        color: white;
-        background-color: #333;
-      }
-
-      a {
-        color: brown;
-      }
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    html[data-theme="system"] {
-      select {
-        color: black;
-        background-color: #fff;
-      }
-
-      a {
-        color: brown;
-      }
-    }
-  }
 
   h1 {
     font-size: 3rem;

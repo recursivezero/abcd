@@ -122,12 +122,12 @@
       "dist/**": true
     },
     "git.autofetch": true,
-    "git.branchPrefix": "feature/",
+    "git.branchPrefix": "feature/RZA-25000X",
     "git.branchProtection": [
       "develop",
       "main"
     ],
-    "git.branchRandomName.enable": true,
+    "git.branchRandomName.enable": false,
     "git.confirmSync": false,
     "git.enableCommitSigning": false,
     "git.enableSmartCommit": true,
@@ -192,7 +192,7 @@
       "*.log": "default"
     },
     "zenMode.centerLayout": false,
-    "cSpell.words": [],
+    "cSpell.words": [ ],
     "workbench.editor.limit.excludeDirty": true,
     "files.readonlyInclude": {
       ".githooks/**": true
