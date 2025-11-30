@@ -17,6 +17,7 @@
   --footer-height: 200px;
 }
 
+
 [data-theme='dark'] {
   --primary: #4cc9f0;
   --primary-light: #4895ef;
@@ -170,12 +171,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--text-dark);
   font-size: 2rem;
 }
 
 .category-card h3 {
   font-size: 1.5rem;
+  color: var(--text-light, black);
+
 }
 
 .category-card p {
