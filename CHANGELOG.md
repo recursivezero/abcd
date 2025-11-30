@@ -41,6 +41,11 @@ Created Repo from template
 - Added Google Analytics with partytown
 - Added Disha and Purana names in Glossary
 
+## [3.3.0] - Nov 30 2025
+
+- Landing Page Redesign
+- CrossWord page update
+
 ### [Unreleased]
 
 Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.
