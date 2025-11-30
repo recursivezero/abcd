@@ -1,0 +1,31 @@
+---
+import "@/assets/styles/landing.css";
+import Categories from "@/components/Categories.astro";
+import Hero from "@/components/Hero.astro";
+---
+
+<!-- Landing Page -->
+<section id="landingPage" class="container__landing">
+  <Hero />
+  <Categories />
+</section>
+
+<script is:inline>
+  const btn = document.querySelector("#categoryAnchor");
+  const target = document.querySelector("#categories");
+
+  if (!btn || !target) {
+    console.warn("[DEBUG] Button or target NOT found");
+  } else {
+    console.log("[DEBUG] Button & target found, wiring click…");
+
+    btn.addEventListener("click", () => {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+  }
+</script>
+
+

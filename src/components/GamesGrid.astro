@@ -1,0 +1,32 @@
+---
+// src/components/GamesGrid.astro
+import type { Game } from "@/data/gamesData";
+
+interface Props {
+  games: Game[];
+}
+
+const { games } = Astro.props;
+---
+
+<div class="games-grid">
+  {
+    games.map((game) => (
+      <div class="game-card">
+        <div class="game-image" style={`background-image: url('${game.image}')`} />
+        <div class="game-content">
+          <h3>{game.title}</h3>
+          <p>{game.description}</p>
+          <div class="game-tags">
+            {game.tags.map((tag) => (
+              <span class="game-tag">{tag}</span>
+            ))}
+          </div>
+          <a href={game.link} class="game-button">
+            View Details
+          </a>
+        </div>
+      </div>
+    ))
+  }
+</div>

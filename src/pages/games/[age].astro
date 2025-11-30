@@ -1,0 +1,38 @@
+---
+import "@/assets/styles/landing.css";
+
+import Back from "@/components/Back.astro";
+import GamesGrid from "@/components/GamesGrid.astro";
+import { gamesData, getAgeGroupDisplayName } from "@/data/gamesData";
+import BaseLayout from "@/layouts/Base";
+
+// 1. Tell Astro which /games/* pages to build
+export function getStaticPaths() {
+  return Object.entries(gamesData).map(([age, games]) => ({
+    params: { age }, // matches [age].astro
+    props: {
+      games,
+      displayName: getAgeGroupDisplayName(age)
+    }
+  }));
+}
+
+// 2. These come from the matching entry in getStaticPaths()
+const { games, displayName } = Astro.props;
+
+const meta = {
+  title: `Games for ${displayName}`,
+  description: "A fun and interactive learning platform for kids."
+};
+---
+
+<BaseLayout meta={meta}>
+  <div class="games-page">
+    <div class="page-header">
+      <Back />
+      <h2>Games for {displayName}</h2>
+    </div>
+
+    {games.length === 0 ? <p>No games found for this age group.</p> : <GamesGrid games={games} />}
+  </div>
+</BaseLayout>

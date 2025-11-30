@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 2rem;
   color: #f1f5f9;
   font:
@@ -92,7 +92,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  flex: 1;
   width: 100%;
 }
 
@@ -392,10 +391,12 @@
     padding: 1rem 0.5rem;
     justify-content: flex-start;
   }
+
   .alphabet-container {
     height: 600px;
     gap: 0rem;
   }
+
   .alphabet-title {
     font-size: 1.5rem;
   }
