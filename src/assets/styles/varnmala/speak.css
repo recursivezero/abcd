@@ -94,6 +94,8 @@
 
 /* Container styles */
 .container__english {
+  padding-block: 0.5rem;
+
   & .letter {
     font-size: min(100vw, 100vh);
     line-height: 1;
@@ -104,7 +106,7 @@
     transition: color 0.5s ease-in;
   }
 
-  /* Background styles */
+  /* Original Background gradients */
   & .bg-gradient1 {
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
   }
@@ -113,50 +115,66 @@
     background: linear-gradient(45deg, #a8e6cf, #dcedc1);
   }
 
-  & .bg-pattern1 {
-    background-image: repeating-linear-gradient(
-      45deg,
-      rgba(0, 0, 0, 0.1) 0px,
-      rgba(0, 0, 0, 0.1) 2px,
-      transparent 2px,
-      transparent 4px
-    );
-  }
-
-  &.bg-gradient3 {
+  & .bg-gradient3 {
     background: linear-gradient(135deg, #667eea, #764ba2);
   }
 
-  &.bg-gradient4 {
+  & .bg-gradient4 {
     background: linear-gradient(135deg, #2af598, #009efd);
   }
 
-  &.bg-gradient5 {
+  & .bg-gradient5 {
     background: linear-gradient(135deg, #f83600, #f9d423);
   }
 
-  &.bg-pattern2 {
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(0, 0, 0, 0.05) 10px,
-      rgba(0, 0, 0, 0.05) 20px
-    );
+  /* 5 New Beautiful Gradients */
+  & .bg-gradient6 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
 
-  &.bg-pattern3 {
-    background-image: repeating-radial-gradient(
-      circle,
-      transparent,
-      transparent 10px,
-      rgba(0, 0, 0, 0.05) 10px,
-      rgba(0, 0, 0, 0.05) 20px
-    );
+  & .bg-gradient7 {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  }
+
+  & .bg-gradient8 {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+  }
+
+  & .bg-gradient9 {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  }
+
+  & .bg-gradient10 {
+    background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+  }
+
+  /* Pattern styles */
+  & .bg-pattern1 {
+    background-image: repeating-linear-gradient(45deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        rgba(0, 0, 0, 0.1) 2px,
+        transparent 2px,
+        transparent 4px);
+  }
+
+  & .bg-pattern2 {
+    background-image: repeating-linear-gradient(45deg,
+        transparent,
+        transparent 10px,
+        rgba(0, 0, 0, 0.05) 10px,
+        rgba(0, 0, 0, 0.05) 20px);
+  }
+
+  & .bg-pattern3 {
+    background-image: repeating-radial-gradient(circle,
+        transparent,
+        transparent 10px,
+        rgba(0, 0, 0, 0.05) 10px,
+        rgba(0, 0, 0, 0.05) 20px);
   }
 }
 
-& .no-background {
+.no-background {
   background: none !important;
 }
 
