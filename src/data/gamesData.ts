@@ -176,12 +176,12 @@ export const gamesData: Record<AgeKey, Game[]> = {
       link: "/vedic"
     },
     {
-      title: "Glossary",
-      description: "Classic and modern glossary data.",
+      title: "Zodiac",
+      description: "Ancient Indian Zodiac Signs.",
       image:
         "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["Strategy", "Classic", "Multiplayer"],
-      link: "/glossary"
+      link: "/zodiac"
     }
   ]
 };

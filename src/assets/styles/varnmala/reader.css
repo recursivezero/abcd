@@ -16,7 +16,7 @@
   will-change: contents;
   line-height: 1;
   gap: 0.5rem;
-  height: max-content;
+  height: 80vh;
 }
 
 .info {
@@ -28,7 +28,7 @@
   padding: 0.5rem;
 }
 
-.container__reader > .letter {
+.container__reader>.letter {
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -186,7 +186,7 @@
     font-size: min(200rem, 70vw);
   }
 
-  .container__reader > .letter {
+  .container__reader>.letter {
     justify-content: center;
     margin-left: auto;
   }

@@ -25,6 +25,11 @@ const meta = {
           <option value="gradient3">G3</option>
           <option value="gradient4">G4</option>
           <option value="gradient5">G5</option>
+          <option value="gradient6">G6</option>
+          <option value="gradient7">G7</option>
+          <option value="gradient8">G8</option>
+          <option value="gradient9">G9</option>
+          <option value="gradient10">G10</option>
         </select>
         <button id="toggleBg">Toggle</button>
       </div>
@@ -69,14 +74,15 @@ const meta = {
   const fontSelector = document.getElementById("fontSelector") as HTMLSelectElement;
   const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
   const toggleBg = document.getElementById("toggleBg") as HTMLButtonElement;
-  const muteBtn = document.getElementById("muteBtn") as HTMLButtonElement; // Added mute button
+  const muteBtn = document.getElementById("muteBtn") as HTMLButtonElement;
 
   const synth = window.speechSynthesis;
-  let lastKey: string | null = null; // Store the last key pressed
-  let isMuted = false; // Flag to track mute state
+  let lastKey: string | null = null;
+  let isMuted = false;
+  let currentColor = "#000000"; // Store the current selected color
 
   function speak(text: string) {
-    if (isMuted) return; // Do not speak if muted
+    if (isMuted) return;
 
     if (synth.speaking) {
       synth.cancel();
@@ -102,17 +108,22 @@ const meta = {
 
   function drawLetter(letter: string, isDoublePress: boolean) {
     letterDiv.innerHTML = letter;
-    letterDiv.style.color = isDoublePress ? "yellow" : "black";
+    // Use currentColor instead of hardcoded black, unless double press
+    letterDiv.style.color = isDoublePress ? "yellow" : currentColor;
     letterDiv.style.animation = "letterPop 0.3s ease-out";
     setTimeout(() => {
       letterDiv.style.animation = "";
     }, 300);
-    speak(letter); // Speak the letter immediately after drawing
+    speak(letter);
   }
 
   bgSelector?.addEventListener("change", updateBackground);
   fontSelector?.addEventListener("change", updateFont);
+
+  // Update color picker to store the selected color and apply immediately
+  colorPicker?.addEventListener("input", updateColor);
   colorPicker?.addEventListener("change", updateColor);
+
   toggleBg?.addEventListener("click", toggleBackground);
 
   muteBtn?.addEventListener("click", (e: MouseEvent) => {
@@ -126,30 +137,27 @@ const meta = {
     (e) => {
       e.preventDefault();
       const { key } = e;
+      console.log({ key });
 
-      if (/^[0-9]$/.test(key)) {
+      if (/^[a-z]$/i.test(key)) {
         const upperKey = key.toUpperCase();
         let isDouble = false;
-        let doublePress;
+
         if (lastKey === upperKey) {
-          // Double press detected
           isDouble = true;
-          doublePress = true;
-        } else {
-          doublePress = false;
         }
 
         drawLetter(upperKey, isDouble);
-        lastKey = upperKey; // Update last key
+        lastKey = upperKey;
       } else {
-        lastKey = null; // Reset last key if not alphabet
+        lastKey = null;
       }
     },
     false
   );
 
   function updateBackground() {
-    letterContainer.className = "container__hindi";
+    letterContainer.className = "container_hindi";
     if (bgSelector.value !== "none") {
       letterContainer.classList.add(`bg-${bgSelector.value}`);
     }
@@ -160,7 +168,9 @@ const meta = {
   }
 
   function updateColor() {
-    letterDiv.style.color = colorPicker.value;
+    // Store the selected color and apply it immediately
+    currentColor = colorPicker.value;
+    letterDiv.style.color = currentColor;
   }
 
   function toggleBackground() {
