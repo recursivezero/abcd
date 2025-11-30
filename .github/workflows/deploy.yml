@@ -15,25 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Install, build, and prepare Astro site
-        uses: withastro/action@v3
+      - name: Install, build, and upload your site
+        uses: withastro/action@v5
         with:
           path: .
           node-version: 20
           package-manager: npm
-
-      - name: Upload GitHub Pages artifact (v4)
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
