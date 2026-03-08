@@ -9,6 +9,12 @@ interface Props {
 const { games } = Astro.props;
 ---
 
+<style>
+  h3 {
+    color: green;
+  }
+</style>
+
 <div class="games-grid">
   {
     games.map((game) => (
