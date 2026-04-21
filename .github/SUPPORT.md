@@ -41,10 +41,10 @@ See [`contributing.md`][contributing] on how to contribute.
 <!-- Definitions -->
 
 [author]: https://recursivezero.com
-[coc]: https://github.com/recursivezero/tz-client/blob/main/.github/CODE_OF_CONDUCT.md
-[chat]: https://github.com/recursivezero/tz-client/discussions/new?category=general
-[dicussion]: https://github.com/recursivezero/tz-client/discussions/new?category=q-a
-[contributing]: https://github.com/recursivezero/tz-client/blob/main/.github/CONTRIBUTING.md
+[coc]: https://github.com/recursivezero/abcd/blob/main/.github/CODE_OF_CONDUCT.md
+[chat]: https://github.com/recursivezero/abcd/discussions/new?category=general
+[dicussion]: https://github.com/recursivezero/abcd/discussions/new?category=q-a
+[contributing]: https://github.com/recursivezero/abcd/blob/main/.github/CONTRIBUTING.md
 [xy]: https://meta.stackexchange.com/questions/66377/what-is-the-xy-problem/66378#66378
 [cs]: https://codesandbox.io
 [sb]: https://stackblitz.com

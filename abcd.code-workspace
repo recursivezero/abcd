@@ -205,6 +205,7 @@
     },
     "github.copilot.chat.agent.terminal.denyList": {
       "npm run nuke": true
-    }
+    },
+    "folder-color.pathColors": [ ]
   }
 }
