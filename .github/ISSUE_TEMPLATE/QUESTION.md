@@ -1,7 +1,7 @@
 ---
 name: Question
 about: Ask any question related to repo
-title: "[❓]:"
+title: "❓"
 labels: question
 assignees: recursivezero
 ---

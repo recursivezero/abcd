@@ -34,4 +34,4 @@ Please submit a report to us before engaging in conduct that may be inconsistent
 - Submit one vulnerability per report
 - Social engineering (such as phishing, vishing, smishing) is prohibited
 
-[contact]: mailto:recursivezero@otlook.com
+[contact]: mailto:support@recursivezero.com
