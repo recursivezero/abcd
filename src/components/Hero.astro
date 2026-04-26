@@ -1,14 +1,493 @@
 ---
-// src/components/Hero.astro
+interface Props {
+  appName?: string;
+}
+const { appName } = Astro.props;
+
+const ageGroups = [
+  {
+    icon: "🧸",
+    label: "Toddlers",
+    range: "1–3 Years",
+    color: "#EDE9FE",
+    darkColor: "#3b1f6e",
+    explore: "#7C3AED",
+    href: "/games/3-5"
+  },
+  {
+    icon: "🏠",
+    label: "Preschoolers",
+    range: "3–5 Years",
+    color: "#FEF9C3",
+    darkColor: "#4a3a00",
+    explore: "#D97706",
+    href: "/games/3-5"
+  },
+  {
+    icon: "🎨",
+    label: "Early Learners",
+    range: "5–8 Years",
+    color: "#DCFCE7",
+    darkColor: "#0f3d20",
+    explore: "#16A34A",
+    href: "/games/6-8"
+  },
+  {
+    icon: "💡",
+    label: "Kids",
+    range: "8–12 Years",
+    color: "#DBEAFE",
+    darkColor: "#1e3a6e",
+    explore: "#2563EB",
+    href: "/games/9-12"
+  },
+  {
+    icon: "🎮",
+    label: "Teens",
+    range: "12+ Years",
+    color: "#FCE7F3",
+    darkColor: "#4a1030",
+    explore: "#DB2777",
+    href: "/games/teens"
+  },
+  {
+    icon: "👨‍👩‍👧‍👦",
+    label: "Family",
+    range: "All Ages",
+    color: "#FFF0E0",
+    darkColor: "#4a2a00",
+    explore: "#EA6C00",
+    href: "/games/adults"
+  }
+];
 ---
 
-<div class="hero">
-  <section class="container__hero" id="scroll-hero">
-    <h1>Find the Perfect Game for Every Age</h1>
-    <p>
-      Discover fun, engaging, and educational activities tailored to different age groups. From toddlers to adults, we
-      have something for everyone!
+<section class="hero-section">
+  <svg
+    class="hero-bg-svg"
+    viewBox="0 0 1400 560"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid slice"
+  >
+    <defs>
+      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#b3e0ff"></stop>
+        <stop offset="100%" stop-color="#e8f6ff"></stop>
+      </linearGradient>
+      <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6ec94a"></stop>
+        <stop offset="100%" stop-color="#4aaa28"></stop>
+      </linearGradient>
+    </defs>
+    <rect width="1400" height="560" fill="url(#skyGrad)"></rect>
+
+    <g opacity="0.85">
+      <path d="M 950 380 Q 1150 80 1380 200" stroke="#FF4444" stroke-width="18" fill="none" stroke-linecap="round"
+      ></path>
+      <path d="M 965 390 Q 1155 100 1380 220" stroke="#FF8800" stroke-width="18" fill="none" stroke-linecap="round"
+      ></path>
+      <path d="M 980 400 Q 1160 120 1380 240" stroke="#FFDD00" stroke-width="18" fill="none" stroke-linecap="round"
+      ></path>
+      <path d="M 995 410 Q 1165 140 1380 260" stroke="#44CC44" stroke-width="18" fill="none" stroke-linecap="round"
+      ></path>
+      <path d="M 1010 418 Q 1170 158 1380 278" stroke="#2299FF" stroke-width="18" fill="none" stroke-linecap="round"
+      ></path>
+      <path d="M 1025 424 Q 1175 174 1380 296" stroke="#8844EE" stroke-width="18" fill="none" stroke-linecap="round"
+      ></path>
+    </g>
+
+    <g fill="white" opacity="0.9">
+      <ellipse cx="120" cy="90" rx="60" ry="38"></ellipse>
+      <ellipse cx="160" cy="75" rx="50" ry="35"></ellipse>
+      <ellipse cx="200" cy="90" rx="55" ry="32"></ellipse>
+      <ellipse cx="240" cy="100" rx="45" ry="28"></ellipse>
+      <ellipse cx="80" cy="100" rx="40" ry="25"></ellipse>
+    </g>
+
+    <g fill="white" opacity="0.85">
+      <ellipse cx="620" cy="60" rx="65" ry="36"></ellipse>
+      <ellipse cx="665" cy="45" rx="52" ry="34"></ellipse>
+      <ellipse cx="705" cy="60" rx="58" ry="32"></ellipse>
+      <ellipse cx="745" cy="68" rx="42" ry="26"></ellipse>
+      <ellipse cx="580" cy="70" rx="40" ry="24"></ellipse>
+    </g>
+
+    <g fill="white" opacity="0.7">
+      <ellipse cx="1100" cy="80" rx="55" ry="32"></ellipse>
+      <ellipse cx="1140" cy="65" rx="46" ry="30"></ellipse>
+      <ellipse cx="1175" cy="78" rx="50" ry="28"></ellipse>
+      <ellipse cx="1065" cy="90" rx="36" ry="22"></ellipse>
+    </g>
+
+    <g transform="translate(680, 130) rotate(-25)" opacity="0.9">
+      <polygon points="0,0 40,12 0,24" fill="#4ab3ff"></polygon>
+      <polygon points="0,24 15,18 10,28" fill="#2a8fd4"></polygon>
+    </g>
+    <path
+      d="M 640 118 Q 620 100 590 105 Q 560 108 540 120"
+      stroke="#4ab3ff"
+      stroke-width="2"
+      fill="none"
+      stroke-dasharray="6,4"
+      opacity="0.7"></path>
+
+    <g fill="#FFD600" opacity="0.95">
+      <polygon points="56,154 60,166 73,166 63,173 67,185 56,178 45,185 49,173 39,166 52,166"></polygon>
+      <polygon points="715,200 720,215 735,215 723,223 727,238 715,230 703,238 707,223 695,215 710,215"></polygon>
+      <polygon points="813,195 817,207 829,207 819,214 823,226 813,219 803,226 807,214 797,207 809,207"></polygon>
+      <polygon points="370,160 374,172 386,172 377,179 380,191 370,184 360,191 363,179 354,172 366,172"></polygon>
+    </g>
+
+    <ellipse cx="700" cy="570" rx="850" ry="130" fill="url(#grassGrad)"></ellipse>
+    <ellipse cx="200" cy="555" rx="200" ry="60" fill="#5dc23d"></ellipse>
+    <ellipse cx="1200" cy="555" rx="200" ry="60" fill="#5dc23d"></ellipse>
+
+    <g fill="#FFD600" opacity="0.6">
+      <circle cx="30" cy="500" r="18"></circle>
+      <circle cx="65" cy="530" r="12"></circle>
+      <circle cx="10" cy="545" r="8"></circle>
+      <circle cx="1370" cy="500" r="18"></circle>
+      <circle cx="1335" cy="535" r="12"></circle>
+      <circle cx="1390" cy="548" r="8"></circle>
+    </g>
+  </svg>
+
+  <div class="hero-left">
+    <h1 class="hero-title">
+      Find the Perfect<br />
+      <span class="text-green">Game for</span><br />
+      <span class="text-pink">Every Age!</span>
+    </h1>
+    <p class="hero-text">
+      Discover fun, engaging, and educational activities<br />
+      tailored to different age groups.
     </p>
-    <button id="categoryAnchor" class="animated-button">Explore Categories</button>
-  </section>
-</div>
+    <div class="hero-btn-row">
+      <a href="/categories" class="hero-btn">Explore Categories ⭐</a>
+      <span class="lets-explore">
+        <svg viewBox="0 0 60 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-svg">
+          <path d="M8 28 Q22 4 52 16" stroke="#7C3AED" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
+          <path
+            d="M48 11 L52 16 L46 19"
+            stroke="#7C3AED"
+            stroke-width="2.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+        Let's<br />Explore!
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img src="/assets/images/kids-hero.png" alt="Kids learning together" class="hero-illustration" loading="eager" />
+  </div>
+</section>
+
+<section class="age-section">
+  <h2 class="age-title">
+    <span>🎀</span>
+    Explore by Age Group
+    <span>🎀</span>
+  </h2>
+  <div class="age-grid">
+    {
+      ageGroups.map((group) => (
+        <a
+          href={group.href}
+          class="age-card"
+          style={"--card-bg: " + group.color + "; --card-bg-dark: " + group.darkColor + ";"}
+        >
+          <span class="age-icon">{group.icon}</span>
+          <h3 class="age-label" style={"color: " + group.explore + ";"}>
+            {group.label}
+          </h3>
+          <p class="age-range" style={"color: " + group.explore + ";"}>
+            {group.range}
+          </p>
+          <span class="age-explore" style={"color: " + group.explore + ";"}>
+            Explore →
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 560px;
+    overflow: hidden;
+    padding: 3rem 5rem 0 5rem;
+  }
+
+  .hero-bg-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  :global([data-theme="dark"]) .hero-section {
+    background: #0d1b2e;
+  }
+
+  :global([data-theme="dark"]) .hero-bg-svg {
+    opacity: 0.15;
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    max-width: 500px;
+    padding-bottom: 4rem;
+  }
+
+  .hero-title {
+    font-size: 3.4rem;
+    font-weight: 900;
+    line-height: 1.08;
+    color: #1a3353;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  :global([data-theme="dark"]) .hero-title {
+    color: #e2f0ff;
+  }
+
+  .text-green {
+    color: #16a34a;
+  }
+
+  .text-pink {
+    color: #e11d48;
+  }
+
+  .hero-text {
+    font-size: 1.05rem;
+    color: #445566;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  :global([data-theme="dark"]) .hero-text {
+    color: #94afc8;
+  }
+
+  .hero-btn-row {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .hero-btn {
+    background: #7c3aed;
+    color: white;
+    padding: 0.85rem 1.9rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+
+  .hero-btn:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+  }
+
+  .lets-explore {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    font-family: "Segoe Script", "Comic Sans MS", cursive;
+    color: #7c3aed;
+    font-size: 1rem;
+    line-height: 1.35;
+    font-style: italic;
+  }
+
+  :global([data-theme="dark"]) .lets-explore {
+    color: #a78bfa;
+  }
+
+  .arrow-svg {
+    width: 48px;
+    height: 32px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  :global([data-theme="dark"]) .arrow-svg path {
+    stroke: #a78bfa;
+  }
+
+  .hero-right {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    max-width: 600px;
+    min-width: 420px;
+  }
+
+  .hero-illustration {
+    width: 100%;
+    min-width: 400px;
+    max-width: 600px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .age-section {
+    padding: 3rem 2rem 4rem;
+    text-align: center;
+    background: #ffffff;
+  }
+
+  :global([data-theme="dark"]) .age-section {
+    background: #0f172a;
+  }
+
+  .age-title {
+    font-size: 1.85rem;
+    font-weight: 900;
+    color: #1a3353;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  :global([data-theme="dark"]) .age-title {
+    color: #e2f0ff;
+  }
+
+  .age-grid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .age-card {
+    background: var(--card-bg);
+    border-radius: 1.4rem;
+    padding: 1.8rem 1rem 1.4rem;
+    width: 155px;
+    min-width: 130px;
+    flex-shrink: 0;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  }
+
+  :global([data-theme="dark"]) .age-card {
+    background: var(--card-bg-dark);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+  }
+
+  .age-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
+  }
+
+  .age-icon {
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .age-label {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .age-range {
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .age-explore {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-section {
+      padding: 2.5rem 3rem 0;
+    }
+    .hero-title {
+      font-size: 2.8rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.5rem 0;
+      text-align: center;
+      min-height: auto;
+    }
+    .hero-left {
+      max-width: 100%;
+      padding-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    .hero-btn-row {
+      justify-content: center;
+    }
+    .hero-text {
+      margin: 0 auto 1.5rem;
+    }
+    .hero-right {
+      max-width: 100%;
+    }
+    .hero-illustration {
+      max-width: 360px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.8rem;
+    }
+    .age-card {
+      width: 145px;
+      padding: 1.5rem 0.9rem 1.2rem;
+    }
+    .age-icon {
+      font-size: 2.2rem;
+    }
+  }
+</style>
