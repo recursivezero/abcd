@@ -1,41 +1,38 @@
 ---
 import "@/assets/styles/footer.css";
-import ToggleIcon from "@/assets/icons/toggle.svg";
 ---
 
-<div class="container__footer">
+<footer class="container__footer">
   <div class="footer__main-content">
-    <!-- Brand and description -->
+    <!-- ── Brand Section ── -->
     <div class="footer__brand-section">
       <div class="brand">
         abcd<span class="kbd">kbd</span>
       </div>
       <p>Making learning fun and engaging for young minds everywhere.</p>
-      <div class="social hide">
-        <a href="https://twitter.com/abcd_kbd" aria-label="X" target="_blank" rel="noopener noreferrer"
-          ><i class="fa-brands fa-x-twitter"></i></a
-        >
-        <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"
-          ><i class="fa-brands fa-facebook"></i></a
-        >
-        <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"
-          ><i class="fa-brands fa-instagram"></i></a
-        >
-        <a href="https://youtube.com/" aria-label="YouTube" target="_blank" rel="noopener noreferrer"
-          ><i class="fa-brands fa-youtube"></i></a
-        >
+      <div class="social">
+        <a href="https://twitter.com/abcd_kbd" aria-label="X" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://youtube.com/" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
       </div>
-      <!-- Theme Toggle Button -->
-      <button class="footer-theme-toggle" aria-label="Toggle theme">
-        <ToggleIcon width={30} height={30} />
-        <span>Toggle Theme</span>
-      </button>
     </div>
-    <!-- Navigation columns -->
-    <div class="footer__nav">
+
+    <!-- ── Nav Columns ── -->
+    <nav class="footer__nav">
+      <!-- Learning -->
       <details class="footer__nav--item" open>
         <summary class="footer__nav--title">
           <span>Learning</span>
+          <i class="fa fa-chevron-down"></i>
         </summary>
         <div class="footer__nav--links">
           <a href="/alphabets">Reading</a>
@@ -45,9 +42,12 @@ import ToggleIcon from "@/assets/icons/toggle.svg";
           <a href="/map">India Map</a>
         </div>
       </details>
+
+      <!-- General -->
       <details class="footer__nav--item" open>
         <summary class="footer__nav--title">
           <span>General</span>
+          <i class="fa fa-chevron-down"></i>
         </summary>
         <div class="footer__nav--links">
           <a href="/faq">FAQs</a>
@@ -57,35 +57,99 @@ import ToggleIcon from "@/assets/icons/toggle.svg";
           <a href="/contact">Contact Us</a>
         </div>
       </details>
-    </div>
-    <details class="footer__nav--item" open>
-      <summary class="footer__nav--title">
-        <span>Resources</span>
-      </summary>
-      <div class="footer__nav--links">
-        <a href="/school">School Programs</a>
-        <a href="/classroom">Classroom Tools</a>
-        <a href="/teacher">Teacher Resources</a>
-        <a href="/parent">Parent Resources</a>
-      </div>
-    </details>
+
+      <!-- Resources — was OUTSIDE main-content, now fixed -->
+      <details class="footer__nav--item" open>
+        <summary class="footer__nav--title">
+          <span>Resources</span>
+          <i class="fa fa-chevron-down"></i>
+        </summary>
+        <div class="footer__nav--links">
+          <a href="/school">School Programs</a>
+          <a href="/classroom">Classroom Tools</a>
+          <a href="/teacher">Teacher Resources</a>
+          <a href="/parent">Parent Resources</a>
+        </div>
+      </details>
+    </nav>
   </div>
-</div>
-<div class="copyright">
-  © 2025 recursivezero.com. All rights reserved.
-  <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms and Conditions</a> | <a href="/cookies">Cookies</a>
-</div>
 
-<script>
-  const themeBtn = document.querySelector(".footer-theme-toggle");
+  <!-- ── Copyright ── -->
+  <div class="copyright">
+    © 2025 recursivezero.com. All rights reserved.
+    <br class="mobile-br" />
+    <a href="/privacy">Privacy Policy</a>
+    <span class="sep">|</span>
+    <a href="/terms">Terms and Conditions</a>
+    <span class="sep">|</span>
+    <a href="/cookies">Cookies</a>
+  </div>
+</footer>
 
-  themeBtn?.addEventListener("click", () => {
-    const current = document.documentElement.dataset.theme || "system";
-    const themes = ["system", "light", "dark"];
-    const currentIndex = themes.indexOf(current);
-    const nextIndex = (currentIndex + 1) % themes.length;
-    const next = themes[nextIndex];
-    // Dispatch the same event your ThemeProvider listens for
-    document.dispatchEvent(new CustomEvent("theme-change", { detail: { theme: next } }));
+<script is:inline>
+  // On mobile — close all details by default, open on click
+  function initFooterAccordion() {
+    const isMobile = window.innerWidth <= 768;
+    const items = document.querySelectorAll(".footer__nav--item");
+
+    items.forEach((item) => {
+      // On mobile — close all by default
+      if (isMobile) {
+        item.removeAttribute("open");
+      } else {
+        item.setAttribute("open", "");
+      }
+
+      // Remove old listeners by cloning
+      const summary = item.querySelector(".footer__nav--title");
+      if (!summary) return;
+
+      summary.addEventListener("click", (e) => {
+        if (window.innerWidth > 768) return; // desktop — native behavior
+        e.preventDefault();
+        const isOpen = item.hasAttribute("open");
+        // Close all others
+        items.forEach((other) => other.removeAttribute("open"));
+        // Toggle clicked
+        if (!isOpen) item.setAttribute("open", "");
+      });
+    });
+  }
+
+  initFooterAccordion();
+
+  // Re-run on resize
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(initFooterAccordion, 150);
   });
+
+  // Astro page transitions
+  document.addEventListener("astro:page-load", initFooterAccordion);
 </script>
+
+<style>
+  /* Mobile-only line break in copyright */
+  .mobile-br {
+    display: none;
+  }
+  .sep {
+    margin: 0 0.25rem;
+    color: var(--footer-border-color);
+  }
+
+  @media (max-width: 480px) {
+    .mobile-br {
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .sep {
+      display: none;
+    }
+    .copyright a {
+      display: inline-block;
+      margin: 0.15rem 0.3rem;
+    }
+  }
+</style>
