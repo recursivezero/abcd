@@ -99,12 +99,9 @@ const allSearchItems = [
 ];
 
 const allSearchItemsJSON = JSON.stringify(allSearchItems);
-const currentPath = Astro.url.pathname;
 ---
 
-<!-- ═══ HEADER ═══ -->
 <header class="header">
-  <!-- Brand / Logo -->
   <div class="header__brand">
     <a href="/" class="logo__link">
       <Picture src={logoImage} formats={["png", "webp"]} alt="abcdkbd logo" class="logo" />
@@ -112,22 +109,11 @@ const currentPath = Astro.url.pathname;
     </a>
   </div>
 
-  <!-- Global Search -->
-  <div class="global-search-wrap">
-    <div class="global-search-box" id="globalSearchBox">
-      <span class="gs-icon">🔍</span>
-      <input type="text" id="globalSearch" placeholder="Search anything..." autocomplete="off" />
-      <button id="globalClear" class="gs-clear-btn" style="display:none;">✕</button>
-    </div>
-    <div class="gs-dropdown" id="gsSuggestions" style="display:none;"></div>
-  </div>
-
-  <!-- Desktop Nav Links -->
-  <nav class="nav__links" id="desktopNav">
-    <a href="/" class:list={{ "is-active": currentPath === "/" || currentPath === "/home" }}>Home</a>
-    <a href="/about" class:list={{ "is-active": currentPath.startsWith("/about") }}>About</a>
-    <a href="/parent" class:list={{ "is-active": currentPath.startsWith("/parent") }}>Parents</a>
-    <a href="/teacher" class:list={{ "is-active": currentPath.startsWith("/teacher") }}>Teachers</a>
+  <div class="nav__links">
+    <a href="/" class:list={{ "is-active": Astro.url.pathname === "/home" || Astro.url.pathname === "/" }}>Home</a>
+    <a href="/about" class:list={{ "is-active": Astro.url.pathname.startsWith("/about") }}>About</a>
+    <a href="/parent" class:list={{ "is-active": Astro.url.pathname.startsWith("/parent") }}>Parents</a>
+    <a href="/teacher" class:list={{ "is-active": Astro.url.pathname.startsWith("/teacher") }}>Teachers</a>
     <slot name="left" />
     <slot name="right" />
     <button class="theme-toggle" id="headerThemeToggle" aria-label="Toggle theme" title="Toggle Theme">
@@ -154,72 +140,43 @@ const currentPath = Astro.url.pathname;
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
       </svg>
     </button>
-  </nav>
+  </div>
 
-  <!-- Hamburger Button (mobile only) -->
-  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
     <span></span>
     <span></span>
     <span></span>
   </button>
 </header>
 
-<div class="header-spacer"></div>
-
-<!-- ═══ MOBILE OVERLAY ═══ -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
 
-<!-- ═══ MOBILE DRAWER ═══ -->
-<nav class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <!-- Drawer Header -->
+<div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu__header">
-    <a href="/" class="mobile-logo">abcd<span style="color:#6d8c3d">kbd</span></a>
-    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="/" class="mobile-logo">abcd<span style="color:#6d8c3d;">kbd</span></a>
+    <button class="hamburger" id="menuClose" aria-label="Close menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 
-  <!-- Drawer Nav Links -->
   <ul class="mobile-nav__links">
-    <li>
-      <a href="/" class:list={{ "is-active": currentPath === "/" || currentPath === "/home" }}>
-        <span class="mnl-icon">🏠</span> Home
-      </a>
-    </li>
-    <li>
-      <a href="/about" class:list={{ "is-active": currentPath.startsWith("/about") }}>
-        <span class="mnl-icon">ℹ️</span> About
-      </a>
-    </li>
-    <li>
-      <a href="/parent" class:list={{ "is-active": currentPath.startsWith("/parent") }}>
-        <span class="mnl-icon">👨‍👩‍👧</span> Parents
-      </a>
-    </li>
-    <li>
-      <a href="/teacher" class:list={{ "is-active": currentPath.startsWith("/teacher") }}>
-        <span class="mnl-icon">👩‍🏫</span> Teachers
-      </a>
-    </li>
-    <li>
-      <a href="/games">
-        <span class="mnl-icon">🎮</span> Games
-      </a>
-    </li>
-    <li>
-      <a href="/varnmala/hindi">
-        <span class="mnl-icon">अ</span> Varnmala
-      </a>
-    </li>
+    <li><a href="/">🏠 Home</a></li>
+    <li><a href="/about">ℹ️ About</a></li>
+    <li><a href="/parent">👨‍👩‍👧 Parents</a></li>
+    <li><a href="/teacher">👩‍🏫 Teachers</a></li>
   </ul>
 
-  <!-- Drawer Bottom Actions -->
   <div class="mobile-actions">
     <div class="mobile-controls">
       <span>Toggle Theme</span>
       <button class="theme-toggle" id="mobileThemeToggle" aria-label="Toggle theme">
         <svg
+          id="mobileThemeIcon"
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
+          width="18"
+          height="18"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -240,11 +197,22 @@ const currentPath = Astro.url.pathname;
       </button>
     </div>
   </div>
-</nav>
+</div>
 
-<!-- ═══ STYLES ═══ -->
+<div class="hero-search">
+  <div class="hero-search__wrap">
+    <div class="hero-search__box" id="heroSearchBox">
+      <span class="hero-search__icon">🔍</span>
+      <input type="text" id="heroSearch" placeholder="Search games, alphabets, states..." autocomplete="off" />
+      <button id="heroClear" class="hero-search__clear" style="display:none;">✕</button>
+    </div>
+    <div class="hero-search__dropdown" id="heroSuggestions" style="display:none;"></div>
+  </div>
+</div>
+
+<div class="header-spacer"></div>
+
 <style is:global>
-  /* ── Theme Toggle ── */
   .theme-toggle {
     background: none;
     border: 1.5px solid #e2e8f0;
@@ -255,120 +223,23 @@ const currentPath = Astro.url.pathname;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #7c3aed;
+    color: #0ed4f7;
     transition: all 0.2s ease;
     flex-shrink: 0;
   }
   .theme-toggle:hover {
     background: #ede9fe;
-    border-color: #7c3aed;
+    border-color: #0cd9e0;
     transform: rotate(20deg);
   }
   [data-theme="dark"] .theme-toggle {
     border-color: #334155;
-    color: #a78bfa;
+    color: #16ade4;
   }
   [data-theme="dark"] .theme-toggle:hover {
-    background: #3b1f6e;
-    border-color: #7c3aed;
+    background: #e9e6ee;
+    border-color: #0ba4ce;
   }
-
-  /* ── Global Search ── */
-  .global-search-wrap {
-    position: relative;
-    flex: 1;
-    max-width: 380px;
-    margin: 0 1rem;
-  }
-  .global-search-box {
-    display: flex;
-    align-items: center;
-    background: #f8fafc;
-    border: 2px solid #e2e8f0;
-    border-radius: 2rem;
-    padding: 0.4rem 1rem;
-    gap: 0.5rem;
-    transition:
-      border-color 0.2s,
-      box-shadow 0.2s;
-  }
-  .global-search-box:focus-within {
-    border-color: #7c3aed;
-    background: #fff;
-    box-shadow: 0 2px 12px rgba(124, 58, 237, 0.15);
-  }
-  [data-theme="dark"] .global-search-box {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-  [data-theme="dark"] .global-search-box:focus-within {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--primary);
-  }
-  [data-theme="dark"] #globalSearch {
-    color: #f1f5f9;
-  }
-  .gs-icon {
-    font-size: 0.9rem;
-    flex-shrink: 0;
-  }
-  #globalSearch {
-    border: none !important;
-    outline: none !important;
-    font-size: 0.9rem;
-    flex: 1;
-    background: transparent;
-    color: #1a3353;
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    box-shadow: none !important;
-  }
-  #globalSearch::placeholder {
-    color: #a0aec0;
-  }
-  .gs-clear-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #a0aec0;
-    font-size: 0.8rem;
-    padding: 0;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .gs-clear-btn:hover {
-    color: #7c3aed;
-  }
-
-  /* ── Dropdown ── */
-  .gs-dropdown {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    background: #ffffff;
-    border: 1.5px solid #ede9fe;
-    border-radius: 16px;
-    box-shadow:
-      0 16px 40px rgba(124, 58, 237, 0.12),
-      0 4px 12px rgba(0, 0, 0, 0.08);
-    z-index: 99999;
-    max-height: 420px;
-    overflow-y: auto;
-    padding: 6px 0;
-  }
-  [data-theme="dark"] .gs-dropdown {
-    background: #1e1535;
-    border-color: rgba(192, 132, 252, 0.2);
-  }
-  [data-theme="dark"] .gs-result-item {
-    color: #e2e8f0 !important;
-  }
-  [data-theme="dark"] .gs-result-item:hover {
-    background: rgba(124, 58, 237, 0.2) !important;
-  }
-
   .gs-section-title {
     display: flex;
     align-items: center;
@@ -453,8 +324,6 @@ const currentPath = Astro.url.pathname;
     color: #94a3b8;
     font-size: 14px;
   }
-
-  /* Type colors */
   .gs-c-game {
     background: #dcfce7 !important;
   }
@@ -560,284 +429,11 @@ const currentPath = Astro.url.pathname;
     background: #fef3c7 !important;
     color: #d97706 !important;
   }
-
-  /* ── Hamburger ── */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 8px;
-    transition: background 0.2s ease;
-    z-index: 1100;
-    flex-shrink: 0;
-  }
-  .hamburger:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background-color: var(--text, #1a1a1a);
-    border-radius: 2px;
-    transition:
-      transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-      opacity 0.25s ease,
-      width 0.3s ease;
-    transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-    width: 0;
-  }
-  .hamburger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  /* ── Mobile Overlay ── */
-  .mobile-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 1040;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(4px);
-  }
-  .mobile-overlay.open {
-    opacity: 1;
-  }
-
-  /* ── Mobile Drawer ── */
-  .mobile-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: min(80vw, 300px);
-    height: 100dvh;
-    background: var(--background, #fff);
-    background-image: var(--bg-gradient, none);
-    background-size: cover;
-    z-index: 1050;
-    transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem 1.25rem;
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.3);
-    overflow-y: auto;
-  }
-  .mobile-menu.open {
-    transform: translateX(0);
-  }
-
-  .mobile-menu__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.75rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .mobile-logo {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--primary);
-    text-decoration: none;
-  }
-  .mobile-close {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: var(--text, #1a1a1a);
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-  }
-  .mobile-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .mobile-nav__links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    flex: 1;
-  }
-  .mobile-nav__links li a {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    color: var(--text, #1a1a1a);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition:
-      background 0.2s,
-      color 0.2s,
-      transform 0.2s;
-  }
-  .mobile-nav__links li a:hover,
-  .mobile-nav__links li a.is-active {
-    background: rgba(124, 58, 237, 0.15);
-    color: var(--primary);
-    transform: translateX(4px);
-  }
-  [data-theme="dark"] .mobile-nav__links li a:hover,
-  [data-theme="dark"] .mobile-nav__links li a.is-active {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  .mnl-icon {
-    font-size: 1.1rem;
-    width: 1.5rem;
-    text-align: center;
-  }
-
-  .mobile-actions {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .mobile-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    color: var(--subtext, var(--text));
-  }
-
-  /* RESPONSIVE BREAKPOINTS*/
-
-  /* Tablet */
-  @media (max-width: 1024px) {
-    .header .nav__links {
-      gap: 1rem;
-    }
-    .header .nav__links a {
-      font-size: 0.88rem;
-    }
-    .global-search-wrap {
-      max-width: 260px;
-    }
-  }
-
-  /* Mobile */
-  @media (max-width: 768px) {
-    .header {
-      grid-template-columns: 1fr auto !important;
-      grid-template-rows: 1fr;
-      min-height: 4rem;
-      height: 4rem;
-      padding: 0 1rem;
-      align-items: center;
-    }
-
-    /* Hide desktop nav on mobile */
-    .header .nav__links {
-      display: none !important;
-    }
-
-    /* Search full width below header */
-    .global-search-wrap {
-      display: none; /* hidden in header, shown separately if needed */
-    }
-
-    /* Show hamburger */
-    .hamburger {
-      display: flex;
-    }
-
-    /* Show overlay when active */
-    .mobile-overlay {
-      display: block;
-    }
-
-    /* Brand smaller */
-    .header .header__brand .logo__link {
-      font-size: 1.2rem;
-    }
-    .header .header__brand .logo {
-      width: 2.2rem;
-      height: 2.2rem;
-    }
-    .header .header__brand p {
-      font-size: 1.2rem;
-      margin-inline-start: 0.25rem;
-    }
-
-    .header-spacer {
-      min-height: 4rem;
-    }
-  }
-
-  /* Small mobile */
-  @media (max-width: 480px) {
-    .header {
-      padding: 0 0.75rem;
-      min-height: 3.5rem;
-      height: 3.5rem;
-    }
-    .header .header__brand .logo__link {
-      font-size: 1rem;
-      gap: 0.4rem;
-    }
-    .header .header__brand .logo {
-      width: 2rem;
-      height: 2rem;
-    }
-    .header .header__brand p {
-      font-size: 1rem;
-    }
-    .header-spacer {
-      min-height: 3.5rem;
-    }
-    .mobile-menu {
-      width: 88vw;
-    }
-  }
 </style>
 
-<!-- ═══ SCRIPTS ═══ -->
 <script is:inline define:vars={{ allSearchItemsJSON }}>
   window.__searchItems = JSON.parse(allSearchItemsJSON);
 
-  const typeEmoji = {
-    game: "🎮",
-    alphabet: "🔤",
-    page: "📄",
-    state: "🗺️",
-    dance: "💃",
-    festival: "🎉",
-    capital: "🏛️",
-    food: "🍛",
-    place: "📍",
-    glossary: "📖",
-    numbers: "🔢",
-    varnmala: "अ",
-    gallery: "🖼️",
-    canvas: "🎨",
-    hidenseek: "🔍"
-  };
   const groupTitle = {
     game: "🎮 Games",
     alphabet: "🔤 Alphabets",
@@ -855,15 +451,27 @@ const currentPath = Astro.url.pathname;
     canvas: "🎨 Canvas",
     hidenseek: "🔍 Hide N Seek"
   };
+  const typeEmoji = {
+    game: "🎮",
+    alphabet: "🔤",
+    page: "📄",
+    state: "🗺️",
+    dance: "💃",
+    festival: "🎉",
+    capital: "🏛️",
+    food: "🍛",
+    place: "📍",
+    glossary: "📖",
+    numbers: "🔢",
+    varnmala: "अ",
+    gallery: "🖼️",
+    canvas: "🎨",
+    hidenseek: "🔍"
+  };
 
-  /* ── Search ── */
-  function renderDropdown(query) {
+  function buildDropdown(query, dropdown) {
     const items = window.__searchItems || [];
-    const clearBtn = document.getElementById("globalClear");
-    const dropdown = document.getElementById("gsSuggestions");
-    if (!dropdown) return;
     const q = query.trim().toLowerCase();
-    if (clearBtn) clearBtn.style.display = q ? "block" : "none";
     if (!q) {
       dropdown.style.display = "none";
       return;
@@ -899,12 +507,16 @@ const currentPath = Astro.url.pathname;
     dropdown.style.display = "block";
   }
 
-  function initSearch() {
-    const input = document.getElementById("globalSearch");
-    const clearBtn = document.getElementById("globalClear");
-    const dropdown = document.getElementById("gsSuggestions");
+  function initHeroSearch() {
+    const input = document.getElementById("heroSearch");
+    const clearBtn = document.getElementById("heroClear");
+    const dropdown = document.getElementById("heroSuggestions");
     if (!input) return;
-    input.addEventListener("input", (e) => renderDropdown(e.target.value));
+    input.addEventListener("input", (e) => {
+      const q = e.target.value;
+      if (clearBtn) clearBtn.style.display = q ? "block" : "none";
+      buildDropdown(q, dropdown);
+    });
     clearBtn &&
       clearBtn.addEventListener("click", () => {
         input.value = "";
@@ -919,68 +531,74 @@ const currentPath = Astro.url.pathname;
       }
     });
     document.addEventListener("click", (e) => {
-      if (!e.target.closest(".global-search-wrap") && dropdown) dropdown.style.display = "none";
+      if (!e.target.closest(".hero-search__wrap") && dropdown) dropdown.style.display = "none";
     });
   }
 
-  /* ── Mobile Menu ── */
-  function initMobileMenu() {
+  const sunIcon = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+  const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+
+  function updateThemeIcon() {
+    const themeIcon = document.getElementById("themeIcon");
+    const mobileThemeIcon = document.getElementById("mobileThemeIcon");
+    const theme = localStorage.getItem("theme") || "light";
+    if (themeIcon) themeIcon.innerHTML = theme === "dark" ? sunIcon : moonIcon;
+    if (mobileThemeIcon) mobileThemeIcon.innerHTML = theme === "dark" ? sunIcon : moonIcon;
+  }
+
+  function initThemeToggle() {
+    const headerThemeToggle = document.getElementById("headerThemeToggle");
+    const mobileThemeToggle = document.getElementById("mobileThemeToggle");
+
+    function toggleTheme() {
+      const current = localStorage.getItem("theme") || "light";
+      const next = current === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", next);
+      document.documentElement.setAttribute("data-theme", next);
+      document.documentElement.classList.toggle("dark", next === "dark");
+      updateThemeIcon();
+    }
+
+    headerThemeToggle?.addEventListener("click", toggleTheme);
+    mobileThemeToggle?.addEventListener("click", toggleTheme);
+    updateThemeIcon();
+  }
+
+  function initHamburger() {
     const hamburger = document.getElementById("hamburger");
+    const menuClose = document.getElementById("menuClose");
     const mobileMenu = document.getElementById("mobileMenu");
-    const overlay = document.getElementById("mobileOverlay");
-    const closeBtn = document.getElementById("mobileClose");
-    if (!hamburger || !mobileMenu) return;
+    const mobileOverlay = document.getElementById("mobileOverlay");
 
     function openMenu() {
-      hamburger.classList.add("open");
-      hamburger.setAttribute("aria-expanded", "true");
-      mobileMenu.classList.add("open");
-      mobileMenu.setAttribute("aria-hidden", "false");
-      if (overlay) overlay.classList.add("open");
+      hamburger?.classList.add("open");
+      mobileMenu?.classList.add("open");
+      mobileOverlay?.classList.add("open");
       document.body.style.overflow = "hidden";
     }
 
     function closeMenu() {
-      hamburger.classList.remove("open");
-      hamburger.setAttribute("aria-expanded", "false");
-      mobileMenu.classList.remove("open");
-      mobileMenu.setAttribute("aria-hidden", "true");
-      if (overlay) overlay.classList.remove("open");
+      hamburger?.classList.remove("open");
+      mobileMenu?.classList.remove("open");
+      mobileOverlay?.classList.remove("open");
       document.body.style.overflow = "";
     }
 
-    hamburger.addEventListener("click", () => {
-      mobileMenu.classList.contains("open") ? closeMenu() : openMenu();
-    });
+    hamburger?.addEventListener("click", openMenu);
+    menuClose?.addEventListener("click", closeMenu);
+    mobileOverlay?.addEventListener("click", closeMenu);
 
-    overlay && overlay.addEventListener("click", closeMenu);
-    closeBtn && closeBtn.addEventListener("click", closeMenu);
-
-    // Close on nav link click
-    mobileMenu.querySelectorAll("a").forEach((link) => {
+    document.querySelectorAll(".mobile-nav__links a").forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
-
-    // ESC key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
-
-    // Mobile theme toggle synced with header toggle
-    const mobileToggle = document.getElementById("mobileThemeToggle");
-    const headerToggle = document.getElementById("headerThemeToggle");
-    if (mobileToggle && headerToggle) {
-      mobileToggle.addEventListener("click", () => {
-        headerToggle.click(); // fire main theme toggle
-      });
-    }
   }
 
-  initSearch();
-  initMobileMenu();
+  function init() {
+    initHeroSearch();
+    initThemeToggle();
+    initHamburger();
+  }
 
-  document.addEventListener("astro:page-load", () => {
-    initSearch();
-    initMobileMenu();
-  });
+  init();
+  document.addEventListener("astro:page-load", init);
 </script>

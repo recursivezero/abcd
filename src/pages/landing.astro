@@ -11,11 +11,7 @@ import Hero from "@/components/Hero.astro";
   const btn = document.querySelector("#categoryAnchor");
   const target = document.querySelector("#categories");
 
-  if (!btn || !target) {
-    console.warn("[DEBUG] Button or target NOT found");
-  } else {
-    console.log("[DEBUG] Button & target found, wiring click…");
-
+  if (btn && target) {
     btn.addEventListener("click", () => {
       target.scrollIntoView({
         behavior: "smooth",

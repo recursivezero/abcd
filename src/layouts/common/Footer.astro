@@ -3,114 +3,102 @@ import "@/assets/styles/footer.css";
 ---
 
 <footer class="container__footer">
-  <div class="footer__main-content">
-    <!-- ── Brand Section ── -->
-    <div class="footer__brand-section">
-      <div class="brand">
-        abcd<span class="kbd">kbd</span>
+  <div class="footer__inner">
+
+    <!-- ══ MAIN CONTENT ══ -->
+    <div class="footer__main-content">
+
+      <!-- Brand Column -->
+      <div class="footer__brand-section">
+        <div class="brand">abcd<span class="kbd">kbd</span></div>
+        <p class="footer__tagline">Making learning fun and engaging for young minds everywhere.</p>
+        <span class="footer__badge">🎓 Free to Learn</span>
       </div>
-      <p>Making learning fun and engaging for young minds everywhere.</p>
-      <div class="social">
-        <a href="https://twitter.com/abcd_kbd" aria-label="X" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-x-twitter"></i>
-        </a>
-        <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-        <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://youtube.com/" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-youtube"></i>
-        </a>
+
+      <!-- Nav Columns -->
+      <nav class="footer__nav">
+
+        <details class="footer__nav--item" open>
+          <summary class="footer__nav--title">
+            <span>Learning</span>
+            <i class="fa fa-chevron-down chevron"></i>
+          </summary>
+          <div class="footer__nav--links">
+            <a href="/alphabets">Reading</a>
+            <a href="/math">Math</a>
+            <a href="/crossword">Games</a>
+            <a href="/draw">Creativity</a>
+            <a href="/map">India Map</a>
+          </div>
+        </details>
+
+        <details class="footer__nav--item" open>
+          <summary class="footer__nav--title">
+            <span>General</span>
+            <i class="fa fa-chevron-down chevron"></i>
+          </summary>
+          <div class="footer__nav--links">
+            <a href="/faq">FAQs</a>
+            <a href="/support">Support</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+          </div>
+        </details>
+
+        <details class="footer__nav--item" open>
+          <summary class="footer__nav--title">
+            <span>Resources</span>
+            <i class="fa fa-chevron-down chevron"></i>
+          </summary>
+          <div class="footer__nav--links">
+            <a href="/school">School Programs</a>
+            <a href="/classroom">Classroom Tools</a>
+            <a href="/teacher">Teacher Resources</a>
+            <a href="/parent">Parent Resources</a>
+          </div>
+        </details>
+
+      </nav>
+    </div>
+
+    <!-- ══ COPYRIGHT ══ -->
+    <div class="copyright">
+      <span class="copyright__text">© 2025 recursivezero.com. All rights reserved.</span>
+      <div class="copyright__links">
+        <a href="/privacy">Privacy Policy</a>
+        <span class="sep">|</span>
+        <a href="/terms">Terms of Service</a>
+        <span class="sep">|</span>
+        <a href="/cookies">Cookies</a>
       </div>
     </div>
 
-    <!-- ── Nav Columns ── -->
-    <nav class="footer__nav">
-      <!-- Learning -->
-      <details class="footer__nav--item" open>
-        <summary class="footer__nav--title">
-          <span>Learning</span>
-          <i class="fa fa-chevron-down"></i>
-        </summary>
-        <div class="footer__nav--links">
-          <a href="/alphabets">Reading</a>
-          <a href="/math">Math</a>
-          <a href="/crossword">Games</a>
-          <a href="/draw">Creativity</a>
-          <a href="/map">India Map</a>
-        </div>
-      </details>
-
-      <!-- General -->
-      <details class="footer__nav--item" open>
-        <summary class="footer__nav--title">
-          <span>General</span>
-          <i class="fa fa-chevron-down"></i>
-        </summary>
-        <div class="footer__nav--links">
-          <a href="/faq">FAQs</a>
-          <a href="/support">Support</a>
-          <a href="/blog">Blog</a>
-          <a href="/about">About Us</a>
-          <a href="/contact">Contact Us</a>
-        </div>
-      </details>
-
-      <!-- Resources — was OUTSIDE main-content, now fixed -->
-      <details class="footer__nav--item" open>
-        <summary class="footer__nav--title">
-          <span>Resources</span>
-          <i class="fa fa-chevron-down"></i>
-        </summary>
-        <div class="footer__nav--links">
-          <a href="/school">School Programs</a>
-          <a href="/classroom">Classroom Tools</a>
-          <a href="/teacher">Teacher Resources</a>
-          <a href="/parent">Parent Resources</a>
-        </div>
-      </details>
-    </nav>
-  </div>
-
-  <!-- ── Copyright ── -->
-  <div class="copyright">
-    © 2025 recursivezero.com. All rights reserved.
-    <br class="mobile-br" />
-    <a href="/privacy">Privacy Policy</a>
-    <span class="sep">|</span>
-    <a href="/terms">Terms and Conditions</a>
-    <span class="sep">|</span>
-    <a href="/cookies">Cookies</a>
   </div>
 </footer>
 
 <script is:inline>
-  // On mobile — close all details by default, open on click
   function initFooterAccordion() {
     const isMobile = window.innerWidth <= 768;
-    const items = document.querySelectorAll(".footer__nav--item");
+    const items = document.querySelectorAll("details.footer__nav--item");
 
     items.forEach((item) => {
-      // On mobile — close all by default
       if (isMobile) {
         item.removeAttribute("open");
       } else {
         item.setAttribute("open", "");
       }
 
-      // Remove old listeners by cloning
-      const summary = item.querySelector(".footer__nav--title");
-      if (!summary) return;
+      const oldSummary = item.querySelector(".footer__nav--title");
+      if (!oldSummary) return;
+      const newSummary = oldSummary.cloneNode(true);
+      oldSummary.replaceWith(newSummary);
 
-      summary.addEventListener("click", (e) => {
-        if (window.innerWidth > 768) return; // desktop — native behavior
+      newSummary.addEventListener("click", (e) => {
+        if (window.innerWidth > 768) return;
         e.preventDefault();
         const isOpen = item.hasAttribute("open");
-        // Close all others
-        items.forEach((other) => other.removeAttribute("open"));
-        // Toggle clicked
+        items.forEach((el) => el.removeAttribute("open"));
         if (!isOpen) item.setAttribute("open", "");
       });
     });
@@ -118,38 +106,11 @@ import "@/assets/styles/footer.css";
 
   initFooterAccordion();
 
-  // Re-run on resize
-  let resizeTimer;
+  let t;
   window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(initFooterAccordion, 150);
+    clearTimeout(t);
+    t = setTimeout(initFooterAccordion, 150);
   });
 
-  // Astro page transitions
   document.addEventListener("astro:page-load", initFooterAccordion);
 </script>
-
-<style>
-  /* Mobile-only line break in copyright */
-  .mobile-br {
-    display: none;
-  }
-  .sep {
-    margin: 0 0.25rem;
-    color: var(--footer-border-color);
-  }
-
-  @media (max-width: 480px) {
-    .mobile-br {
-      display: block;
-      margin-bottom: 0.4rem;
-    }
-    .sep {
-      display: none;
-    }
-    .copyright a {
-      display: inline-block;
-      margin: 0.15rem 0.3rem;
-    }
-  }
-</style>

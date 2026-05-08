@@ -80,7 +80,6 @@ const ageGroups = [
       </linearGradient>
     </defs>
     <rect width="1400" height="560" fill="url(#skyGrad)"></rect>
-
     <g opacity="0.85">
       <path d="M 950 380 Q 1150 80 1380 200" stroke="#FF4444" stroke-width="18" fill="none" stroke-linecap="round"
       ></path>
@@ -95,7 +94,6 @@ const ageGroups = [
       <path d="M 1025 424 Q 1175 174 1380 296" stroke="#8844EE" stroke-width="18" fill="none" stroke-linecap="round"
       ></path>
     </g>
-
     <g fill="white" opacity="0.9">
       <ellipse cx="120" cy="90" rx="60" ry="38"></ellipse>
       <ellipse cx="160" cy="75" rx="50" ry="35"></ellipse>
@@ -103,7 +101,6 @@ const ageGroups = [
       <ellipse cx="240" cy="100" rx="45" ry="28"></ellipse>
       <ellipse cx="80" cy="100" rx="40" ry="25"></ellipse>
     </g>
-
     <g fill="white" opacity="0.85">
       <ellipse cx="620" cy="60" rx="65" ry="36"></ellipse>
       <ellipse cx="665" cy="45" rx="52" ry="34"></ellipse>
@@ -111,14 +108,12 @@ const ageGroups = [
       <ellipse cx="745" cy="68" rx="42" ry="26"></ellipse>
       <ellipse cx="580" cy="70" rx="40" ry="24"></ellipse>
     </g>
-
     <g fill="white" opacity="0.7">
       <ellipse cx="1100" cy="80" rx="55" ry="32"></ellipse>
       <ellipse cx="1140" cy="65" rx="46" ry="30"></ellipse>
       <ellipse cx="1175" cy="78" rx="50" ry="28"></ellipse>
       <ellipse cx="1065" cy="90" rx="36" ry="22"></ellipse>
     </g>
-
     <g transform="translate(680, 130) rotate(-25)" opacity="0.9">
       <polygon points="0,0 40,12 0,24" fill="#4ab3ff"></polygon>
       <polygon points="0,24 15,18 10,28" fill="#2a8fd4"></polygon>
@@ -130,18 +125,15 @@ const ageGroups = [
       fill="none"
       stroke-dasharray="6,4"
       opacity="0.7"></path>
-
     <g fill="#FFD600" opacity="0.95">
       <polygon points="56,154 60,166 73,166 63,173 67,185 56,178 45,185 49,173 39,166 52,166"></polygon>
       <polygon points="715,200 720,215 735,215 723,223 727,238 715,230 703,238 707,223 695,215 710,215"></polygon>
       <polygon points="813,195 817,207 829,207 819,214 823,226 813,219 803,226 807,214 797,207 809,207"></polygon>
       <polygon points="370,160 374,172 386,172 377,179 380,191 370,184 360,191 363,179 354,172 366,172"></polygon>
     </g>
-
     <ellipse cx="700" cy="570" rx="850" ry="130" fill="url(#grassGrad)"></ellipse>
     <ellipse cx="200" cy="555" rx="200" ry="60" fill="#5dc23d"></ellipse>
     <ellipse cx="1200" cy="555" rx="200" ry="60" fill="#5dc23d"></ellipse>
-
     <g fill="#FFD600" opacity="0.6">
       <circle cx="30" cy="500" r="18"></circle>
       <circle cx="65" cy="530" r="12"></circle>
@@ -194,19 +186,15 @@ const ageGroups = [
   <div class="age-grid">
     {
       ageGroups.map((group) => (
-        <a
-          href={group.href}
-          class="age-card"
-          style={"--card-bg: " + group.color + "; --card-bg-dark: " + group.darkColor + ";"}
-        >
+        <a href={group.href} class="age-card" style={`--card-bg: ${group.color}; --card-bg-dark: ${group.darkColor};`}>
           <span class="age-icon">{group.icon}</span>
-          <h3 class="age-label" style={"color: " + group.explore + ";"}>
+          <h3 class="age-label" style={`color: ${group.explore};`}>
             {group.label}
           </h3>
-          <p class="age-range" style={"color: " + group.explore + ";"}>
+          <p class="age-range" style={`color: ${group.explore};`}>
             {group.range}
           </p>
-          <span class="age-explore" style={"color: " + group.explore + ";"}>
+          <span class="age-explore" style={`color: ${group.explore};`}>
             Explore →
           </span>
         </a>
@@ -226,6 +214,7 @@ const ageGroups = [
     padding: 3rem 5rem 0 5rem;
     width: 100%;
     box-sizing: border-box;
+    background: transparent;
   }
 
   .hero-bg-svg {
@@ -234,14 +223,15 @@ const ageGroups = [
     width: 100%;
     height: 100%;
     z-index: 0;
+    transition: opacity 0.3s ease;
   }
 
   :global([data-theme="dark"]) .hero-section {
-    background: #0d1b2e;
+    background: transparent;
   }
 
   :global([data-theme="dark"]) .hero-bg-svg {
-    opacity: 0.15;
+    opacity: 0.07;
   }
 
   .hero-left {
@@ -262,13 +252,12 @@ const ageGroups = [
   }
 
   :global([data-theme="dark"]) .hero-title {
-    color: #e2f0ff;
+    color: #e0f7fa;
   }
 
   .text-green {
     color: #16a34a;
   }
-
   .text-pink {
     color: #e11d48;
   }
@@ -281,7 +270,7 @@ const ageGroups = [
   }
 
   :global([data-theme="dark"]) .hero-text {
-    color: #94afc8;
+    color: #7dd3fc;
   }
 
   .hero-btn-row {
@@ -304,9 +293,19 @@ const ageGroups = [
       transform 0.2s;
   }
 
+  :global([data-theme="dark"]) .hero-btn {
+    background: #22d3ee;
+    color: #020608;
+    box-shadow: 0 4px 16px rgba(34, 211, 238, 0.3);
+  }
+
   .hero-btn:hover {
     background: #6d28d9;
     transform: translateY(-2px);
+  }
+
+  :global([data-theme="dark"]) .hero-btn:hover {
+    background: #67e8f9;
   }
 
   .lets-explore {
@@ -321,7 +320,7 @@ const ageGroups = [
   }
 
   :global([data-theme="dark"]) .lets-explore {
-    color: #a78bfa;
+    color: #22d3ee;
   }
 
   .arrow-svg {
@@ -332,7 +331,7 @@ const ageGroups = [
   }
 
   :global([data-theme="dark"]) .arrow-svg path {
-    stroke: #a78bfa;
+    stroke: #22d3ee;
   }
 
   .hero-right {
@@ -343,26 +342,25 @@ const ageGroups = [
     justify-content: center;
     align-items: flex-end;
     max-width: 600px;
-    min-width: 420px;
   }
 
   .hero-illustration {
     width: 100%;
-    min-width: 400px;
     max-width: 600px;
     height: auto;
     object-fit: contain;
     display: block;
   }
 
+  /* ── Age Section — transparent background ── */
   .age-section {
     padding: 3rem 2rem 4rem;
     text-align: center;
-    background: #ffffff;
+    background: transparent;
   }
 
   :global([data-theme="dark"]) .age-section {
-    background: #0f172a;
+    background: transparent;
   }
 
   .age-title {
@@ -377,14 +375,13 @@ const ageGroups = [
   }
 
   :global([data-theme="dark"]) .age-title {
-    color: #e2f0ff;
+    color: #e0f7fa;
   }
 
   .age-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 1rem;
-    justify-content: center;
-    flex-wrap: nowrap;
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -393,9 +390,6 @@ const ageGroups = [
     background: var(--card-bg);
     border-radius: 1.4rem;
     padding: 1.8rem 1rem 1.4rem;
-    width: 155px;
-    min-width: 130px;
-    flex-shrink: 0;
     text-align: center;
     text-decoration: none;
     display: flex;
@@ -411,6 +405,7 @@ const ageGroups = [
   :global([data-theme="dark"]) .age-card {
     background: var(--card-bg-dark);
     box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(34, 211, 238, 0.15);
   }
 
   .age-card:hover {
@@ -418,24 +413,26 @@ const ageGroups = [
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
   }
 
+  :global([data-theme="dark"]) .age-card:hover {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+    border-color: rgba(34, 211, 238, 0.4);
+  }
+
   .age-icon {
     font-size: 2.8rem;
     line-height: 1;
     margin-bottom: 0.4rem;
   }
-
   .age-label {
     font-size: 1.05rem;
     font-weight: 800;
     margin: 0;
   }
-
   .age-range {
     font-size: 0.88rem;
     font-weight: 600;
     margin: 0;
   }
-
   .age-explore {
     font-size: 0.95rem;
     font-weight: 700;
@@ -449,13 +446,16 @@ const ageGroups = [
     .hero-title {
       font-size: 2.8rem;
     }
+    .age-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   @media (max-width: 768px) {
     .hero-section {
       flex-direction: column;
       align-items: center;
-      padding: 2.5rem 1.5rem 0;
+      padding: 2rem 1rem 0;
       text-align: center;
       min-height: auto;
     }
@@ -464,32 +464,77 @@ const ageGroups = [
       padding-bottom: 1rem;
     }
     .hero-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
     .hero-btn-row {
       justify-content: center;
+      flex-wrap: wrap;
     }
     .hero-text {
       margin: 0 auto 1.5rem;
+      font-size: 0.95rem;
     }
     .hero-right {
       max-width: 100%;
+      width: 100%;
     }
     .hero-illustration {
-      max-width: 360px;
+      max-width: 300px;
+    }
+    .age-section {
+      padding: 2rem 1rem 3rem;
+    }
+    .age-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .age-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .age-card {
+      padding: 1.4rem 0.75rem 1.1rem;
+    }
+    .age-icon {
+      font-size: 2.2rem;
+    }
+    .age-label {
+      font-size: 0.95rem;
+    }
+    .age-range {
+      font-size: 0.8rem;
+    }
+    .age-explore {
+      font-size: 0.85rem;
     }
   }
 
   @media (max-width: 480px) {
+    .hero-section {
+      padding: 1.5rem 0.75rem 0;
+    }
     .hero-title {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
+    }
+    .hero-text br {
+      display: none;
+    }
+    .hero-illustration {
+      max-width: 260px;
+    }
+    .age-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
     }
     .age-card {
-      width: 145px;
-      padding: 1.5rem 0.9rem 1.2rem;
+      padding: 1.2rem 0.6rem 1rem;
+      border-radius: 1rem;
     }
     .age-icon {
-      font-size: 2.2rem;
+      font-size: 2rem;
+    }
+    .age-label {
+      font-size: 0.88rem;
     }
   }
 </style>

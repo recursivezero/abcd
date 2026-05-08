@@ -76,8 +76,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
   overflow-wrap: break-word;
   word-break: break-word;
 }

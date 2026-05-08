@@ -1,4 +1,6 @@
-/* LANDING PAGE — CSS VARIABLES*/
+/* ══════════════════════════════════════
+   LANDING PAGE — CSS VARIABLES
+══════════════════════════════════════ */
 :root {
   --primary: #4361ee;
   --primary-light: #4895ef;
@@ -22,27 +24,44 @@
 
 /* Dark mode — matches globals.css gradient theme */
 [data-theme='dark'] {
-  --primary: #f472b6;
-  --primary-light: #fb7185;
-  --secondary: #c084fc;
+  --primary: #22d3ee;
+  --primary-light: #67e8f9;
+  --secondary: #0891b2;
+
   --success: #34d399;
-  --text-light: #d8b4fe;
-  --bg: #0d0030;
-  --bg-card: rgba(42, 0, 80, 0.85);
-  --bg-secondary: rgba(30, 0, 60, 0.9);
-  --border: rgba(244, 114, 182, 0.2);
-  --shadow: rgba(0, 0, 0, 0.5);
-  --header-bg: rgba(13, 0, 48, 0.95);
-  --text: #f3e8ff;
-  --text-dark: #fdf4ff;
+
+  --text-light: #b8e6ee;
+
+  --bg: transparent;
+
+  --bg-card:
+    linear-gradient(180deg,
+      rgba(3, 26, 32, 0.72) 0%,
+      rgba(5, 46, 56, 0.82) 100%);
+
+  --bg-secondary:
+    rgba(3, 26, 32, 0.72);
+
+  --border:
+    rgba(34, 211, 238, 0.14);
+
+  --shadow:
+    rgba(0, 0, 0, 0.45);
+
+  --header-bg:
+    rgba(2, 6, 8, 0.88);
+
+  --text: #e0f7fa;
+
+  --text-dark: #f0fdff;
 }
 
-/* LANDING  */
+/* ══════════════════════════════════════
+   LANDING CONTAINER
+══════════════════════════════════════ */
 .container__landing {
   color: var(--text);
-  background-color: var(--bg);
-  background-image: var(--bg-gradient, none);
-  background-attachment: fixed;
+  background: transparent;
   transition: var(--transition);
   min-height: 100vh;
   overflow-x: hidden;
@@ -56,7 +75,9 @@
   padding: 0 1rem;
 }
 
-/*HERO SECTION*/
+/* ══════════════════════════════════════
+   HERO SECTION
+══════════════════════════════════════ */
 .hero {
   min-height: calc(100vh - var(--header-height));
   display: flex;
@@ -122,7 +143,9 @@
   color: var(--secondary);
 }
 
-/* SECTIONS*/
+/* ══════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════ */
 .section {
   padding: 4rem 1.5rem;
 }
@@ -147,7 +170,9 @@
   line-height: 1.6;
 }
 
-/* CATEGORY CARDS*/
+/* ══════════════════════════════════════
+   CATEGORY CARDS
+══════════════════════════════════════ */
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -179,7 +204,7 @@
 }
 
 [data-theme='dark'] .category-card:hover {
-  box-shadow: 0 0 24px rgba(244, 114, 182, 0.25);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.18);
 }
 
 .category-icon {
@@ -205,7 +230,9 @@
   line-height: 1.5;
 }
 
-/* GAMES PAGE*/
+/* ══════════════════════════════════════
+   GAMES PAGE
+══════════════════════════════════════ */
 .games-page {
   display: block;
   min-height: calc(100vh - var(--header-height));
@@ -226,17 +253,28 @@
 .back-button {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--primary);
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(3, 26, 32, 0.92), rgba(5, 46, 56, 0.92));
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  color: #22d3ee;
   text-decoration: none;
-  font-weight: 500;
-  transition: var(--transition);
-  min-height: 44px;
-  padding: 0.25rem 0;
+  font-weight: 600;
+  position: relative;
+  z-index: 1200;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .back-button:hover {
-  gap: 0.75rem;
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.35);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(34, 211, 238, 0.14);
 }
 
 /* ── Games Grid ── */
@@ -325,7 +363,9 @@
   transform: translateY(-1px);
 }
 
-/* FOOTER (landing page internal)*/
+/* ══════════════════════════════════════
+   FOOTER (landing page internal)
+══════════════════════════════════════ */
 footer {
   background-color: var(--bg-secondary);
   padding: 3rem 0 1.5rem;
@@ -390,7 +430,9 @@ footer {
   border-color: var(--primary);
 }
 
-/*UTILITY CLASSES*/
+/* ══════════════════════════════════════
+   UTILITY CLASSES
+══════════════════════════════════════ */
 .text-center {
   text-align: center;
 }
@@ -449,7 +491,9 @@ footer {
   transition: 0s;
 }
 
-/* TABLET — 1024px */
+/* ══════════════════════════════════════
+   TABLET — 1024px
+══════════════════════════════════════ */
 @media (max-width: 1024px) {
   .section {
     padding: 3rem 1.25rem;
@@ -470,7 +514,9 @@ footer {
   }
 }
 
-/* MOBILE — 768px*/
+/* ══════════════════════════════════════
+   MOBILE — 768px
+══════════════════════════════════════ */
 @media (max-width: 768px) {
   .hero {
     min-height: calc(100svh - 4rem);
@@ -547,7 +593,9 @@ footer {
   }
 }
 
-/*SMALL MOBILE — 480px*/
+/* ══════════════════════════════════════
+   SMALL MOBILE — 480px
+══════════════════════════════════════ */
 @media (max-width: 480px) {
   .hero {
     padding: 1.5rem 0.75rem;
@@ -596,7 +644,9 @@ footer {
   }
 }
 
-/*TOUCH DEVICES*/
+/* ══════════════════════════════════════
+   TOUCH DEVICES
+══════════════════════════════════════ */
 @media (hover: none) and (pointer: coarse) {
 
   .category-card:hover,
