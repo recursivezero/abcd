@@ -16,6 +16,7 @@ import { gamesData } from "@/data/gamesData";
       <p class="age-range" style="color: #7C3AED;">1–3 Years</p>
       <span class="age-explore" style="color: #7C3AED;">Explore →</span>
     </a>
+
     <a
       href="/games/3-5"
       class="age-card"
@@ -27,6 +28,7 @@ import { gamesData } from "@/data/gamesData";
       <p class="age-range" style="color: #D97706;">3–5 Years</p>
       <span class="age-explore" style="color: #D97706;">Explore →</span>
     </a>
+
     <a
       href="/games/6-8"
       class="age-card"
@@ -38,18 +40,21 @@ import { gamesData } from "@/data/gamesData";
       <p class="age-range" style="color: #16A34A;">5–8 Years</p>
       <span class="age-explore" style="color: #16A34A;">Explore →</span>
     </a>
+
     <a href="/games/9-12" class="age-card" data-label="kids" style="--card-bg: #DBEAFE; --card-bg-dark: #1e3a6e;">
       <span class="age-icon">💡</span>
       <h3 class="age-label" style="color: #2563EB;">Kids</h3>
       <p class="age-range" style="color: #2563EB;">8–12 Years</p>
       <span class="age-explore" style="color: #2563EB;">Explore →</span>
     </a>
+
     <a href="/games/teens" class="age-card" data-label="teens" style="--card-bg: #FCE7F3; --card-bg-dark: #4a1030;">
       <span class="age-icon">🎮</span>
       <h3 class="age-label" style="color: #DB2777;">Teens</h3>
       <p class="age-range" style="color: #DB2777;">12+ Years</p>
       <span class="age-explore" style="color: #DB2777;">Explore →</span>
     </a>
+
     <a href="/games/adults" class="age-card" data-label="family" style="--card-bg: #FFF0E0; --card-bg-dark: #4a2a00;">
       <span class="age-icon">👨‍👩‍👧‍👦</span>
       <h3 class="age-label" style="color: #EA6C00;">Family</h3>
@@ -62,9 +67,7 @@ import { gamesData } from "@/data/gamesData";
 <style>
   .age-section {
     padding: 3rem 2rem 4rem;
-
     text-align: center;
-
     background: transparent;
   }
 
@@ -73,12 +76,12 @@ import { gamesData } from "@/data/gamesData";
   }
 
   .age-title {
-    font-size: 1.85rem;
+    font-size: 2.2rem;
     font-weight: 900;
 
     color: #1a3353;
 
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 
     display: flex;
     align-items: center;
@@ -93,15 +96,15 @@ import { gamesData } from "@/data/gamesData";
   }
 
   .age-grid {
-    display: flex;
+    display: grid;
 
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 2rem;
 
     justify-content: center;
 
-    flex-wrap: nowrap;
-
-    max-width: 1200px;
+    max-width: 980px;
 
     margin: 0 auto;
   }
@@ -109,14 +112,13 @@ import { gamesData } from "@/data/gamesData";
   .age-card {
     background: var(--card-bg);
 
-    border-radius: 1.4rem;
+    border-radius: 1.6rem;
 
-    padding: 1.8rem 1rem 1.4rem;
+    padding: 2.2rem 1.4rem 1.8rem;
 
-    width: 155px;
-    min-width: 130px;
+    width: 100%;
 
-    flex-shrink: 0;
+    min-height: 260px;
 
     text-align: center;
     text-decoration: none;
@@ -124,7 +126,9 @@ import { gamesData } from "@/data/gamesData";
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.3rem;
+    justify-content: center;
+
+    gap: 0.5rem;
 
     transition:
       transform 0.25s ease,
@@ -160,32 +164,32 @@ import { gamesData } from "@/data/gamesData";
   }
 
   .age-icon {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
 
     line-height: 1;
 
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.8rem;
   }
 
   .age-label {
-    font-size: 1.05rem;
+    font-size: 1.3rem;
     font-weight: 800;
 
     margin: 0;
   }
 
   .age-range {
-    font-size: 0.88rem;
+    font-size: 1rem;
     font-weight: 600;
 
-    margin: 0;
+    margin: 0.2rem 0;
   }
 
   .age-explore {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 700;
 
-    margin-top: 0.4rem;
+    margin-top: 1rem;
   }
 
   :global([data-theme="dark"]) .age-label,
@@ -194,13 +198,33 @@ import { gamesData } from "@/data/gamesData";
     color: #7dd3fc !important;
   }
 
+  /* Tablet */
+
   @media (max-width: 900px) {
     .age-grid {
-      flex-wrap: wrap;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 1.5rem;
+
+      max-width: 700px;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: 600px) {
+    .age-grid {
+      grid-template-columns: 1fr;
+
+      max-width: 100%;
     }
 
     .age-card {
-      width: 145px;
+      min-height: 220px;
+    }
+
+    .age-title {
+      font-size: 1.7rem;
     }
   }
 </style>

@@ -76,31 +76,31 @@ const {
 
       .sidebar-toggle {
         position: fixed;
-        top: 5rem;
-        transform: none;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
         z-index: 999;
         background: white;
         border: 1px solid #e2e8f0;
+        border-left: none;
         border-radius: 0 50% 50% 0;
-        width: 22px;
-        height: 40px;
+        width: 24px;
+        height: 52px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
-        font-size: 0.65rem;
+        font-size: 0.7rem;
         color: #7c3aed;
         transition: left 0.3s ease;
         padding: 0;
-        border-left: none;
       }
-
       .sidebar-toggle.open {
         left: 200px;
-        border-radius: 50% 0 0 50%;
-        border-right: none;
-        border-left: 1px solid #e2e8f0;
+      }
+      .sidebar.collapsed + .sidebar-toggle {
+        left: 0;
       }
     </style>
 

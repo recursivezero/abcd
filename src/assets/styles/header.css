@@ -11,8 +11,9 @@
   height: var(--header-h);
   padding: 0 1.5rem;
   min-height: 5rem;
+  align-items: center;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr auto;
   gap: 8px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -47,8 +48,12 @@
       margin-inline-start: 1rem;
       color: var(--primary);
 
-      & span {
-        color: #6d8c3d;
+      & .kbd {
+        color: #120d0d;
+      }
+
+      [data-theme="dark"] & .kbd {
+        color: #ffffff;
       }
     }
   }
@@ -56,9 +61,12 @@
   .nav__links {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
-    list-style: none;
+    justify-content: center;
+    gap: 2.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 6rem;
 
     a {
       color: var(--text);
@@ -81,6 +89,10 @@
         background-color: #22d3ee;
         transition: var(--transition);
       }
+
+      &:hover::after {
+        width: 100%;
+      }
     }
   }
 
@@ -91,6 +103,8 @@
     justify-content: flex-end;
     flex-wrap: nowrap;
     gap: 0.75rem;
+    margin-left: auto;
+    justify-self: end;
   }
 
   [slot="header-right"] {
@@ -110,16 +124,17 @@
 .hero-search {
   width: 100%;
   background-color: var(--background);
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: center;
   align-items: center;
   position: sticky;
-  top: var(--header-h, 5rem);
+  top: calc(var(--header-h) - 1px);
   z-index: 999;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-sizing: border-box;
 }
 
 [data-theme="light"] .hero-search {
@@ -215,10 +230,10 @@
 
 /* Spacer */
 .header-spacer {
-  display: none;
+  height: 0;
 }
 
-/* Hamburger — hidden by default on all screens */
+/* ── Hamburger ── */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -283,7 +298,7 @@
   opacity: 1;
 }
 
-/* Mobile Menu Drawer — always defined so JS can open it */
+/* Mobile Menu Drawer */
 .mobile-menu {
   position: fixed;
   top: 0;
@@ -309,9 +324,9 @@
 
 .mobile-menu__header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -370,7 +385,7 @@
   color: var(--subtext, var(--text));
 }
 
-/* Tablet */
+/* ── Tablet ── */
 @media (max-width: 1024px) {
   .header {
     padding: 0 1rem;
@@ -397,10 +412,10 @@
   }
 }
 
-/* Mobile — max 640px */
+/* ── Mobile ── */
 @media (max-width: 640px) {
   .header {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
     padding: 0 1rem;
     min-height: 4rem;
     height: 4rem;
@@ -440,8 +455,17 @@
     }
   }
 
+  .header-spacer {
+    height: 4.5rem;
+  }
+
+  /* ── HAMBURGER FIX: position fixed so it floats over header ── */
   .hamburger {
     display: flex;
+    position: fixed;
+    top: 0.75rem;
+    right: 1rem;
+    z-index: 1100;
   }
 
   .mobile-overlay {
@@ -450,7 +474,8 @@
 
   .hero-search {
     padding: 0.75rem 1rem;
-    top: 4rem;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .hero-search__box {
@@ -462,7 +487,7 @@
   }
 }
 
-/* Small Mobile */
+/* ── Small Mobile ── */
 @media (max-width: 480px) {
   .header {
     padding: 0 0.75rem;
@@ -485,8 +510,12 @@
     }
   }
 
+  .hamburger {
+    top: 0.625rem;
+    right: 0.75rem;
+  }
+
   .hero-search {
-    top: 3.5rem;
     padding: 0.625rem 0.75rem;
   }
 
