@@ -114,11 +114,11 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     <a href="/about" class:list={{ "is-active": Astro.url.pathname.startsWith("/about") }}>About</a>
     <a href="/games" class:list={{ "is-active": Astro.url.pathname.startsWith("/games") }}>Categories</a>
     <a href="/contact" class:list={{ "is-active": Astro.url.pathname.startsWith("/contact") }}>Contact Us</a>
-    <slot name="left" />
-    <slot name="right" />
   </div>
 
   <div class="action__group">
+    <slot name="left" />
+    <slot name="right" />
     <button class="theme-toggle" id="headerThemeToggle" aria-label="Toggle theme" title="Toggle Theme">
       <svg
         id="themeIcon"
