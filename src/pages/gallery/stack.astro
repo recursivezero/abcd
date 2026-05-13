@@ -50,6 +50,11 @@ let currentIndex = 0;
   <BackButton />
   <main class="alphabet-page">
     <div class="alphabet-wrapper">
+      <!-- ✅ Title OUTSIDE section - no z-index conflict -->
+      <header class="alphabet-header">
+        <h2 class="alphabet-title">Alphabet Stack</h2>
+      </header>
+
       <section
         class="alphabet-container"
         style={`--n: ${count}; --k: ${currentIndex}`}
@@ -58,10 +63,6 @@ let currentIndex = 0;
         role="region"
         aria-label="Interactive Alphabet Explorer"
       >
-        <header class="alphabet-header">
-          <h2 class="alphabet-title">Alphabet Stack</h2>
-        </header>
-
         <div class="content-area">
           <div class="image-container">
             {
@@ -76,19 +77,18 @@ let currentIndex = 0;
                     role="img"
                     aria-label={`Letter ${key} - ${item.value}`}
                     tabindex={i === currentIndex ? "0" : "-1"}
-                    style="outline: none;"
                   >
                     <img class="item-image" src={`${IMAGE_DIR}/${item.value}.jpg`} alt={item.desc} loading="lazy" />
-                    <div class="text-content">
-                      <h2 class="letter" aria-hidden="true">
-                        {key}
-                      </h2>
-                      <p class="item-desc">{item.value}</p>
-                    </div>
                   </article>
                 );
               })
             }
+          </div>
+
+          <!-- ✅ Single text-content in normal flow below images -->
+          <div class="text-content" aria-live="polite">
+            <h2 class="letter" aria-hidden="true"></h2>
+            <p class="item-desc"></p>
           </div>
         </div>
 
@@ -106,51 +106,57 @@ let currentIndex = 0;
     </div>
   </main>
 </BaseLayout>
+
 <script>
   (function () {
     const container = document.querySelector(".alphabet-container")! as HTMLElement;
     const items = Array.from(document.querySelectorAll(".alphabet-item")) as HTMLElement[];
     const navButtons = Array.from(document.querySelectorAll("[data-direction]")) as HTMLElement[];
 
+    const letterEl = document.querySelector(".text-content .letter") as HTMLElement;
+    const descEl = document.querySelector(".text-content .item-desc") as HTMLElement;
+
     const count: number = parseInt(container.dataset.total || "0", 10);
     let currentIndex: number = parseInt(container.dataset.currentIndex || "0", 10);
     let isTransitioning = false;
+
+    const itemData: { letter: string; desc: string }[] = items.map((item) => ({
+      letter: item.dataset.letter || "",
+      desc: item.getAttribute("aria-label")?.split(" - ")[1] || ""
+    }));
+
+    function updateTextContent(index: number): void {
+      if (letterEl) letterEl.textContent = itemData[index]?.letter || "";
+      if (descEl) descEl.textContent = itemData[index]?.desc || "";
+    }
 
     function updateItemPositions(): void {
       items.forEach((item, index) => {
         item.classList.remove("active");
         item.setAttribute("tabindex", index === currentIndex ? "0" : "-1");
         item.setAttribute("aria-current", index === currentIndex ? "true" : "false");
-        if (index === currentIndex) {
-          item.classList.add("active");
-        }
+        if (index === currentIndex) item.classList.add("active");
       });
-
       container.style.setProperty("--k", currentIndex.toString());
+      updateTextContent(currentIndex);
     }
 
     function navigateToIndex(newIndex: number, animate: boolean = true): void {
       if (isTransitioning || newIndex === currentIndex) return;
-
       const targetIndex = ((newIndex % count) + count) % count;
 
       if (animate) {
         isTransitioning = true;
-
         const newActiveItem = items[targetIndex];
         const previousActiveItem = items[currentIndex];
-
-        if (previousActiveItem) previousActiveItem.blur(); // Remove focus from previous item
-
+        if (previousActiveItem) previousActiveItem.blur();
         currentIndex = targetIndex;
         container.dataset.currentIndex = currentIndex.toString();
         updateItemPositions();
-
         setTimeout(() => {
           isTransitioning = false;
           if (newActiveItem) {
             newActiveItem.focus({ preventScroll: true });
-            // Ensure no unwanted outline by forcing a style reset
             newActiveItem.style.outline = "none";
           }
         }, 800);
@@ -158,20 +164,17 @@ let currentIndex = 0;
         currentIndex = targetIndex;
         container.dataset.currentIndex = currentIndex.toString();
         updateItemPositions();
-
         const activeItem = items[targetIndex];
         if (activeItem) {
           activeItem.focus({ preventScroll: true });
-          activeItem.style.outline = "none"; // Remove outline on instant navigation
+          activeItem.style.outline = "none";
         }
       }
     }
 
     function handleNavigation(direction: string): void {
       if (isTransitioning) return;
-      const increment = direction === "next" ? 1 : -1;
-      const newIndex = currentIndex + increment;
-      navigateToIndex(newIndex);
+      navigateToIndex(currentIndex + (direction === "next" ? 1 : -1));
     }
 
     navButtons.forEach((button) => {
@@ -185,7 +188,6 @@ let currentIndex = 0;
     document.addEventListener("keydown", (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName;
       if (tag === "INPUT" || tag === "TEXTAREA") return;
-
       switch (e.key) {
         case "ArrowLeft":
           e.preventDefault();
@@ -206,11 +208,7 @@ let currentIndex = 0;
       }
     });
 
-    // Touch support
     let touchStartX = 0;
-    let touchEndX = 0;
-    const minSwipeDistance = 50;
-
     container.addEventListener(
       "touchstart",
       (e: TouchEvent) => {
@@ -218,45 +216,25 @@ let currentIndex = 0;
       },
       { passive: true }
     );
-
     container.addEventListener(
       "touchend",
       (e: TouchEvent) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const deltaX = touchEndX - touchStartX;
-
-        if (Math.abs(deltaX) > minSwipeDistance) {
-          handleNavigation(deltaX > 0 ? "prev" : "next");
-        }
+        const deltaX = e.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(deltaX) > 50) handleNavigation(deltaX > 0 ? "prev" : "next");
       },
       { passive: true }
     );
 
-    let hintTimeout: ReturnType<typeof setTimeout>;
     const keyboardHint = document.querySelector(".keyboard-hint") as HTMLElement | null;
-
-    function hideHintAfterDelay(): void {
-      clearTimeout(hintTimeout);
-      hintTimeout = setTimeout(() => {
-        if (keyboardHint) {
-          keyboardHint.style.opacity = "0";
-        }
-      });
-    }
-
     ["keydown", "click", "touchstart"].forEach((event) => {
-      document.addEventListener(event, hideHintAfterDelay, { once: true });
+      document.addEventListener(
+        event,
+        () => {
+          if (keyboardHint) keyboardHint.style.opacity = "0";
+        },
+        { once: true }
+      );
     });
-
-    function preloadImages(): void {
-      items.forEach((item) => {
-        const img = item.querySelector(".item-image") as HTMLImageElement | null;
-        if (img && img.src) {
-          const preloadImg = new Image();
-          preloadImg.src = img.src;
-        }
-      });
-    }
 
     items.forEach((item) => {
       const img = item.querySelector(".item-image") as HTMLImageElement | null;
@@ -264,35 +242,24 @@ let currentIndex = 0;
         img.addEventListener("error", () => {
           const parent = img.parentElement as HTMLElement;
           parent.style.backgroundColor = "rgba(129, 140, 248, 0.1)";
-          parent.style.display = "flex";
-          parent.style.alignItems = "center";
-          parent.style.justifyContent = "center";
-          parent.innerHTML = '<span style="color: rgba(241, 245, 249, 0.5); font-size: 2rem;">📷</span>';
+          parent.innerHTML = '<span style="font-size: 2rem;">📷</span>';
         });
       }
     });
 
-    function initializeAlphabet(): void {
-      updateItemPositions();
-      preloadImages();
-    }
-
     let resizeTimeout: ReturnType<typeof setTimeout>;
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        updateItemPositions();
-      }, 250);
+      resizeTimeout = setTimeout(() => updateItemPositions(), 250);
     });
 
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initializeAlphabet);
+      document.addEventListener("DOMContentLoaded", () => updateItemPositions());
     } else {
-      initializeAlphabet();
+      updateItemPositions();
     }
 
     (window as any).alphabetCleanup = function (): void {
-      clearTimeout(hintTimeout);
       clearTimeout(resizeTimeout);
     };
   })();

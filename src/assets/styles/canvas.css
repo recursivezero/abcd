@@ -130,7 +130,9 @@
 }
 
 .canvas-generator .color-options .color-select option {
-  background: #1e293b;
+  background: #0f172a;
+  color: #ffffff;
+  
 }
 
 .canvas-generator label {

@@ -50,10 +50,7 @@ const {
       {
         sidebar && (
           <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
-            <span id="toggleIcon" class="mobile-menu-icon">
-              <span />
-              <span />
-            </span>
+            <span id="toggleIcon" class="toggle-icon-wrap"></span>
           </button>
         )
       }
@@ -151,7 +148,7 @@ const {
         opacity: 1;
         background: rgba(124, 58, 237, 0.12);
         border-color: #7c3aed;
-        transform: rotate(45deg); /* pin rotates to show it's locked */
+        transform: rotate(45deg);
       }
 
       /* Pin button sirf desktop pe dikhao */
@@ -167,7 +164,7 @@ const {
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.35);
-        z-index: 1199; /* sidebar ke neeche, content ke upar */
+        z-index: 1199;
         cursor: pointer;
       }
 
@@ -225,14 +222,19 @@ const {
           transform 0.22s ease;
       }
 
-      /* Pinned hone par toggle button hide karo (desktop) */
-      .main.sidebar-pinned .sidebar-toggle {
-        display: none !important;
+      .sidebar-toggle svg {
+        width: 18px !important;
+        height: 18px !important;
+        display: block;
       }
 
-      .sidebar-toggle svg {
-        width: 16px !important;
-        height: 16px !important;
+      /* ── TOGGLE ICON WRAP ── */
+      .toggle-icon-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
       }
 
       @media (max-width: 768px) {
@@ -250,34 +252,9 @@ const {
         .sidebar {
           width: 82vw;
           max-width: 300px;
-          /* Mobile pe sidebar hamesha overlay mode mein rahegi, pinned nahi */
           position: fixed !important;
           top: 0 !important;
         }
-
-        /* Mobile pe toggle button kabhi hide mat karo */
-        .main.sidebar-pinned .sidebar-toggle {
-          display: flex !important;
-        }
-      }
-
-      /* ── MOBILE MENU ICON ── */
-      .mobile-menu-icon {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 4px;
-        width: 20px;
-        height: 20px;
-      }
-
-      .mobile-menu-icon span {
-        display: block !important;
-        width: 18px;
-        height: 2px;
-        background: #7c3aed;
-        border-radius: 999px;
       }
     </style>
 
@@ -292,71 +269,89 @@ const {
       // LocalStorage se pin state yaad rakho
       let isPinned = localStorage.getItem("sidebarPinned") === "true";
 
-      const desktopIcon = `
+      // ── SVG ICONS ──
+      const ICON_HAMBURGER = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="#7c3aed" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="9" x2="21" y2="9"></line>
+          <line x1="3" y1="15" x2="21" y2="15"></line>
+        </svg>`;
+
+      const ICON_LAYOUT = `
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="4" width="18" height="16" rx="2"></rect>
           <line x1="9" y1="4" x2="9" y2="20"></line>
-        </svg>
-      `;
+        </svg>`;
 
-      const mobileIcon = `
-        <div style="display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;">
-          <span style="width:18px;height:2px;background:#7c3aed;border-radius:999px;display:block;"></span>
-          <span style="width:18px;height:2px;background:#7c3aed;border-radius:999px;display:block;"></span>
-          <span style="width:18px;height:2px;background:#7c3aed;border-radius:999px;display:block;"></span>
-        </div>
-      `;
+      const ICON_CLOSE = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>`;
 
       function isMobile() {
         return window.innerWidth <= 768;
       }
 
+      // Closed state icon: mobile pe hamburger, desktop pe layout icon
       function setClosedIcon() {
         if (!icon) return;
-        if (isMobile()) {
-          icon.classList.add("mobile-menu-icon");
-          icon.innerHTML = mobileIcon;
-        } else {
-          icon.classList.remove("mobile-menu-icon");
-          icon.innerHTML = desktopIcon;
-        }
+        icon.innerHTML = isMobile() ? ICON_HAMBURGER : ICON_LAYOUT;
+      }
+
+      // Toggle button ko show/hide karo (inline style se — CSS se override ho sakta tha)
+      function showToggle() {
+        if (toggle) toggle.style.display = "flex";
+      }
+
+      function hideToggle() {
+        if (toggle) toggle.style.display = "none";
       }
 
       function applyPinState() {
         if (!sidebar || !mainEl || !pinBtn) return;
 
         if (isPinned && !isMobile()) {
+          // ── PINNED (desktop only) ──
           sidebar.classList.add("pinned");
           sidebar.classList.remove("open");
           mainEl.classList.add("sidebar-pinned");
           pinBtn.classList.add("active");
           if (overlay) overlay.classList.remove("show");
+          // Pinned hone par toggle button hide karo
+          hideToggle();
         } else {
+          // ── UNPINNED ──
           sidebar.classList.remove("pinned");
           mainEl.classList.remove("sidebar-pinned");
           pinBtn.classList.remove("active");
+          // Toggle wapas dikhao aur icon reset karo
+          showToggle();
+          setClosedIcon();
         }
       }
 
       function openSidebar() {
         if (!sidebar) return;
         sidebar.classList.add("open");
-        // Overlay sirf mobile pe dikhao
+        // Overlay mobile pe hi dikhao
         if (isMobile() && overlay) {
           overlay.classList.add("show");
         }
-        if (icon) {
-          icon.classList.remove("mobile-menu-icon");
-          icon.innerHTML = "✕";
-        }
+        // Close icon set karo
+        if (icon) icon.innerHTML = ICON_CLOSE;
       }
 
       function closeSidebar() {
         if (!sidebar) return;
         sidebar.classList.remove("open");
         if (overlay) overlay.classList.remove("show");
+        // Closed icon restore karo (hamburger ya layout)
         setClosedIcon();
       }
 
@@ -372,23 +367,23 @@ const {
         });
       }
 
-      // ── SIDEBAR TOGGLE BUTTON ──
+      // ── INIT ──
       if (toggle && sidebar && icon) {
         sidebar.classList.remove("open");
         setClosedIcon();
-
         // Page load pe pin state restore karo
         applyPinState();
 
+        // ── TOGGLE BUTTON CLICK ──
         toggle.addEventListener("click", () => {
-          if (isPinned && !isMobile()) return; // pinned hai to toggle kuch nahi karega
+          // Desktop pinned mode mein toggle kuch nahi karega (button waise bhi hidden hai)
+          if (isPinned && !isMobile()) return;
 
-          const isOpen = sidebar.classList.toggle("open");
-
+          const isOpen = sidebar.classList.contains("open");
           if (isOpen) {
-            openSidebar();
-          } else {
             closeSidebar();
+          } else {
+            openSidebar();
           }
         });
       }
@@ -417,18 +412,25 @@ const {
       // ── RESIZE — mobile <-> desktop switch ──
       window.addEventListener("resize", () => {
         if (isMobile()) {
-          // Mobile pe pinned state ignore karo, sidebar band karo
+          // Mobile pe: pinned state ignore, sidebar overlay mode mein
           if (sidebar) {
             sidebar.classList.remove("pinned");
           }
           if (mainEl) mainEl.classList.remove("sidebar-pinned");
           if (pinBtn) pinBtn.classList.remove("active");
+
+          // Mobile pe toggle HAMESHA dikhna chahiye
+          showToggle();
+
+          // Agar sidebar open nahi hai to icon closed state mein rakho
           if (!sidebar?.classList.contains("open")) {
             setClosedIcon();
           }
         } else {
-          // Desktop pe wapas aao to pin state restore karo
+          // Desktop pe: pin state restore karo
           applyPinState();
+
+          // Agar sidebar open nahi aur pinned nahi, to icon reset karo
           if (!sidebar?.classList.contains("open") && !isPinned) {
             setClosedIcon();
           }
