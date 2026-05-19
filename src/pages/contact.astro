@@ -223,6 +223,7 @@ import bannerImg from "@/assets/screenshots/light/contact-banner.png";
 
       <!-- Contact Items -->
       <div style="display:flex; flex-direction:column; gap:18px;">
+
         <!-- Email -->
         <div class="contact-item" style="display:flex; align-items:center; gap:14px;">
           <div
@@ -244,8 +245,8 @@ import bannerImg from "@/assets/screenshots/light/contact-banner.png";
           </div>
           <div>
             <strong style="display:block; font-size:0.92rem; font-weight:800; color:#1e1b4b;">Email Us</strong>
-            <a href="mailto:abcdkbd@outlook.com" style="font-size:0.85rem; color:#6b7280; text-decoration:none;"
-              >abcdkbd@outlook.com</a
+            <a href="mailto:contact@abcdkbd.com" style="font-size:0.85rem; color:#6b7280; text-decoration:none;"
+              >contact@abcdkbd.com</a
             >
           </div>
         </div>
@@ -273,7 +274,7 @@ import bannerImg from "@/assets/screenshots/light/contact-banner.png";
           </div>
           <div>
             <strong style="display:block; font-size:0.92rem; font-weight:800; color:#1e1b4b;">Call Us</strong>
-            <span style="font-size:0.85rem; color:#6b7280;">+91 12345 67890</span>
+            <span style="font-size:0.85rem; color:#6b7280;">+91 9314001007</span>
           </div>
         </div>
 
@@ -302,30 +303,32 @@ import bannerImg from "@/assets/screenshots/light/contact-banner.png";
           </div>
         </div>
 
-        <!-- Hours -->
+        <!-- Find Us On / GitHub -->
         <div class="contact-item" style="display:flex; align-items:center; gap:14px;">
           <div
             class="contact-icon"
-            style="width:42px; height:42px; border-radius:50%; background:#f59e0b; display:flex; align-items:center; justify-content:center; flex-shrink:0;"
+            style="width:42px; height:42px; border-radius:50%; background:#1e1b4b; display:flex; align-items:center; justify-content:center; flex-shrink:0;"
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#fff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.031 1.531 1.031.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+              ></path>
             </svg>
           </div>
           <div>
-            <strong style="display:block; font-size:0.92rem; font-weight:800; color:#1e1b4b;">Working Hours</strong>
-            <span style="font-size:0.85rem; color:#6b7280;">Mon - Sat: 9:00 AM – 6:00 PM</span>
+            <strong style="display:block; font-size:0.92rem; font-weight:800; color:#1e1b4b;">Find Us On</strong>
+            <a
+              href="https://github.com/recursivezero"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="github-link"
+              style="font-size:0.85rem; color:#6366f1; text-decoration:none; font-weight:600;"
+            >
+              github.com/recursivezero
+            </a>
           </div>
         </div>
+
       </div>
 
       <!-- Envelope illustration -->
@@ -414,6 +417,15 @@ import bannerImg from "@/assets/screenshots/light/contact-banner.png";
   .contact-item:hover .contact-icon {
     transform: scale(1.18) rotate(-8deg);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  }
+
+  /* ── GitHub link hover ── */
+  .github-link {
+    transition: color 0.2s ease;
+  }
+  .github-link:hover {
+    color: #4f46e5 !important;
+    text-decoration: underline;
   }
 
   /* ── Input focus glow ── */

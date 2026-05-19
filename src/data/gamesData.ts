@@ -14,39 +14,45 @@ export const gamesData: Record<AgeKey, Game[]> = {
     {
       title: "Draw",
       description: "A fun game that helps toddlers learn alphabets and improve memory.",
+      // child sitting at table drawing with crayons — Tim Mossholder
       image:
-        "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["Educational", "Memory", "alphabet"],
       link: "/draw"
     },
     {
       title: "Hide N Seek",
       description: "Match animals with their sounds in this engaging audio game.",
-      image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // children playing hide and seek outdoors
+      image:
+        "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["Alphabet", "Fun"],
       link: "/hidenseek"
     },
     {
       title: "Alphabets",
       description: "Learn basic alphabets and improve vocabulary skills.",
+      // colorful alphabet wooden blocks — Susan Holt Simpson
       image:
-        "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://play-lh.googleusercontent.com/7TNnBrInykWUjDpuSNstTYdy5iuLuqz7z4Gt3O9R_KteTk2og68UtcDWCXA_I_xqmis=w526-h296-rw",
       tags: ["Education", "Alphabet"],
       link: "/alphabets"
     },
     {
       title: "Panel",
       description: "Learn basic alphabets and improve vocabulary skills.",
+      // colorful jigsaw puzzle pieces
       image:
-        "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["Education", "Alphabet"],
       link: "/panel"
     },
     {
       title: "Gallery",
       description: "Learn basic alphabets and improve vocabulary skills.",
+      // portrait of mother and little girl playing together — Vivek Kumar
       image:
-        "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["Education", "Alphabet"],
       link: "/gallery"
     }
@@ -55,22 +61,23 @@ export const gamesData: Record<AgeKey, Game[]> = {
     {
       title: "Varnmala",
       description: "Learn varnmala of hindi.",
-      image:
-        "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+
+      image: "https://m.media-amazon.com/images/I/91yXKcuCEwL._SX445_.jpg",
       tags: ["vocab", "Educational"],
       link: "/varnmala"
     },
     {
       title: "Number System",
       description: "Learn Number System of word.",
-      image:
-        "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // colorful plastic numbers on mint green background — Kaboompics (Pexels)
+      image: "/assets/images/Number.png",
       tags: ["vocab", "maths"],
       link: "/numbers"
     },
     {
       title: "Math Adventure",
       description: "Solve math problems to advance through an exciting adventure world.",
+      // colorful math equations / geometry
       image:
         "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["Math", "Adventure", "Educational"],
@@ -79,32 +86,35 @@ export const gamesData: Record<AgeKey, Game[]> = {
     {
       title: "Cross Word",
       description: "Create words from letter tiles to earn points and unlock levels.",
+      // wooden scrabble letter tiles on surface — Brett Jordan (Unsplash)
       image:
-        "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://play-lh.googleusercontent.com/uz7mICzdnxxkVgTlJM5RRD6Y8F5M5kzu4syQKJruZ-8G7nqcsLeKjAuocxNJEaqFu7o=w526-h296-rw",
       tags: ["Language", "Spelling", "Fun"],
       link: "/crossword"
     },
     {
       title: "Akshar",
       description: "Learn local language basics",
+      // pen writing letters on paper — handwriting closeup
       image:
-        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://images.twinkl.co.uk/tw1n/image/private/s--aTNc3kQp--/e_sharpen:100,q_auto:eco,w_1260/image_repo/18/b1/in-hi-1732165038-hindi-vowel-alphabet-flashcards-with-words-i-hindi-varnamala-phlaisakarda_ver_2.avif",
       tags: ["Language", "Educational"],
       link: "/akshar"
     },
     {
       title: "Stories",
-      description: "our stories",
+      description: "Our stories",
+      // open storybook with magical fairy lights — Nong
       image:
-        "https://images.unsplash.com/photo-1585504198196-fb18f7b16b88?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["story"],
       link: "/story"
     },
     {
       title: "Capital",
-      description: "our State and Capital",
-      image:
-        "https://images.unsplash.com/photo-1585504198196-fb18f7b16b88?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      description: "Our State and Capital",
+      // India map photo — Gayatri Malhotra (actual India map with states)
+      image: "https://www.mapsofindia.com/images2/india-map.jpg",
       tags: ["geography", "gk"],
       link: "/capital"
     }
@@ -113,23 +123,25 @@ export const gamesData: Record<AgeKey, Game[]> = {
     {
       title: "Canvas",
       description: "Learn basic programming concepts through a fun puzzle game.",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // graphic drawing tablet with stylus pen — digital art canvas tool
+      image:
+        "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       tags: ["Programming", "Logic", "Puzzle"],
       link: "/canvas"
     },
     {
       title: "Our India",
       description: "Learn about india state by dance.",
-      image:
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // India map / tricolor flag
+      image: "https://images.pexels.com/photos/7235907/pexels-photo-7235907.jpeg?auto=compress&cs=tinysrgb&w=600",
       tags: ["History", "Mystery", "Research"],
       link: "/map"
     },
     {
       title: "Nakshtra",
       description: "Learn about environmental science while protecting virtual ecosystems.",
-      image:
-        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // milky way stars constellation night sky — Tobias Rademacher
+      image: "https://images.unsplash.com/photo-1532968961962-8a0cb3a2d4f5?auto=format&fit=crop&w=600&q=80",
       tags: ["Environment", "Science", "Strategy"],
       link: "/nakshtra"
     }
@@ -138,23 +150,25 @@ export const gamesData: Record<AgeKey, Game[]> = {
     {
       title: "Stories",
       description: "A complex strategy game that challenges critical thinking and planning.",
-      image:
-        "https://images.unsplash.com/photo-1585504198196-fb18f7b16b88?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // person reading a book dramatically lit — emotional / teen vibe
+      image: "/assets/images/stories.webp",
       tags: ["Strategy", "Critical Thinking", "Multiplayer"],
       link: "/stories"
     },
     {
       title: "Poems",
       description: "Design and create digital art, music, and animations.",
-      image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // open poetry book, person reading — Toa Heftiba (poetry aesthetic)
+      image:
+        "https://media.slidesgo.com/storage/52467183/responsive-images/0-short-poems-for-kids___media_library_original_1600_900.jpg",
       tags: ["Creative", "Art", "Music"],
       link: "/poems"
     },
     {
       title: "Glossary",
       description: "Team-based challenges that promote collaboration and communication.",
-      image:
-        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // magnifying glass on text / dictionary close-up
+      image: "/assets/images/glossary.png",
       tags: ["Social", "Teamwork", "Communication"],
       link: "/glossary"
     }
@@ -163,23 +177,26 @@ export const gamesData: Record<AgeKey, Game[]> = {
     {
       title: "Our India",
       description: "Test your knowledge across various parts of indian state.",
-      image:
-        "https://images.unsplash.com/photo-1535224206242-487f7090b5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // India map / tricolor flag
+      image: "/assets/images/OurIndia.png",
       tags: ["Trivia", "Knowledge", "Multiplayer"],
       link: "/map"
     },
     {
       title: "Vedic",
       description: "Work together to solve puzzles and escape before time runs out.",
-      image: "https://images.unsplash.com/photo-1552422535-93d5d0d6e7e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      // ancient manuscript / old parchment handwritten text
+      image:
+        "https://ljfotzyzgckshahjzkya.supabase.co/storage/v1/object/public/site-assets/work/covers/1771405921711.png",
       tags: ["Puzzle", "Teamwork", "Mystery"],
       link: "/vedic"
     },
     {
       title: "Zodiac",
       description: "Ancient Indian Zodiac Signs.",
+      // zodiac astrological wheel with celestial signs — historical illustration
       image:
-        "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://media.istockphoto.com/id/1532619550/vector/cute-signs-zodiac-flat-style-adorable-characters-with-lettering.jpg?s=612x612&w=0&k=20&c=vHhOs9wHHce5tauJMUYfhNbG6WjUPzCsU5jb_so9xCs=",
       tags: ["Strategy", "Classic", "Multiplayer"],
       link: "/zodiac"
     }
