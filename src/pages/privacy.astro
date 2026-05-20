@@ -1,19 +1,747 @@
 ---
-import { Content } from "@/content/privacy.md";
-import BaseLayout from "@/layouts/Base";
+// PrivacyPolicy.astro
+// Merged: Full privacy policy page with sidebar TOC + accordion sections
+// Content from privacy.md integrated directly
 
 const meta = {
-  title: "Privacy Policy",
+  title: "Privacy Policy – abcdkbd.com",
   description: "Read our privacy policy to understand how we handle your data and protect your privacy."
 };
+
+const sections = [
+  {
+    id: "about-us",
+    number: 1,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#EEF2FF"/><circle cx="10" cy="11" r="3" stroke="#6366F1" stroke-width="1.5" fill="none"/><circle cx="18" cy="11" r="3" stroke="#6366F1" stroke-width="1.5" fill="none"/><path d="M4 22c0-3.314 2.686-6 6-6h8c3.314 0 6 2.686 6 6" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`,
+    color: "#6366F1",
+    bgColor: "#EEF2FF",
+    title: "About Us",
+    subtitle:
+      "Learn about abcdkbd.com and our commitment to providing safe and engaging learning experiences for children.",
+    content: `<p>Welcome to <strong>abcdkbd.com</strong>! We are an educational platform dedicated to providing safe, engaging, and effective learning experiences for children. Our mission is to make quality education accessible while ensuring that every child's privacy and safety remain our foremost priority.</p>
+    <p>We are committed to transparency in how we operate and handle information entrusted to us by parents, guardians, and children.</p>`
+  },
+  {
+    id: "applicability",
+    number: 2,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#FFF7ED"/><circle cx="10" cy="11" r="3" stroke="#F97316" stroke-width="1.5" fill="none"/><path d="M4 22c0-3.314 2.686-6 6-6h5" stroke="#F97316" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="20" cy="19" r="4" fill="#FFF7ED" stroke="#F97316" stroke-width="1.5"/><path d="M18.5 19l1 1 2-2" stroke="#F97316" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    color: "#F97316",
+    bgColor: "#FFF7ED",
+    title: "Applicability",
+    subtitle: "Who this policy applies to and how we protect children under the age of 18.",
+    content: `<p>This Privacy Policy applies to all users of abcdkbd.com, with special provisions for children under the age of 18. We collect and process personal data of children only with verifiable parental or guardian consent, in compliance with applicable laws.</p>
+    <ul><li>Children under 13: Require explicit parental consent for account creation.</li><li>Children 13–17: May use the platform with parental awareness and consent.</li><li>Parents/Guardians: Have full control over their child's account and data.</li></ul>`
+  },
+  {
+    id: "information-we-collect",
+    number: 3,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#F0FDF4"/><rect x="8" y="7" width="12" height="14" rx="2" stroke="#22C55E" stroke-width="1.5" fill="none"/><path d="M11 11h6M11 14h6M11 17h4" stroke="#22C55E" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+    color: "#22C55E",
+    bgColor: "#F0FDF4",
+    title: "What Information We Collect",
+    subtitle: "Details about the types of information we collect (automatically and optionally).",
+    content: `<p><strong>Automatically Collected:</strong></p>
+    <ul><li>Device information (browser type, OS, device ID)</li><li>Usage data (pages visited, time spent, features used)</li><li>IP address and approximate location</li><li>Cookies and similar tracking technologies</li></ul>
+    <p><strong>Optionally Provided:</strong></p>
+    <ul><li>Child's name and age/grade</li><li>Parent/guardian email address</li><li>Learning preferences and progress data</li></ul>`
+  },
+  {
+    id: "purpose-of-data-use",
+    number: 4,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#FFF7ED"/><circle cx="14" cy="14" r="6" stroke="#F97316" stroke-width="1.5" fill="none"/><circle cx="14" cy="14" r="2" fill="#F97316"/><path d="M14 8V6M14 22v-2M20 14h2M6 14H8" stroke="#F97316" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    color: "#F97316",
+    bgColor: "#FFF7ED",
+    title: "Purpose of Data Use",
+    subtitle: "How we use the collected data to improve learning and ensure safety.",
+    content: `<p>We use collected data solely for the following purposes:</p>
+    <ul><li>Personalising the learning experience for each child</li><li>Monitoring and improving platform safety</li><li>Communicating with parents/guardians about their child's progress</li><li>Complying with legal obligations</li><li>Preventing fraud and ensuring platform integrity</li></ul>
+    <p>We <strong>never</strong> use children's data for targeted advertising.</p>`
+  },
+  {
+    id: "lawful-basis",
+    number: 5,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#FEF2F2"/><path d="M14 6l1.5 5h5l-4 3 1.5 5L14 16l-4 3 1.5-5-4-3h5z" stroke="#EF4444" stroke-width="1.3" stroke-linejoin="round" fill="none"/></svg>`,
+    color: "#EF4444",
+    bgColor: "#FEF2F2",
+    title: "Lawful Basis for Processing (As per DPDP Act)",
+    subtitle: "The legal grounds under which we collect and process data.",
+    content: `<p>Under the <a href="#" style="color:#7C5CFC;font-weight:600;">Digital Personal Data Protection Act, 2023 (India)</a>, we process personal data on the following lawful bases:</p>
+    <ul><li><strong>Consent:</strong> Explicit, verifiable consent from parents/guardians for children's data.</li><li><strong>Legitimate Interest:</strong> For platform safety and fraud prevention.</li><li><strong>Legal Obligation:</strong> Where required by applicable law.</li></ul>`
+  },
+  {
+    id: "storage-and-security",
+    number: 6,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#EFF6FF"/><rect x="9" y="12" width="10" height="8" rx="2" stroke="#3B82F6" stroke-width="1.5" fill="none"/><path d="M11 12v-2a3 3 0 016 0v2" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="14" cy="16" r="1.5" fill="#3B82F6"/></svg>`,
+    color: "#3B82F6",
+    bgColor: "#EFF6FF",
+    title: "Storage and Security",
+    subtitle: "How we securely store your data and the measures we take to protect it.",
+    content: `<ul><li>All data is encrypted at rest and in transit using AES-256 and TLS 1.2+.</li><li>Access to personal data is restricted to authorised personnel on a need-to-know basis.</li><li>We conduct regular security audits and vulnerability assessments.</li><li>Data is stored on secure servers located in India and/or trusted international partners compliant with applicable data protection laws.</li><li>In the event of a data breach, we will notify affected users within 72 hours as required by law.</li></ul>`
+  },
+  {
+    id: "data-sharing",
+    number: 7,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#F5F3FF"/><circle cx="8" cy="14" r="2.5" stroke="#8B5CF6" stroke-width="1.3" fill="none"/><circle cx="20" cy="9" r="2.5" stroke="#8B5CF6" stroke-width="1.3" fill="none"/><circle cx="20" cy="19" r="2.5" stroke="#8B5CF6" stroke-width="1.3" fill="none"/><path d="M10.3 13L17.8 10M10.3 15L17.8 18" stroke="#8B5CF6" stroke-width="1.3" stroke-linecap="round"/></svg>`,
+    color: "#8B5CF6",
+    bgColor: "#F5F3FF",
+    title: "Data Sharing and Disclosure",
+    subtitle: "When and how we share data (and what we do not do).",
+    content: `<p>We do <strong>not</strong> sell, rent, or trade personal data. We may share data only with:</p>
+    <ul><li><strong>Service providers:</strong> Trusted partners who help operate our platform (e.g., cloud hosting, analytics) under strict data processing agreements.</li><li><strong>Legal authorities:</strong> When required by law or to protect the safety of children.</li></ul>
+    <p>All third-party partners are vetted and required to maintain equivalent privacy and security standards.</p>`
+  },
+  {
+    id: "cookies-and-tracking",
+    number: 8,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#FEF9C3"/><circle cx="14" cy="14" r="7" stroke="#EAB308" stroke-width="1.5" fill="none"/><circle cx="11" cy="12" r="1" fill="#EAB308"/><circle cx="16" cy="11" r="1" fill="#EAB308"/><circle cx="12" cy="16" r="1" fill="#EAB308"/><circle cx="17" cy="15" r="0.8" fill="#EAB308"/></svg>`,
+    color: "#EAB308",
+    bgColor: "#FEF9C3",
+    title: "Cookies and Tracking",
+    subtitle: "Information about cookies and tracking technologies we use.",
+    content: `<p>We use the following types of cookies:</p>
+    <ul><li><strong>Essential cookies:</strong> Required for platform functionality (cannot be disabled).</li><li><strong>Analytics cookies:</strong> Help us understand how users interact with the platform (can be opted out).</li><li><strong>Preference cookies:</strong> Remember user settings and preferences.</li></ul>
+    <p>We do <strong>not</strong> use third-party advertising or tracking cookies. Parents can manage cookie preferences from their account settings.</p>`
+  },
+  {
+    id: "rights-of-parents",
+    number: 9,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#F0FDF4"/><path d="M14 7l1.5 4.5h4.5l-3.5 2.7 1.3 4.3L14 16l-3.8 2.5 1.3-4.3L8 11.5h4.5z" stroke="#22C55E" stroke-width="1.3" stroke-linejoin="round" fill="none"/><path d="M11 19l3 2 3-2" stroke="#22C55E" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>`,
+    color: "#22C55E",
+    bgColor: "#F0FDF4",
+    title: "Rights of Parents and Guardians",
+    subtitle: "Your rights as a parent or guardian regarding your child's data.",
+    content: `<p>As a parent or guardian, you have the right to:</p>
+    <ul><li><strong>Access:</strong> Request a copy of your child's personal data.</li><li><strong>Correction:</strong> Update or correct inaccurate information.</li><li><strong>Deletion:</strong> Request deletion of your child's account and data.</li><li><strong>Withdrawal of Consent:</strong> Revoke consent at any time.</li><li><strong>Data Portability:</strong> Request your child's data in a machine-readable format.</li></ul>
+    <p>To exercise these rights, contact us at <strong>privacy@abcdkbd.com</strong>.</p>`
+  },
+  {
+    id: "grievance-redressal",
+    number: 10,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#FFF1F2"/><path d="M9 11h10v8H9z" stroke="#F43F5E" stroke-width="1.3" fill="none" rx="1"/><path d="M9 13l5 3.5L19 13" stroke="#F43F5E" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="14" cy="9" r="2.5" stroke="#F43F5E" stroke-width="1.3" fill="none"/></svg>`,
+    color: "#F43F5E",
+    bgColor: "#FFF1F2",
+    title: "Grievance Redressal",
+    subtitle: "How to raise concerns and contact our Grievance Officer.",
+    content: `<p>If you have any concerns or complaints about how we handle your child's data, you may contact our designated Grievance Officer:</p>
+    <p><strong>Grievance Officer:</strong> [Name]<br/>
+    <strong>Email:</strong> grievance@abcdkbd.com<br/>
+    <strong>Address:</strong> [Company Address], India</p>
+    <p>We will acknowledge your complaint within 48 hours and resolve it within 30 days as per the DPDP Act, 2023.</p>`
+  },
+  {
+    id: "changes-to-policy",
+    number: 11,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#F0F9FF"/><path d="M9 10h7l-2-2M19 18h-7l2 2" stroke="#0EA5E9" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="9" y="12" width="10" height="4" rx="1" stroke="#0EA5E9" stroke-width="1.3" fill="none"/></svg>`,
+    color: "#0EA5E9",
+    bgColor: "#F0F9FF",
+    title: "Changes to This Policy",
+    subtitle: "How we handle updates and notify changes in this policy.",
+    content: `<p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. When we make significant changes:</p>
+    <ul><li>We will update the "Last Updated" date at the top of this page.</li><li>We will notify parents/guardians via email at least 14 days before changes take effect.</li><li>Continued use of the platform after the effective date constitutes acceptance of the updated policy.</li></ul>`
+  },
+  {
+    id: "contact-us",
+    number: 12,
+    icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="14" fill="#EFF6FF"/><path d="M7 10h14v9H7z" stroke="#3B82F6" stroke-width="1.3" fill="none" rx="1"/><path d="M7 12l7 4.5L21 12" stroke="#3B82F6" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>`,
+    color: "#3B82F6",
+    bgColor: "#EFF6FF",
+    title: "Contact Us",
+    subtitle: "How to get in touch with us for any queries or requests.",
+    content: `<p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+    <p><strong>Email:</strong> privacy@abcdkbd.com<br/>
+    <strong>Website:</strong> <a href="https://abcdkbd.com" style="color:#7C5CFC;font-weight:600;">abcdkbd.com</a><br/>
+    <strong>Phone:</strong> [Your Contact Number]<br/>
+    <strong>Address:</strong> [Company Address], India</p>
+    <p>We typically respond within 2–3 business days.</p>`
+  }
+];
 ---
 
-<style is:inline>
-  article {
-    padding: 1rem 2rem;
-  }
-</style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-<BaseLayout meta={meta}>
-  <article><Content /></article>
-</BaseLayout>
+      body {
+        font-family: "Nunito", sans-serif;
+        background: #f8f7ff;
+        color: #333;
+      }
+
+      /* ── PAGE WRAPPER ── */
+      .page-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 32px 35px 64px;
+      }
+
+      /* ── HERO IMAGE ── */
+      .privacy-hero-image {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+      .privacy-hero-image img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        display: block;
+        object-fit: contain;
+      }
+
+      /* ── INTRO CARD ── */
+      .intro-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px 28px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: flex-start;
+        gap: 18px;
+        box-shadow: 0 2px 12px rgba(124, 92, 252, 0.07);
+        border: 1px solid #ede9ff;
+      }
+      .intro-shield {
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .intro-text {
+        font-size: 1.08rem;
+        line-height: 1.9;
+        color: #444;
+      }
+      .intro-text a {
+        color: #7c5cfc;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      /* ── TWO-COLUMN LAYOUT ── */
+      .content-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 35px;
+        align-items: start;
+      }
+
+      /* ── LEFT SIDEBAR ── */
+      .sidebar {
+        position: sticky;
+        top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .toc-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f0eeff;
+      }
+      .toc-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #2d2d4e;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .toc-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .toc-item a {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #555;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .toc-item a:hover {
+        background: #f3efff;
+        color: #7c5cfc;
+      }
+      .toc-num {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 800;
+        flex-shrink: 0;
+        color: #fff;
+      }
+
+      /* Help card */
+      .help-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f0eeff;
+        text-align: center;
+      }
+      .help-icon {
+        font-size: 2.5rem;
+        margin-bottom: 8px;
+      }
+      .help-title {
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: #2d2d4e;
+        margin-bottom: 4px;
+      }
+      .help-subtitle {
+        font-size: 0.8rem;
+        color: #888;
+        margin-bottom: 14px;
+      }
+      .help-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #7c5cfc;
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        padding: 9px 22px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 800;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.15s;
+      }
+      .help-btn:hover {
+        background: #6741f5;
+      }
+
+      /* Trust card */
+      .trust-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 16px 20px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f0eeff;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .trust-card-icon {
+        flex-shrink: 0;
+      }
+      .trust-title {
+        font-weight: 800;
+        font-size: 0.85rem;
+        color: #2d2d4e;
+        margin-bottom: 4px;
+      }
+      .trust-desc {
+        font-size: 0.78rem;
+        color: #888;
+        line-height: 1.45;
+      }
+
+      /* ── ACCORDION ── */
+      .accordion-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .accordion-item {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f0eeff;
+        transition: box-shadow 0.2s;
+      }
+      .accordion-item.is-open {
+        box-shadow: 0 4px 20px rgba(124, 92, 252, 0.12);
+      }
+      .accordion-trigger {
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 26px 28px;
+        text-align: left;
+        transition: background 0.15s;
+      }
+      .accordion-trigger:hover {
+        background: #faf8ff;
+      }
+      .acc-icon {
+        flex-shrink: 0;
+        width: 58px;
+        height: 58px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .acc-text {
+        flex: 1;
+      }
+      .acc-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #2d2d4e;
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .acc-subtitle {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #777;
+        margin-top: 3px;
+      }
+      .acc-chevron {
+        flex-shrink: 0;
+        color: #aaa;
+        transition: transform 0.25s;
+      }
+      .accordion-item.is-open .acc-chevron {
+        transform: rotate(180deg);
+        color: #7c5cfc;
+      }
+      .accordion-body {
+        display: none;
+        padding: 0 28px 24px 102px;
+        font-size: 1.05rem;
+        line-height: 2;
+        color: #444;
+      }
+      .accordion-item.is-open .accordion-body {
+        display: block;
+      }
+      .accordion-body p {
+        margin-bottom: 10px;
+      }
+      .accordion-body ul {
+        padding-left: 18px;
+        margin-bottom: 10px;
+      }
+      .accordion-body li {
+        margin-bottom: 5px;
+      }
+      .accordion-body a {
+        color: #7c5cfc;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .accordion-body a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── LAST UPDATED BAR ── */
+      .last-updated-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #fff;
+        border: 1px solid #ede9ff;
+        border-radius: 12px;
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        font-size: 0.88rem;
+        color: #888;
+        font-weight: 600;
+      }
+      .last-updated-bar strong {
+        color: #555;
+      }
+
+      /* ── SPARKLES ── */
+      .sp {
+        position: absolute;
+        pointer-events: none;
+        animation: sp-pulse 2.8s ease-in-out infinite;
+        z-index: 1;
+      }
+      @keyframes sp-pulse {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.4);
+        }
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 960px) {
+        .content-layout {
+          grid-template-columns: 240px 1fr;
+          gap: 24px;
+        }
+      }
+      @media (max-width: 860px) {
+        .content-layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .toc-card {
+          flex: 1 1 100%;
+        }
+        .help-card,
+        .trust-card {
+          flex: 1 1 calc(50% - 8px);
+        }
+        .page-wrapper {
+          padding: 20px 16px 48px;
+        }
+      }
+      @media (max-width: 540px) {
+        .accordion-body {
+          padding-left: 22px;
+        }
+        .help-card,
+        .trust-card {
+          flex: 1 1 100%;
+        }
+        .acc-title {
+          font-size: 1.1rem;
+        }
+        .accordion-trigger {
+          padding: 18px 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <!-- HERO IMAGE -->
+      <div class="privacy-hero-image">
+        <img src="/assets/images/hero-privacy.png" alt="Privacy Policy" />
+      </div>
+
+      <div style="height:28px"></div>
+
+      <!-- LAST UPDATED BAR -->
+      <div class="last-updated-bar">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="9" r="8" stroke="#7C5CFC" stroke-width="1.4" fill="none"></circle>
+          <path d="M9 5v4l2.5 2.5" stroke="#7C5CFC" stroke-width="1.4" stroke-linecap="round"></path>
+        </svg>
+        <span
+          >Last Updated: <strong>January 2025</strong> &nbsp;|&nbsp; Effective Date: <strong>January 2025</strong></span
+        >
+      </div>
+
+      <!-- INTRO CARD -->
+      <div class="intro-card">
+        <div class="intro-shield">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="22" fill="#EEF2FF"></circle>
+            <path
+              d="M22 8L10 13.5V22C10 29.7 15.6 37 22 39C28.4 37 34 29.7 34 22V13.5L22 8Z"
+              fill="#7C5CFC"
+              opacity="0.15"></path>
+            <path
+              d="M22 8L10 13.5V22C10 29.7 15.6 37 22 39C28.4 37 34 29.7 34 22V13.5L22 8Z"
+              stroke="#7C5CFC"
+              stroke-width="1.5"
+              fill="none"></path>
+            <path
+              d="M17 22l3.5 3.5L28 18"
+              stroke="#7C5CFC"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <p class="intro-text">
+          Welcome to <strong>abcdkbd.com</strong>! Your child's privacy and safety are our highest priority. This
+          Privacy Policy outlines how we handle personal data in compliance with the
+          <a href="#">Digital Personal Data Protection Act, 2023 (India)</a>
+          and international child privacy standards.
+        </p>
+      </div>
+
+      <!-- TWO-COLUMN LAYOUT -->
+      <div class="content-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <!-- TOC -->
+          <div class="toc-card">
+            <p class="toc-title">On this page</p>
+            <ul class="toc-list">
+              {
+                sections.map((s) => (
+                  <li class="toc-item">
+                    <a href={`#${s.id}`}>
+                      <span class="toc-num" style={`background:${s.color}`}>
+                        {s.number}
+                      </span>
+                      {s.title}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Help card -->
+          <div class="help-card">
+            <div class="help-icon">💬</div>
+            <p class="help-title">Have questions?</p>
+            <p class="help-subtitle">We're here to help you.</p>
+            <a href="#contact-us" class="help-btn">Contact Us →</a>
+          </div>
+
+          <!-- Trust card -->
+          <div class="trust-card">
+            <div class="trust-card-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="16" fill="#EEF2FF"></circle>
+                <path
+                  d="M16 6L7 10.5V17C7 22.5 11.2 27.6 16 29C20.8 27.6 25 22.5 25 17V10.5L16 6Z"
+                  fill="#7C5CFC"
+                  opacity="0.2"></path>
+                <path
+                  d="M16 6L7 10.5V17C7 22.5 11.2 27.6 16 29C20.8 27.6 25 22.5 25 17V10.5L16 6Z"
+                  stroke="#7C5CFC"
+                  stroke-width="1.5"
+                  fill="none"></path>
+                <path
+                  d="M12 17l2.5 2.5L20 14"
+                  stroke="#7C5CFC"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="trust-title">Your trust matters</p>
+              <p class="trust-desc">We follow strict safety measures to keep your child's data secure.</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ACCORDION -->
+        <main>
+          <div class="accordion-list">
+            {
+              sections.map((s) => (
+                <div class="accordion-item" id={s.id} data-accordion>
+                  <button class="accordion-trigger" aria-expanded="false">
+                    <div class="acc-icon" style={`background:${s.bgColor}`} set:html={s.icon} />
+                    <div class="acc-text">
+                      <div class="acc-title">
+                        {s.number}. {s.title}
+                      </div>
+                      <div class="acc-subtitle">{s.subtitle}</div>
+                    </div>
+                    <svg
+                      class="acc-chevron"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 7.5l5 5 5-5"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <div class="accordion-body" set:html={s.content} />
+                </div>
+              ))
+            }
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // Accordion toggle
+      document.querySelectorAll("[data-accordion]").forEach((item) => {
+        const trigger = item.querySelector(".accordion-trigger");
+        trigger?.addEventListener("click", () => {
+          const isOpen = item.classList.contains("is-open");
+          // Close all
+          document.querySelectorAll("[data-accordion].is-open").forEach((el) => {
+            el.classList.remove("is-open");
+            el.querySelector(".accordion-trigger")?.setAttribute("aria-expanded", "false");
+          });
+          // Open clicked if was closed
+          if (!isOpen) {
+            item.classList.add("is-open");
+            trigger.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      // Smooth scroll for TOC links
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const id = link.getAttribute("href")?.slice(1);
+          if (!id) return;
+          const target = document.getElementById(id);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            // Auto-open the accordion section
+            if (!target.classList.contains("is-open")) {
+              // Close all first
+              document.querySelectorAll("[data-accordion].is-open").forEach((el) => {
+                el.classList.remove("is-open");
+                el.querySelector(".accordion-trigger")?.setAttribute("aria-expanded", "false");
+              });
+              target.classList.add("is-open");
+              target.querySelector(".accordion-trigger")?.setAttribute("aria-expanded", "true");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
