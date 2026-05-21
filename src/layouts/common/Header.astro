@@ -210,7 +210,7 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   </div>
 </div>
 
-<div class="header-spacer"></div>
+<div class="header-spacer" id="headerSpacer"></div>
 
 <style is:global>
   .theme-toggle {
@@ -507,6 +507,19 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     dropdown.style.display = "block";
   }
 
+  // ── SPACER FIX: dynamically set spacer height ──
+  function updateSpacer() {
+    const header = document.querySelector(".header");
+    const heroSearch = document.querySelector(".hero-search");
+    const spacer = document.getElementById("headerSpacer");
+    if (header && heroSearch && spacer) {
+      const headerH = header.getBoundingClientRect().height;
+      const searchH = heroSearch.getBoundingClientRect().height;
+      document.documentElement.style.setProperty("--header-h", headerH + "px");
+      spacer.style.height = headerH + searchH + "px";
+    }
+  }
+
   function initHeroSearch() {
     const input = document.getElementById("heroSearch");
     const clearBtn = document.getElementById("heroClear");
@@ -538,7 +551,6 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   const sunIcon = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
   const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
 
-  /* ── ONLY FIX: applyThemeStyles added ── */
   function applyThemeStyles(theme) {
     const html = document.documentElement;
     html.setAttribute("data-theme", theme);
@@ -583,7 +595,6 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     headerThemeToggle?.addEventListener("click", toggleTheme);
     mobileThemeToggle?.addEventListener("click", toggleTheme);
 
-    // On load — apply saved theme
     applyThemeStyles(localStorage.getItem("theme") || "light");
     updateThemeIcon();
   }
@@ -625,7 +636,11 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     initHeroSearch();
     initThemeToggle();
     initHamburger();
+    updateSpacer();
   }
+
+  // resize pe bhi update karo
+  window.addEventListener("resize", updateSpacer);
 
   init();
   document.addEventListener("astro:page-load", init);

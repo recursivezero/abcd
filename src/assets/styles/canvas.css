@@ -5,7 +5,7 @@
 
 /* Global Styles for the Canvas Generator */
 .canvas-generator {
-  min-height: 100vh;
+  min-height: auto;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -132,7 +132,7 @@
 .canvas-generator .color-options .color-select option {
   background: #0f172a;
   color: #ffffff;
-  
+
 }
 
 .canvas-generator label {

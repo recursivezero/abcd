@@ -16,7 +16,7 @@ const {
   <head>
     <BaseHead title={title} description={description} ogImage={ogImage} />
   </head>
-  <body id="body" class="body__container">
+  <body id="body" class="body__container" style="overflow: visible;">
     <ThemeProvider />
     <Header title={title}>
       <slot name="header-left" slot="left" />
@@ -26,7 +26,6 @@ const {
       {
         sidebar && (
           <div class="sidebar" id="sidebar">
-            {/* PIN BUTTON — desktop only, sidebar ke andar top-right */}
             <button class="pin-btn" id="pinBtn" aria-label="Pin sidebar" title="Sidebar pin karo">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,12 +49,12 @@ const {
       {
         sidebar && (
           <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
-            <span id="toggleIcon" class="toggle-icon-wrap"></span>
+            <span id="toggleIcon" class="toggle-icon-wrap" />
           </button>
         )
       }
 
-      {/* OVERLAY — mobile pe sidebar ke bahar click karne par close */}
+      {/* OVERLAY — sirf mobile pe */}
       <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
       <div class="content" id="mainContent">
@@ -64,51 +63,66 @@ const {
     </main>
 
     <style is:global>
+      /* ── MAIN CONTAINER ── */
       .main {
         display: flex;
         width: 100%;
         position: relative;
+        overflow: visible;
+        margin-top: 0;
+      }
+      .content {
+        flex: 1;
+        min-width: 0;
+        width: 100%;
+        padding-top: 0;
+      }
+      html {
+        overflow-y: visible !important;
       }
 
       /* ── SIDEBAR ── */
       .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-
-        width: 260px;
-        max-width: 80vw;
+        /* Desktop: layout flow mein rehti hai, flex shrink allowed */
+        flex-shrink: 0;
+        width: 0; /* default: collapsed */
+        overflow: hidden;
         height: 100vh;
+        position: sticky;
+        top: 0;
 
         background: var(--background);
-        z-index: 1200;
-        overflow-y: auto;
+        z-index: 100;
+        border-right: 1px solid transparent;
+        padding-top: 0;
 
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+        transition:
+          width 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      /* Sidebar OPEN — desktop push mode */
+      .sidebar.open {
+        width: 260px;
+        border-right-color: rgba(124, 58, 237, 0.12);
+        overflow-y: auto;
         padding-top: 6rem;
       }
 
-      /* Sidebar open (overlay mode) */
-      .sidebar.open {
-        transform: translateX(0);
-      }
-
-      /* Sidebar PINNED — desktop only: sidebar layout mein aa jaati hai */
+      /* Sidebar PINNED — same as open but persists */
       .sidebar.pinned {
-        position: sticky;
-        top: 0;
-        transform: translateX(0);
-        height: 100vh;
-        flex-shrink: 0;
-        box-shadow: none;
-        border-right: 1px solid rgba(124, 58, 237, 0.12);
+        width: 260px;
+        border-right-color: rgba(124, 58, 237, 0.12);
+        overflow-y: auto;
+        padding-top: 6rem;
       }
 
-      /* Content shifts right when pinned */
-      .main.sidebar-pinned .content {
-        margin-left: 0;
+      /* ── CONTENT ── */
+      .content {
+        flex: 1;
+        min-width: 0;
+        width: 100%;
+        /* transition hata diya — content khud hi push hoga sidebar ke flex width se */
       }
 
       /* ── PIN BUTTON ── */
@@ -143,7 +157,6 @@ const {
         background: rgba(124, 58, 237, 0.08);
       }
 
-      /* Pinned active state */
       .pin-btn.active {
         opacity: 1;
         background: rgba(124, 58, 237, 0.12);
@@ -151,14 +164,13 @@ const {
         transform: rotate(45deg);
       }
 
-      /* Pin button sirf desktop pe dikhao */
       @media (max-width: 768px) {
         .pin-btn {
           display: none !important;
         }
       }
 
-      /* ── OVERLAY ── */
+      /* ── OVERLAY — sirf mobile ── */
       .sidebar-overlay {
         display: none;
         position: fixed;
@@ -172,54 +184,42 @@ const {
         display: block;
       }
 
-      /* ── CONTENT ── */
-      .content {
-        flex: 1;
-        min-width: 0;
-        width: 100%;
-        transition: all 0.3s ease;
-      }
-
       /* ── TOGGLE BUTTON ── */
       .sidebar-toggle {
         position: fixed !important;
-
-        top: 16px !important;
-        left: 12px !important;
-
-        width: 42px !important;
-        height: 42px !important;
-
+        bottom: 24px !important;
+        left: 16px !important;
+        transform: none !important;
+        top: auto !important;
+        width: 48px !important;
+        height: 48px !important;
         border: none;
-        border-radius: 12px;
-
+        border-radius: 50%;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-
         color: #7c3aed !important;
-
         display: flex !important;
         align-items: center;
         justify-content: center;
-
         cursor: pointer;
-
         z-index: 2147483647 !important;
-
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
-        overflow: visible !important;
-
         box-shadow:
-          0 6px 18px rgba(124, 58, 237, 0.16),
-          0 2px 6px rgba(0, 0, 0, 0.08);
-
+          0 6px 24px rgba(124, 58, 237, 0.22),
+          0 2px 8px rgba(0, 0, 0, 0.1);
         transition:
           background 0.22s ease,
-          box-shadow 0.22s ease,
-          transform 0.22s ease;
+          box-shadow 0.22s ease;
+      }
+
+      .sidebar-toggle:hover {
+        background: rgba(124, 58, 237, 0.08) !important;
+        box-shadow:
+          0 8px 28px rgba(124, 58, 237, 0.28),
+          0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       .sidebar-toggle svg {
@@ -228,7 +228,6 @@ const {
         display: block;
       }
 
-      /* ── TOGGLE ICON WRAP ── */
       .toggle-icon-wrap {
         display: flex;
         align-items: center;
@@ -237,23 +236,45 @@ const {
         height: 20px;
       }
 
+      /* ── MOBILE OVERRIDES ── */
       @media (max-width: 768px) {
-        .sidebar-toggle {
-          top: 14px !important;
-          left: 10px !important;
-          width: 40px !important;
-          height: 40px !important;
-          display: flex !important;
-          opacity: 1 !important;
-          visibility: visible !important;
-          z-index: 2147483647 !important;
-        }
-
+        /* Mobile pe sidebar fixed overlay mode mein */
         .sidebar {
-          width: 82vw;
-          max-width: 300px;
           position: fixed !important;
           top: 0 !important;
+          left: 0 !important;
+          width: 0 !important; /* closed: 0 */
+          height: 100vh !important;
+          z-index: 1200;
+          overflow: hidden;
+          padding-top: 0;
+          transition: width 0.3s ease !important;
+          box-shadow: none;
+        }
+
+        .sidebar.open {
+          width: 82vw !important;
+          max-width: 300px !important;
+          overflow-y: auto !important;
+          padding-top: 6rem !important;
+          box-shadow: 4px 0 20px rgba(0, 0, 0, 0.18) !important;
+        }
+
+        /* Mobile pinned = open (pin concept nahi hai) */
+        .sidebar.pinned {
+          width: 82vw !important;
+          max-width: 300px !important;
+          overflow-y: auto !important;
+          padding-top: 6rem !important;
+          box-shadow: 4px 0 20px rgba(0, 0, 0, 0.18) !important;
+        }
+
+        .sidebar-toggle {
+          bottom: 20px !important;
+          left: 16px !important;
+          top: auto !important;
+          width: 48px !important;
+          height: 48px !important;
         }
       }
     </style>
@@ -266,10 +287,8 @@ const {
       const overlay = document.getElementById("sidebarOverlay") as HTMLElement | null;
       const mainEl = document.getElementById("main") as HTMLElement | null;
 
-      // LocalStorage se pin state yaad rakho
       let isPinned = localStorage.getItem("sidebarPinned") === "true";
 
-      // ── SVG ICONS ──
       const ICON_HAMBURGER = `
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
           fill="none" stroke="#7c3aed" stroke-width="2.5"
@@ -298,52 +317,39 @@ const {
         return window.innerWidth <= 768;
       }
 
-      // Closed state icon: mobile pe hamburger, desktop pe layout icon
       function setClosedIcon() {
         if (!icon) return;
         icon.innerHTML = isMobile() ? ICON_HAMBURGER : ICON_LAYOUT;
       }
 
-      // Toggle button ko show/hide karo (inline style se — CSS se override ho sakta tha)
       function showToggle() {
         if (toggle) toggle.style.display = "flex";
       }
 
-      function hideToggle() {
-        if (toggle) toggle.style.display = "none";
-      }
-
       function applyPinState() {
-        if (!sidebar || !mainEl || !pinBtn) return;
+        if (!sidebar || !pinBtn) return;
 
         if (isPinned && !isMobile()) {
-          // ── PINNED (desktop only) ──
           sidebar.classList.add("pinned");
           sidebar.classList.remove("open");
-          mainEl.classList.add("sidebar-pinned");
           pinBtn.classList.add("active");
           if (overlay) overlay.classList.remove("show");
-          // Pinned hone par toggle button hide karo
-          hideToggle();
+          showToggle();
+          setClosedIcon();
         } else {
-          // ── UNPINNED ──
           sidebar.classList.remove("pinned");
-          mainEl.classList.remove("sidebar-pinned");
           pinBtn.classList.remove("active");
-          // Toggle wapas dikhao aur icon reset karo
           showToggle();
           setClosedIcon();
         }
       }
-
       function openSidebar() {
         if (!sidebar) return;
         sidebar.classList.add("open");
-        // Overlay mobile pe hi dikhao
+        // Overlay sirf mobile pe
         if (isMobile() && overlay) {
           overlay.classList.add("show");
         }
-        // Close icon set karo
         if (icon) icon.innerHTML = ICON_CLOSE;
       }
 
@@ -351,34 +357,28 @@ const {
         if (!sidebar) return;
         sidebar.classList.remove("open");
         if (overlay) overlay.classList.remove("show");
-        // Closed icon restore karo (hamburger ya layout)
         setClosedIcon();
       }
 
-      // ── PIN TOGGLE ──
+      // Pin toggle
       if (pinBtn) {
         pinBtn.addEventListener("click", (e) => {
           e.stopPropagation();
-          if (isMobile()) return; // mobile pe pin kaam nahi karta
-
+          if (isMobile()) return;
           isPinned = !isPinned;
           localStorage.setItem("sidebarPinned", String(isPinned));
           applyPinState();
         });
       }
 
-      // ── INIT ──
+      // Init
       if (toggle && sidebar && icon) {
         sidebar.classList.remove("open");
         setClosedIcon();
-        // Page load pe pin state restore karo
         applyPinState();
 
-        // ── TOGGLE BUTTON CLICK ──
         toggle.addEventListener("click", () => {
-          // Desktop pinned mode mein toggle kuch nahi karega (button waise bhi hidden hai)
           if (isPinned && !isMobile()) return;
-
           const isOpen = sidebar.classList.contains("open");
           if (isOpen) {
             closeSidebar();
@@ -388,49 +388,34 @@ const {
         });
       }
 
-      // ── OVERLAY CLICK — sidebar close karo ──
+      // Overlay click
       if (overlay) {
         overlay.addEventListener("click", () => {
           closeSidebar();
         });
       }
 
-      // ── OUTSIDE CLICK — desktop pe sidebar close karo ──
+      // Outside click — desktop pe close
       document.addEventListener("click", (e) => {
         if (!sidebar || !toggle) return;
         if (isPinned && !isMobile()) return;
-
         const target = e.target as Node;
-        const clickedInsideSidebar = sidebar.contains(target);
-        const clickedToggle = toggle.contains(target);
-
-        if (!clickedInsideSidebar && !clickedToggle) {
+        if (!sidebar.contains(target) && !toggle.contains(target)) {
           closeSidebar();
         }
       });
 
-      // ── RESIZE — mobile <-> desktop switch ──
+      // Resize handler
       window.addEventListener("resize", () => {
         if (isMobile()) {
-          // Mobile pe: pinned state ignore, sidebar overlay mode mein
-          if (sidebar) {
-            sidebar.classList.remove("pinned");
-          }
-          if (mainEl) mainEl.classList.remove("sidebar-pinned");
+          if (sidebar) sidebar.classList.remove("pinned");
           if (pinBtn) pinBtn.classList.remove("active");
-
-          // Mobile pe toggle HAMESHA dikhna chahiye
           showToggle();
-
-          // Agar sidebar open nahi hai to icon closed state mein rakho
           if (!sidebar?.classList.contains("open")) {
             setClosedIcon();
           }
         } else {
-          // Desktop pe: pin state restore karo
           applyPinState();
-
-          // Agar sidebar open nahi aur pinned nahi, to icon reset karo
           if (!sidebar?.classList.contains("open") && !isPinned) {
             setClosedIcon();
           }

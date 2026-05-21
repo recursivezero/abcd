@@ -14,8 +14,11 @@ const meta = {
 ---
 
 <style>
-  :global(.sidebar-toggle) {
-    display: none !important;
+  .draw-controls-wrap {
+    position: fixed;
+    top: 170px;
+    right: 0.6rem;
+    z-index: 500;
   }
 
   :global(.back) {
@@ -32,8 +35,8 @@ const meta = {
 <BaseLayout meta={meta}>
   <MobileSplash stay={true} />
   <Back />
-  <Fragment slot="header-right">
+  <div class="draw-controls-wrap">
     <ControlsContainer />
-  </Fragment>
+  </div>
   <DrawComponent />
 </BaseLayout>

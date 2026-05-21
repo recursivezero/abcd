@@ -345,6 +345,11 @@
   box-shadow: none !important;
 }
 
+.container__search:focus-within {
+  border: 2px solid light-dark(#667eea, #06ffa5) !important;
+  box-shadow: 0 0 0 3px light-dark(rgba(102, 126, 234, 0.3), rgba(6, 255, 165, 0.3)) !important;
+}
+
 /* Animations */
 @keyframes shimmer {
   0% {
