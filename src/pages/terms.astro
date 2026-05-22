@@ -92,7 +92,6 @@ const meta = {
     color: #374151;
   }
 
-  /* Number badges — match screenshot exactly */
   .n {
     width: 28px;
     height: 28px;
@@ -153,19 +152,17 @@ const meta = {
     color: #1e40af;
   }
 
-  /* ── HELP BOX (chat bubble + heart icon) ── */
+  /* ── HELP BOX ── */
   .t-box.help {
     text-align: center;
     padding: 1.4rem 1.3rem 1.5rem;
   }
-
   .t-help-bubble {
     position: relative;
     width: 58px;
     height: 52px;
     margin: 0 auto 0.7rem;
   }
-  /* Purple speech-bubble shape */
   .t-help-bubble .bubble {
     width: 58px;
     height: 52px;
@@ -175,11 +172,9 @@ const meta = {
     align-items: center;
     justify-content: center;
   }
-  /* Yellow heart filled */
   .t-help-bubble .bubble svg {
     display: block;
   }
-
   .t-box.help h4 {
     font-size: 15px;
     font-weight: 800;
@@ -192,7 +187,6 @@ const meta = {
     margin: 0 0 0.9rem;
   }
 
-  /* Contact Us button — purple pill with › arrow */
   .t-btn {
     display: inline-flex;
     align-items: center;
@@ -226,13 +220,12 @@ const meta = {
     line-height: 1;
   }
 
-  /* ── SAFE & TRUSTED BOX ── */
+  /* ── SAFE & TRUSTED ── */
   .t-box.safe {
     display: flex;
     gap: 12px;
     align-items: flex-start;
   }
-  /* Blue shield with checkmark */
   .t-safe-icon {
     width: 42px;
     height: 42px;
@@ -268,7 +261,7 @@ const meta = {
     padding: 1.1rem 1.3rem;
     display: flex;
     gap: 14px;
-    align-items: center;
+    align-items: flex-start;
     box-shadow: 0 2px 12px rgba(124, 92, 191, 0.06);
   }
   .t-star {
@@ -283,13 +276,42 @@ const meta = {
     color: #fff;
     font-size: 18px;
     box-shadow: 0 2px 8px rgba(124, 92, 191, 0.3);
+    margin-top: 2px;
+  }
+  .t-welcome-body {
+    flex: 1;
   }
   .t-welcome p {
     font-size: 13.5px;
     font-weight: 600;
     color: #374151;
     line-height: 1.65;
-    margin: 0;
+    margin: 0 0 10px;
+  }
+
+  /* ── DOWNLOAD BUTTON ── */
+  .pp-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #fff;
+    color: #7c5cbf;
+    border: 1.5px solid #c4b5fd;
+    border-radius: 999px;
+    padding: 7px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: "Nunito", sans-serif;
+    cursor: pointer;
+    transition:
+      background 0.15s,
+      color 0.15s,
+      border-color 0.15s;
+  }
+  .pp-dl-btn:hover {
+    background: #7c5cbf;
+    color: #fff;
+    border-color: #7c5cbf;
   }
 
   /* ── ACCORDION ── */
@@ -321,7 +343,6 @@ const meta = {
     background: #faf9ff;
   }
 
-  /* Circular icon wrapper */
   .t-ico {
     width: 40px;
     height: 40px;
@@ -349,7 +370,6 @@ const meta = {
     margin: 0;
   }
 
-  /* Chevron — smooth rotate */
   .t-chev {
     width: 28px;
     height: 28px;
@@ -374,7 +394,6 @@ const meta = {
     stroke: #fff;
   }
 
-  /* Expanded body */
   .t-acc-body {
     display: none;
     padding: 4px 20px 18px 73px;
@@ -393,6 +412,13 @@ const meta = {
   }
   .t-acc-body a:hover {
     text-decoration: underline;
+  }
+  .t-acc-body ul {
+    padding-left: 20px;
+    margin: 6px 0;
+  }
+  .t-acc-body li {
+    margin-bottom: 4px;
   }
 
   /* ── RESPONSIVE ── */
@@ -417,7 +443,6 @@ const meta = {
     <div class="t-body">
       <!-- ══ SIDEBAR ══ -->
       <div class="t-sidebar">
-        <!-- Table of Contents -->
         <div class="t-box">
           <span class="t-box-title">On this page</span>
           <ul class="t-toc">
@@ -436,11 +461,9 @@ const meta = {
           </ul>
         </div>
 
-        <!-- Have questions? — chat bubble + yellow heart -->
         <div class="t-box help">
           <div class="t-help-bubble">
             <div class="bubble">
-              <!-- Yellow filled heart, exactly like screenshot -->
               <svg width="24" height="24" viewBox="0 0 24 24" fill="#fbbf24">
                 <path
                   d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
@@ -450,20 +473,13 @@ const meta = {
           </div>
           <h4>Have questions?</h4>
           <p>We're here to help you.</p>
-          <a href="/contact" class="t-btn">
-            Contact Us
-            <span class="arr">›</span>
-          </a>
+          <a href="/contact" class="t-btn">Contact Us <span class="arr">›</span></a>
         </div>
 
-        <!-- Safe & Trusted — blue shield with checkmark -->
         <div class="t-box safe">
           <svg class="t-safe-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Blue shield body -->
             <path d="M24 4L8 11v13c0 10.5 7 20.3 16 23 9-2.7 16-12.5 16-23V11L24 4z" fill="#3b82f6"></path>
-            <!-- Lighter blue top highlight -->
             <path d="M24 4L8 11v2l16-7 16 7v-2L24 4z" fill="#60a5fa"></path>
-            <!-- White checkmark -->
             <path d="M16 24l5.5 5.5L32 19" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
             ></path>
           </svg>
@@ -480,10 +496,29 @@ const meta = {
         <!-- Welcome Banner -->
         <div class="t-welcome">
           <div class="t-star">&#9733;</div>
-          <p>
-            Welcome to <strong>abcdkbd.com</strong>! By accessing or using our platform, you agree to comply with and be
-            bound by the following Terms and Conditions.<br />Please read them carefully before using the site.
-          </p>
+          <div class="t-welcome-body">
+            <p>
+              Welcome to <strong>abcdkbd.com</strong>! By accessing or using our platform, you agree to comply with and
+              be bound by the following Terms and Conditions.<br />Please read them carefully before using the site.
+            </p>
+            <button onclick="downloadTermsPDF()" class="pp-dl-btn">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Terms PDF
+            </button>
+          </div>
         </div>
 
         <!-- 1. Acceptance of Terms -->
@@ -565,442 +600,507 @@ const meta = {
           <div class="t-acc-body">
             <strong>abcdkbd.com</strong> is a free educational platform designed for children, offering interactive learning
             tools, games, and resources to support early education. We focus on delivering safe, engaging, and age-appropriate
-            learning resources.<b>This site is not intended for commercial use or monetization. </b>
+            learning resources. <b>This site is not intended for commercial use or monetization.</b>
           </div>
+        </div>
 
-          <!-- 3. Eligibility -->
-          <div class="t-acc" id="t2">
-            <div class="t-acc-h" onclick="tToggle(2)">
-              <div class="t-ico" style="background:#dcfce7">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#15803d"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
-                </svg>
-              </div>
-              <div class="t-acc-info">
-                <h3>3. Eligibility</h3>
-                <p>This platform is primarily for children under parental or guardian supervision.</p>
-              </div>
-              <span class="t-chev"
-                ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  ><path
-                    d="M6 9l6 6 6-6"
-                    stroke="#7c5cbf"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path></svg
-                ></span
+        <!-- 3. Eligibility -->
+        <div class="t-acc" id="t2">
+          <div class="t-acc-h" onclick="tToggle(2)">
+            <div class="t-ico" style="background:#dcfce7">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#15803d"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               >
+                <circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+              </svg>
             </div>
-            <div class="t-acc-body">
-              This platform is primarily intended for <b>children under parental or guardian supervision</b>. Users
-              under 18 must use the site with guidance.Parents or guardians must consent to any data collection, per
-              Indian laws (DPDP Act, 2023).
+            <div class="t-acc-info">
+              <h3>3. Eligibility</h3>
+              <p>This platform is primarily for children under parental or guardian supervision.</p>
             </div>
-          </div>
-
-          <!-- 4. User Conduct -->
-          <div class="t-acc" id="t3">
-            <div class="t-acc-h" onclick="tToggle(3)">
-              <div class="t-ico" style="background:#fef3c7">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#b45309"
-                  stroke-width="2"
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  <path d="M9 12l2 2 4-4"></path>
-                </svg>
-              </div>
-              <div class="t-acc-info">
-                <h3>4. User Conduct</h3>
-                <p>Users must follow rules to ensure a safe and respectful environment for everyone.</p>
-              </div>
-              <span class="t-chev"
-                ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  ><path
-                    d="M6 9l6 6 6-6"
-                    stroke="#7c5cbf"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path></svg
-                ></span
-              >
-            </div>
-            <div class="t-acc-body">
-              Users must behave respectfully and follow all platform guidelines.
-              <ul>
-                Users must not:
-                <li>Upload or share offensive or harmful content</li>
-                <li>Attempt to hack, damage, or reverse-engineer the website</li>
-                <li>Use bots, scrapers,or automated tools to access the site</li>
-                <li>Disrupt the platform for others</li>
-              </ul>
-            </div>
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
           </div>
+          <div class="t-acc-body">
+            This platform is primarily intended for <b>children under parental or guardian supervision</b>. Users under
+            18 must use the site with guidance. Parents or guardians must consent to any data collection, per Indian
+            laws (DPDP Act, 2023).
+          </div>
+        </div>
 
-          <!-- 5. Intellectual Property -->
-          <div class="t-acc" id="t4">
-            <div class="t-acc-h" onclick="tToggle(4)">
-              <div class="t-ico" style="background:#fce7f3">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#be185d"
-                  stroke-width="2"
+        <!-- 4. User Conduct -->
+        <div class="t-acc" id="t3">
+          <div class="t-acc-h" onclick="tToggle(3)">
+            <div class="t-ico" style="background:#fef3c7">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#b45309"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>4. User Conduct</h3>
+              <p>Users must follow rules to ensure a safe and respectful environment for everyone.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M14.5 10a3 3 0 1 0 0 4"></path>
-                </svg>
-              </div>
-              <div class="t-acc-info">
-                <h3>5. Intellectual Property</h3>
-                <p>All content on this site is owned by RecursiveZero or its content creators.</p>
-              </div>
-              <span class="t-chev"
-                ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  ><path
-                    d="M6 9l6 6 6-6"
-                    stroke="#7c5cbf"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path></svg
-                ></span
-              >
-            </div>
-            <div class="t-acc-body">
-              All content is owned by <strong>RecursiveZero</strong> or its content creators and is protected by applicable
-              intellectual property laws.
-              <ul>
-                All content on abcdkbd.com, including:
-                <li>Text, images, animations</li>
-                <li>Audio/visual material</li>
-                <li>
-                  Code and design is the property of <strong>RecusriveZero</strong> or its content creators and is protected
-                  by copyright laws.
-                </li>
-                You may use content <b>only for personal, non-commercial educational purposes. </b>
-              </ul>
-            </div>
-
-            <!-- 6. Parental Responsibility -->
-            <div class="t-acc" id="t5">
-              <div class="t-acc-h" onclick="tToggle(5)">
-                <div class="t-ico" style="background:#e0f2fe">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#0369a1"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                </div>
-                <div class="t-acc-info">
-                  <h3>6. Parental Responsibility</h3>
-                  <p>Parents or guardians are responsible for their child's activity and consent.</p>
-                </div>
-                <span class="t-chev"
-                  ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    ><path
-                      d="M6 9l6 6 6-6"
-                      stroke="#7c5cbf"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"></path></svg
-                  ></span
-                >
-              </div>
-              <div class="t-acc-body">
-                Parents and guardians are fully responsible for monitoring their child's activity on the platform and
-                providing appropriate consent.
-                <ul>
-                  Parents or guardians are responsible for:
-                  <li>Monitoring their child’s activity on the website</li>
-                  <li>Providing consent where required</li>
-                  <li>Reporting any inappropriate content</li>
-                </ul>
-              </div>
-            </div>
-
-            <!-- 7. External Links -->
-            <div class="t-acc" id="t6">
-              <div class="t-acc-h" onclick="tToggle(6)">
-                <div class="t-ico" style="background:#f0fdf4">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#166534"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                  </svg>
-                </div>
-                <div class="t-acc-info">
-                  <h3>7. External Links</h3>
-                  <p>We may link to third-party educational content. We are not responsible for them.</p>
-                </div>
-                <span class="t-chev"
-                  ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    ><path
-                      d="M6 9l6 6 6-6"
-                      stroke="#7c5cbf"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"></path></svg
-                  ></span
-                >
-              </div>
-              <div class="t-acc-body">
-                The website may contain links to third-party educational content. We are <b>not responsible</b> for the content
-                or privacy policies of external sites. Please use discretion before navigating away from our site.
-              </div>
-            </div>
-
-            <!-- 8. Limitation of Liability -->
-            <div class="t-acc" id="t7">
-              <div class="t-acc-h" onclick="tToggle(7)">
-                <div class="t-ico" style="background:#fff7ed">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#c2410c"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
-                    ></path>
-                    <line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>
-                  </svg>
-                </div>
-                <div class="t-acc-info">
-                  <h3>8. Limitation of Liability</h3>
-                  <p>We strive for accuracy but are not liable for any errors or interruptions.</p>
-                </div>
-                <span class="t-chev"
-                  ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    ><path
-                      d="M6 9l6 6 6-6"
-                      stroke="#7c5cbf"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"></path></svg
-                  ></span
-                >
-              </div>
-              <div class="t-acc-body">
-                <ul>
-                  We strive to provide accurate and safe content. However, we are not liable for:
-                  <li>Any data loss, harm, or interruption caused by the website</li>
-                  <li>Mistakes, typos, or inaccuracies in learning material</li>
-                  Use of the platform is at your own risk.
-                </ul>
-              </div>
-            </div>
-
-            <!-- 9. Modification of Terms -->
-            <div class="t-acc" id="t8">
-              <div class="t-acc-h" onclick="tToggle(8)">
-                <div class="t-ico" style="background:#f5f3ff">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#6d28d9"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                  </svg>
-                </div>
-                <div class="t-acc-info">
-                  <h3>9. Modification of Terms</h3>
-                  <p>We may update these Terms at any time. Continued use means acceptance.</p>
-                </div>
-                <span class="t-chev"
-                  ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    ><path
-                      d="M6 9l6 6 6-6"
-                      stroke="#7c5cbf"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"></path></svg
-                  ></span
-                >
-              </div>
-              <div class="t-acc-body">
-                We reserve the right to change these Terms at any time. Updated terms will be posted here with a new
-                “Last Updated” date. Continued use of the platform constitutes acceptance of the revised terms.
-              </div>
-            </div>
-
-            <!-- 10. Termination -->
-            <div class="t-acc" id="t9">
-              <div class="t-acc-h" onclick="tToggle(9)">
-                <div class="t-ico" style="background:#fef2f2">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#b91c1c"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M4.93 4.93l14.14 14.14"></path>
-                  </svg>
-                </div>
-                <div class="t-acc-info">
-                  <h3>10. Termination</h3>
-                  <p>We may restrict or suspend access if these Terms are violated.</p>
-                </div>
-                <span class="t-chev"
-                  ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    ><path
-                      d="M6 9l6 6 6-6"
-                      stroke="#7c5cbf"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"></path></svg
-                  ></span
-                >
-              </div>
-              <div class="t-acc-body">
-                We reserve the right to restrict, suspend, or terminate access for any user who violates these Terms.
-              </div>
-            </div>
-
-            <!-- 11. Governing Law -->
-            <div class="t-acc" id="t10">
-              <div class="t-acc-h" onclick="tToggle(10)">
-                <div class="t-ico" style="background:#ecfdf5">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#065f46"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M12 3v18M3 6h18"></path><path d="M6 6l-3 6s3 3 6 0l-3-6z"></path><path
-                      d="M18 6l-3 6s3 3 6 0l-3-6z"></path>
-                  </svg>
-                </div>
-                <div class="t-acc-info">
-                  <h3>11. Governing Law</h3>
-                  <p>These Terms are governed by the laws of India. Disputes are subject to Surat courts.</p>
-                </div>
-                <span class="t-chev"
-                  ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    ><path
-                      d="M6 9l6 6 6-6"
-                      stroke="#7c5cbf"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"></path></svg
-                  ></span
-                >
-              </div>
-              <div class="t-acc-body">
-                These Terms shall be governed by and interpreted under the laws of India. Any disputes shall be subject
-                to the jurisdiction of <b>Surat courts. </b>
-              </div>
-
-              <!-- 12. Contact -->
-              <div class="t-acc" id="t11">
-                <div class="t-acc-h" onclick="tToggle(11)">
-                  <div class="t-ico" style="background:#eff6ff">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#1e40af"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                      <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                  </div>
-                  <div class="t-acc-info">
-                    <h3>12. Contact</h3>
-                    <p>For questions, concerns, or requests, feel free to contact us.</p>
-                  </div>
-                  <span class="t-chev"
-                    ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      ><path
-                        d="M6 9l6 6 6-6"
-                        stroke="#7c5cbf"
-                        stroke-width="2.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></path></svg
-                    ></span
-                  >
-                </div>
-                <div class="t-acc-body">
-                  For any questions or concerns, feel free to <a href="/contact">contact us</a>. We're happy to help!
-                  <br><b>Website: https://abcdkbd.com 
-                  <br>Email: support@recursivezero.com 
-                  <br>Grievance Officer: Keshav Mohta,xkeshav@gmail.com 
-                  <br>Thank you for using abcdkbd.com!
-                </div>
-              </div>
-            </div>
-            <!-- END CONTENT -->
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
           </div>
-          <!-- END BODY -->
+          <div class="t-acc-body">
+            Users must behave respectfully and follow all platform guidelines. Users must not:
+            <ul>
+              <li>Upload or share offensive or harmful content</li>
+              <li>Attempt to hack, damage, or reverse-engineer the website</li>
+              <li>Use bots, scrapers, or automated tools to access the site</li>
+              <li>Disrupt the platform for others</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. Intellectual Property -->
+        <div class="t-acc" id="t4">
+          <div class="t-acc-h" onclick="tToggle(4)">
+            <div class="t-ico" style="background:#fce7f3">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#be185d"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle><path d="M14.5 10a3 3 0 1 0 0 4"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>5. Intellectual Property</h3>
+              <p>All content on this site is owned by RecursiveZero or its content creators.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            All content on abcdkbd.com, including text, images, animations, audio/visual material, and code is the
+            property of <strong>RecursiveZero</strong> or its content creators and is protected by copyright laws. You may
+            use content <b>only for personal, non-commercial educational purposes.</b>
+          </div>
+        </div>
+
+        <!-- 6. Parental Responsibility -->
+        <div class="t-acc" id="t5">
+          <div class="t-acc-h" onclick="tToggle(5)">
+            <div class="t-ico" style="background:#e0f2fe">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0369a1"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>6. Parental Responsibility</h3>
+              <p>Parents or guardians are responsible for their child's activity and consent.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            Parents and guardians are fully responsible for monitoring their child's activity on the platform and
+            providing appropriate consent. Parents or guardians are responsible for:
+            <ul>
+              <li>Monitoring their child's activity on the website</li>
+              <li>Providing consent where required</li>
+              <li>Reporting any inappropriate content</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 7. External Links -->
+        <div class="t-acc" id="t6">
+          <div class="t-acc-h" onclick="tToggle(6)">
+            <div class="t-ico" style="background:#f0fdf4">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#166534"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>7. External Links</h3>
+              <p>We may link to third-party educational content. We are not responsible for them.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            The website may contain links to third-party educational content. We are <b>not responsible</b> for the content
+            or privacy policies of external sites. Please use discretion before navigating away from our site.
+          </div>
+        </div>
+
+        <!-- 8. Limitation of Liability -->
+        <div class="t-acc" id="t7">
+          <div class="t-acc-h" onclick="tToggle(7)">
+            <div class="t-ico" style="background:#fff7ed">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#c2410c"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                ></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>8. Limitation of Liability</h3>
+              <p>We strive for accuracy but are not liable for any errors or interruptions.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            We strive to provide accurate and safe content. However, we are not liable for:
+            <ul>
+              <li>Any data loss, harm, or interruption caused by the website</li>
+              <li>Mistakes, typos, or inaccuracies in learning material</li>
+            </ul>
+            Use of the platform is at your own risk.
+          </div>
+        </div>
+
+        <!-- 9. Modification of Terms -->
+        <div class="t-acc" id="t8">
+          <div class="t-acc-h" onclick="tToggle(8)">
+            <div class="t-ico" style="background:#f5f3ff">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#6d28d9"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>9. Modification of Terms</h3>
+              <p>We may update these Terms at any time. Continued use means acceptance.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            We reserve the right to change these Terms at any time. Updated terms will be posted here with a new "Last
+            Updated" date. Continued use of the platform constitutes acceptance of the revised terms.
+          </div>
+        </div>
+
+        <!-- 10. Termination -->
+        <div class="t-acc" id="t9">
+          <div class="t-acc-h" onclick="tToggle(9)">
+            <div class="t-ico" style="background:#fef2f2">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#b91c1c"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle><path d="M4.93 4.93l14.14 14.14"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>10. Termination</h3>
+              <p>We may restrict or suspend access if these Terms are violated.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            We reserve the right to restrict, suspend, or terminate access for any user who violates these Terms.
+          </div>
+        </div>
+
+        <!-- 11. Governing Law -->
+        <div class="t-acc" id="t10">
+          <div class="t-acc-h" onclick="tToggle(10)">
+            <div class="t-ico" style="background:#ecfdf5">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#065f46"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3v18M3 6h18"></path><path d="M6 6l-3 6s3 3 6 0l-3-6z"></path><path
+                  d="M18 6l-3 6s3 3 6 0l-3-6z"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>11. Governing Law</h3>
+              <p>These Terms are governed by the laws of India. Disputes are subject to Surat courts.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            These Terms shall be governed by and interpreted under the laws of India. Any disputes shall be subject to
+            the jurisdiction of <b>Surat courts.</b>
+          </div>
+        </div>
+
+        <!-- 12. Contact -->
+        <div class="t-acc" id="t11">
+          <div class="t-acc-h" onclick="tToggle(11)">
+            <div class="t-ico" style="background:#eff6ff">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1e40af"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>12. Contact</h3>
+              <p>For questions, concerns, or requests, feel free to contact us.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            For any questions or concerns, feel free to <a href="/contact">contact us</a>. We're happy to help!<br />
+            <b>Website:</b> https://abcdkbd.com<br />
+            <b>Email:</b> support@recursivezero.com<br />
+            <b>Grievance Officer:</b> Keshav Mohta, xkeshav@gmail.com<br />
+            Thank you for using abcdkbd.com!
+          </div>
         </div>
       </div>
-
-      <script is:inline>
-        function tToggle(i) {
-          document.getElementById("t" + i).classList.toggle("open");
-        }
-        function tGo(i) {
-          var el = document.getElementById("t" + i);
-          if (!el.classList.contains("open")) el.classList.add("open");
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      </script>
+      <!-- END CONTENT -->
     </div>
+    <!-- END BODY -->
   </div>
+
+  <script is:inline>
+    function tToggle(i) {
+      document.getElementById("t" + i).classList.toggle("open");
+    }
+    function tGo(i) {
+      var el = document.getElementById("t" + i);
+      if (!el.classList.contains("open")) el.classList.add("open");
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function downloadTermsPDF() {
+      // Open all accordions
+      for (var i = 0; i < 12; i++) {
+        var el = document.getElementById("t" + i);
+        if (el) el.classList.add("open");
+      }
+
+      // Collect content
+      var welcome = document.querySelector(".t-welcome") ? document.querySelector(".t-welcome").outerHTML : "";
+      var sections = "";
+      for (var j = 0; j < 12; j++) {
+        var sec = document.getElementById("t" + j);
+        if (sec) sections += sec.outerHTML;
+      }
+
+      // Open clean popup and print
+      var printWin = window.open("", "_blank", "width=900,height=700");
+      printWin.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8"/>
+          <title>Terms and Conditions – abcdkbd.com</title>
+          <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+          <style>
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+            body { font-family: 'Nunito', sans-serif; background: #fff; color: #333; padding: 30px 40px; }
+            h1 { font-size: 22px; font-weight: 800; color: #1a1a2e; margin-bottom: 4px; }
+            .meta { font-size: 11px; color: #888; margin-bottom: 20px; }
+            .t-welcome {
+              background: #faf8ff; border: 1px solid #ede9fc; border-radius: 10px;
+              padding: 14px 18px; margin-bottom: 14px; display: flex; gap: 12px; align-items: flex-start;
+            }
+            .t-star { display: none; }
+            .pp-dl-btn { display: none; }
+            .t-welcome-body p { font-size: 13px; font-weight: 600; color: #374151; line-height: 1.65; margin: 0; }
+            .t-acc {
+              background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+              margin-bottom: 10px; overflow: hidden;
+              page-break-inside: avoid; break-inside: avoid;
+            }
+            .t-acc-h { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #faf9ff; }
+            .t-ico {
+              width: 34px; height: 34px; border-radius: 50%;
+              display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            }
+            .t-acc-info h3 { font-size: 14px; font-weight: 800; color: #1a1a2e; margin: 0 0 2px; }
+            .t-acc-info p  { font-size: 12px; color: #6b7280; margin: 0; }
+            .t-chev { display: none; }
+            .t-acc-body {
+              display: block !important;
+              padding: 10px 16px 14px 62px;
+              font-size: 13px; font-weight: 600; color: #4b5563; line-height: 1.75;
+              border-top: 1px solid #f0eeff;
+            }
+            .t-acc-body ul { padding-left: 18px; margin: 6px 0; }
+            .t-acc-body li { margin-bottom: 4px; }
+            .t-acc-body a  { color: #7c5cbf; text-decoration: none; }
+            .t-acc-body b, .t-acc-body strong { font-weight: 800; }
+            @page { margin: 1.5cm 1.8cm; size: A4; }
+          </style>
+        </head>
+        <body>
+          <h1>Terms and Conditions</h1>
+          <p class="meta">abcdkbd.com &nbsp;|&nbsp; abcdkbd.com</p>
+          ${welcome}
+          ${sections}
+          <script>
+            window.onload = function() {
+              window.print();
+              window.onafterprint = function() { window.close(); };
+            };
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWin.document.close();
+    }
+  </script>
 </BaseLayout>

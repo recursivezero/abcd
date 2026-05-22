@@ -8,8 +8,11 @@ const meta = {
 ---
 
 <style is:inline>
-  /* ── GOOGLE FONT ── */
   @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
+
+  * {
+    box-sizing: border-box;
+  }
 
   .c-wrap {
     max-width: 1450px;
@@ -17,25 +20,25 @@ const meta = {
     margin: 0 auto;
     padding: 30px 40px 60px;
     font-family: "Nunito", sans-serif;
+    background: #f7f7fb;
   }
 
-  /* ── HERO ── */
   .cookies-hero-image {
     display: block;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     width: 100%;
   }
   .cookies-hero-image img {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 20px;
   }
 
-  /* ── BODY GRID ── */
   .c-body {
     display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
+    grid-template-columns: 220px 1fr;
+    gap: 1.2rem;
     align-items: start;
   }
 
@@ -43,40 +46,40 @@ const meta = {
   .c-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.85rem;
+    position: sticky;
+    top: 20px;
   }
 
   .c-box {
     background: #fff;
-    border: 1.5px solid #ede9fc;
-    border-radius: 18px;
-    padding: 1.3rem 1.4rem;
-    box-shadow: 0 2px 12px rgba(124, 92, 191, 0.06);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
   }
 
   .c-box-title {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 800;
-    color: #a78bfa;
+    color: #9ca3af;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.65rem;
     display: block;
   }
 
-  /* TOC */
   .c-toc {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1px;
   }
   .c-toc li {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 9px;
     padding: 6px 8px;
     border-radius: 10px;
     cursor: pointer;
@@ -85,27 +88,34 @@ const meta = {
   .c-toc li:hover {
     background: #f5f3ff;
   }
+  .c-toc li.active {
+    background: #f0edff;
+  }
+  .c-toc li.active span.lbl {
+    color: #6d28d9;
+    font-weight: 800;
+  }
   .c-toc li span.lbl {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
     color: #374151;
+    line-height: 1.3;
   }
 
-  /* Number badges */
   .n {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 800;
     flex-shrink: 0;
   }
   .n1 {
     background: #ede9fe;
-    color: #7c3aed;
+    color: #6d28d9;
   }
   .n2 {
     background: #dbeafe;
@@ -128,313 +138,248 @@ const meta = {
     color: #0369a1;
   }
 
-  /* ── PRIVACY MATTERS BOX ── */
   .c-box.privacy {
     text-align: center;
-    padding: 1.4rem 1.3rem 1.5rem;
+    padding: 1.2rem 1rem 0.9rem;
   }
-
   .c-privacy-icon {
-    width: 58px;
-    height: 58px;
-    background: linear-gradient(135deg, #9b72e6 0%, #7c5cbf 100%);
+    width: 54px;
+    height: 54px;
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 0.7rem;
-    box-shadow: 0 4px 12px rgba(124, 92, 191, 0.3);
+    margin: 0 auto 0.6rem;
+    box-shadow: 0 4px 14px rgba(109, 40, 217, 0.35);
   }
-
   .c-box.privacy h4 {
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 800;
     color: #1a1a2e;
-    margin: 0 0 4px;
+    margin: 0 0 5px;
   }
   .c-box.privacy p {
-    font-size: 13px;
+    font-size: 12px;
     color: #6b7280;
-    margin: 0 0 0.9rem;
-    line-height: 1.55;
+    margin: 0 0 0.85rem;
+    line-height: 1.5;
   }
-
+  .c-privacy-deco {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.75rem;
+    font-size: 40px;
+    line-height: 1;
+  }
   .c-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: #7c5cbf;
+    background: #6d28d9;
     color: #fff;
     border-radius: 999px;
-    padding: 9px 22px;
-    font-size: 13.5px;
+    padding: 9px 20px;
+    font-size: 13px;
     font-weight: 800;
     font-family: "Nunito", sans-serif;
     text-decoration: none;
     transition:
       background 0.15s,
       transform 0.1s;
-    letter-spacing: 0.01em;
   }
   .c-btn:hover {
-    background: #6344a8;
+    background: #5b21b6;
     transform: translateY(-1px);
   }
   .c-btn .arr {
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 50%;
-    font-size: 12px;
-    line-height: 1;
+    font-size: 13px;
+    font-weight: 900;
   }
 
-  /* ── LAST UPDATED BOX ── */
-  .c-box.updated {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .c-updated-icon {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    margin-top: 2px;
-    background: #ede9fe;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .c-box.updated h4 {
-    font-size: 14px;
-    font-weight: 800;
-    color: #1a1a2e;
-    margin: 0 0 4px;
-  }
-  .c-box.updated p {
-    font-size: 12.5px;
-    color: #6b7280;
-    line-height: 1.55;
-    margin: 0;
-  }
-  .c-box.updated span.date {
-    color: #7c5cbf;
-    font-weight: 800;
-  }
-
-  /* ── CONTENT AREA ── */
+  /* ── CONTENT ── */
   .c-content {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.55rem;
     min-width: 0;
   }
 
-  /* Intro banner */
-  .c-welcome {
+  .c-section {
     background: #fff;
-    border: 1.5px solid #ede9fc;
-    border-radius: 18px;
-    padding: 1.1rem 1.3rem;
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    box-shadow: 0 2px 12px rgba(124, 92, 191, 0.06);
-  }
-  .c-star {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #9b72e6 0%, #7c5cbf 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #fff;
-    font-size: 18px;
-    box-shadow: 0 2px 8px rgba(124, 92, 191, 0.3);
-  }
-  .c-welcome p {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #374151;
-    line-height: 1.65;
-    margin: 0;
-  }
-
-  /* ── ACCORDION ── */
-  .c-acc {
-    background: #fff;
-    border: 1.5px solid #ede9fc;
-    border-radius: 18px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(124, 92, 191, 0.05);
-    transition: box-shadow 0.2s;
-  }
-  .c-acc:hover {
-    box-shadow: 0 4px 18px rgba(124, 92, 191, 0.1);
-  }
-  .c-acc.open {
-    box-shadow: 0 4px 18px rgba(124, 92, 191, 0.12);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.055);
   }
 
-  .c-acc-h {
+  .c-sec-head {
     display: flex;
-    align-items: center;
-    gap: 13px;
-    padding: 16px 20px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.15s;
-  }
-  .c-acc-h:hover {
-    background: #faf9ff;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px 16px;
   }
 
   .c-ico {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    overflow: hidden;
+  }
+  .c-ico svg {
+    display: block;
+    flex-shrink: 0;
   }
 
-  .c-acc-info {
+  .c-sec-text {
     flex: 1;
     min-width: 0;
   }
-  .c-acc-info h3 {
-    font-size: 15.5px;
+  .c-sec-text h3 {
+    font-size: 16.5px;
     font-weight: 800;
-    color: #1a1a2e;
-    margin: 0 0 3px;
+    color: #111827;
+    margin: 0 0 4px;
   }
-  .c-acc-info p {
+  .c-sec-text p.sub {
     font-size: 13px;
     font-weight: 600;
     color: #6b7280;
     margin: 0;
+    line-height: 1.55;
+  }
+  .c-sec-text p.sub strong {
+    color: #6d28d9;
   }
 
-  /* Chevron */
-  .c-chev {
-    width: 28px;
-    height: 28px;
+  .c-sec-body {
+    padding: 0 20px 18px 78px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #4b5563;
+    line-height: 1.75;
+  }
+  .c-sec-body a {
+    color: #6d28d9;
+    text-decoration: none;
+  }
+  .c-sec-body a:hover {
+    text-decoration: underline;
+  }
+  .c-sec-body ul {
+    margin: 4px 0;
+    padding-left: 18px;
+  }
+  .c-sec-body li {
+    margin-bottom: 3px;
+  }
+
+  /* ── TYPE CARDS 4-col ── */
+  .c-type-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 2px;
+  }
+  .c-type-card {
+    border-radius: 14px;
+    padding: 16px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 7px;
+  }
+  .c-type-card ul {
+    text-align: left;
+    width: 100%;
+  }
+  .c-card-ico {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
     border-radius: 50%;
-    background: #f3f0fd;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition:
-      transform 0.22s,
-      background 0.15s;
+    margin-bottom: 4px;
+    overflow: hidden;
   }
-  .c-chev svg {
+  .c-card-ico svg {
     display: block;
-  }
-  .c-acc.open .c-chev {
-    transform: rotate(180deg);
-    background: #7c5cbf;
-  }
-  .c-acc.open .c-chev svg path {
-    stroke: #fff;
+    flex-shrink: 0;
   }
 
-  /* Expanded body */
-  .c-acc-body {
-    display: none;
-    padding: 4px 20px 18px 73px;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #4b5563;
-    line-height: 1.78;
-    border-top: 1.5px solid #f3f0fd;
-  }
-  .c-acc.open .c-acc-body {
-    display: block;
-  }
-  .c-acc-body a {
-    color: #7c5cbf;
-    text-decoration: none;
-  }
-  .c-acc-body a:hover {
-    text-decoration: underline;
-  }
-  .c-acc-body ul {
-    margin: 6px 0 4px;
-    padding-left: 18px;
-  }
-  .c-acc-body li {
-    margin-bottom: 3px;
-  }
-
-  /* Cookie type cards inside accordion */
-  .c-type-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 10px;
-  }
-  .c-type-card {
-    border-radius: 12px;
-    padding: 12px 14px;
-    font-size: 13px;
-  }
   .c-type-card h5 {
     font-size: 13px;
     font-weight: 800;
-    margin: 0 0 5px;
+    margin: 0;
+    line-height: 1.35;
   }
   .c-type-card p {
     font-size: 12px;
     font-weight: 600;
     color: #6b7280;
-    margin: 0 0 5px;
+    margin: 0;
+    line-height: 1.5;
   }
   .c-type-card ul {
-    margin: 0;
+    margin: 2px 0 0;
     padding-left: 14px;
     font-size: 12px;
     color: #6b7280;
+    font-weight: 600;
+  }
+  .c-type-card li {
+    margin-bottom: 3px;
   }
 
-  /* Control methods row */
+  /* ── CONTROL ROW ── */
   .c-control-row {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+    margin-top: 8px;
   }
   .c-control-item {
-    flex: 1;
-    min-width: 140px;
     background: #f5f3ff;
     border-radius: 12px;
-    padding: 10px 12px;
+    padding: 11px 13px;
     display: flex;
     gap: 10px;
     align-items: flex-start;
   }
-  .c-control-item .ci-ico {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
+  .ci-ico {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .ci-ico svg {
+    display: block;
     flex-shrink: 0;
   }
   .c-control-item h6 {
     font-size: 12.5px;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #111827;
     margin: 0 0 2px;
   }
   .c-control-item p {
@@ -442,12 +387,18 @@ const meta = {
     font-weight: 600;
     color: #6b7280;
     margin: 0;
+    line-height: 1.4;
   }
   .c-control-item a {
-    color: #7c5cbf;
+    color: #6d28d9;
+    font-weight: 800;
   }
 
-  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .c-type-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
   @media (max-width: 900px) {
     .c-body {
       grid-template-columns: 1fr;
@@ -455,6 +406,14 @@ const meta = {
     .c-wrap {
       padding: 20px 16px 40px;
     }
+    .c-sec-body {
+      padding-left: 20px;
+    }
+    .c-control-row {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 600px) {
     .c-type-grid {
       grid-template-columns: 1fr;
     }
@@ -463,20 +422,19 @@ const meta = {
 
 <BaseLayout meta={meta}>
   <div class="c-wrap">
-    <!-- HERO IMAGE -->
     <div class="cookies-hero-image">
       <img src="/assets/images/hero-cookies.png" alt="Cookies Policy" />
     </div>
 
-    <!-- BODY -->
     <div class="c-body">
-      <!-- ══ SIDEBAR ══ -->
+      <!-- SIDEBAR -->
       <div class="c-sidebar">
-        <!-- Table of Contents -->
         <div class="c-box">
           <span class="c-box-title">On this page</span>
           <ul class="c-toc">
-            <li onclick="cGo(0)"><span class="n n1">1</span><span class="lbl">What Are Cookies?</span></li>
+            <li class="active" onclick="cGo(0)">
+              <span class="n n1">1</span><span class="lbl">What Are Cookies?</span>
+            </li>
             <li onclick="cGo(1)"><span class="n n2">2</span><span class="lbl">Types of Cookies We Use</span></li>
             <li onclick="cGo(2)"><span class="n n3">3</span><span class="lbl">How You Can Control Cookies</span></li>
             <li onclick="cGo(3)"><span class="n n4">4</span><span class="lbl">Third-Party Cookies</span></li>
@@ -484,183 +442,241 @@ const meta = {
             <li onclick="cGo(5)"><span class="n n6">6</span><span class="lbl">Contact Us</span></li>
           </ul>
         </div>
-
-        <!-- Your Privacy Matters -->
         <div class="c-box privacy">
           <div class="c-privacy-icon">
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#fff"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              <path d="M9 12l2 2 4-4"></path>
+            <!-- Purple shield with checkmark — matches sidebar image exactly -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2L4 5.5V11c0 5 3.5 9.3 8 10.5C16.5 20.3 20 16 20 11V5.5L12 2z"
+                fill="rgba(255,255,255,0.25)"
+                stroke="#fff"
+                stroke-width="1.8"
+                stroke-linejoin="round"></path>
+              <polyline
+                points="8.5,12 11,14.5 15.5,9.5"
+                stroke="#fff"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"></polyline>
             </svg>
           </div>
           <h4>Your Privacy Matters</h4>
-          <p>We respect your privacy and are committed to being transparent about how we use cookies.</p>
-          <a href="/contact" class="c-btn">
-            Contact Us
-            <span class="arr">›</span>
-          </a>
-        </div>
-
-        <!-- Last Updated -->
-        <div class="c-box updated">
-          <div class="c-updated-icon">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#7c3aed"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-          </div>
-          <div>
-            <h4>Last Updated</h4>
-            <p>This policy was last updated on <span class="date">July 16, 2025</span>.</p>
-          </div>
+          <p>We respect your privacy and are committed to being transparene.</p>
+          <a href="/contact" class="c-btn">Contact Us <span class="arr">›</span></a>
+          <div class="c-privacy-deco">☁️🔒</div>
         </div>
       </div>
-      <!-- END SIDEBAR -->
 
-      <!-- ══ MAIN CONTENT ══ -->
+      <!-- MAIN CONTENT -->
       <div class="c-content">
-        <!-- Intro Banner -->
-        <div class="c-welcome">
-          <div class="c-star">🍪</div>
-          <p>
-            This policy explains how <strong>abcdkbd.com</strong> uses cookies and similar technologies to improve your experience.<br
-            />
-            By continuing to use our site, you agree to our use of cookies as described below.
-          </p>
-        </div>
-
-        <!-- 1. What Are Cookies? -->
-        <div class="c-acc" id="c0">
-          <div class="c-acc-h" onclick="cToggle(0)">
-            <div class="c-ico" style="background:#ede9fe">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#7c3aed"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <circle cx="8.5" cy="10" r="1.5" fill="#7c3aed"></circle>
-                <circle cx="15.5" cy="10" r="1.5" fill="#7c3aed"></circle>
-                <circle cx="12" cy="15" r="1" fill="#7c3aed"></circle>
-                <circle cx="9" cy="14" r="0.8" fill="#7c3aed"></circle>
-                <circle cx="15" cy="14" r="0.8" fill="#7c3aed"></circle>
+        <!-- 1. What Are Cookies -->
+        <div class="c-section" id="c0">
+          <div class="c-sec-head">
+            <!-- Cookie icon: center circle + 6 radial dots around it -->
+            <div class="c-ico" style="background:#ede9fe;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- center filled circle -->
+                <circle cx="12" cy="12" r="3.2" fill="#7c3aed"></circle>
+                <!-- 6 outer dots evenly spaced in a ring (r=7.5 from center) -->
+                <!-- top -->
+                <circle cx="12" cy="4.5" r="1.8" fill="#7c3aed"></circle>
+                <!-- top-right -->
+                <circle cx="18.99" cy="8.25" r="1.8" fill="#7c3aed"></circle>
+                <!-- bottom-right -->
+                <circle cx="18.99" cy="15.75" r="1.8" fill="#7c3aed"></circle>
+                <!-- bottom -->
+                <circle cx="12" cy="19.5" r="1.8" fill="#7c3aed"></circle>
+                <!-- bottom-left -->
+                <circle cx="5.01" cy="15.75" r="1.8" fill="#7c3aed"></circle>
+                <!-- top-left -->
+                <circle cx="5.01" cy="8.25" r="1.8" fill="#7c3aed"></circle>
               </svg>
             </div>
-            <div class="c-acc-info">
-              <h3>1. What Are Cookies?</h3>
-              <p>Small text files stored on your device when you visit a website.</p>
+            <div class="c-sec-text">
+              <h3>1. &nbsp;What Are Cookies?</h3>
+              <p class="sub">
+                Cookies are small text files stored on your device when you visit a website.<br />They help the site
+                remember your preferences and improve your experience.
+              </p>
             </div>
-            <span class="c-chev">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M6 9l6 6 6-6"
-                  stroke="#7c5cbf"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </span>
-          </div>
-          <div class="c-acc-body">
-            Cookies are small text files stored on your device when you visit a website. They help the site remember
-            your preferences and improve your experience on future visits. Cookies do <strong>not</strong> contain personal
-            information like your name or password — they simply help the website function better.
           </div>
         </div>
 
         <!-- 2. Types of Cookies We Use -->
-        <div class="c-acc" id="c1">
-          <div class="c-acc-h" onclick="cToggle(1)">
-            <div class="c-ico" style="background:#dbeafe">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#1d4ed8"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 17 12 22 22 17"></polyline>
-                <polyline points="2 12 12 17 22 12"></polyline>
+        <div class="c-section" id="c1">
+          <div class="c-sec-head">
+            <!-- Blue stacked layers with gradient fills — matches image -->
+            <div class="c-ico" style="background:#dbeafe;">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- bottom layer -->
+                <polygon
+                  points="13,18.5 2,13 13,7.5 24,13"
+                  fill="#93c5fd"
+                  stroke="#3b82f6"
+                  stroke-width="1.4"
+                  stroke-linejoin="round"></polygon>
+                <!-- middle layer -->
+                <polygon
+                  points="13,14 2,8.5 13,3 24,8.5"
+                  fill="#bfdbfe"
+                  stroke="#2563eb"
+                  stroke-width="1.4"
+                  stroke-linejoin="round"></polygon>
+                <!-- top layer -->
+                <polygon
+                  points="13,9.5 2,4 13,-1.5 24,4"
+                  fill="#dbeafe"
+                  stroke="#1d4ed8"
+                  stroke-width="1.4"
+                  stroke-linejoin="round"></polygon>
+                <!-- redraw visible stacked appearance -->
+                <polygon
+                  points="13,22 3,16.5 13,11 23,16.5"
+                  fill="#93c5fd"
+                  stroke="#3b82f6"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"></polygon>
+                <polygon
+                  points="13,17 3,11.5 13,6 23,11.5"
+                  fill="#bfdbfe"
+                  stroke="#2563eb"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"></polygon>
+                <polygon
+                  points="13,12 3,6.5 13,1 23,6.5"
+                  fill="#eff6ff"
+                  stroke="#1d4ed8"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"></polygon>
               </svg>
             </div>
-            <div class="c-acc-info">
-              <h3>2. Types of Cookies We Use</h3>
-              <p>We use four categories of cookies on abcdkbd.com.</p>
+            <div class="c-sec-text">
+              <h3>2. &nbsp;Types of Cookies We Use</h3>
             </div>
-            <span class="c-chev">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M6 9l6 6 6-6"
-                  stroke="#7c5cbf"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </span>
           </div>
-          <div class="c-acc-body">
-            We use the following types of cookies to operate and improve our platform:
+          <div class="c-sec-body">
             <div class="c-type-grid">
-              <!-- Essential -->
-              <div class="c-type-card" style="background:#f0fdf4; border: 1.5px solid #bbf7d0;">
-                <h5 style="color:#15803d;">🛡️ a. Essential Cookies</h5>
-                <p>Necessary for the website to function properly.</p>
+              <!-- a. Essential — green shield with bold checkmark -->
+              <div class="c-type-card" style="background:#f0fdf4; border:1.5px solid #bbf7d0;">
+                <div class="c-card-ico" style="background:#dcfce7;">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- shield body -->
+                    <path
+                      d="M11 2L3 5.5V10.5c0 4.8 3.3 8.8 8 9.8 4.7-1 8-5 8-9.8V5.5L11 2z"
+                      fill="#86efac"
+                      stroke="#16a34a"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"></path>
+                    <!-- inner shield highlight -->
+                    <path d="M11 4.5L5.5 7V11c0 3.3 2.3 6.1 5.5 6.8 3.2-.7 5.5-3.5 5.5-6.8V7L11 4.5z" fill="#bbf7d0"
+                    ></path>
+                    <!-- checkmark -->
+                    <polyline
+                      points="7.5,11 10,13.5 15,8.5"
+                      stroke="#15803d"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      fill="none"></polyline>
+                  </svg>
+                </div>
+                <h5 style="color:#15803d;">a. Essential Cookies</h5>
+                <p>These are necessary for the website to function properly.</p>
                 <ul>
                   <li>Session management</li>
-                  <li>Login / authentication</li>
+                  <li>Login/authentication</li>
                   <li>Security</li>
                 </ul>
               </div>
-              <!-- Analytics -->
-              <div class="c-type-card" style="background:#eff6ff; border: 1.5px solid #bfdbfe;">
-                <h5 style="color:#1d4ed8;">📊 b. Analytics Cookies</h5>
+
+              <!-- b. Analytics — blue building/temple columns icon -->
+              <div class="c-type-card" style="background:#eff6ff; border:1.5px solid #bfdbfe;">
+                <div class="c-card-ico" style="background:#dbeafe;">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- roof/pediment top -->
+                    <path
+                      d="M2.5 8.5L11 3.5L19.5 8.5H2.5z"
+                      fill="#93c5fd"
+                      stroke="#2563eb"
+                      stroke-width="1.4"
+                      stroke-linejoin="round"></path>
+                    <!-- left column -->
+                    <rect x="4" y="9" width="3" height="9" rx="0.5" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.2"
+                    ></rect>
+                    <!-- right column -->
+                    <rect x="15" y="9" width="3" height="9" rx="0.5" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.2"
+                    ></rect>
+                    <!-- middle column -->
+                    <rect x="9.5" y="9" width="3" height="9" rx="0.5" fill="#93c5fd" stroke="#2563eb" stroke-width="1.2"
+                    ></rect>
+                    <!-- base platform -->
+                    <rect
+                      x="2.5"
+                      y="18"
+                      width="17"
+                      height="2"
+                      rx="0.5"
+                      fill="#3b82f6"
+                      stroke="#1d4ed8"
+                      stroke-width="1.2"></rect>
+                  </svg>
+                </div>
+                <h5 style="color:#1d4ed8;">b. Analytics Cookies</h5>
                 <p>Used to collect anonymous usage data to improve our website.</p>
                 <ul>
                   <li>Page views, clicks, and user flow</li>
-                  <li>Device / browser info</li>
+                  <li>Device/browser info</li>
                 </ul>
               </div>
-              <!-- Preference -->
-              <div class="c-type-card" style="background:#fefce8; border: 1.5px solid #fde68a;">
-                <h5 style="color:#b45309;">⚙️ c. Preference Cookies</h5>
+
+              <!-- c. Preference — orange hub-and-spoke connected nodes icon -->
+              <div class="c-type-card" style="background:#fefce8; border:1.5px solid #fde68a;">
+                <div class="c-card-ico" style="background:#fef3c7;">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- center node -->
+                    <circle cx="11" cy="11" r="3.2" fill="#fbbf24" stroke="#d97706" stroke-width="1.8"></circle>
+                    <!-- top-left node -->
+                    <circle cx="4.5" cy="5.5" r="2.2" fill="#fed7aa" stroke="#d97706" stroke-width="1.6"></circle>
+                    <!-- top-right node -->
+                    <circle cx="17.5" cy="5.5" r="2.2" fill="#fed7aa" stroke="#d97706" stroke-width="1.6"></circle>
+                    <!-- bottom node -->
+                    <circle cx="11" cy="18.5" r="2.2" fill="#fed7aa" stroke="#d97706" stroke-width="1.6"></circle>
+                    <!-- connecting lines -->
+                    <line x1="6.3" y1="7" x2="9.2" y2="9.3" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"
+                    ></line>
+                    <line x1="15.7" y1="7" x2="12.8" y2="9.3" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"
+                    ></line>
+                    <line x1="11" y1="14.2" x2="11" y2="16.3" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"
+                    ></line>
+                  </svg>
+                </div>
+                <h5 style="color:#b45309;">c. Preference Cookies</h5>
                 <p>Remember your choices, such as:</p>
                 <ul>
                   <li>Language selection</li>
-                  <li>Theme (light / dark mode)</li>
+                  <li>Theme (light/dark mode)</li>
                 </ul>
               </div>
-              <!-- Marketing -->
-              <div class="c-type-card" style="background:#fdf2f8; border: 1.5px solid #f9a8d4;">
-                <h5 style="color:#be185d;">📢 d. Marketing / Third-Party Cookies</h5>
+
+              <!-- d. Marketing — red megaphone with small flag/pennant -->
+              <div class="c-type-card" style="background:#fdf2f8; border:1.5px solid #f9a8d4;">
+                <div class="c-card-ico" style="background:#fce7f3;">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- megaphone cone body -->
+                    <path
+                      d="M14.5 5L7 8.5H4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3l7.5 3.5V5z"
+                      fill="#fda4af"
+                      stroke="#e11d48"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"></path>
+                    <!-- small pennant/flag at top-right -->
+                    <path d="M14.5 5 L19 3.5 L18 7 Z" fill="#e11d48"></path>
+                    <!-- small sound dot -->
+                    <circle cx="17" cy="11" r="1.2" fill="#e11d48" opacity="0.7"></circle>
+                  </svg>
+                </div>
+                <h5 style="color:#be185d;">d. Marketing/ Third-Party Cookies</h5>
                 <p>Used to deliver personalized ads or integrate third-party tools.</p>
                 <ul>
                   <li>Google Ads</li>
@@ -672,58 +688,62 @@ const meta = {
         </div>
 
         <!-- 3. How You Can Control Cookies -->
-        <div class="c-acc" id="c2">
-          <div class="c-acc-h" onclick="cToggle(2)">
-            <div class="c-ico" style="background:#dcfce7">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#15803d"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="3"></circle>
+        <div class="c-section" id="c2">
+          <div class="c-sec-head">
+            <!-- Green gear/settings cog — matches image -->
+            <div class="c-ico" style="background:#dcfce7;">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- gear teeth -->
                 <path
-                  d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M21 12h-2M5 12H3M12 3V1M12 23v-2"
-                ></path>
+                  d="M13 3v2M13 21v2M3 13h2M21 13h2M5.64 5.64l1.42 1.42M19.95 19.95l1.42 1.42M19.95 6.05l-1.42 1.42M7.06 19.36l-1.42 1.42"
+                  stroke="#16a34a"
+                  stroke-width="2"
+                  stroke-linecap="round"></path>
+                <!-- gear outer ring -->
+                <path
+                  d="M10.5 4.2L9 2.5H7l-1 2.5L4.5 6.2 2 6V8l1.8 1.5-.3 2.5L2 13l1.5 2L2 17l1.8 1 .3 2.5L2 22h2l1 2.5 2.5.5 1.5 1.8 2-.3L13 28l2-1.7 2 .3 1.5-1.8 2.5-.5 1-2.5H26l-1.8-1.5.3-2.5L26 17l-1.5-2 1.5-2-1.8-1-.3-2.5L26 8V6l-2.5.2-1.5-1.5-2.5-.5L18.2 2.5H16.5L15.5 4.2l-2.5-.2-2.5.2z"
+                  fill="#bbf7d0"
+                  opacity="0.6"></path>
+                <!-- simple clean gear shape -->
+                <circle cx="13" cy="13" r="9" fill="#dcfce7" stroke="#16a34a" stroke-width="1.8"></circle>
+                <circle cx="13" cy="13" r="3.5" fill="#fff" stroke="#16a34a" stroke-width="1.8"></circle>
+                <!-- gear notches as rectangles -->
+                <rect x="11.5" y="3.5" width="3" height="2.5" rx="0.8" fill="#16a34a"></rect>
+                <rect x="11.5" y="20" width="3" height="2.5" rx="0.8" fill="#16a34a"></rect>
+                <rect x="3.5" y="11.5" width="2.5" height="3" rx="0.8" fill="#16a34a"></rect>
+                <rect x="20" y="11.5" width="2.5" height="3" rx="0.8" fill="#16a34a"></rect>
+                <rect x="6.2" y="5.5" width="2.5" height="3" rx="0.8" fill="#16a34a" transform="rotate(45 7.45 7)"
+                ></rect>
+                <rect x="17.5" y="18.2" width="2.5" height="3" rx="0.8" fill="#16a34a" transform="rotate(45 18.75 19.7)"
+                ></rect>
+                <rect x="18.2" y="5.5" width="2.5" height="3" rx="0.8" fill="#16a34a" transform="rotate(-45 19.45 7)"
+                ></rect>
+                <rect x="5.5" y="18.2" width="2.5" height="3" rx="0.8" fill="#16a34a" transform="rotate(-45 6.75 19.7)"
+                ></rect>
               </svg>
             </div>
-            <div class="c-acc-info">
-              <h3>3. How You Can Control Cookies</h3>
-              <p>You can manage or delete cookies via browser settings or our cookie banner.</p>
+            <div class="c-sec-text">
+              <h3>3. &nbsp;How You Can Control Cookies</h3>
+              <p class="sub">You can manage or delete cookies via:</p>
             </div>
-            <span class="c-chev">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M6 9l6 6 6-6"
-                  stroke="#7c5cbf"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </span>
           </div>
-          <div class="c-acc-body">
-            You can manage or delete cookies at any time through the following methods:
+          <div class="c-sec-body">
             <div class="c-control-row">
+              <!-- Browser Settings — blue globe with grid lines -->
               <div class="c-control-item">
                 <div class="ci-ico" style="background:#dbeafe;">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#1d4ed8"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                    ></path>
+                  <svg width="17" height="17" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- globe circle -->
+                    <circle cx="11" cy="11" r="9" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.6"></circle>
+                    <!-- horizontal lines -->
+                    <line x1="2" y1="11" x2="20" y2="11" stroke="#2563eb" stroke-width="1.2"></line>
+                    <!-- vertical center line -->
+                    <line x1="11" y1="2" x2="11" y2="20" stroke="#2563eb" stroke-width="1.2"></line>
+                    <!-- oval curves for longitude effect -->
+                    <ellipse cx="11" cy="11" rx="4.5" ry="9" fill="none" stroke="#2563eb" stroke-width="1.2"></ellipse>
+                    <!-- top and bottom arcs -->
+                    <path d="M2 7.5 Q11 10 20 7.5" stroke="#2563eb" stroke-width="1.1" fill="none"></path>
+                    <path d="M2 14.5 Q11 12 20 14.5" stroke="#2563eb" stroke-width="1.1" fill="none"></path>
                   </svg>
                 </div>
                 <div>
@@ -731,40 +751,45 @@ const meta = {
                   <p>Clear cookies, block third-party cookies directly from your browser.</p>
                 </div>
               </div>
+
+              <!-- Cookie Banner — purple shield -->
               <div class="c-control-item">
-                <div class="ci-ico" style="background:#dcfce7;">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#15803d"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <div class="ci-ico" style="background:#ede9fe;">
+                  <svg width="17" height="17" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M11 2L3.5 5.5V10c0 4.5 3.2 8.5 7.5 9.5C15.3 18.5 18.5 14.5 18.5 10V5.5L11 2z"
+                      fill="#ddd6fe"
+                      stroke="#6d28d9"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"></path>
+                    <path d="M11 4.5L6 7V10c0 3.2 2.2 5.9 5 6.7 2.8-.8 5-3.5 5-6.7V7L11 4.5z" fill="#ede9fe"></path>
+                    <polyline
+                      points="7.5,10.5 10,13 14.5,8"
+                      stroke="#6d28d9"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      fill="none"></polyline>
                   </svg>
                 </div>
                 <div>
                   <h6>Cookie Banner</h6>
-                  <p>On our site, accept or decline categories via the cookie consent banner.</p>
+                  <p>On our site (accept/ decline categories)</p>
                 </div>
               </div>
+
+              <!-- YourAdChoices — orange/teal sliders -->
               <div class="c-control-item">
                 <div class="ci-ico" style="background:#fef3c7;">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#b45309"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                    <polyline points="2 17 12 22 22 17"></polyline>
+                  <svg width="17" height="17" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="2" y1="6" x2="20" y2="6" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"></line>
+                    <line x1="2" y1="11" x2="20" y2="11" stroke="#0d9488" stroke-width="2" stroke-linecap="round"
+                    ></line>
+                    <line x1="2" y1="16" x2="20" y2="16" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"
+                    ></line>
+                    <circle cx="7" cy="6" r="2.8" fill="#fef3c7" stroke="#d97706" stroke-width="2"></circle>
+                    <circle cx="15" cy="11" r="2.8" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"></circle>
+                    <circle cx="7" cy="16" r="2.8" fill="#fef3c7" stroke="#d97706" stroke-width="2"></circle>
                   </svg>
                 </div>
                 <div>
@@ -777,42 +802,38 @@ const meta = {
         </div>
 
         <!-- 4. Third-Party Cookies -->
-        <div class="c-acc" id="c3">
-          <div class="c-acc-h" onclick="cToggle(3)">
-            <div class="c-ico" style="background:#fef3c7">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#b45309"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-            </div>
-            <div class="c-acc-info">
-              <h3>4. Third-Party Cookies</h3>
-              <p>Some cookies are placed by external services we integrate with.</p>
-            </div>
-            <span class="c-chev">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <div class="c-section" id="c3">
+          <div class="c-sec-head">
+            <!-- Orange people/users icon — matches image -->
+            <div class="c-ico" style="background:#fef3c7;">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- main person -->
+                <circle cx="10" cy="8" r="4" fill="#fde68a" stroke="#d97706" stroke-width="1.8"></circle>
                 <path
-                  d="M6 9l6 6 6-6"
-                  stroke="#7c5cbf"
-                  stroke-width="2.5"
+                  d="M2 22v-1.5a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7V22"
+                  stroke="#d97706"
+                  stroke-width="1.8"
                   stroke-linecap="round"
-                  stroke-linejoin="round"></path>
+                  fill="none"></path>
+                <!-- secondary person (smaller, to the right) -->
+                <circle cx="20" cy="9.5" r="2.8" fill="#fde68a" stroke="#d97706" stroke-width="1.6"></circle>
+                <path
+                  d="M22.5 22v-1a4.5 4.5 0 0 0-3.5-4.4"
+                  stroke="#d97706"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  fill="none"></path>
               </svg>
-            </span>
+            </div>
+            <div class="c-sec-text">
+              <h3>4. &nbsp;Third-Party Cookies</h3>
+              <p class="sub">
+                We may use third-party services that place their own cookies.<br />These services have their own
+                policies.
+              </p>
+            </div>
           </div>
-          <div class="c-acc-body">
-            We may use third-party services that place their own cookies on your device. These services have their own
-            privacy policies which we encourage you to review.
+          <div class="c-sec-body">
             <ul>
               <li>
                 <a href="https://policies.google.com/privacy" target="_blank">Google Analytics</a> — for anonymous usage
@@ -826,104 +847,89 @@ const meta = {
         </div>
 
         <!-- 5. Updates to This Policy -->
-        <div class="c-acc" id="c4">
-          <div class="c-acc-h" onclick="cToggle(4)">
-            <div class="c-ico" style="background:#fce7f3">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#be185d"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="1 4 1 10 7 10"></polyline>
-                <path d="M3.51 15a9 9 0 1 0 .49-4.5"></path>
-              </svg>
-            </div>
-            <div class="c-acc-info">
-              <h3>5. Updates to This Policy</h3>
-              <p>We may update this policy from time to time. Last updated: July 16, 2025.</p>
-            </div>
-            <span class="c-chev">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <div class="c-section" id="c4">
+          <div class="c-sec-head">
+            <!-- Pink circular sync/refresh arrows — exact match -->
+            <div class="c-ico" style="background:#fce7f3;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- top arc: goes from left side clockwise to right, arrow at right end -->
                 <path
-                  d="M6 9l6 6 6-6"
-                  stroke="#7c5cbf"
-                  stroke-width="2.5"
+                  d="M4.5 10 A8 8 0 0 1 19.5 10"
+                  stroke="#f43f5e"
+                  stroke-width="2.4"
                   stroke-linecap="round"
-                  stroke-linejoin="round"></path>
+                  fill="none"></path>
+                <!-- arrowhead at right end of top arc (pointing down-right) -->
+                <polyline
+                  points="17,7.5 19.5,10 22,8"
+                  stroke="#f43f5e"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"></polyline>
+                <!-- bottom arc: goes from right side clockwise to left, arrow at left end -->
+                <path
+                  d="M19.5 14 A8 8 0 0 1 4.5 14"
+                  stroke="#f43f5e"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  fill="none"></path>
+                <!-- arrowhead at left end of bottom arc (pointing up-left) -->
+                <polyline
+                  points="7,16.5 4.5,14 2,16"
+                  stroke="#f43f5e"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  fill="none"></polyline>
               </svg>
-            </span>
-          </div>
-          <div class="c-acc-body">
-            We may update this Cookies Policy from time to time to reflect changes in technology, legislation, or our
-            data practices. When we do, we will revise the "Last Updated" date at the top of this page. We encourage you
-            to check back periodically.
-            <br /><br />
-            <strong>Last updated: <span style="color:#7c5cbf;">July 16, 2025</span></strong>
+            </div>
+            <div class="c-sec-text">
+              <h3>5. &nbsp;Updates to This Policy</h3>
+              <p class="sub">
+                We may update this policy from time to time.<br />Last updated: <strong>July 16, 2025</strong>
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- 6. Contact Us -->
-        <div class="c-acc" id="c5">
-          <div class="c-acc-h" onclick="cToggle(5)">
-            <div class="c-ico" style="background:#e0f2fe">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#0369a1"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-            </div>
-            <div class="c-acc-info">
-              <h3>6. Contact Us</h3>
-              <p>For questions about our cookie usage, feel free to reach out.</p>
-            </div>
-            <span class="c-chev">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M6 9l6 6 6-6"
-                  stroke="#7c5cbf"
-                  stroke-width="2.5"
+        <div class="c-section" id="c5">
+          <div class="c-sec-head">
+            <!-- Light blue envelope — matches image -->
+            <div class="c-ico" style="background:#e0f2fe;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="4" width="20" height="16" rx="2.5" fill="#bae6fd" stroke="#0284c7" stroke-width="1.8"
+                ></rect>
+                <polyline
+                  points="2,7 12,14 22,7"
+                  stroke="#0284c7"
+                  stroke-width="1.8"
                   stroke-linecap="round"
-                  stroke-linejoin="round"></path>
+                  stroke-linejoin="round"
+                  fill="none"></polyline>
               </svg>
-            </span>
-          </div>
-          <div class="c-acc-body">
-            For any questions about our cookie usage, please <a href="/contact">contact us</a>. We're happy to help!
-            <br /><br />
-            <strong>
-              Website: <a href="https://abcdkbd.com">https://abcdkbd.com</a><br />
-              Email: <a href="mailto:abcdkbd@outlook.com">abcdkbd@outlook.com</a><br />
-              Support: <a href="mailto:support@recursivezero.com">support@recursivezero.com</a>
-            </strong>
+            </div>
+            <div class="c-sec-text">
+              <h3>6. &nbsp;Contact Us</h3>
+              <p class="sub">
+                For questions about our cookie usage, email:<br />
+                <a href="mailto:abcdkbd@outlook.com" style="color:#6d28d9;font-weight:800;">abcdkbd@outlook.com</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      <!-- END CONTENT -->
     </div>
-    <!-- END BODY -->
   </div>
 
   <script is:inline>
-    function cToggle(i) {
-      document.getElementById("c" + i).classList.toggle("open");
-    }
     function cGo(i) {
       var el = document.getElementById("c" + i);
-      if (!el.classList.contains("open")) el.classList.add("open");
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.querySelectorAll(".c-toc li").forEach(function (li, idx) {
+        li.classList.toggle("active", idx === i);
+      });
     }
   </script>
 </BaseLayout>
