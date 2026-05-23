@@ -117,7 +117,6 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   </div>
 
   <div class="action__group">
-    <slot name="left" />
     <slot name="right" />
     <button class="theme-toggle" id="headerThemeToggle" aria-label="Toggle theme" title="Toggle Theme">
       <svg
@@ -201,6 +200,7 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
 
 <div class="hero-search">
   <div class="hero-search__wrap">
+    <slot name="left" />
     <div class="hero-search__box" id="heroSearchBox">
       <span class="hero-search__icon">🔍</span>
       <input type="text" id="heroSearch" placeholder="Search games, alphabets, states..." autocomplete="off" />
@@ -631,15 +631,13 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
       link.addEventListener("click", closeMenu);
     });
   }
-
   function init() {
+    document.querySelector(".hero-search__box")?.style.removeProperty("margin-left");
     initHeroSearch();
     initThemeToggle();
     initHamburger();
     updateSpacer();
   }
-
-  // resize pe bhi update karo
   window.addEventListener("resize", updateSpacer);
 
   init();

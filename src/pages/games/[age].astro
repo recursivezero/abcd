@@ -24,12 +24,13 @@ const meta = {
 ---
 
 <BaseLayout meta={meta}>
+  <Fragment slot="header-left">
+    <Back />
+  </Fragment>
   <div class="games-page">
     <div class="page-header">
-      <Back />
       <h2>Games for {displayName}</h2>
     </div>
-
     <div id="gamesContainer">
       {games.length === 0 ? <p>No games found for this age group.</p> : <GamesGrid games={games} />}
     </div>

@@ -2,7 +2,7 @@
 
 ---
 
-<a href="/games" class="back" aria-label="Go back">
+<a href="/games" class="back" aria-label="Go back" id="backBtn">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -18,70 +18,41 @@
   </svg>
 </a>
 
+<script is:inline>
+  function moveBackBtn() {
+    const btn = document.getElementById("backBtn");
+    const wrap = document.querySelector(".hero-search__wrap");
+    if (btn && wrap && !wrap.contains(btn)) {
+      wrap.insertBefore(btn, wrap.firstChild);
+    }
+  }
+  moveBackBtn();
+  document.addEventListener("astro:page-load", moveBackBtn);
+</script>
+
 <style is:global>
   .back {
-    position: fixed;
-    top: 10rem;
-    left: 1rem;
-    z-index: 9999;
-
     width: 44px;
     height: 44px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
     text-decoration: none;
-
-    background: linear-gradient(135deg, rgba(3, 26, 32, 0.96), rgba(5, 46, 56, 0.96));
-
-    border: 1px solid rgba(34, 211, 238, 0.18);
-
-    color: #22d3ee;
-
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-
-    transition:
-      transform 0.2s ease,
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .back:hover {
-    transform: scale(1.06);
-
-    border-color: rgba(34, 211, 238, 0.4);
-
-    box-shadow:
-      0 6px 18px rgba(0, 0, 0, 0.45),
-      0 0 18px rgba(34, 211, 238, 0.14);
-  }
-
-  .back svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  [data-theme="light"] .back {
     background: white;
     border: 1px solid #e2e8f0;
     color: #7c3aed;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
   }
-
-  [data-theme="light"] .back:hover {
+  .back:hover {
     background: #ede9fe;
     border-color: #7c3aed;
-    color: #7c3aed;
+    transform: scale(1.06);
   }
-
-  @media (max-width: 768px) {
-    .back {
-      top: 7.8rem;
-      left: 0.9rem;
-      width: 40px;
-      height: 40px;
-    }
+  .back svg {
+    width: 18px;
+    height: 18px;
   }
 </style>

@@ -6,27 +6,25 @@
     --header-height: 80px;
     --sidebar-width: 16ch;
     --timing: 0.42s;
-    --ease: linear(
-      0 0%,
-      0.0036 9.62%,
-      0.0185 16.66%,
-      0.0489 23.03%,
-      0.0962 28.86%,
-      0.1705 34.93%,
-      0.269 40.66%,
-      0.3867 45.89%,
-      0.5833 52.95%,
-      0.683 57.05%,
-      0.7829 62.14%,
-      0.8621 67.46%,
-      0.8991 70.68%,
-      0.9299 74.03%,
-      0.9545 77.52%,
-      0.9735 81.21%,
-      0.9865 85%,
-      0.9949 89.15%,
-      1 100%
-    );
+    --ease: linear(0 0%,
+        0.0036 9.62%,
+        0.0185 16.66%,
+        0.0489 23.03%,
+        0.0962 28.86%,
+        0.1705 34.93%,
+        0.269 40.66%,
+        0.3867 45.89%,
+        0.5833 52.95%,
+        0.683 57.05%,
+        0.7829 62.14%,
+        0.8621 67.46%,
+        0.8991 70.68%,
+        0.9299 74.03%,
+        0.9545 77.52%,
+        0.9735 81.21%,
+        0.9865 85%,
+        0.9949 89.15%,
+        1 100%);
     --sidebar-collapsed: 4rem;
     --sidebar-expanded: 16ch;
     --icon-size: 1.5rem;
@@ -75,10 +73,11 @@
 
   .sidebar_layout {
     position: relative;
-    width: max-content;
-    margin: 0 auto;
-    min-height: calc(100svh - var(--header-height));
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
     display: flex;
+    justify-content: flex-start;
   }
 
   [popover] {
@@ -89,13 +88,14 @@
     margin: 0;
     flex-shrink: 0;
     right: 100%;
+    left: 0 !important;
     top: var(--header-height);
     border: 0;
     background: var(--background);
-    height: 100%;
+    height: fit-content;
+    min-height: unset;
     padding: 1rem 0;
     overflow: visible;
-    min-height: calc(100svh - var(--header-height));
     border-radius: 0.75rem;
     position: sticky;
     border-right: 1px solid var(--border);
@@ -274,17 +274,25 @@
       }
     }
 
+    .top-actions {
+      position: relative !important;
+      margin: 0 0 1rem 0 !important;
+      border-bottom: 1px solid var(--border);
+      border-top: none !important;
+    }
+
     .actions {
-      justify-content: flex-end;
-      position: sticky;
-      bottom: 0;
-      z-index: 1;
-      right: 0;
-      left: 0;
-      translate: 0 calc(clamp(0, var(--ty), var(--distance) - 88) * -1px);
-      transition-duration: var(--timing);
-      transition-timing-function: var(--ease);
-      min-width: var(--sidebar-expanded);
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+
+      padding: 0.5rem 1rem 1rem 1rem !important;
+      margin: -12px 0 0 0 !important;
+
+      position: relative !important;
+
+      border: none !important;
+      border-bottom: 1px solid var(--border) !important;
     }
 
     [popover] .bear-link {
@@ -452,7 +460,6 @@
     gap: 0 0.25rem;
     padding-inline: 0.5rem;
     padding: 1rem;
-    border-top: 1px solid var(--border);
     margin-top: auto;
     position: sticky;
     bottom: 0;
