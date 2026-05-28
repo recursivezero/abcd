@@ -122,7 +122,8 @@
     "astro": "astro",
     "check": "astro check",
     "lint": "prettier -w --cache . && prettier -w --cache **/*.astro",
-    "clean": "rm -rf dist rm -rf build",
+    "clean": "rm -rf dist build .astro node_modules/.vite .vitepress",
+    "rebuild": "npm run clean && astro build",
     "nuke": "shx rm -rf node_modules && rm package-lock.json && npm run clean",
     "setup:hooks": "sh ./setup-hooks.sh"
   },
@@ -132,6 +133,7 @@
     "@astrojs/node": "9.1.2",
     "@astrojs/partytown": "2.1.4",
     "@astrojs/sitemap": "3.4.1",
+    "@builder.io/partytown": "0.10.3",
     "@fontsource/roboto": "5.1.0",
     "astro": "5.4.1",
     "astro-social-share": "2.2.0",

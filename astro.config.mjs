@@ -24,14 +24,15 @@ export default defineConfig({
     svg: true
   },
   integrations: [
-    isProd
-      ? partytown({
-          // https://partytown.qwik.dev/google-tag-manager/#google-analytics-4-ga4
-          config: {
-            forward: ["dataLayer.push"]
-          }
-        })
-      : null,
+    ...(isProd
+      ? [
+          partytown({
+            config: {
+              forward: ["dataLayer.push"]
+            }
+          })
+        ]
+      : []),
     sitemap(),
     mdx()
   ],
