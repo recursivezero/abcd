@@ -2,7 +2,7 @@
 import ThemeProvider from "@/components/ThemeProvider.astro";
 import BaseHead from "@/layouts/BaseHead";
 import Footer from "@/layouts/common/Footer";
-import Header from "@/layouts/common/Header.astro";
+import Header from "@/layouts/common/Header";
 import Menu from "@/layouts/common/Menu";
 import { siteConfig } from "@/site-config";
 
@@ -434,7 +434,12 @@ const {
         if (isPinned && !isMobile()) return;
         if (skipNextClose) return;
         const target = e.target;
-        if (!sidebar.contains(target) && !toggle.contains(target) && !pinBtn?.contains(target)) {
+        if (
+          target instanceof Node &&
+          !sidebar.contains(target) &&
+          !toggle.contains(target) &&
+          !pinBtn?.contains(target)
+        ) {
           closeSidebar();
         }
       });

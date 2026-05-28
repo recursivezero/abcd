@@ -132,8 +132,6 @@
     "git.enableCommitSigning": false,
     "git.enableSmartCommit": true,
     "git.postCommitCommand": "push",
-    "javascript.preferences.quoteStyle": "double",
-    "javascript.updateImportsOnFileMove.enabled": "always",
     "js/ts.implicitProjectConfig.checkJs": true,
     "peacock.affectSideBarBorder": true,
     "peacock.color": "#6A3B98",
@@ -151,12 +149,12 @@
       "package-lock.json": true
     },
     "search.showLineNumbers": true,
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
-    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-    "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
-    "typescript.inlayHints.parameterTypes.enabled": true,
-    "typescript.preferences.quoteStyle": "double",
-    "typescript.updateImportsOnFileMove.enabled": "always",
+    "js/ts.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+    "js/ts.inlayHints.functionLikeReturnTypes.enabled": true,
+    "js/ts.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
+    "js/ts.inlayHints.parameterTypes.enabled": true,
+    "js/ts.preferences.quoteStyle": "double",
+    "js/ts.updateImportsOnFileMove.enabled": "always",
     "window.autoDetectColorScheme": true,
     "window.title": "${rootNameShort}${separator}${activeEditorShort}${separator}${activeFolderMedium}",
     "window.zoomLevel": 0.5,
@@ -192,7 +190,7 @@
       "*.log": "default"
     },
     "zenMode.centerLayout": false,
-    "cSpell.words": [ ],
+    "cSpell.words": [],
     "workbench.editor.limit.excludeDirty": true,
     "files.readonlyInclude": {
       ".githooks/**": true
@@ -200,12 +198,6 @@
     "[xml]": {
       "editor.defaultFormatter": "redhat.vscode-xml"
     },
-    "github.copilot.chat.agent.terminal.allowList": {
-      "npm run": true
-    },
-    "github.copilot.chat.agent.terminal.denyList": {
-      "npm run nuke": true
-    },
-    "folder-color.pathColors": [ ]
+    "folder-color.pathColors": []
   }
 }

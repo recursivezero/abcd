@@ -25,7 +25,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-npm run lint
+npm run lint --no-color
 if [ $? -ne 0 ]; then
   echo "Lint failed. Commit aborted."
   exit 1

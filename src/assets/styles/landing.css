@@ -23,7 +23,7 @@
 }
 
 /* Dark mode — matches globals.css gradient theme */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --primary: #22d3ee;
   --primary-light: #67e8f9;
   --secondary: #0891b2;
@@ -34,22 +34,15 @@
 
   --bg: transparent;
 
-  --bg-card:
-    linear-gradient(180deg,
-      rgba(3, 26, 32, 0.72) 0%,
-      rgba(5, 46, 56, 0.82) 100%);
+  --bg-card: linear-gradient(180deg, rgba(3, 26, 32, 0.72) 0%, rgba(5, 46, 56, 0.82) 100%);
 
-  --bg-secondary:
-    rgba(3, 26, 32, 0.72);
+  --bg-secondary: rgba(3, 26, 32, 0.72);
 
-  --border:
-    rgba(34, 211, 238, 0.14);
+  --border: rgba(34, 211, 238, 0.14);
 
-  --shadow:
-    rgba(0, 0, 0, 0.45);
+  --shadow: rgba(0, 0, 0, 0.45);
 
-  --header-bg:
-    rgba(2, 6, 8, 0.88);
+  --header-bg: rgba(2, 6, 8, 0.88);
 
   --text: #e0f7fa;
 
@@ -90,10 +83,10 @@
 }
 
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background-image: url('https://i.pinimg.com/1200x/01/6c/ec/016cec5a9d134483c02417cdb290a4a7.jpg');
+  background-image: url("https://i.pinimg.com/1200x/01/6c/ec/016cec5a9d134483c02417cdb290a4a7.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -203,7 +196,7 @@
   border-color: var(--primary);
 }
 
-[data-theme='dark'] .category-card:hover {
+[data-theme="dark"] .category-card:hover {
   box-shadow: 0 0 24px rgba(34, 211, 238, 0.18);
 }
 
@@ -471,7 +464,7 @@ footer {
 
 /* Ripple effect */
 .animated-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -481,7 +474,10 @@ footer {
   border-radius: 50%;
   opacity: 0;
   transform: translate(-50%, -50%);
-  transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
+  transition:
+    width 0.4s ease-out,
+    height 0.4s ease-out,
+    opacity 0.4s ease-out;
 }
 
 .animated-button:active::before {
@@ -648,7 +644,6 @@ footer {
    TOUCH DEVICES
 ══════════════════════════════════════ */
 @media (hover: none) and (pointer: coarse) {
-
   .category-card:hover,
   .game-card:hover,
   .cta-button:hover {

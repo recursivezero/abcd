@@ -1,7 +1,7 @@
 {
   "name": "@recursivezero/abcd",
-  "version": "3.3.0",
-  "description": "A website for our kids trial phase of abcdkbd.com",
+  "version": "3.3.1",
+  "description": "A website for kids whio want to learn the alphabet in a fun and interactive way. It is built using Astro and TypeScript.",
   "homepage": "https://abcdkbd.com",
   "displayName": "abcd",
   "license": "MIT",
@@ -95,12 +95,24 @@
       "name": "Md Shahid Jamal",
       "email": "shahidjamal5701@gmail.com",
       "github": "ShahidJamal1",
-      "role": "UI/UX Engineer"
+      "role": "UI Engineer"
     }
   ],
   "keywords": [
     "recursivezero",
-    "abcd"
+    "abcd",
+    "abcdkbd",
+    "kids",
+    "education",
+    "learning",
+    "fun",
+    "interactive",
+    "website",
+    "astro",
+    "hindi",
+    "indian",
+    "culture",
+    "typescript"
   ],
   "scripts": {
     "dev": "astro dev",
@@ -144,6 +156,12 @@
     "shx": "0.3.4"
   },
   "engines": {
-    "node": "^20"
+    "node": "^22"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,astro}": [
+      "eslint --fix --no-color",
+      "tsc --pretty false --noEmit"
+    ]
   }
 }

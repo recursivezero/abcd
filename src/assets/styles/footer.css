@@ -60,17 +60,11 @@
   width: 90%;
   height: 2px;
 
-  background: linear-gradient(to right,
-      transparent,
-      #7c3aed,
-      transparent);
+  background: linear-gradient(to right, transparent, #7c3aed, transparent);
 }
 
 [data-theme="dark"] .container__footer::before {
-  background: linear-gradient(to right,
-      transparent,
-      #22d3ee,
-      transparent);
+  background: linear-gradient(to right, transparent, #22d3ee, transparent);
 }
 
 .footer__inner {
@@ -184,7 +178,9 @@
   text-decoration: none;
   font-size: 0.9rem;
   line-height: 1.4;
-  transition: color 0.2s ease, padding-left 0.2s ease;
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -196,7 +192,7 @@
 }
 
 .footer__nav--links a::before {
-  content: '';
+  content: "";
   width: 4px;
   height: 4px;
   border-radius: 50%;

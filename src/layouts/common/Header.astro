@@ -605,7 +605,7 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     const mobileMenu = document.getElementById("mobileMenu");
     const mobileOverlay = document.getElementById("mobileOverlay");
 
-    function initMobileNavHighlight() {
+    function _initMobileNavHighlight() {
       const links = document.querySelectorAll(".mobile-nav__links li a");
       links.forEach((a) => {
         a.addEventListener(

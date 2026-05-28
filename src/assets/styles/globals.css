@@ -142,7 +142,10 @@ body {
   *,
   *::before,
   *::after {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
   }
 
   /* ── Body — gradient background ── */
@@ -160,7 +163,12 @@ body {
     box-sizing: border-box;
     line-height: 1.6;
     min-height: 100vh;
-    font-family: "Roboto", 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family:
+      "Roboto",
+      "Segoe UI",
+      system-ui,
+      -apple-system,
+      sans-serif;
     font-size: 16px;
     background: transparent;
     color: var(--text);
@@ -177,22 +185,24 @@ body {
     left: 0;
     pointer-events: none;
     z-index: 0;
-    background-image:
-      repeating-linear-gradient(60deg,
+    background-image: repeating-linear-gradient(
+        60deg,
         transparent,
         transparent 28px,
         rgba(34, 211, 238, 0.03) 28px,
-        rgba(34, 211, 238, 0.03) 29px),
-      repeating-linear-gradient(-40deg,
+        rgba(34, 211, 238, 0.03) 29px
+      ),
+      repeating-linear-gradient(
+        -40deg,
         transparent,
         transparent 34px,
         rgba(34, 211, 238, 0.02) 34px,
-        rgba(34, 211, 238, 0.02) 35px);
+        rgba(34, 211, 238, 0.02) 35px
+      );
   }
 
   [data-theme="light"] body::before {
-    background-image:
-      linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
       linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
     background-size: 45px 45px;
   }
@@ -210,7 +220,9 @@ body {
   a {
     color: var(--primary);
     text-decoration: none;
-    transition: color 0.2s ease, opacity 0.2s ease;
+    transition:
+      color 0.2s ease,
+      opacity 0.2s ease;
   }
 
   a:hover,
@@ -303,7 +315,10 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2322d3ee' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.9rem center;
-    transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition:
+      border-color 0.3s ease,
+      transform 0.2s ease,
+      box-shadow 0.3s ease;
     box-shadow: var(--shadow-sm);
   }
 
@@ -509,7 +524,6 @@ body {
   }
 
   @media (hover: none) and (pointer: coarse) {
-
     button,
     a,
     [role="button"] {

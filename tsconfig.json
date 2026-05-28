@@ -10,11 +10,16 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": ["es2022", "dom", "dom.iterable"],
+    "lib": [
+      "es2022",
+      "dom",
+      "dom.iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true,
@@ -27,18 +32,46 @@
     "strictPropertyInitialization": false,
     "target": "ESNext",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/assets/*": ["src/assets/*"],
-      "@/components/*": ["src/components/*"],
-      "@/layouts/*": ["src/layouts/*.astro"],
-      "@/utils/*": ["src/utils/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/types": ["src/types/index.ts"],
-      "@/mocks/*": ["src/mocks/*"],
-      "@/site-config": ["src/site.config.ts"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@/assets/*": [
+        "src/assets/*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/layouts/*": [
+        "src/layouts/*.astro"
+      ],
+      "@/utils/*": [
+        "src/utils/*"
+      ],
+      "@/hooks/*": [
+        "src/hooks/*"
+      ],
+      "@/types": [
+        "src/types/index.ts"
+      ],
+      "@/mocks/*": [
+        "src/mocks/*"
+      ],
+      "@/site-config": [
+        "src/site.config.ts"
+      ]
     },
     "verbatimModuleSyntax": true
   },
-  "include": ["src", "*.ts", "*.tsx"],
-  "exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist", ".eslintrc.mjs"]
+  "include": [
+    "src",
+    "*.ts",
+    "*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    ".vscode",
+    "dist",
+    ".eslintrc.mjs"
+  ]
 }

@@ -53,13 +53,12 @@
   letter-spacing: -1px;
 
   color: rgb(130, 143, 239);
- 
+
   -webkit-text-fill-color: rgb(120, 133, 235);
 
   margin: 10px 0;
 
   background: none;
-  
 }
 
 .alphabet-container {
@@ -71,7 +70,9 @@
   align-items: center;
   gap: 0;
   color: #f1f5f9;
-  font: 1em poppins, sans-serif;
+  font:
+    1em poppins,
+    sans-serif;
   counter-reset: k calc(1 + var(--k)) n var(--n);
 
   --p: var(--k);

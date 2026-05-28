@@ -244,7 +244,6 @@
 .reset-button::after {
   display: none;
 }
-}
 
 @media (max-width: 768px) {
   .controls {
