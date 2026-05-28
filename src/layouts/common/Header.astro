@@ -160,10 +160,10 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     </a>
 
     <ul class="mobile-nav__links">
-      <li><a href="/">🏠 Home</a></li>
-      <li><a href="/about">ℹ️ About</a></li>
-      <li><a href="/games">🧩 Categories</a></li>
-      <li><a href="/contact">📩 Contact Us</a></li>
+      <li><a href="/" class={Astro.url.pathname === "/" ? "is-active" : ""}>🏠 Home</a></li>
+      <li><a href="/about" class={Astro.url.pathname.startsWith("/about") ? "is-active" : ""}>ℹ️ About</a></li>
+      <li><a href="/games" class={Astro.url.pathname.startsWith("/games") ? "is-active" : ""}>🧩 Categories</a></li>
+      <li><a href="/contact" class={Astro.url.pathname.startsWith("/contact") ? "is-active" : ""}>📩 Contact Us</a></li>
     </ul>
 
     <div class="mobile-actions">
@@ -604,6 +604,31 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     const menuClose = document.getElementById("menuClose");
     const mobileMenu = document.getElementById("mobileMenu");
     const mobileOverlay = document.getElementById("mobileOverlay");
+
+    function initMobileNavHighlight() {
+      const links = document.querySelectorAll(".mobile-nav__links li a");
+      links.forEach((a) => {
+        a.addEventListener(
+          "touchstart",
+          function () {
+            links.forEach((l) => {
+              if (!l.classList.contains("is-active")) {
+                l.style.background = "";
+                l.style.color = "";
+                l.style.borderLeft = "3px solid transparent";
+                l.style.transform = "";
+              }
+            });
+            this.style.background = "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(139,92,246,0.08))";
+            this.style.color = "#7c3aed";
+            this.style.borderLeft = "3px solid #7c3aed";
+            this.style.transform = "translateX(5px)";
+            this.style.boxShadow = "0 4px 14px rgba(124,58,237,0.18)";
+          },
+          { passive: true }
+        );
+      });
+    }
 
     function openMenu() {
       hamburger?.classList.add("open");

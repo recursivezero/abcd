@@ -31,7 +31,6 @@ const {
         )
       }
 
-      <!-- overlay ko main ke BAHAR rakha — flex layout disturb nahi hoga -->
       <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
       <div class="content" id="mainContent">
@@ -48,7 +47,6 @@ const {
     }
 
     <style is:global>
-      /* ── MAIN CONTAINER ── */
       .main {
         display: flex;
         width: 100%;
@@ -77,33 +75,35 @@ const {
         flex-direction: column;
       }
 
-      /* ── SIDEBAR BASE — closed: zero flex width ── */
+      /* ── SIDEBAR BASE — closed ── */
       .sidebar {
         flex: 0 0 0;
-        width: 0;
+        width: 0 !important;
         height: 0;
-        min-width: 0;
-        max-width: 0;
+        min-width: 0 !important;
+        max-width: 0 !important;
         overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(0);
         margin-right: 0 !important;
         padding-right: 0 !important;
         margin-left: 0 !important;
         padding-left: 0 !important;
         border-right: none !important;
+        transition:
+          width 0.3s ease,
+          flex 0.3s ease;
       }
 
       /* Sidebar OPEN */
       .sidebar.open {
-        flex: 0 0 260px;
-        position: relative;
-        width: 260px;
+        flex: 0 0 260px !important;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
         height: auto;
-        max-width: 260px;
-        margin-right: 0 !important;
-        padding-right: 0 !important;
-        padding-left: 0 !important;
-        margin-left: 0 !important;
         overflow-y: auto;
+        overflow-x: hidden;
         padding-top: 1rem;
         border-right: 1px solid rgba(124, 58, 237, 0.1);
         box-shadow: none !important;
@@ -125,16 +125,14 @@ const {
 
       /* Sidebar PINNED */
       .sidebar.pinned {
-        flex: 0 0 260px;
-        width: 260px;
+        flex: 0 0 260px !important;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
         height: auto;
-        max-width: 260px;
-        margin-right: 0 !important;
-        padding-right: 0 !important;
-        padding-left: 0 !important;
-        margin-left: 0 !important;
         position: relative;
         overflow-y: auto;
+        overflow-x: hidden;
         padding-top: 1rem;
         border-right: 1px solid rgba(124, 58, 237, 0.1);
         box-shadow: none !important;
@@ -145,21 +143,16 @@ const {
         display: flex;
       }
 
-      /* ── CONTENT  ── */
       .content {
         flex: 1;
         min-width: 0;
-
         min-height: auto !important;
         height: fit-content !important;
-
         margin: 0 !important;
         padding: 0 !important;
-
         background: transparent !important;
       }
 
-      /* Dark mode fix */
       [data-theme="dark"] .main {
         background: transparent !important;
       }
@@ -172,7 +165,6 @@ const {
         border-right: 1px solid rgba(255, 255, 255, 0.06);
       }
 
-      /* ── OVERLAY — position:fixed hai, flex layout pe zero impact ── */
       .sidebar-overlay {
         display: none;
         position: fixed;
@@ -189,29 +181,21 @@ const {
       /* ── PIN BUTTON ── */
       .pin-btn {
         position: static !important;
-
         width: 36px;
         height: 36px;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
         border: 1.5px solid rgba(124, 58, 237, 0.25);
-        border-radius: 12px;
+        border-radius: 50%;
         background: transparent;
         color: #7c3aed;
-
         cursor: pointer;
-        margin-left: 6px;
       }
       .pin-btn:hover {
-        opacity: 1;
         background: rgba(124, 58, 237, 0.08);
       }
-
       .pin-btn.active {
-        opacity: 1;
         background: rgba(124, 58, 237, 0.12);
         border-color: #7c3aed;
         transform: rotate(45deg);
@@ -226,29 +210,21 @@ const {
       /* ── TOGGLE BUTTON ── */
       .sidebar-toggle {
         position: fixed !important;
-
         left: 12px !important;
         bottom: 24px !important;
-
         width: 46px !important;
         height: 46px !important;
-
         border: none;
         border-radius: 50%;
-
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(12px);
-
         display: flex !important;
         align-items: center;
         justify-content: center;
-
         z-index: 99999 !important;
-
         box-shadow:
           0 6px 24px rgba(0, 0, 0, 0.12),
           0 2px 8px rgba(0, 0, 0, 0.08);
-
         margin: 0 !important;
         padding: 0 !important;
       }
@@ -275,39 +251,28 @@ const {
         pointer-events: none;
       }
 
-      /* ── MOBILE OVERRIDES ── */
+      /* ── MOBILE ── */
       @media (max-width: 768px) {
         .sidebar {
           position: fixed !important;
           top: 0 !important;
-          left: 0 !important;
-          flex: none !important; /* ✅ mobile pe flex layout se bahar */
-          width: 0 !important;
-          max-width: 0 !important;
-          height: 100vh !important;
-          z-index: 1200;
-          overflow: hidden;
-          padding-top: 0;
-          transition: width 0.3s ease !important;
-          box-shadow: none;
-          border-right: none !important;
-        }
-
-        .sidebar.open {
+          left: -320px !important;
           flex: none !important;
-          width: 82vw !important;
-          max-width: 300px !important;
+          width: 300px !important;
+          max-width: 82vw !important;
+          min-width: unset !important;
+          height: 100vh !important;
           overflow-y: auto !important;
-          padding-top: 1rem !important;
-          box-shadow: none !important;
-          scrollbar-width: none !important;
-          border-right: none !important;
+          overflow-x: hidden !important;
+          transition: left 0.3s ease !important;
+          z-index: 1200 !important;
+          background: var(--background) !important;
         }
-
-        .sidebar.open::-webkit-scrollbar {
-          width: 2px;
+        .sidebar.open {
+          left: 0 !important;
+          width: 300px !important;
+          max-width: 82vw !important;
         }
-
         .sidebar.pinned {
           flex: none !important;
           width: 82vw !important;
@@ -319,7 +284,6 @@ const {
           scrollbar-width: none !important;
           border-right: none !important;
         }
-
         .sidebar-toggle {
           bottom: 20px !important;
           left: 16px !important;
@@ -332,101 +296,124 @@ const {
     </style>
 
     <script>
-      const sidebar = document.getElementById("sidebar") as HTMLElement | null;
-      const toggle = document.getElementById("sidebarToggle") as HTMLElement | null;
-      const icon = document.getElementById("toggleIcon") as HTMLElement | null;
-      const pinBtn = document.getElementById("pinBtn") as HTMLElement | null;
-      const overlay = document.getElementById("sidebarOverlay") as HTMLElement | null;
+      const sidebar = document.getElementById("sidebar");
+      const toggle = document.getElementById("sidebarToggle");
+      const icon = document.getElementById("toggleIcon");
+      const pinBtn = document.getElementById("pinBtn");
+      const overlay = document.getElementById("sidebarOverlay");
 
       let isPinned = localStorage.getItem("sidebarPinned") === "true";
+      let skipNextClose = false;
 
-      const ICON_HAMBURGER = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-          fill="none" stroke="#7c3aed" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="9" x2="21" y2="9"></line>
-          <line x1="3" y1="15" x2="21" y2="15"></line>
-        </svg>`;
+      const ICON_HAMBURGER = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>`;
 
-      const ICON_LAYOUT = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-          fill="none" stroke="#7c3aed" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-          <line x1="9" y1="4" x2="9" y2="20"></line>
-        </svg>`;
+      const ICON_LAYOUT = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="9" y1="4" x2="9" y2="20"></line></svg>`;
 
-      const ICON_CLOSE = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-          fill="none" stroke="#7c3aed" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>`;
+      const ICON_CLOSE = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
 
       function isMobile() {
         return window.innerWidth <= 768;
-      }
-
-      function setClosedIcon() {
-        if (!icon) return;
-        icon.innerHTML = isMobile() ? ICON_HAMBURGER : ICON_LAYOUT;
       }
 
       function showToggle() {
         if (toggle) toggle.style.display = "flex";
       }
 
-      function applyPinState() {
-        if (!sidebar || !pinBtn) return;
+      function sidebarOff() {
+        if (!sidebar) return;
+        sidebar.classList.remove("open");
+        sidebar.classList.remove("pinned");
+        // ✅ inline styles se width zero force karo
+        sidebar.style.flex = "0 0 0";
+        sidebar.style.width = "0";
+        sidebar.style.minWidth = "0";
+        sidebar.style.maxWidth = "0";
+        sidebar.style.overflow = "hidden";
+      }
 
-        if (isPinned && !isMobile()) {
-          sidebar.classList.add("pinned");
-          sidebar.classList.remove("open");
-          pinBtn.classList.add("active");
-          if (overlay) overlay.classList.remove("show");
-          showToggle();
-          setClosedIcon();
-        } else {
-          sidebar.classList.remove("pinned");
-          pinBtn.classList.remove("active");
-          showToggle();
-          setClosedIcon();
-        }
+      function sidebarOn() {
+        if (!sidebar) return;
+        // ✅ inline styles reset karo taaki CSS classes kaam kar sakein
+        sidebar.style.flex = "";
+        sidebar.style.width = "";
+        sidebar.style.minWidth = "";
+        sidebar.style.maxWidth = "";
+        sidebar.style.overflow = "";
       }
 
       function openSidebar() {
         if (!sidebar) return;
+        sidebarOn();
         sidebar.classList.add("open");
+        sidebar.classList.remove("pinned");
         if (isMobile() && overlay) overlay.classList.add("show");
         if (icon) icon.innerHTML = ICON_CLOSE;
       }
 
       function closeSidebar() {
         if (!sidebar) return;
-        sidebar.classList.remove("open");
+        sidebarOff();
+        isPinned = false;
+        localStorage.setItem("sidebarPinned", "false");
+        if (pinBtn) pinBtn.classList.remove("active");
         if (overlay) overlay.classList.remove("show");
-        setClosedIcon();
+        if (icon) icon.innerHTML = isMobile() ? ICON_HAMBURGER : ICON_LAYOUT;
       }
 
+      function pinSidebar() {
+        if (!sidebar || !pinBtn) return;
+        sidebarOn();
+        sidebar.classList.add("pinned");
+        sidebar.classList.add("open");
+        pinBtn.classList.add("active");
+        if (overlay) overlay.classList.remove("show");
+        if (icon) icon.innerHTML = ICON_CLOSE;
+      }
+
+      function unpinSidebar() {
+        if (!sidebar || !pinBtn) return;
+        sidebarOn();
+        sidebar.classList.remove("pinned");
+        sidebar.classList.add("open");
+        pinBtn.classList.remove("active");
+        if (icon) icon.innerHTML = ICON_CLOSE;
+      }
+
+      // Page load pe state restore
+      if (isPinned && !isMobile()) {
+        pinSidebar();
+      } else {
+        isPinned = false;
+        sidebarOff();
+        if (icon) icon.innerHTML = isMobile() ? ICON_HAMBURGER : ICON_LAYOUT;
+      }
+
+      showToggle();
+
+      // Pin button
       if (pinBtn) {
         pinBtn.addEventListener("click", (e) => {
           e.stopPropagation();
+          e.preventDefault();
           if (isMobile()) return;
+          skipNextClose = true;
           isPinned = !isPinned;
           localStorage.setItem("sidebarPinned", String(isPinned));
-          applyPinState();
+          if (isPinned) {
+            pinSidebar();
+          } else {
+            unpinSidebar();
+          }
+          setTimeout(() => {
+            skipNextClose = false;
+          }, 200);
         });
       }
 
-      if (toggle && sidebar && icon) {
-        sidebar.classList.remove("open");
-        setClosedIcon();
-        applyPinState();
-
+      // Toggle button
+      if (toggle && sidebar) {
         toggle.addEventListener("click", (e) => {
           e.stopPropagation();
-          if (isPinned && !isMobile()) return;
           const isOpen = sidebar.classList.contains("open");
           if (isOpen) {
             closeSidebar();
@@ -436,28 +423,39 @@ const {
         });
       }
 
+      // Overlay
       if (overlay) {
         overlay.addEventListener("click", () => closeSidebar());
       }
 
+      // Document click
       document.addEventListener("click", (e) => {
         if (!sidebar || !toggle) return;
         if (isPinned && !isMobile()) return;
-        const target = e.target as Node;
-        if (!sidebar.contains(target) && !toggle.contains(target)) {
+        if (skipNextClose) return;
+        const target = e.target;
+        if (!sidebar.contains(target) && !toggle.contains(target) && !pinBtn?.contains(target)) {
           closeSidebar();
         }
       });
 
+      // Resize
       window.addEventListener("resize", () => {
         if (isMobile()) {
-          if (sidebar) sidebar.classList.remove("pinned");
+          sidebarOff();
           if (pinBtn) pinBtn.classList.remove("active");
+          isPinned = false;
+          localStorage.setItem("sidebarPinned", "false");
+          if (icon) icon.innerHTML = ICON_HAMBURGER;
           showToggle();
-          if (!sidebar?.classList.contains("open")) setClosedIcon();
         } else {
-          applyPinState();
-          if (!sidebar?.classList.contains("open") && !isPinned) setClosedIcon();
+          if (isPinned) {
+            pinSidebar();
+          } else {
+            sidebarOff();
+            if (icon) icon.innerHTML = ICON_LAYOUT;
+          }
+          showToggle();
         }
       });
     </script>

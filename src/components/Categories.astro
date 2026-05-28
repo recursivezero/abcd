@@ -3,228 +3,470 @@ import { gamesData } from "@/data/gamesData";
 ---
 
 <section class="age-section" id="categories">
-  <h2 class="age-title">
-    <span>🎀</span>
-    Explore by Age Group
-    <span>🎀</span>
-  </h2>
+  <div class="hdr">
+    <div class="hdr-row">
+      <h2 class="age-title">Browse by Age Group</h2>
+      <span class="title-spark">✨</span>
+    </div>
+    <p class="age-sub">Select an age category to discover games and activities perfectly suited for that developmental stage! 💜</p>
+  </div>
 
   <div class="age-grid">
-    <a href="/games/3-5" class="age-card" data-label="toddlers" style="--card-bg: #EDE9FE; --card-bg-dark: #3b1f6e;">
-      <span class="age-icon">🧸</span>
-      <h2 class="age-label" style="color: #7C3AED;">Toddlers</h2>
-      <p class="age-range" style="color: #100c17;">1–3 Years</p>
-      <span class="age-explore" style="color: #270466;">Explore →</span>
+    <a href="/games/3-5" class="age-card c-todd" data-label="toddlers">
+      <span class="fl fa">★</span>
+      <span class="fl fb">◆</span>
+      <span class="fl fc">🔵</span>
+      <div class="hex">🧸</div>
+      <h3 class="age-label">Toddlers</h3>
+      <div class="age-badge">★&nbsp; 1 – 3 Years &nbsp;★</div>
+      <div class="wave"></div>
     </a>
 
-    <a
-      href="/games/3-5"
-      class="age-card"
-      data-label="preschoolers"
-      style="--card-bg: #FEF9C3; --card-bg-dark: #4a3a00;"
-    >
-      <span class="age-icon">🏠</span>
-      <h2 class="age-label" style="color: #D97706;">Preschoolers</h2>
-      <p class="age-range" style="color: #eb1818e8;">3–5 Years</p>
-      <span class="age-explore" style="color: #ad6009;">Explore →</span>
+    <a href="/games/3-5" class="age-card c-pre" data-label="preschoolers">
+      <span class="fl fa">☁️</span>
+      <span class="fl fb">✦</span>
+      <span class="fl fc">✦</span>
+      <div class="hex">🏠</div>
+      <h3 class="age-label">Preschoolers</h3>
+      <div class="age-badge">★&nbsp; 3 – 5 Years &nbsp;★</div>
+      <div class="wave"></div>
     </a>
 
-    <a
-      href="/games/6-8"
-      class="age-card"
-      data-label="early learners"
-      style="--card-bg: #DCFCE7; --card-bg-dark: #0f3d20;"
-    >
-      <span class="age-icon">🎨</span>
-      <h3 class="age-label" style="color: #16A34A;">Early Learners</h3>
-      <p class="age-range" style="color: #9706ea;">6–8 Years</p>
-      <span class="age-explore" style="color: #056c2b;">Explore →</span>
+    <a href="/games/6-8" class="age-card c-early" data-label="early learners">
+      <span class="fl fa">★</span>
+      <span class="fl fb">•</span>
+      <span class="fl fc" style="font-size:12px;color:#90d8a8">•</span>
+      <div class="hex">🎨</div>
+      <h3 class="age-label">Early Learners</h3>
+      <div class="age-badge">★&nbsp; 6 – 8 Years &nbsp;★</div>
+      <div class="wave"></div>
     </a>
 
-    <a href="/games/9-12" class="age-card" data-label="kids" style="--card-bg: #DBEAFE; --card-bg-dark: #1e3a6e;">
-      <span class="age-icon">💡</span>
-      <h2 class="age-label" style="color: #2563EB;">Kids</h2>
-      <p class="age-range" style="color: #d409d4;">9–12 Years</p>
-      <span class="age-explore" style="color: #0d3da5;">Explore →</span>
+    <a href="/games/9-12" class="age-card c-kids" data-label="kids">
+      <span class="fl fa">🚀</span>
+      <span class="fl fb" style="top:20px;right:16px;letter-spacing:3px;font-size:9px;color:#80b0d8">• • •</span>
+      <span class="fl fc" style="font-size:14px;color:#80b0d8">○</span>
+      <div class="hex">💡</div>
+      <h3 class="age-label">Kids</h3>
+      <div class="age-badge">★&nbsp; 9 – 12 Years &nbsp;★</div>
+      <div class="wave"></div>
     </a>
 
-    <a href="/games/teens" class="age-card" data-label="teens" style="--card-bg: #FCE7F3; --card-bg-dark: #4a1030;">
-      <span class="age-icon">🎮</span>
-      <h2 class="age-label" style="color: #DB2777;">Teens</h2>
-      <p class="age-range" style="color: #0a55eb;">12+ Years</p>
-      <span class="age-explore" style="color: #870d44;">Explore →</span>
+    <a href="/games/teens" class="age-card c-teens" data-label="teens">
+      <span class="fl fa">🏆</span>
+      <span class="fl fb">⚡</span>
+      <span class="fl fc">⚡</span>
+      <div class="hex">🎮</div>
+      <h3 class="age-label">Teens</h3>
+      <div class="age-badge">★&nbsp; 12+ Years &nbsp;★</div>
+      <div class="wave"></div>
     </a>
 
-    <a href="/games/adults" class="age-card" data-label="family" style="--card-bg: #FFF0E0; --card-bg-dark: #4a2a00;">
-      <span class="age-icon">👨‍👩‍👧‍👦</span>
-      <h2 class="age-label" style="color: #EA6C00;">Family</h2>
-      <p class="age-range" style="color: #06c663;">All Ages</p>
-      <span class="age-explore" style="color: #6d3606;">Explore →</span>
+    <a href="/games/adults" class="age-card c-family" data-label="family">
+      <span class="fl fa">❤️</span>
+      <span class="fl fb">＋</span>
+      <span class="fl fc">＋</span>
+      <div class="hex">👨‍👩‍👧‍👦</div>
+      <h3 class="age-label">Family</h3>
+      <div class="age-badge">★&nbsp; All Ages &nbsp;★</div>
+      <div class="wave"></div>
     </a>
   </div>
 </section>
 
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
+
   .age-section {
-    padding: 3rem 0 4rem;
+    padding: 3rem 2rem 4rem;
     text-align: center;
     background: transparent;
+    font-family: "Nunito", sans-serif;
   }
 
-  :global([data-theme="dark"]) .age-section {
-    background: transparent;
+  /* ── Header ── */
+  .hdr {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .hdr-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 6px;
   }
 
   .age-title {
-    font-size: 2.2rem;
+    font-size: 32px;
     font-weight: 900;
-
-    color: #1a3353;
-
-    margin-bottom: 3rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
+    color: #1a1a40;
+    margin: 0;
   }
 
-  :global([data-theme="dark"]) .age-title {
-    color: #e0f7fa;
-
-    text-shadow: 0 0 14px rgba(34, 211, 238, 0.08);
+  .title-spark {
+    font-size: 26px;
+    line-height: 1;
   }
 
+  .age-sub {
+    font-size: 14px;
+    color: #888;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* ── Grid ── */
   .age-grid {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
-    gap: 2rem;
-
-    justify-content: center;
-
+    gap: 20px;
     max-width: 980px;
-
     margin: 0 auto;
-
-    padding: 0 2rem;
   }
 
+  /* ── Card Base ── */
   .age-card {
-    background: var(--card-bg);
-
-    border-radius: 1.6rem;
-
-    padding: 2.2rem 1.4rem 1.8rem;
-
-    width: 100%;
-
-    min-height: 260px;
-
-    text-align: center;
-    text-decoration: none;
-
+    border-radius: 24px;
+    padding: 28px 20px 22px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
-    gap: 0.5rem;
-
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
     transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease,
-      border-color 0.25s ease;
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+    min-height: 250px;
+  }
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  .age-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  /* ── Hexagon ── */
+  .hex {
+    width: 108px;
+    height: 108px;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    font-size: 3.2rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Label ── */
+  .age-label {
+    font-size: 20px;
+    font-weight: 900;
+    margin: 0 0 13px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Badge ── */
+  .age-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 50px;
+    padding: 8px 22px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Floating decorations inside card ── */
+  .fl {
+    position: absolute;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  /* ── Wave ── */
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    right: -10px;
+    height: 50px;
+    border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+    opacity: 0.45;
+    z-index: 0;
+  }
+
+  /* ── Toddlers ── */
+  .c-todd {
+    background: #edeaff;
+    border: 2px solid #d2caff;
+  }
+  .c-todd .hex {
+    background: #cfc8ff;
+  }
+  .c-todd .age-label {
+    color: #7048c0;
+  }
+  .c-todd .age-badge {
+    background: #7048c0;
+  }
+  .c-todd .wave {
+    background: #cfc8ff;
+  }
+  .c-todd .fa {
+    top: 16px;
+    left: 16px;
+    font-size: 18px;
+    color: #9b7de0;
+  }
+  .c-todd .fb {
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+    color: #b0a0e0;
+  }
+  .c-todd .fc {
+    bottom: 68px;
+    right: 18px;
+    font-size: 16px;
+  }
+
+  /* ── Preschoolers ── */
+  .c-pre {
+    background: #fdf7e4;
+    border: 2px solid #f0de98;
+  }
+  .c-pre .hex {
+    background: #f0e0a8;
+  }
+  .c-pre .age-label {
+    color: #c07808;
+  }
+  .c-pre .age-badge {
+    background: #c07808;
+  }
+  .c-pre .wave {
+    background: #f0e0a8;
+  }
+  .c-pre .fa {
+    top: 14px;
+    left: 16px;
+    font-size: 18px;
+  }
+  .c-pre .fb {
+    top: 18px;
+    right: 20px;
+    font-size: 14px;
+    color: #e8c820;
+  }
+  .c-pre .fc {
+    bottom: 68px;
+    right: 20px;
+    font-size: 13px;
+    color: #e8c820;
+  }
+
+  /* ── Early Learners ── */
+  .c-early {
+    background: #edfbf0;
+    border: 2px solid #b8edca;
+  }
+  .c-early .hex {
+    background: #c8f0d8;
+  }
+  .c-early .age-label {
+    color: #1e8a48;
+  }
+  .c-early .age-badge {
+    background: #1e8a48;
+  }
+  .c-early .wave {
+    background: #c8f0d8;
+  }
+  .c-early .fa {
+    top: 14px;
+    left: 16px;
+    font-size: 18px;
+    color: #48c878;
+  }
+  .c-early .fb {
+    top: 18px;
+    right: 20px;
+    font-size: 12px;
+    color: #90d8a8;
+  }
+  .c-early .fc {
+    bottom: 68px;
+    right: 18px;
+    font-size: 11px;
+    color: #90d8a8;
+  }
+
+  /* ── Kids ── */
+  .c-kids {
+    background: #e6f2ff;
+    border: 2px solid #aed4f8;
+  }
+  .c-kids .hex {
+    background: #bcd8f8;
+  }
+  .c-kids .age-label {
+    color: #0e60b8;
+  }
+  .c-kids .age-badge {
+    background: #0e60b8;
+  }
+  .c-kids .wave {
+    background: #bcd8f8;
+  }
+  .c-kids .fa {
+    top: 14px;
+    left: 12px;
+    font-size: 22px;
+  }
+  .c-kids .fb {
+    top: 20px;
+    right: 18px;
+    font-size: 10px;
+    color: #80b0d8;
+    letter-spacing: 2px;
+  }
+  .c-kids .fc {
+    bottom: 68px;
+    right: 16px;
+    font-size: 14px;
+  }
+
+  /* ── Teens ── */
+  .c-teens {
+    background: #fff0f6;
+    border: 2px solid #ffcce0;
+  }
+  .c-teens .hex {
+    background: #ffcce0;
+  }
+  .c-teens .age-label {
+    color: #d03070;
+  }
+  .c-teens .age-badge {
+    background: #d03070;
+  }
+  .c-teens .wave {
+    background: #ffb0cc;
+  }
+  .c-teens .fa {
+    top: 14px;
+    left: 14px;
+    font-size: 18px;
+  }
+  .c-teens .fb {
+    top: 16px;
+    right: 16px;
+    font-size: 18px;
+    color: #ffe000;
+  }
+  .c-teens .fc {
+    bottom: 68px;
+    right: 16px;
+    font-size: 16px;
+    color: #ffe000;
+  }
+
+  /* ── Family ── */
+  .c-family {
+    background: #fff5ec;
+    border: 2px solid #ffd0a0;
+  }
+  .c-family .hex {
+    background: #f8d8b0;
+  }
+  .c-family .age-label {
+    color: #c05808;
+  }
+  .c-family .age-badge {
+    background: #c05808;
+  }
+  .c-family .wave {
+    background: #ffc090;
+  }
+  .c-family .fa {
+    top: 14px;
+    left: 16px;
+    font-size: 16px;
+  }
+  .c-family .fb {
+    top: 18px;
+    right: 18px;
+    font-size: 12px;
+    color: #e0a060;
+  }
+  .c-family .fc {
+    bottom: 68px;
+    right: 18px;
+    font-size: 11px;
+    color: #e0a060;
+  }
+
+  /* ── Dark mode ── */
+  :global([data-theme="dark"]) .age-title {
+    color: #e0f7fa;
+  }
+  :global([data-theme="dark"]) .age-sub {
+    color: #aaa;
   }
 
   :global([data-theme="dark"]) .age-card {
     background: linear-gradient(180deg, rgba(3, 26, 32, 0.72) 0%, rgba(5, 46, 56, 0.82) 100%);
-
     border: 1px solid rgba(34, 211, 238, 0.12);
-
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
 
-  .age-card:hover {
-    transform: translateY(-6px);
-
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
-  }
-
   :global([data-theme="dark"]) .age-card:hover {
     border-color: rgba(34, 211, 238, 0.3);
-
     box-shadow:
       0 12px 30px rgba(0, 0, 0, 0.45),
       0 0 22px rgba(34, 211, 238, 0.12);
   }
 
-  .age-icon {
-    font-size: 3.2rem;
-
-    line-height: 1;
-
-    margin-bottom: 0.8rem;
-  }
-
-  .age-label {
-    font-size: 1.3rem;
-    font-weight: 800;
-
-    margin: 0;
-  }
-
-  .age-range {
-    font-size: 1rem;
-    font-weight: 600;
-
-    margin: 0.2rem 0;
-  }
-
-  .age-explore {
-    font-size: 1rem;
-    font-weight: 700;
-
-    margin-top: 1rem;
-  }
-
   :global([data-theme="dark"]) .age-label,
-  :global([data-theme="dark"]) .age-range,
-  :global([data-theme="dark"]) .age-explore {
+  :global([data-theme="dark"]) .age-badge {
     color: #7dd3fc !important;
   }
 
-  /* Tablet */
+  :global([data-theme="dark"]) .age-badge {
+    background: rgba(34, 211, 238, 0.15) !important;
+  }
 
+  /* ── Responsive ── */
   @media (max-width: 900px) {
     .age-grid {
       grid-template-columns: repeat(2, 1fr);
-
       gap: 1.5rem;
-
       max-width: 700px;
     }
   }
 
-  /* Mobile */
-
   @media (max-width: 600px) {
     .age-grid {
       grid-template-columns: 1fr;
-
       max-width: 100%;
     }
-
     .age-card {
       min-height: 220px;
     }
-
     .age-title {
       font-size: 1.7rem;
     }

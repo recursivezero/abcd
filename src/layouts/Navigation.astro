@@ -80,4 +80,20 @@ const DefaultIcon = ({ text }: { text: string }) => {
     width: 32px;
     height: 32px;
   }
+
+  .text {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    transition:
+      background 0.25s ease,
+      letter-spacing 0.25s ease;
+  }
+
+  :global(.nav--list__item:hover .text) {
+  background: linear-gradient(90deg, #7c3aed, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.3em;
+}
 </style>

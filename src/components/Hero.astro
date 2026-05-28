@@ -9,83 +9,114 @@ const ageGroups = [
     icon: "🧸",
     label: "Toddlers",
     range: "1–3 Years",
-    color: "#EDE9FE",
-    darkColor: "#3b1f6e",
-    explore: "#7C3AED",
-    href: "/games/3-5"
+    href: "/games/3-5",
+    cardClass: "c-todd",
+    fa: "★",
+    faColor: "#9b7de0",
+    fb: "◆",
+    fbColor: "#b0a0e0",
+    fc: "🔵"
   },
   {
     icon: "🏠",
     label: "Preschoolers",
     range: "3–5 Years",
-    color: "#FEF9C3",
-    darkColor: "#4a3a00",
-    explore: "#D97706",
-    href: "/games/3-5"
+    href: "/games/3-5",
+    cardClass: "c-pre",
+    fa: "☁️",
+    faColor: "",
+    fb: "✦",
+    fbColor: "#e8c820",
+    fc: "✦",
+    fcColor: "#e8c820"
   },
   {
     icon: "🎨",
     label: "Early Learners",
-    range: "5–8 Years",
-    color: "#DCFCE7",
-    darkColor: "#0f3d20",
-    explore: "#16A34A",
-    href: "/games/6-8"
+    range: "6–8 Years",
+    href: "/games/6-8",
+    cardClass: "c-early",
+    fa: "★",
+    faColor: "#48c878",
+    fb: "•",
+    fbColor: "#90d8a8",
+    fc: "•",
+    fcColor: "#90d8a8"
   },
   {
     icon: "💡",
     label: "Kids",
-    range: "8–12 Years",
-    color: "#DBEAFE",
-    darkColor: "#1e3a6e",
-    explore: "#2563EB",
-    href: "/games/9-12"
+    range: "9–12 Years",
+    href: "/games/9-12",
+    cardClass: "c-kids",
+    fa: "🚀",
+    faColor: "",
+    fb: "• • •",
+    fbColor: "#80b0d8",
+    fc: "○",
+    fcColor: "#80b0d8"
   },
   {
     icon: "🎮",
     label: "Teens",
     range: "12+ Years",
-    color: "#FCE7F3",
-    darkColor: "#4a1030",
-    explore: "#DB2777",
-    href: "/games/teens"
+    href: "/games/teens",
+    cardClass: "c-teens",
+    fa: "🏆",
+    faColor: "",
+    fb: "⚡",
+    fbColor: "#ffe000",
+    fc: "⚡",
+    fcColor: "#ffe000"
   },
   {
     icon: "👨‍👩‍👧‍👦",
     label: "Family",
     range: "All Ages",
-    color: "#FFF0E0",
-    darkColor: "#4a2a00",
-    explore: "#EA6C00",
-    href: "/games/adults"
+    href: "/games/adults",
+    cardClass: "c-family",
+    fa: "❤️",
+    faColor: "",
+    fb: "＋",
+    fbColor: "#e0a060",
+    fc: "＋",
+    fcColor: "#e0a060"
   }
 ];
 ---
 
 <section class="hero-section">
-  <img src="/assets/images/kids-hero1.png" alt="Kids learning together" class="hero-bg-img" loading="eager" />
+  <img src="/assets/images/hero-kids1.png" alt="Kids learning together" class="hero-bg-img" loading="eager" />
 </section>
 
-<section class="age-section">
-  <h2 class="age-title">
-    <span>🎀</span>
-    Explore by Age Group
-    <span>🎀</span>
-  </h2>
+<section class="age-section" id="categories">
+  <div class="hdr">
+    <div class="hdr-row">
+      <h2 class="age-title">Browse by Age Group</h2>
+      <span class="title-spark">✨</span>
+    </div>
+    <p class="age-sub">
+      Select an age category to discover games and activities perfectly suited for that developmental stage! 💜
+    </p>
+  </div>
+
   <div class="age-grid">
     {
-      ageGroups.map((group) => (
-        <a href={group.href} class="age-card" style={`--card-bg: ${group.color}; --card-bg-dark: ${group.darkColor};`}>
-          <span class="age-icon">{group.icon}</span>
-          <h3 class="age-label" style={`color: ${group.explore};`}>
-            {group.label}
-          </h3>
-          <p class="age-range" style={`color: ${group.explore};`}>
-            {group.range}
-          </p>
-          <span class="age-explore" style={`color: ${group.explore};`}>
-            Explore →
+      ageGroups.map((g) => (
+        <a href={g.href} class={`age-card ${g.cardClass}`} data-label={g.label.toLowerCase()}>
+          <span class="fl fa" style={g.faColor ? `color:${g.faColor}` : ""}>
+            {g.fa}
           </span>
+          <span class="fl fb" style={g.fbColor ? `color:${g.fbColor}` : ""}>
+            {g.fb}
+          </span>
+          <span class="fl fc" style={g.fcColor ? `color:${g.fcColor}` : ""}>
+            {g.fc}
+          </span>
+          <div class="hex">{g.icon}</div>
+          <h3 class="age-label">{g.label}</h3>
+          <div class="age-badge">★&nbsp; {g.range} &nbsp;★</div>
+          <div class="wave" />
         </a>
       ))
     }
@@ -93,13 +124,15 @@ const ageGroups = [
 </section>
 
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
+
+  /* ── Hero ── */
   .hero-section {
     width: 100%;
     overflow: hidden;
     line-height: 0;
     position: relative;
   }
-
   .hero-bg-img {
     width: 100%;
     height: auto;
@@ -107,8 +140,6 @@ const ageGroups = [
     opacity: 1;
     transition: filter 0.3s ease;
   }
-
-  /* Dark mode: slight cool overlay via filter, no opacity dimming */
   :global([data-theme="dark"]) .hero-bg-img {
     filter: brightness(0.85) saturate(0.9);
   }
@@ -118,133 +149,373 @@ const ageGroups = [
     padding: 3rem 2rem 4rem;
     text-align: center;
     background: transparent;
+    font-family: "Nunito", sans-serif;
   }
 
-  .age-title {
-    font-size: 1.85rem;
-    font-weight: 900;
-    color: #1a3353;
-    margin-bottom: 2.5rem;
+  /* ── Header ── */
+  .hdr {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .hdr-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .age-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #1a1a40;
+    margin: 0;
+  }
+  .title-spark {
+    font-size: 26px;
+    line-height: 1;
+  }
+  .age-sub {
+    font-size: 14px;
+    color: #888;
+    font-weight: 600;
+    margin: 0;
   }
 
   :global([data-theme="dark"]) .age-title {
     color: #e0f7fa;
   }
+  :global([data-theme="dark"]) .age-sub {
+    color: #aaa;
+  }
 
+  /* ── Grid ── */
   .age-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1rem;
-    max-width: 1200px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 980px;
     margin: 0 auto;
   }
 
+  /* ── Card Base ── */
   .age-card {
-    background: var(--card-bg);
-    border-radius: 1.4rem;
-    padding: 1.8rem 1rem 1.4rem;
-    text-align: center;
-    text-decoration: none;
+    border-radius: 24px;
+    padding: 28px 20px 22px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.3rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
     transition:
-      transform 0.2s,
-      box-shadow 0.2s;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+    min-height: 250px;
   }
-
-  :global([data-theme="dark"]) .age-card {
-    background: var(--card-bg-dark);
-    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(34, 211, 238, 0.15);
-  }
-
   .age-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
 
-  :global([data-theme="dark"]) .age-card:hover {
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
-    border-color: rgba(34, 211, 238, 0.4);
+  /* ── Hexagon ── */
+  .hex {
+    width: 108px;
+    height: 108px;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    font-size: 3.2rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
   }
 
-  .age-icon {
-    font-size: 2.8rem;
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
+  /* ── Label ── */
   .age-label {
-    font-size: 1.05rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .age-range {
-    font-size: 0.88rem;
-    font-weight: 600;
-    margin: 0;
-  }
-  .age-explore {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-top: 0.4rem;
+    font-size: 20px;
+    font-weight: 900;
+    margin: 0 0 13px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
-  @media (max-width: 1024px) {
+  /* ── Badge ── */
+  .age-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 50px;
+    padding: 8px 22px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Floating decorations ── */
+  .fl {
+    position: absolute;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  /* ── Wave ── */
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    right: -10px;
+    height: 50px;
+    border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+    opacity: 0.45;
+    z-index: 0;
+  }
+
+  /* ── Toddlers ── */
+  .c-todd {
+    background: #edeaff;
+    border: 2px solid #d2caff;
+  }
+  .c-todd .hex {
+    background: #cfc8ff;
+  }
+  .c-todd .age-label {
+    color: #7048c0;
+  }
+  .c-todd .age-badge {
+    background: #7048c0;
+  }
+  .c-todd .wave {
+    background: #cfc8ff;
+  }
+  .c-todd .fa {
+    top: 16px;
+    left: 16px;
+    font-size: 18px;
+  }
+  .c-todd .fb {
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+  }
+  .c-todd .fc {
+    bottom: 68px;
+    right: 18px;
+    font-size: 16px;
+  }
+
+  /* ── Preschoolers ── */
+  .c-pre {
+    background: #fdf7e4;
+    border: 2px solid #f0de98;
+  }
+  .c-pre .hex {
+    background: #f0e0a8;
+  }
+  .c-pre .age-label {
+    color: #c07808;
+  }
+  .c-pre .age-badge {
+    background: #c07808;
+  }
+  .c-pre .wave {
+    background: #f0e0a8;
+  }
+  .c-pre .fa {
+    top: 14px;
+    left: 16px;
+    font-size: 18px;
+  }
+  .c-pre .fb {
+    top: 18px;
+    right: 20px;
+    font-size: 14px;
+  }
+  .c-pre .fc {
+    bottom: 68px;
+    right: 20px;
+    font-size: 13px;
+  }
+
+  /* ── Early Learners ── */
+  .c-early {
+    background: #edfbf0;
+    border: 2px solid #b8edca;
+  }
+  .c-early .hex {
+    background: #c8f0d8;
+  }
+  .c-early .age-label {
+    color: #1e8a48;
+  }
+  .c-early .age-badge {
+    background: #1e8a48;
+  }
+  .c-early .wave {
+    background: #c8f0d8;
+  }
+  .c-early .fa {
+    top: 14px;
+    left: 16px;
+    font-size: 18px;
+  }
+  .c-early .fb {
+    top: 18px;
+    right: 20px;
+    font-size: 12px;
+  }
+  .c-early .fc {
+    bottom: 68px;
+    right: 18px;
+    font-size: 11px;
+  }
+
+  /* ── Kids ── */
+  .c-kids {
+    background: #e6f2ff;
+    border: 2px solid #aed4f8;
+  }
+  .c-kids .hex {
+    background: #bcd8f8;
+  }
+  .c-kids .age-label {
+    color: #0e60b8;
+  }
+  .c-kids .age-badge {
+    background: #0e60b8;
+  }
+  .c-kids .wave {
+    background: #bcd8f8;
+  }
+  .c-kids .fa {
+    top: 14px;
+    left: 12px;
+    font-size: 22px;
+  }
+  .c-kids .fb {
+    top: 20px;
+    right: 18px;
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+  .c-kids .fc {
+    bottom: 68px;
+    right: 16px;
+    font-size: 14px;
+  }
+
+  /* ── Teens ── */
+  .c-teens {
+    background: #fff0f6;
+    border: 2px solid #ffcce0;
+  }
+  .c-teens .hex {
+    background: #ffcce0;
+  }
+  .c-teens .age-label {
+    color: #d03070;
+  }
+  .c-teens .age-badge {
+    background: #d03070;
+  }
+  .c-teens .wave {
+    background: #ffb0cc;
+  }
+  .c-teens .fa {
+    top: 14px;
+    left: 14px;
+    font-size: 18px;
+  }
+  .c-teens .fb {
+    top: 16px;
+    right: 16px;
+    font-size: 18px;
+  }
+  .c-teens .fc {
+    bottom: 68px;
+    right: 16px;
+    font-size: 16px;
+  }
+
+  /* ── Family ── */
+  .c-family {
+    background: #fff5ec;
+    border: 2px solid #ffd0a0;
+  }
+  .c-family .hex {
+    background: #f8d8b0;
+  }
+  .c-family .age-label {
+    color: #c05808;
+  }
+  .c-family .age-badge {
+    background: #c05808;
+  }
+  .c-family .wave {
+    background: #ffc090;
+  }
+  .c-family .fa {
+    top: 14px;
+    left: 16px;
+    font-size: 16px;
+  }
+  .c-family .fb {
+    top: 18px;
+    right: 18px;
+    font-size: 12px;
+  }
+  .c-family .fc {
+    bottom: 68px;
+    right: 18px;
+    font-size: 11px;
+  }
+
+  /* ── Dark mode ── */
+  :global([data-theme="dark"]) .age-card {
+    background: linear-gradient(180deg, rgba(3, 26, 32, 0.72) 0%, rgba(5, 46, 56, 0.82) 100%);
+    border: 1px solid rgba(34, 211, 238, 0.12);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  :global([data-theme="dark"]) .age-card:hover {
+    border-color: rgba(34, 211, 238, 0.3);
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.45),
+      0 0 22px rgba(34, 211, 238, 0.12);
+  }
+  :global([data-theme="dark"]) .age-label {
+    color: #7dd3fc !important;
+  }
+  :global([data-theme="dark"]) .age-badge {
+    color: #7dd3fc !important;
+    background: rgba(34, 211, 238, 0.15) !important;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
     .age-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 700px;
     }
   }
-
-  @media (max-width: 768px) {
-    .age-section {
-      padding: 2rem 1rem 3rem;
+  @media (max-width: 600px) {
+    .age-grid {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
+    .age-card {
+      min-height: 220px;
     }
     .age-title {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .age-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-    }
-    .age-card {
-      padding: 1.4rem 0.75rem 1.1rem;
-    }
-    .age-icon {
-      font-size: 2.2rem;
-    }
-    .age-label {
-      font-size: 0.95rem;
-    }
-    .age-range {
-      font-size: 0.8rem;
-    }
-    .age-explore {
-      font-size: 0.85rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .age-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.6rem;
-    }
-    .age-card {
-      padding: 1.2rem 0.6rem 1rem;
-      border-radius: 1rem;
-    }
-    .age-icon {
-      font-size: 2rem;
-    }
-    .age-label {
-      font-size: 0.88rem;
+      font-size: 1.7rem;
     }
   }
 </style>
