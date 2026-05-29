@@ -22,7 +22,27 @@ const meta = {
     />
   </Fragment>
   <div class="game-page-container">
-    <div class="game-wrapper"></div>
+    <div class="game-wrapper">
+      <!-- Game name shown on top as per manager requirement -->
+      <h1 class="game-title">🔍 Hide &amp; Seek — Grid Game</h1>
+    </div>
     <HideSeekGrid />
   </div>
 </Layout>
+
+<style>
+  .game-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary, #7c3aed);
+    text-align: center;
+    margin: 1rem 0 0.5rem;
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 640px) {
+    .game-title {
+      font-size: 1.2rem;
+    }
+  }
+</style>
