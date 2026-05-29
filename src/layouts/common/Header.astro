@@ -145,21 +145,21 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   </div>
 </header>
 
-<button class="hamburger" id="hamburger" aria-label="Toggle menu">
+<button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
   <span></span>
   <span></span>
   <span></span>
 </button>
 
-<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation menu" aria-modal="true">
   <div class="mobile-menu__header">
     <a href="/" class="mobile-logo">
       abcd<span style="color:#14b8a6;">kbd</span>
     </a>
 
-    <ul class="mobile-nav__links">
+    <ul class="mobile-nav__links" role="list">
       <li><a href="/" class={Astro.url.pathname === "/" ? "is-active" : ""}>🏠 Home</a></li>
       <li><a href="/about" class={Astro.url.pathname.startsWith("/about") ? "is-active" : ""}>ℹ️ About</a></li>
       <li><a href="/games" class={Astro.url.pathname.startsWith("/games") ? "is-active" : ""}>🧩 Categories</a></li>
@@ -198,21 +198,90 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   </div>
 </div>
 
+<!-- ── SEARCH SECTION ── -->
 <div class="hero-search">
   <div class="hero-search__wrap">
     <slot name="left" />
-    <div class="hero-search__box" id="heroSearchBox">
-      <span class="hero-search__icon">🔍</span>
-      <input type="text" id="heroSearch" placeholder="Search games, alphabets, states..." autocomplete="off" />
-      <button id="heroClear" class="hero-search__clear" style="display:none;">✕</button>
+
+    <!-- Combobox wrapper: aria-owns points to the listbox -->
+    <div
+      class="hero-search__box"
+      id="heroSearchBox"
+      role="combobox"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-owns="heroSuggestions"
+    >
+      <span class="hero-search__icon" aria-hidden="true">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="heroSearch"
+        placeholder="Search games, alphabets, states…"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-label="Search site content"
+        aria-autocomplete="list"
+        aria-controls="heroSuggestions"
+        aria-activedescendant=""
+        role="searchbox"
+      />
+      <button
+        id="heroClear"
+        class="hero-search__clear"
+        style="display:none;"
+        aria-label="Clear search"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
-    <div class="hero-search__dropdown" id="heroSuggestions" style="display:none;"></div>
+
+    <!-- Suggestions dropdown — centred, max-width constrained -->
+    <div
+      class="hero-search__dropdown"
+      id="heroSuggestions"
+      role="listbox"
+      aria-label="Search suggestions"
+      aria-live="polite"
+      style="display:none;"
+    >
+    </div>
   </div>
 </div>
 
 <div class="header-spacer" id="headerSpacer"></div>
 
 <style is:global>
+  /* ── Theme toggle ── */
   .theme-toggle {
     background: none;
     border: 1.5px solid #e2e8f0;
@@ -240,69 +309,292 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     background: #e9e6ee;
     border-color: #0ba4ce;
   }
+
+  /* ══════════════════════════════════════════
+     SEARCH BOX
+  ══════════════════════════════════════════ */
+
+  /* Spacer: JS will set exact px height via inline style. */
+  .header-spacer {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Centre the search wrap — header.css sets wrap to width:100%,
+     we constrain it here for desktop readability */
+  .hero-search__wrap {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+    /* keep flex from header.css, just override the width constraint */
+  }
+
+  /* ── Search box: only STATES here, structure is in header.css ── */
+
+  /* Default — visible border so it never looks flat */
+  .hero-search__box {
+    border-color: #c4b5fd !important; /* same as header.css but explicit */
+    box-shadow: 0 1px 4px rgba(124, 58, 237, 0.08);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      background 0.2s;
+  }
+  [data-theme="dark"] .hero-search__box {
+    border-color: #18d0ed !important;
+    box-shadow: 0 1px 5px rgba(24, 208, 237, 0.12);
+  }
+
+  /* Hover — slightly stronger before focusing */
+  .hero-search__box:not(:focus-within):hover {
+    border-color: #a78bfa !important;
+    box-shadow:
+      0 0 0 2px rgba(167, 139, 250, 0.18),
+      0 1px 5px rgba(124, 58, 237, 0.1);
+  }
+  [data-theme="dark"] .hero-search__box:not(:focus-within):hover {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.18);
+  }
+
+  /* Focus / Active — clear glow ring */
+  .hero-search__box:focus-within {
+    border-color: #7c3aed !important;
+    box-shadow:
+      0 0 0 3px rgba(124, 58, 237, 0.22),
+      0 2px 8px rgba(124, 58, 237, 0.14) !important;
+  }
+  [data-theme="dark"] .hero-search__box:focus-within {
+    border-color: #40def6 !important;
+    box-shadow:
+      0 0 0 3px rgba(64, 222, 246, 0.22),
+      0 2px 8px rgba(64, 222, 246, 0.14) !important;
+  }
+
+  /* Icon colour change on focus */
+  .hero-search__icon {
+    color: #a78bfa;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .hero-search__box:focus-within .hero-search__icon {
+    color: #7c3aed;
+  }
+  [data-theme="dark"] .hero-search__icon {
+    color: #38bdf8;
+  }
+  [data-theme="dark"] .hero-search__box:focus-within .hero-search__icon {
+    color: #40def6;
+  }
+
+  /* Hide native browser ✕ on type=search */
+  #heroSearch::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  .hero-search__clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition:
+      background 0.15s,
+      color 0.15s;
+  }
+  .hero-search__clear:hover {
+    background: #fee2e2;
+    color: #ef4444;
+  }
+  .hero-search__clear:focus-visible {
+    outline: 2px solid #7c3aed;
+    outline-offset: 2px;
+  }
+
+  /* ══════════════════════════════════════════
+     DROPDOWN / SUGGESTIONS PANEL
+  ══════════════════════════════════════════ */
+  .hero-search__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    /* Centred, max-width constrained — same as the wrap */
+    background: var(--dd-bg, #ffffff);
+    border: 1px solid var(--dd-border, #e2e8f0);
+    border-radius: 16px;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.07),
+      0 12px 32px -4px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(99, 102, 241, 0.06);
+    overflow: hidden;
+    z-index: 9999;
+    max-height: 68vh;
+    overflow-y: auto;
+    animation: ddSlideIn 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+    scroll-behavior: smooth;
+  }
+  [data-theme="dark"] .hero-search__dropdown {
+    --dd-bg: #0d1f2d;
+    --dd-border: #1e3a4f;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.4),
+      0 12px 32px -4px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(129, 140, 248, 0.1);
+  }
+  /* Custom scrollbar */
+  .hero-search__dropdown::-webkit-scrollbar {
+    width: 5px;
+  }
+  .hero-search__dropdown::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .hero-search__dropdown::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 99px;
+  }
+  [data-theme="dark"] .hero-search__dropdown::-webkit-scrollbar-thumb {
+    background: #1e3a4f;
+  }
+
+  @keyframes ddSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* ── Section title ── */
   .gs-section-title {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    color: #7c3aed;
-    padding: 8px 16px 4px;
+    color: #6366f1;
+    padding: 10px 14px 5px;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    border-top: 1px solid #f1f5f9;
-    margin-top: 2px;
+    letter-spacing: 0.08em;
+    border-top: 1px solid var(--dd-divider, #f1f5f9);
+    margin-top: 0;
+    position: sticky;
+    top: 0;
+    background: inherit;
+    z-index: 1;
+  }
+  [data-theme="dark"] .gs-section-title {
+    --dd-divider: #162536;
+    color: #818cf8;
   }
   .gs-section-title:first-child {
     border-top: none;
-    margin-top: 0;
   }
+  /* result count badge in section title */
+  .gs-section-count {
+    margin-left: auto;
+    background: #eef2ff;
+    color: #6366f1;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 99px;
+  }
+  [data-theme="dark"] .gs-section-count {
+    background: #1e2d50;
+    color: #818cf8;
+  }
+
+  /* ── Result item ── */
   .gs-result-item {
     display: flex !important;
     align-items: center !important;
-    justify-content: space-between !important;
-    padding: 7px 16px !important;
+    padding: 8px 14px !important;
     text-decoration: none !important;
-    color: #1e293b !important;
+    color: var(--item-text, #1e293b) !important;
     font-size: 13px !important;
-    font-weight: 500 !important;
-    transition: background 0.12s !important;
     gap: 10px !important;
+    transition: background 0.1s !important;
+    outline: none !important;
+    cursor: pointer;
+    border-left: 2.5px solid transparent;
   }
-  .gs-result-item:hover {
-    background: #f5f3ff !important;
-    color: #7c3aed !important;
+  [data-theme="dark"] .gs-result-item {
+    --item-text: #e2e8f0;
   }
+  .gs-result-item:hover,
+  .gs-result-item[aria-selected="true"] {
+    background: #eef2ff !important;
+    border-left-color: #6366f1 !important;
+    color: #4338ca !important;
+  }
+  [data-theme="dark"] .gs-result-item:hover,
+  [data-theme="dark"] .gs-result-item[aria-selected="true"] {
+    background: #162040 !important;
+    border-left-color: #818cf8 !important;
+    color: #a5b4fc !important;
+  }
+  /* keyboard-focused item gets same highlight */
+  .gs-result-item:focus-visible {
+    background: #eef2ff !important;
+    border-left-color: #6366f1 !important;
+    color: #4338ca !important;
+    box-shadow: inset 0 0 0 2px rgba(99, 102, 241, 0.3) !important;
+  }
+
   .gs-result-left {
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 10px !important;
     flex: 1 !important;
     min-width: 0 !important;
   }
+
   .gs-emoji-box {
-    width: 30px !important;
-    height: 30px !important;
-    border-radius: 8px !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 9px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     font-size: 15px !important;
     flex-shrink: 0 !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
   }
+
   .gs-result-info {
     display: flex !important;
     flex-direction: column !important;
     min-width: 0 !important;
+    gap: 1px !important;
   }
+
   .gs-result-name {
     font-size: 13px !important;
     font-weight: 600 !important;
-    color: inherit !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+    color: inherit !important;
   }
+  /* highlight matching text */
+  .gs-result-name mark {
+    background: #fef9c3;
+    color: #854d0e;
+    border-radius: 2px;
+    font-weight: 700;
+    padding: 0 1px;
+  }
+  [data-theme="dark"] .gs-result-name mark {
+    background: #3b2c00;
+    color: #fde68a;
+  }
+
   .gs-result-sub {
     font-size: 11px !important;
     color: #94a3b8 !important;
@@ -310,20 +602,78 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
+  [data-theme="dark"] .gs-result-sub {
+    color: #64748b !important;
+  }
+
   .gs-type-tag {
     font-size: 10px !important;
     font-weight: 700 !important;
-    padding: 2px 7px !important;
-    border-radius: 20px !important;
+    padding: 2px 8px !important;
+    border-radius: 99px !important;
     flex-shrink: 0 !important;
     text-transform: capitalize !important;
+    letter-spacing: 0.03em !important;
   }
+
+  /* ── Arrow hint at bottom ── */
+  .gs-footer-hint {
+    padding: 7px 14px;
+    border-top: 1px solid var(--dd-divider, #f1f5f9);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 10px;
+    color: #94a3b8;
+    background: var(--dd-bg, #fff);
+  }
+  [data-theme="dark"] .gs-footer-hint {
+    --dd-divider: #162536;
+  }
+  .gs-footer-hint kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 9px;
+    font-family: monospace;
+    background: #f9fafb;
+    color: #374151;
+    box-shadow: 0 1px 0 #d1d5db;
+  }
+  [data-theme="dark"] .gs-footer-hint kbd {
+    border-color: #1e3a4f;
+    background: #0d1f2d;
+    color: #94a3b8;
+    box-shadow: 0 1px 0 #0a1929;
+  }
+  .gs-hint-pair {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ── Empty / no-results ── */
   .gs-empty {
-    padding: 20px 16px;
+    padding: 28px 16px;
     text-align: center;
     color: #94a3b8;
-    font-size: 14px;
+    font-size: 13px;
   }
+  .gs-empty-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .gs-empty strong {
+    color: var(--item-text, #475569);
+  }
+
+  /* ══════════════════════════════════════════
+     TYPE COLOURS  (emoji bg + tag)
+  ══════════════════════════════════════════ */
   .gs-c-game {
     background: #dcfce7 !important;
   }
@@ -369,6 +719,7 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   .gs-c-hidenseek {
     background: #fef3c7 !important;
   }
+
   .gs-t-game {
     background: #dcfce7 !important;
     color: #16a34a !important;
@@ -434,7 +785,8 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
 <script is:inline define:vars={{ allSearchItemsJSON }}>
   window.__searchItems = JSON.parse(allSearchItemsJSON);
 
-  const groupTitle = {
+  /* ── Constants ── */
+  const GROUP_TITLE = {
     game: "🎮 Games",
     alphabet: "🔤 Alphabets",
     page: "📄 Pages",
@@ -451,7 +803,7 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     canvas: "🎨 Canvas",
     hidenseek: "🔍 Hide N Seek"
   };
-  const typeEmoji = {
+  const TYPE_EMOJI = {
     game: "🎮",
     alphabet: "🔤",
     page: "📄",
@@ -469,85 +821,241 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     hidenseek: "🔍"
   };
 
-  function buildDropdown(query, dropdown) {
+  /* ── Highlight matching text ── */
+  function highlight(text, q) {
+    if (!q || !text) return text;
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return text;
+    return (
+      escHtml(text.slice(0, idx)) +
+      `<mark>${escHtml(text.slice(idx, idx + q.length))}</mark>` +
+      escHtml(text.slice(idx + q.length))
+    );
+  }
+  function escHtml(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* ── Build dropdown HTML ── */
+  function buildDropdown(query, dropdown, combobox) {
     const items = window.__searchItems || [];
     const q = query.trim().toLowerCase();
     if (!q) {
-      dropdown.style.display = "none";
+      closeDropdown(dropdown, combobox);
       return;
     }
-    const matched = items.filter((item) => item.name && item.name.toLowerCase().includes(q)).slice(0, 25);
+
+    const matched = items.filter((item) => item.name && item.name.toLowerCase().includes(q)).slice(0, 30);
+
     if (matched.length === 0) {
-      dropdown.innerHTML = `<div class="gs-empty">No results for "<strong>${query}</strong>"</div>`;
-      dropdown.style.display = "block";
+      dropdown.innerHTML = `
+        <div class="gs-empty" role="status">
+          <span class="gs-empty-icon">🔍</span>
+          No results for <strong>"${escHtml(query)}"</strong>
+        </div>`;
+      openDropdown(dropdown, combobox);
       return;
     }
+
+    /* Group by type */
     const groups = {};
     matched.forEach((item) => {
       if (!groups[item.type]) groups[item.type] = [];
       groups[item.type].push(item);
     });
+
     let html = "";
-    for (const [type, items2] of Object.entries(groups)) {
-      html += `<div class="gs-section-title">${groupTitle[type] || type}</div>`;
-      items2.forEach((item) => {
-        html += `<a href="${item.path}" class="gs-result-item">
+    let idx = 0;
+    for (const [type, list] of Object.entries(groups)) {
+      html += `<div class="gs-section-title" role="presentation">
+        ${GROUP_TITLE[type] || type}
+        <span class="gs-section-count">${list.length}</span>
+      </div>`;
+      list.forEach((item) => {
+        html += `<a
+          href="${item.path}"
+          class="gs-result-item"
+          role="option"
+          id="gs-option-${idx}"
+          aria-selected="false"
+          data-idx="${idx}"
+          tabindex="-1"
+        >
           <div class="gs-result-left">
-            <div class="gs-emoji-box gs-c-${type}">${typeEmoji[type] || "•"}</div>
+            <div class="gs-emoji-box gs-c-${type}" aria-hidden="true">${TYPE_EMOJI[type] || "•"}</div>
             <div class="gs-result-info">
-              <span class="gs-result-name">${item.name}</span>
-              ${item.sub ? `<span class="gs-result-sub">${item.sub}</span>` : ""}
+              <span class="gs-result-name">${highlight(item.name, q)}</span>
+              ${item.sub ? `<span class="gs-result-sub">${escHtml(item.sub)}</span>` : ""}
             </div>
           </div>
-          <span class="gs-type-tag gs-t-${type}">${type}</span>
+          <span class="gs-type-tag gs-t-${type}" aria-hidden="true">${type}</span>
         </a>`;
+        idx++;
       });
     }
+
+    /* Keyboard hint footer */
+    html += `<div class="gs-footer-hint" aria-hidden="true">
+      <span class="gs-hint-pair"><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
+      <span class="gs-hint-pair"><kbd>↵</kbd> Open</span>
+      <span class="gs-hint-pair"><kbd>Esc</kbd> Close</span>
+    </div>`;
+
     dropdown.innerHTML = html;
+    openDropdown(dropdown, combobox);
+  }
+
+  function openDropdown(dropdown, combobox) {
     dropdown.style.display = "block";
+    if (combobox) combobox.setAttribute("aria-expanded", "true");
+  }
+  function closeDropdown(dropdown, combobox) {
+    dropdown.style.display = "none";
+    if (combobox) combobox.setAttribute("aria-expanded", "false");
   }
 
-  // ── SPACER FIX: dynamically set spacer height ──
-  function updateSpacer() {
-    const header = document.querySelector(".header");
-    const heroSearch = document.querySelector(".hero-search");
-    const spacer = document.getElementById("headerSpacer");
-    if (header && heroSearch && spacer) {
-      const headerH = header.getBoundingClientRect().height;
-      const searchH = heroSearch.getBoundingClientRect().height;
-      document.documentElement.style.setProperty("--header-h", headerH + "px");
-      spacer.style.height = headerH + searchH + "px";
-    }
+  /* ── Keyboard navigation state ── */
+  let activeIndex = -1;
+
+  function getOptions(dropdown) {
+    return Array.from(dropdown.querySelectorAll(".gs-result-item[role='option']"));
   }
 
+  function setActive(dropdown, input, idx) {
+    const options = getOptions(dropdown);
+    if (!options.length) return;
+
+    /* clamp */
+    if (idx < -1) idx = options.length - 1;
+    if (idx >= options.length) idx = -1;
+    activeIndex = idx;
+
+    options.forEach((opt, i) => {
+      const active = i === idx;
+      opt.setAttribute("aria-selected", String(active));
+      if (active) {
+        opt.classList.add("gs-active");
+        input.setAttribute("aria-activedescendant", opt.id);
+        /* scroll into view without jumping the page */
+        opt.scrollIntoView({ block: "nearest", inline: "nearest" });
+      } else {
+        opt.classList.remove("gs-active");
+      }
+    });
+
+    if (idx === -1) input.setAttribute("aria-activedescendant", "");
+  }
+
+  /* ── Main init ── */
   function initHeroSearch() {
     const input = document.getElementById("heroSearch");
     const clearBtn = document.getElementById("heroClear");
     const dropdown = document.getElementById("heroSuggestions");
+    const combobox = document.getElementById("heroSearchBox");
     if (!input) return;
+
+    /* typing */
     input.addEventListener("input", (e) => {
       const q = e.target.value;
-      if (clearBtn) clearBtn.style.display = q ? "block" : "none";
-      buildDropdown(q, dropdown);
+      clearBtn.style.display = q ? "flex" : "none";
+      activeIndex = -1;
+      input.setAttribute("aria-activedescendant", "");
+      buildDropdown(q, dropdown, combobox);
     });
-    clearBtn &&
-      clearBtn.addEventListener("click", () => {
-        input.value = "";
-        if (dropdown) dropdown.style.display = "none";
-        if (clearBtn) clearBtn.style.display = "none";
-        input.focus();
-      });
+
+    /* clear button */
+    clearBtn?.addEventListener("click", () => {
+      input.value = "";
+      clearBtn.style.display = "none";
+      closeDropdown(dropdown, combobox);
+      activeIndex = -1;
+      input.setAttribute("aria-activedescendant", "");
+      input.focus();
+    });
+
+    /* keyboard navigation */
     input.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        if (dropdown) dropdown.style.display = "none";
-        input.blur();
+      if (dropdown.style.display === "none") return;
+      const options = getOptions(dropdown);
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          setActive(dropdown, input, activeIndex + 1);
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          setActive(dropdown, input, activeIndex - 1);
+          break;
+        case "Enter":
+          e.preventDefault();
+          if (activeIndex >= 0 && options[activeIndex]) {
+            options[activeIndex].click();
+          }
+          break;
+        case "Escape":
+          closeDropdown(dropdown, combobox);
+          activeIndex = -1;
+          input.setAttribute("aria-activedescendant", "");
+          input.blur();
+          break;
+        case "Tab":
+          closeDropdown(dropdown, combobox);
+          activeIndex = -1;
+          break;
       }
     });
+
+    /* mouse hover sync */
+    dropdown.addEventListener("mousemove", (e) => {
+      const item = e.target.closest(".gs-result-item[role='option']");
+      if (!item) return;
+      const idx = parseInt(item.dataset.idx, 10);
+      if (!isNaN(idx)) setActive(dropdown, input, idx);
+    });
+
+    /* close on outside click */
     document.addEventListener("click", (e) => {
-      if (!e.target.closest(".hero-search__wrap") && dropdown) dropdown.style.display = "none";
+      if (!e.target.closest(".hero-search__wrap")) {
+        closeDropdown(dropdown, combobox);
+        activeIndex = -1;
+      }
+    });
+
+    /* close on focus leaving the wrap */
+    document.addEventListener("focusin", (e) => {
+      if (!e.target.closest(".hero-search__wrap")) {
+        closeDropdown(dropdown, combobox);
+        activeIndex = -1;
+      }
     });
   }
 
+  /* ── Spacer ── */
+  function updateSpacer() {
+    const header = document.querySelector(".header");
+    const heroSearch = document.querySelector(".hero-search");
+    const spacer = document.getElementById("headerSpacer");
+    if (!header || !spacer) return;
+
+    // Both .header and .hero-search are position:fixed (per header.css)
+    // so they are fully out of document flow.
+    // Spacer must equal their combined height so page content
+    // starts exactly below the search bar — no gap, no overlap.
+    const headerRect = header.getBoundingClientRect();
+    const searchRect = heroSearch ? heroSearch.getBoundingClientRect() : { height: 0 };
+
+    const totalH = headerRect.height + searchRect.height;
+
+    // Set CSS var for hero-search top: positioning
+    document.documentElement.style.setProperty("--header-h", headerRect.height + "px");
+
+    // Override header.css spacer height (height:0 / 130px / 120px)
+    // with the real measured value
+    spacer.style.setProperty("height", totalH + "px", "important");
+  }
+
+  /* ── Theme ── */
   const sunIcon = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
   const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
 
@@ -583,7 +1091,6 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   function initThemeToggle() {
     const headerThemeToggle = document.getElementById("headerThemeToggle");
     const mobileThemeToggle = document.getElementById("mobileThemeToggle");
-
     function toggleTheme() {
       const current = localStorage.getItem("theme") || "light";
       const next = current === "dark" ? "light" : "dark";
@@ -591,71 +1098,45 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
       applyThemeStyles(next);
       updateThemeIcon();
     }
-
     headerThemeToggle?.addEventListener("click", toggleTheme);
     mobileThemeToggle?.addEventListener("click", toggleTheme);
-
     applyThemeStyles(localStorage.getItem("theme") || "light");
     updateThemeIcon();
   }
 
+  /* ── Hamburger ── */
   function initHamburger() {
     const hamburger = document.getElementById("hamburger");
-    const menuClose = document.getElementById("menuClose");
     const mobileMenu = document.getElementById("mobileMenu");
     const mobileOverlay = document.getElementById("mobileOverlay");
 
-    function _initMobileNavHighlight() {
-      const links = document.querySelectorAll(".mobile-nav__links li a");
-      links.forEach((a) => {
-        a.addEventListener(
-          "touchstart",
-          function () {
-            links.forEach((l) => {
-              if (!l.classList.contains("is-active")) {
-                l.style.background = "";
-                l.style.color = "";
-                l.style.borderLeft = "3px solid transparent";
-                l.style.transform = "";
-              }
-            });
-            this.style.background = "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(139,92,246,0.08))";
-            this.style.color = "#7c3aed";
-            this.style.borderLeft = "3px solid #7c3aed";
-            this.style.transform = "translateX(5px)";
-            this.style.boxShadow = "0 4px 14px rgba(124,58,237,0.18)";
-          },
-          { passive: true }
-        );
-      });
-    }
-
     function openMenu() {
       hamburger?.classList.add("open");
+      hamburger?.setAttribute("aria-expanded", "true");
       mobileMenu?.classList.add("open");
       mobileOverlay?.classList.add("open");
+      mobileOverlay?.removeAttribute("aria-hidden");
       document.body.style.overflow = "hidden";
     }
     function closeMenu() {
       hamburger?.classList.remove("open");
+      hamburger?.setAttribute("aria-expanded", "false");
       mobileMenu?.classList.remove("open");
       mobileOverlay?.classList.remove("open");
+      mobileOverlay?.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
     }
 
     hamburger?.addEventListener("click", () => {
-      if (mobileMenu?.classList.contains("open")) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+      mobileMenu?.classList.contains("open") ? closeMenu() : openMenu();
     });
-    menuClose?.addEventListener("click", closeMenu);
     mobileOverlay?.addEventListener("click", closeMenu);
     document.querySelectorAll(".mobile-nav__links a").forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
   }
+
+  /* ── Boot ── */
   function init() {
     document.querySelector(".hero-search__box")?.style.removeProperty("margin-left");
     initHeroSearch();
@@ -665,6 +1146,14 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   }
   window.addEventListener("resize", updateSpacer);
 
+  // Run immediately
   init();
+
+  // Re-run after fonts/images may have shifted layout
+  document.addEventListener("DOMContentLoaded", updateSpacer);
+  window.addEventListener("load", updateSpacer);
+
+  // Astro view transitions
   document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:after-swap", updateSpacer);
 </script>
