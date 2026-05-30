@@ -1,85 +1,40 @@
-.container__popover {
-  container: setting/inline-size;
+.state-popup__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 999;
 
-  .state-popup__close {
-    position: absolute;
-    anchor-name: --setting;
-    display: flex;
-    top: 1rem;
-    right: 0.5rem;
-    width: max-content;
-    cursor: pointer;
-    font-size: 3.5rem;
-    background: none;
-    border: none;
-    color: #888;
-    z-index: 2;
-    transition: color 0.2s;
-
-    &:hover {
-      color: #1976d2;
-      background-color: white;
-    }
+  &.is-open {
+    display: block;
   }
+}
 
-  .state-popup {
-    position: fixed;
-    position-anchor: --setting;
-    top: calc(anchor(bottom) + 15px);
-    right: calc(anchor(left) + 10px);
-    justify-self: anchor-center;
-    height: 26rem;
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 0.74rem;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    color: color(xyz 0 0 1);
+.state-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: #fff;
+  border-radius: 1rem;
+  border: 2px solid #1976d2;
+  padding: 1rem;
+  width: 22rem;
+  max-width: 90vw;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
 
-    &::backdrop {
-      background-color: hsl(0 0% 10% / 0.5);
-      backdrop-filter: blur(2px);
-    }
-
-    .state-popup__content {
-      display: grid;
-      grid-auto-flow: row;
-      gap: 0.5rem;
-      width: 20rem;
-    }
-
-    &[popover] {
-      inset: unset;
-      width: auto;
-      bottom: 0;
-      margin: auto;
-      overflow-y: hidden;
-      padding: 1rem;
-      border: solid;
-      border-radius: 1rem;
-      opacity: 0;
-      visibility: hidden;
-      transition:
-        translate 0.7s ease-out,
-        display 0.7s ease-out allow-discrete,
-        overlay 0.7s ease-out allow-discrete,
-        height 0.5s ease-in-out;
-      translate: 0 -2rem;
-
-      &:popover-open {
-        opacity: 1;
-        visibility: visible;
-        translate: 0 0;
-        top: 40px;
-        min-height: 26rem;
-        justify-content: center;
-      }
-
-      @starting-style {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
+  &.is-open {
+    display: block;
   }
+}
+
+.state-popup__content {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 0.5rem;
 }
 
 .state-popup__header {
@@ -103,13 +58,19 @@
 
 .state-popup__close {
   flex: 0 0 auto;
-  margin-left: 1rem;
-}
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  margin-left: 0.5rem;
+  transition: color 0.2s;
 
-.state-popup {
-  width: auto;
-  min-width: 260px;
-  max-width: 700px;
+  &:hover {
+    color: #1976d2;
+  }
 }
 
 .state-popup__image {
@@ -148,61 +109,32 @@
   cursor: pointer;
   margin-top: 0.5rem;
   transition: background 0.2s;
+
+  &:hover {
+    background: #1565c0;
+  }
 }
 
 @media (max-width: 600px) {
-  .container__popover {
-    .state-popup {
-      width: 80vw;
-      padding: 1.5rem 1rem;
+  .state-popup {
+    width: 85vw;
+    padding: 1rem;
+  }
 
-      &[popover] {
-        min-height: 16rem;
+  .state-popup__name {
+    font-size: 1.3rem;
+  }
 
-        &:popover-open {
-          min-height: 20rem;
-          width: 30%;
-        }
-      }
+  .state-popup__close {
+    font-size: 2rem;
+  }
 
-      .state-popup__content {
-        width: 100%;
-        gap: 0.75rem;
-      }
+  .state-popup__info {
+    font-size: 1rem;
+  }
 
-      .state-popup__image {
-        width: 100%;
-        max-height: 200px;
-        object-fit: cover;
-        border-radius: 0.6rem;
-      }
-
-      .state-popup__info {
-        font-size: 1rem;
-      }
-
-      .state-popup__name {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .state-popup__buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .state-popup__button {
-        font-size: 1rem;
-        padding: 0.7rem;
-      }
-
-      .state-popup__close {
-        font-size: 2rem;
-        top: 0.9rem;
-        right: 0;
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-    }
+  .state-popup__button {
+    font-size: 1rem;
+    padding: 0.7rem;
   }
 }

@@ -312,9 +312,14 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
 
   /* ══════════════════════════════════════════
      SEARCH BOX
+     NOTE: position/top/z-index are intentionally NOT set here —
+     header.css already defines .hero-search as position:fixed with
+     top:var(--header-h). Overriding would break the layout.
   ══════════════════════════════════════════ */
 
-  /* Spacer: JS will set exact px height via inline style. */
+  /* Spacer: JS will set exact px height via inline style.
+     We use !important to override header.css's height:0 on desktop
+     and the hardcoded 130px/120px on mobile (JS is more accurate). */
   .header-spacer {
     display: block !important;
     margin: 0 !important;
@@ -581,6 +586,8 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     color: inherit !important;
+    word-spacing: -0.1px;
+    letter-spacing: normal;
   }
   /* highlight matching text */
   .gs-result-name mark {
@@ -588,11 +595,21 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     color: #854d0e;
     border-radius: 2px;
     font-weight: 700;
-    padding: 0 1px;
+    padding: 0;
+    margin: 0;
+    display: inline;
+    vertical-align: baseline;
+    line-height: inherit;
+    font-size: inherit;
+    font-style: normal;
+    white-space: pre;
   }
   [data-theme="dark"] .gs-result-name mark {
     background: #3b2c00;
     color: #fde68a;
+    display: inline;
+    vertical-align: baseline;
+    padding: 0;
   }
 
   .gs-result-sub {
@@ -823,9 +840,9 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
 
   /* ── Highlight matching text ── */
   function highlight(text, q) {
-    if (!q || !text) return text;
+    if (!q || !text) return escHtml(text);
     const idx = text.toLowerCase().indexOf(q.toLowerCase());
-    if (idx === -1) return text;
+    if (idx === -1) return escHtml(text);
     return (
       escHtml(text.slice(0, idx)) +
       `<mark>${escHtml(text.slice(idx, idx + q.length))}</mark>` +

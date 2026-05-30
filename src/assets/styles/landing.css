@@ -229,7 +229,9 @@
 .games-page {
   display: block;
   min-height: calc(100vh - var(--header-height));
-  padding: 2rem 0;
+  padding: 1rem 2rem 2rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .page-header {
@@ -275,6 +277,29 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.games-grid--centered {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.games-grid--centered .game-card {
+  width: 380px;
+  flex: 0 0 380px;
+  max-width: calc(33.33% - 1rem);
+}
+
+.games-grid--full {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+  width: 100%;
 }
 
 .game-card {
@@ -644,6 +669,7 @@ footer {
    TOUCH DEVICES
 ══════════════════════════════════════ */
 @media (hover: none) and (pointer: coarse) {
+
   .category-card:hover,
   .game-card:hover,
   .cta-button:hover {

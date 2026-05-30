@@ -1,5 +1,4 @@
 ---
-// src/components/GamesGrid.astro
 import type { Game } from "@/data/gamesData";
 
 interface Props {
@@ -7,6 +6,7 @@ interface Props {
 }
 
 const { games } = Astro.props;
+const isCentered = games.length <= 3;
 ---
 
 <style>
@@ -15,7 +15,7 @@ const { games } = Astro.props;
   }
 </style>
 
-<div class="games-grid">
+<div class={`games-grid ${isCentered ? "games-grid--centered" : "games-grid--full"}`}>
   {
     games.map((game) => (
       <div class="game-card">

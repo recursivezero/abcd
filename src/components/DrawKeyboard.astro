@@ -3,7 +3,7 @@ import { alphabetMapper } from "@/mappers/alphabet";
 import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/constants";
 ---
 
-<div class="container">
+<div class="draw-wrapper">
   <div class="header-container">
     <header class="header">
       <h1 class="info" aria-live="polite">Press any key</h1>
@@ -21,18 +21,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
   </main>
 </div>
 
-<script
-  define:vars={{
-    colorBox,
-    fontBox,
-    numberBox,
-    alphabetMapper,
-    IMAGE_DIR,
-    fontColor
-  }}
-  is:inline
->
-  // Initialize state
+<script define:vars={{ colorBox, fontBox, numberBox, alphabetMapper, IMAGE_DIR, fontColor }} is:inline>
   let currentFontIndex = 0;
   let currentFontColorIndex = 0;
   let isUpperCase = true;
@@ -42,8 +31,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
   let backgroundMode = "none";
   let currentDisplayedKey = "";
 
-  // DOM elements
-  const mainEl = document.querySelector("main");
+  const mainEl = document.querySelector(".main");
   const boardDiv = document.getElementById("board");
   const charDiv = document.getElementById("char");
   const instructionDiv = document.getElementById("instruction");
@@ -59,9 +47,7 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
 
   function showContinueMessage() {
     const continueMsg = document.getElementById("continueMessage");
-    if (continueMsg) {
-      continueMsg.style.display = "block";
-    }
+    if (continueMsg) continueMsg.style.display = "block";
   }
 
   function initializeDisplay() {
@@ -75,14 +61,9 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     currentDisplayedKey = "";
     currentFontColorIndex = 0;
     updateFontColor();
-
     const continueMsg = document.getElementById("continueMessage");
-    if (continueMsg) {
-      continueMsg.style.display = "none";
-    }
-
+    if (continueMsg) continueMsg.style.display = "none";
     forceUpdateToggleButtons();
-
     if (imgToggle) {
       imgToggle.style.pointerEvents = "";
       imgToggle.style.opacity = "";
@@ -108,7 +89,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
   function setBackgroundImage(imagePath) {
     clearAllBackgrounds();
     if (boardDiv) {
-      // Check network status
       const basePath = navigator.onLine ? IMAGE_DIR : "/assets/images/background";
       const fullPath = `${basePath}/${imagePath.split("/").pop()}`;
       boardDiv.style.backgroundImage = `url(${fullPath})`;
@@ -121,20 +101,14 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
 
   function setBackgroundColor(color) {
     clearAllBackgrounds();
-    if (boardDiv) {
-      boardDiv.style.backgroundColor = color;
-    }
+    if (boardDiv) boardDiv.style.backgroundColor = color;
     backgroundMode = "color";
   }
 
   function updateFontColor() {
     const currentColor = fontColor[currentFontColorIndex];
-    if (charDiv) {
-      charDiv.style.color = currentColor;
-    }
-    if (instructionDiv) {
-      instructionDiv.style.color = currentColor;
-    }
+    if (charDiv) charDiv.style.color = currentColor;
+    if (instructionDiv) instructionDiv.style.color = currentColor;
   }
 
   function forceUpdateToggleButtons() {
@@ -153,13 +127,11 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
       colorToggle.style.backgroundColor = "";
       colorToggle.style.color = "";
     }
-
     updateToggleButtons();
   }
 
   function updateToggleButtons() {
     if (!imgToggle || !bgToggle || !colorToggle) return;
-
     if (backgroundMode === "image") {
       imgToggle.classList.add("active");
       imgToggle.style.backgroundColor = "#007bff";
@@ -182,22 +154,11 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
       bgToggle.style.backgroundColor = "";
       bgToggle.style.color = "";
     }
-
-    if (toggleImgSwitch) {
-      toggleImgSwitch.checked = backgroundMode === "image";
-    }
-    if (toggleBackgroundSwitch) {
-      toggleBackgroundSwitch.checked = backgroundMode === "color";
-    }
-
+    if (toggleImgSwitch) toggleImgSwitch.checked = backgroundMode === "image";
+    if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = backgroundMode === "color";
     if (imgToggle) {
-      if (isNumberPressed) {
-        imgToggle.style.pointerEvents = "none";
-        imgToggle.style.opacity = "0.5";
-      } else {
-        imgToggle.style.pointerEvents = "";
-        imgToggle.style.opacity = "";
-      }
+      imgToggle.style.pointerEvents = isNumberPressed ? "none" : "";
+      imgToggle.style.opacity = isNumberPressed ? "0.5" : "";
     }
   }
 
@@ -205,16 +166,11 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     hasKeyBeenPressed = true;
     instructionDiv.textContent = "";
     const isDifferentKey = currentDisplayedKey !== key.toUpperCase();
+    if (isDifferentKey) currentFontColorIndex = 0;
 
-    if (isDifferentKey) {
-      currentFontColorIndex = 0;
-    }
-
-    // Handle numbers
     if (!isNaN(Number(key))) {
       isNumberPressed = true;
-      const randomColor = getRandomValue(colorBox);
-      setBackgroundColor(randomColor);
+      setBackgroundColor(getRandomValue(colorBox));
       charDiv.textContent = key;
       info.textContent = numberBox[key] || "Unknown";
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
@@ -227,8 +183,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     }
 
     isNumberPressed = false;
-
-    // Handle alphabetic characters
     const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === key.toUpperCase());
 
     if (found) {
@@ -237,36 +191,28 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
       currentDisplayedKey = key.toUpperCase();
       updateFontColor();
-
       if (showImages && backgroundMode !== "color") {
         setBackgroundImage(`${found.value}.jpg`);
         charDiv.style.fontSize = "40vh";
       } else if (backgroundMode === "color") {
-        const randomColor = getRandomValue(colorBox);
-        setBackgroundColor(randomColor);
+        setBackgroundColor(getRandomValue(colorBox));
         charDiv.style.fontSize = "";
       } else {
         clearAllBackgrounds();
         charDiv.style.fontSize = "";
       }
-
       updateToggleButtons();
     } else {
-      // Handle any other key (not alphabet or number)
       info.textContent = "Unknown";
       charDiv.textContent = key;
       charDiv.style.fontFamily = instructionDiv.style.fontFamily = `"${fontBox[currentFontIndex]}"`;
       currentDisplayedKey = key;
       updateFontColor();
-
-      // Apply background based on current mode
       if (backgroundMode === "color") {
-        const randomColor = getRandomValue(colorBox);
-        setBackgroundColor(randomColor);
+        setBackgroundColor(getRandomValue(colorBox));
       } else {
         clearAllBackgrounds();
       }
-
       charDiv.style.fontSize = "";
       updateToggleButtons();
     }
@@ -275,25 +221,12 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
 
   function handleKeyPress(e) {
     const key = e.key;
-
-    // Ignore space, tab, and enter keys
-    if (key === " " || key === "Tab" || key === "Enter") {
-      return;
-    }
-
-    // Handle any other single character key
-    if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
-      updateDisplay(key);
-    }
+    if (key === " " || key === "Tab" || key === "Enter") return;
+    if (key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) updateDisplay(key);
   }
 
   initializeDisplay();
-
-  // Add virtual keyboard event listener
-  document.addEventListener("virtualKeyPress", (e) => {
-    updateDisplay(e.detail.key);
-  });
-
+  document.addEventListener("virtualKeyPress", (e) => updateDisplay(e.detail.key));
   document.addEventListener("keydown", handleKeyPress);
 
   if (imgToggle) {
@@ -304,7 +237,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
         bgToggle.style.backgroundColor = "";
         bgToggle.style.color = "";
       }
-
       if (backgroundMode === "image") {
         clearAllBackgrounds();
         backgroundMode = "none";
@@ -316,25 +248,19 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
       } else {
         backgroundMode = "image";
         showImages = true;
-        if (hasKeyBeenPressed && charDiv.textContent) {
-          const currentChar = charDiv.textContent;
-          if (!/\d/.test(currentChar)) {
-            const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === currentChar.toUpperCase());
-            if (found) {
-              setBackgroundImage(`${found.value}.jpg`);
-              charDiv.style.fontSize = "40vh";
-              updateFontColor();
-            }
+        if (hasKeyBeenPressed && charDiv.textContent && !/\d/.test(charDiv.textContent)) {
+          const found = alphabetMapper.find((alpha) => alpha.key.toUpperCase() === charDiv.textContent.toUpperCase());
+          if (found) {
+            setBackgroundImage(`${found.value}.jpg`);
+            charDiv.style.fontSize = "40vh";
+            updateFontColor();
           }
         }
         imgToggle.classList.add("active");
         imgToggle.style.backgroundColor = "#007bff";
         imgToggle.style.color = "white";
       }
-
-      setTimeout(() => {
-        updateToggleButtons();
-      }, 10);
+      setTimeout(() => updateToggleButtons(), 10);
     });
   }
 
@@ -345,7 +271,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
         imgToggle.style.backgroundColor = "";
         imgToggle.style.color = "";
       }
-
       if (backgroundMode === "color") {
         clearAllBackgrounds();
         backgroundMode = "none";
@@ -356,17 +281,11 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
       } else {
         backgroundMode = "color";
         showImages = false;
-
+        setBackgroundColor(getRandomValue(colorBox));
         if (hasKeyBeenPressed && charDiv.textContent) {
-          const randomColor = getRandomValue(colorBox);
-          setBackgroundColor(randomColor);
           charDiv.style.fontSize = "";
           updateFontColor();
-        } else {
-          const randomColor = getRandomValue(colorBox);
-          setBackgroundColor(randomColor);
         }
-
         bgToggle.classList.add("active");
         bgToggle.style.backgroundColor = "#007bff";
         bgToggle.style.color = "white";
@@ -378,14 +297,10 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     colorToggle.addEventListener("click", () => {
       currentFontColorIndex = (currentFontColorIndex + 1) % fontColor.length;
       updateFontColor();
-
       colorToggle.classList.add("active");
       colorToggle.style.backgroundColor = "#007bff";
       colorToggle.style.color = "white";
-
-      if (toggleColorSwitch) {
-        toggleColorSwitch.checked = true;
-      }
+      if (toggleColorSwitch) toggleColorSwitch.checked = true;
     });
   }
 
@@ -393,9 +308,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     toggleCaseSwitch.addEventListener("change", (e) => {
       isUpperCase = !e.target.checked;
       const currentText = charDiv.textContent;
-      if (currentText && /[a-zA-Z]/.test(currentText)) {
+      if (currentText && /[a-zA-Z]/.test(currentText))
         charDiv.textContent = isUpperCase ? currentText.toUpperCase() : currentText.toLowerCase();
-      }
     });
   }
 
@@ -403,7 +317,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     toggleFontSwitch.addEventListener("change", () => {
       currentFontIndex = (currentFontIndex + 1) % fontBox.length;
       const currentFont = fontBox[currentFontIndex];
-
       document.fonts
         .load(`1em "${currentFont}"`)
         .then(() => {
@@ -411,7 +324,6 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
           if (instructionDiv) instructionDiv.style.fontFamily = `"${currentFont}"`;
         })
         .catch(() => {
-          console.warn(`Font "${currentFont}" failed to load.`);
           if (charDiv) charDiv.style.fontFamily = `"${currentFont}"`;
           if (instructionDiv) instructionDiv.style.fontFamily = `"${currentFont}"`;
         });
@@ -428,12 +340,10 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     backgroundMode = "none";
     currentDisplayedKey = "";
     initializeDisplay();
-
     if (mainEl) {
       mainEl.style.backgroundBlendMode = "normal";
       mainEl.style.filter = "brightness(1)";
     }
-
     if (toggleCaseSwitch) toggleCaseSwitch.checked = false;
     if (toggleFontSwitch) toggleFontSwitch.checked = false;
     if (toggleBackgroundSwitch) toggleBackgroundSwitch.checked = false;
@@ -444,15 +354,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
 
 <style>
   :root {
-    --primary-bg: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 100%);
-    --header-bg: #f9fafb;
     --accent-color: #4338ca;
-    --control-bg: rgba(255, 255, 255, 0.95);
-    --text-color: #ffffff;
-    --solid-bg: #a5b4fc;
-    --shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -3px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --light-border: #e2e8f0;
   }
 
   * {
@@ -461,44 +364,38 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     padding: 0;
   }
 
-  .container {
+  /* Poora wrapper — header se footer tak */
+  .draw-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    width: 100%;
+    height: calc(100vh - 170px);
+    padding: 0.5rem 1rem;
+    overflow: hidden;
     font-family: "Inter", system-ui, sans-serif;
-    text-align: center;
-    padding: 1rem;
     position: relative;
-    padding-bottom: 15rem;
   }
-
+  /* Back + Banner row */
   .header-container {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 1500px;
-    gap: 2rem;
+    gap: 1rem;
     margin-bottom: 1.5rem;
-    margin-top: 3rem;
-    position: relative;
+    flex-shrink: 0;
   }
 
+  /* PRESS ANY KEY banner */
   .header {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 75%;
-    height: 60px;
-    padding: 1rem 0.6rem;
-    padding-top: rem;
-    gap: 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    max-width: 900px;
+    height: 56px;
+    padding: 0.5rem 1rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 16px;
@@ -509,20 +406,15 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: all 0.3s ease;
+    position: static;
   }
 
   .info {
     color: #ffffff;
     font-weight: 600;
-    text-align: center;
     text-transform: uppercase;
     font-size: 2rem;
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 0.1em;
   }
@@ -532,37 +424,29 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     font-size: 1rem;
     font-weight: 400;
     font-style: italic;
-  }
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
+  /* Draw box — baaki saari height */
   .main {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 60px);
+    flex: 1;
+    min-height: 0;
     overflow: hidden;
-    transition: var(--transition);
   }
 
   .board {
-    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
     overflow: hidden;
-    padding: 2rem;
+    padding: 1rem;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -578,18 +462,17 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     justify-content: center;
     width: 100%;
     height: 100%;
-    gap: 4rem;
+    gap: 2rem;
   }
 
   .char {
     text-align: center;
-    font-size: 60vh;
+    font-size: 55vh;
     font-weight: 800;
     color: white;
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     transition: var(--transition);
     animation: charReveal 0.4s ease-out;
-    will-change: transform, opacity;
     line-height: 1;
     margin: 0;
   }
@@ -598,10 +481,8 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
     color: white;
     font-size: 1.75rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    transition: var(--transition);
     text-align: center;
     margin: 0;
-    padding: 0;
     line-height: 1.5;
   }
 
@@ -617,46 +498,34 @@ import { IMAGE_DIR, colorBox, fontBox, numberBox, fontColor } from "@/utils/cons
   }
 
   @media (max-width: 1024px) {
-    .header-container {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
+    .draw-wrapper {
+      height: calc(100vh - 180px);
     }
-
     .header {
-      width: 90%;
-      padding: 1rem;
       height: auto;
+      padding: 0.75rem 1rem;
     }
-
     .info {
       font-size: 1.25rem;
     }
-
-    .continue-message {
-      width: 90%;
-      height: auto;
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-    }
-
-    .main {
-      height: calc(100vh - 100px);
-    }
-
     .char {
-      margin-top: 10%;
-      font-size: clamp(20rem, 50vw, 40rem);
+      font-size: clamp(8rem, 35vw, 30rem);
     }
-
     .instruction {
       font-size: 1.25rem;
     }
+  }
 
-    .board {
-      width: 95% !important;
-      height: calc(90vh - 90px) !important;
-      margin-top: 1px;
+  @media (max-width: 640px) {
+    .draw-wrapper {
+      height: calc(100vh - 200px);
+      padding: 0.5rem;
+    }
+    .header-container {
+      flex-wrap: wrap;
+    }
+    .info {
+      font-size: 1rem;
     }
   }
 </style>

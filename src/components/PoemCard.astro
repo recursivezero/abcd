@@ -11,7 +11,7 @@ const { title, lines, emoji } = Astro.props;
 ---
 
 <div class="card-wrapper">
-  <div class="poem-card" onclick={`showPoem("${title}", ${JSON.stringify(lines)})`}>
+  <div class="poem-card" data-title={title} data-lines={JSON.stringify(lines)} style="cursor: pointer;">
     <div class="emoji-content">
       <div class="card-indicator">
         <OpenIcon />
@@ -27,3 +27,15 @@ const { title, lines, emoji } = Astro.props;
     </div>
   </div>
 </div>
+
+<script is:inline>
+  document.querySelectorAll(".poem-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const title = card.dataset.title;
+      const lines = JSON.parse(card.dataset.lines);
+      if (typeof window.showPoem === "function") {
+        window.showPoem(title, lines);
+      }
+    });
+  });
+</script>

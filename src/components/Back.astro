@@ -2,57 +2,82 @@
 
 ---
 
-<a href="/games" class="back" aria-label="Go back" id="backBtn">
+<a href="/games" class="back-btn" aria-label="Go back">
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     stroke-width="2.5"
     stroke-linecap="round"
     stroke-linejoin="round"
+    aria-hidden="true"
   >
     <path d="M19 12H5M12 5l-7 7 7 7"></path>
   </svg>
 </a>
 
 <script is:inline>
-  function moveBackBtn() {
-    const btn = document.getElementById("backBtn");
-    const wrap = document.querySelector(".hero-search__wrap");
-    if (btn && wrap && !wrap.contains(btn)) {
-      wrap.insertBefore(btn, wrap.firstChild);
+  function align() {
+    const btn = document.querySelector(".back-btn");
+    const box = document.querySelector(".hero-search__box");
+    if (!btn || !box) return;
+    const r = box.getBoundingClientRect();
+    // button ko .hero-search__wrap se bahar move karo agar andar ho
+    if (btn.closest(".hero-search")) {
+      document.body.appendChild(btn);
     }
+    btn.style.top = r.top + r.height / 2 - 22 + "px";
   }
-  moveBackBtn();
-  document.addEventListener("astro:page-load", moveBackBtn);
+
+  requestAnimationFrame(() => requestAnimationFrame(align));
+  window.addEventListener("resize", align);
+  window.addEventListener("scroll", align, { passive: true });
+  document.addEventListener("astro:page-load", () => requestAnimationFrame(() => requestAnimationFrame(align)));
 </script>
 
 <style is:global>
-  .back {
-    width: 44px;
-    height: 44px;
+  .back-btn {
+    position: fixed;
+    left: 12px;
+    top: 92px;
+    width: 2.75rem;
+    height: 2.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     text-decoration: none;
     background: white;
-    border: 1px solid #e2e8f0;
+    border: 0.5px solid #e2e8f0;
     color: #7c3aed;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition:
+      background 0.15s ease,
+      transform 0.2s ease;
+    z-index: 1001;
   }
-  .back:hover {
+
+  .back-btn:hover {
     background: #ede9fe;
     border-color: #7c3aed;
     transform: scale(1.06);
   }
-  .back svg {
-    width: 18px;
-    height: 18px;
+
+  .back-btn svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    pointer-events: none;
+  }
+
+  [data-theme="dark"] .back-btn {
+    background: #1e293b;
+    border-color: #334155;
+    color: #a78bfa;
+  }
+
+  [data-theme="dark"] .back-btn:hover {
+    background: #2d1f5e;
+    border-color: #7c3aed;
   }
 </style>

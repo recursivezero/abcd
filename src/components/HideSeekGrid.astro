@@ -5,14 +5,6 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
 ---
 
 <article class="grid__container">
-  <!-- Controls: Shuffle + Reset -->
-  <div class="grid__controls">
-    <button id="shuffleBtn" class="grid__btn grid__btn--shuffle" aria-label="Shuffle alphabet order">
-      🔀 Shuffle
-    </button>
-    <button id="resetBtn" class="grid__btn grid__btn--reset" aria-label="Reset to original order"> 🔄 Reset </button>
-  </div>
-
   <section class="grid__section" id="gridSection">
     {
       letters.map((letter) => (
@@ -44,53 +36,6 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 1.5rem;
     box-shadow: var(--shadow-sm);
-  }
-
-  /* ── Controls ── */
-  .grid__controls {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .grid__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1.25rem;
-    border: none;
-    border-radius: 2rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-      transform 0.15s ease,
-      box-shadow 0.15s ease,
-      opacity 0.15s;
-    user-select: none;
-  }
-
-  .grid__btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .grid__btn:active {
-    transform: translateY(0);
-    opacity: 0.85;
-  }
-
-  .grid__btn--shuffle {
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
-  }
-
-  .grid__btn--reset {
-    background: light-dark(#e2e8f0, #334155);
-    color: light-dark(#1e293b, #e2e8f0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   /* ── Grid ── */

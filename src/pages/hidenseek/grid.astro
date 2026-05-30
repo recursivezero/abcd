@@ -22,27 +22,96 @@ const meta = {
     />
   </Fragment>
   <div class="game-page-container">
-    <div class="game-wrapper">
-      <!-- Game name shown on top as per manager requirement -->
+    <div class="game-header">
       <h1 class="game-title">🔍 Hide &amp; Seek — Grid Game</h1>
+      <div class="game-controls">
+        <button id="shuffleBtn" class="grid__btn grid__btn--shuffle" aria-label="Shuffle alphabet order">
+          🔀 Shuffle
+        </button>
+        <button id="resetBtn" class="grid__btn grid__btn--reset" aria-label="Reset to original order">
+          🔄 Reset
+        </button>
+      </div>
     </div>
     <HideSeekGrid />
   </div>
 </Layout>
 
 <style>
+  .game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 0 0.75rem;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: left;
+  }
+
   .game-title {
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--primary, #7c3aed);
-    text-align: center;
-    margin: 1rem 0 0.5rem;
+    margin: 0;
     letter-spacing: 0.01em;
+    text-align: left;
+    flex: 1;
+  }
+
+  .game-controls {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  .grid__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1.1rem;
+    border: none;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      opacity 0.15s;
+    user-select: none;
+  }
+
+  .grid__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .grid__btn:active {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+
+  .grid__btn--shuffle {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+  }
+
+  .grid__btn--reset {
+    background: light-dark(#e2e8f0, #334155);
+    color: light-dark(#1e293b, #e2e8f0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   @media (max-width: 640px) {
     .game-title {
       font-size: 1.2rem;
+    }
+
+    .game-header {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 </style>
