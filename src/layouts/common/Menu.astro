@@ -2,7 +2,6 @@
 import "@/assets/styles/menu.css";
 import HamIcon from "@/assets/icons/ham.svg";
 import ArrowIcon from "@/assets/icons/arrow.svg";
-import ToggleIcon from "@/assets/icons/toggle.svg";
 import Navigation from "@/layouts/Navigation";
 import { NavbarLinks } from "@/utils/constants";
 ---
@@ -13,78 +12,188 @@ import { NavbarLinks } from "@/utils/constants";
 
 <div class="sidebar_layout">
   <aside popover="auto" id="nav">
-    <button class="menu-button hider" popovertarget="nav" aria-label="Close drawer">
+    <button class="menu-button hider" id="hiderBtn" aria-label="Close drawer">
       <span class="sr-only">Close drawer</span>
     </button>
 
-    <Navigation pages={NavbarLinks} />
-
-    <div class="actions">
+    <!-- TOP ACTIONS -->
+    <div class="actions top-actions">
       <button class="menu-button minimize-toggle" aria-label="Toggle menu size">
         <ArrowIcon width={24} height={24} style={{ transform: "rotate(-135deg)" }} />
       </button>
-      <button class="menu-button theme-toggle" aria-label="Toggle theme">
-        <ToggleIcon width={24} height={24} />
+
+      <button class="menu-button theme-toggle" aria-label="Toggle theme" id="sidebarThemeToggle">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="pointer-events: none; display: block;"
+          id="sidebarThemeIcon"
+        >
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
       </button>
+
+      <button class="pin-btn" id="pinBtn" aria-label="Pin sidebar" title="Pin Sidebar">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <line x1="12" y1="17" x2="12" y2="22"></line>
+          <path
+            d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"
+          ></path>
+        </svg>
+      </button>
+
       <button class="menu-button placement-toggle">
         <ArrowIcon width={24} height={24} />
       </button>
     </div>
+
+    <Navigation pages={NavbarLinks} />
   </aside>
 </div>
 
-<script>
-  const popover = document.querySelector("#nav") as HTMLElement & { hidePopover: () => void };
-  const themeBtn = document.querySelector(".theme-toggle") as HTMLButtonElement;
-  const placer = document.querySelector(".placement-toggle") as HTMLButtonElement;
-  const hider = document.querySelector(".hider") as HTMLElement;
-  const minimizeBtn = document.querySelector(".minimize-toggle") as HTMLButtonElement;
-  const nav = document.querySelector("#nav") as HTMLElement;
+<script is:inline>
+  (function () {
+    const sunPath =
+      '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+    const moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 
-  let debounce: number | undefined;
-  document.documentElement.dataset.resizing = String(false);
-  document.documentElement.dataset.placement = "top";
+    const ICON_HAMBURGER =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>';
+    const ICON_LAYOUT =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="9" y1="4" x2="9" y2="20"></line></svg>';
 
-  themeBtn?.addEventListener("click", () => {
-    const current = document.documentElement.dataset.theme || "system";
-    const themes = ["system", "light", "dark"];
-    const currentIndex = themes.indexOf(current);
-    const nextIndex = (currentIndex + 1) % themes.length;
-    const next = themes[nextIndex];
-    document.dispatchEvent(new CustomEvent("theme-change", { detail: { theme: next } }));
-  });
-
-  window.addEventListener("resize", () => {
-    if (popover?.matches(":popover-open")) {
-      popover.hidePopover();
+    function updateSidebarIcon(theme) {
+      const svg = document.getElementById("sidebarThemeIcon");
+      if (svg) svg.innerHTML = theme === "dark" ? moonPath : sunPath;
     }
-    document.documentElement.dataset.resizing = String(true);
-    if (debounce) clearTimeout(debounce);
-    debounce = window.setTimeout(() => {
-      document.documentElement.dataset.resizing = String(false);
-    }, 200);
-  });
 
-  placer?.addEventListener("click", () => {
-    document.documentElement.dataset.placement =
-      document.documentElement.dataset.placement === "top" ? "bottom" : "top";
-  });
+    function sidebarToggleTheme() {
+      const current = localStorage.getItem("theme") || "light";
+      const next = current === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", next);
 
-  hider?.removeAttribute("popovertargetaction");
+      const h = document.documentElement;
+      h.setAttribute("data-theme", next);
+      h.classList.toggle("dark", next === "dark");
 
-  popover?.addEventListener("toggle", () => {
-    document.documentElement.dataset.complete = String(false);
-    document.documentElement.style.setProperty("--complete", "0");
-    nav.classList.remove("minimized");
+      if (next === "dark") {
+        h.style.backgroundColor = "#020608";
+        h.style.backgroundImage = "linear-gradient(180deg,#020608 0%,#031a20 50%,#052e38 100%)";
+        h.style.backgroundAttachment = "fixed";
+      } else {
+        h.style.backgroundColor = "#ffffff";
+        h.style.backgroundImage = "none";
+      }
 
-    popover.style.setProperty("--ty", "0");
-  });
+      document.body.style.backgroundColor = "transparent";
+      updateSidebarIcon(next);
 
-  minimizeBtn?.addEventListener("click", () => {
-    if (nav && minimizeBtn) {
-      nav.classList.toggle("minimized");
-      minimizeBtn.classList.toggle("rotated");
-      minimizeBtn.setAttribute("title", nav.classList.contains("minimized") ? "Open sidebar" : "Close sidebar");
+      const headerIcon = document.getElementById("themeIcon");
+      if (headerIcon) {
+        const sunIcon =
+          '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+        const moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        headerIcon.innerHTML = next === "dark" ? sunIcon : moonIcon;
+      }
     }
-  });
+
+    function initSidebarTheme() {
+      updateSidebarIcon(localStorage.getItem("theme") || "light");
+      const btn = document.getElementById("sidebarThemeToggle");
+      if (!btn) return;
+      const newBtn = btn.cloneNode(true);
+      btn.replaceWith(newBtn);
+      newBtn.addEventListener("click", sidebarToggleTheme);
+    }
+
+    function initHider() {
+      const hiderBtn = document.getElementById("hiderBtn");
+      if (!hiderBtn) return;
+      const newHider = hiderBtn.cloneNode(true);
+      hiderBtn.replaceWith(newHider);
+
+      newHider.addEventListener("click", (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        const toggleIcon = document.getElementById("toggleIcon");
+
+        if (sidebar) {
+          sidebar.classList.remove("open");
+          sidebar.classList.remove("pinned");
+        }
+        if (overlay) overlay.classList.remove("show");
+        localStorage.setItem("sidebarPinned", "false");
+
+        const isMobile = window.innerWidth <= 768;
+        if (toggleIcon) {
+          toggleIcon.innerHTML = isMobile ? ICON_HAMBURGER : ICON_LAYOUT;
+        }
+      });
+    }
+
+    function initMinimize() {
+      const minimizeBtn = document.querySelector(".minimize-toggle");
+      const nav = document.querySelector("#nav");
+      if (!minimizeBtn || !nav) return;
+      const newBtn = minimizeBtn.cloneNode(true);
+      minimizeBtn.replaceWith(newBtn);
+      newBtn.addEventListener("click", () => {
+        nav.classList.toggle("minimized");
+        newBtn.classList.toggle("rotated");
+        newBtn.setAttribute("title", nav.classList.contains("minimized") ? "Open sidebar" : "Close sidebar");
+      });
+    }
+
+    function initPlacer() {
+      const placer = document.querySelector(".placement-toggle");
+      if (!placer) return;
+      const newPlacer = placer.cloneNode(true);
+      placer.replaceWith(newPlacer);
+      newPlacer.addEventListener("click", () => {
+        document.documentElement.dataset.placement =
+          document.documentElement.dataset.placement === "top" ? "bottom" : "top";
+      });
+    }
+
+    function initAll() {
+      initSidebarTheme();
+      initHider();
+      initMinimize();
+      initPlacer();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAll);
+    } else {
+      initAll();
+    }
+
+    document.addEventListener("astro:page-load", initAll);
+  })();
 </script>

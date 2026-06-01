@@ -76,13 +76,13 @@ export const NavbarLinks: LinkProps[] = [
     title: "Home",
     path: "/",
     icon: HomeIcon,
-    isActive: true
+    isActive: false
   },
   {
     name: "About",
     title: "About",
     path: "/about",
-    isActive: true
+    isActive: false
   },
   {
     name: "Varnmala",
@@ -219,6 +219,8 @@ export const NavbarLinks: LinkProps[] = [
     isActive: true
   }
 ];
+
+NavbarLinks.sort((a, b) => (a.name || a.title).localeCompare(b.name || b.title));
 
 export const FooterLinks: LinkProps[] = [
   {

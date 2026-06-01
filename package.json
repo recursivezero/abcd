@@ -1,7 +1,7 @@
 {
   "name": "@recursivezero/abcd",
-  "version": "3.3.0",
-  "description": "A website for our kids trial phase of abcdkbd.com",
+  "version": "3.3.1",
+  "description": "A website for kids whio want to learn the alphabet in a fun and interactive way. It is built using Astro and TypeScript.",
   "homepage": "https://abcdkbd.com",
   "displayName": "abcd",
   "license": "MIT",
@@ -90,11 +90,29 @@
       "email": "ciphrox@gmail.com",
       "github": "ciphrox",
       "role": "UI Engineer"
+    },
+    {
+      "name": "Md Shahid Jamal",
+      "email": "shahidjamal5701@gmail.com",
+      "github": "ShahidJamal1",
+      "role": "UI Engineer"
     }
   ],
   "keywords": [
     "recursivezero",
-    "abcd"
+    "abcd",
+    "abcdkbd",
+    "kids",
+    "education",
+    "learning",
+    "fun",
+    "interactive",
+    "website",
+    "astro",
+    "hindi",
+    "indian",
+    "culture",
+    "typescript"
   ],
   "scripts": {
     "dev": "astro dev",
@@ -104,7 +122,8 @@
     "astro": "astro",
     "check": "astro check",
     "lint": "prettier -w --cache . && prettier -w --cache **/*.astro",
-    "clean": "rm -rf dist rm -rf build",
+    "clean": "rm -rf dist build .astro node_modules/.vite .vitepress",
+    "rebuild": "npm run clean && astro build",
     "nuke": "shx rm -rf node_modules && rm package-lock.json && npm run clean",
     "setup:hooks": "sh ./setup-hooks.sh"
   },
@@ -114,6 +133,7 @@
     "@astrojs/node": "9.1.2",
     "@astrojs/partytown": "2.1.4",
     "@astrojs/sitemap": "3.4.1",
+    "@builder.io/partytown": "0.10.3",
     "@fontsource/roboto": "5.1.0",
     "astro": "5.4.1",
     "astro-social-share": "2.2.0",
@@ -138,6 +158,12 @@
     "shx": "0.3.4"
   },
   "engines": {
-    "node": "^20"
+    "node": "^22"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,astro}": [
+      "eslint --fix --no-color",
+      "tsc --pretty false --noEmit"
+    ]
   }
 }

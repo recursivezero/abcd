@@ -1,45 +1,78 @@
+---
+// ThemeProvider.astro
+---
+
 <script is:inline>
-  const getSystemPreference = () => {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
+  const sunIcon =
+    '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  const moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined") {
-      const stored = localStorage.getItem("theme");
-      if (stored === "dark" || stored === "light" || stored === "system") return stored;
+  /* ── Apply theme ── */
+  function applyTheme(theme) {
+    const html = document.documentElement;
+
+    // 1. Set data-theme
+    html.setAttribute("data-theme", theme);
+    html.classList.toggle("dark", theme === "dark");
+
+    // 2. Directly set html background — CSS layer ko bypass karta hai
+    if (theme === "dark") {
+      html.style.backgroundColor = "#020608";
+      html.style.backgroundImage = "linear-gradient(180deg, #020608 0%, #031a20 50%, #052e38 100%)";
+      html.style.backgroundAttachment = "fixed";
+      html.style.backgroundSize = "cover";
+    } else {
+      html.style.backgroundColor = "#ffffff";
+      html.style.backgroundImage = "none";
+      html.style.backgroundAttachment = "";
+      html.style.backgroundSize = "";
     }
-    return "system";
-  };
 
-  function setTheme(theme) {
-    if (!["light", "dark", "system"].includes(theme)) return;
+    // 3. Body transparent rakho
+    if (document.body) {
+      document.body.style.backgroundColor = "transparent";
+      document.body.style.backgroundImage = "none";
+    }
 
-    document.documentElement.dataset.theme = theme;
-
-    // Apply the actual theme
-    const actualTheme = theme === "system" ? getSystemPreference() : theme;
-    document.documentElement.classList.toggle("dark", actualTheme === "dark");
-
-    const meta = document.querySelector("meta[name='theme-color']");
-    const bg = getComputedStyle(document.body).getPropertyValue("--theme-bg");
-    meta?.setAttribute("content", `hsl(${bg || "0, 0%, 100%"})`);
-
-    localStorage.setItem("theme", theme);
+    // 4. Icon update
+    const icon = document.getElementById("themeIcon");
+    if (icon) icon.innerHTML = theme === "dark" ? sunIcon : moonIcon;
   }
 
-  // Initial load
-  setTheme(getThemePreference());
+  function getSavedTheme() {
+    return localStorage.getItem("theme") || "light";
+  }
 
-  // Listen to global theme-change events
-  document.addEventListener("theme-change", (e) => {
-    setTheme(e.detail.theme);
-  });
+  function toggleTheme() {
+    const next = getSavedTheme() === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", next);
+    applyTheme(next);
+  }
 
-  // Listen for system theme changes
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-    const currentTheme = getThemePreference();
-    if (currentTheme === "system") {
-      setTheme("system");
-    }
-  });
+  function attachToggle() {
+    const btn = document.getElementById("headerThemeToggle");
+    if (!btn) return;
+    const newBtn = btn.cloneNode(true);
+    btn.replaceWith(newBtn);
+    newBtn.addEventListener("click", toggleTheme);
+  }
+
+  function init() {
+    applyTheme(getSavedTheme());
+    attachToggle();
+  }
+
+  // Immediately — no flash
+  (function () {
+    applyTheme(getSavedTheme());
+  })();
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:after-swap", () => applyTheme(getSavedTheme()));
 </script>

@@ -622,7 +622,7 @@ textarea.metallic-textarea {
   transform: rotate(45deg);
 }
 
-.popover-details[open]>div {
+.popover-details[open] > div {
   padding: 0 1rem 1rem 1rem;
   margin-top: 0.5rem;
 }
@@ -667,7 +667,7 @@ textarea.metallic-textarea {
   transform: rotate(45deg);
 }
 
-.control-section[open]>div {
+.control-section[open] > div {
   padding: 0 1rem 1rem 1rem;
   margin-top: 0.5rem;
 }

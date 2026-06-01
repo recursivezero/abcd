@@ -48,7 +48,6 @@
   gap: 1rem;
   margin-block: 1rem;
 
-
   @container nakshtra (width <=700px) {
     .card__list {
       grid-template-columns: repeat(2, 1fr);
@@ -71,9 +70,6 @@
   border-left: 4px solid var(--primary-color);
   opacity: 0.8;
 }
-
-
-
 
 /* Nakshtra card */
 .card {

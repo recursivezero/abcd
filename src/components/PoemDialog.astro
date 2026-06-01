@@ -16,7 +16,7 @@ import "@/assets/styles/poem-dialog.css";
   </div>
 </dialog>
 
-<script type="module" is:inline>
+<script is:inline>
   const modal = document.getElementById("poem-modal");
   const closeBtn = document.getElementById("close-modal");
   const titleEl = document.getElementById("modal-title");
@@ -30,7 +30,7 @@ import "@/assets/styles/poem-dialog.css";
 
   let isMuted = true;
   let currentText = "";
-  let currentLang = "en_GB";
+  //let currentLang = "en_GB";
   let availableVoices = [];
   let voicesLoadedPromise = null;
 
