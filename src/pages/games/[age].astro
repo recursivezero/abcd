@@ -1,15 +1,13 @@
 ---
 import "@/assets/styles/landing.css";
-
 import Back from "@/components/Back.astro";
 import GamesGrid from "@/components/GamesGrid.astro";
 import { gamesData, getAgeGroupDisplayName } from "@/data/gamesData";
 import BaseLayout from "@/layouts/Base";
 
-// 1. Tell Astro which /games/* pages to build
 export function getStaticPaths() {
   return Object.entries(gamesData).map(([age, games]) => ({
-    params: { age }, // matches [age].astro
+    params: { age },
     props: {
       games,
       displayName: getAgeGroupDisplayName(age)
@@ -17,7 +15,6 @@ export function getStaticPaths() {
   }));
 }
 
-// 2. These come from the matching entry in getStaticPaths()
 const { games, displayName } = Astro.props;
 
 const meta = {
@@ -27,12 +24,36 @@ const meta = {
 ---
 
 <BaseLayout meta={meta}>
+  <Fragment slot="header-left">
+    <Back />
+  </Fragment>
   <div class="games-page">
     <div class="page-header">
-      <Back />
       <h2>Games for {displayName}</h2>
     </div>
-
-    {games.length === 0 ? <p>No games found for this age group.</p> : <GamesGrid games={games} />}
+    <div id="gamesContainer">
+      {games.length === 0 ? <p>No games found for this age group.</p> : <GamesGrid games={games} />}
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  .games-page {
+    padding: 1rem 2rem 2rem 2rem;
+  }
+  .page-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .page-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a3353;
+  }
+  :global([data-theme="dark"]) .page-header h2 {
+    color: #e2f0ff;
+  }
+</style>

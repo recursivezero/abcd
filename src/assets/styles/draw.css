@@ -200,49 +200,51 @@
 
 @media (max-width: 1024px) {
   .controls {
-    position: fixed;
-    right: 0.6rem;
-    top: 0;
-    margin-top: 10rem;
-    flex-direction: column;
+    position: static;
+    right: unset;
+    top: unset;
+    margin-top: 0;
+    flex-direction: row;
     gap: 0.5rem;
     padding: 0.5rem 0;
     z-index: 100;
     background: transparent;
-    align-items: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .control-group {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.25rem;
-    align-items: flex-end;
+    align-items: center;
   }
+}
 
-  .control-button {
-    width: 2.8rem;
-    height: 2.8rem;
-    font-size: 1.1rem;
-  }
+.control-button {
+  width: 2.8rem;
+  height: 2.8rem;
+  font-size: 1.1rem;
+}
 
-  .img-icon,
-  .img-icon-alt {
-    width: 1.1rem;
-    height: 1.1rem;
-  }
+.img-icon,
+.img-icon-alt {
+  width: 1.1rem;
+  height: 1.1rem;
+}
 
-  .font-icon,
-  .font-icon-alt,
-  .color-icon,
-  .color-icon-alt,
-  .bg-icon,
-  .bg-icon-alt {
-    font-size: 1.1rem;
-  }
+.font-icon,
+.font-icon-alt,
+.color-icon,
+.color-icon-alt,
+.bg-icon,
+.bg-icon-alt {
+  font-size: 1.1rem;
+}
 
-  .control-item::after,
-  .reset-button::after {
-    display: none;
-  }
+.control-item::after,
+.reset-button::after {
+  display: none;
 }
 
 @media (max-width: 768px) {

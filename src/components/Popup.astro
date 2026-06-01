@@ -2,29 +2,39 @@
 import "@/assets/styles/map/popup.css";
 ---
 
-<!-- Popover Panel -->
-<div class="container__popover">
-  <div id="popup-panel" class="state-popup" popover="hint">
-    <div class="state-popup__content">
-      <div class="state-popup__header">
-        <div class="state-popup__name" id="popup-name">State Name</div>
-        <button popovertarget="popup-panel" popovertargetaction="hide" class="state-popup__close">&times;</button>
-      </div>
-      <img class="state-popup__image" id="popup-image" src="" alt="State Image" />
-      <div class="state-popup__info" id="popup-info">State Information</div>
-      <div class="state-popup__buttons">
-        <button class="state-popup__button state-popup__button--more" id="see-more-btn">See More</button>
-      </div>
+<div id="popup-overlay" class="state-popup__overlay"></div>
+<div id="popup-panel" class="state-popup">
+  <div class="state-popup__content">
+    <div class="state-popup__header">
+      <div class="state-popup__name" id="popup-name">State Name</div>
+      <button id="popup-close-btn" class="state-popup__close">&times;</button>
+    </div>
+    <img class="state-popup__image" id="popup-image" src="" alt="State Image" />
+    <div class="state-popup__info" id="popup-info">State Information</div>
+    <div class="state-popup__buttons">
+      <button class="state-popup__button state-popup__button--more" id="see-more-btn">See More</button>
     </div>
   </div>
 </div>
 
 <script is:inline>
   const popup = document.getElementById("popup-panel");
+  const overlay = document.getElementById("popup-overlay");
   const popupName = document.getElementById("popup-name");
   const popupInfo = document.getElementById("popup-info");
   const popupImage = document.getElementById("popup-image");
   const seeMoreBtn = document.getElementById("see-more-btn");
+  const closeBtn = document.getElementById("popup-close-btn");
+
+  function openPopup() {
+    popup.classList.add("is-open");
+    overlay.classList.add("is-open");
+  }
+
+  function closePopup() {
+    popup.classList.remove("is-open");
+    overlay.classList.remove("is-open");
+  }
 
   document.addEventListener("showStatePopup", (e) => {
     const { stateInfo } = e.detail;
@@ -32,11 +42,14 @@ import "@/assets/styles/map/popup.css";
     popupInfo.innerHTML = `<p><strong>State Dance:</strong> ${stateInfo.dance}</p>`;
     popupImage.src = `/map/images/${stateInfo.image}`;
     popupImage.alt = `${stateInfo.name} state image`;
-    popup.showPopover();
+    openPopup();
   });
 
+  closeBtn.addEventListener("click", closePopup);
+  overlay.addEventListener("click", closePopup);
+
   seeMoreBtn.addEventListener("click", () => {
-    popup.hidePopover();
+    closePopup();
     setTimeout(() => {
       const stateName = popupName.textContent;
       if (stateName) {

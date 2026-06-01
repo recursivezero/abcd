@@ -37,10 +37,10 @@
   }
 
   [popover] .nav--list__item {
-    display: flex;
-    align-items: center;
-    padding: 0.25rem;
-    transition: all 0.2s ease;
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      filter 0.35s ease;
+    border-radius: 0.75rem;
   }
 
   [popover] .nav--list__item a {
@@ -50,35 +50,40 @@
     gap: 0.5rem;
     padding: 0.5rem;
     transition: all 0.2s ease;
-    background-image: linear-gradient(color-mix(in srgb, var(--primary) 35%, transparent));
-    background-size: 0 100%;
-    background-repeat: no-repeat;
-    transition: 0.4s;
-
-    &:hover {
-      background-size: 100% 100%;
-    }
   }
 
   [popover] .nav--list__item.active {
     background: color-mix(in srgb, var(--primary) 15%, transparent);
     color: color-contrast(var(--primary) vs white, black);
-
     font-weight: 600;
     border-radius: 0.75rem;
   }
 
   [popover] .nav--list__item:hover {
-    color: color-contrast(var(--primary) vs white, black);
     border-radius: 0.75rem;
+    transform: none;
+    box-shadow: none;
+    background: transparent !important;
+    filter: drop-shadow(0 6px 16px #7c3aed33) drop-shadow(0 2px 6px #00000018);
+  }
+
+  [popover] .nav--list__item:hover .icon svg {
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--primary) 55%, transparent));
+    transition: filter 0.25s ease;
+  }
+
+  [popover] .nav--list__item:hover .icon svg circle {
+    stroke-width: 2.5;
+    transition: stroke-width 0.25s ease;
   }
 
   .sidebar_layout {
     position: relative;
-    width: max-content;
-    margin: 0 auto;
-    min-height: calc(100svh - var(--header-height));
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
     display: flex;
+    justify-content: flex-start;
   }
 
   [popover] {
@@ -89,19 +94,21 @@
     margin: 0;
     flex-shrink: 0;
     right: 100%;
+    left: 0 !important;
     top: var(--header-height);
     border: 0;
     background: var(--background);
-    height: 100%;
+    height: fit-content;
+    min-height: unset;
     padding: 1rem 0;
     overflow: visible;
-    min-height: calc(100svh - var(--header-height));
     border-radius: 0.75rem;
     position: sticky;
     border-right: 1px solid var(--border);
     transition: width 0.3s ease;
     overflow-x: hidden;
     white-space: nowrap;
+    max-width: var(--sidebar-expanded);
   }
 
   [popover].minimized {
@@ -169,11 +176,6 @@
     transition: all 0.2s;
   }
 
-  [popover] .nav--list__item:hover {
-    background: color-mix(in srgb, var(--primary) 10%, transparent);
-    color: var(--primary);
-  }
-
   [popover] {
     color: color-mix(in hsl, currentColor, #0000 15%);
 
@@ -198,7 +200,7 @@
     background: color-mix(in hsl, canvas, canvasText 15%);
     position: absolute;
     inset: 0;
-    border-radius: 6px;
+    border-radius: 50%;
     z-index: -1;
     opacity: var(--active, 0);
     transition: opacity 0.2s;
@@ -219,7 +221,8 @@
     cursor: pointer;
   }
 
-  .menu-button:is(:active, :hover, :focus-visible) {
+  /* menu-button hover — theme-toggle aur pin-btn ko exclude karo */
+  .menu-button:not(.theme-toggle):not(.pin-btn):is(:active, :hover, :focus-visible) {
     background: color-mix(in srgb, var(--primary) 30%, transparent) !important;
     --active: 1;
   }
@@ -229,7 +232,7 @@
     background: color-mix(in hsl, canvas, canvasText 15%);
     position: absolute;
     inset: 0;
-    border-radius: 6px;
+    border-radius: 50%;
     z-index: -1;
     opacity: var(--active, 0);
     transition: opacity 0.2s;
@@ -274,17 +277,23 @@
       }
     }
 
+    .top-actions {
+      position: relative !important;
+      margin: 0 0 1rem 0 !important;
+      border-bottom: 1px solid var(--border);
+      border-top: none !important;
+    }
+
     .actions {
-      justify-content: flex-end;
-      position: sticky;
-      bottom: 0;
-      z-index: 1;
-      right: 0;
-      left: 0;
-      translate: 0 calc(clamp(0, var(--ty), var(--distance) - 88) * -1px);
-      transition-duration: var(--timing);
-      transition-timing-function: var(--ease);
-      min-width: var(--sidebar-expanded);
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      padding: 0.5rem 1rem 1rem 1rem !important;
+      margin: -12px 0 0 0 !important;
+      position: relative !important;
+      border: none !important;
+      background: transparent !important;
+      border-bottom: 1px solid var(--border) !important;
     }
 
     [popover] .bear-link {
@@ -371,7 +380,7 @@
     :root:has(:popover-open) body {
       scale: calc(0.95 + (clamp(0, var(--complete), 1) * 0.05));
       translate: 0 calc((env(safe-area-inset-top) + 14px) * (1 - clamp(0, var(--complete), 1)));
-      border-radius: calc(12px * (1 - clamp(0, var (--complete), 1)));
+      border-radius: calc(12px * (1 - clamp(0, var(--complete), 1)));
       overflow: hidden;
     }
 
@@ -452,56 +461,37 @@
     gap: 0 0.25rem;
     padding-inline: 0.5rem;
     padding: 1rem;
-    border-top: 1px solid var(--border);
     margin-top: auto;
     position: sticky;
     bottom: 0;
     z-index: 1;
+    background: transparent;
+    min-width: var(--sidebar-expanded);
 
     button {
-      width: 44px;
+      width: 36px;
+      height: 36px;
       aspect-ratio: 1;
       display: grid;
       padding: 0;
       place-items: center;
       border: 0;
       color: var(--secondary);
-      border-radius: 0.5rem;
+      border-radius: 50%;
       transition: all 0.2s;
+      background: transparent;
     }
 
     button:hover {
       color: var(--primary);
-      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      background: transparent !important;
     }
-
-    min-width: var(--sidebar-expanded);
   }
 
   @media (max-width: 768px) {
     [popover] .minimize-toggle {
       display: none !important;
     }
-  }
-
-  [data-theme="system"] .theme-toggle use[href="#icon-system"],
-  [data-theme="light"] .theme-toggle use[href="#icon-sun"],
-  [data-theme="dark"] .theme-toggle use[href="#icon-moon"] {
-    display: block;
-  }
-
-  .theme-toggle svg symbol {
-    display: none;
-  }
-
-  .theme-toggle use {
-    display: none;
-  }
-
-  [data-theme="system"] .theme-toggle svg symbol[id="icon-system"],
-  [data-theme="light"] .theme-toggle svg symbol[id="icon-sun"],
-  [data-theme="dark"] .theme-toggle svg symbol[id="icon-moon"] {
-    display: block;
   }
 
   [data-theme="light"] .placement-toggle,
@@ -530,5 +520,89 @@
 
   [data-theme="system"] [popover] .nav--list__item:hover a {
     color: var(--primary);
+  }
+
+  /* ── THEME TOGGLE BUTTON ── */
+  .theme-toggle {
+    pointer-events: all !important;
+    cursor: pointer !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(124, 58, 237, 0.3) !important;
+    background: transparent !important;
+    display: grid !important;
+    place-items: center !important;
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease !important;
+    color: #7c3aed !important;
+    overflow: hidden !important;
+  }
+
+  .theme-toggle::before {
+    display: none !important;
+  }
+
+  .theme-toggle:hover {
+    background: rgba(124, 58, 237, 0.12) !important;
+    border-color: #7c3aed !important;
+    transform: rotate(20deg) scale(1.1) !important;
+    color: #7c3aed !important;
+  }
+
+  .theme-toggle:active {
+    transform: rotate(20deg) scale(0.95) !important;
+    background: rgba(124, 58, 237, 0.2) !important;
+  }
+
+  .theme-toggle svg {
+    pointer-events: none !important;
+    display: block !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* ── PIN BUTTON ── */
+  .pin-btn {
+    pointer-events: all !important;
+    cursor: pointer !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(124, 58, 237, 0.3) !important;
+    background: transparent !important;
+    display: grid !important;
+    place-items: center !important;
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease !important;
+    color: #7c3aed !important;
+    overflow: hidden !important;
+  }
+
+  .pin-btn::before {
+    display: none !important;
+  }
+
+  .pin-btn:hover {
+    background: rgba(124, 58, 237, 0.12) !important;
+    border-color: #7c3aed !important;
+    transform: scale(1.1) !important;
+    color: #7c3aed !important;
+  }
+
+  .pin-btn:active {
+    transform: scale(0.95) !important;
+    background: rgba(124, 58, 237, 0.2) !important;
+  }
+
+  .pin-btn svg {
+    pointer-events: none !important;
+    display: block !important;
+    width: 16px !important;
+    height: 16px !important;
   }
 }

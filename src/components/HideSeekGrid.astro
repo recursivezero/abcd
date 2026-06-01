@@ -5,7 +5,7 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
 ---
 
 <article class="grid__container">
-  <section class="grid__section">
+  <section class="grid__section" id="gridSection">
     {
       letters.map((letter) => (
         <div class="grid__item" data-letter={letter} style={`--letter-index:${getLetterIndex(letter)}`}>
@@ -27,8 +27,8 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
   }
 
   .grid__container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
     width: 100%;
     padding: 1rem;
@@ -38,6 +38,7 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
     box-shadow: var(--shadow-sm);
   }
 
+  /* ── Grid ── */
   .grid__section {
     display: grid;
     grid-template-columns: repeat(5, minmax(100px, 1fr));
@@ -79,11 +80,6 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
   }
 
   @media (max-width: 768px) {
-    .grid__container {
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 0.5rem;
-    }
-
     .grid__section {
       grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     }
@@ -101,27 +97,81 @@ const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
 </style>
 
 <script>
-  const items = document.querySelectorAll(".grid__item");
-  const activeLetters = new Set();
-
-  items.forEach((item) => {
-    if (!(item instanceof HTMLElement)) return;
-    item.addEventListener("click", () => toggleLetterVisibility(item));
-  });
-
-  function toggleLetterVisibility(element: HTMLElement) {
-    const letter = element.getAttribute("data-letter");
-    const isActive = element.classList.contains("active");
-    element.classList.toggle("active");
-    isActive ? activeLetters.delete(letter) : activeLetters.add(letter);
+  // ─────────────────────────────────────────────
+  // Modular shuffle utility — reusable anywhere
+  // Takes any array, returns a new shuffled array
+  // (Fisher-Yates algorithm)
+  // ─────────────────────────────────────────────
+  function shuffleArray<T>(arr: T[]): T[] {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
   }
 
+  // ── State ──
+  const activeLetters = new Set<string>();
+
+  // ── DOM refs ──
+  const gridSection = document.getElementById("gridSection")!;
+  const shuffleBtn = document.getElementById("shuffleBtn")!;
+  const resetBtn = document.getElementById("resetBtn")!;
+
+  // ── Toggle visibility of a letter tile ──
+  function toggleLetterVisibility(element: HTMLElement) {
+    const letter = element.getAttribute("data-letter") ?? "";
+    element.classList.toggle("active");
+    if (element.classList.contains("active")) {
+      activeLetters.add(letter);
+    } else {
+      activeLetters.delete(letter);
+    }
+  }
+
+  // ── Attach click handler to a single tile ──
+  function attachTileListener(item: HTMLElement) {
+    item.addEventListener("click", () => toggleLetterVisibility(item));
+  }
+
+  // ── Re-render grid with a given letter order ──
+  function renderGrid(order: string[]) {
+    // Clear active state tracking — position changed, reset makes sense
+    activeLetters.clear();
+
+    // Re-order existing DOM nodes to match new order (no re-create needed)
+    order.forEach((letter) => {
+      const tile = gridSection.querySelector<HTMLElement>(`.grid__item[data-letter="${letter}"]`);
+      if (tile) {
+        tile.classList.remove("active"); // clear visual state too
+        gridSection.appendChild(tile); // move to end → builds order
+      }
+    });
+  }
+
+  // ── Original A–Z order ──
+  const originalOrder = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+
+  // ── Shuffle button ──
+  shuffleBtn.addEventListener("click", () => {
+    const shuffled = shuffleArray(originalOrder);
+    renderGrid(shuffled);
+  });
+
+  // ── Reset button ──
+  resetBtn.addEventListener("click", () => {
+    renderGrid(originalOrder);
+  });
+
+  // ── Initial click listeners on all tiles ──
+  document.querySelectorAll<HTMLElement>(".grid__item").forEach(attachTileListener);
+
+  // ── Keyboard support ──
   document.addEventListener("keydown", (e) => {
     if (/^[a-zA-Z]$/.test(e.key)) {
-      const letterBox = document.querySelector(`.grid__item[data-letter="${e.key.toUpperCase()}"]`);
-      if (letterBox instanceof HTMLElement) {
-        toggleLetterVisibility(letterBox);
-      }
+      const tile = document.querySelector<HTMLElement>(`.grid__item[data-letter="${e.key.toUpperCase()}"]`);
+      if (tile) toggleLetterVisibility(tile);
     }
   });
 </script>

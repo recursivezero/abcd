@@ -1,68 +1,536 @@
 ---
 import "@/assets/styles/contact.css";
 import BaseLayout from "@/layouts/Base";
-import TitleLayout from "@/layouts/TitleLayout";
-import Back from "@/components/Back.astro";
-import CopyIcon from "@/assets/icons/copy.svg";
-import GitHubIcon from "@/assets/icons/github.svg";
-
-const meta = {
-  title: "Contact Us",
-  description:
-    "Reach out to the abcdkbd team via email or connect with us on GitHub to collaborate or provide feedback."
-};
+import bannerImg from "@/assets/screenshots/light/contact-banner.png";
 ---
 
-<style>
-  .copy {
-    width: 24px;
-  }
-</style>
-<BaseLayout meta={meta}>
-  <Back />
-  <TitleLayout title="Get in Touch" />
-  <div class="container__contact">
-    <div class="contact__wrapper">
-      <div class="contact__info">
-        <h3>feel free to connect</h3>
-        <div class="info__item">
-          <a href="mailto:abcdkbd@outlook.com" class="mail">Mail us at<span>abcdkbd@outlook.com</span></a>
-          <div id="copy" class="copy"><CopyIcon /></div>
-        </div>
-        <div class="info__item">
-          <a href="https://github.com/recursivezero" target="_blank" rel="noopener noreferrer"
-            >Find us on <span class="social"><GitHubIcon />GitHub</span></a
+<BaseLayout
+  meta={{
+    title: "Contact Us",
+    description:
+      "Reach out to the abcdkbd team via email or connect with us on GitHub to collaborate or provide feedback."
+  }}
+>
+  <!-- BANNER IMAGE -->
+  <div style="max-width: 1400px; margin: 24px auto; border-radius: 18px; overflow: hidden;">
+    <img
+      src={bannerImg.src}
+      alt="Contact Us Banner"
+      style="width: 100%; height: auto; display: block; border-radius: 18px;"
+    />
+  </div>
+
+  <!-- CARDS -->
+  <div
+    style="max-width: 1400px; margin: 0 auto 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 0 24px;"
+  >
+    <!-- LEFT: Send Us a Message -->
+    <div
+      class="contact-card contact-card-left"
+      style="background: #edf0f6; border-radius: 16px; padding: 28px 28px 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.07);"
+    >
+      <div
+        style="display: flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 800; color: #1e1b4b; margin-bottom: 22px;"
+      >
+        <div
+          style="width: 32px; height: 32px; background: #f0f0ff; border-radius: 8px; display: flex; align-items: center; justify-content: center;"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#6366f1"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+        </div>
+        Send Us a Message
+      </div>
+
+      <!-- Name + Email -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+        <div style="position: relative;">
+          <span style="position: absolute; left: 11px; top: 50%; transform: translateY(-50%); display: flex;">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#9ca3af"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </span>
+          <input
+            id="contact-name"
+            type="text"
+            placeholder="Your Name"
+            style="width:100%; border:1.5px solid #e5e7eb; border-radius:10px; padding:11px 14px 11px 38px; font-size:0.9rem; color:#374151; outline:none; background:#fafafa;"
+          />
+        </div>
+        <div style="position: relative;">
+          <span style="position: absolute; left: 11px; top: 50%; transform: translateY(-50%); display: flex;">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#9ca3af"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 7l10 7 10-7"></path>
+            </svg>
+          </span>
+          <input
+            id="contact-email"
+            type="email"
+            placeholder="Your Email"
+            style="width:100%; border:1.5px solid #e5e7eb; border-radius:10px; padding:11px 14px 11px 38px; font-size:0.9rem; color:#374151; outline:none; background:#fafafa;"
+          />
         </div>
       </div>
+
+      <!-- Subject -->
+      <div style="position: relative; margin-bottom: 14px;">
+        <span style="position: absolute; left: 11px; top: 50%; transform: translateY(-50%); display: flex;">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#9ca3af"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+        </span>
+        <input
+          id="contact-subject"
+          type="text"
+          placeholder="Subject"
+          style="width:100%; border:1.5px solid #e5e7eb; border-radius:10px; padding:11px 14px 11px 38px; font-size:0.9rem; color:#374151; outline:none; background:#fafafa;"
+        />
+      </div>
+
+      <!-- Message -->
+      <div style="position: relative; margin-bottom: 4px;">
+        <span style="position: absolute; left: 11px; top: 13px; display: flex;">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#9ca3af"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </span>
+        <textarea
+          id="contact-message"
+          placeholder="Your Message"
+          style="width:100%; border:1.5px solid #e5e7eb; border-radius:10px; padding:11px 14px 11px 38px; font-size:0.9rem; color:#374151; outline:none; background:#fafafa; min-height:90px; resize:vertical;"
+        ></textarea>
+      </div>
+
+      <!-- Send Button -->
+      <button
+        id="send-btn"
+        style="width:100%; margin-top:18px; background:#6366f1; color:#fff; border:none; border-radius:10px; padding:13px; font-size:1rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;"
+      >
+        <svg
+          id="send-icon"
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#fff"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+        <span id="send-text">Send Message</span>
+      </button>
+    </div>
+
+    <!-- RIGHT: Get in Touch -->
+    <div
+      class="contact-card contact-card-right"
+      style="background: #fff; border-radius: 16px; padding: 28px 28px 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); position: relative; overflow: hidden;"
+    >
+      <!-- Decorative dots -->
+      <div
+        style="position:absolute; top:18px; right:155px; width:8px; height:8px; border-radius:50%; background:#6366f1; opacity:0.5;"
+      >
+      </div>
+      <div
+        style="position:absolute; top:55px; right:125px; width:10px; height:10px; border-radius:50%; background:#f59e0b; opacity:0.7;"
+      >
+      </div>
+      <div
+        style="position:absolute; bottom:80px; right:155px; width:7px; height:7px; border-radius:50%; background:#06b6d4; opacity:0.5;"
+      >
+      </div>
+      <div
+        style="position:absolute; bottom:48px; right:118px; width:8px; height:8px; border-radius:50%; background:#6366f1; opacity:0.4;"
+      >
+      </div>
+
+      <!-- Title -->
+      <div
+        style="display:flex; align-items:center; gap:10px; font-size:1.15rem; font-weight:800; color:#1e1b4b; margin-bottom:22px;"
+      >
+        <div
+          style="width:36px; height:36px; background:#fff0f0; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="#ef4444"
+            stroke="#ef4444"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            ></path>
+          </svg>
+        </div>
+        Get in Touch
+      </div>
+
+      <!-- Contact Items -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <!-- Email -->
+        <div class="contact-item" style="display:flex; align-items:center; gap:14px;">
+          <div
+            class="contact-icon"
+            style="width:42px; height:42px; border-radius:50%; background:#6366f1; display:flex; align-items:center; justify-content:center; flex-shrink:0;"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M2 7l10 7 10-7"></path>
+            </svg>
+          </div>
+          <div>
+            <strong style="display:block; font-size:0.92rem; font-weight:800; color:#1e1b4b;">Email Us</strong>
+            <a href="mailto:contact@abcdkbd.com" style="font-size:0.85rem; color:#6b7280; text-decoration:none;"
+              >contact@abcdkbd.com</a
+            >
+          </div>
+        </div>
+
+        <!-- Call -->
+        <div class="contact-item" style="display:flex; align-items:center; gap:14px;">
+          <div
+            class="contact-icon"
+            style="width:42px; height:42px; border-radius:50%; background:#06b6d4; display:flex; align-items:center; justify-content:center; flex-shrink:0;"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <strong style="display:block; font-size:0.92rem; font-weight:800; color:#1e1b4b;">Call Us</strong>
+            <span style="font-size:0.85rem; color:#6b7280;">+91 9314001007</span>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="contact-item" style="display:flex; align-items:center; gap:14px;">
+          <div
+            class="contact-icon"
+            style="width:42px; height:42px; border-radius:50%; background:#10b981; display:flex; align-items:center; justify-content:center; flex-shrink:0;"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div>
+            <strong style="display:block; font-size:0.92rem; font-weight:800; color:#1e1b4b;">Our Location</strong>
+            <span style="font-size:0.85rem; color:#6b7280;">India</span>
+          </div>
+        </div>
+
+        <!-- Find Us On / GitHub -->
+        <div class="contact-item" style="display:flex; align-items:center; gap:14px;">
+          <div
+            class="contact-icon"
+            style="width:42px; height:42px; border-radius:50%; background:#1e1b4b; display:flex; align-items:center; justify-content:center; flex-shrink:0;"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.031 1.531 1.031.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <strong style="display:block; font-size:0.92rem; font-weight:800; color:#1e1b4b;">Find Us On</strong>
+            <a
+              href="https://github.com/recursivezero"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="github-link"
+              style="font-size:0.85rem; color:#6366f1; text-decoration:none; font-weight:600;"
+            >
+              github.com/recursivezero
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Envelope illustration -->
+      <svg
+        style="position:absolute; top:50%; right:32px; transform:translateY(-50%) rotate(12deg); width:170px; max-width:42%;"
+        viewBox="0 0 130 115"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <ellipse cx="18" cy="72" rx="16" ry="10" fill="#dbeafe" opacity="0.85"></ellipse>
+        <ellipse cx="10" cy="68" rx="10" ry="8" fill="#dbeafe" opacity="0.85"></ellipse>
+        <ellipse cx="112" cy="28" rx="14" ry="9" fill="#dbeafe" opacity="0.85"></ellipse>
+        <rect x="10" y="42" width="110" height="68" rx="8" fill="#fbbf24"></rect>
+        <path d="M10 42 L65 78 L120 42" fill="#fde68a" stroke="#f59e0b" stroke-width="1"></path>
+        <path d="M10 110 L65 80 L120 110 Z" fill="#f59e0b"></path>
+        <path d="M10 42 L10 110 L65 80 Z" fill="#f59e0b" opacity="0.5"></path>
+        <path d="M120 42 L120 110 L65 80 Z" fill="#f59e0b" opacity="0.5"></path>
+        <rect
+          x="34"
+          y="12"
+          width="62"
+          height="52"
+          rx="5"
+          fill="#fffbeb"
+          stroke="#fde68a"
+          stroke-width="1.5"
+          transform="rotate(8 65 38)"></rect>
+        <line x1="48" y1="30" x2="86" y2="35" stroke="#e5e7eb" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="46" y1="39" x2="84" y2="44" stroke="#e5e7eb" stroke-width="2" stroke-linecap="round"></line>
+        <line x1="46" y1="48" x2="72" y2="51" stroke="#e5e7eb" stroke-width="2" stroke-linecap="round"></line>
+        <path d="M65 20 C65 20 59 14 54 18 C49 22 56 30 65 36 C74 30 81 22 76 18 C71 14 65 20 65 20Z" fill="#f472b6"
+        ></path>
+      </svg>
     </div>
   </div>
 </BaseLayout>
 
-<script>
-  const copyButton = document.getElementById("copy-email-btn");
-  if (copyButton) {
-    const emailText = document.getElementById("email-text")?.innerText;
-    const copyIcon = copyButton.querySelector("i");
-    // Add a null check for both emailText and copyIcon
-    if (emailText && copyIcon) {
-      copyButton.addEventListener("click", () => {
-        navigator.clipboard
-          .writeText(emailText)
-          .then(() => {
-            // Success feedback
-            copyButton.title = "Copied!";
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
-            // Revert back after 2 seconds
-            setTimeout(() => {
-              copyButton.title = "Copy email";
-            }, 2000);
-          })
-          .catch((err) => {
-            console.error("Failed to copy email: ", err);
-            alert("Failed to copy email.");
-          });
-      });
-    }
+<style>
+  /* ── Card hover transitions ── */
+  .contact-card {
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.35s ease,
+      background 0.3s ease;
+    will-change: transform, box-shadow;
+    cursor: default;
   }
+
+  .contact-card:hover {
+    transform: translateY(-8px) scale(1.012);
+    box-shadow:
+      0 24px 56px rgba(99, 102, 241, 0.13),
+      0 6px 20px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .contact-card-left:hover {
+    background: #e4e8f5 !important;
+  }
+
+  .contact-card-right:hover {
+    background: #f5f6ff !important;
+  }
+
+  /* ── Contact item hover (right card rows) ── */
+  .contact-item {
+    border-radius: 12px;
+    padding: 6px 10px;
+    margin: -6px -10px;
+    transition:
+      background 0.22s ease,
+      transform 0.22s ease;
+  }
+  .contact-item:hover {
+    background: rgba(99, 102, 241, 0.06);
+    transform: translateX(5px);
+  }
+
+  /* ── Icon pop on contact-item hover ── */
+  .contact-item .contact-icon {
+    transition:
+      transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.3s ease;
+  }
+  .contact-item:hover .contact-icon {
+    transform: scale(1.18) rotate(-8deg);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  }
+
+  /* ── GitHub link hover ── */
+  .github-link {
+    transition: color 0.2s ease;
+  }
+  .github-link:hover {
+    color: #4f46e5 !important;
+    text-decoration: underline;
+  }
+
+  /* ── Input focus glow ── */
+  .contact-card-left input,
+  .contact-card-left textarea {
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+  }
+  .contact-card-left input:focus,
+  .contact-card-left textarea:focus {
+    border-color: #6366f1 !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.13);
+    outline: none;
+  }
+
+  /* ── Send button ── */
+  #send-btn:hover {
+    background: #4f46e5 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  }
+  #send-btn:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: none;
+  }
+  #send-btn.success {
+    background: #10b981 !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  }
+  #send-btn.error {
+    background: #ef4444 !important;
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  }
+</style>
+
+<script>
+  const btn = document.getElementById("send-btn") as HTMLButtonElement;
+  const sendText = document.getElementById("send-text") as HTMLSpanElement;
+  const sendIcon = document.getElementById("send-icon") as unknown as SVGElement;
+
+  const ICON_SEND = `<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>`;
+  const ICON_CHECK = `<polyline points="20 6 9 17 4 12"/>`;
+  const ICON_ERROR = `<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>`;
+  const ICON_LOADING = `<circle cx="12" cy="12" r="9" stroke-dasharray="28" stroke-dashoffset="10"/>`;
+
+  function resetBtn() {
+    btn.disabled = false;
+    btn.classList.remove("success", "error");
+    sendText.textContent = "Send Message";
+    sendIcon.innerHTML = ICON_SEND;
+  }
+
+  btn?.addEventListener("click", async () => {
+    const name = (document.getElementById("contact-name") as HTMLInputElement).value.trim();
+    const email = (document.getElementById("contact-email") as HTMLInputElement).value.trim();
+    const subject = (document.getElementById("contact-subject") as HTMLInputElement).value.trim();
+    const message = (document.getElementById("contact-message") as HTMLTextAreaElement).value.trim();
+
+    // Validation
+    if (!name || !email || !subject || !message) {
+      btn.classList.add("error");
+      sendText.textContent = "Fill all fields!";
+      sendIcon.innerHTML = ICON_ERROR;
+      setTimeout(resetBtn, 2000);
+      return;
+    }
+
+    // Loading
+    btn.disabled = true;
+    sendText.textContent = "Sending...";
+    sendIcon.innerHTML = ICON_LOADING;
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "a575bf0e-2d2c-425d-8e48-f8d716c09131",
+          name,
+          email,
+          subject,
+          message
+        })
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        btn.classList.add("success");
+        sendText.textContent = "Message Sent!";
+        sendIcon.innerHTML = ICON_CHECK;
+
+        (document.getElementById("contact-name") as HTMLInputElement).value = "";
+        (document.getElementById("contact-email") as HTMLInputElement).value = "";
+        (document.getElementById("contact-subject") as HTMLInputElement).value = "";
+        (document.getElementById("contact-message") as HTMLTextAreaElement).value = "";
+
+        setTimeout(resetBtn, 3000);
+      } else {
+        throw new Error("Failed");
+      }
+    } catch {
+      btn.classList.add("error");
+      sendText.textContent = "Failed! Try again";
+      sendIcon.innerHTML = ICON_ERROR;
+      setTimeout(resetBtn, 3000);
+    }
+  });
 </script>

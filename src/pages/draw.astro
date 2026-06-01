@@ -1,6 +1,6 @@
 ---
 import "@/assets/styles/draw.css";
-import Back from "@/components/Back.astro";
+import Back from "@/components/BackButton.astro";
 import ControlsContainer from "@/components/ControllerContainer.astro";
 import DrawComponent from "@/components/DrawKeyboard.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
@@ -13,11 +13,138 @@ const meta = {
 };
 ---
 
+<style>
+  :global(.content) {
+    min-height: 100vh !important;
+    height: auto !important;
+  }
+
+  :global(.back) {
+    position: sticky !important;
+    top: 0rem !important;
+    left: 0rem !important;
+    z-index: 999 !important;
+    margin-left: -1.5rem !important;
+  }
+
+  :global(.controls) {
+    position: static !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 0.25rem !important;
+    align-items: center !important;
+    background: transparent !important;
+    top: unset !important;
+    right: unset !important;
+  }
+
+  :global(.control-group) {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+  }
+  /* Sirf draw page pe nav links right shift */
+  :global(.nav__links) {
+    justify-content: flex-end !important;
+    padding-right: 2rem !important;
+  }
+
+  /* Sab control buttons same size */
+  :global(.control-button) {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  :global(.font-icon),
+  :global(.color-icon),
+  :global(.bg-icon) {
+    font-size: 0.9rem !important;
+  }
+
+  :global(.img-icon) {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+  }
+
+  /* Speaker — mute-button same size */
+  :global(.mute-button) {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    padding: 0 !important;
+    font-size: 0.9rem !important;
+  }
+
+  :global(.mute-icon) {
+    font-size: 1rem !important;
+  }
+
+  /* Help button same size */
+  :global(.help) {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    font-size: 1rem !important;
+    padding: 0 !important;
+  }
+
+  /* Select Voice  */
+  :global(#voice-dropdown) {
+    height: 2.2rem !important;
+    font-size: 0.75rem !important;
+    padding: 0 0.4rem !important;
+    border-radius: 9999px !important;
+    border: 1.5px solid var(--primary, #3b82f6) !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    width: auto !important;
+  }
+
+  /* SVG same size */
+  :global(.controls-container svg) {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* Action group */
+  :global(.action__group) {
+    max-width: none !important;
+    flex-wrap: nowrap !important;
+    gap: 0.2rem !important;
+  }
+
+  :global([slot="header-right"]) {
+    max-width: none !important;
+  }
+
+  :global(.controls-container) {
+    gap: 0.2rem !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+  }
+
+  /* Share trigger button — exact class */
+  :global(.share-trigger-button) {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    padding: 0 !important;
+    font-size: 0.9rem !important;
+    border-radius: 50% !important;
+  }
+
+  :global(.share-trigger-button svg) {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* Theme toggle */
+  :global(.theme-toggle) {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+  }
+</style>
 <BaseLayout meta={meta}>
   <MobileSplash stay={true} />
+  <ControlsContainer slot="header-right" />
   <Back />
-  <Fragment slot="header-right">
-    <ControlsContainer />
-  </Fragment>
   <DrawComponent />
 </BaseLayout>

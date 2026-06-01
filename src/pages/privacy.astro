@@ -1,5 +1,4 @@
 ---
-import { Content } from "@/content/privacy.md";
 import BaseLayout from "@/layouts/Base";
 
 const meta = {
@@ -9,11 +8,1192 @@ const meta = {
 ---
 
 <style is:inline>
-  article {
-    padding: 1rem 2rem;
+  /* ── GOOGLE FONT ── */
+  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
+
+  .t-wrap {
+    max-width: 1450px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 40px 60px;
+    font-family: "Nunito", sans-serif;
+  }
+
+  /* ── HERO ── */
+  .terms-hero-image {
+    display: block;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  .terms-hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ── BODY GRID ── */
+  .t-body {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* ── SIDEBAR ── */
+  .t-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .t-box {
+    background: #fff;
+    border: 1.5px solid #ede9fc;
+    border-radius: 18px;
+    padding: 1.3rem 1.4rem;
+    box-shadow: 0 2px 12px rgba(124, 92, 191, 0.06);
+  }
+
+  .t-box-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #a78bfa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.85rem;
+    display: block;
+  }
+
+  /* TOC */
+  .t-toc {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .t-toc li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .t-toc li:hover {
+    background: #f5f3ff;
+  }
+  .t-toc li span.lbl {
+    font-size: 15px;
+    font-weight: 700;
+    color: #374151;
+  }
+
+  /* Number badges */
+  .n {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .n1 {
+    background: #ede9fe;
+    color: #7c3aed;
+  }
+  .n2 {
+    background: #dbeafe;
+    color: #1d4ed8;
+  }
+  .n3 {
+    background: #dcfce7;
+    color: #15803d;
+  }
+  .n4 {
+    background: #fef3c7;
+    color: #b45309;
+  }
+  .n5 {
+    background: #fce7f3;
+    color: #be185d;
+  }
+  .n6 {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+  .n7 {
+    background: #f0fdf4;
+    color: #166534;
+  }
+  .n8 {
+    background: #fff7ed;
+    color: #c2410c;
+  }
+  .n9 {
+    background: #f5f3ff;
+    color: #6d28d9;
+  }
+  .n10 {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+  .n11 {
+    background: #ecfdf5;
+    color: #065f46;
+  }
+  .n12 {
+    background: #eff6ff;
+    color: #1e40af;
+  }
+
+  /* ── HELP BOX ── */
+  .t-box.help {
+    text-align: center;
+    padding: 1.4rem 1.3rem 1.5rem;
+  }
+  .t-help-bubble {
+    position: relative;
+    width: 58px;
+    height: 52px;
+    margin: 0 auto 0.7rem;
+  }
+  .t-help-bubble .bubble {
+    width: 58px;
+    height: 52px;
+    background: #7c5cbf;
+    border-radius: 50% 50% 50% 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .t-box.help h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin: 0 0 4px;
+  }
+  .t-box.help p {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0 0 0.9rem;
+  }
+  .t-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #7c5cbf;
+    color: #fff;
+    border-radius: 999px;
+    padding: 9px 22px;
+    font-size: 13.5px;
+    font-weight: 800;
+    font-family: "Nunito", sans-serif;
+    text-decoration: none;
+    transition:
+      background 0.15s,
+      transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+  .t-btn:hover {
+    background: #6344a8;
+    transform: translateY(-1px);
+  }
+  .t-btn .arr {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  /* ── SAFE & TRUSTED BOX ── */
+  .t-box.safe {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .t-safe-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .t-box.safe h4 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin: 0 0 4px;
+  }
+  .t-box.safe p {
+    font-size: 12.5px;
+    color: #6b7280;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* ── CONTENT AREA ── */
+  .t-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  /* Welcome banner */
+  .t-welcome {
+    background: #fff;
+    border: 1.5px solid #ede9fc;
+    border-radius: 18px;
+    padding: 1.1rem 1.3rem;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(124, 92, 191, 0.06);
+  }
+  .t-star {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #9b72e6 0%, #7c5cbf 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(124, 92, 191, 0.3);
+  }
+  .t-welcome p {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #374151;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── DOWNLOAD BUTTON ── */
+  .pp-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #fff;
+    color: #7c5cbf;
+    border: 1.5px solid #c4b5fd;
+    border-radius: 999px;
+    padding: 7px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: "Nunito", sans-serif;
+    cursor: pointer;
+    transition:
+      background 0.15s,
+      color 0.15s,
+      border-color 0.15s;
+    text-decoration: none;
+  }
+  .pp-dl-btn:hover {
+    background: #7c5cbf;
+    color: #fff;
+    border-color: #7c5cbf;
+  }
+
+  /* ── ACCORDION ── */
+  .t-acc {
+    background: #fff;
+    border: 1.5px solid #ede9fc;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(124, 92, 191, 0.05);
+    transition: box-shadow 0.2s;
+  }
+  .t-acc:hover {
+    box-shadow: 0 4px 18px rgba(124, 92, 191, 0.1);
+  }
+  .t-acc.open {
+    box-shadow: 0 4px 18px rgba(124, 92, 191, 0.12);
+  }
+
+  .t-acc-h {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .t-acc-h:hover {
+    background: #faf9ff;
+  }
+
+  .t-ico {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .t-acc-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .t-acc-info h3 {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin: 0 0 3px;
+  }
+  .t-acc-info p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .t-chev {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f3f0fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition:
+      transform 0.22s,
+      background 0.15s;
+  }
+  .t-chev svg {
+    display: block;
+  }
+  .t-acc.open .t-chev {
+    transform: rotate(180deg);
+    background: #7c5cbf;
+  }
+  .t-acc.open .t-chev svg path {
+    stroke: #fff;
+  }
+
+  .t-acc-body {
+    display: none;
+    padding: 4px 20px 18px 73px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #4b5563;
+    line-height: 1.78;
+    border-top: 1.5px solid #f3f0fd;
+  }
+  .t-acc.open .t-acc-body {
+    display: block;
+  }
+  .t-acc-body a {
+    color: #7c5cbf;
+    text-decoration: none;
+  }
+  .t-acc-body a:hover {
+    text-decoration: underline;
+  }
+  .t-acc-body ul {
+    padding-left: 20px;
+    margin: 8px 0;
+  }
+  .t-acc-body li {
+    margin-bottom: 5px;
+  }
+  .t-acc-body p {
+    margin-bottom: 8px;
+  }
+  .t-acc-body strong {
+    font-weight: 800;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .t-body {
+      grid-template-columns: 1fr;
+    }
+    .t-wrap {
+      padding: 20px 16px 40px;
+    }
   }
 </style>
 
 <BaseLayout meta={meta}>
-  <article><Content /></article>
+  <div class="t-wrap">
+    <!-- HERO IMAGE -->
+    <div class="terms-hero-image">
+      <img src="/assets/images/hero-privacy.png" alt="Privacy Policy" />
+    </div>
+
+    <!-- BODY -->
+    <div class="t-body">
+      <!-- ══ SIDEBAR ══ -->
+      <div class="t-sidebar">
+        <!-- Table of Contents -->
+        <div class="t-box">
+          <span class="t-box-title">On this page</span>
+          <ul class="t-toc">
+            <li onclick="tGo(0)"><span class="n n1">1</span><span class="lbl">About Us</span></li>
+            <li onclick="tGo(1)"><span class="n n2">2</span><span class="lbl">Applicability</span></li>
+            <li onclick="tGo(2)"><span class="n n3">3</span><span class="lbl">Information We Collect</span></li>
+            <li onclick="tGo(3)"><span class="n n4">4</span><span class="lbl">Purpose of Data Use</span></li>
+            <li onclick="tGo(4)"><span class="n n5">5</span><span class="lbl">Lawful Basis (DPDP Act)</span></li>
+            <li onclick="tGo(5)"><span class="n n6">6</span><span class="lbl">Storage and Security</span></li>
+            <li onclick="tGo(6)"><span class="n n7">7</span><span class="lbl">Data Sharing</span></li>
+            <li onclick="tGo(7)"><span class="n n8">8</span><span class="lbl">Cookies and Tracking</span></li>
+            <li onclick="tGo(8)"><span class="n n9">9</span><span class="lbl">Rights of Parents</span></li>
+            <li onclick="tGo(9)"><span class="n n10">10</span><span class="lbl">Grievance Redressal</span></li>
+            <li onclick="tGo(10)"><span class="n n11">11</span><span class="lbl">Changes to This Policy</span></li>
+            <li onclick="tGo(11)"><span class="n n12">12</span><span class="lbl">Contact Us</span></li>
+          </ul>
+        </div>
+
+        <!-- Have questions? -->
+        <div class="t-box help">
+          <div class="t-help-bubble">
+            <div class="bubble">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#fbbf24">
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <h4>Have questions?</h4>
+          <p>We're here to help you.</p>
+          <a href="/contact" class="t-btn">
+            Contact Us
+            <span class="arr">›</span>
+          </a>
+        </div>
+
+        <!-- Your trust matters -->
+        <div class="t-box safe">
+          <svg class="t-safe-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 4L8 11v13c0 10.5 7 20.3 16 23 9-2.7 16-12.5 16-23V11L24 4z" fill="#3b82f6"></path>
+            <path d="M24 4L8 11v2l16-7 16 7v-2L24 4z" fill="#60a5fa"></path>
+            <path d="M16 24l5.5 5.5L32 19" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+            ></path>
+          </svg>
+          <div>
+            <h4>Your trust matters</h4>
+            <p>We follow strict safety measures to keep your child's data secure.</p>
+          </div>
+        </div>
+      </div>
+      <!-- END SIDEBAR -->
+
+      <!-- ══ MAIN CONTENT ══ -->
+      <div class="t-content">
+        <!-- Welcome Banner -->
+        <div class="t-welcome">
+          <div class="t-star">🔒</div>
+          <div style="flex:1">
+            <p>
+              Welcome to <strong>abcdkbd.com</strong>! Your child's privacy and safety are our highest priority. This
+              Privacy Policy outlines how we handle personal data in compliance with the
+              <a href="#" style="color:#7c5cbf;font-weight:700;">Digital Personal Data Protection Act, 2023 (India)</a>
+              and international child privacy standards.
+            </p>
+            <div style="margin-top:10px">
+              <button onclick="downloadPrivacyPDF()" class="pp-dl-btn">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Privacy Policy PDF
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. About Us -->
+        <div class="t-acc" id="t0">
+          <div class="t-acc-h" onclick="tToggle(0)">
+            <div class="t-ico" style="background:#ede9fe">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#7c3aed"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="9" cy="7" r="4"></circle><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path><path d="M21 21v-2a4 4 0 0 0-3-3.87"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>1. About Us</h3>
+              <p>Learn about abcdkbd.com and our commitment to safe learning experiences for children.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            Welcome to <strong>abcdkbd.com</strong>! We are an educational platform dedicated to providing safe,
+            engaging, and effective learning experiences for children. Our mission is to make quality education
+            accessible while ensuring that every child's privacy and safety remain our foremost priority.
+            <br /><br />
+            We are committed to transparency in how we operate and handle information entrusted to us by parents, guardians,
+            and children.
+          </div>
+        </div>
+
+        <!-- 2. Applicability -->
+        <div class="t-acc" id="t1">
+          <div class="t-acc-h" onclick="tToggle(1)">
+            <div class="t-ico" style="background:#dbeafe">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1d4ed8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                <path d="M19 8l2 2-2 2"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>2. Applicability</h3>
+              <p>Who this policy applies to and how we protect children under the age of 18.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            This Privacy Policy applies to all users of abcdkbd.com, with special provisions for children under the age
+            of 18. We collect and process personal data of children only with verifiable parental or guardian consent,
+            in compliance with applicable laws.
+            <ul>
+              <li>Children under 13: Require explicit parental consent for account creation.</li>
+              <li>Children 13–17: May use the platform with parental awareness and consent.</li>
+              <li>Parents/Guardians: Have full control over their child's account and data.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Information We Collect -->
+        <div class="t-acc" id="t2">
+          <div class="t-acc-h" onclick="tToggle(2)">
+            <div class="t-ico" style="background:#dcfce7">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#15803d"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14,2 14,8 20,8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline
+                  points="10,9 9,9 8,9"></polyline>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>3. What Information We Collect</h3>
+              <p>Details about the types of information we collect (automatically and optionally).</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            <strong>Automatically Collected:</strong>
+            <ul>
+              <li>Device information (browser type, OS, device ID)</li>
+              <li>Usage data (pages visited, time spent, features used)</li>
+              <li>IP address and approximate location</li>
+              <li>Cookies and similar tracking technologies</li>
+            </ul>
+            <strong>Optionally Provided:</strong>
+            <ul>
+              <li>Child's name and age/grade</li>
+              <li>Parent/guardian email address</li>
+              <li>Learning preferences and progress data</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. Purpose of Data Use -->
+        <div class="t-acc" id="t3">
+          <div class="t-acc-h" onclick="tToggle(3)">
+            <div class="t-ico" style="background:#fef3c7">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#b45309"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+                <line x1="12" y1="2" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="22"></line>
+                <line x1="2" y1="12" x2="5" y2="12"></line><line x1="19" y1="12" x2="22" y2="12"></line>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>4. Purpose of Data Use</h3>
+              <p>How we use the collected data to improve learning and ensure safety.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            We use collected data solely for the following purposes:
+            <ul>
+              <li>Personalising the learning experience for each child</li>
+              <li>Monitoring and improving platform safety</li>
+              <li>Communicating with parents/guardians about their child's progress</li>
+              <li>Complying with legal obligations</li>
+              <li>Preventing fraud and ensuring platform integrity</li>
+            </ul>
+            We <strong>never</strong> use children's data for targeted advertising.
+          </div>
+        </div>
+
+        <!-- 5. Lawful Basis -->
+        <div class="t-acc" id="t4">
+          <div class="t-acc-h" onclick="tToggle(4)">
+            <div class="t-ico" style="background:#fce7f3">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#be185d"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3v18M3 6h18"></path>
+                <path d="M6 6l-3 6s3 3 6 0l-3-6z"></path>
+                <path d="M18 6l-3 6s3 3 6 0l-3-6z"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>5. Lawful Basis for Processing (As per DPDP Act)</h3>
+              <p>The legal grounds under which we collect and process data.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            Under the <a href="#">Digital Personal Data Protection Act, 2023 (India)</a>, we process personal data on
+            the following lawful bases:
+            <ul>
+              <li>
+                <strong>Consent:</strong> Explicit, verifiable consent from parents/guardians for children's data.
+              </li>
+              <li><strong>Legitimate Interest:</strong> For platform safety and fraud prevention.</li>
+              <li><strong>Legal Obligation:</strong> Where required by applicable law.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 6. Storage and Security -->
+        <div class="t-acc" id="t5">
+          <div class="t-acc-h" onclick="tToggle(5)">
+            <div class="t-ico" style="background:#e0f2fe">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0369a1"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>6. Storage and Security</h3>
+              <p>How we securely store your data and the measures we take to protect it.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            <ul>
+              <li>All data is encrypted at rest and in transit using AES-256 and TLS 1.2+.</li>
+              <li>Access to personal data is restricted to authorised personnel on a need-to-know basis.</li>
+              <li>We conduct regular security audits and vulnerability assessments.</li>
+              <li>
+                Data is stored on secure servers located in India and/or trusted international partners compliant with
+                applicable data protection laws.
+              </li>
+              <li>In the event of a data breach, we will notify affected users within 72 hours as required by law.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 7. Data Sharing -->
+        <div class="t-acc" id="t6">
+          <div class="t-acc-h" onclick="tToggle(6)">
+            <div class="t-ico" style="background:#f0fdf4">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#166534"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle
+                  cx="18"
+                  cy="19"
+                  r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>7. Data Sharing and Disclosure</h3>
+              <p>When and how we share data (and what we do not do).</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            We do <strong>not</strong> sell, rent, or trade personal data. We may share data only with:
+            <ul>
+              <li>
+                <strong>Service providers:</strong> Trusted partners who help operate our platform (e.g., cloud hosting,
+                analytics) under strict data processing agreements.
+              </li>
+              <li><strong>Legal authorities:</strong> When required by law or to protect the safety of children.</li>
+            </ul>
+            All third-party partners are vetted and required to maintain equivalent privacy and security standards.
+          </div>
+        </div>
+
+        <!-- 8. Cookies -->
+        <div class="t-acc" id="t7">
+          <div class="t-acc-h" onclick="tToggle(7)">
+            <div class="t-ico" style="background:#fff7ed">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#c2410c"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="8" cy="10" r="1" fill="#c2410c"></circle><circle cx="14" cy="8" r="1" fill="#c2410c"
+                ></circle>
+                <circle cx="9" cy="15" r="1" fill="#c2410c"></circle><circle cx="15" cy="14" r="0.8" fill="#c2410c"
+                ></circle>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>8. Cookies and Tracking</h3>
+              <p>Information about cookies and tracking technologies we use.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            We use the following types of cookies:
+            <ul>
+              <li><strong>Essential cookies:</strong> Required for platform functionality (cannot be disabled).</li>
+              <li>
+                <strong>Analytics cookies:</strong> Help us understand how users interact with the platform (can be opted
+                out).
+              </li>
+              <li><strong>Preference cookies:</strong> Remember user settings and preferences.</li>
+            </ul>
+            We do <strong>not</strong> use third-party advertising or tracking cookies. Parents can manage cookie preferences
+            from their account settings.
+          </div>
+        </div>
+
+        <!-- 9. Rights of Parents -->
+        <div class="t-acc" id="t8">
+          <div class="t-acc-h" onclick="tToggle(8)">
+            <div class="t-ico" style="background:#f5f3ff">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#6d28d9"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>9. Rights of Parents and Guardians</h3>
+              <p>Your rights as a parent or guardian regarding your child's data.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            As a parent or guardian, you have the right to:
+            <ul>
+              <li><strong>Access:</strong> Request a copy of your child's personal data.</li>
+              <li><strong>Correction:</strong> Update or correct inaccurate information.</li>
+              <li><strong>Deletion:</strong> Request deletion of your child's account and data.</li>
+              <li><strong>Withdrawal of Consent:</strong> Revoke consent at any time.</li>
+              <li><strong>Data Portability:</strong> Request your child's data in a machine-readable format.</li>
+            </ul>
+            To exercise these rights, contact us at <strong>privacy@abcdkbd.com</strong>.
+          </div>
+        </div>
+
+        <!-- 10. Grievance Redressal -->
+        <div class="t-acc" id="t9">
+          <div class="t-acc-h" onclick="tToggle(9)">
+            <div class="t-ico" style="background:#fef2f2">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#b91c1c"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>10. Grievance Redressal</h3>
+              <p>How to raise concerns and contact our Grievance Officer.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            If you have any concerns or complaints about how we handle your child's data, you may contact our designated
+            Grievance Officer:
+            <br /><br />
+            <strong>Grievance Officer:</strong> [Name]<br />
+            <strong>Email:</strong> grievance@abcdkbd.com<br />
+            <strong>Address:</strong> [Company Address], India
+            <br /><br />
+            We will acknowledge your complaint within 48 hours and resolve it within 30 days as per the DPDP Act, 2023.
+          </div>
+        </div>
+
+        <!-- 11. Changes to This Policy -->
+        <div class="t-acc" id="t10">
+          <div class="t-acc-h" onclick="tToggle(10)">
+            <div class="t-ico" style="background:#ecfdf5">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#065f46"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>11. Changes to This Policy</h3>
+              <p>How we handle updates and notify changes in this policy.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            We may update this Privacy Policy from time to time to reflect changes in our practices or legal
+            requirements. When we make significant changes:
+            <ul>
+              <li>We will update the "Last Updated" date at the top of this page.</li>
+              <li>We will notify parents/guardians via email at least 14 days before changes take effect.</li>
+              <li>
+                Continued use of the platform after the effective date constitutes acceptance of the updated policy.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 12. Contact Us -->
+        <div class="t-acc" id="t11">
+          <div class="t-acc-h" onclick="tToggle(11)">
+            <div class="t-ico" style="background:#eff6ff">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1e40af"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="t-acc-info">
+              <h3>12. Contact Us</h3>
+              <p>How to get in touch with us for any queries or requests.</p>
+            </div>
+            <span class="t-chev"
+              ><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                ><path
+                  d="M6 9l6 6 6-6"
+                  stroke="#7c5cbf"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              ></span
+            >
+          </div>
+          <div class="t-acc-body">
+            If you have any questions about this Privacy Policy or our data practices, please contact us:
+            <br /><br />
+            <strong>Email:</strong> privacy@abcdkbd.com<br />
+            <strong>Website:</strong>
+            <a href="https://abcdkbd.com">abcdkbd.com</a><br />
+            <strong>Phone:</strong> [Your Contact Number]<br />
+            <strong>Address:</strong> [Company Address], India
+            <br /><br />
+            We typically respond within 2–3 business days.
+          </div>
+        </div>
+      </div>
+      <!-- END CONTENT -->
+    </div>
+    <!-- END BODY -->
+  </div>
+
+  <script is:inline>
+    function tToggle(i) {
+      document.getElementById("t" + i).classList.toggle("open");
+    }
+    function tGo(i) {
+      var el = document.getElementById("t" + i);
+      if (!el.classList.contains("open")) el.classList.add("open");
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function downloadPrivacyPDF() {
+      // Collect all content from accordions (open all first)
+      for (var i = 0; i < 12; i++) {
+        var el = document.getElementById("t" + i);
+        if (el) el.classList.add("open");
+      }
+
+      // Grab only the policy content HTML
+      var welcome = document.querySelector(".t-welcome") ? document.querySelector(".t-welcome").outerHTML : "";
+      var sections = "";
+      for (var j = 0; j < 12; j++) {
+        var sec = document.getElementById("t" + j);
+        if (sec) sections += sec.outerHTML;
+      }
+
+      // Open a blank popup and write clean content into it
+      var printWin = window.open("", "_blank", "width=900,height=700");
+      printWin.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8"/>
+          <title>Privacy Policy – abcdkbd.com</title>
+          <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+          <style>
+            *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+            body { font-family: 'Nunito', sans-serif; background: #fff; color: #333; padding: 30px 40px; }
+            h1 { font-size: 22px; font-weight: 800; color: #1a1a2e; margin-bottom: 6px; }
+            .meta { font-size: 11px; color: #888; margin-bottom: 20px; }
+            .t-welcome {
+              background: #faf8ff; border: 1px solid #ede9fc; border-radius: 10px;
+              padding: 14px 18px; margin-bottom: 14px;
+              font-size: 13px; font-weight: 600; color: #374151; line-height: 1.65;
+              display: flex; gap: 12px; align-items: center;
+            }
+            .t-star { display: none; }
+            .pp-dl-btn { display: none; }
+            .t-acc {
+              background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+              margin-bottom: 10px; overflow: hidden;
+              page-break-inside: avoid; break-inside: avoid;
+            }
+            .t-acc-h {
+              display: flex; align-items: center; gap: 12px;
+              padding: 12px 16px; background: #faf9ff;
+            }
+            .t-ico {
+              width: 34px; height: 34px; border-radius: 50%;
+              display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            }
+            .t-acc-info h3 { font-size: 14px; font-weight: 800; color: #1a1a2e; margin: 0 0 2px; }
+            .t-acc-info p  { font-size: 12px; color: #6b7280; margin: 0; }
+            .t-chev { display: none; }
+            .t-acc-body {
+              display: block !important;
+              padding: 10px 16px 14px 62px;
+              font-size: 13px; font-weight: 600; color: #4b5563; line-height: 1.75;
+              border-top: 1px solid #f0eeff;
+            }
+            .t-acc-body ul { padding-left: 18px; margin: 6px 0; }
+            .t-acc-body li { margin-bottom: 4px; }
+            .t-acc-body p  { margin-bottom: 6px; }
+            .t-acc-body strong { font-weight: 800; }
+            .t-acc-body a  { color: #7c5cbf; text-decoration: none; }
+            @page { margin: 1.5cm 1.8cm; size: A4; }
+          </style>
+        </head>
+        <body>
+          <h1>Privacy Policy</h1>
+          <p class="meta">abcdkbd.com &nbsp;|&nbsp; Last Updated: July 16, 2025</p>
+          ${welcome}
+          ${sections}
+          <script>
+            window.onload = function() {
+              window.print();
+              window.onafterprint = function() { window.close(); };
+            };
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWin.document.close();
+    }
+  </script>
 </BaseLayout>

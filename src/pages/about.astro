@@ -1,53 +1,462 @@
 ---
-import BackIcon from "@/components/Back.astro";
-import HeroSection from "@/components/about/HeroSection.astro";
-import TeamSection from "@/components/about/TeamSection.astro";
-import TechSection from "@/components/about/TechSection.astro";
 import BaseLayout from "@/layouts/Base";
+import GitHub from "@/assets/icons/github.svg";
+import Avatar from "@/components/Avatar.astro";
 import pkg from "../../package.json";
-
-import { Content } from "@/content/about.md";
-
-// Constants
-const appName = "abcdkbd";
 
 const meta = {
   title: "About Us",
   description: "Learn more about our mission and the team behind abcdkbd."
 };
+
+const cards = [
+  {
+    icon: "🎯",
+    title: "Helping Children Learn, Play, and Grow",
+    bg: "#ffe0e6",
+    border: "#ffb3c1",
+    iconBg: "#ff6b8a",
+    line: "#ff4d6d",
+    text: "We're building a fun, engaging, and interactive learning platform designed especially for elementary school children to explore, understand, and love the world of letters, numbers, and basic concepts."
+  },
+  {
+    icon: "🚀",
+    title: "Our Mission",
+    bg: "#e0f0ff",
+    border: "#b3d4ff",
+    iconBg: "#4dabf7",
+    line: "#228be6",
+    text: "To make early education joyful and accessible using simple, child-friendly digital tools that inspire curiosity, creativity, and confidence."
+  },
+  {
+    icon: "👨‍🏫",
+    title: "Who We Are",
+    bg: "#e8f8ee",
+    border: "#b2e8c4",
+    iconBg: "#51cf66",
+    line: "#2f9e44",
+    text: "We are a passionate group of educators, designers, and developers who believe learning should be playful, meaningful, and rooted in real understanding."
+  },
+  {
+    icon: "📚",
+    title: "What We Offer",
+    bg: "#fffbe0",
+    border: "#ffe066",
+    iconBg: "#ffd43b",
+    line: "#f59f00",
+    isList: true,
+    deco: "📚⭐",
+    items: [
+      "Alphabet & number games",
+      "Simple math & reading practice",
+      "Interactive storytelling",
+      "Coloring & memory activities",
+      "Multilingual elementary learning",
+      "No distractions – ad-free, safe environment"
+    ]
+  },
+  {
+    icon: "🧠",
+    title: "Why Choose Us",
+    bg: "#f3e8ff",
+    border: "#d0a8ff",
+    iconBg: "#cc5de8",
+    line: "#9c36b5",
+    isList: true,
+    deco: "⭐",
+    items: [
+      "Designed with child psychology in mind",
+      "Supports classroom and home learning",
+      "Works on mobile and desktop",
+      "Offline access available",
+      "Trusted by teachers and parents"
+    ]
+  },
+  {
+    icon: "💡",
+    title: "Our Core Values",
+    bg: "#fff4e6",
+    border: "#ffc078",
+    iconBg: "#ff922b",
+    line: "#e8590c",
+    isList: true,
+    deco: "🌈",
+    items: [
+      "Simplicity – Easy-to-use design for every age",
+      "Inclusion – Respecting every learner's needs",
+      "Fun-first learning – Making learning an adventure",
+      "Respect – For every child's space and potential",
+      "Continuous improvement – We listen, learn, and grow"
+    ]
+  }
+];
+
+const members = pkg.contributors || [];
 ---
 
-<style>
-  .about__article {
-    padding: 1rem 2rem;
+<BaseLayout meta={meta}>
+  <!-- HERO SECTION -->
+  <div class="full-bleed hero-bleed">
+    <img src="/assets/images/about-hero.png" alt="About Hero" class="hero-img" />
+  </div>
 
-    :is(h2, h3) {
-      padding: 0.5rem 0.5rem;
-      box-shadow: inset 2px 5px 10px 3px rgba(0, 0, 0, 0.2);
+  <!-- 6 INFO CARDS -->
+  <div class="section-wrap cards-section">
+    <div class="cards-grid">
+      {
+        cards.map((card) => (
+          <div class="info-card" style={"background:" + card.bg + ";border:1.5px solid " + card.border + ";"}>
+            <div class="card-hd">
+              <div class="card-icon-wrap" style={"background:" + card.iconBg + ";"}>
+                <span class="card-icon">{card.icon}</span>
+              </div>
+              <div>
+                <h3 class="card-title">{card.title}</h3>
+                <div class="card-ul" style={"background:" + card.line + ";"} />
+              </div>
+            </div>
+            {card.isList ? (
+              <ul class="card-list">
+                {card.items.map((item) => (
+                  <li>
+                    <span class="ck" style={"color:" + card.line + ";"}>
+                      ✔
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="card-text">{card.text}</p>
+            )}
+            {card.deco && <div class="card-deco">{card.deco}</div>}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- LEARNING MADE MAGICAL -->
+  <div class="full-bleed banner-bleed">
+    <img src="/assets/images/about-logo.png" alt="Learning Made Magical" class="banner-img" />
+  </div>
+
+  <!-- TEAM SECTION -->
+  <div class="section-wrap team-section">
+    <h2 class="team-heading">Meet Our Passionate Team <span>❤️</span></h2>
+    <p class="team-sub">
+      Dedicated group of educators, designers, and developers committed to making learning magical.
+    </p>
+    <div class="team-grid">
+      {
+        members.map((member) => (
+          <div class="team-card">
+            <Avatar name={member.name} backgroundColor="#10b981" />
+            <h3 class="tm-name">{member.name}</h3>
+            <p class="tm-role">{member.role}</p>
+            <a href={"https://github.com/" + member.github} target="_blank" rel="noopener noreferrer" class="tm-gh">
+              <GitHub width={13} height={13} /> @{member.github}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- BUILT FOR YOUNG MINDS -->
+  <div class="full-bleed banner-bleed">
+    <img src="/assets/images/about-BuiltYoung.png" alt="Built for Young Minds" class="banner-img" />
+  </div>
+</BaseLayout>
+
+<style>
+  /* ── Full bleed base ── */
+  .full-bleed {
+    width: 100%;
+    display: block;
+    line-height: 0;
+  }
+
+  /* ── HERO ── */
+  .hero-bleed {
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── BANNER (Magical + BuiltYoung) ── */
+  .banner-bleed {
+    margin: 1.5rem 0;
+  }
+
+  .banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Section wrapper ── */
+  .section-wrap {
+    width: 100%;
+    padding: 2.5rem 3rem;
+    box-sizing: border-box;
+  }
+
+  /* ── CARDS ── */
+  .cards-section {
+    padding-top: 2.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+  }
+
+  .info-card {
+    border-radius: 1.4rem;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.25s ease;
+    min-height: 220px;
+  }
+
+  :global([data-theme="dark"]) .info-card {
+    background: #1e293b !important;
+    border-color: #2d3f55 !important;
+  }
+
+  .info-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.13);
+  }
+
+  .card-hd {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .card-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .info-card:hover .card-icon-wrap {
+    transform: rotate(-8deg) scale(1.1);
+  }
+
+  .card-icon {
+    font-size: 1.9rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1a2a4a;
+    margin: 0 0 5px;
+    line-height: 1.35;
+  }
+
+  :global([data-theme="dark"]) .card-title {
+    color: #e2f0ff;
+  }
+
+  .card-ul {
+    height: 3px;
+    width: 40px;
+    border-radius: 2px;
+  }
+
+  .card-text {
+    font-size: 0.97rem;
+    color: #444;
+    line-height: 1.7;
+  }
+
+  :global([data-theme="dark"]) .card-text {
+    color: #94a3b8;
+  }
+
+  .card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .card-list li {
+    font-size: 0.95rem;
+    color: #444;
+    padding: 4px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.55;
+  }
+
+  :global([data-theme="dark"]) .card-list li {
+    color: #94a3b8;
+  }
+
+  .ck {
+    font-size: 0.85rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .card-deco {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 2.2rem;
+    opacity: 0.3;
+    transition: transform 0.2s;
+  }
+
+  .info-card:hover .card-deco {
+    transform: scale(1.2) rotate(10deg);
+    opacity: 0.5;
+  }
+
+  /* ── TEAM ── */
+  .team-section {
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .team-heading {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #1a2a4a;
+    margin-bottom: 0.5rem;
+  }
+
+  :global([data-theme="dark"]) .team-heading {
+    color: #e2f0ff;
+  }
+
+  .team-sub {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  :global([data-theme="dark"]) .team-sub {
+    color: #94a3b8;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.2rem;
+  }
+
+  .team-card {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 1rem;
+    padding: 1.4rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    transition:
+      transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.2s;
+  }
+
+  :global([data-theme="dark"]) .team-card {
+    background: #1e293b;
+    border-color: #2d3f55;
+  }
+
+  .team-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .tm-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1a2a4a;
+    margin-top: 0.4rem;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  :global([data-theme="dark"]) .tm-name {
+    color: #e2f0ff;
+  }
+
+  .tm-role {
+    font-size: 0.78rem;
+    color: #777;
+  }
+
+  :global([data-theme="dark"]) .tm-role {
+    color: #94a3b8;
+  }
+
+  .tm-gh {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.74rem;
+    color: #7c3aed;
+    text-decoration: none;
+    margin-top: 0.2rem;
+  }
+
+  .tm-gh:hover {
+    text-decoration: underline;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .team-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
-    p {
-      color: grey;
-      font-size: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .cards-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-    li {
-      text-align: left;
-      padding-left: 12px;
-      list-style-type: "✔";
+    .section-wrap {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .section-wrap {
+      padding: 1.5rem 1rem;
+    }
+    .team-heading {
+      font-size: 1.6rem;
+    }
+    .banner-bleed {
+      margin: 1rem 0;
     }
   }
 </style>
-
-<BaseLayout meta={meta}>
-  <BackIcon />
-  <div class="about-container">
-    <section class="about__section">
-      <article class="about__article">
-        <Content class="content" />
-      </article>
-    </section>
-    <HeroSection appName={appName} />
-
-    <TeamSection members={pkg.contributors} />
-    <TechSection />
-  </div>
-</BaseLayout>

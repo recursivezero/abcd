@@ -1,5 +1,5 @@
 ---
-import Back from "@/components/Back.astro";
+import Back from "@/components/BackButton.astro";
 import Help from "@/components/Help.astro";
 import MathPractice from "@/components/MathPractice.astro";
 import SharePopover from "@/components/ShareButton.astro";
@@ -13,12 +13,26 @@ const meta = {
 
 <BaseLayout meta={meta}>
   <Back />
+
   <Fragment slot="header-right">
-    <SharePopover />
-    <Help
-      title="Basic Arithmetic"
-      description="Practice basic math operations like addition, subtraction, and multiplication."
-    />
+    <div class="math-header-actions">
+      <SharePopover />
+
+      <Help
+        title="Basic Arithmetic"
+        description="Practice basic math operations like addition, subtraction, and multiplication."
+      />
+    </div>
   </Fragment>
+
   <MathPractice />
 </BaseLayout>
+<style>
+  .math-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transform: scale(0.72);
+    transform-origin: right center;
+  }
+</style>

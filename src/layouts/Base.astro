@@ -5,7 +5,6 @@ import Footer from "@/layouts/common/Footer";
 import Header from "@/layouts/common/Header";
 import Menu from "@/layouts/common/Menu";
 import { siteConfig } from "@/site-config";
-//import Shortcut from "@/components/Shortcut.astro";
 
 const {
   meta: { title, description = siteConfig.description, ogImage },
@@ -13,31 +12,465 @@ const {
 } = Astro.props;
 ---
 
-<html lang={siteConfig.lang} data-theme="system">
+<html lang={siteConfig.lang}>
   <head>
     <BaseHead title={title} description={description} ogImage={ogImage} />
   </head>
-  <body id="body" class="body__container">
+  <body id="body" class="body__container" style="overflow: visible;">
     <ThemeProvider />
-    <!--<Shortcut />-->
     <Header title={title}>
       <slot name="header-left" slot="left" />
       <slot name="header-right" slot="right" />
     </Header>
     <main id="main" class="main">
-      <div class="sidebar">{sidebar && <Menu />}</div>
-      <div class="content">
+      {
+        sidebar && (
+          <div class="sidebar" id="sidebar">
+            <Menu />
+          </div>
+        )
+      }
+
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <div class="content" id="mainContent">
         <slot><p>This is my fallback content, if there is no child passed into slot</p></slot>
       </div>
     </main>
+
+    {
+      sidebar && (
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <span id="toggleIcon" class="toggle-icon-wrap" />
+        </button>
+      )
+    }
+
+    <style is:global>
+      .main {
+        display: flex;
+        width: 100%;
+        position: relative;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        margin-top: 0;
+        gap: 0 !important;
+        align-items: flex-start !important;
+        min-height: auto !important;
+        height: auto !important;
+        background: transparent !important;
+      }
+
+      html {
+        overflow-y: visible !important;
+      }
+      html,
+      body {
+        min-height: 100vh;
+      }
+
+      .body__container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── SIDEBAR BASE — closed ── */
+      .sidebar {
+        flex: 0 0 0;
+        width: 0 !important;
+        height: 0;
+        min-width: 0 !important;
+        max-width: 0 !important;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(0);
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        border-right: none !important;
+        transition:
+          width 0.3s ease,
+          flex 0.3s ease;
+      }
+
+      /* Sidebar OPEN */
+      .sidebar.open {
+        flex: 0 0 260px !important;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-top: 1rem;
+        border-right: 1px solid rgba(124, 58, 237, 0.1);
+        box-shadow: none !important;
+      }
+
+      .sidebar.open::-webkit-scrollbar,
+      .sidebar.pinned::-webkit-scrollbar {
+        width: 0;
+        display: none;
+      }
+      .sidebar.open::-webkit-scrollbar-track,
+      .sidebar.pinned::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .sidebar.open::-webkit-scrollbar-thumb,
+      .sidebar.pinned::-webkit-scrollbar-thumb {
+        background: transparent;
+      }
+
+      /* Sidebar PINNED */
+      .sidebar.pinned {
+        flex: 0 0 260px !important;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+        height: auto;
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-top: 1rem;
+        border-right: 1px solid rgba(124, 58, 237, 0.1);
+        box-shadow: none !important;
+      }
+
+      .sidebar.open .pin-btn,
+      .sidebar.pinned .pin-btn {
+        display: flex;
+      }
+
+      .content {
+        flex: 1;
+        min-width: 0;
+        min-height: auto !important;
+        height: fit-content !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+      }
+
+      [data-theme="dark"] .main {
+        background: transparent !important;
+      }
+
+      [data-theme="dark"] .content {
+        background: transparent !important;
+      }
+
+      [data-theme="dark"] .sidebar {
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 1199;
+        cursor: pointer;
+      }
+
+      .sidebar-overlay.show {
+        display: block;
+      }
+
+      /* ── PIN BUTTON ── */
+      .pin-btn {
+        position: static !important;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1.5px solid rgba(124, 58, 237, 0.25);
+        border-radius: 50%;
+        background: transparent;
+        color: #7c3aed;
+        cursor: pointer;
+      }
+      .pin-btn:hover {
+        background: rgba(124, 58, 237, 0.08);
+      }
+      .pin-btn.active {
+        background: rgba(124, 58, 237, 0.12);
+        border-color: #7c3aed;
+        transform: rotate(45deg);
+      }
+
+      @media (max-width: 768px) {
+        .pin-btn {
+          display: none !important;
+        }
+      }
+
+      /* ── TOGGLE BUTTON ── */
+      .sidebar-toggle {
+        position: fixed !important;
+        left: 12px !important;
+        bottom: 24px !important;
+        width: 46px !important;
+        height: 46px !important;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999 !important;
+        box-shadow:
+          0 6px 24px rgba(0, 0, 0, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.08);
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .sidebar-toggle:hover {
+        background: rgba(124, 58, 237, 0.08) !important;
+        box-shadow:
+          0 8px 28px rgba(124, 58, 237, 0.28),
+          0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .toggle-icon-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .toggle-icon-wrap svg {
+        width: 20px !important;
+        height: 20px !important;
+        display: block;
+        pointer-events: none;
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 768px) {
+        .sidebar {
+          position: fixed !important;
+          top: 0 !important;
+          left: -320px !important;
+          flex: none !important;
+          width: 300px !important;
+          max-width: 82vw !important;
+          min-width: unset !important;
+          height: 100vh !important;
+          overflow-y: auto !important;
+          overflow-x: hidden !important;
+          transition: left 0.3s ease !important;
+          z-index: 1200 !important;
+          background: var(--background) !important;
+        }
+        .sidebar.open {
+          left: 0 !important;
+          width: 300px !important;
+          max-width: 82vw !important;
+        }
+        .sidebar.pinned {
+          flex: none !important;
+          width: 82vw !important;
+          height: 100vh !important;
+          max-width: 300px !important;
+          overflow-y: auto !important;
+          padding-top: 1rem !important;
+          box-shadow: 4px 0 20px rgba(0, 0, 0, 0.18) !important;
+          scrollbar-width: none !important;
+          border-right: none !important;
+        }
+        .sidebar-toggle {
+          bottom: 20px !important;
+          left: 16px !important;
+          top: auto !important;
+          width: 48px !important;
+          height: 48px !important;
+          display: flex !important;
+        }
+      }
+    </style>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const toggle = document.getElementById("sidebarToggle");
+      const icon = document.getElementById("toggleIcon");
+      const pinBtn = document.getElementById("pinBtn");
+      const overlay = document.getElementById("sidebarOverlay");
+
+      let isPinned = localStorage.getItem("sidebarPinned") === "true";
+      let skipNextClose = false;
+
+      const ICON_HAMBURGER = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>`;
+
+      const ICON_LAYOUT = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="9" y1="4" x2="9" y2="20"></line></svg>`;
+
+      const ICON_CLOSE = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+
+      function isMobile() {
+        return window.innerWidth <= 768;
+      }
+
+      function showToggle() {
+        if (toggle) toggle.style.display = "flex";
+      }
+
+      function sidebarOff() {
+        if (!sidebar) return;
+        sidebar.classList.remove("open");
+        sidebar.classList.remove("pinned");
+        // ✅ inline styles se width zero force karo
+        sidebar.style.flex = "0 0 0";
+        sidebar.style.width = "0";
+        sidebar.style.minWidth = "0";
+        sidebar.style.maxWidth = "0";
+        sidebar.style.overflow = "hidden";
+      }
+
+      function sidebarOn() {
+        if (!sidebar) return;
+        // ✅ inline styles reset karo taaki CSS classes kaam kar sakein
+        sidebar.style.flex = "";
+        sidebar.style.width = "";
+        sidebar.style.minWidth = "";
+        sidebar.style.maxWidth = "";
+        sidebar.style.overflow = "";
+      }
+
+      function openSidebar() {
+        if (!sidebar) return;
+        sidebarOn();
+        sidebar.classList.add("open");
+        sidebar.classList.remove("pinned");
+        if (isMobile() && overlay) overlay.classList.add("show");
+        if (icon) icon.innerHTML = ICON_CLOSE;
+      }
+
+      function closeSidebar() {
+        if (!sidebar) return;
+        sidebarOff();
+        isPinned = false;
+        localStorage.setItem("sidebarPinned", "false");
+        if (pinBtn) pinBtn.classList.remove("active");
+        if (overlay) overlay.classList.remove("show");
+        if (icon) icon.innerHTML = isMobile() ? ICON_HAMBURGER : ICON_LAYOUT;
+      }
+
+      function pinSidebar() {
+        if (!sidebar || !pinBtn) return;
+        sidebarOn();
+        sidebar.classList.add("pinned");
+        sidebar.classList.add("open");
+        pinBtn.classList.add("active");
+        if (overlay) overlay.classList.remove("show");
+        if (icon) icon.innerHTML = ICON_CLOSE;
+      }
+
+      function unpinSidebar() {
+        if (!sidebar || !pinBtn) return;
+        sidebarOn();
+        sidebar.classList.remove("pinned");
+        sidebar.classList.add("open");
+        pinBtn.classList.remove("active");
+        if (icon) icon.innerHTML = ICON_CLOSE;
+      }
+
+      // Page load pe state restore
+      if (isPinned && !isMobile()) {
+        pinSidebar();
+      } else {
+        isPinned = false;
+        sidebarOff();
+        if (icon) icon.innerHTML = isMobile() ? ICON_HAMBURGER : ICON_LAYOUT;
+      }
+
+      showToggle();
+
+      // Pin button
+      if (pinBtn) {
+        pinBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          if (isMobile()) return;
+          skipNextClose = true;
+          isPinned = !isPinned;
+          localStorage.setItem("sidebarPinned", String(isPinned));
+          if (isPinned) {
+            pinSidebar();
+          } else {
+            unpinSidebar();
+          }
+          setTimeout(() => {
+            skipNextClose = false;
+          }, 200);
+        });
+      }
+
+      // Toggle button
+      if (toggle && sidebar) {
+        toggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = sidebar.classList.contains("open");
+          if (isOpen) {
+            closeSidebar();
+          } else {
+            openSidebar();
+          }
+        });
+      }
+
+      // Overlay
+      if (overlay) {
+        overlay.addEventListener("click", () => closeSidebar());
+      }
+
+      // Document click
+      document.addEventListener("click", (e) => {
+        if (!sidebar || !toggle) return;
+        if (isPinned && !isMobile()) return;
+        if (skipNextClose) return;
+        const target = e.target;
+        if (
+          target instanceof Node &&
+          !sidebar.contains(target) &&
+          !toggle.contains(target) &&
+          !pinBtn?.contains(target)
+        ) {
+          closeSidebar();
+        }
+      });
+
+      // Resize
+      window.addEventListener("resize", () => {
+        if (isMobile()) {
+          sidebarOff();
+          if (pinBtn) pinBtn.classList.remove("active");
+          isPinned = false;
+          localStorage.setItem("sidebarPinned", "false");
+          if (icon) icon.innerHTML = ICON_HAMBURGER;
+          showToggle();
+        } else {
+          if (isPinned) {
+            pinSidebar();
+          } else {
+            sidebarOff();
+            if (icon) icon.innerHTML = ICON_LAYOUT;
+          }
+          showToggle();
+        }
+      });
+    </script>
     <Footer />
+
     <script>
       if ("serviceWorker" in navigator) {
-        // Always unregister existing workers first
         navigator.serviceWorker
           .getRegistrations()
           .then((registrations) => {
-            // Unregister all existing service workers
             const unregisterPromises = registrations.map(async (registration) => {
               return registration.unregister().then((success) => {
                 if (success) {
@@ -48,20 +481,15 @@ const {
                 return success;
               });
             });
-
-            // Wait for all unregister to complete
             return Promise.all(unregisterPromises);
           })
           .then(() => {
-            // Only register new service worker in production
             if (!import.meta.env.DEV) {
-              // or `process.env.NODE_ENV !== 'development'`
               window.addEventListener("load", () => {
                 navigator.serviceWorker
                   .register("/service-worker.js", { scope: "/" })
                   .then((registration) => {
                     console.log("Service Worker successfully registered:", registration.scope);
-                    // Optional: Check for updates
                     registration.update().then(() => {
                       console.log("Service Worker checked for updates");
                     });

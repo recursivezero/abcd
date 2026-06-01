@@ -1,3 +1,8 @@
+/* ══════════════════════════════════════
+   COMMON.CSS — Utilities & Debug Tools
+══════════════════════════════════════ */
+
+/* ── Debug TV Container (dev only) ── */
 .tv {
   container-type: inline-size;
   container-name: main;
@@ -11,6 +16,7 @@
   outline-offset: 0.5rem;
 }
 
+/* ── Debug Border Helpers ── */
 .rdb {
   border: 1px solid red;
 }
@@ -19,8 +25,11 @@
   outline: 1px solid red;
 }
 
+/* ══════════════════════════════════════
+   ACCESSIBILITY
+══════════════════════════════════════ */
 
-/* Utilities */
+/* Screen reader only — visually hidden */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -33,13 +42,14 @@
   border-width: 0;
 }
 
-.link__active,
-.text__active {
-  color: hsl(from blue 80 10 10);
-}
+/* ══════════════════════════════════════
+   LAYOUT UTILITIES
+══════════════════════════════════════ */
 
 .content {
   min-height: 100vh;
+  min-height: 100dvh;
+  /* dynamic viewport on mobile */
 }
 
 .layout {
@@ -47,27 +57,235 @@
   max-height: 100dvh;
 }
 
+/* ══════════════════════════════════════
+   TEXT UTILITIES
+══════════════════════════════════════ */
+
 .txt__center {
   text-align: center;
 }
 
-.hide {
-  content-visibility: hidden;
+/* FIX: hsl(from ...) is experimental — replaced with plain color */
+.link__active,
+.text__active {
+  color: var(--primary, #4361ee);
 }
 
-::disabled {
-  pointer-events: none;
-}
-
-.no__link {
-  text-decoration: none;
-}
-
+/* FIX: text-wrap-style: balance is non-standard — use text-wrap: balance */
 .text__balance {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-size-adjust: auto;
-  text-shadow: #fc0 1px 0 10px;
-  text-wrap-style: balance;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Text truncate — single line */
+.text__truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* ══════════════════════════════════════
+   VISIBILITY UTILITIES
+══════════════════════════════════════ */
+
+/* FIX: content-visibility: hidden hides from accessibility tree too
+   Use display:none or visibility:hidden instead */
+.hide {
+  display: none;
+}
+
+/* Visually hide but keep in layout */
+.invisible {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════
+   INTERACTION UTILITIES
+══════════════════════════════════════ */
+
+/* FIX: ::disabled is not valid — :disabled is for form elements only
+   Use .disabled class instead */
+.disabled,
+[disabled],
+[aria-disabled="true"] {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.no__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ══════════════════════════════════════
+   FLEX / GRID SHORTCUTS
+══════════════════════════════════════ */
+
+.flex {
+  display: flex;
+}
+
+.flex__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex__col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex__wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gap__sm {
+  gap: 0.5rem;
+}
+
+.gap__md {
+  gap: 1rem;
+}
+
+.gap__lg {
+  gap: 1.5rem;
+}
+
+.grid__2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.grid__3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.grid__4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+/* ══════════════════════════════════════
+   SPACING UTILITIES
+══════════════════════════════════════ */
+
+.mt__sm {
+  margin-top: 0.5rem;
+}
+
+.mt__md {
+  margin-top: 1rem;
+}
+
+.mt__lg {
+  margin-top: 2rem;
+}
+
+.mb__sm {
+  margin-bottom: 0.5rem;
+}
+
+.mb__md {
+  margin-bottom: 1rem;
+}
+
+.mb__lg {
+  margin-bottom: 2rem;
+}
+
+.p__sm {
+  padding: 0.5rem;
+}
+
+.p__md {
+  padding: 1rem;
+}
+
+.p__lg {
+  padding: 2rem;
+}
+
+/* ══════════════════════════════════════
+   CARD UTILITY
+══════════════════════════════════════ */
+
+.card__base {
+  background: var(--card-bg, var(--bg-card, #fff));
+  border: 1px solid var(--border, #dee2e6);
+  border-radius: var(--border-radius, 12px);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.2s ease,
+    border-color 0.3s ease;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.card__base:hover {
+  box-shadow: var(--shadow-glow, 0 0 20px rgba(124, 58, 237, 0.15));
+  transform: translateY(-2px);
+  border-color: var(--primary, #4361ee);
+}
+
+/* ══════════════════════════════════════
+   MOBILE RESPONSIVE UTILITIES
+══════════════════════════════════════ */
+
+/* Hide/show by breakpoint */
+.hide__mobile {
+  display: block;
+}
+
+.show__mobile {
+  display: none;
+}
+
+.hide__desktop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hide__mobile {
+    display: none !important;
+  }
+
+  .show__mobile {
+    display: block !important;
+  }
+
+  .hide__desktop {
+    display: block !important;
+  }
+
+  /* Grid stacks on mobile */
+  .grid__2,
+  .grid__3,
+  .grid__4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* TV debug container — smaller margin on mobile */
+  .tv {
+    margin-inline: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid__2 {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,14 +1,16 @@
 .container__contact {
   box-sizing: border-box;
-  padding: 4rem 1.5rem;
+  padding: 1rem 1.5rem 0rem 1.5rem !important;
+  margin-bottom: 0 !important;
 }
 
 .contact__wrapper {
-  max-width: 700px;
-  margin: 2rem auto 0 auto;
-  border-radius: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  margin-bottom: 0 !important;
+}
+
+main .content {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .contact__info {
@@ -21,6 +23,16 @@
     margin-bottom: 1rem;
     color: khaki;
   }
+}
+
+body:has(.contact-card) {
+  height: auto;
+  min-height: 0;
+}
+
+body:has(.contact-card) .body__container {
+  min-height: 0 !important;
+  height: auto !important;
 }
 
 .info__item {
