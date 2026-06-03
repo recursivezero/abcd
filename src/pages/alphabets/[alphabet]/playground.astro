@@ -6,6 +6,7 @@ import BackButton from "@/components/BackButton.astro";
 import { DATASET } from "@/mappers/dataset";
 import SharePopover from "@/components/ShareButton.astro";
 import KeyboardTrigger from "@/components/KeyboardTrigger.astro";
+import VirtualKeyboard from "@/components/VirtualKeyboard.astro";
 
 import { capitalizeThis } from "@/utils/common";
 
@@ -58,6 +59,7 @@ const meta = {
       <div id="description" class="description"></div>
     </article>
   </div>
+  <VirtualKeyboard />
 </BaseLayout>
 
 <script is:inline define:vars={{ alphabetData: currentCategory.data, category: currentCategory.category }}>
