@@ -3,6 +3,7 @@ import "@/assets/styles/draw.css";
 import Back from "@/components/BackButton.astro";
 import ControlsContainer from "@/components/ControllerContainer.astro";
 import DrawComponent from "@/components/DrawKeyboard.astro";
+import VirtualKeyboard from "@/components/VirtualKeyboard.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
 import BaseLayout from "@/layouts/Base";
 
@@ -43,13 +44,13 @@ const meta = {
     align-items: center !important;
     gap: 0.25rem !important;
   }
-  /* Sirf draw page pe nav links right shift */
+  /* Only draw page pe nav links right shift */
   :global(.nav__links) {
     justify-content: flex-end !important;
     padding-right: 2rem !important;
   }
 
-  /* Sab control buttons same size */
+  /* all control buttons same size */
   :global(.control-button) {
     width: 2.2rem !important;
     height: 2.2rem !important;
@@ -147,4 +148,5 @@ const meta = {
   <ControlsContainer slot="header-right" />
   <Back />
   <DrawComponent />
+  <VirtualKeyboard />
 </BaseLayout>
