@@ -5,6 +5,7 @@
 // - Arrow row removed
 // - Light/Dark mode auto + manual [data-theme]
 // - Drag handle se resize
+// - Hide/Show toggle button (bottom-right floating)
 ---
 
 <div id="vk-container" class="vk-container" style="display:none;">
@@ -19,9 +20,13 @@
   </div>
 </div>
 
+<!-- Floating toggle button — sirf tab dikhega jab keyboard show hona chahiye -->
+<button id="vk-toggle-btn" class="vk-toggle-btn" style="display:none;" aria-label="Keyboard toggle">
+  <span class="vk-toggle-icon" id="vk-toggle-icon">⌨</span>
+</button>
+
 <script is:inline>
   (function () {
-    // ── Layout: arrow row removed ──
     const VK_LAYOUT = [
       ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
       ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -29,12 +34,12 @@
       ["\u21e7", "Z", "X", "C", "V", "B", "N", "M", "\u232b"]
     ];
 
-    const SHIFT_KEY = "\u21e7"; // ⇧
-    const BACK_KEY = "\u232b"; // ⌫
+    const SHIFT_KEY = "\u21e7";
+    const BACK_KEY = "\u232b";
 
-    let isCaps = false; // shift state
+    let isCaps = false;
+    let isHidden = false; // user ne hide kiya hai ya nahi
 
-    // ── Scale ──
     let vkScale = parseFloat(localStorage.getItem("vk-scale") || "1");
 
     function applyScale() {
@@ -51,12 +56,10 @@
       root.style.setProperty("--vk-fz-sm", Math.max(10, fs - 2) + "px");
     }
 
-    // ── Update all letter buttons to current case ──
     function updateCase() {
       document.querySelectorAll(".vk-key[data-letter]").forEach((btn) => {
         btn.textContent = isCaps ? btn.dataset.letter.toUpperCase() : btn.dataset.letter.toLowerCase();
       });
-      // Shift button highlight
       const shiftBtn = document.querySelector(".vk-key.vk-shift");
       if (shiftBtn) shiftBtn.classList.toggle("vk-shift-on", isCaps);
     }
@@ -72,16 +75,13 @@
           const isShift = k === SHIFT_KEY;
           const isBack = k === BACK_KEY;
           const isLetter = /^[A-Z]$/.test(k);
-          const isNum = /^[0-9]$/.test(k);
 
-          // Classes
           let cls = "vk-key";
           if (isShift || isBack) cls += " vk-fn";
           if (isShift) cls += " vk-shift";
           btn.className = cls;
           btn.setAttribute("type", "button");
 
-          // Store original letter for case toggling
           if (isLetter) {
             btn.dataset.letter = k;
             btn.textContent = isCaps ? k.toUpperCase() : k.toLowerCase();
@@ -93,7 +93,6 @@
             e.preventDefault();
 
             if (isShift) {
-              // Toggle caps
               isCaps = !isCaps;
               updateCase();
               return;
@@ -124,7 +123,6 @@
       updateCase();
     }
 
-    // ── Resize handle ──
     function initResize() {
       const handle = document.getElementById("vk-resize-handle");
       if (!handle) return;
@@ -146,9 +144,41 @@
       });
     }
 
+    // ── Toggle button logic ──
+    function updateToggleBtn() {
+      const btn = document.getElementById("vk-toggle-btn");
+      const icon = document.getElementById("vk-toggle-icon");
+      if (!btn || !icon) return;
+      if (isHidden) {
+        btn.classList.add("vk-toggle-collapsed");
+        icon.textContent = "⌨";
+        btn.setAttribute("aria-label", "Keyboard dikhayein");
+        btn.title = "Keyboard dikhayein";
+      } else {
+        btn.classList.remove("vk-toggle-collapsed");
+        icon.textContent = "✕";
+        btn.setAttribute("aria-label", "Keyboard chhupayein");
+        btn.title = "Keyboard chhupayein";
+      }
+    }
+
+    function initToggleBtn() {
+      const btn = document.getElementById("vk-toggle-btn");
+      if (!btn) return;
+      btn.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        isHidden = !isHidden;
+        localStorage.setItem("vk-hidden", isHidden ? "1" : "0");
+        const container = document.getElementById("vk-container");
+        if (container) {
+          container.style.display = isHidden ? "none" : "flex";
+        }
+        updateToggleBtn();
+      });
+    }
+
     let vkBuilt = false;
 
-    // ── Should keyboard be visible right now? ──
     function shouldShowKbd() {
       const isNarrow = window.innerWidth <= 1024;
       const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -156,38 +186,41 @@
       return isNarrow || isMobileUA || hasCoarse;
     }
 
-    // ── Show or hide based on current state ──
     function syncKeyboard() {
       const container = document.getElementById("vk-container");
-      if (!container) return;
+      const toggleBtn = document.getElementById("vk-toggle-btn");
+      if (!container || !toggleBtn) return;
 
       if (shouldShowKbd()) {
+        // Pehli baar saved state restore karo
         if (!vkBuilt) {
+          isHidden = localStorage.getItem("vk-hidden") === "1";
           buildVK();
           initResize();
+          initToggleBtn();
           vkBuilt = true;
         }
-        container.style.display = "flex";
-        applyScale();
+        toggleBtn.style.display = "flex";
+        container.style.display = isHidden ? "none" : "flex";
+        updateToggleBtn();
+        if (!isHidden) applyScale();
       } else {
         container.style.display = "none";
+        toggleBtn.style.display = "none";
       }
     }
 
-    // ── Listen to resize continuously ──
     window.addEventListener("resize", syncKeyboard);
-
-    // ── First run ──
     syncKeyboard();
+
     document.addEventListener("astro:page-load", () => {
-      vkBuilt = false; // page change pe rebuild
+      vkBuilt = false;
       syncKeyboard();
     });
   })();
 </script>
 
 <style is:global>
-  /* ── JS-driven size vars (fallback) ── */
   :root {
     --vk-key-w: 38px;
     --vk-key-h: 40px;
@@ -198,7 +231,6 @@
     --vk-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
   }
 
-  /* ── LIGHT MODE (default) ── */
   :root {
     --vk-bg: #d1d5db;
     --vk-border-top: #b0b4bb;
@@ -212,9 +244,11 @@
     --vk-shift-on-bg: #4a9eff;
     --vk-handle-bar: rgba(0, 0, 0, 0.25);
     --vk-accent: #1a6bbf;
+    --vk-toggle-bg: #1a6bbf;
+    --vk-toggle-color: #ffffff;
+    --vk-toggle-collapsed-bg: #374151;
   }
 
-  /* ── DARK MODE — system ── */
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --vk-bg: #1a1a1a;
@@ -229,10 +263,11 @@
       --vk-shift-on-bg: #3a8ef6;
       --vk-handle-bar: rgba(255, 255, 255, 0.25);
       --vk-accent: #3a8ef6;
+      --vk-toggle-bg: #3a8ef6;
+      --vk-toggle-collapsed-bg: #48484a;
     }
   }
 
-  /* ── DARK MODE — manual ── */
   [data-theme="dark"] {
     --vk-bg: #1a1a1a;
     --vk-border-top: #2e2e2e;
@@ -246,6 +281,8 @@
     --vk-shift-on-bg: #3a8ef6;
     --vk-handle-bar: rgba(255, 255, 255, 0.25);
     --vk-accent: #3a8ef6;
+    --vk-toggle-bg: #3a8ef6;
+    --vk-toggle-collapsed-bg: #48484a;
   }
 
   /* ── CONTAINER ── */
@@ -265,6 +302,53 @@
     -webkit-user-select: none;
     box-sizing: border-box;
     transition: background 0.2s;
+  }
+
+  /* ── FLOATING TOGGLE BUTTON ── */
+  .vk-toggle-btn {
+    position: fixed;
+    bottom: 18px;
+    right: 14px;
+    z-index: 10000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--vk-toggle-bg);
+    color: var(--vk-toggle-color);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition:
+      background 0.2s,
+      transform 0.15s;
+    padding: 0;
+  }
+
+  /* Keyboard visible hone pe button keyboard ke upar diktaa hai */
+  .vk-container[style*="flex"] ~ .vk-toggle-btn:not(.vk-toggle-collapsed) {
+    bottom: calc(var(--vk-keyboard-height, 220px) + 10px);
+  }
+
+  /* Jab keyboard hide ho to button neeche aata hai */
+  .vk-toggle-btn.vk-toggle-collapsed {
+    background: var(--vk-toggle-collapsed-bg);
+    bottom: 18px;
+  }
+
+  .vk-toggle-btn:active {
+    transform: scale(0.88);
+  }
+
+  .vk-toggle-icon {
+    line-height: 1;
+    pointer-events: none;
+    font-style: normal;
   }
 
   /* ── RESIZE HANDLE ── */
@@ -349,7 +433,6 @@
     pointer-events: none;
   }
 
-  /* ── FUNCTION KEYS (Shift, Backspace) ── */
   .vk-key.vk-fn {
     flex: 0 0 calc(var(--vk-key-w) * 1.45);
     width: calc(var(--vk-key-w) * 1.45);
@@ -359,7 +442,6 @@
     box-shadow: 0 1px 0 0.5px var(--vk-fn-shadow);
   }
 
-  /* ── SHIFT key: default = accent color icon ── */
   .vk-key.vk-shift {
     color: var(--vk-accent);
     font-size: calc(var(--vk-fz-sm) * 1.1);
@@ -370,14 +452,12 @@
       opacity 0.07s;
   }
 
-  /* ── SHIFT ON: blue filled background ── */
   .vk-key.vk-shift.vk-shift-on {
     background: var(--vk-shift-on-bg);
     color: #ffffff;
     box-shadow: 0 1px 0 0.5px rgba(0, 0, 0, 0.4);
   }
 
-  /* ── PRESS FEEDBACK ── */
   .vk-key:active,
   .vk-key.vk-pressed {
     transform: scale(0.88);

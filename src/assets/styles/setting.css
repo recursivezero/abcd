@@ -3,32 +3,34 @@
 
   .setting__trigger {
     position: fixed;
-    anchor-name: --setting;
-    display: flex;
-    justify-items: end;
-    justify-content: center;
-    top: 6rem;
+    top: 10rem;
+    /* 6rem → 8rem, navbar ke neeche aaye */
     right: 1.5rem;
-    width: max-content;
-    height: 3.5rem;
-    border-radius: 10%;
-    background-color: unset;
-    border: solid;
+    width: 2.8rem;
+    /* fixed size */
+    height: 2.8rem;
+    border-radius: 50%;
+    background-color: #7c3aed;
+    /* visible color */
+    border: none;
     cursor: pointer;
-    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    /* baaki elements ke upar */
     transition: transform 330ms ease-in-out;
-
-    &::after {
-      outline: 1px solid slateblue;
-    }
+    font-size: 1rem;
+    /* sane default */
   }
 
   @media (max-width: 480px) {
     .setting__trigger {
-      font-size: 0.6rem;
-      width: 2.5rem;
-      height: 2.5rem;
-      margin-top: 12px;
+      top: 9rem;
+      right: 1rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      font-size: 1rem;
     }
   }
 
