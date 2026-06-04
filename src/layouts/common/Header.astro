@@ -797,6 +797,25 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     background: #fef3c7 !important;
     color: #d97706 !important;
   }
+  @media (max-width: 768px) {
+    .hero-search__wrap {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 6px 12px !important;
+      max-width: 100% !important;
+    }
+
+    .hero-search__wrap > *:not(.hero-search__box):not(.hero-search__dropdown) {
+      flex-shrink: 0 !important;
+    }
+
+    .hero-search__box {
+      flex: 1 !important;
+      min-width: 0 !important;
+      width: auto !important;
+    }
+  }
 </style>
 
 <script is:inline define:vars={{ allSearchItemsJSON }}>
