@@ -9,28 +9,20 @@
   --accent6-color: #818cf8;
   --accent7-color: #f97316;
   --accent8-color: #38bdf8;
-
   --text-color: #1e293b;
   --text-light: #64748b;
   --bg-color: #f8fafc;
   --bg-dark: #0f172a;
-
   --border-radius: 16px;
   --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  --stats-button-bg: #e2e8f0;
-  --stats-button-text: #334155;
-  --stats-button-border: #cbd5e1;
-  --stats-button-hover: #818cf8;
-
   --word-font-color: #0f172a;
   --word-found-color: #9ca3af;
   --stats-button-clicked: #4ade80;
   --stats-button-found: #facc15;
 }
 
-/* Main Layout */
+/* ── Layout ── */
 .puzzle-container {
   position: relative;
   width: 100%;
@@ -42,24 +34,25 @@
   touch-action: none;
 }
 
-/* Puzzle Grid */
+/* ── Grid ── */
 .grid__puzzle {
   display: grid;
-  gap: 12px;
-  padding: 28px;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  padding: 24px;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow), 0 0 0 15px rgba(99, 102, 241, 0.08);
   margin: 0 auto;
   width: 100%;
-  max-width: 600px;
-  aspect-ratio: 1;
+  max-width: 560px;
   border: 6px solid #f1f5f9;
-  grid-template-columns: repeat(8, 1fr);
+  box-sizing: border-box;
   touch-action: none;
 }
 
+/* ── Cell — DESKTOP ── */
 .grid__puzzle .cell {
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,18 +60,18 @@
   border: 3px solid #e2e8f0;
   border-radius: 12px;
   font-size: clamp(14px, 2.5vw, 22px);
-  overflow: hidden;
-  font-weight: bold;
+  font-weight: 700;
   color: var(--text-color);
   transition: var(--transition);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   -webkit-touch-callout: none;
   touch-action: none;
   line-height: 1;
+  padding: 0;
+  min-width: 0;
+  min-height: 0;
 }
 
 .grid__puzzle .cell:active {
@@ -89,31 +82,30 @@
   transform: translateY(-3px);
   background: #eef2ff;
   border-color: var(--primary-color);
-  box-shadow: 0 0 16px 4px var(--primary-color), 0 8px 20px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 16px 4px var(--primary-color), 0 8px 20px rgba(99, 102, 241, .15);
 }
 
 .grid__puzzle .cell.selected {
   background: var(--primary-color);
-  color: white;
+  color: #fff;
   transform: scale(1.08);
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, .4);
   animation: pulse 1.5s infinite alternate;
 }
 
 @keyframes pulse {
   from {
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, .4);
   }
 
   to {
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, .6);
   }
 }
 
 .grid__puzzle .cell[class*="word-color-"] {
-  color: rgb(243, 235, 235);
-  border-color: inherit;
-  box-shadow: inset 0px 1px 7px 0px rgba(0, 0, 0, 0.3);
+  color: #f3ebeb;
+  box-shadow: inset 0 1px 7px rgba(0, 0, 0, .3);
 }
 
 .grid__puzzle .cell.word-color-1 {
@@ -148,12 +140,12 @@
   background-color: var(--accent8-color);
 }
 
-/* Word List & Details */
+/* ── Details / Word List ── */
 details {
   width: 100%;
   border-radius: var(--border-radius);
-  background-color: rgba(99, 102, 241, 0.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  background-color: rgba(99, 102, 241, .05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .05);
   margin: 20px 0;
   border-left: 4px solid var(--primary-color);
 }
@@ -166,9 +158,14 @@ details summary {
   align-items: center;
   gap: 12px;
   position: relative;
-  border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+  border-bottom: 2px solid rgba(99, 102, 241, .1);
   margin-bottom: 12px;
   font-size: clamp(14px, 2.5vw, 18px);
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
 }
 
 details summary::after {
@@ -184,10 +181,6 @@ details summary::after {
   transform: rotate(180deg);
 }
 
-details summary::-webkit-details-marker {
-  display: none;
-}
-
 details:not([open]) summary {
   border-bottom: none;
   margin-bottom: 0;
@@ -197,7 +190,6 @@ details:not([open]) summary::after {
   transform: rotate(0deg);
 }
 
-/* Word List */
 .word-list {
   display: flex;
   flex-wrap: wrap;
@@ -209,10 +201,10 @@ details:not([open]) summary::after {
   padding: 8px 16px;
   border-radius: 25px;
   font-weight: 600;
-  color: rgb(255, 255, 255);
+  color: #fff;
   background-color: rgb(62, 24, 255);
   transition: var(--transition);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .1);
   font-size: clamp(12px, 3vw, 16px);
 }
 
@@ -222,7 +214,7 @@ details:not([open]) summary::after {
   transform: scale(0.97);
 }
 
-/* Stats Container */
+/* ── Stats ── */
 .stats-container {
   display: flex;
   gap: 8px;
@@ -246,20 +238,10 @@ details:not([open]) summary::after {
   border-radius: var(--border-radius);
   padding: 12px 20px;
   font-weight: 600;
-  transition: var(--transition);
   color: white;
-  position: relative;
-  overflow: hidden;
   white-space: nowrap;
   flex-shrink: 0;
-  text-align: center;
   font-size: clamp(12px, 2vw, 16px);
-}
-
-.stats-button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--box-shadow);
-  background: linear-gradient(135deg, var(--accent2-color), var(--accent8-color));
 }
 
 .stats-button:nth-child(1) {
@@ -270,25 +252,25 @@ details:not([open]) summary::after {
   background: linear-gradient(135deg, var(--accent1-color), var(--accent7-color));
 }
 
-/* Hint Button */
+/* ── Hint ── */
 .hint-button {
   background: none;
   border: 2px solid var(--primary-color);
   width: 50px;
   height: 50px;
   cursor: pointer;
-  transition: var(--transition);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
   padding: 0;
   flex-shrink: 0;
+  transition: var(--transition);
 }
 
 .hint-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, .3);
 }
 
 .hint-button:active {
@@ -297,37 +279,30 @@ details:not([open]) summary::after {
 
 .hint-button.active {
   background: radial-gradient(circle, #fffacd 0%, #ffeb3b 100%);
-  box-shadow: 0 0 20px 5px rgba(255, 235, 59, 0.6);
+  box-shadow: 0 0 20px 5px rgba(255, 235, 59, .6);
   border-color: #ffd700;
-}
-
-.hint-button svg,
-.hint-button svg path {
-  transition: var(--transition);
 }
 
 .hint-button.active svg path {
   fill: #ff9800;
 }
 
-/* Action Buttons */
+/* ── Buttons ── */
 .action-btn {
   border: 2px solid transparent;
   border-radius: var(--border-radius);
   padding: 12px 20px;
   font-weight: 600;
-  transition: var(--transition);
   color: white;
-  overflow: hidden;
   white-space: nowrap;
   flex-shrink: 0;
-  text-align: center;
   font-size: clamp(12px, 2vw, 16px);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
+  transition: var(--transition);
 }
 
 .action-btn:active {
@@ -340,7 +315,6 @@ details:not([open]) summary::after {
 
 .btn-shuffle:hover {
   transform: translateY(-2px);
-  box-shadow: var(--box-shadow);
   background: linear-gradient(135deg, #0284c7, #4f46e5);
 }
 
@@ -350,143 +324,79 @@ details:not([open]) summary::after {
 
 .btn-new:hover {
   transform: translateY(-2px);
-  box-shadow: var(--box-shadow);
   background: linear-gradient(135deg, #059669, #0891b2);
 }
 
-/* =============================================
-   MOBILE FIXES — Letters must always be visible
-   ============================================= */
-
-/* Responsive — Tablet */
+/* ══════════════════════════════════════════
+   MOBILE — complete override
+   Cell size = (100vw - outer-pad - grid-pad - gaps) / 8
+   At 390px: (390 - 16 - 16 - 28) / 8 = 41px
+   Font ≈ 48% of 41px = ~20px  ✓
+   ══════════════════════════════════════════ */
 @media (max-width: 768px) {
   .puzzle-container {
-    padding: 12px;
+    padding: 8px;
   }
 
   .grid__puzzle {
-    gap: 4px;
-    padding: 8px;
+    /* Take full available width */
+    width: calc(100vw - 16px) !important;
+    max-width: calc(100vw - 16px) !important;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 8px !important;
+    gap: 4px !important;
     border-width: 3px;
-    max-width: 100%;
-
-    /* CHANGE THIS */
-    aspect-ratio: 1 !important;
-
-    grid-template-columns: repeat(8, 1fr) !important;
-    box-shadow: var(--box-shadow);
+    border-radius: 12px;
     box-sizing: border-box;
-    width: 100%;
+    grid-template-columns: repeat(8, 1fr) !important;
+    /* height is determined by cells — do NOT set aspect-ratio on grid */
   }
 
   .grid__puzzle .cell {
-    /* Let the cell be as tall as it is wide via aspect-ratio */
-    min-height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 1 !important;
-    width: 100% !important;
-    height: auto !important;
-    /* Use container-relative sizing so letter never clips */
-    font-size: clamp(13px, 4.5vw, 20px);
-    border-width: 2px;
-    border-radius: 8px;
+    /*
+      width of one cell (auto via 1fr, ~(100vw-60px)/8)
+      font = 48% of that
+    */
+    font-size: calc((100vw - 60px) / 8 * 0.48) !important;
+    aspect-ratio: 1 / 1;
+    border-radius: 6px !important;
+    border-width: 1.5px !important;
     min-width: 0;
-    /* Ensure text never overflows */
-    overflow: hidden;
+    min-height: 0;
     line-height: 1;
     padding: 0;
-  }
-
-  .stats-button {
-    padding: 10px 14px;
-  }
-
-  .action-btn {
-    padding: 10px 14px;
-  }
-
-  .hint-button {
-    width: 44px;
-    height: 44px;
-  }
-
-  details summary {
-    padding: 12px 20px;
-  }
-}
-
-/* Responsive — Mobile */
-@media (max-width: 480px) {
-  .puzzle-container {
-    padding: 6px;
-  }
-
-  .grid__puzzle {
-    gap: 4px;
-    padding: 8px;
-    border-width: 3px;
-    max-width: 100%;
-
-    /* CHANGE THIS */
-    aspect-ratio: 1 !important;
-
-    grid-template-columns: repeat(8, 1fr) !important;
-    box-shadow: var(--box-shadow);
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  .grid__puzzle .cell {
-    aspect-ratio: 1 !important;
-    width: 100% !important;
-    height: auto !important;
-    font-size: clamp(12px, calc((100vw - 60px) / 8 * 0.52), 18px);
-    border-width: 1.5px;
-    border-radius: 6px;
-    min-width: 0;
-    min-height: 35px;
-    overflow: hidden;
-    line-height: 1;
-    padding: 0;
-    /* Force the text to render in the visual centre */
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .stats-container {
     gap: 4px;
-    margin: 10px 0;
+    margin: 8px 0;
   }
 
   .stats-button {
-    padding: 7px 9px;
-    font-size: clamp(9px, 2.8vw, 12px);
+    padding: 8px 10px;
+    font-size: 11px;
     border-radius: 10px;
   }
 
   .action-btn {
-    padding: 7px 9px;
-    font-size: clamp(9px, 2.8vw, 12px);
+    padding: 8px 10px;
+    font-size: 11px;
     border-radius: 10px;
   }
 
   .hint-button {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
   }
 
-  .hint-button svg,
-  .hint-button svg path {
-    max-width: 18px;
-    max-height: 18px;
+  details {
+    margin: 8px 0;
   }
 
   details summary {
-    padding: 10px 14px;
-    font-size: clamp(13px, 4vw, 16px);
+    padding: 12px 16px;
+    font-size: 14px;
   }
 
   details summary::after {
@@ -506,7 +416,34 @@ details:not([open]) summary::after {
   }
 }
 
-/* Accessibility */
+@media (max-width: 380px) {
+  .grid__puzzle {
+    gap: 3px !important;
+    padding: 6px !important;
+  }
+
+  .grid__puzzle .cell {
+    font-size: calc((100vw - 48px) / 8 * 0.50) !important;
+    border-radius: 4px !important;
+    border-width: 1px !important;
+  }
+
+  .stats-button {
+    padding: 6px 7px;
+    font-size: 10px;
+  }
+
+  .action-btn {
+    padding: 6px 7px;
+    font-size: 10px;
+  }
+
+  .hint-button {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -514,29 +451,13 @@ details:not([open]) summary::after {
   }
 }
 
-/* Landscape mobile */
-@media (max-width: 768px) and (orientation: landscape) {
-  .puzzle-container {
-    display: flex;
-    flex-direction: column;
-    padding: 8px;
-  }
-
+@media (max-width:768px) and (orientation:landscape) {
   .grid__puzzle {
-    max-width: 45vh;
-    padding: 8px;
-  }
-
-  .stats-container {
-    margin: 10px 0;
-  }
-
-  details {
-    margin: 8px 0;
+    max-width: 50vh !important;
+    padding: 6px !important;
   }
 }
 
-/* High contrast */
 @media (prefers-contrast: high) {
   .grid__puzzle .cell {
     border-width: 3px;

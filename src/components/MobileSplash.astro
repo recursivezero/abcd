@@ -2,7 +2,6 @@
 import "@/assets/styles/mobile-splash.css";
 import { Image } from "astro:assets";
 import logoImage from "public/assets/images/abcd.png";
-const { stay = true } = Astro.props;
 ---
 
 <div id="mobile-splash-wrapper" class="container__splash">
@@ -19,26 +18,31 @@ const { stay = true } = Astro.props;
     </div>
   </div>
 </div>
-<script define:vars={{ stay }} is:inline>
+
+<style>
+  .mobile-splash-hidden {
+    display: none !important;
+  }
+</style>
+
+<script is:inline>
   const splashWrapper = document.getElementById("mobile-splash-wrapper");
   const continueBtn = document.getElementById("continue");
 
   if (window.innerWidth < 768) {
     const userHasConsent = localStorage.getItem("viewAsDesktop") === "true";
 
-    if (stay) {
-      splashWrapper.style.display = "flex"; // always show
+    if (userHasConsent) {
+      splashWrapper.classList.add("mobile-splash-hidden");
     } else {
-      if (!userHasConsent) {
-        splashWrapper.style.display = "flex"; // first time
-      } else {
-        splashWrapper.style.display = "none"; // skip next time
-      }
+      splashWrapper.style.display = "flex";
     }
 
     continueBtn?.addEventListener("click", () => {
       localStorage.setItem("viewAsDesktop", "true");
-      splashWrapper.style.display = "none";
+      splashWrapper.classList.add("mobile-splash-hidden");
     });
+  } else {
+    splashWrapper.classList.add("mobile-splash-hidden");
   }
 </script>
