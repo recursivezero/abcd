@@ -186,6 +186,28 @@ const meta = {
       align-items: center !important;
     }
 
+    /* Theme toggle — mobile pe bilkul hide */
+    :global(.theme-toggle) {
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    /* ✅ FIX: Action group — mask bilkul hatao, pehla button poora dikhega */
+    :global(.action__group) {
+      overflow-x: auto !important;
+      overflow-y: visible !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      scroll-behavior: smooth !important;
+      -webkit-mask-image: none !important;
+      mask-image: none !important;
+    }
+
+    /* Webkit scrollbar hide */
+    :global(.action__group::-webkit-scrollbar) {
+      display: none !important;
+    }
+
     /* Share popover — body level pe render hoga JS se */
     :global(.share-popover.mobile-teleported) {
       position: fixed !important;
@@ -224,19 +246,40 @@ const meta = {
       actionGroup.style.left = "0";
       actionGroup.style.width = "100%";
       actionGroup.style.background = "var(--background)";
-      actionGroup.style.padding = "0.4rem 0.5rem";
+      // ✅ FIX: Left padding 0.5rem — pehla button left edge se chipka na rahe
+      actionGroup.style.padding = "0.4rem 0rem 0.4rem 0.5rem";
       actionGroup.style.zIndex = "998";
       actionGroup.style.borderBottom = "1px solid rgba(124,58,237,0.15)";
       actionGroup.style.justifyContent = "flex-start";
       actionGroup.style.flexWrap = "nowrap";
-      actionGroup.style.gap = "0.25rem";
+      actionGroup.style.gap = "0.35rem";
       actionGroup.style.boxSizing = "border-box";
       actionGroup.style.overflowX = "auto";
       actionGroup.style.overflowY = "visible";
+      actionGroup.style.scrollbarWidth = "none";
+      actionGroup.style.scrollBehavior = "smooth";
+      // ✅ FIX: Mask bilkul hatao — pehla button ab poora visible rahega
+      actionGroup.style.webkitMaskImage = "none";
+      (actionGroup.style as any).maskImage = "none";
 
-      // Theme toggle hide
+      // Theme toggle — CSS se already hidden, JS se bhi ensure
       const themeToggle = actionGroup.querySelector(".theme-toggle") as HTMLElement | null;
-      if (themeToggle) themeToggle.style.display = "none";
+      if (themeToggle) {
+        themeToggle.style.display = "none";
+        themeToggle.style.visibility = "hidden";
+      }
+
+      // Hamburger ke saath overlap na ho — right padding
+      const hamburger = document.querySelector(".hamburger") as HTMLElement | null;
+      if (hamburger) {
+        const hamRect = hamburger.getBoundingClientRect();
+        actionGroup.style.paddingRight = window.innerWidth - hamRect.left + 8 + "px";
+      }
+
+      // Scroll to START (left) so first buttons are always visible
+      setTimeout(() => {
+        actionGroup.scrollLeft = 0;
+      }, 50);
 
       setTimeout(() => {
         const spacer = document.getElementById("headerSpacer");
@@ -249,10 +292,35 @@ const meta = {
           content.style.paddingBottom = vkH + 16 + "px";
         }
       }, 100);
+
+      // Touch scroll support — swipe left/right on toolbar
+      let touchStartX = 0;
+      let scrollStart = 0;
+
+      actionGroup.addEventListener(
+        "touchstart",
+        (e: TouchEvent) => {
+          touchStartX = e.touches[0].clientX;
+          scrollStart = actionGroup.scrollLeft;
+        },
+        { passive: true }
+      );
+
+      actionGroup.addEventListener(
+        "touchmove",
+        (e: TouchEvent) => {
+          const dx = touchStartX - e.touches[0].clientX;
+          actionGroup.scrollLeft = scrollStart + dx;
+        },
+        { passive: true }
+      );
     } else {
       actionGroup.style.cssText = "";
       const themeToggle = actionGroup.querySelector(".theme-toggle") as HTMLElement | null;
-      if (themeToggle) themeToggle.style.display = "";
+      if (themeToggle) {
+        themeToggle.style.display = "";
+        themeToggle.style.visibility = "";
+      }
       if (content) content.style.paddingBottom = "";
     }
   }
@@ -270,7 +338,6 @@ const meta = {
       sharePopover.classList.add("mobile-teleported");
     }
 
-    // Position update function
     function updatePopoverPosition() {
       if (!shareTrigger || !sharePopover) return;
       const triggerRect = shareTrigger.getBoundingClientRect();
@@ -278,11 +345,9 @@ const meta = {
       const spaceBelow = window.innerHeight - triggerRect.bottom;
 
       if (spaceAbove > spaceBelow) {
-        // Upar dikhao
         sharePopover.style.bottom = window.innerHeight - triggerRect.top + 8 + "px";
         sharePopover.style.top = "auto";
       } else {
-        // Neeche dikhao
         sharePopover.style.top = triggerRect.bottom + 8 + "px";
         sharePopover.style.bottom = "auto";
       }

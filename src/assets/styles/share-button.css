@@ -18,16 +18,28 @@
 .share-trigger-button {
   background-color: transparent;
   color: var(--primary);
-  padding: 10px;
-  width: 50px;
-  height: 50px;
+  padding: 0;
+  /* 10px → 0 */
+  width: 44px;
+  /* 50px → 44px */
+  height: 44px;
+  /* 50px → 44px */
   border: 1px solid var(--primary);
-  border-radius: 50px;
+  border-radius: 50%;
+  /* 50px → 50% */
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   transition: all 0.2s ease-in-out;
   position: relative;
+  display: flex;
+  /* add */
+  align-items: center;
+  /* add */
+  justify-content: center;
+  /* add */
+  box-sizing: border-box;
+  /* add */
 }
 
 .share-trigger-button:hover {
@@ -223,4 +235,21 @@
 
 .copy-link-button:hover {
   background-color: #e0e0e0;
+}
+
+@media (max-width: 640px) {
+  .share-trigger-button {
+    width: 44px !important;
+    /* 32px → 44px */
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    padding: 0 !important;
+  }
+
+  .share-trigger-button svg {
+    width: 18px !important;
+    /* 16px → 18px */
+    height: 18px !important;
+  }
 }

@@ -433,17 +433,11 @@ const meta = {
 </script>
 
 <style>
-  /*
-   * ✅ #floating-panel-actions:
-   * - Desktop: header ke right side mein fixed position (settings button ke baad)
-   * - Mobile: fixed, top-right corner mein (mobile-panel-buttons ke saath aligned)
-   * Sirf EK instance hai — duplicate nahi hai.
-   */
-
+  /* Floating panel actions — default (desktop) */
   .floating-panel-actions {
     position: fixed;
-    top: 12px;
-    right: 5.5rem; /* settings ke left me */
+    top: 28px; /* 12px → 28px */
+    right: 5.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -454,20 +448,18 @@ const meta = {
   @media (min-width: 769px) {
     .right-header-buttons {
       position: fixed;
-      top: 12px;
+      top: 28px; /* 12px → 28px */
       right: 12.5rem;
       z-index: 9999;
     }
 
-    /* Mobile-only settings button desktop pe hide */
     .mobile-panel-buttons {
       display: none;
     }
 
-    /* Desktop popover position */
     .panel-tools-popover {
       position: fixed;
-      top: 60px;
+      top: 80px; /* 60px → 80px */
       right: 1rem;
       z-index: 10000;
     }
@@ -475,34 +467,29 @@ const meta = {
 
   /* Mobile layout */
   @media (max-width: 768px) {
-    /* Desktop header ke right-header-buttons mobile pe hide */
     .right-header-buttons {
       display: none;
     }
 
-    /* Settings — sabse left (Share+Help ke left mein) */
-    /* Order: [Settings] [Share] [Help] */
     .mobile-panel-buttons {
       display: flex;
       align-items: center;
       position: fixed;
-      top: 98px;
-      right: 8rem; /* Share+Help dono ki width cover karne ke liye */
+      top: 112px; /* 98px → 112px */
+      right: 8rem;
       z-index: 9999;
     }
 
-    /* Share + Help — right side pe */
     .floating-panel-actions {
       position: fixed;
-      top: 98px;
-      right: 0.7rem; /* sabse right corner */
+      top: 112px; /* 98px → 112px */
+      right: 0.7rem;
       z-index: 9999;
     }
 
-    /* Mobile popover — buttons ke neeche */
     .panel-tools-popover {
       position: fixed;
-      top: 145px;
+      top: 160px; /* 145px → 160px */
       right: 0.7rem;
       z-index: 10000;
     }
