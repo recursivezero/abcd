@@ -61,17 +61,21 @@ const { title, description } = Astro.props;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    padding: 1.5rem;
-    width: 2rem;
-    height: 2rem;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     color: var(--primary);
     border-radius: 50%;
     border: 1.5px solid var(--primary);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     position: relative;
+    box-sizing: border-box;
+    vertical-align: middle;
   }
 
   .help::after {

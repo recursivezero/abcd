@@ -16,10 +16,6 @@
   --border-radius: 16px;
   --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --word-font-color: #0f172a;
-  --word-found-color: #9ca3af;
-  --stats-button-clicked: #4ade80;
-  --stats-button-found: #facc15;
 }
 
 /* ── Layout ── */
@@ -34,16 +30,14 @@
   touch-action: none;
 }
 
-/* ── Grid ── */
+/* ── Grid — DESKTOP ── */
 .grid__puzzle {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   gap: 10px;
   padding: 24px;
   border-radius: var(--border-radius);
-  box-shadow:
-    var(--box-shadow),
-    0 0 0 15px rgba(99, 102, 241, 0.08);
+  box-shadow: var(--box-shadow), 0 0 0 15px rgba(99, 102, 241, 0.08);
   margin: 0 auto;
   width: 100%;
   max-width: 560px;
@@ -76,17 +70,11 @@
   min-height: 0;
 }
 
-.grid__puzzle .cell:active {
-  transform: scale(0.95);
-}
-
 .grid__puzzle .cell:hover {
   transform: translateY(-3px);
   background: #eef2ff;
   border-color: var(--primary-color);
-  box-shadow:
-    0 0 16px 4px var(--primary-color),
-    0 8px 20px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 16px 4px var(--primary-color), 0 8px 20px rgba(99, 102, 241, 0.15);
 }
 
 .grid__puzzle .cell.selected {
@@ -248,15 +236,10 @@ details:not([open]) summary::after {
   font-size: clamp(12px, 2vw, 16px);
 }
 
-.stats-button:nth-child(1) {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent6-color));
-}
-
 .stats-button:nth-child(2) {
   background: linear-gradient(135deg, var(--accent1-color), var(--accent7-color));
 }
 
-/* ── Hint ── */
 .hint-button {
   background: none;
   border: 2px solid var(--primary-color);
@@ -272,15 +255,6 @@ details:not([open]) summary::after {
   transition: var(--transition);
 }
 
-.hint-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-
-.hint-button:active {
-  transform: scale(0.95);
-}
-
 .hint-button.active {
   background: radial-gradient(circle, #fffacd 0%, #ffeb3b 100%);
   box-shadow: 0 0 20px 5px rgba(255, 235, 59, 0.6);
@@ -291,7 +265,6 @@ details:not([open]) summary::after {
   fill: #ff9800;
 }
 
-/* ── Buttons ── */
 .action-btn {
   border: 2px solid transparent;
   border-radius: var(--border-radius);
@@ -309,67 +282,59 @@ details:not([open]) summary::after {
   transition: var(--transition);
 }
 
-.action-btn:active {
-  transform: scale(0.95);
-}
-
 .btn-shuffle {
   background: linear-gradient(135deg, #0ea5e9, #6366f1);
-}
-
-.btn-shuffle:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #0284c7, #4f46e5);
 }
 
 .btn-new {
   background: linear-gradient(135deg, #10b981, #06b6d4);
 }
 
-.btn-new:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #059669, #0891b2);
-}
-
-/* ══════════════════════════════════════════
-   MOBILE — complete override
-   Cell size = (100vw - outer-pad - grid-pad - gaps) / 8
-   At 390px: (390 - 16 - 16 - 28) / 8 = 41px
-   Font ≈ 48% of 41px = ~20px  ✓
-   ══════════════════════════════════════════ */
+/* ══════════════════════════════
+   MOBILE
+   ══════════════════════════════ */
 @media (max-width: 768px) {
   .puzzle-container {
     padding: 8px;
   }
 
   .grid__puzzle {
-    /* Take full available width */
+    display: grid !important;
+    grid-template-columns: repeat(8, 1fr) !important;
+    grid-template-rows: repeat(8, 1fr) !important;
+    gap: 3px !important;
+    padding: 6px !important;
+    border-width: 2px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
     width: calc(100vw - 16px) !important;
     max-width: calc(100vw - 16px) !important;
-    min-width: 0;
+    height: calc(100vw - 16px) !important;
     margin: 0 !important;
-    padding: 8px !important;
-    gap: 4px !important;
-    border-width: 3px;
-    border-radius: 12px;
-    box-sizing: border-box;
-    grid-template-columns: repeat(8, 1fr) !important;
-    /* height is determined by cells — do NOT set aspect-ratio on grid */
+    box-sizing: border-box !important;
   }
 
   .grid__puzzle .cell {
-    /*
-      width of one cell (auto via 1fr, ~(100vw-60px)/8)
-      font = 48% of that
-    */
-    font-size: calc((100vw - 60px) / 8 * 0.48) !important;
-    aspect-ratio: 1 / 1;
-    border-radius: 6px !important;
-    border-width: 1.5px !important;
-    min-width: 0;
-    min-height: 0;
-    line-height: 1;
-    padding: 0;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: #f8fafc !important;
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 5px !important;
+    font-size: calc((100vw - 40px) / 8 * 0.45) !important;
+    font-weight: 700 !important;
+    color: var(--text-color) !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    touch-action: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
   }
 
   .stats-container {
@@ -390,8 +355,8 @@ details:not([open]) summary::after {
   }
 
   .hint-button {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
   }
 
   details {
@@ -420,31 +385,11 @@ details:not([open]) summary::after {
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 768px) and (orientation: landscape) {
   .grid__puzzle {
-    gap: 3px !important;
-    padding: 6px !important;
-  }
-
-  .grid__puzzle .cell {
-    font-size: calc((100vw - 48px) / 8 * 0.5) !important;
-    border-radius: 4px !important;
-    border-width: 1px !important;
-  }
-
-  .stats-button {
-    padding: 6px 7px;
-    font-size: 10px;
-  }
-
-  .action-btn {
-    padding: 6px 7px;
-    font-size: 10px;
-  }
-
-  .hint-button {
-    width: 32px;
-    height: 32px;
+    width: calc(100vh - 16px) !important;
+    max-width: calc(100vh - 16px) !important;
+    height: calc(100vh - 16px) !important;
   }
 }
 
@@ -452,23 +397,5 @@ details:not([open]) summary::after {
   * {
     animation: none !important;
     transition: none !important;
-  }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-  .grid__puzzle {
-    max-width: 50vh !important;
-    padding: 6px !important;
-  }
-}
-
-@media (prefers-contrast: high) {
-  .grid__puzzle .cell {
-    border-width: 3px;
-  }
-
-  .grid__puzzle .cell.selected {
-    border-color: #000;
-    outline: 2px solid #fff;
   }
 }

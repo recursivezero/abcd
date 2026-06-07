@@ -81,10 +81,14 @@ const meta = {
   :global(.help) {
     width: 2.2rem !important;
     height: 2.2rem !important;
-    font-size: 1rem !important;
+    min-width: 2.2rem !important; 
+    min-height: 2.2rem !important;
+    max-width: 2.2rem !important; 
+    max-height: 2.2rem !important;
+    font-size: 0.9rem !important;
     padding: 0 !important;
+    box-sizing: border-box !important;
   }
-
   :global(#voice-dropdown) {
     height: 2.2rem !important;
     font-size: 0.75rem !important;

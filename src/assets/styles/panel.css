@@ -262,12 +262,14 @@
   }
 }
 
-/* Styles for the header-right section and the settings button/popover */
+/* Settings button container */
 .settings-button-container {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  vertical-align: middle;
+  
 }
 
 .settings-button {
@@ -275,27 +277,22 @@
   border: 1px solid var(--primary);
   color: var(--text-light);
   padding: 0;
-  /* 0.6rem → 0 */
   width: 44px;
-  /* 50px → 44px */
   height: 44px;
-  /* 50px → 44px */
   min-width: 44px;
-  /* 40px → 44px */
+  min-height: 44px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  /* add */
   transition: all var(--transition-speed) ease;
   cursor: pointer;
-  margin-top: 0;
   font-size: 16px;
 }
+
 .settings-button .settings-icon {
   width: 1.3em;
-  /* icon thoda bada */
   height: 1.3em;
   color: var(--primary);
   fill: currentColor;
@@ -407,8 +404,6 @@
 
 /* === Responsiveness === */
 @media (max-width: 768px) {
-
-  /* Header-right slot for mobile */
   [slot="header-right"] {
     justify-content: flex-end;
     width: 100%;
@@ -417,7 +412,6 @@
     gap: 0.5rem;
   }
 
-  /* Popover positioning for smaller screens */
   .panel-tools-popover {
     right: 1rem;
     left: auto;

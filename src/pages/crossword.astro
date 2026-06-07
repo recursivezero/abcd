@@ -5,6 +5,7 @@ import Help from "@/components/Help.astro";
 import Puzzle2 from "@/components/Puzzle2.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import BaseLayout from "@/layouts/Base";
+import MobileSplash from "@/components/MobileSplash.astro";
 
 const meta = {
   title: "Crossword",
@@ -14,6 +15,7 @@ const meta = {
 ---
 
 <BaseLayout meta={meta}>
+  <MobileSplash stay={true} />
   <Back />
   <Fragment slot="header-right">
     <SharePopover />

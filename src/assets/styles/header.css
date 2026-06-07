@@ -187,7 +187,6 @@
     border-color 0.2s,
     box-shadow 0.2s;
   box-shadow: none;
-
   box-sizing: border-box;
 }
 
@@ -491,6 +490,11 @@
   color: var(--subtext, var(--text));
 }
 
+/* Desktop pe mobile-actions-bar hide — PEHLE declare karo */
+.mobile-actions-bar {
+  display: none;
+}
+
 /* ── Tablet ── */
 @media (max-width: 1024px) {
   .header {
@@ -584,11 +588,20 @@
     width: 100%;
   }
 
+  .mobile-actions-bar .share-button-container {
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 0 !important;
+  }
+
   .mobile-actions-bar .share-trigger-button {
     width: 32px !important;
     height: 32px !important;
-    padding: 0 !important;
     min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    padding: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -600,13 +613,15 @@
     margin: 0 !important;
   }
 
-  .mobile-actions-bar .help {
-    width: 32px !important;
-    height: 32px !important;
-    min-width: 32px !important;
-    padding: 0 !important;
-    font-size: 1rem !important;
-  }
+ .mobile-actions-bar .help {
+   width: 32px !important;
+   height: 32px !important;
+   min-width: 32px !important;
+   min-height: 32px !important;
+   max-height: 32px !important;
+   padding: 0 !important;
+   font-size: 1rem !important;
+ }
 
   .header-spacer {
     height: 130px;
@@ -631,11 +646,6 @@
   #heroSearch {
     font-size: 0.95rem;
   }
-}
-
-/* Desktop pe mobile-actions-bar hide */
-.mobile-actions-bar {
-  display: none;
 }
 
 /* ── Small Mobile ── */
