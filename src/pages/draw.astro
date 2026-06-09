@@ -81,14 +81,15 @@ const meta = {
   :global(.help) {
     width: 2.2rem !important;
     height: 2.2rem !important;
-    min-width: 2.2rem !important; 
+    min-width: 2.2rem !important;
     min-height: 2.2rem !important;
-    max-width: 2.2rem !important; 
+    max-width: 2.2rem !important;
     max-height: 2.2rem !important;
     font-size: 0.9rem !important;
     padding: 0 !important;
     box-sizing: border-box !important;
   }
+
   :global(#voice-dropdown) {
     height: 2.2rem !important;
     font-size: 0.75rem !important;
@@ -134,9 +135,16 @@ const meta = {
     height: 0.85rem !important;
   }
 
-  :global(.theme-toggle) {
+  /* Sirf header wala theme toggle size fix — drawer wala affect nahi hoga */
+  :global(#headerThemeToggle) {
     width: 2.2rem !important;
     height: 2.2rem !important;
+  }
+
+  /* Mobile drawer toggle — hamesha visible */
+  :global(#mobileThemeToggle) {
+    display: flex !important;
+    visibility: visible !important;
   }
 
   :global(#keyboard-trigger) {
@@ -151,7 +159,7 @@ const meta = {
     :global(.help),
     :global(#keyboard-trigger),
     :global(.share-trigger-button),
-    :global(.theme-toggle) {
+    :global(#headerThemeToggle) {
       width: 2.2rem !important;
       height: 2.2rem !important;
       min-width: 2.2rem !important;
@@ -190,13 +198,7 @@ const meta = {
       align-items: center !important;
     }
 
-    /* Theme toggle — mobile pe bilkul hide */
-    :global(.theme-toggle) {
-      display: none !important;
-      visibility: hidden !important;
-    }
-
-    /* ✅ FIX: Action group — mask bilkul hatao, pehla button poora dikhega */
+    /* Action group — mask bilkul hatao */
     :global(.action__group) {
       overflow-x: auto !important;
       overflow-y: visible !important;
@@ -207,7 +209,6 @@ const meta = {
       mask-image: none !important;
     }
 
-    /* Webkit scrollbar hide */
     :global(.action__group::-webkit-scrollbar) {
       display: none !important;
     }
@@ -250,7 +251,6 @@ const meta = {
       actionGroup.style.left = "0";
       actionGroup.style.width = "100%";
       actionGroup.style.background = "var(--background)";
-      // ✅ FIX: Left padding 0.5rem — pehla button left edge se chipka na rahe
       actionGroup.style.padding = "0.4rem 0rem 0.4rem 0.5rem";
       actionGroup.style.zIndex = "998";
       actionGroup.style.borderBottom = "1px solid rgba(124,58,237,0.15)";
@@ -262,15 +262,14 @@ const meta = {
       actionGroup.style.overflowY = "visible";
       actionGroup.style.scrollbarWidth = "none";
       actionGroup.style.scrollBehavior = "smooth";
-      // ✅ FIX: Mask bilkul hatao — pehla button ab poora visible rahega
       actionGroup.style.webkitMaskImage = "none";
       (actionGroup.style as any).maskImage = "none";
 
-      // Theme toggle — CSS se already hidden, JS se bhi ensure
-      const themeToggle = actionGroup.querySelector(".theme-toggle") as HTMLElement | null;
-      if (themeToggle) {
-        themeToggle.style.display = "none";
-        themeToggle.style.visibility = "hidden";
+      // Sirf #headerThemeToggle hide karo — #mobileThemeToggle drawer mein safe hai
+      const headerThemeToggle = actionGroup.querySelector("#headerThemeToggle") as HTMLElement | null;
+      if (headerThemeToggle) {
+        headerThemeToggle.style.display = "none";
+        headerThemeToggle.style.visibility = "hidden";
       }
 
       // Hamburger ke saath overlap na ho — right padding
@@ -280,7 +279,6 @@ const meta = {
         actionGroup.style.paddingRight = window.innerWidth - hamRect.left + 8 + "px";
       }
 
-      // Scroll to START (left) so first buttons are always visible
       setTimeout(() => {
         actionGroup.scrollLeft = 0;
       }, 50);
@@ -288,8 +286,12 @@ const meta = {
       setTimeout(() => {
         const spacer = document.getElementById("headerSpacer");
         if (spacer) {
-          const stripBottom = actionGroup.getBoundingClientRect().bottom;
-          spacer.style.setProperty("height", stripBottom + "px", "important");
+          // actionGroup position:fixed hai — .bottom = viewport top se toolbar bottom tak
+          // Yahi exact spacer height honi chahiye
+          const toolbarBottom = actionGroup.getBoundingClientRect().bottom;
+          spacer.style.setProperty("height", toolbarBottom + "px", "important");
+          spacer.style.setProperty("margin", "0", "important");
+          spacer.style.setProperty("padding", "0", "important");
         }
         if (content && vkContainer) {
           const vkH = vkContainer.getBoundingClientRect().height;
@@ -297,7 +299,7 @@ const meta = {
         }
       }, 100);
 
-      // Touch scroll support — swipe left/right on toolbar
+      // Touch scroll support
       let touchStartX = 0;
       let scrollStart = 0;
 
@@ -319,12 +321,8 @@ const meta = {
         { passive: true }
       );
     } else {
+      // Desktop: sab styles reset
       actionGroup.style.cssText = "";
-      const themeToggle = actionGroup.querySelector(".theme-toggle") as HTMLElement | null;
-      if (themeToggle) {
-        themeToggle.style.display = "";
-        themeToggle.style.visibility = "";
-      }
       if (content) content.style.paddingBottom = "";
     }
   }
@@ -336,7 +334,6 @@ const meta = {
     const sharePopover = document.getElementById("sharePopover") as HTMLDivElement | null;
     if (!shareTrigger || !sharePopover) return;
 
-    // Popover ko body mein move karo taaki overflow clip na ho
     if (!sharePopover.classList.contains("mobile-teleported")) {
       document.body.appendChild(sharePopover);
       sharePopover.classList.add("mobile-teleported");
@@ -371,8 +368,26 @@ const meta = {
     fixSharePopover();
   }
 
+  // Header.astro ka updateSpacer draw page pe galat height set karta hai
+  // Isliye draw page apna spacer baad mein re-set karta hai
+  function overrideSpacer() {
+    if (window.innerWidth > 640) return;
+    const actionGroup = document.querySelector(".action__group") as HTMLElement | null;
+    const spacer = document.getElementById("headerSpacer");
+    if (!actionGroup || !spacer) return;
+    const toolbarBottom = actionGroup.getBoundingClientRect().bottom;
+    if (toolbarBottom > 0) {
+      spacer.style.setProperty("height", toolbarBottom + "px", "important");
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", init);
   window.addEventListener("resize", () => handleControlsPosition());
-  window.addEventListener("load", init);
+  window.addEventListener("load", () => {
+    init();
+    setTimeout(overrideSpacer, 200);
+  });
   document.addEventListener("astro:page-load", init);
+  // Header updateSpacer ke baad apna spacer dobara set karo
+  window.addEventListener("load", () => setTimeout(overrideSpacer, 300));
 </script>
