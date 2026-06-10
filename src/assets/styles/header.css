@@ -613,15 +613,15 @@
     margin: 0 !important;
   }
 
- .mobile-actions-bar .help {
-   width: 32px !important;
-   height: 32px !important;
-   min-width: 32px !important;
-   min-height: 32px !important;
-   max-height: 32px !important;
-   padding: 0 !important;
-   font-size: 1rem !important;
- }
+  .mobile-actions-bar .help {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    padding: 0 !important;
+    font-size: 1rem !important;
+  }
 
   .header-spacer {
     height: 130px;

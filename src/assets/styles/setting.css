@@ -1,5 +1,4 @@
 .container__setting {
-
   .setting__trigger {
     position: fixed;
     top: 12rem;
@@ -14,7 +13,9 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    transition: transform 330ms ease-in-out, background-color 330ms ease;
+    transition:
+      transform 330ms ease-in-out,
+      background-color 330ms ease;
 
     &.open {
       background-color: rgb(106, 202, 119);
@@ -69,7 +70,9 @@
     cursor: pointer;
     color: white;
     background: linear-gradient(90deg, rgb(17, 255, 247), rgb(165, 39, 241));
-    transition: transform 200ms ease, opacity 200ms ease;
+    transition:
+      transform 200ms ease,
+      opacity 200ms ease;
   }
 
   .control__group button:hover {

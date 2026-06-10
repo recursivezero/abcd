@@ -1183,17 +1183,17 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     moveMobileButtons();
   }
   function moveMobileButtons() {
-  if (window.innerWidth > 640) return;
-  const actionGroup = document.querySelector(".action__group");
-  const mobileBar = document.getElementById("mobileActionsBar");
-  if (!actionGroup || !mobileBar) return;
+    if (window.innerWidth > 640) return;
+    const actionGroup = document.querySelector(".action__group");
+    const mobileBar = document.getElementById("mobileActionsBar");
+    if (!actionGroup || !mobileBar) return;
 
-  // Theme toggle chhod ke baaki sab move karo
-  Array.from(actionGroup.children).forEach((child) => {
-    if (!child.classList.contains("theme-toggle")) {
-      mobileBar.appendChild(child);
-    }
-  });
+    // Theme toggle chhod ke baaki sab move karo
+    Array.from(actionGroup.children).forEach((child) => {
+      if (!child.classList.contains("theme-toggle")) {
+        mobileBar.appendChild(child);
+      }
+    });
   }
 
   window.addEventListener("resize", updateSpacer);
