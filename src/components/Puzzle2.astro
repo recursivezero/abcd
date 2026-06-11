@@ -17,13 +17,14 @@ import HintIcon from "@/assets/icons/hint.svg";
     <div class="stats-button">
       <span>Found: <span id="foundCount">0</span>/<span id="totalWords"></span></span>
     </div>
+    <button id="shuffle" class="action-btn btn-shuffle">🔀 Shuffle</button>
+    <button id="new" class="action-btn btn-new">✨ New Puzzle</button>
     <button id="solutionBtn" class="hint-button" aria-label="Toggle hints">
       <div style="width: 28px; height: 28px;">
         <HintIcon />
       </div>
     </button>
-    <button id="shuffle" class="action-btn btn-shuffle">🔀 Shuffle</button>
-    <button id="new" class="action-btn btn-new">✨ New Puzzle</button>
+    <button id="main-clear" class="action-btn btn-clear">🗑️ Clear</button>
   </div>
 
   <div id="grid" class="grid__puzzle"></div>
@@ -31,20 +32,65 @@ import HintIcon from "@/assets/icons/hint.svg";
 
 <script is:inline>
   var WORD_SETS = [
+    // Set 1 — Animals
     {
       easy: ["CAT", "DOG", "SUN", "MOON", "STAR"],
       medium: ["APPLE", "GRAPE", "ORANGE", "BERRIES"],
       hard: ["WALRUS", "GIRAFFE", "PENGUIN", "DOLPHIN"]
     },
+    // Set 2 — Household
     {
       easy: ["HAT", "CAR", "BALL", "SHOE", "LAMP"],
       medium: ["CHERRY", "COCONUT", "PLUM", "MELON", "PEACH"],
       hard: ["OCTOPUS", "JACKAL", "WALRUS", "PEACOCK"]
     },
+    // Set 3 — Colors
     {
       easy: ["RED", "BLUE", "GREEN", "YELLOW", "PURPLE"],
       medium: ["BLACK", "WHITE", "BROWN", "ORANGE", "PINK"],
       hard: ["MAGENTA", "CYAN", "VIOLET", "MAROON"]
+    },
+    // Set 4 — Space
+    {
+      easy: ["SUN", "MARS", "MOON", "STAR", "COMET"],
+      medium: ["VENUS", "EARTH", "PLUTO", "ORBIT", "SOLAR"],
+      hard: ["JUPITER", "MERCURY", "NEPTUNE", "SATURN"]
+    },
+    // Set 5 — Food
+    {
+      easy: ["EGG", "MILK", "RICE", "CAKE", "SOUP"],
+      medium: ["BREAD", "SUGAR", "CREAM", "PASTA", "SPICE"],
+      hard: ["COOKIE", "BUTTER", "NOODLE", "MUFFIN"]
+    },
+    // Set 6 — Sports
+    {
+      easy: ["RUN", "JUMP", "SWIM", "KICK", "BOWL"],
+      medium: ["CHESS", "RUGBY", "DERBY", "SQUASH", "POLO"],
+      hard: ["CRICKET", "TENNIS", "HOCKEY", "BOXING"]
+    },
+    // Set 7 — Body
+    {
+      easy: ["ARM", "LEG", "EYE", "HAND", "KNEE"],
+      medium: ["HEART", "BRAIN", "SPINE", "NERVE", "LIVER"],
+      hard: ["MUSCLE", "KIDNEY", "STOMACH", "THROAT"]
+    },
+    // Set 8 — Travel
+    {
+      easy: ["MAP", "ROAD", "CITY", "TOWN", "PARK"],
+      medium: ["HOTEL", "TRAIN", "PLANE", "BEACH", "RIVER"],
+      hard: ["AIRPORT", "STATION", "HIGHWAY", "VILLAGE"]
+    },
+    // Set 9 — School
+    {
+      easy: ["PEN", "BOOK", "DESK", "BELL", "TEST"],
+      medium: ["CLASS", "GRADE", "STUDY", "ESSAY", "NOTES"],
+      hard: ["PENCIL", "LESSON", "SCIENCE", "HISTORY"]
+    },
+    // Set 10 — Weather
+    {
+      easy: ["SUN", "RAIN", "WIND", "SNOW", "HAIL"],
+      medium: ["CLOUD", "STORM", "FROST", "FOGGY", "SLEET"],
+      hard: ["THUNDER", "RAINBOW", "BLIZZARD", "CYCLONE"]
     }
   ];
 
@@ -215,7 +261,6 @@ import HintIcon from "@/assets/icons/hint.svg";
     var isMobile = window.innerWidth <= 768;
     var isLandscape = window.innerWidth > window.innerHeight;
 
-    // Grid size calculate karo
     var gridSize, cellSize;
     if (isMobile) {
       if (isLandscape) {
@@ -223,7 +268,7 @@ import HintIcon from "@/assets/icons/hint.svg";
       } else {
         gridSize = window.innerWidth - 16;
       }
-      cellSize = Math.floor((gridSize - 12 - 7 * 3) / 8); // padding 6px each side + gaps
+      cellSize = Math.floor((gridSize - 12 - 7 * 3) / 8);
 
       gridEl.style.display = "grid";
       gridEl.style.gridTemplateColumns = "repeat(8, " + cellSize + "px)";
@@ -251,7 +296,6 @@ import HintIcon from "@/assets/icons/hint.svg";
         cell.textContent = state.grid[i][j];
         cell.dataset.coords = i + "-" + j;
 
-        // Mobile pe cell size JS se set karo
         if (isMobile) {
           cell.style.width = cellSize + "px";
           cell.style.height = cellSize + "px";
@@ -314,27 +358,37 @@ import HintIcon from "@/assets/icons/hint.svg";
       }
     }
 
-    document.getElementById("clickCount").textContent = state.clickCount;
-    document.getElementById("foundCount").textContent = state.foundWords.length;
-    document.getElementById("totalWords").textContent = state.currentWordSet[state.difficulty].length;
+    var clickCountEl = document.getElementById("clickCount");
+    var foundCountEl = document.getElementById("foundCount");
+    var totalWordsEl = document.getElementById("totalWords");
+    var wordListEl = document.getElementById("wordList");
+    var solutionBtnEl = document.getElementById("solutionBtn");
 
-    var words = state.currentWordSet[state.difficulty];
-    var html = "";
-    for (var w = 0; w < words.length; w++) {
-      var word = words[w];
-      var found = state.foundWords.indexOf(word) >= 0;
-      var cc = state.wordColors.get(word) || "";
-      var sc = state.showSolution ? state.solutionColors.get(word) : null;
-      var style = sc ? ' style="background-color:' + sc + ';"' : "";
-      html += '<span class="word ' + (found ? "found " + cc : "") + '"' + style + ">" + word + "</span>";
+    if (clickCountEl) clickCountEl.textContent = state.clickCount;
+    if (foundCountEl) foundCountEl.textContent = state.foundWords.length;
+    if (totalWordsEl) totalWordsEl.textContent = state.currentWordSet[state.difficulty].length;
+
+    if (wordListEl) {
+      var words = state.currentWordSet[state.difficulty];
+      var html = "";
+      for (var w = 0; w < words.length; w++) {
+        var word = words[w];
+        var found = state.foundWords.indexOf(word) >= 0;
+        var cc = state.wordColors.get(word) || "";
+        var sc = state.showSolution ? state.solutionColors.get(word) : null;
+        var style = sc ? ' style="background-color:' + sc + ';"' : "";
+        html += '<span class="word ' + (found ? "found " + cc : "") + '"' + style + ">" + word + "</span>";
+      }
+      wordListEl.innerHTML = html;
     }
-    document.getElementById("wordList").innerHTML = html;
-    document.getElementById("solutionBtn").classList.toggle("active", state.showSolution);
+
+    if (solutionBtnEl) solutionBtnEl.classList.toggle("active", state.showSolution);
   }
 
   // ── Events ──
   function setupEvents() {
     var gridEl = document.getElementById("grid");
+    if (!gridEl) return;
 
     gridEl.addEventListener("mousedown", function (e) {
       var coords = getCoords(e.target);
@@ -425,45 +479,62 @@ import HintIcon from "@/assets/icons/hint.svg";
       { passive: false }
     );
 
-    document.getElementById("level").addEventListener("change", function (e) {
-      state.difficulty = e.target.value;
-      generatePuzzle();
-    });
+    // ── Null-safe button listeners ──
 
-    document.getElementById("new").addEventListener("click", newPuzzle);
-    document.getElementById("shuffle").addEventListener("click", generatePuzzle);
+    var levelEl = document.getElementById("level");
+    if (levelEl) {
+      levelEl.addEventListener("change", function (e) {
+        state.difficulty = e.target.value;
+        generatePuzzle();
+      });
+    }
 
-    document.getElementById("solutionBtn").addEventListener("click", function () {
-      state.showSolution = !state.showSolution;
-      renderDOM();
-    });
+    var newEl = document.getElementById("new");
+    if (newEl) newEl.addEventListener("click", newPuzzle);
 
-    document.getElementById("clear").addEventListener("click", function () {
-      state.selectedCells = [];
-      state.foundWords = [];
-      state.matchedCells = new Map();
-      state.wordColors = new Map();
-      state.isDragging = false;
-      renderDOM();
-    });
+    var shuffleEl = document.getElementById("shuffle");
+    if (shuffleEl) shuffleEl.addEventListener("click", generatePuzzle);
 
-    var sNew = document.getElementById("s-new");
-    var sShuffle = document.getElementById("s-shuffle");
-    if (sNew) sNew.addEventListener("click", newPuzzle);
-    if (sShuffle) sShuffle.addEventListener("click", generatePuzzle);
+    var solutionBtnEl = document.getElementById("solutionBtn");
+    if (solutionBtnEl) {
+      solutionBtnEl.addEventListener("click", function () {
+        state.showSolution = !state.showSolution;
+        renderDOM();
+      });
+    }
+
+    var clearEl = document.getElementById("main-clear");
+    if (clearEl) {
+      clearEl.addEventListener("click", function () {
+        state.selectedCells = [];
+        state.foundWords = [];
+        state.matchedCells = new Map();
+        state.wordColors = new Map();
+        state.solutionColors = new Map();
+        state.isDragging = false;
+        state.showSolution = false;
+        renderDOM();
+      });
+    }
+
+    var sNewEl = document.getElementById("s-new");
+    if (sNewEl) sNewEl.addEventListener("click", newPuzzle);
+
+    var sShuffleEl = document.getElementById("s-shuffle");
+    if (sShuffleEl) sShuffleEl.addEventListener("click", generatePuzzle);
   }
 
-  // ── Start — no async, no DOMContentLoaded needed ──
-  setupEvents();
+  // ── Start ──
   generatePuzzle();
+  setupEvents();
 
-  // cross.json load karo background mein — agar mile toh use karo
+  // cross.json load karo background mein
   fetch("/assets/json/cross.json")
     .then(function (r) {
       return r.json();
     })
     .then(function (data) {
-      if (Array.isArray(data) && data.length > 0) {
+      if (Array.isArray(data) && data.length > WORD_SETS.length) {
         WORD_SETS = data;
         state.currentWordSet = WORD_SETS[0];
         generatePuzzle();

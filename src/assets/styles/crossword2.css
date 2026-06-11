@@ -286,9 +286,20 @@ details:not([open]) summary::after {
   transition: var(--transition);
 }
 
+.btn-clear {
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
+}
+
+.btn-clear:hover {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(244, 63, 94, 0.4);
+}
+
 .btn-shuffle {
   background: linear-gradient(135deg, #0ea5e9, #6366f1);
 }
+
 
 .btn-new {
   background: linear-gradient(135deg, #10b981, #06b6d4);
