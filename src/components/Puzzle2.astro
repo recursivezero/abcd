@@ -1,10 +1,94 @@
 ---
-import Settings from "@/components/Settings.astro";
 import HintIcon from "@/assets/icons/hint.svg";
 ---
 
+<style>
+  .level-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .level-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: #fff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    z-index: 999;
+    min-width: 140px;
+    overflow: hidden;
+  }
+
+  .level-dropdown.open {
+    display: block;
+  }
+
+  .level-option {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #1e293b;
+    transition: background 0.15s;
+  }
+
+  .level-option:hover {
+    background: #f1f5f9;
+  }
+
+  .level-option.active {
+    background: #e0f2fe;
+    color: #0284c7;
+  }
+
+  .level-arrow {
+    display: inline-block;
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  #levelBtn.open .level-arrow {
+    transform: rotate(180deg);
+  }
+</style>
+
 <div class="puzzle-container">
-  <Settings />
+  <div class="top-controls">
+    <div class="level-dropdown-wrapper">
+      <button id="levelBtn" class="action-btn btn-level"
+        >⭐ Easy <svg
+          class="level-arrow"
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg
+        ></button
+      >
+      <div class="level-dropdown" id="levelDropdown">
+        <button class="level-option" data-level="easy">⭐ Easy</button>
+        <button class="level-option" data-level="medium">🔥 Medium</button>
+        <button class="level-option" data-level="hard">💀 Hard</button>
+      </div>
+    </div>
+    <button id="new" class="action-btn btn-new">✨ New Puzzle</button>
+    <button id="shuffle" class="action-btn btn-shuffle">🔀 Shuffle</button>
+  </div>
+
   <details open>
     <summary>Word List</summary>
     <div class="word-list" id="wordList"></div>
@@ -17,8 +101,6 @@ import HintIcon from "@/assets/icons/hint.svg";
     <div class="stats-button">
       <span>Found: <span id="foundCount">0</span>/<span id="totalWords"></span></span>
     </div>
-    <button id="shuffle" class="action-btn btn-shuffle">🔀 Shuffle</button>
-    <button id="new" class="action-btn btn-new">✨ New Puzzle</button>
     <button id="solutionBtn" class="hint-button" aria-label="Toggle hints">
       <div style="width: 28px; height: 28px;">
         <HintIcon />
@@ -32,67 +114,63 @@ import HintIcon from "@/assets/icons/hint.svg";
 
 <script is:inline>
   var WORD_SETS = [
-    // Set 1 — Animals
     {
       easy: ["CAT", "DOG", "SUN", "MOON", "STAR"],
       medium: ["APPLE", "GRAPE", "ORANGE", "BERRIES"],
       hard: ["WALRUS", "GIRAFFE", "PENGUIN", "DOLPHIN"]
     },
-    // Set 2 — Household
     {
       easy: ["HAT", "CAR", "BALL", "SHOE", "LAMP"],
       medium: ["CHERRY", "COCONUT", "PLUM", "MELON", "PEACH"],
       hard: ["OCTOPUS", "JACKAL", "WALRUS", "PEACOCK"]
     },
-    // Set 3 — Colors
     {
       easy: ["RED", "BLUE", "GREEN", "YELLOW", "PURPLE"],
       medium: ["BLACK", "WHITE", "BROWN", "ORANGE", "PINK"],
       hard: ["MAGENTA", "CYAN", "VIOLET", "MAROON"]
     },
-    // Set 4 — Space
     {
       easy: ["SUN", "MARS", "MOON", "STAR", "COMET"],
       medium: ["VENUS", "EARTH", "PLUTO", "ORBIT", "SOLAR"],
       hard: ["JUPITER", "MERCURY", "NEPTUNE", "SATURN"]
     },
-    // Set 5 — Food
     {
       easy: ["EGG", "MILK", "RICE", "CAKE", "SOUP"],
       medium: ["BREAD", "SUGAR", "CREAM", "PASTA", "SPICE"],
       hard: ["COOKIE", "BUTTER", "NOODLE", "MUFFIN"]
     },
-    // Set 6 — Sports
     {
       easy: ["RUN", "JUMP", "SWIM", "KICK", "BOWL"],
       medium: ["CHESS", "RUGBY", "DERBY", "SQUASH", "POLO"],
       hard: ["CRICKET", "TENNIS", "HOCKEY", "BOXING"]
     },
-    // Set 7 — Body
     {
       easy: ["ARM", "LEG", "EYE", "HAND", "KNEE"],
       medium: ["HEART", "BRAIN", "SPINE", "NERVE", "LIVER"],
       hard: ["MUSCLE", "KIDNEY", "STOMACH", "THROAT"]
     },
-    // Set 8 — Travel
     {
       easy: ["MAP", "ROAD", "CITY", "TOWN", "PARK"],
       medium: ["HOTEL", "TRAIN", "PLANE", "BEACH", "RIVER"],
       hard: ["AIRPORT", "STATION", "HIGHWAY", "VILLAGE"]
     },
-    // Set 9 — School
     {
       easy: ["PEN", "BOOK", "DESK", "BELL", "TEST"],
       medium: ["CLASS", "GRADE", "STUDY", "ESSAY", "NOTES"],
       hard: ["PENCIL", "LESSON", "SCIENCE", "HISTORY"]
     },
-    // Set 10 — Weather
     {
       easy: ["SUN", "RAIN", "WIND", "SNOW", "HAIL"],
       medium: ["CLOUD", "STORM", "FROST", "FOGGY", "SLEET"],
       hard: ["THUNDER", "RAINBOW", "BLIZZARD", "CYCLONE"]
     }
   ];
+
+  var DIFFICULTY_LABELS = {
+    easy: "⭐ Easy",
+    medium: "🔥 Medium",
+    hard: "💀 Hard"
+  };
 
   var COLOR_CLASSES = [
     "word-color-1",
@@ -128,14 +206,6 @@ import HintIcon from "@/assets/icons/hint.svg";
 
   function randomColor() {
     return "hsla(" + Math.floor(Math.random() * 360) + ",85%,72%,0.75)";
-  }
-
-  function getWordDirection(cells) {
-    var r1 = cells[0][0],
-      c1 = cells[0][1];
-    var r2 = cells[cells.length - 1][0],
-      c2 = cells[cells.length - 1][1];
-    return r1 === r2 ? "horizontal" : c1 === c2 ? "vertical" : "diagonal";
   }
 
   function isValidLine(cells) {
@@ -185,19 +255,28 @@ import HintIcon from "@/assets/icons/hint.svg";
     return { placed: false, cells: [] };
   }
 
+  function clearState() {
+    state.selectedCells = [];
+    state.foundWords = [];
+    state.matchedCells = new Map();
+    state.wordColors = new Map();
+    state.solutionColors = new Map();
+    state.isDragging = false;
+    state.showSolution = false;
+    state.clickCount = 0;
+  }
+
   function generatePuzzle() {
     var newGrid = [];
     for (var i = 0; i < state.size; i++) {
       newGrid.push([]);
       for (var j = 0; j < state.size; j++) newGrid[i].push("");
     }
-
     var words = state.currentWordSet[state.difficulty];
     state.solutions = [];
     state.wordColors = new Map();
     state.matchedCells = new Map();
     state.solutionColors = new Map();
-
     for (var w = 0; w < words.length; w++) {
       var res = placeWord(newGrid, words[w]);
       if (res.placed) {
@@ -205,10 +284,8 @@ import HintIcon from "@/assets/icons/hint.svg";
         state.solutionColors.set(words[w], randomColor());
       }
     }
-
     for (var i = 0; i < state.size; i++)
       for (var j = 0; j < state.size; j++) if (newGrid[i][j] === "") newGrid[i][j] = randomLetter();
-
     state.grid = newGrid;
     state.foundWords = [];
     state.showSolution = false;
@@ -260,16 +337,11 @@ import HintIcon from "@/assets/icons/hint.svg";
 
     var isMobile = window.innerWidth <= 768;
     var isLandscape = window.innerWidth > window.innerHeight;
-
     var gridSize, cellSize;
-    if (isMobile) {
-      if (isLandscape) {
-        gridSize = window.innerHeight - 16;
-      } else {
-        gridSize = window.innerWidth - 16;
-      }
-      cellSize = Math.floor((gridSize - 12 - 7 * 3) / 8);
 
+    if (isMobile) {
+      gridSize = isLandscape ? window.innerHeight - 16 : window.innerWidth - 16;
+      cellSize = Math.floor((gridSize - 12 - 7 * 3) / 8);
       gridEl.style.display = "grid";
       gridEl.style.gridTemplateColumns = "repeat(8, " + cellSize + "px)";
       gridEl.style.gridTemplateRows = "repeat(8, " + cellSize + "px)";
@@ -479,13 +551,38 @@ import HintIcon from "@/assets/icons/hint.svg";
       { passive: false }
     );
 
-    // ── Null-safe button listeners ──
+    // ── Level dropdown ──
+    var levelBtn = document.getElementById("levelBtn");
+    var levelDropdown = document.getElementById("levelDropdown");
 
-    var levelEl = document.getElementById("level");
-    if (levelEl) {
-      levelEl.addEventListener("change", function (e) {
-        state.difficulty = e.target.value;
+    if (levelBtn && levelDropdown) {
+      levelBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        levelDropdown.classList.toggle("open");
+        levelBtn.classList.toggle("open", levelDropdown.classList.contains("open"));
+        // current level highlight karo
+        var opts = levelDropdown.querySelectorAll(".level-option");
+        opts.forEach(function (opt) {
+          opt.classList.toggle("active", opt.dataset.level === state.difficulty);
+        });
+      });
+
+      levelDropdown.addEventListener("click", function (e) {
+        var opt = e.target.closest(".level-option");
+        if (!opt) return;
+        state.difficulty = opt.dataset.level;
+        levelBtn.innerHTML =
+          DIFFICULTY_LABELS[state.difficulty] +
+          ' <svg class="level-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+        levelDropdown.classList.remove("open");
+        levelBtn.classList.remove("open");
         generatePuzzle();
+      });
+
+      // Bahar click karo to dropdown band ho
+      document.addEventListener("click", function () {
+        levelDropdown.classList.remove("open");
+        levelBtn.classList.remove("open");
       });
     }
 
@@ -503,6 +600,7 @@ import HintIcon from "@/assets/icons/hint.svg";
       });
     }
 
+    // Clear button — sirf progress reset karo, grid wahi rahe
     var clearEl = document.getElementById("main-clear");
     if (clearEl) {
       clearEl.addEventListener("click", function () {
@@ -510,25 +608,36 @@ import HintIcon from "@/assets/icons/hint.svg";
         state.foundWords = [];
         state.matchedCells = new Map();
         state.wordColors = new Map();
-        state.solutionColors = new Map();
         state.isDragging = false;
         state.showSolution = false;
+        state.clickCount = 0;
         renderDOM();
       });
     }
 
+    // Settings component ke buttons (agar hain)
     var sNewEl = document.getElementById("s-new");
     if (sNewEl) sNewEl.addEventListener("click", newPuzzle);
-
     var sShuffleEl = document.getElementById("s-shuffle");
     if (sShuffleEl) sShuffleEl.addEventListener("click", generatePuzzle);
+
+    // Settings dropdown (agar Settings component mein hai)
+    var levelEl = document.getElementById("level");
+    if (levelEl) {
+      levelEl.addEventListener("change", function (e) {
+        state.difficulty = e.target.value;
+        var levelBtn = document.getElementById("levelBtn");
+        if (levelBtn) levelBtn.textContent = DIFFICULTY_LABELS[state.difficulty];
+        generatePuzzle();
+      });
+    }
   }
 
   // ── Start ──
   generatePuzzle();
   setupEvents();
 
-  // cross.json load karo background mein
+  // cross.json — sirf tab override karo jab zyada sets hon
   fetch("/assets/json/cross.json")
     .then(function (r) {
       return r.json();

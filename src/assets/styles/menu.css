@@ -97,7 +97,7 @@
     left: 0 !important;
     top: var(--header-height);
     border: 0;
-    background: var(--background);
+    background: var(--sidebar-bg, var(--background));
     height: fit-content;
     min-height: unset;
     padding: 1rem 0;

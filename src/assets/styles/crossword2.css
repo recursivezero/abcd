@@ -30,6 +30,24 @@
   touch-action: none;
 }
 
+/* ── Top Controls (Word List ke upar) ── */
+.top-controls {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 8px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-level {
+  background: linear-gradient(135deg, #06b6d4, #818cf8);
+}
+
+.btn-level:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
 /* ── Grid — DESKTOP ── */
 .grid__puzzle {
   display: grid;
@@ -300,7 +318,6 @@ details:not([open]) summary::after {
   background: linear-gradient(135deg, #0ea5e9, #6366f1);
 }
 
-
 .btn-new {
   background: linear-gradient(135deg, #10b981, #06b6d4);
 }
@@ -311,6 +328,11 @@ details:not([open]) summary::after {
 @media (max-width: 768px) {
   .puzzle-container {
     padding: 8px;
+  }
+
+  .top-controls {
+    gap: 6px;
+    margin: 0 0 6px 0;
   }
 
   .grid__puzzle {
