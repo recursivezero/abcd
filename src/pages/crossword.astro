@@ -8,9 +8,8 @@ import BaseLayout from "@/layouts/Base";
 import MobileSplash from "@/components/MobileSplash.astro";
 
 const meta = {
-  title: "Crossword",
-  description:
-    "Play an interactive crossword puzzle! Draw words by clicking and dragging through letters in any direction."
+  title: "Word Search",
+  description: "Play Word Search puzzle! Find hidden words by clicking and dragging through letters in any direction."
 };
 ---
 
@@ -20,9 +19,42 @@ const meta = {
   <Fragment slot="header-right">
     <SharePopover />
     <Help
-      title="Crossword"
+      title="Word Search"
       description="Draw words by clicking and dragging through letters!.Words can be in any direction.Matching words will be colored.Use hints to see word directions"
     />
   </Fragment>
-  <Puzzle2 />
+  <div class="wordsearch-page">
+    <h1 class="wordsearch-title">🔍 Word Search</h1>
+    <Puzzle2 />
+  </div>
 </BaseLayout>
+
+<style>
+  .wordsearch-page {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .wordsearch-title {
+    text-align: center;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 800;
+    color: #6366f1;
+    margin: 8px 0 0 0;
+    letter-spacing: -0.5px;
+  }
+
+  @media (max-width: 768px) {
+    .wordsearch-page {
+      padding: 0 4px;
+    }
+
+    .wordsearch-title {
+      font-size: 1.2rem;
+      margin: 4px 0 0 0;
+    }
+  }
+</style>

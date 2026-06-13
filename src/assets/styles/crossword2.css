@@ -22,7 +22,7 @@
 .puzzle-container {
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   min-height: 100vh;
   padding: 20px;
@@ -60,7 +60,7 @@
     0 0 0 15px rgba(99, 102, 241, 0.08);
   margin: 0 auto;
   width: 100%;
-  max-width: 560px;
+  max-width: 720px;
   border: 6px solid #f1f5f9;
   box-sizing: border-box;
   touch-action: none;
