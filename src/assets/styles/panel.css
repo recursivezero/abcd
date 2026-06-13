@@ -274,12 +274,12 @@
 .settings-button {
   background: transparent;
   border: 1px solid var(--primary);
-  color: var(--text-light);
+  color: var(--primary);
   padding: 0;
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -291,8 +291,8 @@
 }
 
 .settings-button .settings-icon {
-  width: 1.3em;
-  height: 1.3em;
+  width: 16px;
+  height: 16px;
   color: var(--primary);
   fill: currentColor;
   transition: fill var(--transition-speed) ease;

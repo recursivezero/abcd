@@ -29,6 +29,14 @@ declare global {
 
   #voice-dropdown {
     width: max-content;
+    height: 36px;
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
+    border-radius: 100px;
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    cursor: pointer;
   }
 
   .mute-button {
@@ -37,19 +45,19 @@ declare global {
     border: 1px solid var(--primary);
     border-radius: 100px;
     cursor: pointer;
-    width: 3.2rem;
-    height: 3.2rem;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px 25px;
+    padding: 0;
   }
   .mute-button:hover,
   .mute-button[aria-pressed="true"] {
     color: var(--primary);
   }
   .mute-icon {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   @media (max-width: 640px) {
