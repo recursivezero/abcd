@@ -136,11 +136,6 @@ const members = pkg.contributors || [];
     </div>
   </div>
 
-  <!-- LEARNING MADE MAGICAL -->
-  <div class="full-bleed banner-bleed">
-    <img src="/assets/images/about-logo.png" alt="Learning Made Magical" class="banner-img" />
-  </div>
-
   <!-- TEAM SECTION -->
   <div class="section-wrap team-section">
     <h2 class="team-heading">Meet Our Passionate Team <span>❤️</span></h2>
@@ -162,17 +157,14 @@ const members = pkg.contributors || [];
       }
     </div>
   </div>
-
-  <!-- BUILT FOR YOUNG MINDS -->
-  <div class="full-bleed banner-bleed">
-    <img src="/assets/images/about-BuiltYoung.png" alt="Built for Young Minds" class="banner-img" />
-  </div>
 </BaseLayout>
 
 <style>
   /* ── Full bleed base ── */
   .full-bleed {
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     display: block;
     line-height: 0;
   }
@@ -201,6 +193,8 @@ const members = pkg.contributors || [];
   /* ── Section wrapper ── */
   .section-wrap {
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 2.5rem 3rem;
     box-sizing: border-box;
   }
