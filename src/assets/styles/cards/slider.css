@@ -25,6 +25,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .gallery-container {
@@ -53,18 +54,17 @@
 .gallery-controls {
   display: grid;
   grid-template-columns: var(--nav-button-size) 1fr var(--nav-button-size);
-  gap: 1%;
-  align-items: start;
-  /* align to top, buttons will self-align to image center */
-  margin-left: -4rem;
-  margin-right: -4rem;
+  gap: 0.5rem;
+  /* FIX: align-items center so buttons stay vertically centered with scroller */
+  align-items: center;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .gallery-scroller {
   width: 100%;
   height: calc(var(--item-height) + 200px);
-  /* extra space for item-details below */
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -72,6 +72,7 @@
   -webkit-overflow-scrolling: touch;
   cursor: grab;
   flex-grow: 1;
+  box-sizing: border-box;
 }
 
 .gallery-scroller:active {
@@ -85,12 +86,10 @@
   height: 100%;
 }
 
-/* ✅ KEY FIX: buttons position themselves at center of image area only */
 .nav-button {
   width: var(--nav-button-size);
   height: var(--nav-button-size);
-  margin-top: calc(var(--item-height) / 2 - var(--nav-button-size) / 2 + 2rem);
-  /* center of image */
+  /* FIX: Removed margin-top calc — parent is now align-items:center so no manual offset needed */
   border-radius: 50%;
   background: rgba(129, 140, 248, 0.2);
   border: none;
@@ -101,6 +100,11 @@
   transition: all 0.2s ease;
   flex-shrink: 0;
   outline: none;
+  z-index: 10;
+  position: relative;
+  /* FIX: Ensure button never collapses on any screen */
+  min-width: var(--nav-button-size);
+  min-height: var(--nav-button-size);
 }
 
 .nav-button:hover {
@@ -230,7 +234,10 @@
   scrollbar-color: rgba(129, 140, 248, 0.6) rgba(0, 0, 0, 0.05);
 }
 
-/* Responsive adjustments */
+/* ===================== */
+/* RESPONSIVE FIXES      */
+/* ===================== */
+
 @media (max-width: 1600px) {
   :root {
     --item-width: 360px;
@@ -247,7 +254,7 @@
   }
 
   .gallery-page {
-    margin-left: 15%;
+    margin-left: 0;
   }
 }
 
@@ -263,7 +270,7 @@
   }
 
   .gallery-page {
-    margin-left: 15%;
+    margin-left: 0;
   }
 
   .letter {
@@ -277,23 +284,23 @@
 
 @media (max-width: 600px) {
   :root {
-    --item-width: 240px;
-    --item-height: 240px;
-    --item-gap: 20px;
+    --item-width: 220px;
+    --item-height: 220px;
+    --item-gap: 16px;
     --scrollbar-height: 4px;
     --nav-button-size: 36px;
   }
 
   .gallery-page {
-    margin-left: 15%;
+    margin-left: 0;
   }
 
   .gallery-wrapper {
-    padding: 1.5rem;
+    padding: 1rem 0.75rem;
   }
 
   .gallery-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .letter {
@@ -301,11 +308,15 @@
   }
 
   .item-desc {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .nav-button svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .gallery-controls {
+    gap: 0.25rem;
   }
 }

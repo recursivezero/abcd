@@ -187,7 +187,6 @@
     border-color 0.2s,
     box-shadow 0.2s;
   box-shadow: none;
-  width: 100%;
   box-sizing: border-box;
 }
 
@@ -491,6 +490,11 @@
   color: var(--subtext, var(--text));
 }
 
+/* Desktop pe mobile-actions-bar hide — PEHLE declare karo */
+.mobile-actions-bar {
+  display: none;
+}
+
 /* ── Tablet ── */
 @media (max-width: 1024px) {
   .header {
@@ -521,7 +525,7 @@
 /* ── Mobile ── */
 @media (max-width: 640px) {
   .header {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto;
     padding: 0 1rem;
     min-height: 4rem;
     height: 4rem;
@@ -565,7 +569,58 @@
 
   .hero-search {
     top: 4rem;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 1rem 0;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-search__wrap {
+    padding: 0.25rem 0 !important;
+  }
+
+  /* Mobile buttons bar — search ke niche */
+  .mobile-actions-bar {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    padding: 0.4rem 0 0.5rem;
+    width: 100%;
+  }
+
+  .mobile-actions-bar .share-button-container {
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 0 !important;
+  }
+
+  .mobile-actions-bar .share-trigger-button {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .mobile-actions-bar .share-trigger-button svg {
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 !important;
+  }
+
+  .mobile-actions-bar .help {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    padding: 0 !important;
+    font-size: 1rem !important;
   }
 
   .header-spacer {
@@ -596,6 +651,7 @@
 /* ── Small Mobile ── */
 @media (max-width: 480px) {
   .header {
+    grid-template-columns: 1fr auto;
     padding: 0 0.75rem;
     min-height: 3.5rem;
     height: 3.5rem;
@@ -625,7 +681,7 @@
 
   .hero-search {
     top: 3.5rem;
-    padding: 0.625rem 0.75rem;
+    padding: 0.5rem 0.75rem 0;
   }
 
   .header-spacer {
@@ -636,18 +692,4 @@
     width: 85vw;
     padding: 1.25rem 1rem;
   }
-}
-
-.sidebar-mobile-wrapper {
-  width: 100%;
-  padding: 0 1rem;
-  margin-top: 1rem;
-}
-
-[data-theme="light"] .header {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="light"] .hero-search {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }

@@ -7,6 +7,7 @@ import SettingIcon from "@/assets/icons/settings.svg";
 import Back from "@/components/BackButton.astro";
 import SharePopover from "@/components/ShareButton.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
+import VirtualKeyboard from "@/components/VirtualKeyboard.astro";
 
 const meta = {
   title: "Panel",
@@ -17,101 +18,129 @@ const meta = {
 
 <BaseLayout meta={meta}>
   <Back />
-  <MobileSplash stay={true} />
+  <MobileSplash stay={false} />
+
+  <!-- Desktop: header ke right slot mein sirf settings button -->
   <Fragment slot="header-right">
     <div class="right-header-buttons">
       <div class="settings-button-container">
         <button id="settingsButton" class="settings-button" aria-label="Open panel settings" data-tooltip="Settings">
           <SettingIcon class="settings-icon" />
         </button>
-        <div id="panelToolsPopover" class="panel-tools-popover" aria-hidden="true">
-          <h2 class="gradient-text">Panel Tools</h2>
-          <section id="option-box" class="panel__options">
-            <div class="controls" role="radiogroup" aria-labelledby="orientation-label">
-              <span id="orientation-label" class="sr-only">Panel Orientation</span>
-
-              <label class="vertical" for="vertical">
-                <input
-                  type="radio"
-                  class="orientation"
-                  name="orientation"
-                  id="vertical"
-                  value="X"
-                  aria-label="Vertical Orientation"
-                />
-                <span class="icon" aria-hidden="true">⇕</span>
-                <span class="sr-only">Vertical Orientation</span>
-              </label>
-
-              <label class="horizontal" for="horizontal">
-                <input
-                  type="radio"
-                  class="orientation"
-                  name="orientation"
-                  id="horizontal"
-                  value="Y"
-                  aria-label="Horizontal Orientation"
-                />
-                <span class="icon" aria-hidden="true">⇔</span>
-                <span class="sr-only">Horizontal Orientation</span>
-              </label>
-            </div>
-
-            <div class="controls" role="radiogroup" aria-labelledby="content-type-label">
-              <span id="content-type-label" class="sr-only">Panel Content Type</span>
-
-              <label class="alphabet" for="alphabet">
-                <input
-                  type="radio"
-                  class="content-type"
-                  name="content-type"
-                  id="alphabet"
-                  value="alphabet"
-                  aria-label="Alphabet Panel"
-                  checked
-                />
-                <span class="icon" aria-hidden="true">A-Z</span>
-                <span class="sr-only">Alphabet Panel</span>
-              </label>
-
-              <label class="numbers" for="numbers">
-                <input
-                  type="radio"
-                  class="content-type"
-                  name="content-type"
-                  id="numbers"
-                  value="numbers"
-                  aria-label="Numbers Panel"
-                />
-                <span class="icon" aria-hidden="true">0-9</span>
-                <span class="sr-only">Numbers Panel</span>
-              </label>
-            </div>
-
-            <div class="range__option">
-              <span id="min-range-value">10</span>
-              <input
-                type="range"
-                name="range"
-                id="range"
-                class="range__slider"
-                value="0"
-                min="10"
-                max="26"
-                title="Adjust panel size"
-              />
-              <span id="max-range-value">26</span>
-            </div>
-          </section>
-        </div>
       </div>
     </div>
+  </Fragment>
+
+  <!--
+    ✅ FIX: SharePopover aur Help SIRF EK BAAR render ho rahe hain.
+    #floating-panel-actions CSS se desktop aur mobile dono pe sahi jagah position hoga.
+    Pehle ye dono header slot + mobile-panel-buttons dono mein duplicate the,
+    jisse getElementById hamesha pehla (header wala, display:none) element pick karta tha
+    aur mobile pe kuch kaam nahi karta tha.
+  -->
+  <div id="floating-panel-actions" class="floating-panel-actions">
     <SharePopover />
     <Help
       title="Panel"
       description="Use arrow keys to navigate through letters/numbers. Up/down for vertical orientation, left/right for horizontal. Type any letter or number to jump to it. Adjust panel size with the slider."
     />
-  </Fragment>
+  </div>
+
+  <!-- Mobile-only: sirf settings button (Share + Help upar wale div mein hain already) -->
+  <div class="mobile-panel-buttons">
+    <div class="settings-button-container mobile-settings-container">
+      <button
+        id="mobileSettingsButton"
+        class="settings-button"
+        aria-label="Open panel settings"
+        data-tooltip="Settings"
+      >
+        <SettingIcon class="settings-icon" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Popover body-level pe — desktop + mobile dono access kar sakein -->
+  <div id="panelToolsPopover" class="panel-tools-popover" aria-hidden="true">
+    <h2 class="gradient-text">Panel Tools</h2>
+    <section id="option-box" class="panel__options">
+      <div class="controls" role="radiogroup" aria-labelledby="orientation-label">
+        <span id="orientation-label" class="sr-only">Panel Orientation</span>
+
+        <label class="vertical" for="vertical">
+          <input
+            type="radio"
+            class="orientation"
+            name="orientation"
+            id="vertical"
+            value="X"
+            aria-label="Vertical Orientation"
+          />
+          <span class="icon" aria-hidden="true">⇕</span>
+          <span class="sr-only">Vertical Orientation</span>
+        </label>
+
+        <label class="horizontal" for="horizontal">
+          <input
+            type="radio"
+            class="orientation"
+            name="orientation"
+            id="horizontal"
+            value="Y"
+            aria-label="Horizontal Orientation"
+          />
+          <span class="icon" aria-hidden="true">⇔</span>
+          <span class="sr-only">Horizontal Orientation</span>
+        </label>
+      </div>
+
+      <div class="controls" role="radiogroup" aria-labelledby="content-type-label">
+        <span id="content-type-label" class="sr-only">Panel Content Type</span>
+
+        <label class="alphabet" for="alphabet">
+          <input
+            type="radio"
+            class="content-type"
+            name="content-type"
+            id="alphabet"
+            value="alphabet"
+            aria-label="Alphabet Panel"
+            checked
+          />
+          <span class="icon" aria-hidden="true">A-Z</span>
+          <span class="sr-only">Alphabet Panel</span>
+        </label>
+
+        <label class="numbers" for="numbers">
+          <input
+            type="radio"
+            class="content-type"
+            name="content-type"
+            id="numbers"
+            value="numbers"
+            aria-label="Numbers Panel"
+          />
+          <span class="icon" aria-hidden="true">0-9</span>
+          <span class="sr-only">Numbers Panel</span>
+        </label>
+      </div>
+
+      <div class="range__option">
+        <span id="min-range-value">10</span>
+        <input
+          type="range"
+          name="range"
+          id="range"
+          class="range__slider"
+          value="0"
+          min="10"
+          max="26"
+          title="Adjust panel size"
+        />
+        <span id="max-range-value">26</span>
+      </div>
+    </section>
+  </div>
 
   <article class="tv container__panel">
     <section class="scene">
@@ -120,7 +149,9 @@ const meta = {
       </letter-panel>
     </section>
   </article>
+  <VirtualKeyboard />
 </BaseLayout>
+
 <script>
   enum ArrowKeys {
     LEFT = "ArrowLeft",
@@ -134,7 +165,6 @@ const meta = {
     NUMBERS = "numbers"
   }
 
-  // Define the behaviour for our new type of HTML element.
   class LetterPanel extends HTMLElement {
     #panel: HTMLElement;
     #cellRange: HTMLInputElement;
@@ -182,7 +212,7 @@ const meta = {
             const target = e.target as HTMLInputElement;
             this.#orientation = target.value as "X" | "Y";
             this.changePanel();
-            target.blur(); //unfocus the radio button
+            target.blur();
           },
           false
         );
@@ -194,9 +224,9 @@ const meta = {
           (e: Event) => {
             const target = e.target as HTMLInputElement;
             this.#contentType = target.value as ContentType;
-            this.#selectedIndex = 0; // Reset index when content type changes
-            this.updateRangeAttributes(); // Update range limits
-            this.buildPanel(); // Rebuild panel with new content
+            this.#selectedIndex = 0;
+            this.updateRangeAttributes();
+            this.buildPanel();
             this.changePanel();
             target.blur();
           },
@@ -213,33 +243,48 @@ const meta = {
         this.buildPanel();
         this.changePanel();
       });
+
       this.#cellRange.addEventListener("change", () => {
-        // Add change event for final blur
         this.#cellRange.blur();
       });
 
       const panelToolsPopover = document.getElementById("panelToolsPopover");
       const settingsButton = document.getElementById("settingsButton");
-      // Panel tools logic
-      if (settingsButton && panelToolsPopover) {
-        settingsButton.addEventListener("click", (event) => {
-          event.stopPropagation();
-          const isOpen = panelToolsPopover.classList.contains("open");
-          panelToolsPopover.classList.toggle("open", !isOpen);
-          settingsButton.setAttribute("aria-expanded", String(!isOpen)); // Convert boolean to string
-          panelToolsPopover.setAttribute("aria-hidden", String(isOpen)); // Convert boolean to string
-        });
+      const mobileSettingsButton = document.getElementById("mobileSettingsButton");
 
-        document.addEventListener("click", (event) => {
-          if (!panelToolsPopover.contains(event.target as Node) && !settingsButton.contains(event.target as Node)) {
-            if (panelToolsPopover.classList.contains("open")) {
-              settingsButton.setAttribute("aria-expanded", "false");
-              panelToolsPopover.setAttribute("aria-hidden", "true");
-              panelToolsPopover.classList.remove("open");
-            }
-          }
-        });
+      // Shared toggle logic — desktop + mobile dono ke liye ek hi function
+      const togglePopover = (event: Event, btn: HTMLElement) => {
+        event.stopPropagation();
+        const isOpen = panelToolsPopover!.classList.contains("open");
+        panelToolsPopover!.classList.toggle("open", !isOpen);
+        btn.setAttribute("aria-expanded", String(!isOpen));
+        panelToolsPopover!.setAttribute("aria-hidden", String(isOpen));
+      };
+
+      if (settingsButton && panelToolsPopover) {
+        settingsButton.addEventListener("click", (event) => togglePopover(event, settingsButton));
       }
+
+      if (mobileSettingsButton && panelToolsPopover) {
+        mobileSettingsButton.addEventListener("click", (event) => togglePopover(event, mobileSettingsButton));
+      }
+
+      // Bahar click karne pe popover band ho jaaye
+      document.addEventListener("click", (event) => {
+        if (
+          panelToolsPopover &&
+          !panelToolsPopover.contains(event.target as Node) &&
+          !settingsButton?.contains(event.target as Node) &&
+          !mobileSettingsButton?.contains(event.target as Node)
+        ) {
+          if (panelToolsPopover.classList.contains("open")) {
+            settingsButton?.setAttribute("aria-expanded", "false");
+            mobileSettingsButton?.setAttribute("aria-expanded", "false");
+            panelToolsPopover.setAttribute("aria-hidden", "true");
+            panelToolsPopover.classList.remove("open");
+          }
+        }
+      });
     }
 
     updateRangeAttributes() {
@@ -248,16 +293,13 @@ const meta = {
         this.#cellRange.max = "26";
         this.#minRangeValueSpan.textContent = "10";
         this.#maxRangeValueSpan.textContent = "26";
-        // Ensure current value is within bounds
         if (Number(this.#cellRange.value) < 10) this.#cellRange.value = "10";
         if (Number(this.#cellRange.value) > 26) this.#cellRange.value = "26";
       } else {
-        // ContentType.NUMBERS
         this.#cellRange.min = "3";
         this.#cellRange.max = "10";
         this.#minRangeValueSpan.textContent = "3";
         this.#maxRangeValueSpan.textContent = "10";
-        // Ensure current value is within bounds
         if (Number(this.#cellRange.value) < 3) this.#cellRange.value = "3";
         if (Number(this.#cellRange.value) > 10) this.#cellRange.value = "10";
       }
@@ -281,10 +323,9 @@ const meta = {
         div.classList.add("panel__cell");
 
         if (this.#contentType === ContentType.ALPHABET) {
-          div.textContent = String.fromCodePoint(65 + i); // A to Z
+          div.textContent = String.fromCodePoint(65 + i);
         } else {
-          // ContentType.NUMBERS
-          div.textContent = String(i % 10); // 0-9, wraps around after 9
+          div.textContent = String(i % 10);
         }
 
         fragment.appendChild(div);
@@ -302,7 +343,7 @@ const meta = {
         cell.style.transform = transformString;
       });
       this.rotatePanel({ by: this.#orientation });
-      this.updateFrontCell(); // update front cell styling
+      this.updateFrontCell();
     }
 
     updateFrontCell() {
@@ -313,10 +354,8 @@ const meta = {
 
       cells.forEach((cell, index) => {
         cell.classList.remove("front");
-        // Calculate which cell should be "front" based on rotation
         const adjustedIndex = (index + normalizedIndex) % count;
         if (adjustedIndex === 0) {
-          // The cell that is currently at the 0-degree position (front)
           cell.classList.add("front");
         }
       });
@@ -367,26 +406,19 @@ const meta = {
           break;
         }
         default: {
-          // Handle character input (alphabets and numbers)
           const char = key.toUpperCase();
           if (this.#contentType === ContentType.ALPHABET) {
-            if (/^[A-Z]$/.test(key)) {
-              // A-Z (uppercase)
-              this.#selectedIndex = (65 - char.charCodeAt(0) + currentPanelSize) % currentPanelSize; // Calculate index relative to A
-            } else if (/^[a-z]$/.test(key)) {
-              // a-z (lowercase)
-              this.#selectedIndex = (97 - char.charCodeAt(0) + currentPanelSize) % currentPanelSize; // Calculate index relative to a
+            if (/^[A-Za-z]$/.test(key)) {
+              const letterIndex = char.charCodeAt(0) - 65;
+              this.#selectedIndex = (currentPanelSize - letterIndex) % currentPanelSize;
             } else {
-              // If not an alphabet, just move forward
               this.#selectedIndex++;
             }
           } else {
-            // ContentType.NUMBERS
             if (/^[0-9]$/.test(key)) {
-              // 0-9
-              this.#selectedIndex = (48 - char.charCodeAt(0) + currentPanelSize) % currentPanelSize; // Calculate index relative to 0
+              const digitIndex = char.charCodeAt(0) - 48;
+              this.#selectedIndex = (currentPanelSize - digitIndex) % currentPanelSize;
             } else {
-              // If not a number, just move forward
               this.#selectedIndex++;
             }
           }
@@ -396,6 +428,70 @@ const meta = {
       this.changePanel();
     }
   }
-  // Tell the browser to use our LetterPanel class for <letter-panel> elements.
+
   customElements.define("letter-panel", LetterPanel);
 </script>
+
+<style>
+  /* Floating panel actions — default (desktop) */
+  .floating-panel-actions {
+    position: fixed;
+    top: 18px;
+    right: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 9999;
+  }
+
+  /* Desktop layout */
+  @media (min-width: 769px) {
+    .right-header-buttons {
+      position: fixed;
+      top: 18px;
+      right: 9.5rem;
+      z-index: 9999;
+    }
+
+    .mobile-panel-buttons {
+      display: none;
+    }
+
+    .panel-tools-popover {
+      position: fixed;
+      top: 80px; /* 60px → 80px */
+      right: 1rem;
+      z-index: 10000;
+    }
+  }
+
+  /* Mobile layout */
+  @media (max-width: 768px) {
+    .right-header-buttons {
+      display: none;
+    }
+
+    .mobile-panel-buttons {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 112px; /* 98px → 112px */
+      right: 7rem;
+      z-index: 9999;
+    }
+
+    .floating-panel-actions {
+      position: fixed;
+      top: 112px; /* 98px → 112px */
+      right: 0.7rem;
+      z-index: 9999;
+    }
+
+    .panel-tools-popover {
+      position: fixed;
+      top: 160px; /* 145px → 160px */
+      right: 0.7rem;
+      z-index: 10000;
+    }
+  }
+</style>

@@ -97,7 +97,7 @@
     left: 0 !important;
     top: var(--header-height);
     border: 0;
-    background: var(--background);
+    background: var(--sidebar-bg, var(--background));
     height: fit-content;
     min-height: unset;
     padding: 1rem 0;
@@ -140,6 +140,7 @@
 
   .minimize-toggle {
     transition: transform 0.3s ease;
+    color: #7c3aed;
   }
 
   .minimize-toggle.rotated {
@@ -476,7 +477,7 @@
       padding: 0;
       place-items: center;
       border: 0;
-      color: var(--secondary);
+      color: var(--primary);
       border-radius: 50%;
       transition: all 0.2s;
       background: transparent;
@@ -604,5 +605,11 @@
     display: block !important;
     width: 16px !important;
     height: 16px !important;
+  }
+
+  [data-theme="dark"] .theme-toggle,
+  [data-theme="dark"] .pin-btn {
+    color: var(--primary) !important;
+    border-color: color-mix(in srgb, var(--primary) 30%, transparent) !important;
   }
 }

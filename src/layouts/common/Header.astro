@@ -276,6 +276,7 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     >
     </div>
   </div>
+  <div class="mobile-actions-bar" id="mobileActionsBar"></div>
 </div>
 
 <div class="header-spacer" id="headerSpacer"></div>
@@ -797,6 +798,25 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     background: #fef3c7 !important;
     color: #d97706 !important;
   }
+  @media (max-width: 768px) {
+    .hero-search__wrap {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 6px 12px !important;
+      max-width: 100% !important;
+    }
+
+    .hero-search__wrap > *:not(.hero-search__box):not(.hero-search__dropdown) {
+      flex-shrink: 0 !important;
+    }
+
+    .hero-search__box {
+      flex: 1 !important;
+      min-width: 0 !important;
+      width: auto !important;
+    }
+  }
 </style>
 
 <script is:inline define:vars={{ allSearchItemsJSON }}>
@@ -1160,7 +1180,22 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     initThemeToggle();
     initHamburger();
     updateSpacer();
+    moveMobileButtons();
   }
+  function moveMobileButtons() {
+    if (window.innerWidth > 640) return;
+    const actionGroup = document.querySelector(".action__group");
+    const mobileBar = document.getElementById("mobileActionsBar");
+    if (!actionGroup || !mobileBar) return;
+
+    // Theme toggle chhod ke baaki sab move karo
+    Array.from(actionGroup.children).forEach((child) => {
+      if (!child.classList.contains("theme-toggle")) {
+        mobileBar.appendChild(child);
+      }
+    });
+  }
+
   window.addEventListener("resize", updateSpacer);
 
   // Run immediately

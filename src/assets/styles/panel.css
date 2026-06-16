@@ -262,30 +262,42 @@
   }
 }
 
-/* Styles for the header-right section and the settings button/popover */
+/* Settings button container */
 .settings-button-container {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  vertical-align: middle;
 }
 
 .settings-button {
   background: transparent;
   border: 1px solid var(--primary);
-  color: var(--text-light);
-  padding: 0.6rem;
-  width: 50px;
-  height: 50px;
-  min-width: 40px;
+  color: var(--primary);
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   transition: all var(--transition-speed) ease;
   cursor: pointer;
-  margin-top: 0;
   font-size: 16px;
+}
+
+.settings-button .settings-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--primary);
+  fill: currentColor;
+  transition: fill var(--transition-speed) ease;
+  flex-shrink: 0;
+  pointer-events: none;
 }
 
 .settings-button:hover {
@@ -294,16 +306,6 @@
 
 .settings-button:active {
   transform: scale(0.98);
-}
-
-.settings-button .settings-icon {
-  width: 1.4em;
-  height: 1.4em;
-  color: var(--primary);
-  fill: currentColor;
-  transition: fill var(--transition-speed) ease;
-  flex-shrink: 0;
-  pointer-events: none;
 }
 
 .settings-button::after {
@@ -401,7 +403,6 @@
 
 /* === Responsiveness === */
 @media (max-width: 768px) {
-  /* Header-right slot for mobile */
   [slot="header-right"] {
     justify-content: flex-end;
     width: 100%;
@@ -410,7 +411,6 @@
     gap: 0.5rem;
   }
 
-  /* Popover positioning for smaller screens */
   .panel-tools-popover {
     right: 1rem;
     left: auto;
