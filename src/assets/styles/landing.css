@@ -682,7 +682,6 @@ footer {
    TOUCH DEVICES
 ══════════════════════════════════════ */
 @media (hover: none) and (pointer: coarse) {
-
   .category-card:hover,
   .game-card:hover,
   .cta-button:hover {

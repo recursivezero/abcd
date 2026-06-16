@@ -50,6 +50,7 @@ body {
     --primary-light: #67e8f9;
     --secondary: #0891b2;
     --background: #020608;
+    --sidebar-bg: #031a20;
     --bg-gradient: linear-gradient(180deg, #020608 0%, #031a20 50%, #052e38 100%);
     --text: #e0f7fa;
     --border: #063540;
@@ -87,6 +88,7 @@ body {
     --primary-light: #a78bfa;
     --secondary: #64748b;
     --background: #ffffff;
+    --sidebar-bg: #f8fafc;
     --bg-gradient: none;
     --text: #0f172a;
     --border: #e2e8f0;

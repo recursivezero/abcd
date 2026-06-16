@@ -34,8 +34,8 @@ const entries = Object.entries(items);
 ---
 
 <BaseLayout meta={meta}>
+  <!-- FIX: Removed empty header-tools-wrapper div, Share and Help directly in slot -->
   <Fragment slot="header-right">
-    <div class="header-tools-wrapper"></div>
     <SharePopover />
     <Help title="Slider" description="Click images or use arrow keys to navigate. Active item shows details." />
   </Fragment>
@@ -107,17 +107,14 @@ const entries = Object.entries(items);
 
     // Navigation functions
     const navigateTo = (index) => {
-      // Validate index
       index = Math.max(0, Math.min(index, items.length - 1));
 
-      // Play sound based on navigation direction
       if (index < activeIndex) {
         sounds.snap.play().catch((error) => console.error("Error playing snap sound:", error));
       } else if (index > activeIndex) {
         sounds.pop.play().catch((error) => console.error("Error playing pop sound:", error));
       }
 
-      // Update active state
       items[activeIndex].classList.remove("active");
       details[activeIndex].style.opacity = "0";
       details[activeIndex].style.transform = "translateY(20px)";
@@ -128,7 +125,6 @@ const entries = Object.entries(items);
       details[activeIndex].style.opacity = "1";
       details[activeIndex].style.transform = "translateY(0)";
 
-      // Center the item
       items[activeIndex].scrollIntoView({
         behavior: "smooth",
         block: "nearest",
@@ -136,11 +132,9 @@ const entries = Object.entries(items);
       });
     };
 
-    // Navigation buttons
     prevBtn.addEventListener("click", () => navigateTo(activeIndex - 1));
     nextBtn.addEventListener("click", () => navigateTo(activeIndex + 1));
 
-    // Keyboard navigation for buttons
     prevBtn.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -155,11 +149,8 @@ const entries = Object.entries(items);
       }
     });
 
-    // Click on items
     items.forEach((item, index) => {
       item.addEventListener("click", () => navigateTo(index));
-
-      // Keyboard navigation for items
       item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -168,7 +159,6 @@ const entries = Object.entries(items);
       });
     });
 
-    // Global keyboard navigation
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
@@ -179,7 +169,6 @@ const entries = Object.entries(items);
       }
     });
 
-    // Convert vertical scroll to horizontal
     scroller.addEventListener(
       "wheel",
       (e) => {

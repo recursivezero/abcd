@@ -17,35 +17,14 @@
   </svg>
 </a>
 
-<script is:inline>
-  function align() {
-    const btn = document.querySelector(".back-btn");
-    const box = document.querySelector(".hero-search__box");
-    if (!btn || !box) return;
-    const r = box.getBoundingClientRect();
-    // button ko .hero-search__wrap se bahar move karo agar andar ho
-    if (btn.closest(".hero-search")) {
-      document.body.appendChild(btn);
-    }
-    btn.style.top = r.top + r.height / 2 - 22 + "px";
-  }
-
-  requestAnimationFrame(() => requestAnimationFrame(align));
-  window.addEventListener("resize", align);
-  window.addEventListener("scroll", align, { passive: true });
-  document.addEventListener("astro:page-load", () => requestAnimationFrame(() => requestAnimationFrame(align)));
-</script>
-
 <style is:global>
   .back-btn {
-    position: fixed;
-    left: 12px;
-    top: 92px;
-    width: 2.75rem;
-    height: 2.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    width: 2.2rem;
+    height: 2.2rem;
     border-radius: 50%;
     text-decoration: none;
     background: white;
@@ -55,18 +34,36 @@
     transition:
       background 0.15s ease,
       transform 0.2s ease;
-    z-index: 1001;
   }
 
-  .back-btn:hover {
-    background: #ede9fe;
-    border-color: #7c3aed;
-    transform: scale(1.06);
+  /* ── Desktop: fixed left corner ── */
+  @media (min-width: 641px) {
+    .back-btn {
+      position: fixed;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .back-btn:hover {
+      transform: translateY(-50%) scale(1.06);
+    }
+  }
+
+  /* ── Mobile: flex row mein search ke saath ── */
+  @media (max-width: 640px) {
+    .back-btn {
+      position: static;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.06);
+    }
   }
 
   .back-btn svg {
-    width: 1.125rem;
-    height: 1.125rem;
+    width: 1rem;
+    height: 1rem;
     pointer-events: none;
   }
 
