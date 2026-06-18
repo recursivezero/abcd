@@ -7,6 +7,8 @@
   --footer-link: #9ca3af;
   --footer-link-hover: #0ea5e9;
   --footer-border: #374151;
+  --footer-item-bg: #f5f5f5;
+  --footer-item-border: #e0e0e0;
 }
 
 [data-theme="dark"] {
@@ -18,6 +20,8 @@
   --footer-link: #7dd3fc;
   --footer-link-hover: #67e8f9;
   --footer-border: rgba(34, 211, 238, 0.14);
+  --footer-item-bg: rgba(255, 255, 255, 0.06);
+  --footer-item-border: rgba(34, 211, 238, 0.25);
 }
 
 [data-theme="light"] {
@@ -29,6 +33,8 @@
   --footer-link: #64748b;
   --footer-link-hover: #7c3aed;
   --footer-border: #e2e8f0;
+  --footer-item-bg: #f8fafc;
+  --footer-item-border: #e2e8f0;
 }
 
 .container__footer {
@@ -269,46 +275,47 @@
     line-height: 1.7;
   }
 
-     .footer__nav {
-       flex-direction: column;
-       gap: 16px;
-      display: flex;
-     }
-  
-     .footer__nav--item {
-       background: var(--color-surface, #f5f5f5);
-       border: 1px solid var(--color-border, #e0e0e0);
-       border-radius: 12px;
-       padding: 10px 12px;
-     }
-  
-     .footer__nav--title {
-       width: 100%;
-       text-align: center;
-       justify-content: center;
-       font-size: 0.8rem;
-       font-weight: 700;
-       padding: 0 0 8px 0;
-       pointer-events: none;
-     }
-  
-     .footer__nav--title .chevron {
-       display: none;
-     }
-  
-     .footer__nav--links {
-       flex-direction: row;
-       flex-wrap: wrap;
-       justify-content: center;
-       gap: 6px 12px;
-       padding: 0;
-     }
-  
-     .footer__nav--links a {
-       font-size: 0.75rem;
-       text-align: center;
-       white-space: nowrap;
-     }
+  .footer__nav {
+    flex-direction: column;
+    gap: 16px;
+    display: flex;
+  }
+
+  .footer__nav--item {
+    background: var(--footer-item-bg);
+    border: 1px solid var(--footer-item-border);
+    border-radius: 12px;
+    padding: 10px 12px;
+  }
+
+  .footer__nav--title {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0 0 8px 0;
+    pointer-events: none;
+    color: var(--footer-brand);
+  }
+
+  .footer__nav--title .chevron {
+    display: none;
+  }
+
+  .footer__nav--links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 12px;
+    padding: 0;
+  }
+
+  .footer__nav--links a {
+    font-size: 0.75rem;
+    text-align: center;
+    white-space: nowrap;
+  }
 
   .footer__nav--links a::before {
     display: none;
