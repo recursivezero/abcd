@@ -82,49 +82,17 @@ import "@/assets/styles/footer.css";
       if (!btn || !links) return;
 
       if (!isMobile) {
-        // Desktop: links hamesha visible, button non-clickable
         links.style.display = "flex";
         btn.style.pointerEvents = "none";
         btn.style.cursor = "default";
         btn.setAttribute("aria-expanded", "true");
       } else {
-        // Mobile: links hidden by default
-        links.style.display = "none";
-        btn.style.pointerEvents = "auto";
-        btn.style.cursor = "pointer";
-        btn.setAttribute("aria-expanded", "false");
+        // Tile style: links seedha open dikhein
+        links.style.display = "flex";
+        btn.style.pointerEvents = "none";
+        btn.style.cursor = "default";
+        btn.setAttribute("aria-expanded", "true");
       }
-    });
-
-    if (!isMobile) return;
-
-    // Mobile: button click handler
-    items.forEach(function (item) {
-      var btn = item.querySelector(".footer__nav--title");
-      var links = item.querySelector(".footer__nav--links");
-      if (!btn || !links) return;
-
-      // Remove old handler
-      var newBtn = btn.cloneNode(true);
-      btn.parentNode.replaceChild(newBtn, btn);
-
-      newBtn.addEventListener("click", function () {
-        var isOpen = newBtn.getAttribute("aria-expanded") === "true";
-
-        // Sab band karo
-        items.forEach(function (el) {
-          var b = el.querySelector(".footer__nav--title");
-          var l = el.querySelector(".footer__nav--links");
-          if (b) b.setAttribute("aria-expanded", "false");
-          if (l) l.style.display = "none";
-        });
-
-        // Agar band tha toh kholo
-        if (!isOpen) {
-          newBtn.setAttribute("aria-expanded", "true");
-          links.style.display = "flex";
-        }
-      });
     });
   }
 
