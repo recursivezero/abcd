@@ -1,0 +1,459 @@
+/* Keyboard Ninja styles
+   Dark mode coverage: respects OS preference (prefers-color-scheme), and also
+   supports a manual toggle via either a `data-theme="dark"` attribute or a
+   `.dark` class on a parent element (<html> or <body>) — match whichever
+   mechanism the rest of the site already uses. */
+
+:root {
+  --kn-bg: #eef6ff;
+  --kn-bg-secondary: #ffffff;
+  --kn-text: #1f2a44;
+  --kn-text-muted: #5b6b8c;
+  --kn-accent: #ff6b6b;
+  --kn-accent-2: #4d96ff;
+  --kn-success: #2ecc71;
+  --kn-danger: #ff5252;
+  --kn-gold: #f5b700;
+  --kn-card-shadow: 0 10px 28px rgba(31, 42, 68, 0.14);
+  --kn-radius: 18px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --kn-bg: #11162a;
+    --kn-bg-secondary: #1c2440;
+    --kn-text: #f1f4ff;
+    --kn-text-muted: #aab3d6;
+    --kn-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  }
+}
+
+[data-theme="dark"],
+.dark {
+  --kn-bg: #11162a;
+  --kn-bg-secondary: #1c2440;
+  --kn-text: #f1f4ff;
+  --kn-text-muted: #aab3d6;
+  --kn-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+.kn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  background: transparent;
+  color: var(--kn-text);
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.kn-scoreboard-wrap {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.kn-scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.kn-score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--kn-bg-secondary);
+  border-radius: 14px;
+  padding: 0.5rem 0.9rem;
+  box-shadow: var(--kn-card-shadow);
+  min-width: 72px;
+}
+
+.kn-score-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--kn-text-muted);
+}
+
+.kn-score-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.kn-powerup-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.kn-powerup-badge {
+  background: var(--kn-gold);
+  color: #2a2200;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.kn-arena {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  flex: 1;
+  min-height: 420px;
+  background: var(--kn-bg-secondary);
+  border-radius: var(--kn-radius);
+  box-shadow: var(--kn-card-shadow);
+  overflow: hidden;
+}
+
+.kn-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 440px);
+  max-height: 92%;
+  overflow-y: auto;
+  background: var(--kn-bg-secondary);
+  border-radius: var(--kn-radius);
+  box-shadow: var(--kn-card-shadow);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+
+.kn-title {
+  margin: 0 0 0.4rem;
+  font-size: 1.6rem;
+}
+
+.kn-subtitle {
+  margin: 0 0 1.1rem;
+  color: var(--kn-text-muted);
+  font-size: 0.95rem;
+}
+
+.kn-high-score-badge {
+  background: var(--kn-gold);
+  color: #2a2200;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+}
+
+.kn-level-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.kn-level-btn {
+  border: 2px solid var(--kn-accent-2);
+  background: transparent;
+  color: var(--kn-accent-2);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    transform 150ms ease,
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.kn-level-btn:hover {
+  transform: translateY(-1px);
+}
+
+.kn-level-btn-active {
+  background: var(--kn-accent-2);
+  color: #ffffff;
+}
+
+.kn-start-btn {
+  border: none;
+  background: var(--kn-accent);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 0.7rem 1.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+  transition: transform 150ms ease;
+}
+
+.kn-start-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.kn-countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--kn-accent-2);
+}
+
+.kn-stats-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  text-align: left;
+  display: inline-block;
+}
+
+.kn-stats-list li {
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+  color: var(--kn-text-muted);
+}
+
+.kn-stats-list strong {
+  color: var(--kn-text);
+}
+
+.kn-panel-heading {
+  font-size: 0.95rem;
+  margin: 1.1rem 0 0.5rem;
+  text-align: left;
+}
+
+.kn-idle-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+/* Leaderboard */
+.kn-leaderboard {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.kn-leaderboard-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--kn-bg);
+  border-radius: 10px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.kn-leaderboard-rank {
+  font-weight: 700;
+  color: var(--kn-text-muted);
+  width: 1.8rem;
+}
+
+.kn-leaderboard-score {
+  font-weight: 700;
+  flex: 1;
+}
+
+.kn-leaderboard-level {
+  color: var(--kn-text-muted);
+  font-size: 0.75rem;
+}
+
+.kn-leaderboard-empty {
+  color: var(--kn-text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Achievements */
+.kn-achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.kn-achievement-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--kn-bg);
+  border-radius: 10px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.8rem;
+  color: var(--kn-text-muted);
+  opacity: 0.6;
+}
+
+.kn-achievement-unlocked {
+  opacity: 1;
+  color: var(--kn-text);
+}
+
+.kn-achievement-icon {
+  font-size: 1rem;
+}
+
+.kn-achievement-toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--kn-gold);
+  color: #2a2200;
+  border-radius: 14px;
+  padding: 0.6rem 1rem;
+  box-shadow: var(--kn-card-shadow);
+  animation: kn-toast-in 220ms ease;
+}
+
+.kn-achievement-toast-icon {
+  font-size: 1.4rem;
+}
+
+.kn-achievement-toast strong {
+  display: block;
+  font-size: 0.85rem;
+}
+
+.kn-achievement-toast p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+@keyframes kn-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Falling items */
+.kn-falling-item {
+  position: absolute;
+  top: -12%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.4rem 0.65rem;
+  background: var(--kn-accent-2);
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  animation-name: kn-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.kn-item-target {
+  background: var(--kn-danger);
+}
+
+.kn-item-powerup {
+  background: var(--kn-gold);
+  color: #2a2200;
+  box-shadow: 0 0 16px rgba(245, 183, 0, 0.6);
+}
+
+.kn-powerup-icon {
+  font-size: 1.1rem;
+}
+
+.kn-item-sliced {
+  transform: translateX(-50%) scale(1.35);
+  opacity: 0;
+}
+
+.kn-char-done {
+  color: #ffe066;
+}
+
+@keyframes kn-fall {
+  0% {
+    top: -12%;
+  }
+
+  100% {
+    top: 102%;
+  }
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 520px) {
+  .kn-arena {
+    min-height: 360px;
+  }
+
+  .kn-falling-item {
+    font-size: 1.1rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .kn-title {
+    font-size: 1.3rem;
+  }
+
+  .kn-countdown {
+    font-size: 3rem;
+  }
+
+  .kn-score-item {
+    min-width: 60px;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .kn-idle-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .kn-achievement-toast {
+    left: 1rem;
+    right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kn-falling-item {
+    animation-duration: 1ms !important;
+  }
+}
