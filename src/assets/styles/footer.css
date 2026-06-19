@@ -311,15 +311,20 @@
   }
 
   .footer__nav--links a {
-    font-size: 0.7rem;
+    font-size: 0.64rem;
     font-weight: 600;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
     border: 1px solid var(--footer-item-border);
     border-radius: 16px;
-    padding: 4px 9px;
+    padding: 6px 4px;
     background: var(--footer-item-bg);
     line-height: 1.2;
+    width: 92px;
+    flex: 0 0 92px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .footer__nav--links a:hover {
