@@ -21,7 +21,7 @@
   --footer-link-hover: #67e8f9;
   --footer-border: rgba(34, 211, 238, 0.14);
   --footer-item-bg: rgba(255, 255, 255, 0.06);
-  --footer-item-border: rgba(34, 211, 238, 0.25);
+  --footer-item-border: rgba(34, 211, 238, 0.5);
 }
 
 [data-theme="light"] {
@@ -33,14 +33,13 @@
   --footer-link: #64748b;
   --footer-link-hover: #7c3aed;
   --footer-border: #e2e8f0;
-  --footer-item-bg: #f8fafc;
-  --footer-item-border: #e2e8f0;
+  --footer-item-bg: #f5f3ff;
+  --footer-item-border: #a78bfa;
 }
 
 .container__footer {
   background: rgba(255, 255, 255, 0.02);
   border-top: 2px solid var(--footer-border);
-
   padding: 2rem 2rem 0;
   margin-top: 0 !important;
   padding-top: 1rem !important;
@@ -50,7 +49,6 @@
   z-index: 1;
   width: 100%;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +63,6 @@
   left: 5%;
   width: 90%;
   height: 2px;
-
   background: linear-gradient(to right, transparent, #7c3aed, transparent);
 }
 
@@ -276,25 +273,27 @@
   }
 
   .footer__nav {
-    flex-direction: column;
-    gap: 16px;
     display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .footer__nav--item {
     background: var(--footer-item-bg);
-    border: 1px solid var(--footer-item-border);
+    border: 2px solid var(--footer-item-border);
     border-radius: 12px;
-    padding: 10px 12px;
+    padding: 12px 14px 14px;
   }
 
   .footer__nav--title {
     width: 100%;
     text-align: center;
     justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 2px;
     padding: 0 0 8px 0;
+    margin-bottom: 0;
     pointer-events: none;
     color: var(--footer-brand);
   }
@@ -307,18 +306,35 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 6px 12px;
-    padding: 0;
+    gap: 8px;
+    padding: 10px 4px 0;
   }
 
   .footer__nav--links a {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
     text-align: center;
     white-space: nowrap;
+    border: 1px solid var(--footer-item-border);
+    border-radius: 16px;
+    padding: 4px 9px;
+    background: var(--footer-item-bg);
+    line-height: 1.2;
+  }
+
+  .footer__nav--links a:hover {
+    padding-left: 14px;
+    background: var(--footer-highlight);
+    color: #fff;
+    border-color: var(--footer-highlight);
   }
 
   .footer__nav--links a::before {
     display: none;
+  }
+
+  .footer__nav--links a:hover {
+    padding-left: 10px;
   }
 
   .copyright {
