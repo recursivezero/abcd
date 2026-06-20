@@ -13,7 +13,6 @@ import {
   DOUBLE_SCORE_DURATION_MS,
   MAX_LIVES,
   POWER_UP_DISPLAY,
-  POWER_UP_KEYS,
   POWER_UP_SPAWN_CHANCE,
   SLOW_MOTION_DURATION_MS,
   SLOW_MOTION_FALL_MULTIPLIER,
@@ -57,6 +56,8 @@ function playTone(ctx: AudioContext, frequency: number, durationMs: number, type
 
 interface TrackedItem extends FallingItemData {
   el: HTMLDivElement;
+  lane: number;
+  spawnedAt: number;
 }
 
 interface KeyboardNinjaElements {
@@ -81,8 +82,7 @@ interface KeyboardNinjaElements {
   finalCombo: HTMLElement;
   finalMisses: HTMLElement;
   highScoreBadge: HTMLElement;
-  leaderboardIdle: HTMLElement;
-  leaderboardGameover: HTMLElement;
+  leaderboardSidebar: HTMLElement;
   achievementsIdle: HTMLElement;
   toast: HTMLElement;
   toastTitle: HTMLElement;
@@ -150,8 +150,7 @@ export class KeyboardNinjaGame {
       finalCombo: q("#kn-final-combo"),
       finalMisses: q("#kn-final-misses"),
       highScoreBadge: q("#kn-high-score-badge"),
-      leaderboardIdle: q("#kn-leaderboard-idle"),
-      leaderboardGameover: q("#kn-leaderboard-gameover"),
+      leaderboardSidebar: q("#kn-leaderboard-sidebar"),
       achievementsIdle: q("#kn-achievements-idle"),
       toast: q("#kn-achievement-toast"),
       toastTitle: q("#kn-achievement-toast-title")
@@ -282,10 +281,8 @@ export class KeyboardNinjaGame {
   }
 
   private renderLeaderboards(): void {
-    this.el.leaderboardIdle.replaceChildren(this.buildLeaderboardMarkup());
-    this.el.leaderboardGameover.replaceChildren(this.buildLeaderboardMarkup());
+    this.el.leaderboardSidebar.replaceChildren(this.buildLeaderboardMarkup());
   }
-
   private renderAchievements(): void {
     const badges = ACHIEVEMENTS.map((achievement) => {
       const unlocked = this.unlockedAchievementIds.includes(achievement.id);
@@ -358,30 +355,73 @@ export class KeyboardNinjaGame {
 
   private spawnItem(): void {
     const config = getLevelById(this.levelId);
-    const lane = this.laneCounter % NUM_LANES;
-    this.laneCounter += 1;
-    const jitter = randomInt(-3, 3);
+
+    // A lane is "busy" if any falling item in it hasn't had enough time yet
+    // to clear visual space below it. We use a time-based cooldown per lane
+    // instead of just "is anything currently in this lane", because a newly
+    // spawned item starts at the very top and would otherwise immediately
+    // overlap whatever else is still near the top of the same lane.
+    const now = Date.now();
+    const laneLastSpawnAt = new Map<number, number>();
+    Array.from(this.items.values())
+      .filter((item) => item.state === "falling")
+      .forEach((item) => {
+        const spawnedAt = item.spawnedAt ?? now;
+        const existing = laneLastSpawnAt.get(item.lane);
+        if (existing === undefined || spawnedAt > existing) {
+          laneLastSpawnAt.set(item.lane, spawnedAt);
+        }
+      });
+
+    // Minimum time a lane must "rest" before it can be reused. Tied directly
+    // to this level's own spawn interval (not duration) so every level's
+    // pacing stays internally consistent regardless of how fast or slow its
+    // items fall.
+    const laneCooldownMs = config.spawnIntervalMs * (NUM_LANES / 2);
+
+    const freeLanes: number[] = [];
+    for (let i = 0; i < NUM_LANES; i += 1) {
+      const lastSpawnAt = laneLastSpawnAt.get(i);
+      if (lastSpawnAt === undefined || now - lastSpawnAt >= laneCooldownMs) {
+        freeLanes.push(i);
+      }
+    }
+
+    // No lane has rested long enough yet — skip this spawn cycle rather than
+    // forcing an overlap.
+    if (freeLanes.length === 0) {
+      return;
+    }
+
+    const lane = freeLanes[randomInt(0, freeLanes.length)];
+
+    const jitter = randomInt(-2, 2);
     const leftPercent = Math.min(92, Math.max(4, (lane / NUM_LANES) * 92 + 4 + jitter));
 
     const isPowerUp = Math.random() < POWER_UP_SPAWN_CHANCE;
     const powerUp: PowerUpType | undefined = isPowerUp
       ? POWER_UP_TYPES[randomInt(0, POWER_UP_TYPES.length)]
       : undefined;
-    const value = powerUp ? POWER_UP_KEYS[powerUp] : config.pool[randomInt(0, config.pool.length)];
+    // Power-ups borrow a value from the level's own pool so they're sliced
+    // exactly the same way as normal items on that level (single key on
+    // letter/number/mixed levels, full word typed out on the Words level).
+    const value = config.pool[randomInt(0, config.pool.length)];
 
     let durationMs = randomInt(config.minDurationMs, config.maxDurationMs);
     if (Date.now() < this.slowMotionUntil) {
       durationMs = Math.round(durationMs * SLOW_MOTION_FALL_MULTIPLIER);
     }
 
-    const data: FallingItemData = {
+    const data: FallingItemData & { lane: number; spawnedAt: number } = {
       id: createId(),
       value,
       type: powerUp ? "letter" : config.type,
       leftPercent,
       durationMs,
       state: "falling",
-      powerUp
+      powerUp,
+      lane,
+      spawnedAt: Date.now()
     };
 
     const el = this.createItemElement(data);
@@ -530,16 +570,9 @@ export class KeyboardNinjaGame {
     const config = getLevelById(this.levelId);
     const aliveItems = Array.from(this.items.values()).filter((item) => item.state === "falling");
 
-    // Power-ups always slice with a single keypress, regardless of level type.
-    const powerUpMatch = aliveItems.find((item) => item.powerUp && item.value === key);
-    if (powerUpMatch) {
-      this.sliceItem(powerUpMatch);
-      return;
-    }
-
     if (config.type === "word") {
       if (!this.targetId) {
-        const candidate = aliveItems.find((item) => !item.powerUp && item.value[0] === key);
+        const candidate = aliveItems.find((item) => item.value[0] === key);
         if (!candidate) {
           this.registerMiss();
           return;
@@ -576,8 +609,8 @@ export class KeyboardNinjaGame {
       }
       return;
     }
+    const match = aliveItems.find((item) => item.value === key);
 
-    const match = aliveItems.find((item) => !item.powerUp && item.value === key);
     if (match) {
       this.sliceItem(match);
     } else {

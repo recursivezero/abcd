@@ -24,7 +24,7 @@ export const LEVELS: LevelConfig[] = [
     name: "Mixed",
     type: "letter",
     pool: ["A", "7", "K", "3", "M", "9", "Z", "2", "Q", "5", "B", "1", "F", "8"],
-    spawnIntervalMs: 1100,
+    spawnIntervalMs: 2200,
     minDurationMs: 3800,
     maxDurationMs: 5200
   },
@@ -33,7 +33,7 @@ export const LEVELS: LevelConfig[] = [
     name: "Words",
     type: "word",
     pool: ["CAT", "DOG", "SUN", "BAT", "PIG", "HEN", "BEE", "FOX", "OWL", "COW", "ANT", "BUS"],
-    spawnIntervalMs: 2200,
+    spawnIntervalMs: 3200,
     minDurationMs: 6500,
     maxDurationMs: 8500
   }
