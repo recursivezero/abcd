@@ -26,6 +26,20 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
     transition: all 0.2s ease-in-out;
   }
 
+  @media (max-width: 640px) {
+    #keyboard-trigger {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      min-height: 32px !important;
+      padding: 0 !important;
+    }
+
+    #keyboard-trigger svg {
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
   #keyboard-trigger:hover {
     transform: translateY(-2px);
   }
@@ -37,96 +51,31 @@ import KeyboardIcon from "@/assets/icons/KeyboardIcon.svg";
   }
 </style>
 
-<script>
+<script is:inline>
   const showOnTouchElement = document.querySelector(".show_on_touch");
   const isTouchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-  (showOnTouchElement as HTMLElement).style.display = isTouchDevice ? "flex" : "none";
-  let currentHiddenInput: HTMLInputElement | null = null;
-  let isKeyboardForcedOpen: boolean = false;
+  showOnTouchElement.style.display = isTouchDevice ? "flex" : "none";
 
-  function setButtonActiveState(isActive: boolean) {
-    const keyboardTrigger = document.getElementById("keyboard-trigger");
-    if (keyboardTrigger) {
-      if (isActive) {
-        keyboardTrigger.classList.add("active");
-        keyboardTrigger.setAttribute("aria-pressed", "true");
-      } else {
+  const keyboardTrigger = document.getElementById("keyboard-trigger");
+
+  if (keyboardTrigger) {
+    keyboardTrigger.addEventListener("click", () => {
+      // VirtualKeyboard ka toggle button click karo
+      const vkToggleBtn = document.getElementById("vk-toggle-btn");
+      if (vkToggleBtn) {
+        vkToggleBtn.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }));
+      }
+
+      // Active state sync karo
+      const vkContainer = document.getElementById("vk-container");
+      const isVisible = vkContainer && vkContainer.style.display === "flex";
+      if (isVisible) {
         keyboardTrigger.classList.remove("active");
         keyboardTrigger.setAttribute("aria-pressed", "false");
+      } else {
+        keyboardTrigger.classList.add("active");
+        keyboardTrigger.setAttribute("aria-pressed", "true");
       }
-    }
-  }
-
-  function cleanupHiddenInputDOM() {
-    if (currentHiddenInput && document.body.contains(currentHiddenInput)) {
-      document.body.removeChild(currentHiddenInput);
-    }
-    currentHiddenInput = null;
-  }
-
-  function createAndFocusHiddenInput() {
-    if (currentHiddenInput) {
-      currentHiddenInput.blur();
-      cleanupHiddenInputDOM();
-    }
-
-    const hiddenInput = document.createElement("input");
-    hiddenInput.type = "text";
-    hiddenInput.style.position = "fixed";
-    hiddenInput.style.top = "-9999px";
-    hiddenInput.style.left = "-9999px";
-    hiddenInput.style.opacity = "0";
-    hiddenInput.style.height = "0";
-    hiddenInput.style.width = "0";
-    hiddenInput.style.pointerEvents = "none";
-    hiddenInput.id = "hidden-keyboard-input";
-
-    document.body.appendChild(hiddenInput);
-    currentHiddenInput = hiddenInput;
-
-    hiddenInput.addEventListener("blur", () => {
-      cleanupHiddenInputDOM();
     });
-
-    hiddenInput.focus();
-    isKeyboardForcedOpen = true;
-    setButtonActiveState(true);
   }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const keyboardTrigger = document.getElementById("keyboard-trigger");
-    setButtonActiveState(isKeyboardForcedOpen);
-
-    if (keyboardTrigger) {
-      keyboardTrigger.addEventListener("click", () => {
-        if (isKeyboardForcedOpen) {
-          if (currentHiddenInput) {
-            currentHiddenInput.blur();
-          }
-          isKeyboardForcedOpen = false;
-          setButtonActiveState(false);
-        } else {
-          createAndFocusHiddenInput();
-        }
-      });
-    }
-  });
-
-  document.addEventListener("focusin", (event) => {
-    const target = event.target as HTMLElement | null;
-
-    if (
-      isKeyboardForcedOpen &&
-      currentHiddenInput &&
-      document.body.contains(currentHiddenInput) &&
-      target !== currentHiddenInput &&
-      target !== document.getElementById("keyboard-trigger") &&
-      target &&
-      (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)
-    ) {
-      currentHiddenInput.blur();
-      isKeyboardForcedOpen = false;
-      setButtonActiveState(false);
-    }
-  });
 </script>

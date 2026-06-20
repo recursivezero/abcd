@@ -2,29 +2,90 @@
 import "@/assets/styles/faq.css";
 import faqData from "@/data/faq.json";
 import BaseLayout from "@/layouts/Base";
-import TitleLayout from "@/layouts/TitleLayout";
 
 const meta = {
   title: "FAQs",
   description:
     "Find answers to frequently asked questions about abcdkbd's learning platform, features, and educational resources."
 };
+
+const iconColors = [
+  {
+    bg: "#7c3aed",
+    svg: `<circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none"/>
+          <line x1="12" y1="16" x2="12" y2="12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="12" y1="8" x2="12.01" y2="8" stroke="white" stroke-width="2.5" stroke-linecap="round"/>`
+  },
+  {
+    bg: "#16a34a",
+    svg: `<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="7" cy="7" r="1.2" fill="white"/>`
+  },
+  {
+    bg: "#d97706",
+    svg: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="9" cy="7" r="4" stroke="white" stroke-width="2" fill="none"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>`
+  },
+  {
+    bg: "#2563eb",
+    svg: `<rect x="18" y="10" width="3" height="10" rx="1" fill="white"/>
+          <rect x="10.5" y="4" width="3" height="16" rx="1" fill="white"/>
+          <rect x="3" y="14" width="3" height="6" rx="1" fill="white"/>`
+  },
+  {
+    bg: "#db2777",
+    svg: `<rect x="5" y="2" width="14" height="20" rx="2" stroke="white" stroke-width="2" fill="none"/>
+          <line x1="9" y1="7" x2="15" y2="7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="12" cy="17" r="1.2" fill="white"/>`
+  },
+  {
+    bg: "#0d9488",
+    svg: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <polyline points="9,12 11,14 15,10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`
+  }
+];
 ---
 
 <BaseLayout meta={meta}>
-  <TitleLayout title="Frequently Asked Questions" />
-  <section class="faq-container">
+  <!-- Hero Section -->
+  <div class="faq-hero">
+    <img src="/assets/images/faq-hero.png" alt="Frequently Asked Questions" class="faq-hero__img" />
+  </div>
+
+  <!-- FAQ List -->
+  <section class="faq-list">
     {
-      faqData.map((item) => (
-        <article>
-          <details class="faq-item">
-            <summary class="faq-question">{item.question}</summary>
-            <div class="faq-answer">
-              <p>{item.answer}</p>
-            </div>
-          </details>
-        </article>
-      ))
+      faqData.map((item, i) => {
+        const iconMeta = iconColors[i % iconColors.length];
+        return (
+          <article class="faq-card">
+            <details class="faq-details">
+              <summary class="faq-summary">
+                <span class="faq-icon" style={`background:${iconMeta.bg}`} aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" set:html={iconMeta.svg} />
+                </span>
+                <span class="faq-question-text">{item.question}</span>
+                <span class="faq-chevron" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </summary>
+              <div class="faq-answer">
+                <p>{item.answer}</p>
+              </div>
+            </details>
+          </article>
+        );
+      })
     }
   </section>
 </BaseLayout>

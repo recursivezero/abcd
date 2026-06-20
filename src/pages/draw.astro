@@ -3,6 +3,7 @@ import "@/assets/styles/draw.css";
 import Back from "@/components/BackButton.astro";
 import ControlsContainer from "@/components/ControllerContainer.astro";
 import DrawComponent from "@/components/DrawKeyboard.astro";
+import VirtualKeyboard from "@/components/VirtualKeyboard.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
 import BaseLayout from "@/layouts/Base";
 
@@ -43,13 +44,12 @@ const meta = {
     align-items: center !important;
     gap: 0.25rem !important;
   }
-  /* Sirf draw page pe nav links right shift */
+
   :global(.nav__links) {
     justify-content: flex-end !important;
     padding-right: 2rem !important;
   }
 
-  /* Sab control buttons same size */
   :global(.control-button) {
     width: 2.2rem !important;
     height: 2.2rem !important;
@@ -67,7 +67,6 @@ const meta = {
     height: 0.9rem !important;
   }
 
-  /* Speaker — mute-button same size */
   :global(.mute-button) {
     width: 2.2rem !important;
     height: 2.2rem !important;
@@ -79,15 +78,18 @@ const meta = {
     font-size: 1rem !important;
   }
 
-  /* Help button same size */
   :global(.help) {
     width: 2.2rem !important;
     height: 2.2rem !important;
-    font-size: 1rem !important;
+    min-width: 2.2rem !important;
+    min-height: 2.2rem !important;
+    max-width: 2.2rem !important;
+    max-height: 2.2rem !important;
+    font-size: 0.9rem !important;
     padding: 0 !important;
+    box-sizing: border-box !important;
   }
 
-  /* Select Voice  */
   :global(#voice-dropdown) {
     height: 2.2rem !important;
     font-size: 0.75rem !important;
@@ -96,16 +98,14 @@ const meta = {
     border: 1.5px solid var(--primary, #3b82f6) !important;
     background: transparent !important;
     cursor: pointer !important;
-    width: auto !important;
+    width: 5.5rem !important;
   }
 
-  /* SVG same size */
   :global(.controls-container svg) {
     width: 1rem !important;
     height: 1rem !important;
   }
 
-  /* Action group */
   :global(.action__group) {
     max-width: none !important;
     flex-wrap: nowrap !important;
@@ -122,7 +122,6 @@ const meta = {
     align-items: center !important;
   }
 
-  /* Share trigger button — exact class */
   :global(.share-trigger-button) {
     width: 2.2rem !important;
     height: 2.2rem !important;
@@ -132,19 +131,263 @@ const meta = {
   }
 
   :global(.share-trigger-button svg) {
-    width: 1rem !important;
-    height: 1rem !important;
+    width: 0.85rem !important;
+    height: 0.85rem !important;
   }
 
-  /* Theme toggle */
-  :global(.theme-toggle) {
+  /* Sirf header wala theme toggle size fix — drawer wala affect nahi hoga */
+  :global(#headerThemeToggle) {
     width: 2.2rem !important;
     height: 2.2rem !important;
   }
+
+  /* Mobile drawer toggle — hamesha visible */
+  :global(#mobileThemeToggle) {
+    display: flex !important;
+    visibility: visible !important;
+  }
+
+  :global(#keyboard-trigger) {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+  }
+
+  /* Mobile pe saare buttons aur icons same size */
+  @media (max-width: 640px) {
+    :global(.control-button),
+    :global(.mute-button),
+    :global(.help),
+    :global(#keyboard-trigger),
+    :global(.share-trigger-button),
+    :global(#headerThemeToggle) {
+      width: 2.2rem !important;
+      height: 2.2rem !important;
+      min-width: 2.2rem !important;
+      min-height: 2.2rem !important;
+      font-size: 0.85rem !important;
+      padding: 0 !important;
+    }
+
+    :global(.font-icon),
+    :global(.color-icon),
+    :global(.bg-icon),
+    :global(.mute-icon) {
+      font-size: 0.85rem !important;
+    }
+
+    :global(.img-icon) {
+      width: 0.85rem !important;
+      height: 0.85rem !important;
+    }
+
+    :global(.controls-container svg),
+    :global(.share-trigger-button svg),
+    :global(#keyboard-trigger svg) {
+      width: 0.85rem !important;
+      height: 0.85rem !important;
+    }
+
+    :global(#voice-dropdown) {
+      height: 2.2rem !important;
+      width: 5.5rem !important;
+      font-size: 0.7rem !important;
+    }
+
+    :global(.share-button-container) {
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    /* Action group — mask bilkul hatao */
+    :global(.action__group) {
+      overflow-x: auto !important;
+      overflow-y: visible !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      scroll-behavior: smooth !important;
+      -webkit-mask-image: none !important;
+      mask-image: none !important;
+    }
+
+    :global(.action__group::-webkit-scrollbar) {
+      display: none !important;
+    }
+
+    /* Share popover — body level pe render hoga JS se */
+    :global(.share-popover.mobile-teleported) {
+      position: fixed !important;
+      z-index: 99999 !important;
+      left: 0.5rem !important;
+      right: 0.5rem !important;
+      max-width: calc(100vw - 1rem) !important;
+      top: auto !important;
+    }
+  }
 </style>
+
 <BaseLayout meta={meta}>
   <MobileSplash stay={true} />
   <ControlsContainer slot="header-right" />
   <Back />
   <DrawComponent />
+  <VirtualKeyboard />
 </BaseLayout>
+
+<script>
+  function handleControlsPosition() {
+    const actionGroup = document.querySelector(".action__group") as HTMLElement | null;
+    const heroSearch = document.querySelector(".hero-search") as HTMLElement | null;
+    const content = document.getElementById("mainContent");
+    const vkContainer = document.getElementById("vk-container");
+
+    if (!actionGroup || !heroSearch) return;
+
+    if (window.innerWidth <= 640) {
+      const searchBottom = heroSearch.getBoundingClientRect().bottom;
+
+      actionGroup.style.display = "flex";
+      actionGroup.style.position = "fixed";
+      actionGroup.style.top = searchBottom + "px";
+      actionGroup.style.left = "0";
+      actionGroup.style.width = "100%";
+      actionGroup.style.background = "var(--background)";
+      actionGroup.style.padding = "0.4rem 0rem 0.4rem 0.5rem";
+      actionGroup.style.zIndex = "998";
+      actionGroup.style.borderBottom = "1px solid rgba(124,58,237,0.15)";
+      actionGroup.style.justifyContent = "flex-start";
+      actionGroup.style.flexWrap = "nowrap";
+      actionGroup.style.gap = "0.35rem";
+      actionGroup.style.boxSizing = "border-box";
+      actionGroup.style.overflowX = "auto";
+      actionGroup.style.overflowY = "visible";
+      actionGroup.style.scrollbarWidth = "none";
+      actionGroup.style.scrollBehavior = "smooth";
+      actionGroup.style.webkitMaskImage = "none";
+      (actionGroup.style as any).maskImage = "none";
+
+      // Sirf #headerThemeToggle hide karo — #mobileThemeToggle drawer mein safe hai
+      const headerThemeToggle = actionGroup.querySelector("#headerThemeToggle") as HTMLElement | null;
+      if (headerThemeToggle) {
+        headerThemeToggle.style.display = "none";
+        headerThemeToggle.style.visibility = "hidden";
+      }
+
+      // Hamburger ke saath overlap na ho — right padding
+      const hamburger = document.querySelector(".hamburger") as HTMLElement | null;
+      if (hamburger) {
+        const hamRect = hamburger.getBoundingClientRect();
+        actionGroup.style.paddingRight = window.innerWidth - hamRect.left + 8 + "px";
+      }
+
+      setTimeout(() => {
+        actionGroup.scrollLeft = 0;
+      }, 50);
+
+      setTimeout(() => {
+        const spacer = document.getElementById("headerSpacer");
+        if (spacer) {
+          // actionGroup position:fixed hai — .bottom = viewport top se toolbar bottom tak
+          // Yahi exact spacer height honi chahiye
+          const toolbarBottom = actionGroup.getBoundingClientRect().bottom;
+          spacer.style.setProperty("height", toolbarBottom + "px", "important");
+          spacer.style.setProperty("margin", "0", "important");
+          spacer.style.setProperty("padding", "0", "important");
+        }
+        if (content && vkContainer) {
+          const vkH = vkContainer.getBoundingClientRect().height;
+          content.style.paddingBottom = vkH + 16 + "px";
+        }
+      }, 100);
+
+      // Touch scroll support
+      let touchStartX = 0;
+      let scrollStart = 0;
+
+      actionGroup.addEventListener(
+        "touchstart",
+        (e: TouchEvent) => {
+          touchStartX = e.touches[0].clientX;
+          scrollStart = actionGroup.scrollLeft;
+        },
+        { passive: true }
+      );
+
+      actionGroup.addEventListener(
+        "touchmove",
+        (e: TouchEvent) => {
+          const dx = touchStartX - e.touches[0].clientX;
+          actionGroup.scrollLeft = scrollStart + dx;
+        },
+        { passive: true }
+      );
+    } else {
+      // Desktop: sab styles reset
+      actionGroup.style.cssText = "";
+      if (content) content.style.paddingBottom = "";
+    }
+  }
+
+  function fixSharePopover() {
+    if (window.innerWidth > 640) return;
+
+    const shareTrigger = document.getElementById("shareTrigger") as HTMLButtonElement | null;
+    const sharePopover = document.getElementById("sharePopover") as HTMLDivElement | null;
+    if (!shareTrigger || !sharePopover) return;
+
+    if (!sharePopover.classList.contains("mobile-teleported")) {
+      document.body.appendChild(sharePopover);
+      sharePopover.classList.add("mobile-teleported");
+    }
+
+    function updatePopoverPosition() {
+      if (!shareTrigger || !sharePopover) return;
+      const triggerRect = shareTrigger.getBoundingClientRect();
+      const spaceAbove = triggerRect.top;
+      const spaceBelow = window.innerHeight - triggerRect.bottom;
+
+      if (spaceAbove > spaceBelow) {
+        sharePopover.style.bottom = window.innerHeight - triggerRect.top + 8 + "px";
+        sharePopover.style.top = "auto";
+      } else {
+        sharePopover.style.top = triggerRect.bottom + 8 + "px";
+        sharePopover.style.bottom = "auto";
+      }
+    }
+
+    shareTrigger.addEventListener("click", () => {
+      setTimeout(() => {
+        if (sharePopover.classList.contains("is-open")) {
+          updatePopoverPosition();
+        }
+      }, 10);
+    });
+  }
+
+  function init() {
+    handleControlsPosition();
+    fixSharePopover();
+  }
+
+  // Header.astro ka updateSpacer draw page pe galat height set karta hai
+  // Isliye draw page apna spacer baad mein re-set karta hai
+  function overrideSpacer() {
+    if (window.innerWidth > 640) return;
+    const actionGroup = document.querySelector(".action__group") as HTMLElement | null;
+    const spacer = document.getElementById("headerSpacer");
+    if (!actionGroup || !spacer) return;
+    const toolbarBottom = actionGroup.getBoundingClientRect().bottom;
+    if (toolbarBottom > 0) {
+      spacer.style.setProperty("height", toolbarBottom + "px", "important");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+  window.addEventListener("resize", () => handleControlsPosition());
+  window.addEventListener("load", () => {
+    init();
+    setTimeout(overrideSpacer, 200);
+  });
+  document.addEventListener("astro:page-load", init);
+  // Header updateSpacer ke baad apna spacer dobara set karo
+  window.addEventListener("load", () => setTimeout(overrideSpacer, 300));
+</script>

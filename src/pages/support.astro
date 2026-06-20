@@ -496,4 +496,10 @@ const faqs = [
       </div>
     </div>
   </div>
+  <script is:inline>
+    function sToggle(i) {
+      const el = document.getElementById("s" + i);
+      if (el) el.classList.toggle("open");
+    }
+  </script>
 </BaseLayout>

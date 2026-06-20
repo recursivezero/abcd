@@ -136,21 +136,16 @@ const members = pkg.contributors || [];
     </div>
   </div>
 
-  <!-- LEARNING MADE MAGICAL -->
-  <div class="full-bleed banner-bleed">
-    <img src="/assets/images/about-logo.png" alt="Learning Made Magical" class="banner-img" />
-  </div>
-
   <!-- TEAM SECTION -->
   <div class="section-wrap team-section">
     <h2 class="team-heading">Meet Our Passionate Team <span>❤️</span></h2>
     <p class="team-sub">
       Dedicated group of educators, designers, and developers committed to making learning magical.
     </p>
-    <div class="team-grid">
+    <div class="team-grid" id="teamGrid">
       {
-        members.map((member) => (
-          <div class="team-card">
+        members.map((member, index) => (
+          <div class={`team-card ${index >= 4 ? "hidden-card" : ""}`}>
             <Avatar name={member.name} backgroundColor="#10b981" />
             <h3 class="tm-name">{member.name}</h3>
             <p class="tm-role">{member.role}</p>
@@ -161,11 +156,9 @@ const members = pkg.contributors || [];
         ))
       }
     </div>
-  </div>
-
-  <!-- BUILT FOR YOUNG MINDS -->
-  <div class="full-bleed banner-bleed">
-    <img src="/assets/images/about-BuiltYoung.png" alt="Built for Young Minds" class="banner-img" />
+    <div class="show-more-wrap">
+      <button class="show-more-btn" id="toggleBtn" onclick="toggleTeam()"> Show More </button>
+    </div>
   </div>
 </BaseLayout>
 
@@ -173,6 +166,8 @@ const members = pkg.contributors || [];
   /* ── Full bleed base ── */
   .full-bleed {
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     display: block;
     line-height: 0;
   }
@@ -201,6 +196,8 @@ const members = pkg.contributors || [];
   /* ── Section wrapper ── */
   .section-wrap {
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 2.5rem 3rem;
     box-sizing: border-box;
   }
@@ -362,15 +359,17 @@ const members = pkg.contributors || [];
 
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 280px));
     gap: 1.2rem;
+    justify-content: center;
   }
 
   .team-card {
     background: #fff;
     border: 1px solid #f0f0f0;
     border-radius: 1rem;
-    padding: 1.4rem 0.8rem;
+    padding: 2rem 1.5rem; /* padding badha do */
+    min-height: 220px; /* ye add karo */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -379,7 +378,6 @@ const members = pkg.contributors || [];
       transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
       box-shadow 0.2s;
   }
-
   :global([data-theme="dark"]) .team-card {
     background: #1e293b;
     border-color: #2d3f55;
@@ -426,6 +424,65 @@ const members = pkg.contributors || [];
     text-decoration: underline;
   }
 
+  /* ── SHOW MORE ── */
+  .hidden-card {
+    display: none;
+  }
+
+  .show-more-wrap {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .show-more-btn {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: #fff;
+    border: none;
+    padding: 0.65rem 2rem;
+    border-radius: 2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .show-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35);
+  }
+
+  .show-more-btn::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-right: 2.5px solid #fff;
+    border-bottom: 2.5px solid #fff;
+    transform: rotate(45deg);
+    margin-left: 8px;
+    margin-bottom: 4px;
+    transition: transform 0.3s;
+  }
+
+  .show-more-btn.open::after {
+    transform: rotate(-135deg);
+    margin-bottom: -2px;
+  }
+
+  .btn-arrow {
+    transition: transform 0.3s;
+    display: inline-block;
+  }
+
+  .btn-arrow.open {
+    transform: rotate(180deg);
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     .team-grid {
@@ -460,3 +517,17 @@ const members = pkg.contributors || [];
     }
   }
 </style>
+<script is:inline>
+  function toggleTeam() {
+    const btn = document.getElementById("toggleBtn");
+    const hidden = document.querySelectorAll(".hidden-card");
+    const isOpen = btn.classList.contains("open");
+
+    hidden.forEach((card) => {
+      card.style.display = isOpen ? "none" : "flex";
+    });
+
+    btn.classList.toggle("open");
+    btn.childNodes[0].textContent = isOpen ? "Show More" : "Show Less";
+  }
+</script>

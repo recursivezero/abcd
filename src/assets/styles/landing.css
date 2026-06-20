@@ -612,6 +612,19 @@ footer {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
+
+  @media (max-width: 768px) {
+    .games-grid--centered {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .games-grid--centered .game-card {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 420px;
+    }
+  }
 }
 
 /* ══════════════════════════════════════

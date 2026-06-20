@@ -4,15 +4,15 @@ import "@/assets/styles/setting.css";
 ---
 
 <div class="container__setting">
-  <button id="trigger" class="setting__trigger" popovertarget="panel" popovertargetaction="show">
+  <button id="trigger" class="setting__trigger">
     <SettingIcon />
   </button>
-  <div class="setting__panel" id="panel" popover="hint">
+  <div class="setting__panel" id="panel">
     <div class="control__group">
-      <button id="close" class="close" popovertarget="panel" popovertargetaction="hide">X</button>
-      <button id="new" class="add">New Puzzle</button>
-      <button id="shuffle" class="shuffle"> Shuffle </button>
-      <button id="clear" class="clear"> Clear </button>
+      <button id="close" class="close">✕</button>
+      <button id="s-new" class="add">New Puzzle</button>
+      <button id="s-shuffle" class="shuffle">Shuffle</button>
+      <button id="s-clear" class="clear">Clear</button>
       <select id="level" class="level">
         <option value="easy">Easy (Ages 3-5)</option>
         <option value="medium">Medium (Ages 5-6)</option>
@@ -20,4 +20,72 @@ import "@/assets/styles/setting.css";
       </select>
     </div>
   </div>
+  <div class="setting__backdrop" id="backdrop"></div>
 </div>
+
+<script is:inline>
+  (function () {
+    const trigger = document.getElementById("trigger");
+    const panel = document.getElementById("panel");
+    const backdrop = document.getElementById("backdrop");
+    const closeBtn = document.getElementById("close");
+    if (!trigger || !panel) return;
+
+    function openPanel() {
+      const rect = trigger.getBoundingClientRect();
+      const MARGIN = 8;
+      const PANEL_W = 260; // fixed width
+
+      // trigger ke right edge se left calculate karo
+      // panel ka right edge = trigger ka right edge
+      const leftPos = rect.right - PANEL_W;
+
+      panel.style.cssText = `
+        display: block;
+        position: fixed;
+        top: ${rect.bottom + MARGIN}px;
+        left: ${Math.max(MARGIN, leftPos)}px;
+        width: ${PANEL_W}px;
+        z-index: 9999;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+      `;
+
+      backdrop.style.display = "block";
+      trigger.classList.add("open");
+    }
+
+    function closePanel() {
+      panel.style.display = "none";
+      backdrop.style.display = "none";
+      trigger.classList.remove("open");
+    }
+
+    trigger.addEventListener("click", () => (panel.style.display === "block" ? closePanel() : openPanel()));
+    // Replace karo:
+    if (closeBtn) closeBtn.addEventListener("click", closePanel);
+
+    const sClear = document.getElementById("s-clear");
+    if (sClear) {
+      sClear.addEventListener("click", function () {
+        closePanel();
+        // WordSearch state clear karo
+        if (typeof state !== "undefined") {
+          state.selectedCells = [];
+          state.foundWords = [];
+          state.matchedCells = new Map();
+          state.wordColors = new Map();
+          state.solutionColors = new Map();
+          state.isDragging = false;
+          state.showSolution = false;
+          if (typeof renderDOM === "function") renderDOM();
+        }
+      });
+    }
+    if (backdrop) backdrop.addEventListener("click", closePanel);
+    window.addEventListener("resize", () => {
+      if (panel.style.display === "block") openPanel();
+    });
+  })();
+</script>
