@@ -10,82 +10,86 @@ import "@/assets/styles/keyboard-ninja.css";
   }}
   sidebar={false}
 >
-  <div class="kn-wrapper" id="kn-wrapper">
-    <div class="kn-scoreboard-wrap" id="kn-scoreboard-wrap" hidden>
-      <div class="kn-scoreboard">
-        <div class="kn-score-item">
-          <span class="kn-score-label">Score</span>
-          <span class="kn-score-value" id="kn-score">0</span>
+  <div class="kn-page-layout">
+    <div class="kn-wrapper" id="kn-wrapper">
+      <div class="kn-scoreboard-wrap" id="kn-scoreboard-wrap" hidden>
+        <div class="kn-scoreboard">
+          <div class="kn-score-item">
+            <span class="kn-score-label">Score</span>
+            <span class="kn-score-value" id="kn-score">0</span>
+          </div>
+          <div class="kn-score-item">
+            <span class="kn-score-label">Lives</span>
+            <span class="kn-score-value" id="kn-lives">❤️❤️❤️</span>
+          </div>
+          <div class="kn-score-item">
+            <span class="kn-score-label">Combo</span>
+            <span class="kn-score-value" id="kn-combo">x0</span>
+          </div>
+          <div class="kn-score-item">
+            <span class="kn-score-label">Misses</span>
+            <span class="kn-score-value" id="kn-misses">0</span>
+          </div>
+          <div class="kn-score-item kn-score-level">
+            <span class="kn-score-label">Level</span>
+            <span class="kn-score-value" id="kn-level-name">Letters</span>
+          </div>
         </div>
-        <div class="kn-score-item">
-          <span class="kn-score-label">Lives</span>
-          <span class="kn-score-value" id="kn-lives">❤️❤️❤️</span>
-        </div>
-        <div class="kn-score-item">
-          <span class="kn-score-label">Combo</span>
-          <span class="kn-score-value" id="kn-combo">x0</span>
-        </div>
-        <div class="kn-score-item">
-          <span class="kn-score-label">Misses</span>
-          <span class="kn-score-value" id="kn-misses">0</span>
-        </div>
-        <div class="kn-score-item kn-score-level">
-          <span class="kn-score-label">Level</span>
-          <span class="kn-score-value" id="kn-level-name">Letters</span>
+
+        <div class="kn-powerup-badges">
+          <span class="kn-powerup-badge" id="kn-badge-slow" hidden>🐢 Slow-Mo Active</span>
+          <span class="kn-powerup-badge" id="kn-badge-double" hidden>✨ 2x Score Active</span>
         </div>
       </div>
 
-      <div class="kn-powerup-badges">
-        <span class="kn-powerup-badge" id="kn-badge-slow" hidden>🐢 Slow-Mo Active</span>
-        <span class="kn-powerup-badge" id="kn-badge-double" hidden>✨ 2x Score Active</span>
+      <div class="kn-arena" id="kn-arena">
+        <div class="kn-card kn-start-card" id="kn-start-card">
+          <h1 class="kn-title">⌨️ Keyboard Ninja</h1>
+          <p class="kn-subtitle">Slice the falling letters before they hit the ground!</p>
+
+          <div class="kn-level-picker" id="kn-level-picker" role="group" aria-label="Choose difficulty level">
+            <button type="button" class="kn-level-btn kn-level-btn-active" data-level-id="1">Letters</button>
+            <button type="button" class="kn-level-btn" data-level-id="2">Numbers</button>
+            <button type="button" class="kn-level-btn" data-level-id="3">Mixed</button>
+            <button type="button" class="kn-level-btn" data-level-id="4">Words</button>
+          </div>
+
+          <button type="button" class="kn-start-btn" id="kn-start-btn">Start Game</button>
+        </div>
+
+        <div class="kn-countdown" id="kn-countdown" hidden></div>
+
+        <div class="kn-card kn-gameover-card" id="kn-gameover-card" hidden>
+          <h2 class="kn-title">Game Over!</h2>
+          <p class="kn-high-score-badge" id="kn-high-score-badge" hidden>🏆 New High Score!</p>
+          <p class="kn-subtitle">Here's how you did:</p>
+          <ul class="kn-stats-list">
+            <li>Final Score: <strong id="kn-final-score">0</strong></li>
+            <li>Correct Hits: <strong id="kn-final-correct">0</strong></li>
+            <li>Best Combo: <strong id="kn-final-combo">x0</strong></li>
+            <li>Misses: <strong id="kn-final-misses">0</strong></li>
+          </ul>
+
+          <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-top:0.5rem;">
+            <button type="button" class="kn-start-btn" id="kn-restart-btn">Play Again</button>
+            <button
+              type="button"
+              class="kn-start-btn"
+              id="kn-back-btn"
+              style="background:var(--kn-accent-2); box-shadow: 0 6px 16px rgba(77,150,255,0.4);">Change Level</button
+            >
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="kn-arena" id="kn-arena">
-      <div class="kn-card kn-start-card" id="kn-start-card">
-        <h1 class="kn-title">⌨️ Keyboard Ninja</h1>
-        <p class="kn-subtitle">Slice the falling letters before they hit the ground!</p>
+    <aside class="kn-sidebar">
+      <h3 class="kn-panel-heading">🏆 Top Scores</h3>
+      <div id="kn-leaderboard-sidebar"></div>
 
-        <div class="kn-level-picker" id="kn-level-picker" role="group" aria-label="Choose difficulty level">
-          <button type="button" class="kn-level-btn kn-level-btn-active" data-level-id="1">Letters</button>
-          <button type="button" class="kn-level-btn" data-level-id="2">Numbers</button>
-          <button type="button" class="kn-level-btn" data-level-id="3">Mixed</button>
-          <button type="button" class="kn-level-btn" data-level-id="4">Words</button>
-        </div>
-
-        <button type="button" class="kn-start-btn" id="kn-start-btn">Start Game</button>
-
-        <div class="kn-idle-panels">
-          <div>
-            <h3 class="kn-panel-heading">🏆 Top Scores</h3>
-            <div id="kn-leaderboard-idle"></div>
-          </div>
-          <div>
-            <h3 class="kn-panel-heading">Achievements</h3>
-            <div class="kn-achievements" id="kn-achievements-idle"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="kn-countdown" id="kn-countdown" hidden></div>
-
-      <div class="kn-card kn-gameover-card" id="kn-gameover-card" hidden>
-        <h2 class="kn-title">Game Over!</h2>
-        <p class="kn-high-score-badge" id="kn-high-score-badge" hidden>🏆 New High Score!</p>
-        <p class="kn-subtitle">Here's how you did:</p>
-        <ul class="kn-stats-list">
-          <li>Final Score: <strong id="kn-final-score">0</strong></li>
-          <li>Correct Hits: <strong id="kn-final-correct">0</strong></li>
-          <li>Best Combo: <strong id="kn-final-combo">x0</strong></li>
-          <li>Misses: <strong id="kn-final-misses">0</strong></li>
-        </ul>
-
-        <h3 class="kn-panel-heading">🏆 Top Scores</h3>
-        <div id="kn-leaderboard-gameover"></div>
-
-        <button type="button" class="kn-start-btn" id="kn-restart-btn">Play Again</button>
-      </div>
-    </div>
+      <h3 class="kn-panel-heading" style="margin-top:1.25rem;">Achievements</h3>
+      <div class="kn-achievements" id="kn-achievements-idle"></div>
+    </aside>
 
     <div class="kn-achievement-toast" id="kn-achievement-toast" hidden>
       <span class="kn-achievement-toast-icon">🏆</span>
@@ -94,28 +98,41 @@ import "@/assets/styles/keyboard-ninja.css";
         <p id="kn-achievement-toast-title"></p>
       </div>
     </div>
-  </div>
 
-  <script>
-    import { KeyboardNinjaGame } from "@/scripts/GameEngine";
+    <script>
+      import { KeyboardNinjaGame } from "@/scripts/GameEngine";
 
-    let game: KeyboardNinjaGame | null = null;
+      let game: KeyboardNinjaGame | null = null;
 
-    function start() {
-      if (game) game.destroy();
-      game = new KeyboardNinjaGame();
-      game.init();
-    }
-
-    function stop() {
-      if (game) {
-        game.destroy();
-        game = null;
+      function start() {
+        if (game) game.destroy();
+        game = new KeyboardNinjaGame();
+        game.init();
       }
-    }
 
-    start();
-    document.addEventListener("astro:page-load", start);
-    document.addEventListener("astro:before-swap", stop);
-  </script>
+      function stop() {
+        if (game) {
+          game.destroy();
+          game = null;
+        }
+      }
+
+      function destroyAndRestart() {
+        if (game) {
+          game.destroy();
+          game = null;
+        }
+        game = new KeyboardNinjaGame();
+        game.init();
+      }
+
+      start();
+      document.getElementById("kn-back-btn")?.addEventListener("click", destroyAndRestart);
+      document.addEventListener("astro:page-load", () => {
+        stop();
+        start();
+      });
+      document.addEventListener("astro:before-swap", stop);
+    </script>
+  </div>
 </Base>
