@@ -117,6 +117,13 @@ export const gamesData: Record<AgeKey, Game[]> = {
       image: "https://www.mapsofindia.com/images2/india-map.jpg",
       tags: ["geography", "gk"],
       link: "/capital"
+    },
+    {
+      title: "Play",
+      description: "Master keyboard skills by slicing falling letters and pressing the correct keys",
+      image: "/assets/images/knplay.png",
+      tags: ["Keyboard", "Typing", "Educational"],
+      link: "/play"
     }
   ],
   "9-12": [
