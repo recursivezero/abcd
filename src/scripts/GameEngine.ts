@@ -298,7 +298,12 @@ export class KeyboardNinjaGame {
       title.className = "kn-achievement-title";
       title.textContent = achievement.title;
 
-      badge.append(icon, title);
+      // Progress indicator
+      const progress = document.createElement("span");
+      progress.className = "kn-achievement-progress";
+      progress.textContent = unlocked ? "✓ Unlocked" : "Locked";
+
+      badge.append(icon, title, progress);
       return badge;
     });
     this.el.achievementsIdle.replaceChildren(...badges);
@@ -313,6 +318,18 @@ export class KeyboardNinjaGame {
     this.unlockedAchievementIds = [...this.unlockedAchievementIds, ...newlyUnlocked.map((a) => a.id)];
     saveUnlockedAchievementIds(this.unlockedAchievementIds);
     this.renderAchievements();
+
+    window.setTimeout(() => {
+      const badges = this.el.achievementsIdle.querySelectorAll(".kn-achievement-badge");
+      newlyUnlocked.forEach((a) => {
+        const idx = ACHIEVEMENTS.findIndex((ach) => ach.id === a.id);
+        if (badges[idx]) {
+          badges[idx].classList.add("kn-achievement-flash");
+          window.setTimeout(() => badges[idx].classList.remove("kn-achievement-flash"), 1000);
+        }
+      });
+    }, 50);
+
     newlyUnlocked.forEach((achievement) => this.queueToast(achievement));
   }
 
@@ -666,6 +683,13 @@ export class KeyboardNinjaGame {
 
   private endGame(): void {
     this.clearSpawnTimer();
+
+    // Remove all falling items immediately
+    this.items.forEach((item) => item.el.remove());
+    this.items.clear();
+    this.targetId = null;
+    this.typedBuffer = "";
+
     this.setStatus("gameover");
 
     if (!this.leaderboardSaved) {
