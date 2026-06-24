@@ -65,11 +65,13 @@ interface KeyboardNinjaElements {
   scoreboardWrap: HTMLElement;
   arena: HTMLElement;
   startCard: HTMLElement;
-  levelPicker: HTMLElement;
   startBtn: HTMLButtonElement;
+  changeLevelCard: HTMLElement;
+  playBtn: HTMLButtonElement;
   countdown: HTMLElement;
   gameoverCard: HTMLElement;
   restartBtn: HTMLButtonElement;
+  backBtn: HTMLButtonElement;
   score: HTMLElement;
   lives: HTMLElement;
   combo: HTMLElement;
@@ -104,6 +106,8 @@ export class KeyboardNinjaGame {
   private leaderboard: LeaderboardEntry[] = [];
   private unlockedAchievementIds: string[] = [];
   private isNewHighScore = false;
+  /** Once true, "idle" status shows the Change Level card instead of the first-load splash card. */
+  private hasPlayedOnce = false;
 
   private laneCounter = 0;
   private spawnTimer: number | null = null;
@@ -133,11 +137,13 @@ export class KeyboardNinjaGame {
       scoreboardWrap: q("#kn-scoreboard-wrap"),
       arena: q("#kn-arena"),
       startCard: q("#kn-start-card"),
-      levelPicker: q("#kn-level-picker"),
       startBtn: q<HTMLButtonElement>("#kn-start-btn"),
+      changeLevelCard: q("#kn-changelevel-card"),
+      playBtn: q<HTMLButtonElement>("#kn-play-btn"),
       countdown: q("#kn-countdown"),
       gameoverCard: q("#kn-gameover-card"),
       restartBtn: q<HTMLButtonElement>("#kn-restart-btn"),
+      backBtn: q<HTMLButtonElement>("#kn-back-btn"),
       score: q("#kn-score"),
       lives: q("#kn-lives"),
       combo: q("#kn-combo"),
@@ -159,11 +165,17 @@ export class KeyboardNinjaGame {
     this.leaderboard = getLeaderboard();
     this.unlockedAchievementIds = getUnlockedAchievementIds();
 
-    this.el.levelPicker.querySelectorAll<HTMLButtonElement>(".kn-level-btn").forEach((btn) => {
+    // Both the first-load start card and the Change Level card share the
+    // ".kn-level-btn" class, so wiring this once at the document level keeps
+    // both pickers in sync with whichever one is currently visible.
+    root.querySelectorAll<HTMLButtonElement>(".kn-level-btn").forEach((btn) => {
       btn.addEventListener("click", () => this.selectLevel(Number(btn.dataset.levelId)));
     });
+
     this.el.startBtn.addEventListener("click", () => this.startGame());
+    this.el.playBtn.addEventListener("click", () => this.startGame());
     this.el.restartBtn.addEventListener("click", () => this.startGame());
+    this.el.backBtn.addEventListener("click", () => this.showLevelSelect());
 
     window.addEventListener("keydown", this.boundKeydown);
 
@@ -179,6 +191,9 @@ export class KeyboardNinjaGame {
     this.clearSpawnTimer();
     if (this.countdownTimer) window.clearTimeout(this.countdownTimer);
     if (this.toastTimer) window.clearTimeout(this.toastTimer);
+    this.el.toast.hidden = true;
+    this.isToastShowing = false;
+    this.toastQueue = [];
     this.items.forEach((item) => item.el.remove());
     this.items.clear();
   }
@@ -216,10 +231,23 @@ export class KeyboardNinjaGame {
 
   private setStatus(status: GameStatus): void {
     this.status = status;
-    this.el.startCard.hidden = status !== "idle";
+    const isIdle = status === "idle";
+    // On the very first load we show the full splash (title + tagline).
+    // After the player has been through at least one game, "idle" means
+    // they clicked "Change Level" from the Game Over card, so show the
+    // lighter-weight Change Level card instead.
+    this.el.startCard.hidden = !(isIdle && !this.hasPlayedOnce);
+    this.el.changeLevelCard.hidden = !(isIdle && this.hasPlayedOnce);
     this.el.countdown.hidden = status !== "countdown";
     this.el.gameoverCard.hidden = status !== "gameover";
     this.el.scoreboardWrap.hidden = status !== "playing" && status !== "countdown";
+
+    // Start screen ke alawa sab jagah Quit dikhega
+    const quitBtn = document.getElementById("kn-quit-btn") as HTMLElement | null;
+
+    if (quitBtn) {
+      quitBtn.hidden = status === "idle" && !this.hasPlayedOnce;
+    }
   }
 
   private selectLevel(id: number): void {
@@ -229,7 +257,7 @@ export class KeyboardNinjaGame {
   }
 
   private renderLevelPicker(): void {
-    this.el.levelPicker.querySelectorAll<HTMLButtonElement>(".kn-level-btn").forEach((btn) => {
+    document.querySelectorAll<HTMLButtonElement>(".kn-level-btn").forEach((btn) => {
       btn.classList.toggle("kn-level-btn-active", Number(btn.dataset.levelId) === this.levelId);
     });
   }
@@ -679,6 +707,63 @@ export class KeyboardNinjaGame {
     this.el.highScoreBadge.hidden = true;
     this.renderScoreboard();
     this.runCountdown();
+  }
+
+  /** Called when "Change Level" is clicked on the Game Over card. Stops any
+   *  leftover game state and shows the Change Level picker card, without
+   *  tearing down and recreating the whole game instance. */
+  private showLevelSelect(): void {
+    this.hasPlayedOnce = true;
+    this.clearSpawnTimer();
+    if (this.countdownTimer) window.clearTimeout(this.countdownTimer);
+
+    this.items.forEach((item) => item.el.remove());
+    this.items.clear();
+    this.targetId = null;
+    this.typedBuffer = "";
+
+    this.el.highScoreBadge.hidden = true;
+    this.setStatus("idle");
+  }
+  public quitGame(): void {
+    this.hasPlayedOnce = false;
+
+    this.clearSpawnTimer();
+
+    if (this.countdownTimer) {
+      window.clearTimeout(this.countdownTimer);
+    }
+
+    this.items.forEach((item) => item.el.remove());
+    this.items.clear();
+
+    this.targetId = null;
+    this.typedBuffer = "";
+
+    // RESET GAME STATE
+    this.doubleScoreUntil = 0;
+    this.slowMotionUntil = 0;
+    this.activePowerUps = {
+      slowMotion: false,
+      doubleScore: false
+    };
+
+    this.isNewHighScore = false;
+    this.leaderboardSaved = false;
+
+    this.stats = {
+      score: 0,
+      lives: STARTING_LIVES,
+      misses: 0,
+      combo: 0,
+      bestCombo: 0,
+      correctCount: 0
+    };
+
+    this.el.highScoreBadge.hidden = true;
+    this.renderScoreboard();
+
+    this.setStatus("idle");
   }
 
   private endGame(): void {
