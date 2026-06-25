@@ -1,4 +1,6 @@
 ---
+import FeaturedGames from "../components/FeaturedGames.astro";
+
 interface Props {
   appName?: string;
 }
@@ -87,6 +89,9 @@ const ageGroups = [
 <section class="hero-section">
   <img src="/assets/images/hero-kids1.png" alt="Kids learning together" class="hero-bg-img" loading="eager" />
 </section>
+
+<!-- ✅ Featured Games section — Hero ke baad, Age Groups se pehle -->
+<FeaturedGames />
 
 <section class="age-section" id="categories">
   <div class="hdr">
