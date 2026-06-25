@@ -25,12 +25,43 @@ import {
   getUnlockedAchievementIds,
   saveUnlockedAchievementIds
 } from "../utils/keyboard-ninja/storage";
+
 const STARTING_LIVES = 3;
 const NUM_LANES = 6;
 const SLICE_REMOVE_DELAY_MS = 220;
 const COUNTDOWN_START = 3;
 const COUNTDOWN_STEP_MS = 700;
 const ACHIEVEMENT_TOAST_MS = 3200;
+
+// ── Game Config Types ──────────────────────────────────────────
+export type ItemShape = "square" | "rounded" | "pill";
+export type ItemSpeed = "slow" | "normal" | "fast";
+
+export interface GameConfig {
+  itemColor: string; // hex color for falling items
+  itemShape: ItemShape; // border-radius style
+  itemSpeed: ItemSpeed; // duration multiplier
+}
+
+const SPEED_MULTIPLIER: Record<ItemSpeed, number> = {
+  slow: 1.7,
+  normal: 1.0,
+  fast: 0.55
+};
+
+const SHAPE_RADIUS: Record<ItemShape, string> = {
+  square: "0px",
+  rounded: "8px",
+  pill: "999px"
+};
+
+const DEFAULT_CONFIG: GameConfig = {
+  itemColor: "#4d96ff",
+  itemShape: "square",
+  itemSpeed: "normal"
+};
+
+// ──────────────────────────────────────────────────────────────
 
 function createId(): string {
   return `item-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -90,11 +121,6 @@ interface KeyboardNinjaElements {
   toastTitle: HTMLElement;
 }
 
-/**
- * Keyboard Ninja game engine - pure TypeScript, no framework.
- * Owns all state and talks to the DOM directly. Markup lives in
- * keyboard-ninja.astro; this class wires it up and drives it.
- */
 export class KeyboardNinjaGame {
   private status: GameStatus = "idle";
   private levelId = 1;
@@ -106,8 +132,10 @@ export class KeyboardNinjaGame {
   private leaderboard: LeaderboardEntry[] = [];
   private unlockedAchievementIds: string[] = [];
   private isNewHighScore = false;
-  /** Once true, "idle" status shows the Change Level card instead of the first-load splash card. */
   private hasPlayedOnce = false;
+
+  // ── Config ──
+  private config: GameConfig = { ...DEFAULT_CONFIG };
 
   private laneCounter = 0;
   private spawnTimer: number | null = null;
@@ -124,7 +152,6 @@ export class KeyboardNinjaGame {
   private el!: KeyboardNinjaElements;
   private boundKeydown = (event: KeyboardEvent) => this.handleKeydown(event);
 
-  /** Resolves all DOM hooks inside `root` and wires up listeners. Call once per page. */
   init(root: ParentNode = document): void {
     const q = <T extends HTMLElement>(selector: string): T => {
       const found = root.querySelector<T>(selector);
@@ -165,9 +192,6 @@ export class KeyboardNinjaGame {
     this.leaderboard = getLeaderboard();
     this.unlockedAchievementIds = getUnlockedAchievementIds();
 
-    // Both the first-load start card and the Change Level card share the
-    // ".kn-level-btn" class, so wiring this once at the document level keeps
-    // both pickers in sync with whichever one is currently visible.
     root.querySelectorAll<HTMLButtonElement>(".kn-level-btn").forEach((btn) => {
       btn.addEventListener("click", () => this.selectLevel(Number(btn.dataset.levelId)));
     });
@@ -177,6 +201,9 @@ export class KeyboardNinjaGame {
     this.el.restartBtn.addEventListener("click", () => this.startGame());
     this.el.backBtn.addEventListener("click", () => this.showLevelSelect());
 
+    // ── Config controls wire-up ──
+    this.wireConfigControls(root);
+
     window.addEventListener("keydown", this.boundKeydown);
 
     this.renderLevelPicker();
@@ -185,7 +212,48 @@ export class KeyboardNinjaGame {
     this.setStatus("idle");
   }
 
-  /** Removes listeners and timers. Call if the page/script can be torn down (e.g. view-transition navigation). */
+  // ── Wire config panel controls ─────────────────────────────
+  private wireConfigControls(root: ParentNode): void {
+    const toggleBtn = root.querySelector<HTMLButtonElement>("#kn-settings-toggle");
+    const panel = root.querySelector<HTMLElement>("#kn-settings-panel");
+    toggleBtn?.addEventListener("click", () => {
+      const open = panel?.classList.toggle("kn-settings-open");
+      toggleBtn.setAttribute("aria-expanded", String(!!open));
+    });
+
+    // Color — DONO cards ke color inputs sync karo
+    const colorInputs = root.querySelectorAll<HTMLInputElement>(".kn-cfg-color");
+    colorInputs.forEach((input) => {
+      input.addEventListener("input", () => {
+        this.config.itemColor = input.value;
+        // Dono inputs same value pe rakho
+        colorInputs.forEach((i) => {
+          i.value = input.value;
+        });
+      });
+    });
+
+    // Shape — querySelectorAll se dono cards ke buttons
+    root.querySelectorAll<HTMLButtonElement>("[data-shape]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.config.itemShape = btn.dataset.shape as ItemShape;
+        root
+          .querySelectorAll<HTMLButtonElement>("[data-shape]")
+          .forEach((b) => b.classList.toggle("kn-cfg-btn-active", b.dataset.shape === btn.dataset.shape));
+      });
+    });
+
+    // Speed
+    root.querySelectorAll<HTMLButtonElement>("[data-speed]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.config.itemSpeed = btn.dataset.speed as ItemSpeed;
+        root
+          .querySelectorAll<HTMLButtonElement>("[data-speed]")
+          .forEach((b) => b.classList.toggle("kn-cfg-btn-active", b.dataset.speed === btn.dataset.speed));
+      });
+    });
+  }
+
   destroy(): void {
     window.removeEventListener("keydown", this.boundKeydown);
     this.clearSpawnTimer();
@@ -198,7 +266,7 @@ export class KeyboardNinjaGame {
     this.items.clear();
   }
 
-  // ---------- audio (Web Audio API, no external sound files) ----------
+  // ---------- audio ----------
 
   private ensureAudio(): AudioContext | null {
     if (!this.audioCtx) {
@@ -232,19 +300,13 @@ export class KeyboardNinjaGame {
   private setStatus(status: GameStatus): void {
     this.status = status;
     const isIdle = status === "idle";
-    // On the very first load we show the full splash (title + tagline).
-    // After the player has been through at least one game, "idle" means
-    // they clicked "Change Level" from the Game Over card, so show the
-    // lighter-weight Change Level card instead.
     this.el.startCard.hidden = !(isIdle && !this.hasPlayedOnce);
     this.el.changeLevelCard.hidden = !(isIdle && this.hasPlayedOnce);
     this.el.countdown.hidden = status !== "countdown";
     this.el.gameoverCard.hidden = status !== "gameover";
     this.el.scoreboardWrap.hidden = status !== "playing" && status !== "countdown";
 
-    // Start screen ke alawa sab jagah Quit dikhega
     const quitBtn = document.getElementById("kn-quit-btn") as HTMLElement | null;
-
     if (quitBtn) {
       quitBtn.hidden = status === "idle" && !this.hasPlayedOnce;
     }
@@ -311,6 +373,7 @@ export class KeyboardNinjaGame {
   private renderLeaderboards(): void {
     this.el.leaderboardSidebar.replaceChildren(this.buildLeaderboardMarkup());
   }
+
   private renderAchievements(): void {
     const badges = ACHIEVEMENTS.map((achievement) => {
       const unlocked = this.unlockedAchievementIds.includes(achievement.id);
@@ -326,7 +389,6 @@ export class KeyboardNinjaGame {
       title.className = "kn-achievement-title";
       title.textContent = achievement.title;
 
-      // Progress indicator
       const progress = document.createElement("span");
       progress.className = "kn-achievement-progress";
       progress.textContent = unlocked ? "✓ Unlocked" : "Locked";
@@ -401,11 +463,6 @@ export class KeyboardNinjaGame {
   private spawnItem(): void {
     const config = getLevelById(this.levelId);
 
-    // A lane is "busy" if any falling item in it hasn't had enough time yet
-    // to clear visual space below it. We use a time-based cooldown per lane
-    // instead of just "is anything currently in this lane", because a newly
-    // spawned item starts at the very top and would otherwise immediately
-    // overlap whatever else is still near the top of the same lane.
     const now = Date.now();
     const laneLastSpawnAt = new Map<number, number>();
     Array.from(this.items.values())
@@ -418,10 +475,6 @@ export class KeyboardNinjaGame {
         }
       });
 
-    // Minimum time a lane must "rest" before it can be reused. Tied directly
-    // to this level's own spawn interval (not duration) so every level's
-    // pacing stays internally consistent regardless of how fast or slow its
-    // items fall.
     const laneCooldownMs = config.spawnIntervalMs * (NUM_LANES / 2);
 
     const freeLanes: number[] = [];
@@ -432,14 +485,9 @@ export class KeyboardNinjaGame {
       }
     }
 
-    // No lane has rested long enough yet — skip this spawn cycle rather than
-    // forcing an overlap.
-    if (freeLanes.length === 0) {
-      return;
-    }
+    if (freeLanes.length === 0) return;
 
     const lane = freeLanes[randomInt(0, freeLanes.length)];
-
     const jitter = randomInt(-2, 2);
     const leftPercent = Math.min(92, Math.max(4, (lane / NUM_LANES) * 92 + 4 + jitter));
 
@@ -447,12 +495,11 @@ export class KeyboardNinjaGame {
     const powerUp: PowerUpType | undefined = isPowerUp
       ? POWER_UP_TYPES[randomInt(0, POWER_UP_TYPES.length)]
       : undefined;
-    // Power-ups borrow a value from the level's own pool so they're sliced
-    // exactly the same way as normal items on that level (single key on
-    // letter/number/mixed levels, full word typed out on the Words level).
     const value = config.pool[randomInt(0, config.pool.length)];
 
+    // ── Apply speed config ──
     let durationMs = randomInt(config.minDurationMs, config.maxDurationMs);
+    durationMs = Math.round(durationMs * SPEED_MULTIPLIER[this.config.itemSpeed]);
     if (Date.now() < this.slowMotionUntil) {
       durationMs = Math.round(durationMs * SLOW_MOTION_FALL_MULTIPLIER);
     }
@@ -482,6 +529,15 @@ export class KeyboardNinjaGame {
     div.style.animationDuration = `${data.durationMs}ms`;
     div.dataset.id = data.id;
 
+    // ── Apply color + shape config (only for non-powerup items) ──
+    if (!data.powerUp) {
+      div.style.backgroundColor = this.config.itemColor;
+      div.style.borderRadius = SHAPE_RADIUS[this.config.itemShape];
+    } else {
+      // Powerups keep their own shape
+      div.style.borderRadius = SHAPE_RADIUS[this.config.itemShape];
+    }
+
     if (data.powerUp) {
       const info = POWER_UP_DISPLAY[data.powerUp];
       div.title = info.label;
@@ -498,9 +554,6 @@ export class KeyboardNinjaGame {
       div.appendChild(span);
     });
 
-    // The fall keyframe ending naturally means the item reached the bottom uncaught.
-    // The slice pop-out uses a CSS transition (not a keyframe animation), so it
-    // never fires this listener - see handleItemMissed's state guard either way.
     div.addEventListener("animationend", () => this.handleItemMissed(data.id));
     return div;
   }
@@ -654,8 +707,8 @@ export class KeyboardNinjaGame {
       }
       return;
     }
-    const match = aliveItems.find((item) => item.value === key);
 
+    const match = aliveItems.find((item) => item.value === key);
     if (match) {
       this.sliceItem(match);
     } else {
@@ -709,9 +762,6 @@ export class KeyboardNinjaGame {
     this.runCountdown();
   }
 
-  /** Called when "Change Level" is clicked on the Game Over card. Stops any
-   *  leftover game state and shows the Change Level picker card, without
-   *  tearing down and recreating the whole game instance. */
   private showLevelSelect(): void {
     this.hasPlayedOnce = true;
     this.clearSpawnTimer();
@@ -725,51 +775,33 @@ export class KeyboardNinjaGame {
     this.el.highScoreBadge.hidden = true;
     this.setStatus("idle");
   }
+
   public quitGame(): void {
     this.hasPlayedOnce = false;
-
     this.clearSpawnTimer();
 
-    if (this.countdownTimer) {
-      window.clearTimeout(this.countdownTimer);
-    }
+    if (this.countdownTimer) window.clearTimeout(this.countdownTimer);
 
     this.items.forEach((item) => item.el.remove());
     this.items.clear();
 
     this.targetId = null;
     this.typedBuffer = "";
-
-    // RESET GAME STATE
     this.doubleScoreUntil = 0;
     this.slowMotionUntil = 0;
-    this.activePowerUps = {
-      slowMotion: false,
-      doubleScore: false
-    };
-
+    this.activePowerUps = { slowMotion: false, doubleScore: false };
     this.isNewHighScore = false;
     this.leaderboardSaved = false;
-
-    this.stats = {
-      score: 0,
-      lives: STARTING_LIVES,
-      misses: 0,
-      combo: 0,
-      bestCombo: 0,
-      correctCount: 0
-    };
+    this.stats = { score: 0, lives: STARTING_LIVES, misses: 0, combo: 0, bestCombo: 0, correctCount: 0 };
 
     this.el.highScoreBadge.hidden = true;
     this.renderScoreboard();
-
     this.setStatus("idle");
   }
 
   private endGame(): void {
     this.clearSpawnTimer();
 
-    // Remove all falling items immediately
     this.items.forEach((item) => item.el.remove());
     this.items.clear();
     this.targetId = null;

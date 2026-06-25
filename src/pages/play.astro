@@ -54,6 +54,26 @@ import Back from "@/components/BackButton.astro";
 
         <!-- Arena -->
         <div class="kn-arena" id="kn-arena">
+          <!-- ⚙️ Settings icon — arena top-right, maximize ke left -->
+          <button type="button" class="kn-arena-cfg-btn" id="kn-cfg-toggle" title="Customize" aria-expanded="false">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+              ></path>
+            </svg>
+          </button>
+
           <!-- Maximize button — arena top-right -->
           <button type="button" class="kn-tb-btn kn-tb-maximize kn-arena-maximize" id="kn-tb-maximize" title="Maximize">
             <svg
@@ -86,6 +106,32 @@ import Back from "@/components/BackButton.astro";
                 fill="var(--kn-bg-secondary)"></rect>
             </svg>
           </button>
+
+          <!-- ⚙️ Settings popup panel -->
+          <div class="kn-cfg-popup" id="kn-cfg-popup" hidden>
+            <div class="kn-cfg-row">
+              <label class="kn-cfg-label" for="kn-cfg-color">🎨 Letter Color</label>
+              <input type="color" id="kn-cfg-color" class="kn-cfg-color" value="#4d96ff" />
+            </div>
+            <div class="kn-cfg-row">
+              <span class="kn-cfg-label">🔷 Shape</span>
+              <div class="kn-cfg-btn-group">
+                <button type="button" class="kn-cfg-btn kn-cfg-btn-active" data-shape="square">■ Square</button>
+                <button type="button" class="kn-cfg-btn" data-shape="rounded">▢ Rounded</button>
+                <button type="button" class="kn-cfg-btn" data-shape="pill">⬭ Pill</button>
+              </div>
+            </div>
+            <div class="kn-cfg-row">
+              <span class="kn-cfg-label">⚡ Speed</span>
+              <div class="kn-cfg-btn-group">
+                <button type="button" class="kn-cfg-btn" data-speed="slow">🐢 Slow</button>
+                <button type="button" class="kn-cfg-btn kn-cfg-btn-active" data-speed="normal">▶ Normal</button>
+                <button type="button" class="kn-cfg-btn" data-speed="fast">🔥 Fast</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── START CARD ── -->
           <div class="kn-card kn-start-card" id="kn-start-card">
             <h1 class="kn-title">Keyboard Ninja</h1>
             <p class="kn-subtitle">Slice the falling letters before they hit the ground!</p>
@@ -100,6 +146,7 @@ import Back from "@/components/BackButton.astro";
             <button type="button" class="kn-start-btn" id="kn-start-btn">Start Game</button>
           </div>
 
+          <!-- ── CHANGE LEVEL CARD ── -->
           <div class="kn-card kn-changelevel-card" id="kn-changelevel-card" hidden>
             <h2 class="kn-title"><span class="kn-title-emoji">🎮</span> Choose Level</h2>
             <p class="kn-subtitle">Pick a new challenge and dive back in!</p>
@@ -116,6 +163,7 @@ import Back from "@/components/BackButton.astro";
 
           <div class="kn-countdown" id="kn-countdown" hidden></div>
 
+          <!-- ── GAME OVER CARD ── -->
           <div class="kn-card kn-gameover-card" id="kn-gameover-card" hidden>
             <h2 class="kn-title">Game Over!</h2>
             <p class="kn-high-score-badge" id="kn-high-score-badge" hidden>🏆 New High Score!</p>
@@ -335,6 +383,133 @@ import Back from "@/components/BackButton.astro";
     .kn-gameover-card {
       padding: 0.8rem 1.25rem 1rem;
     }
+
+    /* ══════════════════════════════════════════
+       ARENA — CFG ICON BUTTON
+       ══════════════════════════════════════════ */
+    .kn-arena-cfg-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 2.8rem;
+      z-index: 10;
+      width: 32px;
+      height: 32px;
+      background: var(--kn-bg);
+      border: 1px solid rgba(100, 100, 100, 0.2);
+      border-radius: 6px;
+      color: var(--kn-text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background 120ms ease,
+        color 120ms ease;
+    }
+    .kn-arena-cfg-btn:hover,
+    .kn-arena-cfg-btn[aria-expanded="true"] {
+      background: var(--kn-accent-2);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* ══════════════════════════════════════════
+       SETTINGS POPUP
+       ══════════════════════════════════════════ */
+    .kn-cfg-popup {
+      position: absolute;
+      top: 3rem;
+      right: 0.5rem;
+      z-index: 20;
+      background: var(--kn-bg-secondary);
+      border-radius: 12px;
+      border: 1.5px solid rgba(77, 150, 255, 0.18);
+      box-shadow: var(--kn-card-shadow);
+      padding: 0.85rem 1rem;
+      width: clamp(240px, 55%, 320px);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      animation: kn-panel-in 180ms ease;
+    }
+    .kn-cfg-popup[hidden] {
+      display: none;
+    }
+
+    @keyframes kn-panel-in {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .kn-cfg-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .kn-cfg-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--kn-text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .kn-cfg-color {
+      width: 36px;
+      height: 28px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 0;
+      background: none;
+    }
+    .kn-cfg-btn-group {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .kn-cfg-btn {
+      border: 1.5px solid rgba(77, 150, 255, 0.3);
+      background: transparent;
+      color: var(--kn-text-muted);
+      border-radius: 6px;
+      padding: 0.22rem 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        background 120ms ease,
+        color 120ms ease,
+        border-color 120ms ease;
+      white-space: nowrap;
+    }
+    .kn-cfg-btn:hover {
+      border-color: var(--kn-accent-2);
+      color: var(--kn-accent-2);
+    }
+    .kn-cfg-btn.kn-cfg-btn-active {
+      background: var(--kn-accent-2) !important;
+      border-color: var(--kn-accent-2) !important;
+      color: #fff !important;
+    }
+
+    @media (max-width: 520px) {
+      .kn-cfg-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .kn-cfg-popup {
+        width: calc(100% - 1rem);
+        right: 0.5rem;
+      }
+    }
   </style>
 
   <script>
@@ -369,18 +544,38 @@ import Back from "@/components/BackButton.astro";
       isMaximized = !isMaximized;
       outer?.classList.toggle("kn-maximized", isMaximized);
       sidebar?.classList.toggle("kn-sidebar-hidden", isMaximized);
-      document.body.classList.toggle("kn-fullscreen", isMaximized); // ← ye line add hui
+      document.body.classList.toggle("kn-fullscreen", isMaximized);
       if (maxIcon) maxIcon.style.display = isMaximized ? "none" : "block";
       if (restoreIcon) restoreIcon.style.display = isMaximized ? "block" : "none";
-      maxBtn.title = isMaximized ? "Restore" : "Maximize";
+      if (maxBtn) maxBtn.title = isMaximized ? "Restore" : "Maximize";
     });
 
-    // Page leave hone par fullscreen hatao
     document.addEventListener("astro:before-swap", () => {
-      document.body.classList.remove("kn-fullscreen"); // ← ye bhi add karo
+      document.body.classList.remove("kn-fullscreen");
     });
-    // ───────────────────────────────────────────────────
 
+    // ── Settings popup toggle ──────────────────────────
+    const cfgBtn = document.getElementById("kn-cfg-toggle");
+    const cfgPopup = document.getElementById("kn-cfg-popup");
+
+    cfgBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !cfgPopup?.hidden;
+      if (cfgPopup) cfgPopup.hidden = isOpen;
+      cfgBtn.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    // Bahar click hone par popup band ho
+    document.addEventListener("click", (e) => {
+      if (cfgPopup && !cfgPopup.hidden) {
+        if (!cfgPopup.contains(e.target as Node) && e.target !== cfgBtn) {
+          cfgPopup.hidden = true;
+          cfgBtn?.setAttribute("aria-expanded", "false");
+        }
+      }
+    });
+
+    // ── Other event listeners ──────────────────────────
     document.getElementById("kn-quit-btn")?.addEventListener("click", () => {
       const overlay = document.getElementById("kn-quit-overlay");
       if (overlay) overlay.hidden = false;

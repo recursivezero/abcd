@@ -597,7 +597,7 @@
 .kn-start-card,
 .kn-changelevel-card {
   padding: clamp(0.9rem, 2.2vh, 1.8rem) clamp(0.9rem, 1.8vw, 1.6rem);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .kn-start-card::before,
