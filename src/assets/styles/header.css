@@ -693,3 +693,17 @@
     padding: 1.25rem 1rem;
   }
 }
+
+.sidebar-mobile-wrapper {
+  width: 100%;
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+[data-theme="light"] .header {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .hero-search {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}

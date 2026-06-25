@@ -1,0 +1,417 @@
+---
+import Base from "../layouts/Base.astro";
+import "@/assets/styles/keyboard-ninja.css";
+import Back from "@/components/BackButton.astro";
+---
+
+<Base
+  meta={{
+    title: "Keyboard Ninja | abcdkbd",
+    description: "Slice falling letters, numbers, and words to sharpen your keyboard skills."
+  }}
+  sidebar={false}
+>
+  <div class="kn-outer" id="kn-outer">
+    <div class="kn-topbar">
+      <Back />
+    </div>
+
+    <div class="kn-page-layout">
+      <!-- ── LEFT: Game wrapper ── -->
+      <div class="kn-wrapper" id="kn-wrapper">
+        <!-- Scoreboard (shown during game) -->
+        <div class="kn-scoreboard-wrap" id="kn-scoreboard-wrap" hidden>
+          <div class="kn-scoreboard">
+            <div class="kn-score-item">
+              <span class="kn-score-label">Score</span>
+              <span class="kn-score-value" id="kn-score">0</span>
+            </div>
+            <div class="kn-score-item">
+              <span class="kn-score-label">Lives</span>
+              <span class="kn-score-value" id="kn-lives">❤️❤️❤️</span>
+            </div>
+            <div class="kn-score-item">
+              <span class="kn-score-label">Combo</span>
+              <span class="kn-score-value" id="kn-combo">x0</span>
+            </div>
+            <div class="kn-score-item">
+              <span class="kn-score-label">Misses</span>
+              <span class="kn-score-value" id="kn-misses">0</span>
+            </div>
+            <div class="kn-score-item kn-score-level">
+              <span class="kn-score-label">Level</span>
+              <span class="kn-score-value" id="kn-level-name">Letters</span>
+            </div>
+
+            <button type="button" class="kn-quit-btn" id="kn-quit-btn" hidden> Exit </button>
+          </div>
+
+          <div class="kn-powerup-badges">
+            <span class="kn-powerup-badge" id="kn-badge-slow" hidden>🐢 Slow-Mo Active</span>
+            <span class="kn-powerup-badge" id="kn-badge-double" hidden>✨ 2x Score Active</span>
+          </div>
+        </div>
+
+        <!-- Arena -->
+        <div class="kn-arena" id="kn-arena">
+          <!-- Maximize button — arena top-right -->
+          <button type="button" class="kn-tb-btn kn-tb-maximize kn-arena-maximize" id="kn-tb-maximize" title="Maximize">
+            <svg
+              id="kn-max-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="11"
+              height="11"
+              viewBox="0 0 11 11"
+              fill="none"
+            >
+              <rect x="0.5" y="0.5" width="10" height="10" stroke="currentColor" stroke-width="1.2"></rect>
+            </svg>
+            <svg
+              id="kn-restore-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="11"
+              height="11"
+              viewBox="0 0 11 11"
+              fill="none"
+              style="display:none;"
+            >
+              <rect x="2.5" y="0.5" width="8" height="8" stroke="currentColor" stroke-width="1.2"></rect>
+              <rect
+                x="0.5"
+                y="2.5"
+                width="8"
+                height="8"
+                stroke="currentColor"
+                stroke-width="1.2"
+                fill="var(--kn-bg-secondary)"></rect>
+            </svg>
+          </button>
+          <div class="kn-card kn-start-card" id="kn-start-card">
+            <h1 class="kn-title">Keyboard Ninja</h1>
+            <p class="kn-subtitle">Slice the falling letters before they hit the ground!</p>
+
+            <div class="kn-level-picker" id="kn-level-picker" role="group" aria-label="Choose difficulty level">
+              <button type="button" class="kn-level-btn kn-level-btn-active" data-level-id="1">Letters</button>
+              <button type="button" class="kn-level-btn" data-level-id="2">Numbers</button>
+              <button type="button" class="kn-level-btn" data-level-id="3">Mixed</button>
+              <button type="button" class="kn-level-btn" data-level-id="4">Words</button>
+            </div>
+
+            <button type="button" class="kn-start-btn" id="kn-start-btn">Start Game</button>
+          </div>
+
+          <div class="kn-card kn-changelevel-card" id="kn-changelevel-card" hidden>
+            <h2 class="kn-title"><span class="kn-title-emoji">🎮</span> Choose Level</h2>
+            <p class="kn-subtitle">Pick a new challenge and dive back in!</p>
+
+            <div class="kn-level-picker" id="kn-changelevel-picker" role="group" aria-label="Choose difficulty level">
+              <button type="button" class="kn-level-btn" data-level-id="1">Letters</button>
+              <button type="button" class="kn-level-btn" data-level-id="2">Numbers</button>
+              <button type="button" class="kn-level-btn" data-level-id="3">Mixed</button>
+              <button type="button" class="kn-level-btn" data-level-id="4">Words</button>
+            </div>
+
+            <button type="button" class="kn-start-btn" id="kn-play-btn">Start</button>
+          </div>
+
+          <div class="kn-countdown" id="kn-countdown" hidden></div>
+
+          <div class="kn-card kn-gameover-card" id="kn-gameover-card" hidden>
+            <h2 class="kn-title">Game Over!</h2>
+            <p class="kn-high-score-badge" id="kn-high-score-badge" hidden>🏆 New High Score!</p>
+            <p class="kn-subtitle">Your Stats</p>
+            <ul class="kn-stats-list">
+              <li>Final Score ⭐<strong id="kn-final-score">0</strong></li>
+              <li>Correct Hits 🎯<strong id="kn-final-correct">0</strong></li>
+              <li>Best Combo 🔥<strong id="kn-final-combo">x0</strong></li>
+              <li>Misses 💨<strong id="kn-final-misses">0</strong></li>
+            </ul>
+
+            <div style="display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap; margin-top:0.4rem;">
+              <button
+                type="button"
+                class="kn-start-btn"
+                id="kn-back-btn"
+                style="background:var(--kn-accent-2); box-shadow: 0 6px 16px rgba(77,150,255,0.4);">Change Level</button
+              >
+              <button type="button" class="kn-start-btn" id="kn-restart-btn">Play Again</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── RIGHT: Sidebar ── -->
+      <aside class="kn-sidebar" id="kn-sidebar">
+        <h3 class="kn-panel-heading">🏆 Top Scores</h3>
+        <div id="kn-leaderboard-sidebar"></div>
+
+        <h3
+          class="kn-panel-heading"
+          style="margin-top:0.75rem; display:flex; align-items:center; justify-content:space-between;"
+        >
+          Achievements
+          <button
+            type="button"
+            id="kn-reset-btn"
+            style="
+              border: none;
+              background: linear-gradient(135deg, #a855f7, #7c3aed);
+              color: #fff;
+              font-size: 0.68rem;
+              font-weight: 700;
+              padding: 0.28rem 0.7rem;
+              border-radius: 999px;
+              cursor: pointer;
+              display: inline-flex;
+              align-items: center;
+              gap: 0.25rem;
+              box-shadow: 0 3px 8px rgba(124,58,237,0.35);
+              transition: all 150ms ease;
+            "
+            >🗑 Reset</button
+          >
+        </h3>
+
+        <div class="kn-achievements" id="kn-achievements-idle"></div>
+      </aside>
+    </div>
+
+    <!-- Achievement toast -->
+    <div class="kn-achievement-toast" id="kn-achievement-toast" hidden>
+      <span class="kn-achievement-toast-icon">🏆</span>
+      <div>
+        <strong>Achievement Unlocked!</strong>
+        <p id="kn-achievement-toast-title"></p>
+      </div>
+    </div>
+
+    <!-- Quit confirmation popup -->
+    <div class="kn-quit-overlay" id="kn-quit-overlay" hidden>
+      <div class="kn-quit-modal">
+        <p class="kn-quit-title">🚪 Quit Game?</p>
+        <p class="kn-quit-sub">Your progress will be lost!</p>
+        <div class="kn-quit-actions">
+          <button type="button" class="kn-quit-yes" id="kn-quit-yes">Yes, Quit</button>
+          <button type="button" class="kn-quit-cancel" id="kn-quit-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kn-quit-overlay" id="kn-reset-overlay" hidden>
+    <div class="kn-quit-modal">
+      <p class="kn-quit-title">🗑 Reset Data?</p>
+      <p class="kn-quit-sub">All scores and achievements will be permanently removed.</p>
+      <div class="kn-quit-actions">
+        <button type="button" class="kn-quit-yes" id="kn-reset-yes"> Yes, Reset </button>
+        <button type="button" class="kn-quit-cancel" id="kn-reset-cancel"> Cancel </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .kn-topbar {
+      flex-shrink: 0;
+      padding: 0.35rem 1rem 0;
+      height: 2.6rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .kn-page-layout {
+      flex: 1 1 0;
+      min-height: 0;
+    }
+
+    /* ── Quit button ── */
+    .kn-quit-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--kn-bg-secondary);
+      border: none;
+      border-radius: 12px;
+      padding: clamp(0.3rem, 0.55vh, 0.5rem) clamp(0.55rem, 1vw, 0.9rem);
+      min-width: clamp(58px, 7vw, 82px);
+      box-shadow: var(--kn-card-shadow);
+      color: var(--kn-text);
+      font-size: clamp(0.9rem, 1.3vw, 1.15rem);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 150ms ease;
+    }
+    .kn-quit-btn:hover {
+      transform: translateY(-2px);
+    }
+    .kn-quit-btn:active,
+    .kn-quit-btn-active {
+      background: var(--kn-accent-2);
+      color: #fff;
+    }
+    .kn-quit-btn[hidden] {
+      display: none;
+    }
+
+    /* ── Quit overlay ── */
+    .kn-quit-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      backdrop-filter: blur(3px);
+    }
+    .kn-quit-overlay[hidden] {
+      display: none;
+    }
+    .kn-quit-modal {
+      background: var(--kn-bg-secondary);
+      color: var(--kn-text);
+      border-radius: 1.2rem;
+      padding: 2rem 2.2rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 320px;
+      width: 90%;
+      animation: kn-modal-pop 200ms ease;
+    }
+    @keyframes kn-modal-pop {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .kn-quit-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0 0 0.35rem;
+    }
+    .kn-quit-sub {
+      font-size: 0.88rem;
+      opacity: 0.65;
+      margin: 0 0 1.4rem;
+    }
+    .kn-quit-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+    .kn-quit-yes {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      border: none;
+      padding: 0.55rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+      transition: transform 100ms ease;
+    }
+    .kn-quit-yes:hover {
+      transform: scale(1.05);
+    }
+    .kn-quit-cancel {
+      background: transparent;
+      color: var(--kn-text);
+      border: 2px solid rgba(100, 100, 100, 0.3);
+      padding: 0.55rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: border-color 150ms ease;
+    }
+    .kn-quit-cancel:hover {
+      border-color: rgba(100, 100, 100, 0.6);
+    }
+    .kn-gameover-card {
+      padding: 0.8rem 1.25rem 1rem;
+    }
+  </style>
+
+  <script>
+    import { KeyboardNinjaGame } from "@/scripts/GameEngine";
+
+    let game: KeyboardNinjaGame | null = null;
+
+    function start() {
+      if (game) game.destroy();
+      game = new KeyboardNinjaGame();
+      game.init();
+    }
+
+    function stop() {
+      if (game) {
+        game.destroy();
+        game = null;
+      }
+    }
+
+    start();
+
+    // ── Maximize / Restore toggle ──────────────────────
+    const outer = document.getElementById("kn-outer");
+    const sidebar = document.getElementById("kn-sidebar");
+    const maxBtn = document.getElementById("kn-tb-maximize");
+    const maxIcon = document.getElementById("kn-max-icon");
+    const restoreIcon = document.getElementById("kn-restore-icon");
+    let isMaximized = false;
+
+    maxBtn?.addEventListener("click", () => {
+      isMaximized = !isMaximized;
+      outer?.classList.toggle("kn-maximized", isMaximized);
+      sidebar?.classList.toggle("kn-sidebar-hidden", isMaximized);
+      document.body.classList.toggle("kn-fullscreen", isMaximized); // ← ye line add hui
+      if (maxIcon) maxIcon.style.display = isMaximized ? "none" : "block";
+      if (restoreIcon) restoreIcon.style.display = isMaximized ? "block" : "none";
+      maxBtn.title = isMaximized ? "Restore" : "Maximize";
+    });
+
+    // Page leave hone par fullscreen hatao
+    document.addEventListener("astro:before-swap", () => {
+      document.body.classList.remove("kn-fullscreen"); // ← ye bhi add karo
+    });
+    // ───────────────────────────────────────────────────
+
+    document.getElementById("kn-quit-btn")?.addEventListener("click", () => {
+      const overlay = document.getElementById("kn-quit-overlay");
+      if (overlay) overlay.hidden = false;
+    });
+    document.getElementById("kn-quit-cancel")?.addEventListener("click", () => {
+      const overlay = document.getElementById("kn-quit-overlay");
+      if (overlay) overlay.hidden = true;
+    });
+    document.getElementById("kn-quit-yes")?.addEventListener("click", () => {
+      const overlay = document.getElementById("kn-quit-overlay");
+      if (overlay) overlay.hidden = true;
+      game?.quitGame();
+    });
+    document.getElementById("kn-reset-btn")?.addEventListener("click", () => {
+      const overlay = document.getElementById("kn-reset-overlay");
+      if (overlay) overlay.hidden = false;
+    });
+    document.getElementById("kn-reset-cancel")?.addEventListener("click", () => {
+      const overlay = document.getElementById("kn-reset-overlay");
+      if (overlay) overlay.hidden = true;
+    });
+    document.getElementById("kn-reset-yes")?.addEventListener("click", () => {
+      localStorage.removeItem("kn-leaderboard");
+      localStorage.removeItem("kn-achievements");
+      window.location.reload();
+    });
+
+    document.addEventListener("astro:page-load", () => {
+      stop();
+      start();
+    });
+    document.addEventListener("astro:before-swap", stop);
+  </script>
+</Base>
