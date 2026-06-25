@@ -182,7 +182,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(88%, 420px);
-  min-height: 72%;
   max-height: 98%;
   background: var(--kn-bg-secondary);
   border-radius: var(--kn-radius);
