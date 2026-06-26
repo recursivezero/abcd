@@ -6,7 +6,6 @@ interface Props {
 }
 
 const { games } = Astro.props;
-const isCentered = games.length <= 3;
 ---
 
 <style>
@@ -15,7 +14,7 @@ const isCentered = games.length <= 3;
   }
 </style>
 
-<div class={`games-grid ${isCentered ? "games-grid--centered" : "games-grid--full"}`}>
+<div class="games-grid games-grid--centered">
   {
     games.map((game) => (
       <div class="game-card">
