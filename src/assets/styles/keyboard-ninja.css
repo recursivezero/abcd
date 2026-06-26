@@ -1163,6 +1163,7 @@ body.kn-fullscreen .kn-achievement-toast {
 .kn-titlebar {
   display: none !important;
 }
+<<<<<<< HEAD
 
 /* ════════════════════════════════════════════
    SHATTER MISS ANIMATION
@@ -1328,3 +1329,5 @@ body.kn-fullscreen .kn-achievement-toast {
     transform: translateX(-50%) scale(1.25);
   }
 }
+=======
+>>>>>>> d5bc3d5b ([RZA-260203]: fix: update dark mode badges colors in categories and improve school, classroom, and teacher layouts)
