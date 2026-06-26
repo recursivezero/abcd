@@ -63,7 +63,7 @@ const featured = featuredGames
                 alt={game.title}
                 class="fg-thumb"
                 loading="lazy"
-                onerror="this.src='/assets/images/game-placeholder.png'"
+                onerror="if(this.dataset.errored)return;this.dataset.errored='1';this.onerror=null;this.src='/assets/images/game-placeholder.svg'"
               />
               <div class="fg-thumb-overlay" />
             </div>
@@ -148,9 +148,9 @@ const featured = featuredGames
   /* ── Grid ── */
   .fg-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 18px;
-    max-width: 1200px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 980px;
     margin: 0 auto;
   }
 
@@ -379,7 +379,7 @@ const featured = featuredGames
   /* 4 cards on medium screens */
   @media (max-width: 1100px) {
     .fg-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   /* 2 columns on tablet */
