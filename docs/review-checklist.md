@@ -14,4 +14,3 @@ Before approving a Pull Request, verify:
 - Performance impact considered.
 
 If something is unclear, request clarification rather than making assumptions.
-

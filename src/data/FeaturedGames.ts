@@ -13,8 +13,9 @@ export const featuredGames: string[] = [
   "crossword", // 6-8  → /crossword
   "math", // 6-8  → /math
   "map", // Adults → /Our India
-  "varnmala" // 6-8  → /varnmala
+  "varnmala", // 6-8  → /varnmala
+  "play" // 6-8  → /varnmala
 ];
 
 // Maximum number of featured games to display at once.
-export const FEATURED_MAX = 5;
+export const FEATURED_MAX = 6;
