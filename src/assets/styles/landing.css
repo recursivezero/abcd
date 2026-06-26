@@ -285,13 +285,13 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 4rem;
 }
 
 .games-grid--centered .game-card {
-  width: 380px;
-  flex: 0 0 380px;
+  flex: 0 0 calc(33.33% - 1rem);
   max-width: calc(33.33% - 1rem);
+  min-width: 260px;
 }
 
 .games-grid--full {
