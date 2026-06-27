@@ -466,7 +466,7 @@ const faqs = [
           {
             faqs.map((faq, i) => (
               <div class={`s-acc${faq.open ? " open" : ""}`} id={`s${i}`}>
-                <div class="s-acc-h" onclick={`sToggle(${i})`}>
+                <div class="s-acc-h" data-idx={i}>
                   <div class="s-acc-icon" style={`background:${faq.iconBg};`}>
                     {faq.icon}
                   </div>
@@ -494,9 +494,12 @@ const faqs = [
     </div>
   </div>
   <script is:inline>
-    function sToggle(i) {
-      const el = document.getElementById("s" + i);
-      if (el) el.classList.toggle("open");
-    }
+    document.querySelectorAll(".s-acc-h").forEach(function (el) {
+      el.addEventListener("click", function () {
+        var i = el.getAttribute("data-idx");
+        var acc = document.getElementById("s" + i);
+        if (acc) acc.classList.toggle("open");
+      });
+    });
   </script>
 </BaseLayout>
