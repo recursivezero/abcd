@@ -25,4 +25,3 @@ Never trust client-provided data.
 ## Reuse Existing Patterns
 
 Before introducing a new pattern, evaluate whether an existing project pattern already solves the problem.
-
