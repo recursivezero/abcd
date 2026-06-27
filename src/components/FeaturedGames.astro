@@ -1,0 +1,415 @@
+---
+// src/components/FeaturedGames.astro
+// ─────────────────────────────────────────────────────────────────────────────
+// Reusable Featured Games section.
+// • Reads game IDs from featured-games.ts
+// • Looks up full data from gamesData.ts
+// • Shows max FEATURED_MAX cards (4–5)
+// • Handles empty state gracefully
+// • Hit tracking via analytics.ts (client-side, localStorage Phase 1)
+// ─────────────────────────────────────────────────────────────────────────────
+
+import { featuredGames, FEATURED_MAX } from "../data/FeaturedGames";
+import { gamesData } from "../data/gamesData";
+import type { Game } from "../data/gamesData";
+
+// Flatten all games from every age group into one searchable list.
+const allGames: Array<Game & { id: string }> = Object.values(gamesData)
+  .flat()
+  .map((game) => ({
+    ...game,
+    // Derive an ID from the link: "/draw" → "draw"
+    id: game.link.replace(/^\//, "").toLowerCase()
+  }));
+
+// Match configured IDs to actual game data, preserve order, cap at max.
+const featured = featuredGames
+  .slice(0, FEATURED_MAX)
+  .map((id) => allGames.find((g) => g.id === id))
+  .filter((g): g is Game & { id: string } => g !== undefined);
+---
+
+<section class="fg-section" aria-labelledby="fg-heading">
+  <div class="fg-hdr">
+    <div class="fg-hdr-row">
+      <h2 class="fg-title" id="fg-heading">Featured Games</h2>
+      <span class="fg-spark">🌟</span>
+    </div>
+    <p class="fg-sub">Hand-picked activities your kids will love right now 🎮</p>
+  </div>
+
+  {
+    featured.length === 0 ? (
+      /* ── Empty state ── */
+      <div class="fg-empty">
+        <span class="fg-empty-icon">🎲</span>
+        <p class="fg-empty-text">No featured games configured yet.</p>
+        <p class="fg-empty-hint">
+          Add game IDs to <code>src/data/featured-games.ts</code> to get started.
+        </p>
+      </div>
+    ) : (
+      /* ── Game cards grid ── */
+      <div class="fg-grid">
+        {featured.map((game) => (
+          <a href={game.link} class="fg-card" data-game-id={game.id} aria-label={`Play ${game.title}`}>
+            {/* Featured badge */}
+            <div class="fg-badge">⭐ Featured</div>
+
+            {/* Thumbnail */}
+            <div class="fg-thumb-wrap">
+              <img
+                src={game.image}
+                alt={game.title}
+                class="fg-thumb"
+                loading="lazy"
+                onerror="if(this.dataset.errored)return;this.dataset.errored='1';this.onerror=null;this.src='/assets/images/game-placeholder.svg'"
+              />
+              <div class="fg-thumb-overlay" />
+            </div>
+
+            {/* Card body */}
+            <div class="fg-body">
+              {/* Tags */}
+              <div class="fg-tags">
+                {game.tags.slice(0, 2).map((tag) => (
+                  <span class="fg-tag">{tag}</span>
+                ))}
+              </div>
+
+              <h3 class="fg-game-title">{game.title}</h3>
+              <p class="fg-desc">{game.description}</p>
+
+              <div class="fg-footer">
+                <span class="fg-play-btn">
+                  <span class="fg-play-icon">▶</span>
+                  Play Now
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</section>
+
+<!-- Hit tracking: runs client-side after page load -->
+<script>
+  import { trackGameVisit } from "../utils/analytics";
+
+  document.querySelectorAll<HTMLAnchorElement>(".fg-card[data-game-id]").forEach((card) => {
+    card.addEventListener("click", () => {
+      const gameId = card.dataset.gameId;
+      if (gameId) trackGameVisit(gameId);
+    });
+  });
+</script>
+
+<style>
+  /* ── Section wrapper ── */
+  .fg-section {
+    padding: 3rem 2rem 4rem;
+    background: transparent;
+  }
+
+  /* ── Header (mirrors age-section style) ── */
+  .fg-hdr {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .fg-hdr-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .fg-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #1a1a40;
+    margin: 0;
+  }
+  .fg-spark {
+    font-size: 26px;
+    line-height: 1;
+  }
+  .fg-sub {
+    font-size: 14px;
+    color: #888;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* ── Grid ── */
+  .fg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  /* ── Card ── */
+  .fg-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    border: 2px solid #e8e8f0;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    position: relative;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      border-color 0.22s ease;
+  }
+  .fg-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.13);
+    border-color: #c8b8ff;
+  }
+
+  /* ── Featured badge ── */
+  .fg-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    background: linear-gradient(135deg, #7048c0, #d03070);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(112, 72, 192, 0.35);
+  }
+
+  /* ── Thumbnail ── */
+  .fg-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #f0eeff;
+    flex-shrink: 0;
+  }
+  .fg-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+  }
+  .fg-card:hover .fg-thumb {
+    transform: scale(1.06);
+  }
+  .fg-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(10, 5, 30, 0.35) 100%);
+    pointer-events: none;
+  }
+
+  /* ── Card body ── */
+  .fg-body {
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 6px;
+  }
+
+  /* ── Tags ── */
+  .fg-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .fg-tag {
+    background: #f0eeff;
+    color: #7048c0;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  /* ── Title ── */
+  .fg-game-title {
+    font-size: 15px;
+    font-weight: 900;
+    color: #1a1a40;
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  /* ── Description ── */
+  .fg-desc {
+    font-size: 12px;
+    color: #666;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.5;
+    /* Clamp to 2 lines so cards stay uniform height */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── Footer / Play button ── */
+  .fg-footer {
+    margin-top: auto;
+    padding-top: 8px;
+  }
+  .fg-play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #7048c0, #d03070);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 7px 16px;
+    border-radius: 50px;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+  .fg-card:hover .fg-play-btn {
+    opacity: 0.92;
+    transform: scale(1.04);
+  }
+  .fg-play-icon {
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  /* ── Empty state ── */
+  .fg-empty {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #f9f7ff;
+    border-radius: 20px;
+    border: 2px dashed #d2caff;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .fg-empty-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .fg-empty-text {
+    font-size: 16px;
+    font-weight: 800;
+    color: #7048c0;
+    margin: 0 0 6px;
+  }
+  .fg-empty-hint {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+    font-weight: 600;
+  }
+  .fg-empty-hint code {
+    background: #edeaff;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #5830a0;
+  }
+
+  /* ── Dark mode ── */
+  :global([data-theme="dark"]) .fg-title {
+    color: #e0f7fa;
+  }
+  :global([data-theme="dark"]) .fg-sub {
+    color: #aaa;
+  }
+  :global([data-theme="dark"]) .fg-card {
+    background: rgba(3, 26, 32, 0.72);
+    border-color: rgba(34, 211, 238, 0.12);
+    backdrop-filter: blur(10px);
+  }
+  :global([data-theme="dark"]) .fg-card:hover {
+    border-color: rgba(34, 211, 238, 0.3);
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.45),
+      0 0 22px rgba(34, 211, 238, 0.12);
+  }
+  :global([data-theme="dark"]) .fg-game-title {
+    color: #7dd3fc;
+  }
+  :global([data-theme="dark"]) .fg-desc {
+    color: #94a3b8;
+  }
+  :global([data-theme="dark"]) .fg-tag {
+    background: rgba(34, 211, 238, 0.12);
+    color: #7dd3fc;
+  }
+  :global([data-theme="dark"]) .fg-thumb-wrap {
+    background: rgba(112, 72, 192, 0.2);
+  }
+  :global([data-theme="dark"]) .fg-empty {
+    background: rgba(3, 26, 32, 0.6);
+    border-color: rgba(34, 211, 238, 0.2);
+  }
+  :global([data-theme="dark"]) .fg-empty-text {
+    color: #7dd3fc;
+  }
+  :global([data-theme="dark"]) .fg-empty-hint code {
+    background: rgba(34, 211, 238, 0.1);
+    color: #7dd3fc;
+  }
+
+  /* ── Responsive ── */
+
+  /* 4 cards on medium screens */
+  @media (max-width: 1100px) {
+    .fg-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  /* 2 columns on tablet */
+  @media (max-width: 860px) {
+    .fg-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 700px;
+    }
+  }
+  /* 1 column on mobile */
+  @media (max-width: 520px) {
+    .fg-section {
+      padding: 2rem 1rem 3rem;
+    }
+    .fg-grid {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
+    .fg-title {
+      font-size: 1.6rem;
+    }
+    .fg-card {
+      flex-direction: column;
+      border-radius: 16px;
+    }
+    .fg-thumb-wrap {
+      width: 100%;
+      aspect-ratio: 16/9;
+      flex-shrink: 0;
+    }
+    .fg-badge {
+      font-size: 9px;
+      padding: 3px 8px;
+    }
+  }
+</style>

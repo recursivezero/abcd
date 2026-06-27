@@ -153,7 +153,7 @@
   box-shadow: 0 3px 10px rgba(124, 58, 237, 0.04);
   display: flex;
   align-items: center;
-  position: fixed;
+  position: relative;
   top: var(--header-h, 5rem);
   left: 0;
   z-index: 999;
@@ -692,4 +692,18 @@
     width: 85vw;
     padding: 1.25rem 1rem;
   }
+}
+
+.sidebar-mobile-wrapper {
+  width: 100%;
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+[data-theme="light"] .header {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .hero-search {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }

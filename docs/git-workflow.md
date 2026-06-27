@@ -96,6 +96,7 @@ If conflicts occur:
 1. Open the project in VS Code.
 2. Review conflicting sections.
 3. Use:
+
    - Accept Current Change
    - Accept Incoming Change
    - Accept Both Changes

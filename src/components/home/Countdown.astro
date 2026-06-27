@@ -35,7 +35,7 @@ const { date } = Astro.props;
       const diff = launch - now;
 
       if (diff < 0) {
-        countdownElement.innerHTML = "<h2>We've Launched!</h2>";
+        countdownElement.innerHTML = "<h2></h2>";
         clearInterval(interval);
         return;
       }
