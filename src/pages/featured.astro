@@ -1,9 +1,8 @@
 ---
-// src/pages/featured.astro
-import Base from "../layouts/Base.astro";
-import { featuredGames, FEATURED_MAX } from "../data/FeaturedGames";
-import { gamesData } from "../data/gamesData";
+import { FEATURED_MAX, featuredGames } from "../data/FeaturedGames";
 import type { Game } from "../data/gamesData";
+import { gamesData } from "../data/gamesData";
+import Base from "../layouts/Base.astro";
 
 const allGames: Array<Game & { id: string }> = Object.values(gamesData)
   .flat()
@@ -37,13 +36,7 @@ const featured = featuredGames
             <a href={game.link} class="fp-card" aria-label={`Play ${game.title}`}>
               <div class="fp-badge">⭐ Featured</div>
               <div class="fp-thumb-wrap">
-                <img
-                  src={game.image}
-                  alt={game.title}
-                  class="fp-thumb"
-                  loading="lazy"
-                  onerror="if(this.dataset.errored)return;this.dataset.errored='1';this.onerror=null;this.src='/assets/images/game-placeholder.svg'"
-                />
+                <img src={game.image} alt={game.title} class="fp-thumb" loading="lazy" />
                 <div class="fp-overlay" />
               </div>
               <div class="fp-body">

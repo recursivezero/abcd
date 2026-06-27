@@ -1,14 +1,4 @@
 ---
-// src/components/FeaturedGames.astro
-// ─────────────────────────────────────────────────────────────────────────────
-// Reusable Featured Games section.
-// • Reads game IDs from featured-games.ts
-// • Looks up full data from gamesData.ts
-// • Shows max FEATURED_MAX cards (4–5)
-// • Handles empty state gracefully
-// • Hit tracking via analytics.ts (client-side, localStorage Phase 1)
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { featuredGames, FEATURED_MAX } from "../data/FeaturedGames";
 import { gamesData } from "../data/gamesData";
 import type { Game } from "../data/gamesData";
@@ -58,13 +48,7 @@ const featured = featuredGames
 
             {/* Thumbnail */}
             <div class="fg-thumb-wrap">
-              <img
-                src={game.image}
-                alt={game.title}
-                class="fg-thumb"
-                loading="lazy"
-                onerror="if(this.dataset.errored)return;this.dataset.errored='1';this.onerror=null;this.src='/assets/images/game-placeholder.svg'"
-              />
+              <img src={game.image} alt={game.title} class="fg-thumb" loading="lazy" />
               <div class="fg-thumb-overlay" />
             </div>
 
@@ -159,7 +143,7 @@ const featured = featuredGames
     border: 2px solid #e8e8f0;
     display: flex;
     flex-direction: column;
-    text-decoration: none;
+    text-decoration: nnr;
     position: relative;
     transition:
       transform 0.22s ease,
