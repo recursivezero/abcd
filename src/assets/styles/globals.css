@@ -23,7 +23,7 @@ html[data-theme="light"] {
 body {
   background-color: transparent !important;
   background-image: none !important;
-  font-family: 'Roboto', 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', sans-serif;
+  font-family: "Roboto", "Noto Sans Devanagari", "Mangal", "Arial Unicode MS", sans-serif;
 }
 
 @layer base {
@@ -188,16 +188,20 @@ body {
     left: 0;
     pointer-events: none;
     z-index: 0;
-    background-image: repeating-linear-gradient(60deg,
+    background-image: repeating-linear-gradient(
+        60deg,
         transparent,
         transparent 28px,
         rgba(34, 211, 238, 0.03) 28px,
-        rgba(34, 211, 238, 0.03) 29px),
-      repeating-linear-gradient(-40deg,
+        rgba(34, 211, 238, 0.03) 29px
+      ),
+      repeating-linear-gradient(
+        -40deg,
         transparent,
         transparent 34px,
         rgba(34, 211, 238, 0.02) 34px,
-        rgba(34, 211, 238, 0.02) 35px);
+        rgba(34, 211, 238, 0.02) 35px
+      );
   }
 
   [data-theme="light"] body::before {
@@ -523,7 +527,6 @@ body {
   }
 
   @media (hover: none) and (pointer: coarse) {
-
     button,
     a,
     [role="button"] {
