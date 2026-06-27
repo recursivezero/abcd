@@ -87,11 +87,17 @@ const ageGroups = [
 ---
 
 <section class="hero-section">
-  <img src="/assets/images/hero-kids1.png" alt="Kids learning together" class="hero-bg-img" loading="eager" />
+  <img
+    src="/assets/images/hero.webp"
+    alt="kids learning on computer"
+    class="hero-bg-img"
+    loading="eager"
+    fetchpriority="high"
+  />
 </section>
 
 <!-- ✅ Featured Games section — Hero ke baad, Age Groups se pehle -->
-<FeaturedGames />
+<FeaturedGames client:visible />
 
 <section class="age-section" id="categories">
   <div class="hdr">
@@ -128,7 +134,6 @@ const ageGroups = [
 </section>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
 
   /* ── Hero ── */
   .hero-section {
