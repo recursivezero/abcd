@@ -1,6 +1,6 @@
 {
   "name": "@recursivezero/abcd",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "description": "A website for kids whio want to learn the alphabet in a fun and interactive way. It is built using Astro and TypeScript.",
   "homepage": "https://abcdkbd.com",
   "displayName": "abcd",

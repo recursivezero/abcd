@@ -46,6 +46,12 @@ Created Repo from template
 - Landing Page Redesign
 - CrossWord page update
 
+## [3.4.0] - June 27 2026
+
+- Redesign Pages
+- Added Featured and Category section
+- Added a keyboard game.
+
 ### [Unreleased]
 
 Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.
