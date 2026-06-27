@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import "@/assets/styles/keyboard-ninja.css";
 import Back from "@/components/BackButton.astro";
+import VirtualKeyboard from "@/components/VirtualKeyboard.astro";
 ---
 
 <Base
@@ -109,10 +110,16 @@ import Back from "@/components/BackButton.astro";
 
           <!-- ⚙️ Settings popup panel -->
           <div class="kn-cfg-popup" id="kn-cfg-popup" hidden>
+            <!-- Heading -->
+            <div class="kn-cfg-heading">⚙️ Game Settings</div>
+
+            <!-- Color -->
             <div class="kn-cfg-row">
               <label class="kn-cfg-label" for="kn-cfg-color">🎨 Letter Color</label>
               <input type="color" id="kn-cfg-color" class="kn-cfg-color" value="#4d96ff" />
             </div>
+
+            <!-- Shape -->
             <div class="kn-cfg-row">
               <span class="kn-cfg-label">🔷 Shape</span>
               <div class="kn-cfg-btn-group">
@@ -121,20 +128,32 @@ import Back from "@/components/BackButton.astro";
                 <button type="button" class="kn-cfg-btn" data-shape="pill">⬭ Pill</button>
               </div>
             </div>
-            <div class="kn-cfg-row">
-              <span class="kn-cfg-label">⚡ Speed</span>
-              <div class="kn-cfg-btn-group">
-                <button type="button" class="kn-cfg-btn" data-speed="slow">🐢 Slow</button>
-                <button type="button" class="kn-cfg-btn kn-cfg-btn-active" data-speed="normal">▶ Normal</button>
-                <button type="button" class="kn-cfg-btn" data-speed="fast">🔥 Fast</button>
-              </div>
-            </div>
+
+            <!-- Size -->
             <div class="kn-cfg-row">
               <span class="kn-cfg-label">📐 Size</span>
               <div class="kn-cfg-btn-group">
-                <button type="button" class="kn-cfg-btn" data-size="small"> Small</button>
-                <button type="button" class="kn-cfg-btn kn-cfg-btn-active" data-size="auto">Medium (Auto)</button>
-                <button type="button" class="kn-cfg-btn" data-size="large"> Large</button>
+                <button type="button" class="kn-cfg-btn" data-size="small">Small</button>
+                <button type="button" class="kn-cfg-btn kn-cfg-btn-active" data-size="auto">Auto</button>
+                <button type="button" class="kn-cfg-btn" data-size="large">Large</button>
+              </div>
+            </div>
+
+            <!-- Speed slider — YouTube style -->
+            <div class="kn-cfg-col">
+              <div class="kn-cfg-speed-header">
+                <span class="kn-cfg-label">⚡ Fall Speed</span>
+                <span class="kn-cfg-speed-val" id="kn-speed-label">Normal</span>
+              </div>
+              <div class="kn-cfg-slider-wrap">
+                <span class="kn-cfg-slider-tick">🐢</span>
+                <input type="range" id="kn-cfg-speed" class="kn-cfg-slider" min="1" max="20" step="1" value="10" />
+                <span class="kn-cfg-slider-tick">🔥</span>
+              </div>
+              <div class="kn-cfg-slider-marks">
+                <span>Slow</span>
+                <span>Normal</span>
+                <span>Fast</span>
               </div>
             </div>
           </div>
@@ -194,6 +213,7 @@ import Back from "@/components/BackButton.astro";
             </div>
           </div>
         </div>
+        <VirtualKeyboard />
       </div>
 
       <!-- ── RIGHT: Sidebar ── -->
@@ -209,21 +229,7 @@ import Back from "@/components/BackButton.astro";
           <button
             type="button"
             id="kn-reset-btn"
-            style="
-              border: none;
-              background: linear-gradient(135deg, #a855f7, #7c3aed);
-              color: #fff;
-              font-size: 0.68rem;
-              font-weight: 700;
-              padding: 0.28rem 0.7rem;
-              border-radius: 999px;
-              cursor: pointer;
-              display: inline-flex;
-              align-items: center;
-              gap: 0.25rem;
-              box-shadow: 0 3px 8px rgba(124,58,237,0.35);
-              transition: all 150ms ease;
-            "
+            style="border:none;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;font-size:0.68rem;font-weight:700;padding:0.28rem 0.7rem;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:0.25rem;box-shadow:0 3px 8px rgba(124,58,237,0.35);transition:all 150ms ease;"
             >🗑 Reset</button
           >
         </h3>
@@ -259,8 +265,8 @@ import Back from "@/components/BackButton.astro";
       <p class="kn-quit-title">🗑 Reset Data?</p>
       <p class="kn-quit-sub">All scores and achievements will be permanently removed.</p>
       <div class="kn-quit-actions">
-        <button type="button" class="kn-quit-yes" id="kn-reset-yes"> Yes, Reset </button>
-        <button type="button" class="kn-quit-cancel" id="kn-reset-cancel"> Cancel </button>
+        <button type="button" class="kn-quit-yes" id="kn-reset-yes">Yes, Reset</button>
+        <button type="button" class="kn-quit-cancel" id="kn-reset-cancel">Cancel</button>
       </div>
     </div>
   </div>
@@ -273,13 +279,11 @@ import Back from "@/components/BackButton.astro";
       display: flex;
       align-items: center;
     }
-
     .kn-page-layout {
       flex: 1 1 0;
       min-height: 0;
     }
 
-    /* ── Quit button ── */
     .kn-quit-btn {
       display: flex;
       flex-direction: column;
@@ -309,7 +313,6 @@ import Back from "@/components/BackButton.astro";
       display: none;
     }
 
-    /* ── Quit overlay ── */
     .kn-quit-overlay {
       position: fixed;
       inset: 0;
@@ -392,9 +395,7 @@ import Back from "@/components/BackButton.astro";
       padding: 0.8rem 1.25rem 1rem;
     }
 
-    /* ══════════════════════════════════════════
-       ARENA — CFG ICON BUTTON
-       ══════════════════════════════════════════ */
+    /* ── Arena cfg btn ── */
     .kn-arena-cfg-btn {
       position: absolute;
       top: 0.5rem;
@@ -421,9 +422,7 @@ import Back from "@/components/BackButton.astro";
       border-color: transparent;
     }
 
-    /* ══════════════════════════════════════════
-       SETTINGS POPUP
-       ══════════════════════════════════════════ */
+    /* ── Settings popup ── */
     .kn-cfg-popup {
       position: absolute;
       top: 3rem;
@@ -434,16 +433,15 @@ import Back from "@/components/BackButton.astro";
       border: 1.5px solid rgba(77, 150, 255, 0.18);
       box-shadow: var(--kn-card-shadow);
       padding: 0.85rem 1rem;
-      width: clamp(240px, 55%, 320px);
+      width: clamp(260px, 58%, 340px);
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
+      gap: 0.75rem;
       animation: kn-panel-in 180ms ease;
     }
     .kn-cfg-popup[hidden] {
       display: none;
     }
-
     @keyframes kn-panel-in {
       from {
         opacity: 0;
@@ -455,12 +453,28 @@ import Back from "@/components/BackButton.astro";
       }
     }
 
+    /* Heading inside popup */
+    .kn-cfg-heading {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--kn-text);
+      letter-spacing: 0.02em;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(77, 150, 255, 0.12);
+    }
+
     .kn-cfg-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.6rem;
       flex-wrap: wrap;
+    }
+    .kn-cfg-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }
     .kn-cfg-label {
       font-size: 0.72rem;
@@ -492,11 +506,11 @@ import Back from "@/components/BackButton.astro";
       font-size: 0.68rem;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
       transition:
         background 120ms ease,
         color 120ms ease,
         border-color 120ms ease;
-      white-space: nowrap;
     }
     .kn-cfg-btn:hover {
       border-color: var(--kn-accent-2);
@@ -506,6 +520,75 @@ import Back from "@/components/BackButton.astro";
       background: var(--kn-accent-2) !important;
       border-color: var(--kn-accent-2) !important;
       color: #fff !important;
+    }
+
+    /* ── Speed slider ── */
+    .kn-cfg-speed-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .kn-cfg-speed-val {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--kn-accent-2);
+    }
+    .kn-cfg-slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .kn-cfg-slider-tick {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .kn-cfg-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(
+        to right,
+        var(--kn-accent-2) 0%,
+        var(--kn-accent-2) 40%,
+        rgba(77, 150, 255, 0.2) 40%,
+        rgba(77, 150, 255, 0.2) 100%
+      );
+      outline: none;
+      cursor: pointer;
+      transition: background 150ms ease;
+    }
+    .kn-cfg-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--kn-accent-2);
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(77, 150, 255, 0.4);
+      cursor: pointer;
+      transition: transform 120ms ease;
+    }
+    .kn-cfg-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    .kn-cfg-slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--kn-accent-2);
+      border: 2px solid #fff;
+      cursor: pointer;
+    }
+
+    .kn-cfg-slider-marks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.6rem;
+      color: var(--kn-text-muted);
+      padding: 0 1.4rem;
     }
 
     @media (max-width: 520px) {
@@ -530,7 +613,6 @@ import Back from "@/components/BackButton.astro";
       game = new KeyboardNinjaGame();
       game.init();
     }
-
     function stop() {
       if (game) {
         game.destroy();
@@ -540,7 +622,7 @@ import Back from "@/components/BackButton.astro";
 
     start();
 
-    // ── Maximize / Restore toggle ──────────────────────
+    // ── Maximize toggle ──
     const outer = document.getElementById("kn-outer");
     const sidebar = document.getElementById("kn-sidebar");
     const maxBtn = document.getElementById("kn-tb-maximize");
@@ -557,23 +639,19 @@ import Back from "@/components/BackButton.astro";
       if (restoreIcon) restoreIcon.style.display = isMaximized ? "block" : "none";
       if (maxBtn) maxBtn.title = isMaximized ? "Restore" : "Maximize";
     });
-
     document.addEventListener("astro:before-swap", () => {
       document.body.classList.remove("kn-fullscreen");
     });
 
-    // ── Settings popup toggle ──────────────────────────
+    // ── Settings popup toggle ──
     const cfgBtn = document.getElementById("kn-cfg-toggle");
     const cfgPopup = document.getElementById("kn-cfg-popup");
-
     cfgBtn?.addEventListener("click", (e) => {
       e.stopPropagation();
       const isOpen = !cfgPopup?.hidden;
       if (cfgPopup) cfgPopup.hidden = isOpen;
       cfgBtn.setAttribute("aria-expanded", String(!isOpen));
     });
-
-    // Bahar click hone par popup band ho
     document.addEventListener("click", (e) => {
       if (cfgPopup && !cfgPopup.hidden) {
         if (!cfgPopup.contains(e.target as Node) && e.target !== cfgBtn) {
@@ -583,27 +661,44 @@ import Back from "@/components/BackButton.astro";
       }
     });
 
-    // ── Other event listeners ──────────────────────────
+    // ── Speed slider label update ──
+    const speedSlider = document.getElementById("kn-cfg-speed") as HTMLInputElement | null;
+    const speedLabel = document.getElementById("kn-speed-label");
+    function updateSliderBg(val: number) {
+      const pct = ((val - 1) / 19) * 100;
+      if (speedSlider)
+        speedSlider.style.background = `linear-gradient(to right, var(--kn-accent-2) 0%, var(--kn-accent-2) ${pct}%, rgba(77,150,255,0.2) ${pct}%, rgba(77,150,255,0.2) 100%)`;
+    }
+
+    speedSlider?.addEventListener("input", () => {
+      const val = Number(speedSlider.value);
+      if (speedLabel) speedLabel.textContent = (val / 10).toFixed(1) + "x";
+      updateSliderBg(val);
+    });
+    updateSliderBg(10);
+    if (speedLabel) speedLabel.textContent = "1.0x";
+
+    // ── Other listeners ──
     document.getElementById("kn-quit-btn")?.addEventListener("click", () => {
-      const overlay = document.getElementById("kn-quit-overlay");
-      if (overlay) overlay.hidden = false;
+      const o = document.getElementById("kn-quit-overlay");
+      if (o) o.hidden = false;
     });
     document.getElementById("kn-quit-cancel")?.addEventListener("click", () => {
-      const overlay = document.getElementById("kn-quit-overlay");
-      if (overlay) overlay.hidden = true;
+      const o = document.getElementById("kn-quit-overlay");
+      if (o) o.hidden = true;
     });
     document.getElementById("kn-quit-yes")?.addEventListener("click", () => {
-      const overlay = document.getElementById("kn-quit-overlay");
-      if (overlay) overlay.hidden = true;
+      const o = document.getElementById("kn-quit-overlay");
+      if (o) o.hidden = true;
       game?.quitGame();
     });
     document.getElementById("kn-reset-btn")?.addEventListener("click", () => {
-      const overlay = document.getElementById("kn-reset-overlay");
-      if (overlay) overlay.hidden = false;
+      const o = document.getElementById("kn-reset-overlay");
+      if (o) o.hidden = false;
     });
     document.getElementById("kn-reset-cancel")?.addEventListener("click", () => {
-      const overlay = document.getElementById("kn-reset-overlay");
-      if (overlay) overlay.hidden = true;
+      const o = document.getElementById("kn-reset-overlay");
+      if (o) o.hidden = true;
     });
     document.getElementById("kn-reset-yes")?.addEventListener("click", () => {
       localStorage.removeItem("kn-leaderboard");

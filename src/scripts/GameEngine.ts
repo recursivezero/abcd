@@ -28,28 +28,19 @@ import {
 
 const STARTING_LIVES = 3;
 const NUM_LANES = 6;
-const SLICE_REMOVE_DELAY_MS = 220;
 const COUNTDOWN_START = 3;
 const COUNTDOWN_STEP_MS = 700;
 const ACHIEVEMENT_TOAST_MS = 3200;
 
 // ── Game Config Types ──────────────────────────────────────────
 export type ItemShape = "square" | "rounded" | "pill";
-export type ItemSpeed = "slow" | "normal" | "fast";
 export type ItemSize = "small" | "auto" | "large";
-
 export interface GameConfig {
   itemColor: string;
   itemShape: ItemShape;
-  itemSpeed: ItemSpeed;
   itemSize: ItemSize;
+  speedStep: number; // 1–5, from slider
 }
-
-const SPEED_MULTIPLIER: Record<ItemSpeed, number> = {
-  slow: 1.7,
-  normal: 1.0,
-  fast: 0.55
-};
 
 const SHAPE_RADIUS: Record<ItemShape, string> = {
   square: "0px",
@@ -57,24 +48,23 @@ const SHAPE_RADIUS: Record<ItemShape, string> = {
   pill: "999px"
 };
 
-// clamp(min, preferred-vw, max) — auto scales with screen
 const SIZE_FONT: Record<ItemSize, string> = {
   small: "clamp(0.75rem, 1.4vw, 1rem)",
-  auto: "clamp(1rem,    2vw,   1.4rem)",
-  large: "clamp(1.3rem,  3vw,   2rem)"
+  auto: "clamp(1rem, 2vw, 1.4rem)",
+  large: "clamp(1.3rem, 3vw, 2rem)"
 };
 
 const SIZE_PAD: Record<ItemSize, string> = {
   small: "clamp(0.2rem, 0.4vh, 0.32rem) clamp(0.32rem, 0.6vw, 0.5rem)",
-  auto: "clamp(0.25rem, 0.5vh, 0.4rem) clamp(0.4rem,  0.75vw, 0.62rem)",
-  large: "clamp(0.4rem,  0.8vh, 0.7rem) clamp(0.6rem,  1.2vw,  1rem)"
+  auto: "clamp(0.25rem, 0.5vh, 0.4rem) clamp(0.4rem, 0.75vw, 0.62rem)",
+  large: "clamp(0.4rem, 0.8vh, 0.7rem) clamp(0.6rem, 1.2vw, 1rem)"
 };
 
 const DEFAULT_CONFIG: GameConfig = {
   itemColor: "#4d96ff",
   itemShape: "square",
-  itemSpeed: "normal",
-  itemSize: "auto"
+  itemSize: "auto",
+  speedStep: 10
 };
 
 // ──────────────────────────────────────────────────────────────
@@ -149,10 +139,7 @@ export class KeyboardNinjaGame {
   private unlockedAchievementIds: string[] = [];
   private isNewHighScore = false;
   private hasPlayedOnce = false;
-
   private config: GameConfig = { ...DEFAULT_CONFIG };
-
-  private laneCounter = 0;
   private spawnTimer: number | null = null;
   private countdownTimer: number | null = null;
   private countdownValue = COUNTDOWN_START;
@@ -226,7 +213,6 @@ export class KeyboardNinjaGame {
     this.setStatus("idle");
   }
 
-  // ── Wire config panel controls ─────────────────────────────
   private wireConfigControls(root: ParentNode): void {
     // Color
     const colorInputs = root.querySelectorAll<HTMLInputElement>(".kn-cfg-color");
@@ -249,16 +235,6 @@ export class KeyboardNinjaGame {
       });
     });
 
-    // Speed
-    root.querySelectorAll<HTMLButtonElement>("[data-speed]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        this.config.itemSpeed = btn.dataset.speed as ItemSpeed;
-        root
-          .querySelectorAll<HTMLButtonElement>("[data-speed]")
-          .forEach((b) => b.classList.toggle("kn-cfg-btn-active", b.dataset.speed === btn.dataset.speed));
-      });
-    });
-
     // Size
     root.querySelectorAll<HTMLButtonElement>("[data-size]").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -267,6 +243,12 @@ export class KeyboardNinjaGame {
           .querySelectorAll<HTMLButtonElement>("[data-size]")
           .forEach((b) => b.classList.toggle("kn-cfg-btn-active", b.dataset.size === btn.dataset.size));
       });
+    });
+
+    // Speed slider
+    const speedSlider = root.querySelector<HTMLInputElement>("#kn-cfg-speed");
+    speedSlider?.addEventListener("input", () => {
+      this.config.speedStep = Number(speedSlider.value);
     });
   }
 
@@ -281,8 +263,6 @@ export class KeyboardNinjaGame {
     this.items.forEach((item) => item.el.remove());
     this.items.clear();
   }
-
-  // ---------- audio ----------
 
   private ensureAudio(): AudioContext | null {
     if (!this.audioCtx) {
@@ -311,8 +291,6 @@ export class KeyboardNinjaGame {
     playTone(ctx, 920, 200, "sine");
   }
 
-  // ---------- screens ----------
-
   private setStatus(status: GameStatus): void {
     this.status = status;
     const isIdle = status === "idle";
@@ -338,8 +316,6 @@ export class KeyboardNinjaGame {
     });
   }
 
-  // ---------- scoreboard ----------
-
   private renderScoreboard(): void {
     this.el.score.textContent = String(this.stats.score);
     this.el.lives.textContent = "❤️".repeat(Math.max(this.stats.lives, 0)) || "💔";
@@ -350,8 +326,6 @@ export class KeyboardNinjaGame {
     this.el.badgeDouble.hidden = !this.activePowerUps.doubleScore;
   }
 
-  // ---------- leaderboard / achievements ----------
-
   private buildLeaderboardMarkup(): HTMLElement {
     if (this.leaderboard.length === 0) {
       const empty = document.createElement("p");
@@ -359,25 +333,20 @@ export class KeyboardNinjaGame {
       empty.textContent = "No scores yet — be the first!";
       return empty;
     }
-
     const list = document.createElement("ol");
     list.className = "kn-leaderboard";
     this.leaderboard.slice(0, 5).forEach((entry, index) => {
       const row = document.createElement("li");
       row.className = "kn-leaderboard-row";
-
       const rank = document.createElement("span");
       rank.className = "kn-leaderboard-rank";
       rank.textContent = `#${index + 1}`;
-
       const score = document.createElement("span");
       score.className = "kn-leaderboard-score";
       score.textContent = String(entry.score);
-
       const level = document.createElement("span");
       level.className = "kn-leaderboard-level";
       level.textContent = entry.levelName;
-
       row.append(rank, score, level);
       list.appendChild(row);
     });
@@ -394,19 +363,15 @@ export class KeyboardNinjaGame {
       const badge = document.createElement("div");
       badge.className = `kn-achievement-badge${unlocked ? " kn-achievement-unlocked" : ""}`;
       badge.title = achievement.description;
-
       const icon = document.createElement("span");
       icon.className = "kn-achievement-icon";
       icon.textContent = unlocked ? "🏆" : "🔒";
-
       const title = document.createElement("span");
       title.className = "kn-achievement-title";
       title.textContent = achievement.title;
-
       const progress = document.createElement("span");
       progress.className = "kn-achievement-progress";
       progress.textContent = unlocked ? "✓ Unlocked" : "Locked";
-
       badge.append(icon, title, progress);
       return badge;
     });
@@ -418,11 +383,9 @@ export class KeyboardNinjaGame {
       (a) => !this.unlockedAchievementIds.includes(a.id) && a.check(this.stats)
     );
     if (newlyUnlocked.length === 0) return;
-
     this.unlockedAchievementIds = [...this.unlockedAchievementIds, ...newlyUnlocked.map((a) => a.id)];
     saveUnlockedAchievementIds(this.unlockedAchievementIds);
     this.renderAchievements();
-
     window.setTimeout(() => {
       const badges = this.el.achievementsIdle.querySelectorAll(".kn-achievement-badge");
       newlyUnlocked.forEach((a) => {
@@ -433,7 +396,6 @@ export class KeyboardNinjaGame {
         }
       });
     }, 50);
-
     newlyUnlocked.forEach((achievement) => this.queueToast(achievement));
   }
 
@@ -446,7 +408,6 @@ export class KeyboardNinjaGame {
     if (this.isToastShowing) return;
     const next = this.toastQueue.shift();
     if (!next) return;
-
     this.isToastShowing = true;
     this.el.toastTitle.textContent = next.title;
     this.el.toast.hidden = false;
@@ -456,8 +417,6 @@ export class KeyboardNinjaGame {
       this.maybeShowNextToast();
     }, ACHIEVEMENT_TOAST_MS);
   }
-
-  // ---------- spawning ----------
 
   private clearSpawnTimer(): void {
     if (this.spawnTimer) {
@@ -490,7 +449,6 @@ export class KeyboardNinjaGame {
       });
 
     const laneCooldownMs = config.spawnIntervalMs * (NUM_LANES / 2);
-
     const freeLanes: number[] = [];
     for (let i = 0; i < NUM_LANES; i += 1) {
       const lastSpawnAt = laneLastSpawnAt.get(i);
@@ -498,7 +456,6 @@ export class KeyboardNinjaGame {
         freeLanes.push(i);
       }
     }
-
     if (freeLanes.length === 0) return;
 
     const lane = freeLanes[randomInt(0, freeLanes.length)];
@@ -511,8 +468,11 @@ export class KeyboardNinjaGame {
       : undefined;
     const value = config.pool[randomInt(0, config.pool.length)];
 
+    // ── Speed from slider ──
+    const actualSpeed = this.config.speedStep / 10;
+    const multiplier = 1 / actualSpeed;
     let durationMs = randomInt(config.minDurationMs, config.maxDurationMs);
-    durationMs = Math.round(durationMs * SPEED_MULTIPLIER[this.config.itemSpeed]);
+    durationMs = Math.round(durationMs * multiplier);
     if (Date.now() < this.slowMotionUntil) {
       durationMs = Math.round(durationMs * SLOW_MOTION_FALL_MULTIPLIER);
     }
@@ -542,13 +502,8 @@ export class KeyboardNinjaGame {
     div.style.animationDuration = `${data.durationMs}ms`;
     div.dataset.id = data.id;
 
-    // Color + shape
-    if (!data.powerUp) {
-      div.style.backgroundColor = this.config.itemColor;
-    }
+    if (!data.powerUp) div.style.backgroundColor = this.config.itemColor;
     div.style.borderRadius = SHAPE_RADIUS[this.config.itemShape];
-
-    // ── Size — clamp auto-scales with viewport ──
     div.style.fontSize = SIZE_FONT[this.config.itemSize];
     div.style.padding = SIZE_PAD[this.config.itemSize];
 
@@ -574,7 +529,6 @@ export class KeyboardNinjaGame {
     timerEl.textContent = "";
     div.appendChild(timerEl);
 
-    // Jab 70% neeche aa jaye tab countdown shuru
     const dur = data.durationMs;
     const countdownStart = dur * 0.7;
     const t1 = window.setTimeout(() => {
@@ -596,7 +550,6 @@ export class KeyboardNinjaGame {
     div.dataset.t1 = String(t1);
     div.dataset.t2 = String(t2);
     div.dataset.t3 = String(t3);
-    // ──────────────────────
 
     div.addEventListener("animationend", () => this.handleItemMissed(data.id));
     return div;
@@ -612,8 +565,6 @@ export class KeyboardNinjaGame {
     });
   }
 
-  // ---------- core actions ----------
-
   private registerMiss(): void {
     this.stats = { ...this.stats, misses: this.stats.misses + 1, combo: 0 };
     this.renderScoreboard();
@@ -623,10 +574,8 @@ export class KeyboardNinjaGame {
   private sliceItem(item: TrackedItem): void {
     item.state = "sliced";
     item.el.style.animationPlayState = "paused";
-    // timers clear karo
     [item.el.dataset.t1, item.el.dataset.t2, item.el.dataset.t3].forEach((t) => t && window.clearTimeout(Number(t)));
 
-    // ── Shatter on slice (green version) ──
     const el = item.el;
     const char = el.querySelector(".kn-char")?.textContent ?? el.textContent ?? "";
     const left = el.style.left;
@@ -653,7 +602,6 @@ export class KeyboardNinjaGame {
     this.items.delete(item.id);
     this.el.arena.appendChild(wrap);
     window.setTimeout(() => wrap.remove(), 600);
-    // ──────────────────────────────────────
 
     const isWord = item.type === "word" && !item.powerUp;
     const multiplier = Date.now() < this.doubleScoreUntil ? 2 : 1;
@@ -672,19 +620,16 @@ export class KeyboardNinjaGame {
     this.renderScoreboard();
     this.playHitSound(isWord);
     this.checkAchievements();
-
     if (item.powerUp) this.activatePowerUp(item.powerUp);
   }
 
   private activatePowerUp(type: PowerUpType): void {
     this.playPowerUpSound();
-
     if (type === "extraLife") {
       this.stats = { ...this.stats, lives: Math.min(this.stats.lives + 1, MAX_LIVES) };
       this.renderScoreboard();
       return;
     }
-
     if (type === "doubleScore") {
       this.doubleScoreUntil = Date.now() + DOUBLE_SCORE_DURATION_MS;
       this.activePowerUps = { ...this.activePowerUps, doubleScore: true };
@@ -695,7 +640,6 @@ export class KeyboardNinjaGame {
       }, DOUBLE_SCORE_DURATION_MS);
       return;
     }
-
     this.slowMotionUntil = Date.now() + SLOW_MOTION_DURATION_MS;
     this.activePowerUps = { ...this.activePowerUps, slowMotion: true };
     this.renderScoreboard();
@@ -711,10 +655,8 @@ export class KeyboardNinjaGame {
 
     item.state = "sliced";
     item.el.style.animationPlayState = "paused";
-    // timers clear karo
     [item.el.dataset.t1, item.el.dataset.t2, item.el.dataset.t3].forEach((t) => t && window.clearTimeout(Number(t)));
 
-    // ── Shatter animation ──
     const el = item.el;
     const char = el.querySelector(".kn-char")?.textContent ?? el.textContent ?? "";
     const left = el.style.left;
@@ -745,12 +687,10 @@ export class KeyboardNinjaGame {
     this.items.delete(id);
     this.el.arena.appendChild(flash);
     this.el.arena.appendChild(wrap);
-
     window.setTimeout(() => {
       wrap.remove();
       flash.remove();
     }, 600);
-    // ──────────────────────
 
     if (this.targetId === id) {
       this.targetId = null;
@@ -761,11 +701,8 @@ export class KeyboardNinjaGame {
     this.renderScoreboard();
     this.playMissSound();
 
-    if (this.stats.lives <= 0) {
-      window.setTimeout(() => this.endGame(), 600);
-    }
+    if (this.stats.lives <= 0) window.setTimeout(() => this.endGame(), 600);
   }
-  // ---------- keyboard handling ----------
 
   private handleKeydown(event: KeyboardEvent): void {
     if (this.status !== "playing") return;
@@ -793,14 +730,12 @@ export class KeyboardNinjaGame {
         this.updateTypedProgress(candidate);
         return;
       }
-
       const target = this.items.get(this.targetId);
       if (!target || target.state !== "falling") {
         this.targetId = null;
         this.typedBuffer = "";
         return;
       }
-
       const expected = target.value[this.typedBuffer.length];
       if (key === expected) {
         this.typedBuffer += key;
@@ -820,8 +755,6 @@ export class KeyboardNinjaGame {
     if (match) this.sliceItem(match);
     else this.registerMiss();
   }
-
-  // ---------- countdown / lifecycle ----------
 
   private runCountdown(): void {
     this.countdownValue = COUNTDOWN_START;
@@ -851,8 +784,6 @@ export class KeyboardNinjaGame {
 
     this.items.forEach((item) => item.el.remove());
     this.items.clear();
-
-    this.laneCounter = 0;
     this.doubleScoreUntil = 0;
     this.slowMotionUntil = 0;
     this.targetId = null;
@@ -871,12 +802,10 @@ export class KeyboardNinjaGame {
     this.hasPlayedOnce = true;
     this.clearSpawnTimer();
     if (this.countdownTimer) window.clearTimeout(this.countdownTimer);
-
     this.items.forEach((item) => item.el.remove());
     this.items.clear();
     this.targetId = null;
     this.typedBuffer = "";
-
     this.el.highScoreBadge.hidden = true;
     this.setStatus("idle");
   }
@@ -885,10 +814,8 @@ export class KeyboardNinjaGame {
     this.hasPlayedOnce = false;
     this.clearSpawnTimer();
     if (this.countdownTimer) window.clearTimeout(this.countdownTimer);
-
     this.items.forEach((item) => item.el.remove());
     this.items.clear();
-
     this.targetId = null;
     this.typedBuffer = "";
     this.doubleScoreUntil = 0;
@@ -897,7 +824,6 @@ export class KeyboardNinjaGame {
     this.isNewHighScore = false;
     this.leaderboardSaved = false;
     this.stats = { score: 0, lives: STARTING_LIVES, misses: 0, combo: 0, bestCombo: 0, correctCount: 0 };
-
     this.el.highScoreBadge.hidden = true;
     this.renderScoreboard();
     this.setStatus("idle");
@@ -909,14 +835,12 @@ export class KeyboardNinjaGame {
     this.items.clear();
     this.targetId = null;
     this.typedBuffer = "";
-
     this.setStatus("gameover");
 
     if (!this.leaderboardSaved) {
       this.leaderboardSaved = true;
       const previousBest = this.leaderboard[0]?.score ?? 0;
       this.isNewHighScore = this.stats.score > previousBest;
-
       const entry: LeaderboardEntry = {
         score: this.stats.score,
         levelName: getLevelById(this.levelId).name,
