@@ -36,11 +36,13 @@ const ACHIEVEMENT_TOAST_MS = 3200;
 // ── Game Config Types ──────────────────────────────────────────
 export type ItemShape = "square" | "rounded" | "pill";
 export type ItemSpeed = "slow" | "normal" | "fast";
+export type ItemSize = "small" | "auto" | "large";
 
 export interface GameConfig {
-  itemColor: string; // hex color for falling items
-  itemShape: ItemShape; // border-radius style
-  itemSpeed: ItemSpeed; // duration multiplier
+  itemColor: string;
+  itemShape: ItemShape;
+  itemSpeed: ItemSpeed;
+  itemSize: ItemSize;
 }
 
 const SPEED_MULTIPLIER: Record<ItemSpeed, number> = {
@@ -55,10 +57,24 @@ const SHAPE_RADIUS: Record<ItemShape, string> = {
   pill: "999px"
 };
 
+// clamp(min, preferred-vw, max) — auto scales with screen
+const SIZE_FONT: Record<ItemSize, string> = {
+  small: "clamp(0.75rem, 1.4vw, 1rem)",
+  auto: "clamp(1rem,    2vw,   1.4rem)",
+  large: "clamp(1.3rem,  3vw,   2rem)"
+};
+
+const SIZE_PAD: Record<ItemSize, string> = {
+  small: "clamp(0.2rem, 0.4vh, 0.32rem) clamp(0.32rem, 0.6vw, 0.5rem)",
+  auto: "clamp(0.25rem, 0.5vh, 0.4rem) clamp(0.4rem,  0.75vw, 0.62rem)",
+  large: "clamp(0.4rem,  0.8vh, 0.7rem) clamp(0.6rem,  1.2vw,  1rem)"
+};
+
 const DEFAULT_CONFIG: GameConfig = {
   itemColor: "#4d96ff",
   itemShape: "square",
-  itemSpeed: "normal"
+  itemSpeed: "normal",
+  itemSize: "auto"
 };
 
 // ──────────────────────────────────────────────────────────────
@@ -134,7 +150,6 @@ export class KeyboardNinjaGame {
   private isNewHighScore = false;
   private hasPlayedOnce = false;
 
-  // ── Config ──
   private config: GameConfig = { ...DEFAULT_CONFIG };
 
   private laneCounter = 0;
@@ -201,7 +216,6 @@ export class KeyboardNinjaGame {
     this.el.restartBtn.addEventListener("click", () => this.startGame());
     this.el.backBtn.addEventListener("click", () => this.showLevelSelect());
 
-    // ── Config controls wire-up ──
     this.wireConfigControls(root);
 
     window.addEventListener("keydown", this.boundKeydown);
@@ -214,26 +228,18 @@ export class KeyboardNinjaGame {
 
   // ── Wire config panel controls ─────────────────────────────
   private wireConfigControls(root: ParentNode): void {
-    const toggleBtn = root.querySelector<HTMLButtonElement>("#kn-settings-toggle");
-    const panel = root.querySelector<HTMLElement>("#kn-settings-panel");
-    toggleBtn?.addEventListener("click", () => {
-      const open = panel?.classList.toggle("kn-settings-open");
-      toggleBtn.setAttribute("aria-expanded", String(!!open));
-    });
-
-    // Color — DONO cards ke color inputs sync karo
+    // Color
     const colorInputs = root.querySelectorAll<HTMLInputElement>(".kn-cfg-color");
     colorInputs.forEach((input) => {
       input.addEventListener("input", () => {
         this.config.itemColor = input.value;
-        // Dono inputs same value pe rakho
         colorInputs.forEach((i) => {
           i.value = input.value;
         });
       });
     });
 
-    // Shape — querySelectorAll se dono cards ke buttons
+    // Shape
     root.querySelectorAll<HTMLButtonElement>("[data-shape]").forEach((btn) => {
       btn.addEventListener("click", () => {
         this.config.itemShape = btn.dataset.shape as ItemShape;
@@ -250,6 +256,16 @@ export class KeyboardNinjaGame {
         root
           .querySelectorAll<HTMLButtonElement>("[data-speed]")
           .forEach((b) => b.classList.toggle("kn-cfg-btn-active", b.dataset.speed === btn.dataset.speed));
+      });
+    });
+
+    // Size
+    root.querySelectorAll<HTMLButtonElement>("[data-size]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.config.itemSize = btn.dataset.size as ItemSize;
+        root
+          .querySelectorAll<HTMLButtonElement>("[data-size]")
+          .forEach((b) => b.classList.toggle("kn-cfg-btn-active", b.dataset.size === btn.dataset.size));
       });
     });
   }
@@ -307,9 +323,7 @@ export class KeyboardNinjaGame {
     this.el.scoreboardWrap.hidden = status !== "playing" && status !== "countdown";
 
     const quitBtn = document.getElementById("kn-quit-btn") as HTMLElement | null;
-    if (quitBtn) {
-      quitBtn.hidden = status === "idle" && !this.hasPlayedOnce;
-    }
+    if (quitBtn) quitBtn.hidden = status === "idle" && !this.hasPlayedOnce;
   }
 
   private selectLevel(id: number): void {
@@ -497,7 +511,6 @@ export class KeyboardNinjaGame {
       : undefined;
     const value = config.pool[randomInt(0, config.pool.length)];
 
-    // ── Apply speed config ──
     let durationMs = randomInt(config.minDurationMs, config.maxDurationMs);
     durationMs = Math.round(durationMs * SPEED_MULTIPLIER[this.config.itemSpeed]);
     if (Date.now() < this.slowMotionUntil) {
@@ -529,14 +542,15 @@ export class KeyboardNinjaGame {
     div.style.animationDuration = `${data.durationMs}ms`;
     div.dataset.id = data.id;
 
-    // ── Apply color + shape config (only for non-powerup items) ──
+    // Color + shape
     if (!data.powerUp) {
       div.style.backgroundColor = this.config.itemColor;
-      div.style.borderRadius = SHAPE_RADIUS[this.config.itemShape];
-    } else {
-      // Powerups keep their own shape
-      div.style.borderRadius = SHAPE_RADIUS[this.config.itemShape];
     }
+    div.style.borderRadius = SHAPE_RADIUS[this.config.itemShape];
+
+    // ── Size — clamp auto-scales with viewport ──
+    div.style.fontSize = SIZE_FONT[this.config.itemSize];
+    div.style.padding = SIZE_PAD[this.config.itemSize];
 
     if (data.powerUp) {
       const info = POWER_UP_DISPLAY[data.powerUp];
@@ -553,6 +567,36 @@ export class KeyboardNinjaGame {
       span.textContent = char;
       div.appendChild(span);
     });
+
+    // ── Per-item countdown ──
+    const timerEl = document.createElement("div");
+    timerEl.className = "kn-item-countdown";
+    timerEl.textContent = "";
+    div.appendChild(timerEl);
+
+    // Jab 70% neeche aa jaye tab countdown shuru
+    const dur = data.durationMs;
+    const countdownStart = dur * 0.7;
+    const t1 = window.setTimeout(() => {
+      timerEl.textContent = "3";
+      timerEl.classList.add("kn-countdown-active");
+    }, countdownStart);
+    const t2 = window.setTimeout(
+      () => {
+        timerEl.textContent = "2";
+      },
+      countdownStart + dur * 0.1
+    );
+    const t3 = window.setTimeout(
+      () => {
+        timerEl.textContent = "1";
+      },
+      countdownStart + dur * 0.2
+    );
+    div.dataset.t1 = String(t1);
+    div.dataset.t2 = String(t2);
+    div.dataset.t3 = String(t3);
+    // ──────────────────────
 
     div.addEventListener("animationend", () => this.handleItemMissed(data.id));
     return div;
@@ -578,12 +622,38 @@ export class KeyboardNinjaGame {
 
   private sliceItem(item: TrackedItem): void {
     item.state = "sliced";
-    item.el.classList.add("kn-item-sliced");
     item.el.style.animationPlayState = "paused";
-    window.setTimeout(() => {
-      item.el.remove();
-      this.items.delete(item.id);
-    }, SLICE_REMOVE_DELAY_MS);
+    // timers clear karo
+    [item.el.dataset.t1, item.el.dataset.t2, item.el.dataset.t3].forEach((t) => t && window.clearTimeout(Number(t)));
+
+    // ── Shatter on slice (green version) ──
+    const el = item.el;
+    const char = el.querySelector(".kn-char")?.textContent ?? el.textContent ?? "";
+    const left = el.style.left;
+    const top = getComputedStyle(el).top;
+
+    const wrap = document.createElement("div");
+    wrap.className = "kn-shatter-wrap";
+    wrap.style.left = left;
+    wrap.style.top = top;
+
+    (["tl", "tr", "bl", "br"] as const).forEach((pos, i) => {
+      const shard = document.createElement("div");
+      shard.className = `kn-shard kn-shard-${pos} kn-shard-hit`;
+      if (i === 0) {
+        const charEl = document.createElement("span");
+        charEl.className = "kn-shard-char";
+        charEl.textContent = char;
+        shard.appendChild(charEl);
+      }
+      wrap.appendChild(shard);
+    });
+
+    el.remove();
+    this.items.delete(item.id);
+    this.el.arena.appendChild(wrap);
+    window.setTimeout(() => wrap.remove(), 600);
+    // ──────────────────────────────────────
 
     const isWord = item.type === "word" && !item.powerUp;
     const multiplier = Date.now() < this.doubleScoreUntil ? 2 : 1;
@@ -603,9 +673,7 @@ export class KeyboardNinjaGame {
     this.playHitSound(isWord);
     this.checkAchievements();
 
-    if (item.powerUp) {
-      this.activatePowerUp(item.powerUp);
-    }
+    if (item.powerUp) this.activatePowerUp(item.powerUp);
   }
 
   private activatePowerUp(type: PowerUpType): void {
@@ -641,8 +709,48 @@ export class KeyboardNinjaGame {
     const item = this.items.get(id);
     if (!item || item.state !== "falling") return;
 
-    item.el.remove();
+    item.state = "sliced";
+    item.el.style.animationPlayState = "paused";
+    // timers clear karo
+    [item.el.dataset.t1, item.el.dataset.t2, item.el.dataset.t3].forEach((t) => t && window.clearTimeout(Number(t)));
+
+    // ── Shatter animation ──
+    const el = item.el;
+    const char = el.querySelector(".kn-char")?.textContent ?? el.textContent ?? "";
+    const left = el.style.left;
+    const top = getComputedStyle(el).top;
+
+    const wrap = document.createElement("div");
+    wrap.className = "kn-shatter-wrap";
+    wrap.style.left = left;
+    wrap.style.top = top;
+
+    (["tl", "tr", "bl", "br"] as const).forEach((pos, i) => {
+      const shard = document.createElement("div");
+      shard.className = `kn-shard kn-shard-${pos}`;
+      shard.style.background = el.style.backgroundColor || "var(--kn-danger)";
+      if (i === 0) {
+        const charEl = document.createElement("span");
+        charEl.className = "kn-shard-char";
+        charEl.textContent = char;
+        shard.appendChild(charEl);
+      }
+      wrap.appendChild(shard);
+    });
+
+    const flash = document.createElement("div");
+    flash.className = "kn-miss-flash";
+
+    el.remove();
     this.items.delete(id);
+    this.el.arena.appendChild(flash);
+    this.el.arena.appendChild(wrap);
+
+    window.setTimeout(() => {
+      wrap.remove();
+      flash.remove();
+    }, 600);
+    // ──────────────────────
 
     if (this.targetId === id) {
       this.targetId = null;
@@ -651,12 +759,12 @@ export class KeyboardNinjaGame {
 
     this.stats = { ...this.stats, lives: this.stats.lives - 1, combo: 0 };
     this.renderScoreboard();
+    this.playMissSound();
 
     if (this.stats.lives <= 0) {
-      this.endGame();
+      window.setTimeout(() => this.endGame(), 600);
     }
   }
-
   // ---------- keyboard handling ----------
 
   private handleKeydown(event: KeyboardEvent): void {
@@ -709,11 +817,8 @@ export class KeyboardNinjaGame {
     }
 
     const match = aliveItems.find((item) => item.value === key);
-    if (match) {
-      this.sliceItem(match);
-    } else {
-      this.registerMiss();
-    }
+    if (match) this.sliceItem(match);
+    else this.registerMiss();
   }
 
   // ---------- countdown / lifecycle ----------
@@ -779,7 +884,6 @@ export class KeyboardNinjaGame {
   public quitGame(): void {
     this.hasPlayedOnce = false;
     this.clearSpawnTimer();
-
     if (this.countdownTimer) window.clearTimeout(this.countdownTimer);
 
     this.items.forEach((item) => item.el.remove());
@@ -801,7 +905,6 @@ export class KeyboardNinjaGame {
 
   private endGame(): void {
     this.clearSpawnTimer();
-
     this.items.forEach((item) => item.el.remove());
     this.items.clear();
     this.targetId = null;

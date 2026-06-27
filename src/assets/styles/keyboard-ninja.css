@@ -1163,3 +1163,169 @@ body.kn-fullscreen .kn-achievement-toast {
 .kn-titlebar {
   display: none !important;
 }
+
+/* ════════════════════════════════════════════
+   SHATTER MISS ANIMATION
+   ════════════════════════════════════════════ */
+.kn-shatter-wrap {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+  z-index: 5;
+  transform: translateX(-50%);
+}
+
+.kn-shard {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--kn-danger);
+}
+
+.kn-shard-char {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+/* Slice = green shards */
+.kn-shard-hit {
+  background: var(--kn-success) !important;
+}
+
+@keyframes kn-shard-tl {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-35px, -50px) rotate(-60deg);
+    opacity: 0;
+  }
+}
+
+@keyframes kn-shard-tr {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(35px, -50px) rotate(60deg);
+    opacity: 0;
+  }
+}
+
+@keyframes kn-shard-bl {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-35px, 50px) rotate(60deg);
+    opacity: 0;
+  }
+}
+
+@keyframes kn-shard-br {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(35px, 50px) rotate(-60deg);
+    opacity: 0;
+  }
+}
+
+.kn-shard-tl {
+  top: 0;
+  left: 0;
+  animation: kn-shard-tl 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.kn-shard-tr {
+  top: 0;
+  right: 0;
+  animation: kn-shard-tr 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.kn-shard-bl {
+  bottom: 0;
+  left: 0;
+  animation: kn-shard-bl 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.kn-shard-br {
+  bottom: 0;
+  right: 0;
+  animation: kn-shard-br 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Flash overlay */
+@keyframes kn-miss-flash {
+  0% {
+    opacity: 0.45;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.kn-miss-flash {
+  position: absolute;
+  inset: 0;
+  background: #ef4444;
+  pointer-events: none;
+  z-index: 4;
+  border-radius: var(--kn-radius);
+  animation: kn-miss-flash 300ms ease forwards;
+}
+/* ════════════════════════════════════════════
+   PER-ITEM COUNTDOWN
+   ════════════════════════════════════════════ */
+.kn-item-countdown {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--kn-danger);
+  border-radius: 999px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+.kn-countdown-active {
+  opacity: 1;
+  animation: kn-countdown-pulse 1s ease infinite;
+}
+
+@keyframes kn-countdown-pulse {
+
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.25);
+  }
+}
