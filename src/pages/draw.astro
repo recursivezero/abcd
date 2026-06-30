@@ -239,18 +239,15 @@ const meta = {
 <script>
   function handleControlsPosition() {
     const actionGroup = document.querySelector(".action__group") as HTMLElement | null;
-    const heroSearch = document.querySelector(".hero-search") as HTMLElement | null;
     const content = document.getElementById("mainContent");
     const vkContainer = document.getElementById("vk-container");
 
-    if (!actionGroup || !heroSearch) return;
+    if (!actionGroup) return;
 
     if (window.innerWidth <= 640) {
-      const searchBottom = heroSearch.getBoundingClientRect().bottom;
 
       actionGroup.style.display = "flex";
       actionGroup.style.position = "fixed";
-      actionGroup.style.top = searchBottom + "px";
       actionGroup.style.left = "0";
       actionGroup.style.width = "100%";
       actionGroup.style.background = "var(--background)";
@@ -371,23 +368,10 @@ const meta = {
     fixSharePopover();
   }
 
-  function overrideSpacer() {
-    if (window.innerWidth > 640) return;
-    const actionGroup = document.querySelector(".action__group") as HTMLElement | null;
-    const spacer = document.getElementById("headerSpacer");
-    if (!actionGroup || !spacer) return;
-    const toolbarBottom = actionGroup.getBoundingClientRect().bottom;
-    if (toolbarBottom > 0) {
-      spacer.style.setProperty("height", toolbarBottom + "px", "important");
-    }
-  }
-
   document.addEventListener("DOMContentLoaded", init);
   window.addEventListener("resize", () => handleControlsPosition());
   window.addEventListener("load", () => {
     init();
-    setTimeout(overrideSpacer, 200);
   });
   document.addEventListener("astro:page-load", init);
-  window.addEventListener("load", () => setTimeout(overrideSpacer, 300));
 </script>
