@@ -36,7 +36,7 @@ body {
     --border: #1e293b;
     --card: rgba(37, 53, 79, 0.8);
     --card-bg: rgba(37, 53, 79, 0.8);
-    --header-h: 4rem;
+    --header-h: 5rem;
     --footer-h: 4rem;
     --sidebar-w: 16rem;
     --transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -188,20 +188,16 @@ body {
     left: 0;
     pointer-events: none;
     z-index: 0;
-    background-image: repeating-linear-gradient(
-        60deg,
+    background-image: repeating-linear-gradient(60deg,
         transparent,
         transparent 28px,
         rgba(34, 211, 238, 0.03) 28px,
-        rgba(34, 211, 238, 0.03) 29px
-      ),
-      repeating-linear-gradient(
-        -40deg,
+        rgba(34, 211, 238, 0.03) 29px),
+      repeating-linear-gradient(-40deg,
         transparent,
         transparent 34px,
         rgba(34, 211, 238, 0.02) 34px,
-        rgba(34, 211, 238, 0.02) 35px
-      );
+        rgba(34, 211, 238, 0.02) 35px);
   }
 
   [data-theme="light"] body::before {
@@ -457,7 +453,6 @@ body {
     }
 
     [class*="card"],
-    [class*="grid"],
     [class*="cards"] {
       grid-template-columns: 1fr !important;
     }
@@ -527,6 +522,7 @@ body {
   }
 
   @media (hover: none) and (pointer: coarse) {
+
     button,
     a,
     [role="button"] {

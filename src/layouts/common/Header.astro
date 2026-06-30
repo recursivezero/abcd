@@ -279,7 +279,7 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
   <div class="mobile-actions-bar" id="mobileActionsBar"></div>
 </div>
 
-<div class="header-spacer" id="headerSpacer"></div>
+<!--<div class="header-spacer" id="headerSpacer"></div>-->
 
 <style is:global>
   /* ── Theme toggle ── */
@@ -1068,30 +1068,6 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     });
   }
 
-  /* ── Spacer ── */
-  function updateSpacer() {
-    const header = document.querySelector(".header");
-    const heroSearch = document.querySelector(".hero-search");
-    const spacer = document.getElementById("headerSpacer");
-    if (!header || !spacer) return;
-
-    // Both .header and .hero-search are position:fixed (per header.css)
-    // so they are fully out of document flow.
-    // Spacer must equal their combined height so page content
-    // starts exactly below the search bar — no gap, no overlap.
-    const headerRect = header.getBoundingClientRect();
-    const searchRect = heroSearch ? heroSearch.getBoundingClientRect() : { height: 0 };
-
-    const totalH = headerRect.height + searchRect.height;
-
-    // Set CSS var for hero-search top: positioning
-    document.documentElement.style.setProperty("--header-h", headerRect.height + "px");
-
-    // Override header.css spacer height (height:0 / 130px / 120px)
-    // with the real measured value
-    spacer.style.setProperty("height", totalH + "px", "important");
-  }
-
   /* ── Theme ── */
   const sunIcon = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
   const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
@@ -1179,7 +1155,6 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     initHeroSearch();
     initThemeToggle();
     initHamburger();
-    updateSpacer();
     moveMobileButtons();
   }
   function moveMobileButtons() {
@@ -1188,7 +1163,6 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     const mobileBar = document.getElementById("mobileActionsBar");
     if (!actionGroup || !mobileBar) return;
 
-    // Theme toggle chhod ke baaki sab move karo
     Array.from(actionGroup.children).forEach((child) => {
       if (!child.classList.contains("theme-toggle")) {
         mobileBar.appendChild(child);
@@ -1196,16 +1170,9 @@ const allSearchItemsJSON = JSON.stringify(allSearchItems);
     });
   }
 
-  window.addEventListener("resize", updateSpacer);
-
   // Run immediately
   init();
 
-  // Re-run after fonts/images may have shifted layout
-  document.addEventListener("DOMContentLoaded", updateSpacer);
-  window.addEventListener("load", updateSpacer);
-
   // Astro view transitions
   document.addEventListener("astro:page-load", init);
-  document.addEventListener("astro:after-swap", updateSpacer);
 </script>

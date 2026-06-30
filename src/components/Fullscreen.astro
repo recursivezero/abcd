@@ -54,6 +54,11 @@ const { buttonText = "⛶ Fullscreen" } = Astro.props;
   .fullscreen-container:fullscreen .fullscreen-button {
     position: fixed;
   }
+  @media (max-width: 768px) {
+    .fullscreen-button {
+      top: -2.5rem;
+    }
+  }
 </style>
 
 <script>
