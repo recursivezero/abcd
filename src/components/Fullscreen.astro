@@ -1,0 +1,75 @@
+---
+interface Props {
+  buttonText?: string;
+}
+
+const { buttonText = "⛶ Fullscreen" } = Astro.props;
+---
+
+<div class="fullscreen-container" data-fullscreen-container>
+  <button type="button" class="fullscreen-button" data-fullscreen-toggle>
+    {buttonText}
+  </button>
+
+  <div class="fullscreen-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .fullscreen-container {
+    position: relative;
+  }
+
+  .fullscreen-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .fullscreen-button:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .fullscreen-container:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    background: white;
+  }
+
+  .fullscreen-container:fullscreen .fullscreen-content {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .fullscreen-container:fullscreen .fullscreen-button {
+    position: fixed;
+  }
+</style>
+
+<script>
+  document.querySelectorAll("[data-fullscreen-container]").forEach((container) => {
+    const button = container.querySelector("[data-fullscreen-toggle]")!;
+
+    button?.addEventListener("click", async () => {
+      if (document.fullscreenElement === container) {
+        await document.exitFullscreen();
+      } else {
+        await container.requestFullscreen();
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      button.textContent = document.fullscreenElement === container ? "✕ Exit Fullscreen" : "⛶ Fullscreen";
+    });
+  });
+</script>

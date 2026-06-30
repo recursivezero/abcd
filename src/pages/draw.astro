@@ -5,6 +5,7 @@ import ControlsContainer from "@/components/ControllerContainer.astro";
 import DrawComponent from "@/components/DrawKeyboard.astro";
 import VirtualKeyboard from "@/components/VirtualKeyboard.astro";
 import MobileSplash from "@/components/MobileSplash.astro";
+import Fullscreen from "@/components/Fullscreen.astro";
 import BaseLayout from "@/layouts/Base";
 
 const meta = {
@@ -229,7 +230,9 @@ const meta = {
   <MobileSplash stay={true} />
   <ControlsContainer slot="header-right" />
   <Back />
-  <DrawComponent />
+  <Fullscreen>
+    <DrawComponent />
+  </Fullscreen>
   <VirtualKeyboard />
 </BaseLayout>
 
@@ -368,8 +371,6 @@ const meta = {
     fixSharePopover();
   }
 
-  // Header.astro ka updateSpacer draw page pe galat height set karta hai
-  // Isliye draw page apna spacer baad mein re-set karta hai
   function overrideSpacer() {
     if (window.innerWidth > 640) return;
     const actionGroup = document.querySelector(".action__group") as HTMLElement | null;
@@ -388,6 +389,5 @@ const meta = {
     setTimeout(overrideSpacer, 200);
   });
   document.addEventListener("astro:page-load", init);
-  // Header updateSpacer ke baad apna spacer dobara set karo
   window.addEventListener("load", () => setTimeout(overrideSpacer, 300));
 </script>
