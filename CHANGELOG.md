@@ -52,6 +52,11 @@ Created Repo from template
 - Added Featured and Category section
 - Added a keyboard game.
 
+## [3.4.1] - Aug 04 2026
+
+- Crossword page redesign for mobile view
+- typing page added
+
 ### [Unreleased]
 
 Here we write upgrading notes for brands. It's a team effort to make them as straightforward as possible.
