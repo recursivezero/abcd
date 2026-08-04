@@ -27,7 +27,7 @@
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 /* ── Top Controls (Word List ke upar) ── */
@@ -357,7 +357,6 @@ details:not([open]) summary::after {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    background: #f8fafc !important;
     border: 1.5px solid #e2e8f0 !important;
     border-radius: 5px !important;
     font-size: calc((100vw - 40px) / 8 * 0.45) !important;
@@ -366,22 +365,7 @@ details:not([open]) summary::after {
     cursor: pointer !important;
     user-select: none !important;
     -webkit-user-select: none !important;
-    touch-action: none !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-  }
-
-  .stats-container {
-    gap: 4px;
-    margin: 8px 0;
-  }
-
-  .stats-button {
-    padding: 8px 10px;
-    font-size: 11px;
+    touch-action: manipulation !important;
     border-radius: 10px;
   }
 
