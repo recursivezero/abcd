@@ -1,0 +1,252 @@
+---
+const title = "Typing Practice";
+import "@/assets/styles/typing.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <div class="app">
+      <header class="toolbar">
+        <div class="left">
+          <h1>⌨ Typing Practice</h1>
+        </div>
+
+        <div class="right">
+          <button id="newBtn"> New </button>
+
+          <button id="clearBtn"> Clear </button>
+
+          <button id="printBtn"> Print </button>
+
+          <button id="fullscreenBtn"> Fullscreen </button>
+
+          <button id="settingsBtn"> ⚙ Settings </button>
+        </div>
+      </header>
+
+      <main>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div id="editor" class="editor" contenteditable="true" spellcheck="false" autocapitalize="off"></div>
+      </main>
+
+      <footer>
+        <div id="stats">
+          Characters:
+          <span id="characters">0</span>
+
+          | Words:
+          <span id="words">0</span>
+        </div>
+      </footer>
+    </div>
+
+    <aside id="settingsPanel">
+      <h2>⚙ Settings</h2>
+
+      <div class="setting">
+        <label>Font</label>
+
+        <select id="fontFamily">
+          <option>Comic Neue</option>
+          <option>Lexend</option>
+          <option>Arial</option>
+          <option>Verdana</option>
+          <option>Georgia</option>
+        </select>
+      </div>
+
+      <div class="setting">
+        <label> Font Size </label>
+
+        <input id="fontSize" type="range" min="24" max="120" value="64" />
+
+        <span id="fontSizeValue"> 64 px </span>
+      </div>
+
+      <div class="setting">
+        <label> Line Height </label>
+
+        <input id="lineHeight" type="range" min="50" max="150" value="96" />
+
+        <span id="lineHeightValue"> 96 px </span>
+      </div>
+
+      <div class="setting">
+        <label> Paper Color </label>
+
+        <input id="paperColor" type="color" value="#ffffff" />
+      </div>
+
+      <div class="setting">
+        <label> Text Color </label>
+
+        <input id="textColor" type="color" value="#222222" />
+      </div>
+
+      <button id="resetSettings"> Reset Settings </button>
+    </aside>
+
+    <script is:inline>
+      const settings = {
+        font: "Comic Neue",
+        fontSize: 64,
+        lineHeight: 96,
+        paper: "notebook",
+        paperColor: "#ffffff",
+        textColor: "#222222",
+        autoSave: true,
+        showStats: true
+      };
+      const STORAGE_KEY = "typing-practice";
+
+      const editor = document.querySelector("#editor");
+
+      const characters = document.querySelector("#characters");
+
+      const words = document.querySelector("#words");
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+
+      if (saved) {
+        editor.innerText = saved;
+      }
+
+      updateStats();
+
+      editor.addEventListener("input", () => {
+        localStorage.setItem(STORAGE_KEY, editor.innerText);
+
+        updateStats();
+      });
+
+      function updateStats() {
+        const text = editor.innerText;
+
+        characters.textContent = text.length;
+
+        const count = text.trim() ? text.trim().split(/\s+/).length : 0;
+
+        words.textContent = count;
+      }
+
+      document.querySelector("#clearBtn").onclick = () => {
+        if (!confirm("Clear page?")) {
+          return;
+        }
+
+        editor.innerText = "";
+
+        updateStats();
+
+        localStorage.removeItem(STORAGE_KEY);
+      };
+
+      document.querySelector("#newBtn").onclick = () => {
+        if (!confirm("Start a new page?")) {
+          return;
+        }
+
+        editor.innerText = "";
+
+        updateStats();
+
+        localStorage.removeItem(STORAGE_KEY);
+      };
+
+      document.querySelector("#printBtn").onclick = () => {
+        window.print();
+      };
+
+      document.querySelector("#fullscreenBtn").onclick = () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      };
+
+      document.querySelector("#settingsBtn").onclick = () => {
+        document.body.classList.toggle("show-settings");
+      };
+      const fontFamily = document.querySelector("#fontFamily");
+      const fontSize = document.querySelector("#fontSize");
+      const lineHeight = document.querySelector("#lineHeight");
+      const paperColor = document.querySelector("#paperColor");
+      const textColor = document.querySelector("#textColor");
+
+      const fontSizeValue = document.querySelector("#fontSizeValue");
+      const lineHeightValue = document.querySelector("#lineHeightValue");
+
+      const SETTINGS_KEY = "typing-settings";
+
+      const savedSettings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}");
+
+      Object.assign(settings, savedSettings);
+
+      applySettings();
+
+      fontFamily.value = settings.font;
+      fontSize.value = settings.fontSize;
+      lineHeight.value = settings.lineHeight;
+      paperColor.value = settings.paperColor;
+      textColor.value = settings.textColor;
+
+      fontSize.addEventListener("input", () => {
+        settings.fontSize = Number(fontSize.value);
+        applySettings();
+      });
+
+      lineHeight.addEventListener("input", () => {
+        settings.lineHeight = Number(lineHeight.value);
+        applySettings();
+      });
+
+      fontFamily.addEventListener("change", () => {
+        settings.font = fontFamily.value;
+        applySettings();
+      });
+
+      paperColor.addEventListener("input", () => {
+        settings.paperColor = paperColor.value;
+        applySettings();
+      });
+
+      textColor.addEventListener("input", () => {
+        settings.textColor = textColor.value;
+        applySettings();
+      });
+
+      document.querySelector("#resetSettings").onclick = () => {
+        localStorage.removeItem(SETTINGS_KEY);
+
+        location.reload();
+      };
+
+      function applySettings() {
+        editor.style.fontFamily = settings.font;
+
+        editor.style.fontSize = settings.fontSize + "px";
+
+        editor.style.lineHeight = settings.lineHeight + "px";
+
+        editor.style.backgroundColor = settings.paperColor;
+
+        editor.style.color = settings.textColor;
+
+        fontSizeValue.textContent = settings.fontSize + " px";
+
+        lineHeightValue.textContent = settings.lineHeight + " px";
+
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+      }
+    </script>
+  </body>
+</html>

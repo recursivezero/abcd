@@ -255,17 +255,6 @@ import HintIcon from "@/assets/icons/hint.svg";
     return { placed: false, cells: [] };
   }
 
-  function clearState() {
-    state.selectedCells = [];
-    state.foundWords = [];
-    state.matchedCells = new Map();
-    state.wordColors = new Map();
-    state.solutionColors = new Map();
-    state.isDragging = false;
-    state.showSolution = false;
-    state.clickCount = 0;
-  }
-
   function generatePuzzle() {
     var newGrid = [];
     for (var i = 0; i < state.size; i++) {
@@ -383,7 +372,6 @@ import HintIcon from "@/assets/icons/hint.svg";
           cell.style.color = "#1e293b";
           cell.style.cursor = "pointer";
           cell.style.userSelect = "none";
-          cell.style.webkitUserSelect = "none";
           cell.style.touchAction = "none";
           cell.style.overflow = "hidden";
         }
