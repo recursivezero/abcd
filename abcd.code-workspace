@@ -172,13 +172,20 @@
       "statusBar.background": "#6a3b98",
       "statusBar.foreground": "#e7e7e7",
       "statusBarItem.hoverBackground": "#844cba",
-      "statusBarItem.remoteBackground": "#6a3b98",
+      "statusBarItem.remoteBackground": "#2e2012",
       "statusBarItem.remoteForeground": "#e7e7e7",
       "titleBar.activeBackground": "#6a3b98",
       "titleBar.activeForeground": "#e7e7e7",
       "titleBar.inactiveBackground": "#6a3b9899",
       "titleBar.inactiveForeground": "#e7e7e799",
-      "tab.activeBorder": "#844cba"
+      "tab.activeBorder": "#844cba",
+      "activityBarTop.activeBackground": "#844cba",
+      "activityBarTop.background": "#844cba",
+      "activityBarTop.foreground": "#e7e7e7",
+      "activityBarTop.inactiveForeground": "#e7e7e799",
+      "commandCenter.foreground": "#e7e7e7",
+      "statusBar.debuggingBackground": "#6a3b98",
+      "statusBar.debuggingForeground": "#e7e7e7"
     },
     "files.exclude": {
       "**/.git": false,

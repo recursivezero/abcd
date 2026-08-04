@@ -245,7 +245,6 @@ const meta = {
     if (!actionGroup) return;
 
     if (window.innerWidth <= 640) {
-
       actionGroup.style.display = "flex";
       actionGroup.style.position = "fixed";
       actionGroup.style.left = "0";
@@ -262,7 +261,6 @@ const meta = {
       actionGroup.style.overflowY = "visible";
       actionGroup.style.scrollbarWidth = "none";
       actionGroup.style.scrollBehavior = "smooth";
-      actionGroup.style.webkitMaskImage = "none";
       (actionGroup.style as any).maskImage = "none";
 
       // Sirf #headerThemeToggle hide karo — #mobileThemeToggle drawer mein safe hai

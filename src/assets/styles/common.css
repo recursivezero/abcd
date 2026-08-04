@@ -286,6 +286,6 @@
 
 @media (max-width: 480px) {
   .grid__2 {
-    grid-template-columns: 1fr;
+    /*grid-template-columns: 1fr;*/
   }
 }

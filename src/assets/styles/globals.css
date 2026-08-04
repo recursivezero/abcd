@@ -509,11 +509,6 @@ body {
       font-size: 1.1rem;
     }
 
-    [style*="grid-template-columns"],
-    [class*="grid-2"],
-    [class*="col-2"] {
-      grid-template-columns: 1fr !important;
-    }
 
     select {
       font-size: 0.9rem;
